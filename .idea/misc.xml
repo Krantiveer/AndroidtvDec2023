@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Indu_Projects/action-ott-tv-android/app/src/main/res/layout-land/activity_leanback.xml" value="0.171875" />
+        <entry key="..\:/Indu_Projects/action-ott-tv-android/app/src/main/res/layout-land/activity_onboarding.xml" value="0.4198198198198198" />
+        <entry key="..\:/Indu_Projects/action-ott-tv-android/app/src/main/res/layout-land/activity_search.xml" value="0.4198198198198198" />
+        <entry key="..\:/Indu_Projects/action-ott-tv-android/app/src/main/res/layout-land/icon_header_item.xml" value="0.16875" />
+        <entry key="..\:/Indu_Projects/action-ott-tv-android/app/src/main/res/layout/activity_leanback.xml" value="0.24270833333333333" />
+        <entry key="..\:/Indu_Projects/action-ott-tv-android/app/src/main/res/layout/activity_onboarding.xml" value="0.24270833333333333" />
+        <entry key="..\:/Indu_Projects/action-ott-tv-android/app/src/main/res/layout/card_home_view.xml" value="0.12239583333333333" />
+        <entry key="..\:/Indu_Projects/action-ott-tv-android/app/src/main/res/layout/card_view_image_layout.xml" value="0.24270833333333333" />
+        <entry key="..\:/Indu_Projects/action-ott-tv-android/app/src/main/res/layout/card_view_image_layout_banner.xml" value="0.24270833333333333" />
+        <entry key="..\:/Indu_Projects/action-ott-tv-android/app/src/main/res/layout/card_view_image_layout_horizontal.xml" value="0.24270833333333333" />
+        <entry key="..\:/Indu_Projects/action-ott-tv-android/app/src/main/res/layout/card_view_image_layout_vertical.xml" value="0.24270833333333333" />
+        <entry key="..\:/Indu_Projects/action-ott-tv-android/app/src/main/res/layout/content_details_activity_layout_new.xml" value="0.24270833333333333" />
+        <entry key="..\:/Indu_Projects/action-ott-tv-android/app/src/main/res/layout/content_details_description.xml" value="0.24270833333333333" />
+        <entry key="..\:/Indu_Projects/action-ott-tv-android/app/src/main/res/layout/fragment_main.xml" value="0.2" />
+        <entry key="..\:/Indu_Projects/action-ott-tv-android/app/src/main/res/layout/fragment_menu_header.xml" value="0.24270833333333333" />
+        <entry key="..\:/Indu_Projects/action-ott-tv-android/app/src/main/res/layout/icon_header_item.xml" value="0.24270833333333333" />
+        <entry key="..\:/Indu_Projects/action-ott-tv-android/app/src/main/res/layout/lb_rows_fragment.xml" value="0.176" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/drawable/btn_rounded_green.xml" value="0.1" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/drawable/btn_rounded_primary.xml" value="0.1" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/drawable/button_focus.xml" value="0.1" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/drawable/button_yellow.xml" value="0.1" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/drawable/button_yellow_detail.xml" value="0.1" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/layout-land/activity_activation.xml" value="0.25045045045045045" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/layout-land/activity_details.xml" value="0.3324324324324324" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/layout-land/activity_details_tvseries.xml" value="0.25045045045045045" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/layout-land/activity_item_country.xml" value="0.25045045045045045" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/layout-land/activity_item_genre.xml" value="0.25045045045045045" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/layout-land/activity_leanback.xml" value="0.1036036036036036" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/layout-land/activity_main.xml" value="0.25045045045045045" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/layout-land/activity_player.xml" value="0.22" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/layout-land/custom_exo_layout.xml" value="0.25045045045045045" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/layout-land/fragment_my_account.xml" value="0.25045045045045045" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/layout-land/icon_header_item.xml" value="0.25045045045045045" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/layout-land/layout_tv_cast_crew.xml" value="0.25045045045045045" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/layout-land/lb_title_view.xml" value="0.25045045045045045" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/layout-land/tv_action_button_layout.xml" value="0.25045045045045045" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/layout-land/vh_movie_details.xml" value="0.25045045045045045" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/layout/activity_details_tvseries.xml" value="0.25" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/layout/activity_leanback.xml" value="0.1" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/layout/activity_login.xml" value="0.1921875" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/layout/banner_home_list_item.xml" value="0.3324324324324324" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/layout/banner_home_list_item_movies.xml" value="0.3324324324324324" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/layout/content_details_activity_layout_new.xml" value="0.3324324324324324" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/layout/content_details_description.xml" value="0.25045045045045045" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/layout/details_description_overview_new.xml" value="0.1" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/layout/fragment_home_new_ui.xml" value="0.1453125" />
+        <entry key="..\:/krantiveer/Action ott/action-ott-tv-android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/drawable/bg_gradient.xml" value="0.31796875" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/drawable/bg_gradient_soft.xml" value="0.2946666666666667" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/drawable/header_fragment_background.xml" value="0.28203125" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/drawable/ic_baseline_dataloading_24.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/drawable/ic_baseline_exit_to_app_24.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/drawable/ic_baseline_flag_24.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/drawable/ic_baseline_folder_24.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/drawable/ic_baseline_hd_24.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/drawable/ic_baseline_home_180.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/drawable/ic_baseline_live_tv_24.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/drawable/ic_baseline_local_movies_24.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/drawable/ic_baseline_movie_creation_24.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/drawable/ic_baseline_movie_filter_24.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/drawable/outline_folder_24.xml" value="0.25703125" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/drawable/premium_bg.xml" value="0.412" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/drawable/round_ll.xml" value="0.16484375" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/drawable/round_ll_details.xml" value="0.16484375" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/drawable/round_ll_home.xml" value="0.16484375" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/drawable/round_outline.xml" value="0.16484375" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout-land/activity_details.xml" value="0.6048951048951049" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout-land/activity_details_tvseries.xml" value="0.404" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout-land/activity_leanback.xml" value="0.31866666666666665" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout-land/activity_login.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout-land/activity_playback_new.xml" value="0.452" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout-land/activity_player.xml" value="0.3142857142857143" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout-land/activity_sign_up.xml" value="0.492" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout-land/activity_splash_screen.xml" value="0.244" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout-land/custom_exo_layout.xml" value="0.5858695652173913" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout-land/icon_header_item.xml" value="0.67" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout-land/layout_episode.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout-land/lb_title_view.xml" value="0.67" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout-v26/banner_home_list_item_movies.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout/activity_details.xml" value="0.1203125" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout/activity_details_tvseries.xml" value="0.1734375" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout/activity_leanback.xml" value="0.12447916666666667" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout/activity_playback_new.xml" value="0.1734375" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout/banner_home_list_item.xml" value="3.0" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout/banner_home_list_item_movies.xml" value="0.3574007220216607" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout/card_view_image_genrelayout.xml" value="0.6012658227848101" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout/card_view_image_layout.xml" value="0.75" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout/card_view_image_layout_banner.xml" value="0.29333333333333333" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout/content_details_activity_layout_new.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout/content_details_description.xml" value="0.8980099502487562" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout/details_description_overview_new.xml" value="0.244" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout/fragment_home_new_ui.xml" value="0.22" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout/headers_fragment.xml" value="0.492" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121 - Copy/app/src/main/res/layout/lb_title_view.xml" value="0.29333333333333333" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/action_button_image.xml" value="0.21640625" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/bg_gradient.xml" value="0.25" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/bg_gradient_soft.xml" value="0.1765625" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/btn_rounded_green.xml" value="0.10989583333333333" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/button_focus.xml" value="0.10989583333333333" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/button_focus_sign.xml" value="0.10989583333333333" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/button_yellow.xml" value="0.10989583333333333" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/button_yellow_detail.xml" value="0.1375" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/card_gradient.xml" value="0.10989583333333333" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/category_type.xml" value="0.21640625" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/content_detail_background_transition.xml" value="0.21640625" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/contentrating_background.xml" value="0.21640625" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/curved_gold_bg.xml" value="0.10989583333333333" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/curved_gold_stroke_bg.xml" value="0.14666666666666667" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/custom_progress_horizontal.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/details_settings_background_gradient.xml" value="0.14666666666666667" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/edit_focus.xml" value="0.2578125" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/exo_button_focus.xml" value="0.2578125" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/gradient_1.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/gradient_2.xml" value="0.15" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/gradient_3.xml" value="0.15" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/gradient_4.xml" value="0.15" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/gradient_5.xml" value="0.15" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/gradient_6.xml" value="0.15" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/gradient_8.xml" value="0.15" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.18645833333333334" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/ic_baseline_dataloading_24.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/ic_baseline_exit_to_app_24.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/ic_baseline_flag_24.xml" value="0.20677083333333332" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/ic_baseline_folder_24.xml" value="0.20677083333333332" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/ic_baseline_home_180.xml" value="0.20416666666666666" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/ic_baseline_movie_filter_24.xml" value="0.20416666666666666" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.20677083333333332" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/ic_settings_white.xml" value="0.28984375" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/main_loading_progress_bar_background_gradient.xml" value="0.14666666666666667" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/premium_bg.xml" value="0.1375" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/premium_paywatchbg.xml" value="0.190625" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/roundLinearLayout.xml" value="0.19791666666666666" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/round_ll.xml" value="0.25405405405405407" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/round_ll_details.xml" value="0.140625" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/round_outline.xml" value="0.11796875" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/rounded_black_transparent.xml" value="0.1375" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/roundll.xml" value="0.19791666666666666" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/shape_round.xml" value="0.1375" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/shape_round_dark.xml" value="0.1375" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/drawable/textview_bg.xml" value="0.1375" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/activity_activation.xml" value="0.409375" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/activity_details.xml" value="0.5" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/activity_details_tvseries.xml" value="0.5911016949152542" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/activity_error.xml" value="0.409375" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/activity_item_country.xml" value="0.3324324324324324" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/activity_item_genre.xml" value="0.3054054054054054" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/activity_leanback.xml" value="0.1252927400468384" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/activity_login.xml" value="0.10533333333333333" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/activity_login_chooser.xml" value="0.409375" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/activity_main.xml" value="0.409375" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/activity_music_player.xml" value="0.409375" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/activity_playback_new.xml" value="0.25" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/activity_player.xml" value="0.409375" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/activity_search.xml" value="0.32395833333333335" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/activity_sign_up.xml" value="0.409375" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/activity_splash_screen.xml" value="0.409375" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/activity_video_details.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/activity_video_example.xml" value="0.409375" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/custom_exo_layout.xml" value="0.5" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/fragment_my_account.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/icon_header_item.xml" value="0.33063063063063064" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/item_genre_vertical_small.xml" value="0.16883116883116883" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/layout_episode.xml" value="0.2585585585585586" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/layout_season.xml" value="0.3324324324324324" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/layout_server_tv.xml" value="0.452" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/layout_server_tv_item.xml" value="0.5" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/layout_subtitle_dialog.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/layout_tv_cast_crew.xml" value="0.43866666666666665" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/list_item.xml" value="0.3054054054054054" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/paid_alert_dialog.xml" value="0.43866666666666665" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/toast_icon_text.xml" value="0.43866666666666665" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/tv_action_button_layout.xml" value="0.43866666666666665" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-land/vh_movie_details.xml" value="0.43866666666666665" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-v26/videoquality_rv_tv.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-v31/card_view_image_layout.xml" value="0.11927083333333334" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-v31/custom_dialog_subtitle.xml" value="0.26015625" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout-v31/video_quality_dialog_rv.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/activity_details.xml" value="0.15" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/activity_details_tvseries.xml" value="0.33" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/activity_item_country.xml" value="0.1765625" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/activity_item_genre.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/activity_leanback.xml" value="0.1765625" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/activity_playback_new.xml" value="0.17864583333333334" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/activity_player.xml" value="0.1921875" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/banner_home_list_item_movies.xml" value="0.4380952380952381" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/card_home_view.xml" value="0.492" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/card_subtitle.xml" value="0.32" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/card_view_image_layout.xml" value="0.9" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/card_view_image_layout_banner.xml" value="0.452" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/child_item.xml" value="0.492" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/content_details_activity_layout_new.xml" value="0.23017902813299232" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/content_details_description.xml" value="0.75" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/custom_exo_layout.xml" value="0.1921875" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/details_description_overview_new.xml" value="0.452" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/fragment_home_demo.xml" value="0.33" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/fragment_home_new_ui.xml" value="0.3157894736842105" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/fragment_main.xml" value="0.16666666666666666" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/fragment_my_search.xml" value="0.5424476295479603" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/lb_image_card_view.xml" value="0.25495495495495496" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/lb_rows_fragment.xml" value="0.17" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/list_item.xml" value="0.67" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/parent_item.xml" value="0.492" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/tv_action_button_layout.xml" value="0.17135416666666667" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/vh_movie_details.xml" value="0.17135416666666667" />
+        <entry key="..\:/krantiveer/action-ott-tv-android-indu11121/app/src/main/res/layout/videoquality_rv_tv.xml" value="0.5" />
+      </map>
+    </option>
+  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

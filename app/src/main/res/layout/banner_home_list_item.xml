@@ -1,0 +1,113 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="200dp"
+    android:layout_height="120dp"
+    android:layout_margin="5dp"
+    android:background="@drawable/round_ll"
+    android:gravity="start"
+    android:orientation="horizontal">
+
+
+    <RelativeLayout
+        android:id="@+id/main_image_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:layout_margin="3dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="10dp"
+            app:cardCornerRadius="4dp">
+
+            <ImageView
+                android:id="@+id/main_image"
+                android:layout_width="200sp"
+                android:layout_height="120sp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="0dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/hint_image"
+                android:scaleType="fitXY"
+                android:src="@drawable/poster_placeholder_land" />
+
+            <TextView
+                android:id="@+id/premiumIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="end"
+                android:layout_marginEnd="0dp"
+                android:background="@drawable/premium_bg"
+                android:fontFamily="@font/amazon"
+                android:paddingStart="@dimen/_5sdp"
+                android:paddingTop="@dimen/_2sdp"
+                android:paddingEnd="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_4sdp"
+                android:text="@string/premium"
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/_9sdp"
+                tools:ignore="RelativeOverlap,SpUsage" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar_movie"
+                style="@style/yellowProgressBar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_8sdp"
+
+                android:layout_gravity="bottom"
+                android:layout_marginTop="100dp"
+
+                android:max="100"
+                android:progress="45"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+        </androidx.cardview.widget.CardView>
+
+
+        <ProgressBar
+            android:id="@+id/progress_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/red_highlight_color"
+            android:indeterminateTintMode="src_atop"
+            android:padding="36dp"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/primary_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/main_image_container"
+        android:layout_gravity="start"
+        android:layout_marginStart="4sp"
+        android:layout_marginTop="2sp"
+        android:layout_marginEnd="4sp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textSize="11sp" />
+
+    <TextView
+        android:id="@+id/extra_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/primary_text"
+        android:layout_gravity="start"
+        android:layout_marginStart="4sp"
+        android:layout_marginTop="2sp"
+        android:layout_marginEnd="4sp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/color_989898"
+        android:textSize="8sp"
+        tools:ignore="SmallSp" />
+</RelativeLayout>

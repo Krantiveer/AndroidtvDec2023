@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+   <!--     <item
+            android:state_focused="true"
+            android:state_pressed="true"
+            android:colo
+            android:drawable="@drawable/bgalt" />
+   -->
+    <!--<item android:color="#ffc43a" android:state_pressed="true"/>-->
+
+        <!--<item android:color="#ffffff"/>-->
+        <item android:state_pressed="true" android:drawable="@color/color_dark_yellow_high"/> <!-- pressed -->
+        <item android:state_focused="true" android:drawable="@color/color_darkyellow"/> <!-- focused -->
+        <item android:drawable="@color/black_color"/> <!-- default -->
+
+    </selector>

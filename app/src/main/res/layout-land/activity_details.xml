@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_rv"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    android:orientation="vertical"
+    tools:context=".ui.activity.DetailsActivity">
+
+    <FrameLayout
+        android:id="@+id/contentView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:keepScreenOn="true">
+
+        <ImageView
+            android:id="@+id/bannerImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/image_description"
+            android:scaleType="fitXY" />
+
+        <RelativeLayout
+            android:layout_width="120dp"
+            android:layout_height="180dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="220dp"
+            android:gravity="start"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/main_image_container"
+                android:layout_width="200dp"
+                android:layout_height="240dp">
+
+                <ImageView
+                    android:id="@+id/thumbnail_image"
+                    android:layout_width="200dp"
+                    android:layout_height="240dp"
+                    android:layout_alignParentStart="true"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/image_description"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/placeholder_live_channel"
+                    android:visibility="gone" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/primary_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/main_image_container"
+                android:layout_gravity="start"
+                android:layout_marginStart="4sp"
+                android:layout_marginTop="2sp"
+                android:layout_marginEnd="4sp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/extra_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/primary_text"
+                android:layout_gravity="start"
+                android:layout_marginStart="4sp"
+                android:layout_marginTop="2sp"
+                android:layout_marginEnd="4sp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/color_989898"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient_8"
+            android:keepScreenOn="true"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="62sp"
+                android:layout_marginTop="40sp"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <com.romainpiel.shimmer.ShimmerTextView
+                    android:id="@+id/premiumIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/premium_bg"
+                    android:fontFamily="@font/vag_rounded_regular"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:paddingTop="@dimen/_2sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_4sdp"
+                    android:text="@string/premium"
+                    android:textSize="@dimen/_10ssp" />
+
+                <TextView
+                    android:id="@+id/movie_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:maxLines="1"
+                    android:text="@string/movie_title"
+                    android:textColor="@color/detailTitle"
+                    android:textSize="38sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/duration_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1 hr 40 min"
+
+                        />
+
+                    <ImageView
+                        android:id="@+id/tvVideoQualityType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:src="@drawable/ic_baseline_hd_24"
+                        android:text="HD"
+
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/movie_description_tv"
+                    android:layout_width="580sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17sp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/poppins_thin"
+                    android:maxLines="3"
+                    android:textColor="@color/white"
+                    android:textSize="19sp"
+                    tools:text="Kanthan – The Lover of Colour is a 2018 Indian Malayalamlanguage drama film written by Pramod Kooveri and directed by Shareef Eesa. It is produced by Shareef Easa under the banner of Rolling Pix" />
+
+                <View
+                    android:layout_width="535sp"
+                    android:layout_height="1dp"
+                    android:background="@color/grey_40" />
+
+                <TextView
+                    android:id="@+id/tvReleaseDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/paypalColor"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6sp"
+                    android:layout_marginBottom="6sp"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/tvWatchNow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:background="@drawable/round_ll"
+                        android:bottomLeftRadius="30dp"
+                        android:bottomRightRadius="30dp"
+                        android:drawableStart="@drawable/ic_play_arrow_white_24dp"
+                        android:focusable="true"
+                        android:focusedByDefault="true"
+                        android:gravity="center"
+                        android:paddingStart="10dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="8dp"
+                        android:text="@string/watch_now"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:topLeftRadius="30dp"
+                        android:topRightRadius="30dp"
+                        tools:text="Watch Now" />
+
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/tvWatchTrailer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:background="@drawable/round_ll"
+                        android:bottomLeftRadius="30dp"
+                        android:bottomRightRadius="30dp"
+                        android:drawableStart="@drawable/ic_baseline_local_trailer_24"
+                        android:focusable="true"
+                        android:focusedByDefault="true"
+                        android:gravity="center"
+                        android:paddingStart="10dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="8dp"
+                        android:text="@string/hint_watch_trailer"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:topLeftRadius="30dp"
+                        android:topRightRadius="30dp"
+                        tools:text="Watch Trailer" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/imgWatchList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:background="@drawable/round_ll"
+                        android:bottomLeftRadius="30dp"
+                        android:bottomRightRadius="30dp"
+                        android:drawableStart="@drawable/ic_baseline_add_24"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:paddingStart="10dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="8dp"
+                        android:text="@string/add_watchlist"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:topLeftRadius="30dp"
+                        android:topRightRadius="30dp"
+                        tools:text="@string/add_watchlist"
+                        tools:visibility="visible" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/imgFavList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:background="@drawable/round_ll"
+                        android:bottomLeftRadius="30dp"
+                        android:bottomRightRadius="30dp"
+                        android:drawableStart="@drawable/ic_baseline_favorite_border_24"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:paddingStart="10dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="8dp"
+                        android:text="@string/add_favlist"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:topLeftRadius="30dp"
+                        android:topRightRadius="30dp"
+                        tools:text="@string/add_favlist"
+                        tools:visibility="visible" />
+
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rlplayer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:keepScreenOn="true"
+                    android:visibility="invisible"
+                    tools:context=".MainActivity">
+
+
+                    <!--Widget for exoplayer view-->
+
+                    <com.google.android.exoplayer2.ui.PlayerView
+                        android:id="@+id/video_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:keepScreenOn="true"
+                        android:visibility="gone" />
+
+                    <!-- <ImageView
+                         android:id="@+id/indicatorImageView"
+                         android:layout_width="40dp"
+                         android:layout_height="40dp"
+                         android:layout_centerInParent="true"
+                         android:contentDescription="@string/image_description"
+                         android:src="@drawable/ic_baseline_dataloading_24"
+                         tools:visibility="visible" />-->
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tv_related"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/you_may_also_like"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_16sdp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_related"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="10dp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/details_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:visibility="gone">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Genre: horror, movie , film "
+                    android:textSize="14sp"
+                    tools:ignore="HardcodedText" />
+
+                <LinearLayout
+                    android:id="@+id/genres"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp">
+
+                </LinearLayout>
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Director:"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/director_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Director: Some guy"
+                    android:textSize="12sp"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cast &amp; Crew : "
+                    android:visibility="gone"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/cast_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <!--  <com.google.android.exoplayer2.ui.PlayerView
+              android:layout_width="300dp"
+              android:id="@+id/player_view"
+              android:layout_gravity="right|top"
+              android:layout_height="300dp"/>
+          -->
+
+        <ProgressBar
+            android:id="@+id/progress_indicator"
+            android:layout_width="@dimen/_170sdp"
+            android:layout_height="@dimen/_170sdp"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/progressbar"
+            android:indeterminateTintMode="src_atop"
+            android:padding="36dp"
+            android:visibility="visible" />
+    </FrameLayout>
+</RelativeLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <item name="lb_browse_header_unselect_alpha" type="fraction">10%</item>
+    <item name="lb_browse_rows_scale" type="fraction">100%</item>
+    <dimen name="lb_browse_rows_margin_top">127dp</dimen>
+    <item name="lb_focus_zoom_factor_xsmall" type="fraction">100%</item>
+    <item name="lb_focus_zoom_factor_small" type="fraction">100%</item>
+    <item name="lb_focus_zoom_factor_medium" type="fraction">100%</item>
+    <item name="lb_focus_zoom_factor_large" type="fraction">100%</item>
+    <!--<item name="browsePaddingStart">1dp</item>-->
+    <dimen name="lb_browse_padding_start">5dp</dimen>
+    <dimen name="lb_browse_rows_margin_start">8dp</dimen>
+    <dimen name="lb_browse_padding_end">1dp</dimen>
+<!--
+    <item name="lb_focus_zoom_factor_large" type="fraction">118%</item>
+    <item name="lb_focus_zoom_factor_medium" type="fraction">114%</item>
+    <item name="lb_focus_zoom_factor_small" type="fraction">110%</item>
+    <item name="lb_focus_zoom_factor_xsmall" type="fraction">106%</item>-->
+    <dimen name="lb_browse_title_icon_height">60dp</dimen>
+    <dimen name="lb_browse_title_icon_max_width">540dp</dimen>
+
+    <item name="lb_view_active_level" type="fraction">0%</item>
+    <item name="lb_view_dimmed_level" type="fraction">0%</item>
+    <dimen name="lb_browse_title_text_size">28sp</dimen>
+
+</resources>

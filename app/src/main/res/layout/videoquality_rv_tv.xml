@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusedByDefault="true"
+    android:orientation="vertical"
+    tools:ignore="UnusedAttribute">
+
+
+    <Button
+        android:id="@+id/tvAuto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_ll"
+        android:text="@string/hint_auto"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_18sdp"
+        android:visibility="gone"
+        tools:ignore="SpUsage"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/tvResolutionOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_ll"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="@string/_144p"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_18sdp"
+        android:visibility="gone"
+        tools:ignore="SpUsage"
+        tools:visibility="visible" />
+
+
+    <Button
+        android:id="@+id/tvResolutionTwo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_ll"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="@string/_240p"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_18sdp"
+        android:visibility="gone"
+        tools:ignore="SpUsage"
+        tools:visibility="visible" />
+    <Button
+        android:id="@+id/tvResolutionThree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_ll"
+        android:gravity="center"
+        android:text="@string/_360p"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_18sdp"
+        android:visibility="gone"
+        tools:ignore="SpUsage"
+        tools:visibility="visible" />
+
+
+    <Button
+        android:id="@+id/tvResolutionFour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_ll"
+        android:gravity="center"
+        android:text="@string/_480p"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_18sdp"
+        android:visibility="gone"
+        tools:ignore="SpUsage"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/tvResolutionFive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_ll"
+        android:gravity="center"
+        android:text="@string/_720p"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_18sdp"
+        android:visibility="gone"
+        tools:ignore="SpUsage"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/tvResolutionSix"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_ll"
+        android:gravity="center"
+        android:text="@string/_1080p"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_18sdp"
+        android:visibility="gone"
+        tools:ignore="SpUsage"
+        tools:visibility="visible" />
+
+
+    <Button
+        android:id="@+id/tvResolutionSeven"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_ll"
+        android:gravity="center"
+        android:text="@string/_1440p"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_18sdp"
+        android:visibility="gone"
+        tools:ignore="SpUsage"
+        tools:visibility="visible" />
+
+
+    <Button
+        android:id="@+id/tvResolutionEight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_ll"
+        android:gravity="center"
+        android:text="@string/_2160p"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_18sdp"
+        android:visibility="gone"
+        tools:ignore="SpUsage"
+        tools:visibility="visible" />
+
+</LinearLayout>
+

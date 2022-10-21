@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:layout_gravity="center"
+    android:layout_marginStart="@dimen/_80sdp"
+    android:layout_marginTop="@dimen/_80sdp"
+    android:background="@drawable/bg_gradient_soft"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txt_signin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:text="@string/signed_in_as"
+        android:textColor="@color/white"
+        android:textSize="25sp" />
+
+
+    <!--   <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+
+           >-->
+    <!-- <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center"
+         android:layout_marginTop="80dp"
+         android:text="@string/signed_in_as"
+         android:textColor="@color/white"
+         android:textSize="25sp" />-->
+    <TextView
+        android:id="@+id/userid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_signin"
+        android:text="@string/user_name"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/userNameTv"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_signin"
+        android:layout_marginLeft="10sp"
+        android:layout_toEndOf="@+id/userid"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userid"
+        android:text="@string/emailTv"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/userEmailTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userid"
+        android:layout_toEndOf="@+id/tv_email"
+
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_activeplan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_email"
+        android:text="@string/active_plan"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/activePlanTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_email"
+        android:layout_marginLeft="10sp"
+        android:layout_toEndOf="@+id/tv_activeplan"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_expire"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_activeplan"
+        android:text="@string/expire_date"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+
+    <TextView
+        android:id="@+id/expireDateTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_activeplan"
+        android:layout_marginLeft="10sp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:layout_toEndOf="@+id/tv_expire"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/sign_out_button"
+        android:layout_width="300dp"
+
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_expire"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:background="@drawable/button_focus"
+        android:text="@string/signout"
+        android:textAllCaps="false" />
+
+
+</RelativeLayout>

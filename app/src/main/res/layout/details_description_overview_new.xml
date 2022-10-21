@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:lb="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/_30sdp"
+    android:paddingEnd="@dimen/margin_gap_32"
+    android:orientation="vertical"
+    android:descendantFocusability="afterDescendants"
+    android:weightSum="2">
+
+
+
+    <!--  Used for dimming -->
+    <FrameLayout
+        android:id="@+id/details_frame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_gap_3"
+        android:elevation="@dimen/lb_details_overview_z">
+
+        <!-- Background is applied to this inner layout -->
+        <RelativeLayout
+            android:id="@+id/details_overview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/details_overview_image_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/margin_gap_32">
+
+                <ProgressBar
+                    android:id="@+id/continue_watching_progress"
+                    style="@style/EpgCustomProgressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_gap_4"
+                    android:layout_alignParentBottom="true"
+                    android:baselineAligned="false"
+                    android:progress="30"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/details_overview_right_panel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_toRightOf="@+id/details_overview_image_container">
+
+                <FrameLayout
+                    android:id="@+id/details_overview_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+
+                    android:layout_marginEnd="@dimen/lb_details_overview_description_margin_end"
+                    android:clipToPadding="false"
+                    android:clipChildren="false">
+                    <include
+                        layout="@layout/content_details_description"/>
+
+                </FrameLayout>
+
+            </LinearLayout>
+        </RelativeLayout>
+    </FrameLayout>
+
+</LinearLayout>

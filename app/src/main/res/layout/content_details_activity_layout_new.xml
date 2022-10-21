@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_detail_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="@dimen/_10sdp">
+
+    <ImageView
+        android:id="@+id/bg_imageview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY" />
+
+    <com.google.android.exoplayer2.ui.PlayerView
+        android:id="@+id/player_view_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="-300dp"
+        android:background="@color/transparent"
+        android:visibility="visible"
+        app:auto_show="true"
+        app:resize_mode="fill"
+        app:hide_on_touch="false"
+        app:show_timeout="0"
+        app:use_controller="false"
+        />
+    <RelativeLayout
+        android:id="@+id/bg_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_gradient">
+
+        <FrameLayout
+            android:id="@+id/content_details_overview_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp">
+
+            <include
+                android:id="@+id/description_container_layout"
+                layout="@layout/details_description_overview_new" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/loadingProgress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="0"
+                android:progressDrawable="@drawable/custom_progress_horizontal"
+                android:progressTint="@color/mmtv_selectecd_color"
+                android:visibility="gone" />
+
+        </FrameLayout>
+
+        <!--<FrameLayout
+            android:id="@+id/loadingProgress"
+            android:background="@drawable/main_loading_progress_bar_background_gradient"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:progressDrawable="@drawable/custom_progress_horizontal"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:indeterminate="false"
+                android:progress="0"
+                android:max="100" />
+
+        </FrameLayout>-->
+
+        <FrameLayout
+            android:id="@+id/content_details_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/content_details_overview_container"
+            android:layout_marginTop="@dimen/margin_gap_5"/>
+
+        <LinearLayout
+            android:id="@+id/fragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/content_detail_background_transition"
+            android:orientation="vertical">
+
+            <!--todo : here content top fragment is there
+
+                <fragment
+                    android:id="@+id/topFragment"
+                    android:name="com.androidtv.myplex.ui.fragment.ContentDetailTopFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />-->
+
+            <FrameLayout
+                android:id="@+id/related_content_details_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_below="@+id/content_details_fragment" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layout_episodes_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/firstHalf"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1.6"
+            android:background="#80000000"
+            android:orientation="vertical"
+            android:visibility="invisible">
+
+            <!--
+                        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                            xmlns:tools="http://schemas.android.com/tools"
+                            android:id="@+id/left_tandm_fragment"
+                            android:name="com.androidtv.myplex.navigation_drawer.TrailersAndMoreSupportFragment"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            tools:context=".ui.activity.TrailersAndMoreActivity"
+                            tools:deviceIds="tv"/>
+            -->
+
+            <!--<ListView
+                android:id="@+id/listOfEpisodes"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:divider="@null"
+                android:dividerHeight="0dp"
+                android:background="@color/transparent"
+                android:layout_marginTop="@dimen/margin_gap_180"
+                android:layout_marginStart="@dimen/margin_gap_82"
+                android:layout_marginBottom="@dimen/margin_gap_12" />-->
+
+
+        </FrameLayout>
+
+        <!--
+                <FrameLayout
+                    android:id="@+id/secondHalf"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/black"
+                    android:nextFocusLeft="@id/tandmDetailsRecyclerView"
+                    android:nextFocusRight="@id/tandmDetailsRecyclerView"
+                    android:visibility="invisible">
+
+               &lt;!&ndash;     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/episode_detail_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="500dp"
+                        android:background="@color/black"
+                        android:nextFocusRight="@id/tandmDetailsRecyclerView" />&ndash;&gt;
+
+                    &lt;!&ndash;<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:id="@+id/right_details_tandm_fragment"
+                        android:name="com.androidtv.myplex.navigation_drawer.TandMDetailsFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:context=".ui.activity.TrailersAndMoreActivity"
+                        tools:deviceIds="tv"/>&ndash;&gt;
+
+                    &lt;!&ndash;<ListView
+                        android:id="@+id/tandmDetailsListView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:layout_marginTop="@dimen/margin_gap_30"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="@dimen/margin_gap_12"/>&ndash;&gt;
+        &lt;!&ndash;
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/tandmDetailsRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/margin_gap_60"
+                        android:layout_marginBottom="@dimen/margin_gap_12"
+                        android:background="@color/black"
+                        android:nextFocusLeft="@id/tandmDetailsRecyclerView"
+                        android:nextFocusRight="@id/tandmDetailsRecyclerView"
+                        android:nextFocusUp="@id/episode_detail_list" />
+        &ndash;&gt;
+
+                </FrameLayout>
+        -->
+    </LinearLayout>
+
+</RelativeLayout>

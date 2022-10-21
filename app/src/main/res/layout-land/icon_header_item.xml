@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menu"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:keepScreenOn="true"
+    tools:ignore="UseCompoundDrawables">
+
+    <ImageView
+        android:id="@+id/header_icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="10dp"
+        android:contentDescription="@string/image_description"
+        app:tint="@color/colorGold"
+        tools:src="@drawable/ic_cloud_download_black_24dp" />
+
+    <TextView
+        android:id="@+id/header_label"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="3dp"
+        android:layout_toEndOf="@id/header_icon"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="10dp"
+        android:textColor="@color/colorGold"
+        tools:text="@string/home" />
+
+    <View
+        android:id="@+id/viewIndicator"
+        android:layout_width="2dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/header_label"
+        android:background="@color/selected_background"
+        android:visibility="gone" />
+
+</RelativeLayout>

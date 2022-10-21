@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?><!--suppress ALL -->
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/tv_bg"
+    android:keepScreenOn="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:keepScreenOn="true"
+        android:orientation="vertical"
+        android:paddingTop="40dp"
+        android:paddingBottom="40dp"
+        android:weightSum="10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom|center">
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:contentDescription="TODO"
+                android:src="@drawable/logo" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:keepScreenOn="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:layout_marginTop="15dp"
+                android:text="@string/sign_up_now"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminateTint="@color/colorGold"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="top|center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/google_signIn_button"
+                    android:layout_width="400dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/button_focus"
+                    android:drawableStart="@drawable/fui_ic_googleg_color_24dp"
+                    android:paddingStart="20dp"
+                    android:text="@string/continue_with_google"
+                    android:textAllCaps="true" />
+
+                <Button
+                    android:id="@+id/phone_signIn_button"
+                    android:layout_width="400dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/button_focus"
+                    android:drawableStart="@drawable/fui_ic_phone_white_24dp"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:text="@string/fui_sign_in_with_phone"
+                    android:textAllCaps="true" />
+
+                <Button
+                    android:layout_width="400dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/button_focus"
+                    android:drawableStart="@drawable/fui_ic_mail_white_24dp"
+                    android:focusedByDefault="true"
+                    android:onClick="emailSignInBtn"
+                    android:paddingStart="20dp"
+                    android:textColor="@color/btn_txt_color"
+                    android:paddingEnd="20dp"
+                    android:text="@string/fui_sign_in_with_email" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/dont_t_have_an_account" />
+
+                <Button
+                    android:layout_width="400dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/button_focus"
+                    android:onClick="signUpBtn"
+                    android:textColor="@color/btn_txt_color"
+
+                    android:text="@string/sign_up" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.core.widget.NestedScrollView>

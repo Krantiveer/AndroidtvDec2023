@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Action OTT</string>
+    <string name="api_server_url">www.actionott.com/rest_api/</string>
+    <string name="api_extension">/v130/</string>
+
+
+</resources>

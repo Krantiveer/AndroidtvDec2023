@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="AppTheme" parent="Theme.Leanback">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="imageCardViewStyle">@style/MyImageCardViewStyle</item>
+        <item name="headerStyle">@style/MyHeaderStyle</item>
+        <item name="android:fontFamily">@font/poppins_thin</item>
+
+        <item name="rowHeaderStyle">@style/MyHeaderStyle</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+    </style>
+    <style name="RobotoTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/poppins_thin</item>
+    </style>
+
+    <style name="RobotoButtonStyle" parent="android:Widget.Holo.Button">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+    <style name="VerticalGridView">
+        <item name="android:layout_marginStart">0dp</item>
+        <item name="android:layout_marginEnd">14dp</item>
+        <item name="focusOutFront">true</item>
+        <item name="focusOutEnd">true</item>
+        <item name="android:verticalSpacing">12dp</item>
+        <item name="android:focusable">true</item>
+        <item name="overlayDimDimmedLevel">0%</item>
+        <item name="android:focusableInTouchMode">true</item>
+    </style>
+    <style name="AppTheme.Splash" parent="Theme.Leanback">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="imageCardViewStyle">@style/MyImageCardViewStyle</item>
+        <item name="headerStyle">@style/MyHeaderStyle</item>
+        <item name="rowHeaderStyle">@style/MyHeaderStyle</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowSplashScreenBackground" tools:ignore="NewApi">
+            @android:color/black
+        </item>
+        <item name="android:windowBackground">@android:color/black</item>
+    </style>
+
+    <style name="MyImageCardViewStyle" parent="@style/Widget.Leanback.ImageCardViewStyle">
+        <item name="cardType">infoUnderWithExtra</item>
+        <item name="infoAreaBackground">@color/colorPrimaryDark</item>
+
+    </style>
+
+    <style name="MyHeaderStyle" parent="@style/Widget.Leanback.Header">
+        <item name="android:textAppearance">@style/MyHeaderStyle.MyHeaderText</item>
+    </style>
+
+    <style name="MyHeaderStyle.MyHeaderText" parent="TextAppearance.Leanback.Header">
+        <item name="android:textSize">@dimen/lb_browse_header_text_size</item>
+        <item name="android:textColor">@color/grey_5</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="Widget.Leanback.DetailsActionButtonStyle" parent="Widget.Leanback.DetailsActionButtonStyleBase">
+        <item name="android:background">@color/lb_speech_orb_recording</item>
+    </style>
+
+    //music theme
+
+    <style name="Theme.Example.Leanback" parent="Theme.Leanback">
+        <item name="android:colorPrimary">#00A2B8</item>
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14</item>
+    </style>
+
+    <style name="Theme.Example.LeanbackMusic" parent="Theme.Example.Leanback">
+        <item name="android:windowBackground">@drawable/banner_image</item>
+    </style>
+
+    <style name="Theme.Example.LeanbackMusic.RegularSongNumbers">
+        <item name="playbackMediaItemNumberStyle">@style/RegularMediaItemNumberStyle</item>
+        <item name="playbackMediaItemNameStyle">@style/RegularMediaItemNameStyle</item>
+        <item name="playbackMediaItemDurationStyle">@style/RegularMediaItemDurationStyle</item>
+    </style>
+
+    <style name="Theme.Example.LeanbackMusic.FavoriteSongNumbers">
+        <item name="playbackMediaItemNumberStyle">@style/FavoriteMediaItemNumberStyle</item>
+        <item name="playbackMediaItemNameStyle">@style/FavoriteMediaItemNameStyle</item>
+        <item name="playbackMediaItemDurationStyle">@style/FavoriteMediaItemDurationStyle</item>
+    </style>
+
+    <style name="Theme.Example.LeanbackMusic.TrackListHeader">
+        <item name="playbackMediaListHeaderStyle">@style/MediaListHeaderStyle</item>
+    </style>
+
+    <style name="RegularMediaItemNumberStyle" parent="Widget.Leanback.PlaybackMediaItemNumberStyle">
+        <item name="android:visibility">visible</item>
+    </style>
+
+    <style name="RegularMediaItemNameStyle" parent="Widget.Leanback.PlaybackMediaItemNameStyle"></style>
+
+    <style name="RegularMediaItemDurationStyle" parent="Widget.Leanback.PlaybackMediaItemDurationStyle">
+        <item name="android:visibility">visible</item>
+    </style>
+
+    <style name="FavoriteMediaItemTextStyle" parent="TextAppearance.Leanback.PlaybackMediaItemNumber">
+        <item name="android:textColor">#FF6E40</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="FavoriteMediaItemNumberStyle" parent="Widget.Leanback.PlaybackMediaItemNumberStyle">
+        <item name="android:visibility">visible</item>
+        <item name="android:textAppearance">@style/FavoriteMediaItemTextStyle</item>
+    </style>
+
+    <style name="FavoriteMediaItemNameStyle" parent="Widget.Leanback.PlaybackMediaItemNameStyle">
+        <item name="android:textAppearance">@style/FavoriteMediaItemTextStyle</item>
+    </style>
+
+    <style name="FavoriteMediaItemDurationStyle" parent="Widget.Leanback.PlaybackMediaItemDurationStyle">
+        <item name="android:visibility">visible</item>
+        <item name="android:textAppearance">@style/FavoriteMediaItemTextStyle</item>
+    </style>
+
+    <style name="MediaListHeaderStyle" parent="Widget.Leanback.PlaybackMediaListHeaderStyle">
+        <item name="android:background">#282248</item>
+    </style>
+
+
+    <style name="RippleStyleBlack" parent="RippleStyleWhite">
+        <item name="mrl_rippleColor">#8096989A</item>
+    </style>
+
+    <style name="RippleStyleWhite">
+        <item name="mrl_rippleOverlay">true</item>
+        <item name="mrl_rippleColor">#80FFFFFF</item>
+        <item name="mrl_rippleHover">true</item>
+        <item name="mrl_rippleAlpha">0.2</item>
+    </style>
+    <style name="EpgCustomProgressBar" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/custom_progress_horizontal</item>
+        <item name="android:minHeight">2dip</item>
+        <item name="android:maxHeight">5dip</item>
+    </style>
+
+    <style name="yellowProgressBar" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:indeterminateTint">@color/red_highlight_color</item>
+    </style>
+</resources>

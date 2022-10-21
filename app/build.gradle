@@ -1,0 +1,137 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
+
+android {
+    compileSdkVersion 31
+    buildToolsVersion "29.0.3"
+    flavorDimensions "default"
+    defaultConfig {
+        applicationId "com.actionott.tv"
+        minSdkVersion 24
+        targetSdkVersion 31
+        versionCode 22
+        versionName "1.2.7"
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles file("proguard-android.txt"), 'proguard-rules.pro'
+            }
+        debug {
+            minifyEnabled false
+            proguardFiles file("proguard-android.txt"), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+
+        actionott {
+            applicationId "com.actionott.tv"
+
+        }
+        /*nammestarott {
+            applicationId "com.nammestar.android"
+        }*/
+
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+    testImplementation 'junit:junit:4.13.2'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    //firebase
+    implementation 'com.firebaseui:firebase-ui-auth:6.4.0'
+    // leanback
+    implementation 'androidx.leanback:leanback:1.0.0'
+    implementation 'androidx.leanback:leanback-preference:1.0.0'
+
+    // TV provider support library
+    implementation 'androidx.tvprovider:tvprovider:1.0.0'
+    implementation "androidx.recommendation:recommendation:1.0.0"
+
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'com.google.android:flexbox:2.0.0'                  // google flexible box
+    implementation 'androidx.legacy:legacy-support-v13:1.0.0'
+    implementation 'androidx.vectordrawable:vectordrawable:1.2.0-alpha02'
+    implementation 'androidx.browser:browser:1.3.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+
+    // For control over item selection of both touch and mouse driven selection
+    implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
+    implementation "android.arch.work:work-runtime:1.0.1"
+
+    implementation 'com.github.JakeWharton:ViewPagerIndicator:2.4.1'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'jp.wasabeef:picasso-transformations:2.2.1'
+
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    implementation 'jp.wasabeef:glide-transformations:4.0.0'
+    // retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.8.1'
+    implementation 'com.github.androidxtv:flexbox:v1.1.1'
+    // card slider
+    implementation 'com.github.IslamKhSh:CardSlider:0.4'
+    implementation 'com.google.android:flexbox:2.0.0'
+    implementation 'com.hootsuite.android:nachos:1.1.1'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'androidx.palette:palette:1.0.0'
+    implementation 'com.google.android.exoplayer:extension-leanback:2.11.4'
+    //exo player
+    implementation 'com.google.android.exoplayer:exoplayer:2.11.5'
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.11.4'
+    implementation 'com.google.android.exoplayer:exoplayer-dash:2.11.4'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.11.4'
+    implementation 'com.google.android.exoplayer:exoplayer-hls:2.11.4'
+    implementation 'com.google.android.exoplayer:extension-rtmp:2.7.3'
+    implementation 'com.google.android.exoplayer:extension-cast:2.7.3'
+    implementation 'com.github.HaarigerHarald:android-youtubeExtractor:master-SNAPSHOT'
+    implementation 'com.google.android.libraries.cast.companionlibrary:ccl:2.8.4'
+//youtube player
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.23'
+/*
+    compile 'com.github.itvlab:youtube-tv-player:0.2.1'
+*/
+
+
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata:2.3.1"
+
+    //firebase crash
+    implementation platform('com.google.firebase:firebase-bom:28.4.0')
+    implementation 'com.google.firebase:firebase-crashlytics'
+    // Import the BoM for the Firebase platform
+
+    implementation 'com.google.firebase:firebase-analytics'
+    // shimmer layout
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+    implementation 'com.balysv:material-ripple:1.0.2'
+    implementation 'com.romainpiel.shimmer:library:1.4.0@aar'
+
+}

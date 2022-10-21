@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+     Copyright (C) 2014 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/mmtv_full_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_20sp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="-98dp"
+        android:layout_marginTop="2sp"
+        android:visibility="gone"
+        android:src="@drawable/manoramamax_full_logo" />
+
+    <LinearLayout
+        android:id="@+id/content_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sp"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+
+        <TextView
+            android:id="@+id/content_detail_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/dp_12"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Action OTT"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_28sdp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/contnet_general_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/content_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_3sdp"
+                android:alpha="1"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="Hindi"
+                android:singleLine="true"
+                tools:visibility="visible"
+
+                android:textColor="@color/iap_grey"
+                android:textSize="@dimen/_12sdp" />
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="2dp"
+                android:layout_height="6dp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginRight="@dimen/_4sdp"
+                android:background="@color/iap_grey"
+
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/content_genre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:alpha="1"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="CrimeTriller"
+                android:singleLine="true"
+                android:textColor="@color/iap_grey"
+                android:textSize="@dimen/_12sdp" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="@dimen/_3sdp"
+                android:layout_height="@dimen/_3sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginRight="@dimen/_4sdp"
+                android:background="@color/iap_grey"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/content_releaseyear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:alpha="1"
+                tools:text="2021"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/iap_grey"
+                android:textSize="@dimen/_12sdp" />
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="@dimen/_3sdp"
+                android:layout_height="@dimen/_3sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginRight="@dimen/_4sdp"
+                android:background="@color/iap_grey"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/content_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:alpha="1"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_regular"
+                tools:text="4 hours"
+                android:singleLine="true"
+                android:textColor="@color/iap_grey"
+                android:textSize="@dimen/_12sdp" />
+
+            <TextView
+                android:id="@+id/content_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_11sdp"
+                android:alpha="1"
+                android:background="@drawable/category_type"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/black_opaque"
+                android:textSize="@dimen/_12sdp"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/hd_image"
+                android:layout_width="@dimen/_18sdp"
+                android:layout_height="@dimen/margin_gap_13"
+                android:layout_marginLeft="@dimen/margin_gap_11"
+                android:layout_marginTop="@dimen/margin_gap_4"
+                android:background="@drawable/detail_hd_icon"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/cc_image"
+                android:layout_width="@dimen/margin_gap_18"
+                android:layout_height="@dimen/margin_gap_14"
+                android:layout_marginLeft="@dimen/margin_gap_12"
+                android:layout_marginTop="@dimen/margin_gap_4"
+                android:background="@drawable/detail_sub_icon"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/content_rating_value"
+                android:layout_width="@dimen/margin_gap_24"
+                android:layout_height="15dp"
+                android:layout_marginLeft="@dimen/margin_gap_12"
+                android:background="@drawable/contentrating_background"
+                android:gravity="center"
+                android:text="13+"
+                android:textColor="@color/gray_sony"
+                android:textSize="@dimen/textsize_10"
+                android:textStyle="bold"
+                android:visibility="invisible" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="350dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2sp"
+            android:background="@color/color_lightyellow" />
+
+        <TextView
+            android:id="@+id/content_detail_description"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_gap_16"
+            android:alpha="1"
+            android:ellipsize="end"
+            android:focusable="false"
+            android:fontFamily="@font/poppins_thin"
+            android:hint="Love Story is a 2021 Indian Telugu-language romantic drama film written and directed by Sekhar Kammula. Produced by Amigos Creations and Sree Venkateswara Cinemas, the film stars Naga"
+            android:lineSpacingExtra="@dimen/margin_gap_4"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_12"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/content_read_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/textview_bg"
+            android:focusable="true"
+            android:nextFocusLeft="@null"
+            android:nextFocusRight="@null"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="6dp"
+            android:text="..."
+            android:textAlignment="center"
+            android:textSize="@dimen/textsize_12"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/cast_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/description_layout"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="@dimen/margin_gap_6"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/carddetailbriefdescription_cast_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:alpha="1"
+                android:fontFamily="@font/roboto"
+                android:lineSpacingExtra="4dp"
+                android:text="Cast:"
+                android:textColor="@color/iap_grey"
+                android:textSize="@dimen/textsize_12"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/carddetailbriefdescription_cast"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="@dimen/margin_gap_12"
+                android:alpha="1"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto"
+                android:lineSpacingExtra="4dp"
+                android:maxLines="2"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textsize_12"
+                android:visibility="visible" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/director_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cast_layout"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="@dimen/margin_gap_12"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/carddetailbriefdescription_director_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:alpha="1"
+                android:fontFamily="@font/roboto"
+                android:lineSpacingExtra="4dp"
+                android:text="Director:"
+                android:textColor="@color/iap_grey"
+                android:textSize="@dimen/textsize_12"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/directorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="@dimen/margin_gap_12"
+                android:alpha="1"
+                android:fontFamily="@font/roboto"
+                android:lineSpacingExtra="4dp"
+                android:maxLines="2"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textsize_12"
+                android:visibility="visible" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/details_overview_descriptionControl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:gravity="top">
+
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
