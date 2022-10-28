@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <string name="app_name">Namme Star TV App</string>
-    <string name="API_SERVER_URL"> https://nammestar.com/rest_api/</string>
-    <string name="api_extension">/v100/</string>
-
-</resources>
