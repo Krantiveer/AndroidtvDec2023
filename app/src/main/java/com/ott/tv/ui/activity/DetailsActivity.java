@@ -242,7 +242,7 @@ public class DetailsActivity extends FragmentActivity {
                 }
             }
             if (tvWatchNow.getText() == null || !tvWatchNow.getText().toString().equalsIgnoreCase("Watch Now")) {
-                CMHelper.setSnackBar(this.getCurrentFocus(), "Hey, Please upgrade your account from MOBILE APP | WEBSITE - " + Config.WebsiteURL, 1, 10000);
+                CMHelper.setSnackBar(this.getCurrentFocus(), "Hey, Please upgrade your account from MOBILE APP | WEBSITE - UVTV " , 1, 10000);
                 return;
             } else if (videoList.isEmpty()) {
                 CMHelper.setSnackBar(this.getCurrentFocus(), "We are sorry, Video not available for your selected content", 2);

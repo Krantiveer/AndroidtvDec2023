@@ -164,7 +164,7 @@ public class PlayerActivity extends Activity {
             }
         }*/
         intiViews();
-        initVideoPlayer(url, videoType);
+        initVideoPlayer(url, "hls");
 
     }
 
@@ -544,7 +544,7 @@ public class PlayerActivity extends Activity {
         progressBar.setVisibility(VISIBLE);
         // swipeRefreshLayout.setVisibility(GONE);
         // lPlay.setVisibility(VISIBLE);
-        initVideoPlayer(currentAutoResolutionPlayed, "mp4");
+        initVideoPlayer(currentAutoResolutionPlayed, "hls");
     }
 
     public void setResolutionHashMaps(Video model) {

@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.ott.tv.BuildConfig;
 import com.ott.tv.Config;
 import com.ott.tv.Constants;
+import com.ott.tv.LoginMobileActivity;
 import com.ott.tv.R;
 import com.ott.tv.database.DatabaseHelper;
 import com.ott.tv.model.ActiveStatus;
@@ -47,7 +48,7 @@ public class LoginChooserActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_chooser);
+        setContentView(R.layout.activity_login_chooser_with_qrcode);
 
         progressBar = findViewById(R.id.progress_bar);
         googleSignInButton = findViewById(R.id.google_signIn_button);
@@ -69,6 +70,7 @@ public class LoginChooserActivity extends Activity {
         }
         if (!Config.ENABLE_PHONE_LOGIN) {
             phoneSignInButton.setVisibility(View.GONE);
+
         }
 
         googleSignInButton.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +106,11 @@ public class LoginChooserActivity extends Activity {
 
     public void emailSignInBtn(View view) {
         Intent intent = new Intent(LoginChooserActivity.this, LoginActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.enter, R.anim.exit);
+    }
+    public void mobileSignInBtn(View view) {
+        Intent intent = new Intent(LoginChooserActivity.this, LoginMobileActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.enter, R.anim.exit);
     }

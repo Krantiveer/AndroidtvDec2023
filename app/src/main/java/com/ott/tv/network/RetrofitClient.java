@@ -10,7 +10,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    private static final String API_EXTENSION = "/v130/";
+    private static final String API_EXTENSION = "v1/";
     private static final String API_USER_NAME = "admin";
     private static final String API_PASSWORD = "1234";
     private static Retrofit retrofitAuth, retrofit;

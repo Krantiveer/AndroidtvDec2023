@@ -47,7 +47,7 @@
             android:layout_marginBottom="@dimen/dp_12"
             android:ellipsize="end"
             android:fontFamily="@font/poppins_regular"
-            android:hint="Action OTT"
+            android:hint="@string/app_name"
             android:singleLine="true"
             android:textColor="@color/white"
             android:textSize="@dimen/_28sdp"
@@ -197,7 +197,7 @@
 
         <TextView
             android:id="@+id/content_detail_description"
-            android:layout_width="350dp"
+            android:layout_width="370dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_gap_16"
             android:alpha="1"
@@ -206,6 +206,7 @@
             android:fontFamily="@font/poppins_thin"
             android:hint="Love Story is a 2021 Indian Telugu-language romantic drama film written and directed by Sekhar Kammula. Produced by Amigos Creations and Sree Venkateswara Cinemas, the film stars Naga"
             android:lineSpacingExtra="@dimen/margin_gap_4"
+            android:maxLines="4"
             android:textColor="@color/white"
             android:textSize="@dimen/textsize_12"
             android:visibility="visible" />
