@@ -145,8 +145,8 @@ public class PlayerActivity extends Activity {
         category = model.getCategory();
         if (model.getVideo() != null)
             video = model.getVideo();
-        if(model.getCategory()!=null)
-        categoryType=model.getCategory();
+        if(model.getCategory()!=null){
+        categoryType=model.getCategory();}
         id= String.valueOf(model.getId());
       /*  if (model.getCategory().equals("movie") && mChannelId > -1L && model.getIsPaid().equals("1")) {
             //Paid Content from Channel
