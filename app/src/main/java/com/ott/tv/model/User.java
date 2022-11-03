@@ -34,6 +34,13 @@ public class User {
     @Expose
     private String imageUrl;
 
+    @SerializedName("message")
+    @Expose
+    private String message;
+    @SerializedName("access_token")
+    @Expose
+    private String access_token;
+
 
     public User() {
     }
@@ -48,6 +55,22 @@ public class User {
 
     public String getStatus() {
         return status;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setAccessToken(String access_token) {
+        this.access_token = access_token;
+    }
+
+    public String getAccess_token() {
+        return access_token;
     }
 
     public void setStatus(String status) {
@@ -110,6 +133,7 @@ public class User {
         this.imageUrl = imageUrl;
     }
 
+
     @Override
     public String toString() {
         return "User{" +
@@ -122,6 +146,8 @@ public class User {
                 ", lastLogin='" + lastLogin + '\'' +
                 ", data='" + data + '\'' +
                 ", image_url='" + imageUrl + '\'' +
+                ", message='" + message + '\'' +
+                ", access_token='" + access_token + '\'' +
 
                 '}';
     }

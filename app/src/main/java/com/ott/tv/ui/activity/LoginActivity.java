@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 
 import com.ott.tv.Config;
 import com.ott.tv.Constants;
+import com.ott.tv.LoginMobileActivity;
 import com.ott.tv.R;
 import com.ott.tv.database.DatabaseHelper;
 import com.ott.tv.model.ActiveStatus;
@@ -25,6 +26,7 @@ import com.ott.tv.model.User;
 import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.LoginApi;
 import com.ott.tv.network.api.SubscriptionApi;
+import com.ott.tv.utils.PreferenceUtils;
 import com.ott.tv.utils.ToastMsg;
 
 import retrofit2.Call;
@@ -34,6 +36,7 @@ import retrofit2.Retrofit;
 
 public class LoginActivity extends Activity {
     private EditText etEmail=null, etPass=null;
+    private EditText editTextMobile=null;
     private ProgressBar progressBar;
 
 
@@ -44,6 +47,8 @@ public class LoginActivity extends Activity {
         etEmail = findViewById(R.id.email_edit_text);
         etPass = findViewById(R.id.password_edit_text);
         progressBar = findViewById(R.id.progress_login);
+        editTextMobile = findViewById(R.id.editMobileNumber);
+
 
 // in onCreate method
 /*
@@ -84,11 +89,14 @@ public class LoginActivity extends Activity {
             login(email, pass);
         }
     }
-
+    public void mobileSignInBtnMobile(View view) {
+        Intent intent = new Intent(getApplicationContext(), LoginMobileActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.enter, R.anim.exit);
+    }
     private void login(String email, final String password) {
         progressBar.setVisibility(View.VISIBLE);
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
-
         LoginApi api = retrofit.create(LoginApi.class);
         Call<User> call = api.postLoginStatus(Config.API_KEY, email, password);
         call.enqueue(new Callback<User>() {
@@ -112,8 +120,10 @@ public class LoginActivity extends Activity {
                         preferences.putBoolean(Constants.USER_LOGIN_STATUS, true);
                         preferences.apply();
 
-                        //save user login time, expire time
-                        updateSubscriptionStatus(user.getUserId());
+                        PreferenceUtils.getInstance().setAccessTokenNPref(getApplicationContext(),response.body().getAccess_token());
+
+                     /*   //save user login time, expire time
+                        updateSubscriptionStatus(user.getUserId());*/
 
                     } else {
                         new ToastMsg(LoginActivity.this).toastIconError(response.body().getData());

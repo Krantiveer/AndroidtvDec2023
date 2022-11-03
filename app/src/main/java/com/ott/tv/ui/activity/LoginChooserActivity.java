@@ -11,12 +11,14 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
 import com.firebase.ui.auth.IdpResponse;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.ott.tv.BuildConfig;
+
 import com.ott.tv.Config;
 import com.ott.tv.Constants;
 import com.ott.tv.LoginMobileActivity;
@@ -31,6 +33,7 @@ import com.ott.tv.utils.ToastMsg;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -73,19 +76,9 @@ public class LoginChooserActivity extends Activity {
 
         }
 
-        googleSignInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                googleSignIn();
-            }
-        });
+        googleSignInButton.setOnClickListener(v -> googleSignIn());
 
-        phoneSignInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                phoneSignIn();
-            }
-        });
+        phoneSignInButton.setOnClickListener(v -> phoneSignIn());
     }
 
     /*@Override
@@ -109,6 +102,7 @@ public class LoginChooserActivity extends Activity {
         startActivity(intent);
         overridePendingTransition(R.anim.enter, R.anim.exit);
     }
+
     public void mobileSignInBtn(View view) {
         Intent intent = new Intent(LoginChooserActivity.this, LoginMobileActivity.class);
         startActivity(intent);
@@ -146,7 +140,7 @@ public class LoginChooserActivity extends Activity {
     private void googleSignIn() {
         progressBar.setVisibility(View.VISIBLE);
         if (firebaseAuth.getCurrentUser() != null) {
-            if (!FirebaseAuth.getInstance().getCurrentUser().getUid().isEmpty()) {
+            if (!Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid().isEmpty()) {
                 final String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
                 //already signed in
                 if (email != null)
@@ -179,7 +173,7 @@ public class LoginChooserActivity extends Activity {
         Call<User> call = api.getGoogleAuthStatus(Config.API_KEY, uid, email, name);
         call.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
                 if (response.code() == 200) {
                     if (response.body().getStatus().equalsIgnoreCase("success")) {
                         User user = response.body();
@@ -207,7 +201,7 @@ public class LoginChooserActivity extends Activity {
         String phone = "";
         String uid = "";
         try {
-            phone = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
+            phone = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getPhoneNumber();
             uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         } catch (NullPointerException e) {
             new ToastMsg(LoginChooserActivity.this).toastIconError(getResources().getString(R.string.something_went_wrong));
@@ -235,7 +229,7 @@ public class LoginChooserActivity extends Activity {
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
                 Toast.makeText(LoginChooserActivity.this, "failed", Toast.LENGTH_SHORT).show();
                 Log.e("LoginTV", "response: " + t.getLocalizedMessage());
             }
@@ -262,7 +256,7 @@ public class LoginChooserActivity extends Activity {
                     Toast.makeText(this, "Canceled", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (response.getError().getErrorCode() == ErrorCodes.NO_NETWORK) {
+                if (Objects.requireNonNull(response.getError()).getErrorCode() == ErrorCodes.NO_NETWORK) {
                     Toast.makeText(this, "No internet", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -287,7 +281,7 @@ public class LoginChooserActivity extends Activity {
                     Toast.makeText(this, "Canceled", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (response.getError().getErrorCode() == ErrorCodes.NO_NETWORK) {
+                if (Objects.requireNonNull(response.getError()).getErrorCode() == ErrorCodes.NO_NETWORK) {
                     Toast.makeText(this, "No internet", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -360,19 +354,27 @@ public class LoginChooserActivity extends Activity {
         // from/to ActionBar to/from PlayerController
         switch (keyCode) {
 
-            case KeyEvent.KEYCODE_DPAD_CENTER: return  false;
-            case KeyEvent.KEYCODE_DPAD_LEFT: return  false;
-            case KeyEvent.KEYCODE_DPAD_RIGHT: return  false;
+            case KeyEvent.KEYCODE_DPAD_CENTER:
+                return false;
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+                return false;
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+                return false;
             case KeyEvent.KEYCODE_DPAD_UP:
-                Log.e("LoginChooserActivity", "movieIndex : " );
+                Log.e("LoginChooserActivity", "movieIndex : ");
 
-                return  false;
+                return false;
 
-            case KeyEvent.KEYCODE_DPAD_UP_LEFT: return  false;
-            case KeyEvent.KEYCODE_DPAD_UP_RIGHT: return  false;
-            case KeyEvent.KEYCODE_DPAD_DOWN: return  false;
-            case KeyEvent.KEYCODE_DPAD_DOWN_LEFT: return  false;
-            case KeyEvent.KEYCODE_DPAD_DOWN_RIGHT: return  false;
+            case KeyEvent.KEYCODE_DPAD_UP_LEFT:
+                return false;
+            case KeyEvent.KEYCODE_DPAD_UP_RIGHT:
+                return false;
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+                return false;
+            case KeyEvent.KEYCODE_DPAD_DOWN_LEFT:
+                return false;
+            case KeyEvent.KEYCODE_DPAD_DOWN_RIGHT:
+                return false;
             case KeyEvent.KEYCODE_BACK:
                 Log.d(TAG, "keyCode List" + keyCode);
                 onBackPressed();

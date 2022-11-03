@@ -10,8 +10,8 @@ android {
         applicationId "com.actionott.tv"
         minSdkVersion 24
         targetSdkVersion 31
-        versionCode 22
-        versionName "1.2.7"
+        versionCode 1
+        versionName "1"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -33,7 +33,7 @@ android {
             applicationId "com.actionott.tv"
 
         }
-        /*nammestarott {
+       /* nammestarott {
             applicationId "com.nammestar.android"
         }*/
 

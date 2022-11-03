@@ -13,9 +13,8 @@ import com.google.android.material.snackbar.Snackbar;
 import com.ott.tv.R;
 
 /**
- * Created by Pushpendra Kumar on 28/08/21 @ 11:52 am
- * Organization - Team Leader @ Colour Moon Technologies PVT LTD INDIA
- * Contact - pushpendra@thecolourmoon.com ► +91-9719325299
+ * Created by krantiveer  on 1/11/22 @ 11:52 am
+ * Contact - krantiveersinghgaur@gmail.com ► +91-9928552344
  */
 public class CMHelper {
     /**

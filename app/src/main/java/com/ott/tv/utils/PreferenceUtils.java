@@ -32,6 +32,9 @@ public class PreferenceUtils {
     private static final String windowHeight = "window_height";
     private static final String current_sub_title = "current_sub_title";
     private static final String shared_preferences = "shared_preferences";
+    public static final String country_code = "country_code";
+    public static final String country_name = "country_name";
+    public static final String access_token = "access_token";
 
     public static PreferenceUtils getInstance() {
         return INSTANCE;
@@ -160,7 +163,7 @@ public class PreferenceUtils {
     public String getWindowHeightPref(Context context) {
 
         return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
-                .getString(windowHeight,"true");
+                .getString(windowHeight, "true");
     }
 
     public void setVideoQualityPref(Context context, String videoQuality) {
@@ -185,5 +188,40 @@ public class PreferenceUtils {
     public String getSubtitlePref(Context context) {
         return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
                 .getString(current_sub_title, "None");
+    }
+
+    public void setCountyCodePref(Context context, String countryCode) {
+        SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(country_code, countryCode);
+        editor.apply();
+    }
+
+    public String getCountyCodePref(Context context) {
+        return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
+                .getString(country_code, context.getString(R.string.country_code_default));
+    }
+    public void setCountyNamePref(Context context, String countryName) {
+        SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(country_name, countryName);
+        editor.apply();
+    }
+
+    public String getCountyNamePref(Context context) {
+        return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
+                .getString(country_name, context.getString(R.string.country_name_default));
+    }
+
+    public void setAccessTokenNPref(Context context, String accessToken) {
+        SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(access_token, accessToken);
+        editor.apply();
+    }
+
+    public String getAccessTokenPref(Context context) {
+        return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
+                .getString(access_token, "");
     }
 }
