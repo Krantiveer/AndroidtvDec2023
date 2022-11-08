@@ -10,17 +10,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_40sdp"
-        android:gravity="center"
+
+        android:gravity="start"
         android:keepScreenOn="true"
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="120dp"
-            android:contentDescription="TODO"
-            android:layout_marginRight="@dimen/_30sdp"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_105sdp"
             android:layout_gravity=""
+            android:layout_marginLeft="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:contentDescription="TODO"
             android:src="@drawable/logo" />
 
         <TextView
@@ -28,10 +29,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center|top"
             android:layout_marginTop="15dp"
-            android:visibility="gone"
             android:text="@string/Welcome_login_chooser"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:visibility="gone" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,7 +67,7 @@
                         android:layout_marginTop="15dp"
                         android:text="On the UVTV Mobile App"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                        android:textSize="30sp" />
+                        android:textSize="28sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -157,8 +158,8 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/_30sdp"
-                android:layout_marginRight="@dimen/_30sdp"
                 android:layout_marginTop="@dimen/_35sdp"
+                android:layout_marginRight="@dimen/_30sdp"
                 android:layout_weight="1"
                 android:keepScreenOn="true"
                 android:orientation="vertical"
@@ -179,28 +180,36 @@
                     android:visibility="gone" />
 
                 <Button
-                    android:layout_width="400dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_margin="@dimen/_20sp"
+                    android:layout_marginTop="@dimen/_20sp"
                     android:background="@drawable/button_focus"
-                    android:drawableStart="@drawable/ic_baseline_phone_android_24"
+                    android:drawableStart="@drawable/mobile_alt"
+                    android:gravity="center"
                     android:onClick="mobileSignInBtn"
                     android:paddingStart="20dp"
+                    android:paddingTop="@dimen/_10sdp"
                     android:paddingEnd="20dp"
+                    android:paddingBottom="@dimen/_10sdp"
                     android:text="@string/fui_sign_in_with_phone"
-                    android:textAllCaps="false" />
+                    android:textAllCaps="false"
+                    android:textColor="@color/btn_txt_color"
+                    android:textSize="@dimen/_14sp"
+                    android:textStyle="bold" />
 
                 <Button
-                    android:layout_width="400dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-
+                    android:layout_margin="@dimen/_20sp"
                     android:background="@drawable/button_focus"
-                    android:drawableStart="@drawable/fui_ic_mail_white_24dp"
+                    android:drawableStart="@drawable/envelope"
                     android:focusedByDefault="true"
                     android:onClick="emailSignInBtn"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
+                    android:textStyle="bold"
                     android:text="Login with Email"
                     android:textAllCaps="false"
                     android:textColor="@color/btn_txt_color" />
