@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/login_background"
+    android:gravity="center"
+    android:keepScreenOn="true"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        tools:ignore="UselessParent">
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_weight="1"
+            android:gravity="top"
+            android:orientation="vertical"
+            tools:ignore="NestedWeights">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="vertical"
+                android:visibility="visible"
+                tools:ignore="UselessParent">
+
+                <ImageView
+                    android:layout_width="@dimen/_152sdp"
+                    android:layout_height="@dimen/_170sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:contentDescription="@string/image_description"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/logosign"
+                    android:visibility="visible" />
+
+
+                <!--   <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login"
+                    android:textColor="@color/white"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|top"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/login_using_your_email_address"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                    android:textSize="30sp" />-->
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="70dp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:id="@+id/ll_verify_otp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:keepScreenOn="true"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:gravity="center"
+                android:text="Enter OTP sent to"
+                android:textColor="@color/textcolor"
+                android:textSize="28sp" />
+
+            <TextView
+                android:id="@+id/tv_verify_otp_mobileNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:gravity="center"
+                android:text="@string/mobile_number"
+                android:textColor="@color/textcolor"
+                android:textSize="28sp" />
+
+
+            <EditText
+                android:id="@+id/editVerifiedOTP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_20sp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:autofillHints=""
+                android:background="@drawable/edit_focus"
+                android:contentDescription="@string/mr_button_content_description"
+                android:hint="@string/enter_otp"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:paddingStart="@dimen/_15sp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                tools:ignore="RtlSymmetry" />
+
+            <Button
+                android:id="@+id/bt_verified_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_focus"
+                android:gravity="center"
+                android:onClick="bt_verified_login"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:text="@string/login"
+                android:textAllCaps="true"
+                android:textColor="@color/btn_txt_color"
+                android:textSize="@dimen/_14sp" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_12sdp">
+
+                <TextView
+                    android:id="@+id/timer_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_20sp"
+                    android:padding="@dimen/_10sdp"
+                    android:text="Didn't receive OTP? Resend in"
+                    android:textSize="@dimen/_18sdp" />
+
+                <TextView
+                    android:id="@+id/timer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_20sp"
+                    android:padding="@dimen/_10sdp"
+                    android:text="00"
+                    android:textColor="@color/colorGold"
+                    android:textSize="@dimen/_18sdp" />
+
+                <Button
+                    android:id="@+id/bt_resend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/button_focus_resend"
+                    android:text="Resend"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_18sdp"
+                    tools:visibility="visible"
+                    android:visibility="gone" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_send_otp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+
+            android:gravity="center"
+            android:keepScreenOn="true"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:visibility="visible"
+            tools:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="@string/login_with_mobile_number"
+                android:textColor="@color/textcolor"
+                android:textSize="32sp" />
+
+            <!--      <EditText
+                      android:id="@+id/email_edit_text"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginLeft="20dp"
+                      android:layout_marginRight="20dp"
+                      android:autofillHints=""
+                      android:hint="@string/email_address"
+                      android:inputType="textEmailAddress" />-->
+            <TextView
+                android:id="@+id/mobile_code_in"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_focus"
+                android:drawableEnd="@drawable/quantum_ic_keyboard_arrow_down_white_36"
+                android:focusable="true"
+                android:padding="10dp"
+                android:text="@string/_91"
+
+                android:textSize="22sp" />
+
+            <!--            <com.hbb20.CountryCodePicker-->
+            <!--                android:id="@+id/ccp"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                app:ccp_autoFormatNumber="false"-->
+            <!--                app:ccp_autoDetectCountry="false"-->
+            <!--                app:ccp_contentColor="@color/white"-->
+            <!--                app:ccp_defaultPhoneCode="91"-->
+            <!--                app:ccp_showFlag="false"-->
+            <!--                app:ccp_textSize="22sp" />-->
+
+
+            <!--                <View-->
+            <!--                    android:id="@+id/bar_view"-->
+            <!--                    android:layout_width="1dp"-->
+            <!--                    android:layout_height="32dp"-->
+            <!--                    android:layout_centerVertical="true"-->
+            <!--                    android:layout_toEndOf="@id/mobile_code_in"-->
+            <!--                    android:background="@color/grey" />-->
+
+
+            <EditText
+                android:id="@+id/editMobileNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_20sp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:autofillHints=""
+                android:background="@drawable/edit_focus"
+                android:contentDescription="@string/mr_button_content_description"
+                android:hint="@string/mobile_number"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:paddingStart="@dimen/_15sp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+
+
+                tools:ignore="RtlSymmetry" />
+
+            <!--
+                        <EditText
+                            android:id="@+id/password_edit_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:hint="@string/password"
+                            android:importantForAutofill="no"
+                            android:inputType="textPassword" />
+            -->
+
+
+            <ProgressBar
+                android:id="@+id/progress_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:indeterminateTint="@color/colorGold"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <!--    <Button
+                    android:id="@+id/validate_button"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/button_focus"
+                    android:onClick="loginBtn"
+                    android:text="@string/login" />-->
+
+            <Button
+                android:id="@+id/send_otp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sp"
+                android:background="@drawable/button_focus"
+                android:gravity="center"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:text="@string/send_otp"
+                android:textAllCaps="true"
+                android:textColor="@color/btn_txt_color"
+                android:textSize="@dimen/_14sp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/button_focus"
+                android:drawableStart="@drawable/fui_ic_mail_white_24dp"
+                android:onClick="emailSignInBtnPhone"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="@string/login_with_email"
+                android:textAllCaps="false"
+                android:textColor="@color/btn_txt_color" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

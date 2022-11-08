@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/tv_bg"
+    android:background="@color/login_background"
     android:gravity="center"
     android:keepScreenOn="true"
     android:orientation="vertical">
@@ -12,7 +12,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-
         android:layout_weight="7"
         android:baselineAligned="false"
         android:orientation="horizontal"
@@ -32,16 +31,19 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
+                android:gravity="center_horizontal|center_vertical"
                 android:orientation="vertical"
+                android:visibility="visible"
                 tools:ignore="UselessParent">
 
-
                 <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="@dimen/_152sdp"
+                    android:layout_height="@dimen/_170sdp"
+                    android:layout_gravity="center_horizontal"
                     android:contentDescription="@string/image_description"
-                    android:src="@drawable/logosign" />
+                    android:scaleType="fitXY"
+                    android:src="@drawable/logosign"
+                    android:visibility="visible" />
 
 
                 <!--   <TextView
@@ -63,6 +65,17 @@
                     android:textSize="30sp" />-->
 
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/welcome_to_uvtv"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:visibility="visible" />
 
         </LinearLayout>
 
@@ -87,9 +100,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:text="@string/login"
+                android:text="@string/login_with_email"
                 android:textColor="@color/textcolor"
-                android:textSize="36sp" />
+                android:textSize="32sp" />
 
             <!--      <EditText
                       android:id="@+id/email_edit_text"
@@ -106,6 +119,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_20sp"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:autofillHints=""
                 android:background="@drawable/edit_focus"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
@@ -116,7 +130,6 @@
                 android:singleLine="true"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
-                android:autofillHints=""
                 tools:ignore="RtlSymmetry" />
 
             <!--
@@ -170,18 +183,33 @@
                 android:id="@+id/validate_button_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sp"
                 android:layout_marginTop="@dimen/_20sp"
-                android:layout_marginEnd="@dimen/_20sp"
-                android:background="@drawable/curved_gold_bg"
+                android:background="@drawable/button_focus"
                 android:gravity="center"
                 android:onClick="loginBtn"
                 android:paddingTop="@dimen/_10sdp"
                 android:paddingBottom="@dimen/_10sdp"
                 android:text="@string/login"
-                android:textAllCaps="true"
-                android:textColor="@color/black_color"
-                android:textSize="@dimen/_14sp" />
+                android:textAllCaps="false"
+                android:textColor="@color/btn_txt_color"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/phone_signIn_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/button_focus"
+                android:drawableStart="@drawable/ic_baseline_phone_android_24"
+                android:onClick="mobileSignInBtnMobile"
+                android:paddingStart="@dimen/_20sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_20sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:text="@string/fui_sign_in_with_phone"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
 
 
         </LinearLayout>

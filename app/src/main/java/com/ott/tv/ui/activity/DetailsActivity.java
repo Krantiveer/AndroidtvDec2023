@@ -10,6 +10,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -114,7 +115,7 @@ public class DetailsActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-        String type = "movie";
+        String type = "M";
         videoId = this.getIntent().getStringExtra("video_id");
         id = this.getIntent().getStringExtra("id");
         thumbUrl = this.getIntent().getStringExtra("thumbImage");
@@ -154,7 +155,7 @@ public class DetailsActivity extends FragmentActivity {
         imgWatchList = findViewById(R.id.imgWatchList);
         imgFavList = findViewById(R.id.imgFavList);
         progress_indicator = findViewById(R.id.progress_indicator);
-        if (type.equals("movie")) {
+        if (type.equals("M")) {
             if (videoId != null) {
                 getData(type, videoId);
             } else {
@@ -339,7 +340,7 @@ public class DetailsActivity extends FragmentActivity {
         } else {
             userid = " ";
         }
-        PreferenceUtils.getInstance().getUsersIdActionOTT(this);
+      //  PreferenceUtils.getInstance().getUsersIdActionOTT(this);
         DetailsApi api = retrofit.create(DetailsApi.class);
         Call<MovieSingleDetails> call = api.getSingleDetail(Config.API_KEY, videoType, videoId, userid);
         activityIndicator(true);
@@ -349,7 +350,7 @@ public class DetailsActivity extends FragmentActivity {
                 activityIndicator(false);
                 if (response.code() == 200 && response.body() != null) {
                     singleDetails = response.body();
-                    singleDetails.setType("movie");
+                    singleDetails.setType("M");
 /*                    //----related post---------------
                     for (int i = 0; i < singleDetails.getRelatedMovie().size(); i++) {
                         RelatedMovie relatedMovie = singleDetails.getRelatedMovie().get(i);
@@ -372,13 +373,15 @@ public class DetailsActivity extends FragmentActivity {
                     setMovieData();
                 } else {
                     CMHelper.setSnackBar(DetailsActivity.this.getCurrentFocus(), "We are sorry, This video content not available, Please try another", 2);
+
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<MovieSingleDetails> call, @NonNull Throwable t) {
                 activityIndicator(false);
-                CMHelper.setSnackBar(DetailsActivity.this.getCurrentFocus(), "We are sorry, This video content not available, Please try another", 2);
+                Log.i("DetailISSUE_kranti", "onResponse: "+t);
+                CMHelper.setSnackBar(DetailsActivity.this.getCurrentFocus(), "We are sorry, This video content not available, Please try another"+t, 2);
             }
         });
 

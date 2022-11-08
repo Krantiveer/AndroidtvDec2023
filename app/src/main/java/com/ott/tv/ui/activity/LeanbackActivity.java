@@ -123,49 +123,49 @@ public class LeanbackActivity extends FragmentActivity {
                 bundle.putString("type", "movie");
                 fragment.setArguments(bundle);
                 fragments.put(i, fragment);
-            } else if (i == 3) {
+            } else if (i == 3) {/*
                 FavouriteFragment fragment = new FavouriteFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
 
                 bundle.putString("type", "Watch Later");
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);
-            } else if (i == 4) {
+                fragments.put(i, fragment);*/
+            } else if (i == 4) {/*
                 GenreMovieFragment fragment = new GenreMovieFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);
+                fragments.put(i, fragment);*/
 
-            } else if (i == 5) {
+            } else if (i == 5) {/*
                 FavouriteFragment fragment = new FavouriteFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 bundle.putString("type", "movie");
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);
-            } else if (i == 6) {
+                fragments.put(i, fragment);*/
+            } else if (i == 6) {/*
                 CountryMovieFragment fragment = new CountryMovieFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);
+                fragments.put(i, fragment);*/
 
-            } else if (i == 7) {
+            } else if (i == 7) {/*
                 MyAccountFragment fragment = new MyAccountFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
 
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);
+                fragments.put(i, fragment);*/
 
-            } else {
+            } else {/*
                 MyAccountFragment fragment = new MyAccountFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);
+                fragments.put(i, fragment);*/
             }
         }
 

@@ -40,6 +40,9 @@ public class User {
     @SerializedName("access_token")
     @Expose
     private String access_token;
+    @SerializedName("error")
+    @Expose
+    private String error;
 
 
     public User() {
@@ -71,6 +74,14 @@ public class User {
 
     public String getAccess_token() {
         return access_token;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public String getError() {
+        return error;
     }
 
     public void setStatus(String status) {
@@ -148,7 +159,7 @@ public class User {
                 ", image_url='" + imageUrl + '\'' +
                 ", message='" + message + '\'' +
                 ", access_token='" + access_token + '\'' +
-
+                ", error='" + error + '\'' +
                 '}';
     }
 }

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/phone_bac_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:src="@drawable/banner_image"
+
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/phone_pro_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Search Country"
+        android:textAllCaps="true"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/phone_bac_layout"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="horizontal"-->
+    <!--        android:background="@color/white">-->
+
+
+    <!--            <ImageView-->
+    <!--                android:id="@+id/phone_bac_layout"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:padding="@dimen/_5sdp"-->
+    <!--                android:layout_margin="10dp"-->
+    <!--                 />-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/phone_pro_header"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:gravity="center"-->
+    <!--                android:layout_gravity="center"-->
+    <!--                android:text="Search Country"-->
+    <!--                android:textAllCaps="true"-->
+    <!--                android:textColor="@color/colorPrimary" />-->
+
+    <!--    </LinearLayout>-->
+
+    <RelativeLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phone_pro_header">
+
+        <LinearLayout
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="7dp">
+
+                <EditText
+                    android:id="@+id/searchView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/edit_text_code_selecter"
+                    android:focusable="true"
+                    android:fontFamily="@font/amazon"
+                    android:hint="@string/search"
+                    android:inputType="text"
+                    android:nextFocusUp="@id/phone_bac_layout"
+                    android:nextFocusDown="@id/listie"
+                    android:padding="10dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black_color"
+                    android:textColorHint="#95999e"
+                    android:textSize="22sp" />
+
+                <requestFocus></requestFocus>
+                <!--                <TextView-->
+                <!--                    android:id="@+id/textView1"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_alignParentLeft="true"-->
+                <!--                    android:layout_centerVertical="true"-->
+                <!--                    android:layout_marginLeft="14dp"-->
+                <!--                    android:gravity="left"-->
+                <!--                    android:text="Search"-->
+                <!--                    android:textColor="#000000" />-->
+
+                <!--                <TextView-->
+                <!--                    android:id="@+id/imageView1"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_alignParentRight="true"-->
+                <!--                    android:layout_centerVertical="true"-->
+                <!--                    android:layout_marginRight="5dp"-->
+                <!--                    android:text="Cancel"-->
+                <!--                    android:textColor="@color/colorPrimaryDark"-->
+                <!--                    android:visibility="invisible" />-->
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/listie"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fastScrollEnabled="true"
+        android:focusable="true"
+        android:nextFocusUp="@id/searchView1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/linearLayout"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:baselineAligned="false"-->
+    <!--        android:orientation="horizontal">-->
+
+
+    <!--        <LinearLayout-->
+    <!--            android:id="@+id/sideIndex"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:layout_gravity="center_vertical"-->
+    <!--            android:background="@android:color/white"-->
+    <!--            android:gravity="center"-->
+    <!--            android:orientation="vertical" />-->
+    <!--    </LinearLayout>-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

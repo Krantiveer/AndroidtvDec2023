@@ -38,6 +38,28 @@ public class RetrofitClient {
 
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
+                    .baseUrl(Config.API_SERVER_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(client.build())
+                    .build();
+        }
+        return retrofit;
+    }  public static Retrofit getRetrofitInstanceWithV1() {
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient.Builder client = new OkHttpClient.Builder();
+         client.addInterceptor(chain -> {
+             Request request = chain.request().newBuilder().addHeader("publisherid", Config.Publisher_id).build();
+             return chain.proceed(request);
+         });
+         client.addInterceptor(new BasicAuthInterceptor(API_USER_NAME,API_PASSWORD));
+         client.addInterceptor(interceptor).build();
+          /*      .addInterceptor(new BasicAuthInterceptor(API_USER_NAME, API_PASSWORD))
+                .addInterceptor(interceptor).build();*/
+
+        if (retrofit == null) {
+            retrofit = new Retrofit.Builder()
                     .baseUrl(Config.API_SERVER_URL + API_EXTENSION)
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client.build())

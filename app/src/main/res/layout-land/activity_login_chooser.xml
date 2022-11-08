@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/tv_bg"
+    android:background="@color/login_background"
     android:keepScreenOn="true">
 
     <LinearLayout
@@ -109,10 +109,11 @@
                     android:layout_width="400dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:visibility="visible"
+                    tools:visibility="visible"
                     android:background="@drawable/button_focus"
                     android:onClick="signUpBtn"
                     android:textColor="@color/btn_txt_color"
-
                     android:text="@string/sign_up" />
 
             </LinearLayout>

@@ -112,9 +112,9 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
             } else*/
             {
                 holder.primary_text.setText(listdata.getVideos().get(position).getTitle());
-                if (!TextUtils.isEmpty(listdata.getVideos().get(position).getImageLink())) {
+                if (!TextUtils.isEmpty(listdata.getVideos().get(position).getThumbnailUrl())) {
                     Glide.with(context)
-                            .load(listdata.getVideos().get(position).getImageLink()).
+                            .load(listdata.getVideos().get(position).getThumbnailUrl()).
                             placeholder(R.drawable.poster_placeholder_land)
                             .error(R.drawable.poster_placeholder_land)
                             .into(holder.main_image);

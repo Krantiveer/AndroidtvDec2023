@@ -88,7 +88,7 @@ public class HomeFragmentNewUI extends Fragment {
         releasePlayer();
         //  String url = "https://action-ott-live.s3.ap-south-1.amazonaws.com/Sultan+Trailer/sultan+(1).mp4";
         if (video.getTrailer_aws_source() != null) {
-            String url = video.getTrailer_aws_source();
+            String url = "https://phando010.s.llnwi.net/633d7daf012dd/633d7daf012dd_sec.mp4";
             initVideoPlayer(url, "movie");
         } else {
             if (video.getTrailler_youtube_source() != null) {
@@ -256,7 +256,7 @@ public class HomeFragmentNewUI extends Fragment {
 
 
             String userId = new DatabaseHelper(requireContext()).getUserData().getUserId();
-            Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+            Retrofit retrofit = RetrofitClient.getRetrofitInstanceWithV1();
             HomeApi api = retrofit.create(HomeApi.class);
             Call<HomeContent> call = api.getHomeContent(Config.API_KEY, userId);
             call.enqueue(new Callback<HomeContent>() {
@@ -300,34 +300,14 @@ public class HomeFragmentNewUI extends Fragment {
     private void loadRows(List<FeaturesGenreAndMovie> homeContents, ArrayList<Video> slideArrayList) {
 
         HomeBannerAdapter adapter = new HomeBannerAdapter(slideArrayList, getContext());
-        adapter.setSendInterfacedata(new HomeBannerAdapter.SendInterfacedata() {
-            @Override
-            public void sendDescription(Video description) {
-                setTextViewBanner(description);
-            }
-        });
-        adapter.setSendInterfaceClick(new HomeBannerAdapter.SendInterfaceClick() {
-            @Override
-            public void sendclick() {
-                releasePlayer();
-            }
-        });
+        adapter.setSendInterfacedata(description -> setTextViewBanner(description));
+        adapter.setSendInterfaceClick(() -> releasePlayer());
         recyclerViewBannerTop.setAdapter(adapter);
 
         HomeBannerSecAdapter homeBannerSecAdapter = new HomeBannerSecAdapter(homeContents, getContext());
 
-        homeBannerSecAdapter.setSendInterfacedata(new HomeBannerAdapter.SendInterfacedata() {
-            @Override
-            public void sendDescription(Video description) {
-                setTextViewBanner(description);
-            }
-        });
-        homeBannerSecAdapter.setSendInterfaceClick(new HomeBannerSecAdapter.SendInterfaceClick() {
-            @Override
-            public void sendclick() {
-                releasePlayer();
-            }
-        });
+        homeBannerSecAdapter.setSendInterfacedata(description -> setTextViewBanner(description));
+        homeBannerSecAdapter.setSendInterfaceClick(() -> releasePlayer());
 
         recyclerViewBannerBottom.setAdapter(homeBannerSecAdapter);
     }

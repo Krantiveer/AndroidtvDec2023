@@ -1,7 +1,6 @@
 package com.ott.tv;
 
-import static com.ott.tv.utils.CMHelper.hideKeyboard;
-import static com.ott.tv.utils.PreferenceUtils.TAG;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +10,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -46,12 +46,13 @@ import retrofit2.Retrofit;
 public class LoginMobileActivity extends Activity {
     private EditText editMobileNumber,editVerifiedOTP;
     private ProgressBar progressBar;
-    private Button send_otp,bt_verified_login;
+    private Button send_otp,bt_verified_login,bt_resend;
     private String mob_number, country_code;
 
     private String countryCode, countryName;
-    private TextView mobile_code_in,tv_verify_otp_mobileNo;
+    private TextView mobile_code_in,tv_verify_otp_mobileNo,timer_txt,timer,tv_timer;
     private LinearLayout ll_send_otp,ll_verify_otp;
+    private CountDownTimer cTimer;
 
     /*@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -92,7 +93,11 @@ public class LoginMobileActivity extends Activity {
 
         mobile_code_in.setText(countryName + " (" + " " + countryCode + ")");
 
-
+        timer = findViewById(R.id.timer);
+        timer_txt = findViewById(R.id.timer_txt);
+        timer_txt.setText("Didn't receive OTP? Resend in");
+        //  tv_timer=findViewById(R.id.tv_timer);
+        bt_resend=findViewById(R.id.bt_resend);
 
 // in onCreate method
 /*
@@ -119,8 +124,39 @@ public class LoginMobileActivity extends Activity {
         });
 */
 
+        bt_resend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                timer.setVisibility(View.VISIBLE);
+                bt_resend.setVisibility(View.GONE);
+             //   startTimer();
+                getSendOTP(mob_number,countryCode);
+
+            }
+        });
 
     }
+
+    void startTimer() {
+        cTimer = new CountDownTimer(10000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                timer_txt.setText("Didn't receive OTP? Resend in");
+                timer.setText( "00:"+String.valueOf(millisUntilFinished/1000));
+
+            }
+            public void onFinish() {
+                timer_txt.setText("Didn't receive OTP?");
+
+                timer.setVisibility(View.GONE);
+                bt_resend.setVisibility(View.VISIBLE);
+
+              //  tv_timer.setVisibility(View.VISIBLE);
+             //   resend.setEnabled(true);
+            }
+        };
+        cTimer.start();
+    }
+
     public void check_verified_OTP() {
         if (editVerifiedOTP.getText().toString().trim().equals("")) {
             CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter OTP"), 2, 10000);
@@ -232,6 +268,15 @@ public class LoginMobileActivity extends Activity {
                         new ToastMsg(getApplicationContext()).toastIconError(response.body().getMessage());
                         progressBar.setVisibility(View.GONE);
                     }
+                }else{
+                    if(response.code()==401){
+                        //   CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter OTP"), 2, 10000);
+                        new ToastMsg(getApplicationContext()).toastIconError(response.message());
+                    }else{
+                        new ToastMsg(getApplicationContext()).toastIconError("Please Try Again Getting"+response.code());
+                    }
+                    progressBar.setVisibility(View.GONE);
+
                 }
             }
 
@@ -276,10 +321,21 @@ public class LoginMobileActivity extends Activity {
                         progressBar.setVisibility(View.GONE);
                         ll_send_otp.setVisibility(View.GONE);
                         ll_verify_otp.setVisibility(View.VISIBLE);
+                        startTimer();
+
                     } else {
                         new ToastMsg(getApplicationContext()).toastIconError(response.body().getData());
                         progressBar.setVisibility(View.GONE);
                     }
+                }else{
+                    if(response.code()==401){
+                        //   CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter OTP"), 2, 10000);
+                        new ToastMsg(getApplicationContext()).toastIconError(response.message());
+                    }else{
+                        new ToastMsg(getApplicationContext()).toastIconError("Please Try Again Getting"+response.code());
+                    }
+                    progressBar.setVisibility(View.GONE);
+
                 }
             }
 

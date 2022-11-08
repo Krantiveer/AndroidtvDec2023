@@ -9,7 +9,7 @@ import retrofit2.http.Query;
 
 public interface DetailsApi {
 
-    @GET("single_details")
+    @GET("v1/single_details")
     Call<MovieSingleDetails> getSingleDetail(@Header("API-KEY") String apiKey,
                                              @Query("type") String videoType,
                                              @Query("id") String videoId,

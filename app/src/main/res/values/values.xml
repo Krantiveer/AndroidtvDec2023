@@ -24,5 +24,6 @@
     <item name="lb_view_active_level" type="fraction">0%</item>
     <item name="lb_view_dimmed_level" type="fraction">0%</item>
     <dimen name="lb_browse_title_text_size">28sp</dimen>
+    <string name="fui_sign_in_with_phone" translation_description="Sign in button text">Login with Mobile Number</string>
 
 </resources>

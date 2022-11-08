@@ -557,7 +557,7 @@ public class DetailsActivityTvSeries extends FragmentActivity {
         } else {
             userid = " ";
         }
-        PreferenceUtils.getInstance().getUsersIdActionOTT(this);
+       // PreferenceUtils.getInstance().getUsersIdActionOTT(this);
         DetailsApi api = retrofit.create(DetailsApi.class);
         Call<MovieSingleDetails> call = api.getSingleDetail(Config.API_KEY, vtype, vId, userid);
 
@@ -834,7 +834,7 @@ public class DetailsActivityTvSeries extends FragmentActivity {
         } else {
             userid = " ";
         }
-        PreferenceUtils.getInstance().getUsersIdActionOTT(this);
+    //    PreferenceUtils.getInstance().getUsersIdActionOTT(this);
         DetailsApi api = retrofit.create(DetailsApi.class);
         Call<MovieSingleDetails> call = api.getSingleDetail(Config.API_KEY, videoType, videoId, userid);
 

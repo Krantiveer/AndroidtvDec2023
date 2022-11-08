@@ -11,7 +11,7 @@
     <color name="colorButtonUnselectedTV">@color/transparent</color>
     <color name="detailTitle">@color/white</color>
 
-    <color name="colorButtonUnselected">#858585</color>
+
 
 
     <color name="paypalColor">#ffc43a</color>
@@ -23,7 +23,7 @@
     <color name="default_text">#8B8B8B</color>
     <color name="black">@color/transparent</color>
     <color name="black_color">#000000</color>
-    <color name="btn_txt_color">#000000</color>
+    <color name="btn_txt_color">#fff</color>
     <color name="black_window">#111111</color>
     <color name="black_window_light">#131313</color>
     <color name="nav_bg">#424242</color>
@@ -76,11 +76,12 @@
     //music theme
     <color name="player_progress_color">#feab91</color>
     <color name="player_background_color">#db2a0f</color>
-    <color name="selected_background">#ffaa3f</color>
+    <color name="selected_background">#db2a0f</color>
     <color name="song_row_favorite_color">#FF6E40</color>
     <color name="accent">#80D3FB</color>
 
-    <color name="colorGold">#DCBC4F</color>
+    <color name="colorGold">#E40000</color>
+    <color name="colorGoldWhite">#FFFFFF</color>
     <color name="textcolor">#DCBC4F</color>
     <color name="colorGoldLight">#EAD384</color>
     <color name="bcn_selected_color">#DCBC4F</color>
@@ -90,7 +91,7 @@
     <color name="color_lightyellow">#454545</color>
     <color name="color_darkyellow">#333300</color>
     <color name="color_dark_yellow_high">#CCCC00</color>
-    <color name="color_dark_yellow_high_transparent">#2DDCBC4F</color>
+    <color name="color_dark_yellow_high_transparent">#343D48</color>
 
     <color name="colorPremium">#E2BC32</color>
     <color name="colorFree">#E2BC32</color>
@@ -105,4 +106,17 @@
     <color name="mmtv_selectecd_color">#00BCD4</color>
     //browfragment top
     <color name="lb_browse_title_color">#E2BC32</color>
+
+    //button text color
+    <color name="colorButtonUnselected">#858585</color>
+    <color name="colorButtonText">#858585</color>
+    //side nav button
+    <color name="colorSideNav">#fff</color>
+    //cardTextcolor
+    <color name="cardTextColor">#fff</color>
+
+    //loging background color
+    <color name="login_background">#020610</color>
+
+
 </resources>

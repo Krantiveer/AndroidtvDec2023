@@ -1,6 +1,7 @@
 package com.ott.tv.fragments;
 
 import android.Manifest;
+import android.app.Application;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.ott.tv.BuildConfig;
 import com.ott.tv.R;
 import com.ott.tv.ui.activity.LeanbackActivity;
 import com.ott.tv.ui.activity.LoginChooserActivity;

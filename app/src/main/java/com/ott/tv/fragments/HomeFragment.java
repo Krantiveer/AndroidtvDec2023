@@ -87,7 +87,7 @@ public class HomeFragment extends RowsSupportFragment {
         if (getActivity() != null) {
             String userId = new DatabaseHelper(requireContext()).getUserData().getUserId();
 
-            Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+            Retrofit retrofit = RetrofitClient.getRetrofitInstanceWithV1();
             HomeApi api = retrofit.create(HomeApi.class);
             Call<HomeContent> call = api.getHomeContent(Config.API_KEY, userId);
 

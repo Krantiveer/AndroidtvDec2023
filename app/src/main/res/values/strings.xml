@@ -195,4 +195,18 @@
     <string name="_2160p">2160p</string>
     <string name="latest_movies">Latest Movies</string>
     <string name="daily_movie">Daily movie</string>
+    <string name="Welcome_login_chooser">Welcome to UVTV</string>
+    <string name="login_with_email">Login with Email</string>
+    <string name="welcome_to_uvtv">Welcome to UVTV</string>
+    <string name="contentDescription">ContentDescription</string>
+    <string name="login_with_mobile_number">Login with Mobile Number</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="send_otp">Send OTP</string>
+    <string name="_91">India (+91)</string>
+    <string name="invalid_mobile">Invalid mobile number</string>
+    <string name="country_code_default">+91</string>
+    <string name="country_name_default">India</string>
+    <string name="enter_otp">Enter OTP</string>
+
+
 </resources>

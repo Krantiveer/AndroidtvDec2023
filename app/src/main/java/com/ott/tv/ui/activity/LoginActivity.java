@@ -6,8 +6,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -26,6 +24,7 @@ import com.ott.tv.model.User;
 import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.LoginApi;
 import com.ott.tv.network.api.SubscriptionApi;
+import com.ott.tv.utils.CMHelper;
 import com.ott.tv.utils.PreferenceUtils;
 import com.ott.tv.utils.ToastMsg;
 
@@ -36,7 +35,6 @@ import retrofit2.Retrofit;
 
 public class LoginActivity extends Activity {
     private EditText etEmail=null, etPass=null;
-    private EditText editTextMobile=null;
     private ProgressBar progressBar;
 
 
@@ -47,8 +45,6 @@ public class LoginActivity extends Activity {
         etEmail = findViewById(R.id.email_edit_text);
         etPass = findViewById(R.id.password_edit_text);
         progressBar = findViewById(R.id.progress_login);
-        editTextMobile = findViewById(R.id.editMobileNumber);
-
 
 // in onCreate method
 /*
@@ -92,6 +88,7 @@ public class LoginActivity extends Activity {
     public void mobileSignInBtnMobile(View view) {
         Intent intent = new Intent(getApplicationContext(), LoginMobileActivity.class);
         startActivity(intent);
+        finishAffinity();
         overridePendingTransition(R.anim.enter, R.anim.exit);
     }
     private void login(String email, final String password) {
@@ -102,7 +99,9 @@ public class LoginActivity extends Activity {
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
+
                 if (response.code() == 200) {
+                    progressBar.setVisibility(View.GONE);
                     assert response.body() != null;
                     if (response.body().getStatus().equalsIgnoreCase("success")) {
                         User user = response.body();
@@ -124,11 +123,24 @@ public class LoginActivity extends Activity {
 
                      /*   //save user login time, expire time
                         updateSubscriptionStatus(user.getUserId());*/
+                        Intent intent = new Intent(getApplicationContext(), LeanbackActivity.class);
+                        startActivity(intent);
+                        finishAffinity();
+                        overridePendingTransition(R.anim.enter, R.anim.exit);
 
                     } else {
                         new ToastMsg(LoginActivity.this).toastIconError(response.body().getData());
                         progressBar.setVisibility(View.GONE);
                     }
+                }else{
+                    if(response.code()==401){
+                     //   CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter OTP"), 2, 10000);
+                        new ToastMsg(LoginActivity.this).toastIconError(response.message());
+                    }else{
+                        new ToastMsg(LoginActivity.this).toastIconError("Please Try Again Getting"+response.code());
+                    }
+                    progressBar.setVisibility(View.GONE);
+
                 }
             }
 
