@@ -16,8 +16,10 @@ import androidx.leanback.widget.VerticalGridPresenter;
 
 import com.ott.tv.Config;
 import com.ott.tv.Constants;
+import com.ott.tv.model.BrowseData;
 import com.ott.tv.model.Movie;
 import com.ott.tv.network.RetrofitClient;
+import com.ott.tv.network.api.Dashboard;
 import com.ott.tv.network.api.MovieApi;
 import com.ott.tv.ui.activity.DetailsActivity;
 
@@ -33,6 +35,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.http.Query;
 
 import com.ott.tv.R;
 
@@ -86,12 +89,54 @@ public class MoviesFragment extends VerticalGridSupportFragment {
         VerticalGridPresenter gridPresenter = new VerticalGridPresenter();
         gridPresenter.setNumberOfColumns(NUM_COLUMNS);
         setGridPresenter(gridPresenter);
-        //  mAdapter = new ArrayObjectAdapter(cardPresenter);
+       //   mAdapter = new ArrayObjectAdapter(cardPresenter);
         mAdapter = new ArrayObjectAdapter(new HorizontalCardPresenter(datatype));
         setAdapter(mAdapter);
-        fetchMovieData(id, pageCount);
+        String type ="movies";
+        int limit=10;
+        int offset=0;
+        fetchMovieData(id, type,limit,offset);
     }
 
+    private void fetchMovieData(String id, String type,int limit,int offset) {
+
+       /* @Query("type") String type,
+        @Query("genre_id") String genre_id,
+        @Query("filter") String filter,
+        @Query("filter_type") String filter_type,
+        @Query("limit") int limit,
+        @Query("offset") int offset*/
+        Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+        Dashboard api = retrofit.create(Dashboard.class);
+
+        Constants.IS_FROM_HOME=false;
+        Call<List<BrowseData>> call = api.getBrowseDataList(Config.API_KEY,type,"" ,"","",10,offset);
+        call.enqueue(new Callback<List<BrowseData>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<BrowseData>> call, @NonNull Response<List<BrowseData>> response) {
+                if (response.code() == 200) {
+                    List<BrowseData> movieList = response.body();
+                    if (movieList.size() <= 0) {
+                        dataAvailable = false;
+                        //Toast.makeText(activity, getResources().getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
+                    }
+
+                    for (BrowseData movie : movieList) {
+                        mAdapter.add(movie);
+                    }
+
+                    mAdapter.notifyArrayItemRangeChanged(movieList.size() - 1, movieList.size() + movies.size());
+                 //   movies.addAll(movieList);
+
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<List<BrowseData>> call, @NonNull Throwable t) {
+                Log.e("Genre Item", "code: " + t.getLocalizedMessage());
+            }
+        });
+    }
+/*
     private void fetchMovieData(String id, int pageCount) {
 
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
@@ -127,6 +172,7 @@ public class MoviesFragment extends VerticalGridSupportFragment {
             }
         });
     }
+*/
 
     // click listener
     private OnItemViewClickedListener getDefaultItemViewClickedListener() {
@@ -158,7 +204,7 @@ public class MoviesFragment extends VerticalGridSupportFragment {
                 int itemPos = mAdapter.indexOf(item);
                 if (itemPos == movies.size() - 1) {
                     pageCount++;
-                    fetchMovieData(id, pageCount);
+                //    fetchMovieData(id, pageCount);
                 }
             }
 

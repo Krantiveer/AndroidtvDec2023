@@ -13,12 +13,13 @@ import androidx.leanback.widget.Presenter;
 
 import com.bumptech.glide.Glide;
 import com.ott.tv.R;
+import com.ott.tv.model.home_content.LatestMovieList;
 import com.ott.tv.model.home_content.Video;
 import com.ott.tv.ui.views.ImageCardView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
-public class CardPresenter extends Presenter {
+public class CardPresenterNewLanscape extends Presenter {
     private static int sSelectedBackgroundColor;
     private static int sDefaultBackgroundColor;
     private int itemViewType;
@@ -65,7 +66,7 @@ public class CardPresenter extends Presenter {
 
     @Override
     public void onBindViewHolder(Presenter.ViewHolder viewHolder, Object item) {
-        Video video = (Video) item;
+        LatestMovieList video = (LatestMovieList) item;
         //here we are adding code for thumnail or poster url
         //    ((ViewHolder) viewHolder).updateCardViewImage(video.getThumbnailUrl());
 

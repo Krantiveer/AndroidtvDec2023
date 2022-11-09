@@ -10,9 +10,10 @@
     <item name="lb_focus_zoom_factor_medium" type="fraction">100%</item>
     <item name="lb_focus_zoom_factor_large" type="fraction">100%</item>
     <!--<item name="browsePaddingStart">1dp</item>-->
-    <dimen name="lb_browse_padding_start">5dp</dimen>
+//Note this used for given padding for browse fragment.
+    <dimen name="lb_browse_padding_start">75dp</dimen>
     <dimen name="lb_browse_rows_margin_start">8dp</dimen>
-    <dimen name="lb_browse_padding_end">1dp</dimen>
+    <dimen name="lb_browse_padding_end">0dp</dimen>
 <!--
     <item name="lb_focus_zoom_factor_large" type="fraction">118%</item>
     <item name="lb_focus_zoom_factor_medium" type="fraction">114%</item>

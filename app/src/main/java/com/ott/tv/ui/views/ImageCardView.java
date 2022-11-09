@@ -43,9 +43,9 @@ public class ImageCardView extends BaseCardView {
         return (ImageView) findViewById(R.id.main_image);
     }
 
-  /*  public ImageView getprimeImageView() {
-        return (ImageView) findViewById(R.id.premiumImage);
-    }*/
+    public ImageView getPrimeImageView() {
+        return (ImageView) findViewById(R.id.premiumIconImage);
+    }
     public TextView getTextPrimeView() {
         return (TextView) findViewById(R.id.premiumIcon);
     }

@@ -81,6 +81,7 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
                      watch_runtime = 100;
 
                 }
+
                 Log.i("continuewatching", watch_runtime + "--totaltime=" + total_runtime);
 
                 if (total_runtime == 0) {

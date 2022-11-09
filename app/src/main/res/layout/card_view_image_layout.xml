@@ -68,7 +68,16 @@
                     android:text="@string/premium"
                     android:textColor="@color/black_color"
                     android:textSize="9sp"
+                    tools:visibility="visible"
+                    android:visibility="gone"
                     tools:ignore="RelativeOverlap" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_margin="2sp"
+                    android:id="@+id/premiumIconImage"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/prime_icon"
+                    />
             </androidx.cardview.widget.CardView>
 
             <ProgressBar

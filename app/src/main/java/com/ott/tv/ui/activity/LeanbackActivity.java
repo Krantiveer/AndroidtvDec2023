@@ -32,6 +32,7 @@ import com.ott.tv.fragments.CustomRowsFragment;
 import com.ott.tv.fragments.FavouriteFragment;
 import com.ott.tv.fragments.GenreFragment;
 import com.ott.tv.fragments.GenreMovieFragment;
+import com.ott.tv.fragments.HomeFragment;
 import com.ott.tv.fragments.HomeFragmentNewUI;
 import com.ott.tv.fragments.MainFragment;
 import com.ott.tv.fragments.MoviesFragment;
@@ -77,11 +78,11 @@ public class LeanbackActivity extends FragmentActivity {
         if (height < 1080) {
             Log.i(TAG, "onCreate hight: less then 1080");
             deltaValue = 250;
-            headerValue=0;
+            headerValue = 0;
             /*PreferenceUtils.getInstance().setWindowHeightPref(getApplicationContext(), "false");*/
         } else {
             deltaValue = 450;
-            headerValue=50;
+            headerValue = 50;
             /*PreferenceUtils.getInstance().setWindowHeightPref(getApplicationContext(), "true");*/
         }
         Log.i(TAG, "onCreate: " + height + width);
@@ -101,8 +102,7 @@ public class LeanbackActivity extends FragmentActivity {
 
             if (i == 0) {
 
-                HomeFragmentNewUI fragment = new HomeFragmentNewUI();
-
+                HomeFragment fragment = new HomeFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
@@ -116,7 +116,7 @@ public class LeanbackActivity extends FragmentActivity {
                 fragment.setArguments(bundle);
                 fragments.put(i, fragment);
             } else if (i == 2) {
-                MoviesFragment fragment = new MoviesFragment();
+                HomeFragment fragment = new HomeFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
 
