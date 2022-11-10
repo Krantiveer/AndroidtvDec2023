@@ -207,6 +207,7 @@
     <string name="country_code_default">+91</string>
     <string name="country_name_default">India</string>
     <string name="enter_otp">Enter OTP</string>
+    <string name="qrCodeUrl">Login to </string>
 
 
 </resources>

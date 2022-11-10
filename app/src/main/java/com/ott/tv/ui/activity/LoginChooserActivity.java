@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,6 +29,7 @@ import com.ott.tv.model.ActiveStatus;
 import com.ott.tv.model.User;
 import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.FirebaseAuthApi;
+import com.ott.tv.network.api.SendOTPApi;
 import com.ott.tv.network.api.SubscriptionApi;
 import com.ott.tv.utils.ToastMsg;
 
@@ -46,23 +49,54 @@ public class LoginChooserActivity extends Activity {
     private static int RC_GOOGLE_SIGN_IN = 123;
     private ProgressBar progressBar;
     private Button googleSignInButton, phoneSignInButton;
+    final Handler handler = new Handler();
+    String randomNumber;
+    private TextView tv_qrCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_chooser_with_qrcode);
-
         progressBar = findViewById(R.id.progress_bar);
         googleSignInButton = findViewById(R.id.google_signIn_button);
         phoneSignInButton = findViewById(R.id.phone_signIn_button);
-
         firebaseAuth = FirebaseAuth.getInstance();
+        tv_qrCode=findViewById(R.id.tv_qrCode);
         DatabaseHelper db = new DatabaseHelper(LoginChooserActivity.this);
         User user = db.getUserData();
         if (user.getUserId() != null) {
             updateSubscriptionStatus(user.getUserId());
         }
+
     }
+
+    private String getAlphaNumericString(int n) {
+
+        // chose a Character random from this String
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                + "0123456789"
+                + "abcdefghijklmnopqrstuvxyz";
+
+        // create StringBuffer size of AlphaNumericString
+        StringBuilder sb = new StringBuilder(n);
+
+        for (int i = 0; i < n; i++) {
+
+            // generate a random number between
+            // 0 to AlphaNumericString variable length
+            int index
+                    = (int) (AlphaNumericString.length()
+                    * Math.random());
+
+            // add Character one by one in end of sb
+            sb.append(AlphaNumericString
+                    .charAt(index));
+        }
+
+        return sb.toString();
+    }
+
+
 
     @Override
     protected void onStart() {
@@ -77,18 +111,97 @@ public class LoginChooserActivity extends Activity {
 
         googleSignInButton.setOnClickListener(v -> googleSignIn());
 
-        phoneSignInButton.setOnClickListener(v -> phoneSignIn());
+        phoneSignInButton.setOnClickListener(v -> {
+            phoneSignIn();
+
+        });
     }
 
-    /*@Override
-    public String customView() {
-        return Config.PURCHASE_CODE;
+    private void CallHandler() {
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                randomNumber =getAlphaNumericString(6);
+                Log.i(TAG, "Handler run run: "+randomNumber);
+                tv_qrCode.setVisibility(View.VISIBLE);
+                tv_qrCode.setText(randomNumber);
+                handler.postDelayed(this, 80000);//80 sec
+               // CheckAccessCode(randomNumber);
+                //Do something after 20 seconds
+            }
+        }, 0);
+    }
+    private void CallHandlerQrCode() {
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Log.i(TAG, "Handler run run:1 "+randomNumber);
+                handler.postDelayed(this, 15000);
+                CheckAccessCode(randomNumber);
+                //Do something after 20 seconds
+            }
+        }, 3000);
     }
 
-    @Override
-    public String packageName() {
-        return BuildConfig.APPLICATION_ID;
-    }*/
+    private void CheckAccessCode(String accessCode) {
+        progressBar.setVisibility(View.VISIBLE);
+        Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+        SendOTPApi api = retrofit.create(SendOTPApi.class);
+        Call<User> call = api.getCheckAccessCode(Config.API_KEY, accessCode);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
+                if (response.code() == 200) {
+                    assert response.body() != null;
+                    if (response.body().getStatus().equalsIgnoreCase("success")) {
+                        User user = response.body();
+                        DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+                        if (db.getUserDataCount() > 1) {
+                            db.deleteUserData();
+                        } else {
+                            if (db.getUserDataCount() == 0) {
+                                db.insertUserData(user);
+                            } else {
+                                db.updateUserData(user, 1);
+                            }
+                        }
+
+                        SharedPreferences.Editor preferences = getSharedPreferences(Constants.USER_LOGIN_STATUS, MODE_PRIVATE).edit();
+                        preferences.putBoolean(Constants.USER_LOGIN_STATUS, true);
+                        preferences.apply();
+
+                        //save user login time, expire time
+                        // updateSubscriptionStatus(user.getUserId());
+                        progressBar.setVisibility(View.GONE);
+                    /*    ll_send_otp.setVisibility(View.GONE);
+                        ll_verify_otp.setVisibility(View.VISIBLE);
+                        startTimer();
+*/
+                    } else {
+                        new ToastMsg(getApplicationContext()).toastIconError(response.body().getData());
+                        progressBar.setVisibility(View.GONE);
+                    }
+                } else {
+                    if (response.code() == 401) {
+                        //   CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter OTP"), 2, 10000);
+                        new ToastMsg(getApplicationContext()).toastIconError(response.message());
+                    } else {
+                        new ToastMsg(getApplicationContext()).toastIconError("Please Try Again Getting" + response.code());
+                    }
+                    progressBar.setVisibility(View.GONE);
+
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
+                progressBar.setVisibility(View.GONE);
+                new ToastMsg(getApplicationContext()).toastIconError(getString(R.string.error_toast));
+            }
+        });
+    }
+
 
     public void signUpBtn(View view) {
         Intent intent = new Intent(LoginChooserActivity.this, SignUpActivity.class);
@@ -103,9 +216,13 @@ public class LoginChooserActivity extends Activity {
     }
 
     public void mobileSignInBtn(View view) {
+
+        handler.removeCallbacksAndMessages(null);
+
         Intent intent = new Intent(LoginChooserActivity.this, LoginMobileActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.enter, R.anim.exit);
+
     }
 
 
@@ -212,8 +329,9 @@ public class LoginChooserActivity extends Activity {
         Call<User> call = api.getPhoneAuthStatus(Config.API_KEY, uid, phone);
         call.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
                 if (response.code() == 200) {
+                    assert response.body() != null;
                     if (response.body().getStatus().equalsIgnoreCase("success")) {
                         User user = response.body();
                         DatabaseHelper db = new DatabaseHelper(LoginChooserActivity.this);
@@ -302,7 +420,7 @@ public class LoginChooserActivity extends Activity {
         Call<ActiveStatus> call = subscriptionApi.getActiveStatus(Config.API_KEY, userId);
         call.enqueue(new Callback<ActiveStatus>() {
             @Override
-            public void onResponse(Call<ActiveStatus> call, Response<ActiveStatus> response) {
+            public void onResponse(@NonNull Call<ActiveStatus> call, @NonNull Response<ActiveStatus> response) {
                 if (response.code() == 200) {
                     if (response.body() != null) {
                         ActiveStatus activeStatus = response.body();
@@ -354,25 +472,18 @@ public class LoginChooserActivity extends Activity {
         switch (keyCode) {
 
             case KeyEvent.KEYCODE_DPAD_CENTER:
-                return false;
             case KeyEvent.KEYCODE_DPAD_LEFT:
-                return false;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
+
+            case KeyEvent.KEYCODE_DPAD_UP_LEFT:
+            case KeyEvent.KEYCODE_DPAD_UP_RIGHT:
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+            case KeyEvent.KEYCODE_DPAD_DOWN_LEFT:
+            case KeyEvent.KEYCODE_DPAD_DOWN_RIGHT:
                 return false;
             case KeyEvent.KEYCODE_DPAD_UP:
                 Log.e("LoginChooserActivity", "movieIndex : ");
 
-                return false;
-
-            case KeyEvent.KEYCODE_DPAD_UP_LEFT:
-                return false;
-            case KeyEvent.KEYCODE_DPAD_UP_RIGHT:
-                return false;
-            case KeyEvent.KEYCODE_DPAD_DOWN:
-                return false;
-            case KeyEvent.KEYCODE_DPAD_DOWN_LEFT:
-                return false;
-            case KeyEvent.KEYCODE_DPAD_DOWN_RIGHT:
                 return false;
             case KeyEvent.KEYCODE_BACK:
                 Log.d(TAG, "keyCode List" + keyCode);
@@ -385,7 +496,20 @@ public class LoginChooserActivity extends Activity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        handler.removeCallbacksAndMessages(null);
+        CallHandler();
+        CallHandlerQrCode();
+
+
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
+
+
 }

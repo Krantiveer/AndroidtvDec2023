@@ -98,10 +98,7 @@ public class LeanbackActivity extends FragmentActivity {
 
         int CATEGORIES_NUMBER = 8;
         for (int i = 0; i < CATEGORIES_NUMBER; i++) {
-
-
             if (i == 0) {
-
                 HomeFragmentNewUI fragment = new HomeFragmentNewUI();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);

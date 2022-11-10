@@ -10,29 +10,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-
         android:gravity="start"
         android:keepScreenOn="true"
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_105sdp"
-            android:layout_gravity=""
-            android:layout_marginLeft="@dimen/_30sdp"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_62sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_40sdp"
             android:contentDescription="TODO"
             android:src="@drawable/logo" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|top"
-            android:layout_marginTop="15dp"
-            android:text="@string/Welcome_login_chooser"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-            android:textSize="30sp"
-            android:visibility="gone" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,7 +35,9 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_36sdp"
+
                 android:layout_weight="1"
                 android:gravity="top"
                 android:orientation="vertical"
@@ -56,51 +47,80 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/_35sdp"
+                    android:layout_marginLeft="@dimen/_45sdp"
                     android:orientation="vertical"
                     android:visibility="visible"
                     tools:ignore="UselessParent">
 
+                    <!--   <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="15dp"
+                           android:text="On the UVTV Mobile App"
+                           android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                           android:textSize="28sp" />-->
+                    <!--                Login to www.uvplay.com/activatetv
+                                    or scan the QR code from Camera App or any QR Reader
+                                    and enter the following code to Activate TV-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/qrCodeUrl"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text=" www.uvplay.com/activatetv"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                            android:textColor="@color/blue_400"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:text="On the UVTV Mobile App"
+                        android:text="or scan the QR code from Camera App or any QR Reader and enter the following code to Activate TV"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                        android:textSize="28sp" />
+                        android:textSize="16sp" />
 
-                    <TextView
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:text="1. Login with your UVTV account."
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                        android:textSize="18sp" />
+                        android:layout_marginTop="@dimen/_36sdp"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="2. Go to Activate TV in the Settings Menu."
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                        android:textSize="18sp" />
+                        <ImageView
+                            android:layout_width="@dimen/_150sdp"
+                            android:layout_height="@dimen/_150sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:src="@drawable/qrcode_demo" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="3. Scan QR Code to Login."
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                        android:textSize="18sp" />
-
-                    <ImageView
-                        android:layout_width="@dimen/_150sdp"
-                        android:layout_height="@dimen/_150sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:src="@drawable/qrcode_demo"
-
-                        />
-
+                        <TextView
+                            android:id="@+id/tv_qrCode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/_27sdp"
+                            android:background="@drawable/textview_border_dot"
+                            android:paddingHorizontal="@dimen/_10sdp"
+                            android:singleLine="true"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_36sdp"
+                            android:textStyle="bold"
+                            android:visibility="gone"
+                            tools:text="XYXABC"
+                            tools:visibility="visible" />
+                    </LinearLayout>
 
                     <!--          <ImageView
                                   android:layout_width="@dimen/_140sdp"
@@ -132,24 +152,16 @@
 
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Welcome to UVTV"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="30sp"
-                    android:textStyle="bold"
-                    android:visibility="visible" />
 
             </LinearLayout>
 
             <View
+
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="300dp"
 
-                android:layout_marginVertical="8dp"
+                android:layout_marginHorizontal="@dimen/_26sdp"
+                android:layout_marginVertical="28dp"
                 android:background="@drawable/or_login" />
 
 
@@ -157,14 +169,12 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/_30sdp"
-                android:layout_marginTop="@dimen/_35sdp"
-                android:layout_marginRight="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_56sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_weight="1"
-                android:keepScreenOn="true"
+                android:gravity="top"
                 android:orientation="vertical"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp">
+                tools:ignore="NestedWeights">
 
                 <Button
                     android:id="@+id/phone_signIn_button"
@@ -181,8 +191,8 @@
 
                 <Button
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_20sp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_marginHorizontal="@dimen/_20sp"
                     android:layout_marginTop="@dimen/_20sp"
                     android:background="@drawable/button_focus"
                     android:drawableStart="@drawable/mobile_alt"
@@ -195,24 +205,24 @@
                     android:text="@string/fui_sign_in_with_phone"
                     android:textAllCaps="false"
                     android:textColor="@color/btn_txt_color"
-                    android:textSize="@dimen/_14sp"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/_16sdp" />
 
                 <Button
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_height="@dimen/_60sdp"
                     android:layout_margin="@dimen/_20sp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/button_focus"
                     android:drawableStart="@drawable/envelope"
                     android:focusedByDefault="true"
                     android:onClick="emailSignInBtn"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
-                    android:textStyle="bold"
+
                     android:text="Login with Email"
                     android:textAllCaps="false"
-                    android:textColor="@color/btn_txt_color" />
+                    android:textColor="@color/btn_txt_color"
+                    android:textSize="@dimen/_16sdp" />
 
                 <Button
                     android:id="@+id/google_signIn_button"

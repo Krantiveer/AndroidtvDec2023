@@ -190,10 +190,11 @@
                 android:paddingTop="@dimen/_10sdp"
                 android:paddingBottom="@dimen/_10sdp"
                 android:text="@string/login"
+                android:textSize="@dimen/_16sdp"
                 android:textAllCaps="false"
                 android:textColor="@color/btn_txt_color"
-                android:textSize="@dimen/_14sp"
-                android:textStyle="bold" />
+
+                />
 
             <Button
                 android:id="@+id/phone_signIn_button"
@@ -206,10 +207,11 @@
                 android:paddingStart="@dimen/_20sdp"
                 android:paddingTop="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_20sdp"
+                android:textSize="@dimen/_16sdp"
                 android:paddingBottom="@dimen/_10sdp"
                 android:text="@string/fui_sign_in_with_phone"
                 android:textAllCaps="false"
-                android:textStyle="bold" />
+            />
 
 
         </LinearLayout>
