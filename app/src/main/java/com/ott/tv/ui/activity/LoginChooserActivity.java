@@ -21,7 +21,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 import com.ott.tv.Config;
 import com.ott.tv.Constants;
-import com.ott.tv.LoginMobileActivity;
 import com.ott.tv.R;
 import com.ott.tv.database.DatabaseHelper;
 import com.ott.tv.model.ActiveStatus;

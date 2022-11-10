@@ -199,7 +199,7 @@
                 android:id="@+id/phone_signIn_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/button_focus"
                 android:drawableStart="@drawable/ic_baseline_phone_android_24"
                 android:onClick="mobileSignInBtnMobile"

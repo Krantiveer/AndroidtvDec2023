@@ -16,7 +16,6 @@ import androidx.annotation.NonNull;
 
 import com.ott.tv.Config;
 import com.ott.tv.Constants;
-import com.ott.tv.LoginMobileActivity;
 import com.ott.tv.R;
 import com.ott.tv.database.DatabaseHelper;
 import com.ott.tv.model.ActiveStatus;
@@ -24,7 +23,6 @@ import com.ott.tv.model.User;
 import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.LoginApi;
 import com.ott.tv.network.api.SubscriptionApi;
-import com.ott.tv.utils.CMHelper;
 import com.ott.tv.utils.PreferenceUtils;
 import com.ott.tv.utils.ToastMsg;
 

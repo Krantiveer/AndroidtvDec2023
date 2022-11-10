@@ -57,7 +57,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
         <activity
-            android:name=".LoginMobileActivity"
+            android:name=".ui.activity.LoginMobileActivity"
             android:screenOrientation="landscape"
             android:exported="false">
             <meta-data

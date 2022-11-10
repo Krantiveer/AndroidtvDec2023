@@ -74,24 +74,31 @@ public class HomeFragment extends RowsSupportFragment {
     private HomeContentViewModel homeContentViewModel;
     private ImageView imageView;
     FrameLayout headerView;
+    private String typeCategory;
+    private String title;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getActivity() != null) {
+          /*  id = getActivity().getIntent().getStringExtra("id");
+            activity = (LeanbackActivity) getActivity();*/
+            title = getActivity().getIntent().getStringExtra("title");
+        }
+        if (getActivity() != null) {
             bgHelper = new BackgroundHelper(getActivity());
+
+            typeCategory= getArguments().getString("type");
             LeanbackActivity activity = (LeanbackActivity) getActivity();
             activity.showLogo();
             setOnItemViewClickedListener(getDefaultItemViewClickedListener());
             setOnItemViewSelectedListener(getDefaultItemSelectedListener());
             if (new NetworkInst(activity).isNetworkAvailable()) {
-            //    getHomeContentDataFromServer();
+                //    getHomeContentDataFromServer();
                 String id = "";
-                String type = "movies";
                 int limit = 10;
                 int offset = 0;
-                fetchMovieData(id, type, limit, offset);
-
+                fetchMovieData(id, typeCategory, limit, offset);
 
             } else {
                 Intent intent = new Intent(activity, ErrorActivity.class);
@@ -113,11 +120,12 @@ public class HomeFragment extends RowsSupportFragment {
                 public void onResponse(@NonNull Call<List<BrowseData>> call, @NonNull Response<List<BrowseData>> response) {
                     if (response.code() == 200) {
                         movieListContent = response.body();
-                      //  homeContent.setHomeContentId(1);
+
+                        //  homeContent.setHomeContentId(1);
                         //   homeContent.getSlider();
                         //  loadSliderRows(homeContent.getSlider().getSlideArrayList());
 
-                        loadRows(movieListContent.get(0), movieListContent.get(1));
+                        loadRows();
                     /*if (movieList.size() <= 0) {
 
                     }
@@ -220,7 +228,7 @@ public class HomeFragment extends RowsSupportFragment {
         setCustomPadding();
     }
 
-    private void loadRows(BrowseData homeContents, BrowseData slideArrayList) {
+    private void loadRows() {
         rowsAdapter = new ArrayObjectAdapter(new ListRowPresenter());
         cardPresenter = new CardPresenterNewLanscape();
         cardPresenterBanner = new CardPresenterBanner();
@@ -249,10 +257,6 @@ public class HomeFragment extends RowsSupportFragment {
                 // load slider
                 listRowAdapter = new ArrayObjectAdapter(cardPresenter);
                 header = new HeaderItem(i, movieListContent.get(i).getTitle());
-            } else if (i == 1) {
-                //load tv layout
-                listRowAdapter = new ArrayObjectAdapter(cardPresenter);
-                header = new HeaderItem(i, movieListContent.get(i).getTitle());
             }
          /*   else if (i == 5) {
                 //load tv layout
@@ -279,12 +283,14 @@ public class HomeFragment extends RowsSupportFragment {
                     } else if (videoContent.getIsTvseries().equals("0")) {
                         videoContent.setType("movie");
                     }
-                } */if(movieListContent.get(i).getImage_orientation()==0 ) {
-          // kranti --> here u need to set type
-                }else {
+                } */
+             /*
+                if (movieListContent.get(i).getImage_orientation() == 0) {
+                    // kranti --> here u need to set type
+                } else {
 
-         //           videoContent.setType("movie");
-                }
+                    //           videoContent.setType("movie");
+                }*/
 
                 listRowAdapter.add(videoContent);
             }
@@ -309,7 +315,8 @@ public class HomeFragment extends RowsSupportFragment {
 
                 String status = new DatabaseHelper(getContext()).getActiveStatusData().getStatus();
 
-                if (videoContent.getType().equals("tv")){} /*{
+                if (videoContent.getType().equals("tv")) {
+                } /*{
                     if (videoContent.getIsPaid().equals("1")) {
                         if (PreferenceUtils.isValid(getActivity())) {
                             if (status.equals("active")) {
@@ -449,7 +456,7 @@ public class HomeFragment extends RowsSupportFragment {
 
                     }*/
 
-                }
+            }
 
         };
     }

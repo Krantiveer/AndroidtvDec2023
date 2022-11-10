@@ -102,28 +102,42 @@ public class LeanbackActivity extends FragmentActivity {
 
             if (i == 0) {
 
-                HomeFragment fragment = new HomeFragment();
+                HomeFragmentNewUI fragment = new HomeFragmentNewUI();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
-
                 fragments.put(i, fragment);
             } else if (i == 1) {
+
+                HomeFragment fragment = new HomeFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("menu", i);
+                bundle.putString("type", "movies");
+                fragment.setArguments(bundle);
+                fragments.put(i, fragment);
+
+/*
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 bundle.putString("type", "Pay And Watch");
                 MoviesFragment fragment = new MoviesFragment();
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);
+                fragments.put(i, fragment);*/
             } else if (i == 2) {
                 HomeFragment fragment = new HomeFragment();
                 Bundle bundle = new Bundle();
+                bundle.putString("type", "live");
                 bundle.putInt("menu", i);
-
-                bundle.putString("type", "movie");
                 fragment.setArguments(bundle);
                 fragments.put(i, fragment);
-            } else if (i == 3) {/*
+            } else if (i == 3) {
+
+                HomeFragment fragment = new HomeFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("menu", i);
+                fragment.setArguments(bundle);
+                fragments.put(i, fragment);
+                /*
                 FavouriteFragment fragment = new FavouriteFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
@@ -131,14 +145,28 @@ public class LeanbackActivity extends FragmentActivity {
                 bundle.putString("type", "Watch Later");
                 fragment.setArguments(bundle);
                 fragments.put(i, fragment);*/
-            } else if (i == 4) {/*
+            } else if (i == 4) {
+                HomeFragment fragment = new HomeFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("menu", i);
+                bundle.putString("type", "live");
+                fragment.setArguments(bundle);
+                fragments.put(i, fragment);
+                /*
                 GenreMovieFragment fragment = new GenreMovieFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
                 fragments.put(i, fragment);*/
 
-            } else if (i == 5) {/*
+            } else if (i == 5) {
+                HomeFragment fragment = new HomeFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("type", "live");
+                bundle.putInt("menu", i);
+                fragment.setArguments(bundle);
+                fragments.put(i, fragment);
+                /*
                 FavouriteFragment fragment = new FavouriteFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
@@ -211,30 +239,25 @@ public class LeanbackActivity extends FragmentActivity {
                 if (childId == R.id.rows_container) {
                     Log.d(TAG, "keyCode backbutton focus row" + rowsContainerFocused + focus);
 //here we are focuse in tv row  contenter only not header
-
                     logoIv.setVisibility(View.INVISIBLE);
                     /*logoIvNew.setVisibility(View.VISIBLE);*/
                     if (focus == 0) {
                         if (!rowsContainerFocused) {
                             toggleHeadersFragment(false);
                             rowsContainerFocused = true;
-
                         }
                         Log.d(TAG, "keyCode backbutton focus row2" + rowsContainerFocused + focus);
-
                     } else {
                         if (headersFragment.getView() != null)
                             headersFragment.requireView().requestFocus();
                     }
                 } else if (childId == R.id.header_container) {
                     Log.d(TAG, "keyCode backbutton focus header" + childId + "focus" + focus);
-
                     logoIv.setVisibility(View.VISIBLE);
                     focus = 0;
                     /*logoIvNew.setVisibility(View.INVISIBLE);*/
                     toggleHeadersFragment(true);
                     rowsContainerFocused = false;
-
                 }
             }
         });

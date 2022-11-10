@@ -84,7 +84,7 @@
     <color name="colorGoldWhite">#FFFFFF</color>
     <color name="textcolor">#DCBC4F</color>
     <color name="colorGoldLight">#EAD384</color>
-    <color name="bcn_selected_color">#DCBC4F</color>
+
     <color name="transparent">#00000000</color>
     <color name="red_highlight_color">#D50A10</color>
     <color name="color_989898">#989898</color>
@@ -117,6 +117,9 @@
 
     //loging background color
     <color name="login_background">#020610</color>
+
+    //HomeFragment button press
+    <color name="bcn_selected_color">#DCBC4F</color>
 
 
 </resources>

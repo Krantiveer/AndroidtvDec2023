@@ -106,7 +106,7 @@ public class CustomHeadersFragment extends HeadersSupportFragment {
 
 
     private void setHeaderAdapter() {
-        String[] headerItem = new String[]{"Home", "Pay And watch", "Movie", "Watch Later", "Genre", "Favourite", "Country", "My Account"};
+        String[] headerItem = new String[]{"Home", "Movie", "Series", "UVTV Bharat", "Live Channels", "Coming Soon", "Watchlist", "Profile"};
 
         int[] headerIcon = new int[]{R.drawable.homesidenav, R.drawable.pay_watch,
                 R.drawable.moviessidenav,
