@@ -14,6 +14,7 @@ import android.view.animation.Transformation;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -22,6 +23,7 @@ import androidx.leanback.widget.HorizontalGridView;
 import androidx.leanback.widget.SearchOrbView;
 import androidx.leanback.widget.VerticalGridView;
 
+import com.ott.tv.Config;
 import com.ott.tv.Constants;
 import com.ott.tv.NetworkInst;
 import com.ott.tv.R;
@@ -38,14 +40,24 @@ import com.ott.tv.fragments.MainFragment;
 import com.ott.tv.fragments.MoviesFragment;
 import com.ott.tv.fragments.MyAccountFragment;
 import com.ott.tv.fragments.TvSeriesFragment;
+import com.ott.tv.model.BrowseData;
+import com.ott.tv.network.RetrofitClient;
+import com.ott.tv.network.api.Dashboard;
 import com.ott.tv.ui.CustomFrameLayout;
 import com.ott.tv.ui.Utils;
+import com.ott.tv.utils.CMHelper;
 import com.ott.tv.utils.PreferenceUtils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class LeanbackActivity extends FragmentActivity {
     private static final String TAG = "LeanbackMainActivity";
@@ -212,7 +224,41 @@ public class LeanbackActivity extends FragmentActivity {
             startActivity(intent);
             finish();
         }
+
+
     }
+/*
+    private void fetchCategory() {
+            Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+            Dashboard api = retrofit.create(Dashboard.class);
+
+            Constants.IS_FROM_HOME = false;
+            Call<List<BrowseData>> call = api.getBrowseDataList(Config.API_KEY, type, "", "", "", 10, offset);
+            call.enqueue(new Callback<List<BrowseData>>() {
+                @Override
+                public void onResponse(@NonNull Call<List<BrowseData>> call, @NonNull Response<List<BrowseData>> response) {
+                    if (response.code() == 200) {
+                        movieListContent = response.body();
+
+                        loadRows();
+
+                    } else if (response.errorBody() != null) {
+                        CMHelper.setSnackBar(requireView(), response.errorBody().toString(), 2);
+                    } else {
+                        CMHelper.setSnackBar(requireView(), "Sorry! Something went wrong. Please try again after some time", 2);
+                    }
+
+
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<List<BrowseData>> call, @NonNull Throwable t) {
+                    CMHelper.setSnackBar(requireView(), t.getMessage(), 2);
+                }
+            });
+
+    }
+*/
 
     public LinkedHashMap<Integer, Fragment> getFragments() {
         return fragments;
@@ -432,7 +478,7 @@ public class LeanbackActivity extends FragmentActivity {
 
                 });
 
-                animation.setDuration(200);
+                animation.setDuration(100);
                 ((View) rowsContainer.getParent()).startAnimation(animation);
             }
         }

@@ -22,4 +22,17 @@ public interface Dashboard {
             @Query("limit") int limit,
             @Query("offset") int offset
     );
+
+    @GET("category_v1")
+    Call<List<BrowseData>> getCategoryList(
+            @Header("API-KEY") String apiKey,
+            @Query("type") String type,
+            @Query("genre_id") String genre_id,
+            @Query("filter") String filter,
+            @Query("filter_type") String filter_type,
+            @Query("limit") int limit,
+            @Query("offset") int offset
+    );
+
+
 }

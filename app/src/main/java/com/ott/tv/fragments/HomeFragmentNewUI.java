@@ -271,7 +271,6 @@ public class HomeFragmentNewUI extends Fragment {
                             loadRows(homeContent.getFeaturesGenreAndMovie(), homeContent.getSlider().getSlideArrayList());
                             ArrayList<Video> slideArrayList = homeContent.getSlider().getSlideArrayList();
 
-
                         } else if (response.errorBody() != null) {
                             CMHelper.setSnackBar(requireView(), response.errorBody().toString(), 2);
                         } else {

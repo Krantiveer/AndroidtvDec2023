@@ -101,7 +101,7 @@
     <color name="black_opaque">#AA000000</color>
     <color name="gray_sony">#333333</color>
     //background color
-    <color name="background_home_page">#000</color>
+    <color name="background_home_page">#020610</color>
     <color name="player_background_color_black">#000</color>
     <color name="mmtv_selectecd_color">#00BCD4</color>
     //browfragment top
