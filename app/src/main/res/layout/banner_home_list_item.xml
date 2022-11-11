@@ -2,8 +2,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/relativeLayout"
-    android:layout_width="@dimen/_190sdp"
-    android:layout_height="@dimen/_114sdp"
+    android:layout_width="@dimen/android_Tv_card_size_width"
+    android:layout_height="@dimen/android_Tv_card_size_height"
     android:background="@drawable/round_ll"
     android:gravity="start"
     android:orientation="horizontal">
@@ -23,8 +23,8 @@
 
             <ImageView
                 android:id="@+id/main_image"
-                android:layout_width="@dimen/_190sdp"
-                android:layout_height="@dimen/_114sdp"
+                android:layout_width="@dimen/android_Tv_card_size_width"
+                android:layout_height="@dimen/android_Tv_card_size_height"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="0dp"
                 android:adjustViewBounds="true"
@@ -46,6 +46,7 @@
                 android:paddingEnd="@dimen/_8sdp"
                 android:paddingBottom="@dimen/_4sdp"
                 android:text="@string/premium"
+
                 android:textColor="@color/cardTextColor"
                 android:textSize="@dimen/_9sdp"
                 android:visibility="gone"

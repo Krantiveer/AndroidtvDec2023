@@ -707,5 +707,7 @@
     <dimen name="margin_gap_32">32sp</dimen>
     <dimen name="margin_gap_3">3sp</dimen>
     <dimen name="dp_12">12dp</dimen>
+    <dimen name="android_Tv_card_size_width">201sp</dimen>
+    <dimen name="android_Tv_card_size_height">113sp</dimen>
 </resources>
 
