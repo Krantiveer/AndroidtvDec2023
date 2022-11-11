@@ -39,7 +39,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="end"
                 android:layout_marginEnd="0dp"
-                android:background="@drawable/premium_bg"
+                android:background="@drawable/prime_icon"
                 android:fontFamily="@font/amazon"
                 android:paddingStart="@dimen/_5sdp"
                 android:paddingTop="@dimen/_2sdp"
@@ -47,8 +47,16 @@
                 android:paddingBottom="@dimen/_4sdp"
                 android:text="@string/premium"
                 android:textColor="@color/cardTextColor"
+                android:visibility="gone"
                 android:textSize="@dimen/_9sdp"
                 tools:ignore="RelativeOverlap,SpUsage" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_margin="2sp"
+                android:id="@+id/premiumIconImage"
+                android:layout_height="wrap_content"
+                android:src="@drawable/prime_icon"
+                />
 
             <ProgressBar
                 android:id="@+id/progress_bar_movie"
