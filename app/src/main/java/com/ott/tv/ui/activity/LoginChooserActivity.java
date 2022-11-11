@@ -31,6 +31,7 @@ import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.FirebaseAuthApi;
 import com.ott.tv.network.api.SendOTPApi;
 import com.ott.tv.network.api.SubscriptionApi;
+import com.ott.tv.utils.PreferenceUtils;
 import com.ott.tv.utils.ToastMsg;
 
 import java.util.Arrays;
@@ -61,7 +62,7 @@ public class LoginChooserActivity extends Activity {
         googleSignInButton = findViewById(R.id.google_signIn_button);
         phoneSignInButton = findViewById(R.id.phone_signIn_button);
         firebaseAuth = FirebaseAuth.getInstance();
-        tv_qrCode=findViewById(R.id.tv_qrCode);
+        tv_qrCode = findViewById(R.id.tv_qrCode);
         DatabaseHelper db = new DatabaseHelper(LoginChooserActivity.this);
         User user = db.getUserData();
         if (user.getUserId() != null) {
@@ -97,7 +98,6 @@ public class LoginChooserActivity extends Activity {
     }
 
 
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -122,21 +122,22 @@ public class LoginChooserActivity extends Activity {
             @Override
             public void run() {
 
-                randomNumber =getAlphaNumericString(6);
-                Log.i(TAG, "Handler run run: "+randomNumber);
+                randomNumber = getAlphaNumericString(6);
+                Log.i(TAG, "Handler run run: " + randomNumber);
                 tv_qrCode.setVisibility(View.VISIBLE);
                 tv_qrCode.setText(randomNumber);
                 handler.postDelayed(this, 80000);//80 sec
-               // CheckAccessCode(randomNumber);
+                // CheckAccessCode(randomNumber);
                 //Do something after 20 seconds
             }
         }, 0);
     }
+
     private void CallHandlerQrCode() {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Log.i(TAG, "Handler run run:1 "+randomNumber);
+                Log.i(TAG, "Handler run run:1 " + randomNumber);
                 handler.postDelayed(this, 15000);
                 CheckAccessCode(randomNumber);
                 //Do something after 20 seconds
@@ -145,7 +146,7 @@ public class LoginChooserActivity extends Activity {
     }
 
     private void CheckAccessCode(String accessCode) {
-        progressBar.setVisibility(View.VISIBLE);
+
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
         SendOTPApi api = retrofit.create(SendOTPApi.class);
         Call<User> call = api.getCheckAccessCode(Config.API_KEY, accessCode);
@@ -155,39 +156,51 @@ public class LoginChooserActivity extends Activity {
                 if (response.code() == 200) {
                     assert response.body() != null;
                     if (response.body().getStatus().equalsIgnoreCase("success")) {
-                        User user = response.body();
-                        DatabaseHelper db = new DatabaseHelper(getApplicationContext());
-                        if (db.getUserDataCount() > 1) {
-                            db.deleteUserData();
-                        } else {
-                            if (db.getUserDataCount() == 0) {
-                                db.insertUserData(user);
+                        if (response.body().getAccess_token() != null) {
+                            handler.removeCallbacksAndMessages(null);
+                            User user = response.body();
+                            DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+                            if (db.getUserDataCount() > 1) {
+                                db.deleteUserData();
                             } else {
-                                db.updateUserData(user, 1);
+                                if (db.getUserDataCount() == 0) {
+                                    db.insertUserData(user);
+                                } else {
+                                    db.updateUserData(user, 1);
+                                }
                             }
-                        }
 
-                        SharedPreferences.Editor preferences = getSharedPreferences(Constants.USER_LOGIN_STATUS, MODE_PRIVATE).edit();
-                        preferences.putBoolean(Constants.USER_LOGIN_STATUS, true);
-                        preferences.apply();
+                            SharedPreferences.Editor preferences = getSharedPreferences(Constants.USER_LOGIN_STATUS, MODE_PRIVATE).edit();
+                            preferences.putBoolean(Constants.USER_LOGIN_STATUS, true);
+                            preferences.apply();
 
-                        //save user login time, expire time
-                        // updateSubscriptionStatus(user.getUserId());
-                        progressBar.setVisibility(View.GONE);
+                            PreferenceUtils.getInstance().setAccessTokenNPref(getApplicationContext(), response.body().getAccess_token());
+
+                            Intent intent = new Intent(getApplicationContext(), LeanbackActivity.class);
+                            startActivity(intent);
+                            finishAffinity();
+                            overridePendingTransition(R.anim.enter, R.anim.exit);
+
+                            //save user login time, expire time
+                            // updateSubscriptionStatus(user.getUserId());
+                            progressBar.setVisibility(View.GONE);
                     /*    ll_send_otp.setVisibility(View.GONE);
                         ll_verify_otp.setVisibility(View.VISIBLE);
                         startTimer();
 */
+                        }
+                        //    new ToastMsg(getApplicationContext()).toastIconError("Please try again Access Token Empty");
+                        progressBar.setVisibility(View.GONE);
                     } else {
-                        new ToastMsg(getApplicationContext()).toastIconError(response.body().getData());
+                        //   new ToastMsg(getApplicationContext()).toastIconError(response.body().getData());
                         progressBar.setVisibility(View.GONE);
                     }
                 } else {
                     if (response.code() == 401) {
                         //   CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter OTP"), 2, 10000);
-                        new ToastMsg(getApplicationContext()).toastIconError(response.message());
+                        //    new ToastMsg(getApplicationContext()).toastIconError(response.message());
                     } else {
-                        new ToastMsg(getApplicationContext()).toastIconError("Please Try Again Getting" + response.code());
+                        //  new ToastMsg(getApplicationContext()).toastIconError("Please Try Again Getting" + response.code());
                     }
                     progressBar.setVisibility(View.GONE);
 
@@ -210,6 +223,7 @@ public class LoginChooserActivity extends Activity {
     }
 
     public void emailSignInBtn(View view) {
+        handler.removeCallbacksAndMessages(null);
         Intent intent = new Intent(LoginChooserActivity.this, LoginActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.enter, R.anim.exit);

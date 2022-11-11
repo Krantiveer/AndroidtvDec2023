@@ -92,6 +92,7 @@
     <color name="color_darkyellow">#333300</color>
     <color name="color_dark_yellow_high">#CCCC00</color>
     <color name="color_dark_yellow_high_transparent">#343D48</color>
+    <color name="color_dark_yellow_high_transparent_edit_text_focus">#536171</color>
 
     <color name="colorPremium">#E2BC32</color>
     <color name="colorFree">#E2BC32</color>

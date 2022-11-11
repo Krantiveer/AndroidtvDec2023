@@ -243,8 +243,6 @@ public class LoginMobileActivity extends Activity {
                             }
                         }*/
                         PreferenceUtils.getInstance().setAccessTokenNPref(getApplicationContext(), response.body().getAccess_token());
-
-
                         SharedPreferences.Editor preferences = getSharedPreferences(Constants.USER_LOGIN_STATUS, MODE_PRIVATE).edit();
                         preferences.putBoolean(Constants.USER_LOGIN_STATUS, true);
                         preferences.apply();
@@ -268,7 +266,7 @@ public class LoginMobileActivity extends Activity {
                         //   CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter OTP"), 2, 10000);
                         new ToastMsg(getApplicationContext()).toastIconError(response.message());
                     } else {
-                        new ToastMsg(getApplicationContext()).toastIconError("Please Try Again Getting" + response.code());
+                        new ToastMsg(getApplicationContext()).toastIconError( response.message());
                     }
                     progressBar.setVisibility(View.GONE);
 
@@ -328,7 +326,8 @@ public class LoginMobileActivity extends Activity {
                         //   CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter OTP"), 2, 10000);
                         new ToastMsg(getApplicationContext()).toastIconError(response.message());
                     } else {
-                        new ToastMsg(getApplicationContext()).toastIconError("Please Try Again Getting" + response.code());
+
+                        new ToastMsg(getApplicationContext()).toastIconError("Please Try Again Getting" + response.message());
                     }
                     progressBar.setVisibility(View.GONE);
 
@@ -338,7 +337,7 @@ public class LoginMobileActivity extends Activity {
             @Override
             public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
                 progressBar.setVisibility(View.GONE);
-                new ToastMsg(getApplicationContext()).toastIconError(getString(R.string.error_toast));
+                new ToastMsg(getApplicationContext()).toastIconError(getString(R.string.error_toast)+t);
             }
         });
     }

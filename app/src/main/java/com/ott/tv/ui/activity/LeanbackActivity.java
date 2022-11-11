@@ -108,6 +108,7 @@ public class LeanbackActivity extends FragmentActivity {
 
         fragments = new LinkedHashMap<>();
 
+
         int CATEGORIES_NUMBER = 8;
         for (int i = 0; i < CATEGORIES_NUMBER; i++) {
             if (i == 0) {
