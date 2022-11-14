@@ -5,9 +5,11 @@
     <color name="main_color">#E40000</color>
     <color name="focus">#ffffff</color>
     //this we using card selected and click card
-    <color name="colorButtonFocusedTV">@color/white</color>
-    <color name="colorButtonPressedTV">@color/white</color>
+    <color name="colorButtonFocusedTV">@color/main_color</color>
+    <color name="colorButtonPressedTV">@color/main_color</color>
+    <color name="colorButtonFocusedTVHome">@color/white</color>
+    <color name="colorButtonPressedTVHome">@color/white</color>
     <color name="bcn_selected_color">@color/focus</color>
-
+    <color name="progressbar">@color/main_color</color>
 
 </resources>
