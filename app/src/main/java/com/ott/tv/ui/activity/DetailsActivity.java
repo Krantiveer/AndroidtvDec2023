@@ -178,8 +178,8 @@ public class DetailsActivity extends FragmentActivity {
                 addToFav(Constants.WishListType.fav);
             }
         });
-        getFavStatus(Constants.WishListType.watch_later);
-        getFavStatus(Constants.WishListType.fav);
+      //  getFavStatus(Constants.WishListType.watch_later);
+      //  getFavStatus(Constants.WishListType.fav);
         tvWatchNow.setOnClickListener(v -> payAndWatchTV());
         tvWatchTrailer.setOnClickListener(view -> watchNowClick());
         PreferenceUtils.updateSubscriptionStatus(DetailsActivity.this);
