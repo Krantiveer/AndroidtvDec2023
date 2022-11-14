@@ -254,7 +254,6 @@ public class HomeFragmentNewUI extends Fragment {
             assert fm != null;
             fm.beginTransaction().add(R.id.custom_frame_layout, mSpinnerFragment).commit();
 
-
             String userId = new DatabaseHelper(requireContext()).getUserData().getUserId();
             Retrofit retrofit = RetrofitClient.getRetrofitInstanceWithV1();
             HomeApi api = retrofit.create(HomeApi.class);
