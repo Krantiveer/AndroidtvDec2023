@@ -93,6 +93,11 @@
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme" />
         <activity
+            android:name=".ui.activity.DetailsActivityPhando"
+            android:exported="true"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme" />
+        <activity
             android:name=".countrycodepicker.CountryCodeActivity"
             android:exported="true"
             android:screenOrientation="landscape"

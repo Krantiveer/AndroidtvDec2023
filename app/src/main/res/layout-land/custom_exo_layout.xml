@@ -65,21 +65,23 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <ImageButton
+<!--            <ImageButton
                 android:id="@id/exo_prev"
                 style="@style/ExoMediaButton.Previous"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/round_ll"
+                android:background="@drawable/round_ll_exoplayer"
                 android:contentDescription="TODO"
+                android:visibility="gone"
                 android:padding="@dimen/padding_of_controller_button"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:visibility="visible"
+                tools:ignore="TouchTargetSizeCheck" />-->
             <ImageButton
                 android:id="@id/exo_rew"
                 style="@style/ExoMediaButton.Rewind"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/round_ll"
+                android:background="@drawable/round_ll_exoplayer"
                 android:contentDescription="TODO"
                 android:padding="@dimen/padding_of_controller_button"
                 tools:ignore="TouchTargetSizeCheck" />
@@ -89,7 +91,7 @@
                 style="@style/ExoMediaButton.Play"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/round_ll"
+                android:background="@drawable/round_ll_exoplayer"
                 android:contentDescription="TODO"
                 android:padding="@dimen/padding_of_controller_button"
                 tools:ignore="TouchTargetSizeCheck" />
@@ -99,7 +101,7 @@
                 style="@style/ExoMediaButton.Pause"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/round_ll"
+                android:background="@drawable/round_ll_exoplayer"
                 android:contentDescription="TODO"
                 android:padding="@dimen/padding_of_controller_button" />
 
@@ -108,17 +110,19 @@
                 style="@style/ExoMediaButton.FastForward"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/round_ll"
+                android:background="@drawable/round_ll_exoplayer"
                 android:contentDescription="TODO"
                 android:padding="@dimen/padding_of_controller_button" />
-            <ImageButton
+        <!--    <ImageButton
                 android:id="@+id/exo_next"
                 style="@style/ExoMediaButton.Next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/round_ll"
+                android:background="@drawable/round_ll_exoplayer"
                 android:contentDescription="TODO"
-                android:padding="@dimen/padding_of_controller_button" />
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:padding="@dimen/padding_of_controller_button" />-->
 
 
             <ImageButton
@@ -127,11 +131,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:background="@drawable/round_ll"
+                android:background="@drawable/round_ll_exoplayer"
                 android:contentDescription="@string/hint_image"
                 android:padding="@dimen/padding_of_controller_button"
                 android:src="@drawable/ic_settings_white"
-                android:visibility="gone" />
+                android:visibility="gone"
+                />
 
             <ImageButton
                 android:id="@+id/img_video_quality"
@@ -139,7 +144,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:background="@drawable/round_ll"
+                android:background="@drawable/round_ll_exoplayer"
                 android:contentDescription="@string/hint_image"
                 android:padding="@dimen/padding_of_controller_button"
                 android:src="@drawable/ic_settings_white"
@@ -152,9 +157,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:background="@drawable/round_ll"
+                android:background="@drawable/round_ll_exoplayer"
                 android:contentDescription="TODO"
                 android:padding="@dimen/padding_of_controller_button"
+                android:visibility="gone"
+                tools:visibility="visible"
                 android:src="@drawable/ic_subtitles_white_24dp" />
 
             <TextView

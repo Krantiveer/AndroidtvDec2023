@@ -22,9 +22,9 @@ public class VideoPlaybackActivity extends Activity {
     private static final int MAKE_BROWSABLE_REQUEST_CODE = 9001;
     public static final String EXTRA_VIDEO = "com.oxootv.spagreen.recommendations.extra.MOVIE";
     public static final String EXTRA_CHANNEL_ID =
-            "com.oxootv.spagreen.recommendations.extra.CHANNEL_ID";
+            "com.phando.recommendations.extra.CHANNEL_ID";
     public static final String EXTRA_POSITION =
-            "com.oxootv.spagreen.recommendations.extra.POSITION";
+            "com.phando.recommendations.extra.POSITION";
 
     private PlaybackModel playbackModel;
     boolean channelExists;
@@ -110,33 +110,16 @@ public class VideoPlaybackActivity extends Activity {
                 return true;
 
             case KeyEvent.KEYCODE_DPAD_CENTER:
-                Log.d(TAG, "keyCode List" + keyCode);
-//                if(mSettingsFrameLayout.getVisibility()==VISIBLE)
-
-                return false;
             case KeyEvent.KEYCODE_DPAD_LEFT:
-                Log.d(TAG, "keyCode List" + keyCode);
-                return false;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
-                Log.d(TAG, "keyCode List" + keyCode);
-                return false;
             case KeyEvent.KEYCODE_DPAD_UP:
-                Log.d(TAG, "keyCode List" + keyCode);
-                return false;
             case KeyEvent.KEYCODE_DPAD_UP_LEFT:
-                Log.d(TAG, "keyCode List" + keyCode);
-                return false;
             case KeyEvent.KEYCODE_DPAD_UP_RIGHT:
-                Log.d(TAG, "keyCode List" + keyCode);
-                return false;
             case KeyEvent.KEYCODE_DPAD_DOWN:
-                Log.d(TAG, "keyCode List" + keyCode);
-                return false;
             case KeyEvent.KEYCODE_DPAD_DOWN_LEFT:
-                Log.d(TAG, "keyCode List" + keyCode);
-                return false;
             case KeyEvent.KEYCODE_DPAD_DOWN_RIGHT:
                 Log.d(TAG, "keyCode List" + keyCode);
+//                if(mSettingsFrameLayout.getVisibility()==VISIBLE)
                 return false;
             case KeyEvent.KEYCODE_POWER:
                 Log.d(TAG, "tv_Power down");

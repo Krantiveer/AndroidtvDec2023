@@ -21,5 +21,6 @@ public class Config {
     public static final boolean ENABLE_GOOGLE_LOGIN = false;
     //Add publisher id
     public static final String Publisher_id = "4";
+    public static final String VideoURLTypeHls = "hls";
 
 }

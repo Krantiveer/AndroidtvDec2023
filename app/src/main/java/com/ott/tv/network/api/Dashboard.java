@@ -2,6 +2,7 @@ package com.ott.tv.network.api;
 
 import com.ott.tv.model.BrowseData;
 import com.ott.tv.model.home_content.HomeContent;
+import com.ott.tv.model.phando.MediaplaybackData;
 
 import java.util.List;
 
@@ -32,6 +33,14 @@ public interface Dashboard {
             @Query("filter_type") String filter_type,
             @Query("limit") int limit,
             @Query("offset") int offset
+    );
+
+    @GET("mediaplayback")
+    Call<MediaplaybackData> getSingleDetailAPI(
+            @Header("API-KEY") String apiKey,
+            @Query("id") String id,
+            @Query("type") String type,
+            @Query("test") String test
     );
 
 

@@ -16,7 +16,6 @@ public class LatestMovieList implements Parcelable {
     @Expose
     private Integer id;
 
-
     @SerializedName("title")
     @Expose
     private String title;
@@ -25,18 +24,26 @@ public class LatestMovieList implements Parcelable {
     @Expose
     private String description;
 
+    @SerializedName("thumbnail")
+    @Expose
     private String thumbnail;
+
+    @SerializedName("thumbnail_vertical")
+    @Expose
     private String thumbnail_vertical;
 
     @SerializedName("circular_thumbnail")
     @Expose
     private String circular_thumbnail;
+
     @SerializedName("poster")
     @Expose
     private String poster;
+
     @SerializedName("poster_vertical")
     @Expose
     private String poster_vertical;
+
     @SerializedName("created_at")
     @Expose
     private String created_at;
@@ -72,9 +79,16 @@ public class LatestMovieList implements Parcelable {
     @Expose
     private Integer duration;
 
+    @SerializedName("duration_str")
+    @Expose
+    private String duration_str;
+
     @SerializedName("release_date")
     @Expose
     private String release_date;
+    @SerializedName("language_str")
+    @Expose
+    private String language_str;
 
     @SerializedName("publish_year")
     @Expose
@@ -95,6 +109,7 @@ public class LatestMovieList implements Parcelable {
     @SerializedName("genres")
     @Expose
     private List<String> genres = null;
+
 
     protected LatestMovieList(Parcel in) {
         if (in.readByte() == 0) {
@@ -140,7 +155,9 @@ public class LatestMovieList implements Parcelable {
         } else {
             duration = in.readInt();
         }
+        duration_str = in.readString();
         release_date = in.readString();
+        language_str = in.readString();
         if (in.readByte() == 0) {
             publish_year = null;
         } else {
@@ -156,6 +173,15 @@ public class LatestMovieList implements Parcelable {
         } else {
             is_active = in.readInt();
         }
+        genres = in.createStringArrayList();
+    }
+
+    public String getLanguage_str() {
+        return language_str;
+    }
+
+    public void setLanguage_str(String language_str) {
+        this.language_str = language_str;
     }
 
     public static final Creator<LatestMovieList> CREATOR = new Creator<LatestMovieList>() {
@@ -169,83 +195,6 @@ public class LatestMovieList implements Parcelable {
             return new LatestMovieList[size];
         }
     };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        if (id == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(id);
-        }
-        parcel.writeString(title);
-        parcel.writeString(description);
-        parcel.writeString(thumbnail);
-        parcel.writeString(thumbnail_vertical);
-        parcel.writeString(circular_thumbnail);
-        parcel.writeString(poster);
-        parcel.writeString(poster_vertical);
-        parcel.writeString(created_at);
-        if (is_free == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(is_free);
-        }
-        if (is_live == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(is_live);
-        }
-        parcel.writeString(phando_media_id);
-        parcel.writeString(type);
-        if (price == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(price);
-        }
-        parcel.writeString(detail);
-        parcel.writeString(keyword);
-        if (rating == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(rating);
-        }
-        parcel.writeString(maturity_rating);
-        if (duration == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(duration);
-        }
-        parcel.writeString(release_date);
-        if (publish_year == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(publish_year);
-        }
-        if (last_watch_time == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(last_watch_time);
-        }
-        if (is_active == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(is_active);
-        }
-    }
 
     public Integer getId() {
         return id;
@@ -399,6 +348,14 @@ public class LatestMovieList implements Parcelable {
         this.duration = duration;
     }
 
+    public String getDuration_str() {
+        return duration_str;
+    }
+
+    public void setDuration_str(String duration_str) {
+        this.duration_str = duration_str;
+    }
+
     public String getRelease_date() {
         return release_date;
     }
@@ -445,5 +402,85 @@ public class LatestMovieList implements Parcelable {
 
     public void setGenres(List<String> genres) {
         this.genres = genres;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        if (id == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(id);
+        }
+        parcel.writeString(title);
+        parcel.writeString(description);
+        parcel.writeString(thumbnail);
+        parcel.writeString(thumbnail_vertical);
+        parcel.writeString(circular_thumbnail);
+        parcel.writeString(poster);
+        parcel.writeString(poster_vertical);
+        parcel.writeString(created_at);
+        if (is_free == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(is_free);
+        }
+        if (is_live == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(is_live);
+        }
+        parcel.writeString(phando_media_id);
+        parcel.writeString(type);
+        if (price == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(price);
+        }
+        parcel.writeString(detail);
+        parcel.writeString(keyword);
+        if (rating == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(rating);
+        }
+        parcel.writeString(maturity_rating);
+        if (duration == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(duration);
+        }
+        parcel.writeString(duration_str);
+        parcel.writeString(release_date);
+        parcel.writeString(language_str);
+        if (publish_year == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(publish_year);
+        }
+        if (last_watch_time == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(last_watch_time);
+        }
+        if (is_active == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(is_active);
+        }
+        parcel.writeStringList(genres);
     }
 }
