@@ -33,8 +33,10 @@ import com.ott.tv.model.home_content.HomeContent;
 import com.ott.tv.model.home_content.LatestMovieList;
 import com.ott.tv.model.home_content.LatestTvseries;
 import com.ott.tv.model.home_content.Video;
+
 import com.ott.tv.network.api.Dashboard;
 import com.ott.tv.ui.activity.DetailsActivity;
+import com.ott.tv.ui.activity.DetailsActivityPhando;
 import com.ott.tv.ui.activity.DetailsActivityTvSeries;
 import com.ott.tv.ui.activity.PlayerActivity;
 import com.ott.tv.ui.presenter.CardPresenterBanner;
@@ -90,11 +92,11 @@ public class HomeFragment extends RowsSupportFragment {
         if (getActivity() != null) {
             bgHelper = new BackgroundHelper(getActivity());
 
-            typeCategory= getArguments().getString("type");
+            typeCategory = getArguments().getString("type");
             LeanbackActivity activity = (LeanbackActivity) getActivity();
             activity.showLogo();
             setOnItemViewClickedListener(getDefaultItemViewClickedListener());
-            setOnItemViewSelectedListener(getDefaultItemSelectedListener());
+            //   setOnItemViewSelectedListener(getDefaultItemSelectedListener());
             if (new NetworkInst(activity).isNetworkAvailable()) {
                 //    getHomeContentDataFromServer();
                 String id = "";
@@ -171,7 +173,7 @@ public class HomeFragment extends RowsSupportFragment {
                         if (response.code() == 200 && response.body() != null) {
                             homeContent = response.body();
                             homeContent.setHomeContentId(1);
-                            //   homeContent.getSlider();
+                            //   homeConftent.getSlider();
                             //  loadSliderRows(homeContent.getSlider().getSlideArrayList());
                             loadRows(homeContent.getFeaturesGenreAndMovie(), homeContent.getSlider().getSlideArrayList());
 
@@ -234,8 +236,8 @@ public class HomeFragment extends RowsSupportFragment {
         rowsAdapter = new ArrayObjectAdapter(new ListRowPresenter());
         cardPresenter = new CardPresenterNewLanscape();
         cardPresenterBanner = new CardPresenterBanner();
-        SliderCardPresenter sliderCardPresenter = new SliderCardPresenter();
-        TvPresenter tvPresenter = new TvPresenter();
+        // SliderCardPresenter sliderCardPresenter = new SliderCardPresenter();
+        // TvPresenter tvPresenter = new TvPresenter();
    /*     for (int i = 0; i < 1; i++) {
             ArrayObjectAdapter listRowAdapter;
             HeaderItem header;
@@ -313,9 +315,65 @@ public class HomeFragment extends RowsSupportFragment {
     private OnItemViewClickedListener getDefaultItemViewClickedListener() {
         return (viewHolder, o, viewHolder2, row) -> {
             if (getActivity() != null && getContext() != null) {
-                Video videoContent = (Video) o;
+                LatestMovieList videoContent = (LatestMovieList) o;
 
                 String status = new DatabaseHelper(getContext()).getActiveStatusData().getStatus();
+                if (videoContent.getType().equals("M")) {
+                    Intent intent = new Intent(getActivity(), DetailsActivityPhando.class);
+                    if (videoContent.getType() != null)
+                        intent.putExtra("type", videoContent.getType());
+                    if (videoContent.getThumbnail() != null)
+                        intent.putExtra("thumbImage", videoContent.getThumbnail());
+                    if (videoContent.getId() != null)
+                        intent.putExtra("video_id", videoContent.getId().toString());
+                    if (videoContent.getTitle() != null)
+                        intent.putExtra("title", videoContent.getTitle());
+                    if (videoContent.getDetail() != null)
+                        intent.putExtra("description", videoContent.getDetail());
+                    if (videoContent.getRelease_date() != null)
+                        intent.putExtra("release", videoContent.getRelease_date());
+                    if (videoContent.getDuration_str() != null)
+                        intent.putExtra("duration", videoContent.getDuration_str());
+                    if (videoContent.getMaturity_rating() != null)
+                        intent.putExtra("maturity_rating", videoContent.getMaturity_rating());
+                    if (videoContent.getIs_free() != null)
+                        intent.putExtra("ispaid", videoContent.getIs_free().toString());
+                    if (videoContent.getLanguage_str() != null)
+                        intent.putExtra("language_str", videoContent.getLanguage_str());
+                    if (videoContent.getRating() != null)
+                        intent.putExtra("rating", videoContent.getRating().toString());
+                    if (videoContent.getTrailers() != null && videoContent.getTrailers().size() > 0 && videoContent.getTrailers().get(0) != null && videoContent.getTrailers().get(0).getMedia_url() != null) {
+                        intent.putExtra("trailer", videoContent.getTrailers().get(0).getMedia_url());
+                    }
+                    if (videoContent.getGenres() != null) {
+                        String genres;
+                        genres = videoContent.getGenres().get(0);
+                        for (int i = 1; i < videoContent.getGenres().size(); i++) {
+                            genres = genres.concat("," + videoContent.getGenres().get(i));
+                        }
+                        intent.putExtra("genres", genres);
+
+                    }
+
+
+                    getContext().startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
+
+                }
+/*
+                    intent.putExtra("poster_url", videoContent.getImageLink());
+
+
+                    intent.putExtra("video_quality", videoContent.getVideoQuality());
+
+                    intent.putExtra("ispaid", videoContent.getIsPaid());*//*
+
+                    getContext().startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
+
+
+                }
+*/
 
                 if (videoContent.getType().equals("tv")) {
                 } /*{
@@ -464,7 +522,7 @@ public class HomeFragment extends RowsSupportFragment {
     }
 
     //listener for setting blur background each time when the item will select.
-    protected OnItemViewSelectedListener getDefaultItemSelectedListener() {
+/*    protected OnItemViewSelectedListener getDefaultItemSelectedListener() {
         return (itemViewHolder, item, rowViewHolder, row) -> {
             if (getActivity() != null) {
                 if (item instanceof VideoContent) {
@@ -480,6 +538,6 @@ public class HomeFragment extends RowsSupportFragment {
 
             }
         };
-    }
+    }*/
 
 }
