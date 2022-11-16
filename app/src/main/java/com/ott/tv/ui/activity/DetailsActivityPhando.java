@@ -34,20 +34,17 @@ import com.ott.tv.adapter.HomePageAdapter;
 import com.ott.tv.model.CommonModels;
 import com.ott.tv.model.CustomAddsModel;
 import com.ott.tv.model.FavoriteModel;
-import com.ott.tv.model.MovieSingleDetails;
 import com.ott.tv.model.Video;
-import com.ott.tv.model.VideoNew;
 import com.ott.tv.model.phando.MediaplaybackData;
+import com.ott.tv.model.phando.PlayerActivityNewCode;
 import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.Dashboard;
-import com.ott.tv.network.api.DetailsApi;
 import com.ott.tv.network.api.FavouriteApi;
 import com.ott.tv.utils.CMHelper;
 import com.ott.tv.utils.PreferenceUtils;
 import com.ott.tv.utils.ToastMsg;
 import com.ott.tv.video_service.PlaybackModel;
 import com.ott.tv.video_service.VideoPlaybackActivity;
-import com.romainpiel.shimmer.ShimmerTextView;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -64,7 +61,7 @@ public class DetailsActivityPhando extends FragmentActivity {
     private String videoId;
     private String id;
     private String thumbUrl;
-    private String poster_url;
+    private String poster_url, trailer_url;
     private ImageView bannerImageView;
     private ImageView thumbnail_image;
     private FrameLayout contentView;
@@ -103,6 +100,7 @@ public class DetailsActivityPhando extends FragmentActivity {
     private ImageView content_rating_image, content_duration_image, releasedate_image, language_image, maturity_rating_image, genres_image;
     private TextView content_rating_text, duration_time, tvReleaseDate, language_tv, maturity_rating_tv, genres_tv;
     String type;
+
     public DetailsActivityPhando() {
     }
 
@@ -128,12 +126,13 @@ public class DetailsActivityPhando extends FragmentActivity {
 
         //  id = this.getIntent().getStringExtra("id");
         poster_url = this.getIntent().getStringExtra("thumbImage");
+        trailer_url = this.getIntent().getStringExtra("trailer");
         //  tvVideoQuality = this.getIntent().getStringExtra("video_quality");
         contentView = findViewById(R.id.contentView);
 
         thumbnail_image = findViewById(R.id.thumbnail_image);
         premiumIconImage = findViewById(R.id.premiumIcon);
-
+        tvWatchTrailer = findViewById(R.id.tvWatchTrailer);
         contentFromPreviousScreen();
 
         if (tvispaid != null) {
@@ -147,7 +146,6 @@ public class DetailsActivityPhando extends FragmentActivity {
         updateBackgroundThumnail(thumbUrl);
         bannerImageView = findViewById(R.id.bannerImageView);
 
-
         setBannerImage(poster_url);
 
         TextView movie_title = findViewById(R.id.movie_title);
@@ -158,7 +156,7 @@ public class DetailsActivityPhando extends FragmentActivity {
 
         tvVideoQualityType = findViewById(R.id.tvVideoQualityType);
         tvWatchNow = findViewById(R.id.tvWatchNow);
-        tvWatchTrailer = findViewById(R.id.tvWatchTrailer);
+
         rvRelated = findViewById(R.id.rv_related);
         playerView = findViewById(R.id.video_view);
         activity_rv = findViewById(R.id.activity_rv);
@@ -192,7 +190,7 @@ public class DetailsActivityPhando extends FragmentActivity {
         //  getFavStatus(Constants.WishListType.watch_later);
         //  getFavStatus(Constants.WishListType.fav);
         tvWatchNow.setOnClickListener(v -> payAndWatchTV());
-       // tvWatchTrailer.setOnClickListener(view -> watchNowClick());
+        tvWatchTrailer.setOnClickListener(view -> trailerClick());
         PreferenceUtils.updateSubscriptionStatus(DetailsActivityPhando.this);
     }
 
@@ -209,7 +207,7 @@ public class DetailsActivityPhando extends FragmentActivity {
         content_duration_image = findViewById(R.id.content_duration_image);
         duration_time = findViewById(R.id.duration_time);
 
-        if (tvDurationTime_value != null) {
+        if (tvDurationTime_value != null && !tvDurationTime_value.isEmpty()) {
             duration_time.setText(tvDurationTime_value);
         } else {
             content_duration_image.setVisibility(GONE);
@@ -229,7 +227,7 @@ public class DetailsActivityPhando extends FragmentActivity {
         language_image = findViewById(R.id.language_image);
         language_tv = findViewById(R.id.language_tv);
 
-        if (language != null) {
+        if (language != null && !language.isEmpty()) {
             language_tv.setText(language);
         } else {
             language_image.setVisibility(GONE);
@@ -255,20 +253,23 @@ public class DetailsActivityPhando extends FragmentActivity {
             genres_image.setVisibility(GONE);
             genres_tv.setVisibility(GONE);
         }
+        if (trailer_url != null) {
+            tvWatchTrailer.setVisibility(VISIBLE);
+        } else {
+            tvWatchTrailer.setVisibility(GONE);
+        }
     }
 
 
     @Override
     protected void onStop() {
-        if (Util.SDK_INT >= 24)
-            releasePlayer();
+        if (Util.SDK_INT >= 24) releasePlayer();
         super.onStop();
     }
 
     @Override
     public void onDestroy() {
-        if (Util.SDK_INT >= 24)
-            releasePlayer();
+        if (Util.SDK_INT >= 24) releasePlayer();
         super.onDestroy();
 
     }
@@ -285,25 +286,16 @@ public class DetailsActivityPhando extends FragmentActivity {
 
     @Override
     protected void onPause() {
-        if (Util.SDK_INT < 24)
-            releasePlayer();
+        if (Util.SDK_INT < 24) releasePlayer();
         super.onPause();
     }
 
     public void setBannerImage(String url) {
-        Glide.with(this)
-                .load(url)
-                .placeholder(R.color.black_color)
-                .error(R.drawable.poster_placeholder_land)
-                .into(bannerImageView);
+        Glide.with(this).load(url).placeholder(R.color.black_color).error(R.drawable.poster_placeholder_land).into(bannerImageView);
     }
 
     public void updateBackgroundThumnail(String url) {
-        Glide.with(this)
-                .load(url)
-                .placeholder(R.color.black_color)
-                .error(R.drawable.poster_placeholder_land)
-                .into(thumbnail_image);
+        Glide.with(this).load(url).placeholder(R.color.black_color).error(R.drawable.poster_placeholder_land).into(thumbnail_image);
     }
 
     private void payAndWatchTV() {
@@ -347,61 +339,33 @@ public class DetailsActivityPhando extends FragmentActivity {
             video.setIstrailer(false);
             video.setBgImageUrl(thumbUrl);
             video.setIsPaid("free");
-          //  video.setVideo(singleDetails.getVideos().get(0));
-            Intent intent = new Intent(this, PlayerActivity.class);
+            //  video.setVideo(singleDetails.getVideos().get(0));
+            Intent intent = new Intent(this, PlayerActivityNewCode.class);
             intent.putExtra(VideoPlaybackActivity.EXTRA_VIDEO, video);
             startActivity(intent);
         }
     }
 
-  /*  public void watchNowClick() {
-        if (singleDetails != null) {
-            String categoryType;
-            String trailerURL;
-            String youtubeSource = singleDetails.getTrailler_youtube_source();
-            String trailerAwsSource = singleDetails.trailer_aws_source;
-            if (trailerAwsSource != null && !trailerAwsSource.isEmpty()) {
-                categoryType = "movie";
-                trailerURL = trailerAwsSource;
-            } else if (youtubeSource != null && !youtubeSource.isEmpty()) {
-                categoryType = "youtube";
-                trailerURL = youtubeSource;
-            } else {
-                CMHelper.setSnackBar(this.getCurrentFocus(), "We are sorry, Trailer is not available for this video", 2);
-                return;
-            }
-        *//* Note this player used for both youtube and mp3
-           VideoNew mSelectedVideo = new VideoNew(
-                    Long.parseLong(videoId),
-                    categoryType,
-                    singleDetails.getTitle(),
-                    singleDetails.getDescription(),
-                    trailerURL,
-                    poster_url,
-                    thumbUrl,
-                    poster_url);
+    public void trailerClick() {
+        List<Video> videoList = new ArrayList<>();
+        PlaybackModel video = new PlaybackModel();
+        ArrayList<Video> videoListForIntent = new ArrayList<>(videoList);
+        video.setId(Long.parseLong(videoId));
+        video.setTitle(title);
+        video.setDescription(description);
+        video.setVideoType(Config.VideoURLTypeHls);
+        video.setCategory(type);
+        video.setVideoUrl(trailer_url);
+        // video.setCardImageUrl(trailer_url);
+        video.setIstrailer(false);
+        video.setBgImageUrl(thumbUrl);
+        video.setIsPaid("free");
+        //  video.setVideo(singleDetails.getVideos().get(0));
+        Intent intent = new Intent(this, PlayerActivityNewCode.class);
+        intent.putExtra(VideoPlaybackActivity.EXTRA_VIDEO, video);
+        startActivity(intent);
 
-            Intent intent = new Intent(this, PlaybackActivityNew.class);
-            intent.putExtra(VideoDetailsActivity.VIDEO, mSelectedVideo);
-            startActivity(intent);
-*//*
-            PlaybackModel model = new PlaybackModel();
-            model.setId(Long.parseLong(videoId));
-            model.setTitle(singleDetails.getTitle());
-            model.setDescription(singleDetails.getDescription());
-            model.setVideoType("mp4");
-            model.setCategory("movie");
-            model.setVideoUrl(trailerURL);
-            model.setCardImageUrl(poster_url);
-            model.setBgImageUrl(thumbUrl);
-            model.setIsPaid("paid");
-            model.setIstrailer(true);
-            Intent intent = new Intent(this, PlayerActivity.class);
-            intent.putExtra(VideoPlaybackActivity.EXTRA_VIDEO, model);
-            startActivity(intent);
-
-        }
-    }*/
+    }
 
 
     private void getData(String videoType, final String videoId) {
@@ -413,7 +377,7 @@ public class DetailsActivityPhando extends FragmentActivity {
         }
         //  PreferenceUtils.getInstance().getUsersIdActionOTT(this);
         Dashboard api = retrofit.create(Dashboard.class);
-        Call<MediaplaybackData> call = api.getSingleDetailAPI(Config.API_KEY,videoId,videoType,"1");
+        Call<MediaplaybackData> call = api.getSingleDetailAPI(Config.API_KEY, videoId, videoType, "1");
         activityIndicator(true);
         call.enqueue(new Callback<MediaplaybackData>() {
             @Override
@@ -421,8 +385,17 @@ public class DetailsActivityPhando extends FragmentActivity {
                 activityIndicator(false);
                 if (response.code() == 200 && response.body() != null) {
                     singleDetails = response.body();
-                    Log.i("kranti", "onResponse: "+singleDetails.getList().getMedia_url());
-                  //  singleDetails.setType("M");
+                    Log.i("kranti", "onResponse: " + singleDetails.getList().getMedia_url());
+                    if(singleDetails.getList().getIs_watchlist().equalsIgnoreCase("1")){
+                        isWatchLater=true;
+                        imgWatchList.setText("Remove to Watchlist");
+
+                    }else{
+                        imgWatchList.setText("Add to Watchlist");
+                        isWatchLater=false;
+                    }
+                  //  if(singleDetails.getMediaCode())
+                    //  singleDetails.setType("M");
 
 
 /*                    //----related post---------------
@@ -501,9 +474,10 @@ public class DetailsActivityPhando extends FragmentActivity {
     @SuppressLint("SetTextI18n")
     private void setMovieData() {
 
-        if(singleDetails.getList().getMedia_url()!=null){
+        if (singleDetails.getList().getMedia_url() != null) {
             tvWatchNow.setText("Watch Now");
         }
+
  /*
         if (singleDetails.video_view_type != null && singleDetails.video_view_type.equalsIgnoreCase("Subscription Based")) {
             if (PreferenceUtils.isActivePlan(DetailsActivityPhando.this)) {

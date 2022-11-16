@@ -1,4 +1,4 @@
-package com.ott.tv.ui.activity;
+package com.ott.tv.model.phando;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
@@ -6,10 +6,8 @@ import static android.view.View.VISIBLE;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-
 import android.content.Context;
 import android.content.Intent;
-import android.icu.util.LocaleData;
 import android.media.AudioManager;
 import android.media.session.MediaSession;
 import android.net.Uri;
@@ -36,6 +34,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.tvprovider.media.tv.TvContractCompat;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.exoplayer2.C;
@@ -94,7 +93,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class PlayerActivity extends Activity {
+public class PlayerActivityNewCode extends Activity {
     private static final String TAG = "PlayerActivity";
     private static final String CLASS_NAME = "PlayerActivity";
     private static final String YOUTUBE = "youtube";
@@ -134,9 +133,9 @@ public class PlayerActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
 
-        mChannelId = getIntent().getLongExtra(VideoPlaybackActivity.EXTRA_CHANNEL_ID, -1L);
+    /*    mChannelId = getIntent().getLongExtra(VideoPlaybackActivity.EXTRA_CHANNEL_ID, -1L);
         mStartingPosition = getIntent().getLongExtra(VideoPlaybackActivity.EXTRA_POSITION, -1L);
-
+*/
         model = (PlaybackModel) getIntent().getSerializableExtra(VideoPlaybackActivity.EXTRA_VIDEO);
 
         assert model != null;
@@ -362,8 +361,8 @@ public class PlayerActivity extends Activity {
     private void setVideoQuality() {
         @SuppressLint("InflateParams")
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(PlayerActivity.this);
-        View view = LayoutInflater.from(PlayerActivity.this).inflate(R.layout.videoquality_rv_tv, null);
+        AlertDialog.Builder builder = new AlertDialog.Builder(PlayerActivityNewCode.this);
+        View view = LayoutInflater.from(PlayerActivityNewCode.this).inflate(R.layout.videoquality_rv_tv, null);
         view.requestFocus();
            /*     RecyclerView serverRv = view.findViewById(R.id.serverRv);
                 SubtitleListAdapter adapter = new SubtitleListAdapter(PlayerActivity.this, video.getSubtitle());
@@ -421,9 +420,9 @@ public class PlayerActivity extends Activity {
         builder.setView(view);
         final AlertDialog dialog = builder.create();
         dialog.show();
-        Log.i(TAG, "setVideoQuality: " + PreferenceUtils.getInstance().getVideoQualityPref(PlayerActivity.this));
+        Log.i(TAG, "setVideoQuality: " + PreferenceUtils.getInstance().getVideoQualityPref(PlayerActivityNewCode.this));
 
-        if (PreferenceUtils.getInstance().getVideoQualityPref(PlayerActivity.this).equalsIgnoreCase(getString(R.string.hint_auto))) {
+        if (PreferenceUtils.getInstance().getVideoQualityPref(PlayerActivityNewCode.this).equalsIgnoreCase(getString(R.string.hint_auto))) {
 
             if (resolutionHashMap != null && currentAutoResolutionPlayed != null) {
                 for (String key : resolutionHashMap.keySet()) {
@@ -439,37 +438,37 @@ public class PlayerActivity extends Activity {
             }
         }
 
-        if (PreferenceUtils.getInstance().getVideoQualityPref(PlayerActivity.this).equalsIgnoreCase(getString(R.string._144p))) {
+        if (PreferenceUtils.getInstance().getVideoQualityPref(PlayerActivityNewCode.this).equalsIgnoreCase(getString(R.string._144p))) {
             tvResolutionOne.setBackgroundResource(R.color.paypalColor);
         }
-        if (PreferenceUtils.getInstance().getVideoQualityPref(PlayerActivity.this).equalsIgnoreCase(getString(R.string._240p))) {
+        if (PreferenceUtils.getInstance().getVideoQualityPref(PlayerActivityNewCode.this).equalsIgnoreCase(getString(R.string._240p))) {
             tvResolutionTwo.requestFocus();
             tvResolutionTwo.setBackgroundResource(R.color.paypalColor);
         }
-        if (PreferenceUtils.getInstance().getVideoQualityPref(PlayerActivity.this).equalsIgnoreCase(getString(R.string._360p))) {
+        if (PreferenceUtils.getInstance().getVideoQualityPref(PlayerActivityNewCode.this).equalsIgnoreCase(getString(R.string._360p))) {
             tvResolutionThree.requestFocus();
             tvResolutionThree.setBackgroundResource(R.color.paypalColor);
             // tvResolutionThree.setBackgroundResource(R.color.paypalColor);
         }
-        if (PreferenceUtils.getInstance().getVideoQualityPref(PlayerActivity.this).equalsIgnoreCase(getString(R.string._480p))) {
+        if (PreferenceUtils.getInstance().getVideoQualityPref(PlayerActivityNewCode.this).equalsIgnoreCase(getString(R.string._480p))) {
             tvResolutionFour.setBackgroundResource(R.color.paypalColor);
             tvResolutionFour.requestFocus();
         }
 
-        if (PreferenceUtils.getInstance().getVideoQualityPref(PlayerActivity.this).equalsIgnoreCase(getString(R.string._720p))) {
+        if (PreferenceUtils.getInstance().getVideoQualityPref(PlayerActivityNewCode.this).equalsIgnoreCase(getString(R.string._720p))) {
             tvResolutionFive.requestFocus();
             tvResolutionFive.setBackgroundResource(R.color.paypalColor);
         }
-        if (PreferenceUtils.getInstance().getVideoQualityPref(PlayerActivity.this).equalsIgnoreCase(getString(R.string._1080p))) {
+        if (PreferenceUtils.getInstance().getVideoQualityPref(PlayerActivityNewCode.this).equalsIgnoreCase(getString(R.string._1080p))) {
             tvResolutionSix.setBackgroundResource(R.color.paypalColor);
             tvResolutionSix.requestFocus();
         }
-        if (PreferenceUtils.getInstance().getVideoQualityPref(PlayerActivity.this).equalsIgnoreCase(getString(R.string._1440p))) {
+        if (PreferenceUtils.getInstance().getVideoQualityPref(PlayerActivityNewCode.this).equalsIgnoreCase(getString(R.string._1440p))) {
             tvResolutionSeven.requestFocus();
             tvResolutionSeven.setBackgroundResource(R.color.paypalColor);
 
         }
-        if (PreferenceUtils.getInstance().getVideoQualityPref(PlayerActivity.this).equalsIgnoreCase(getString(R.string._2160p))) {
+        if (PreferenceUtils.getInstance().getVideoQualityPref(PlayerActivityNewCode.this).equalsIgnoreCase(getString(R.string._2160p))) {
 
             tvResolutionEight.requestFocus();
             tvResolutionEight.setBackgroundResource(R.color.paypalColor);
@@ -541,7 +540,7 @@ public class PlayerActivity extends Activity {
         progressBar.setVisibility(VISIBLE);
         // swipeRefreshLayout.setVisibility(GONE);
         // lPlay.setVisibility(VISIBLE);
-        initVideoPlayer(currentAutoResolutionPlayed, "hls");
+        initVideoPlayer(currentAutoResolutionPlayed, Config.VideoURLTypeHls);
     }
 
     public void setResolutionHashMaps(Video model) {
@@ -661,7 +660,7 @@ public class PlayerActivity extends Activity {
     private void handleBackPress() {
         this.doubleBackToExitPressedOnce = true;
         //Toast.makeText(this, "Please click BACK again to exit.", Toast.LENGTH_SHORT).show();
-        new ToastMsg(PlayerActivity.this).toastIconSuccess("Please click BACK again to exit.");
+        new ToastMsg(PlayerActivityNewCode.this).toastIconSuccess("Please click BACK again to exit.");
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -681,11 +680,11 @@ public class PlayerActivity extends Activity {
                     videoList.add(video);
                 }
             }
-            AlertDialog.Builder builder = new AlertDialog.Builder(PlayerActivity.this);
-            View view = LayoutInflater.from(PlayerActivity.this).inflate(R.layout.layout_server_tv, null);
+            AlertDialog.Builder builder = new AlertDialog.Builder(PlayerActivityNewCode.this);
+            View view = LayoutInflater.from(PlayerActivityNewCode.this).inflate(R.layout.layout_server_tv, null);
             RecyclerView serverRv = view.findViewById(R.id.serverRv);
-            ServerAdapter serverAdapter = new ServerAdapter(PlayerActivity.this, videoList, "movie");
-            serverRv.setLayoutManager(new LinearLayoutManager(PlayerActivity.this));
+            ServerAdapter serverAdapter = new ServerAdapter(PlayerActivityNewCode.this, videoList, "movie");
+            serverRv.setLayoutManager(new LinearLayoutManager(PlayerActivityNewCode.this));
             serverRv.setHasFixedSize(true);
             serverRv.setAdapter(serverAdapter);
 
@@ -708,7 +707,7 @@ public class PlayerActivity extends Activity {
 
                 @Override
                 public void onItemClick(View view, Video obj, int position, ServerAdapter.OriginalViewHolder holder) {
-                    Intent playerIntent = new Intent(PlayerActivity.this, PlayerActivity.class);
+                    Intent playerIntent = new Intent(PlayerActivityNewCode.this, PlayerActivityNewCode.class);
                     PlaybackModel video = new PlaybackModel();
                     video.setId(model.getId());
                     video.setTitle(model.getTitle());
@@ -737,11 +736,11 @@ public class PlayerActivity extends Activity {
     private void openSubtitleDialog() {
         if (video != null) {
             if (!video.getSubtitle().isEmpty()) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(PlayerActivity.this);
-                View view = LayoutInflater.from(PlayerActivity.this).inflate(R.layout.layout_subtitle_dialog, null);
+                AlertDialog.Builder builder = new AlertDialog.Builder(PlayerActivityNewCode.this);
+                View view = LayoutInflater.from(PlayerActivityNewCode.this).inflate(R.layout.layout_subtitle_dialog, null);
                 RecyclerView serverRv = view.findViewById(R.id.serverRv);
-                SubtitleListAdapter adapter = new SubtitleListAdapter(PlayerActivity.this, video.getSubtitle());
-                serverRv.setLayoutManager(new LinearLayoutManager(PlayerActivity.this));
+                SubtitleListAdapter adapter = new SubtitleListAdapter(PlayerActivityNewCode.this, video.getSubtitle());
+                serverRv.setLayoutManager(new LinearLayoutManager(PlayerActivityNewCode.this));
                 serverRv.setHasFixedSize(true);
                 serverRv.setAdapter(adapter);
                 Button closeBt = view.findViewById(R.id.close_bt);
@@ -782,8 +781,8 @@ public class PlayerActivity extends Activity {
                     Format.NO_VALUE, // Selection flags for the track.
                     "en"); // The subtitle language. May be null.
 
-            DefaultDataSourceFactory dataSourceFactory = new DefaultDataSourceFactory(PlayerActivity.this,
-                    Util.getUserAgent(PlayerActivity.this, CLASS_NAME), new DefaultBandwidthMeter());
+            DefaultDataSourceFactory dataSourceFactory = new DefaultDataSourceFactory(PlayerActivityNewCode.this,
+                    Util.getUserAgent(PlayerActivityNewCode.this, CLASS_NAME), new DefaultBandwidthMeter());
 
 
             MediaSource subtitleSource = new SingleSampleMediaSource
@@ -797,7 +796,7 @@ public class PlayerActivity extends Activity {
             //resumePlayer();
 
         } else {
-            Toast.makeText(PlayerActivity.this, "there is no subtitle", Toast.LENGTH_SHORT).show();
+            Toast.makeText(PlayerActivityNewCode.this, "there is no subtitle", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -813,7 +812,7 @@ public class PlayerActivity extends Activity {
         trackSelector = new
                 DefaultTrackSelector(videoTrackSelectionFactory);
 
-        player = ExoPlayerFactory.newSimpleInstance((Context) PlayerActivity.this, trackSelector);
+        player = ExoPlayerFactory.newSimpleInstance((Context) PlayerActivityNewCode.this, trackSelector);
         exoPlayerView.setPlayer(player);
         // below 2 lines will make screen size to fit
         exoPlayerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FILL);
@@ -825,22 +824,22 @@ public class PlayerActivity extends Activity {
 
         switch (type) {
             case "hls":
-                mediaSource = hlsMediaSource(uri, PlayerActivity.this);
+                mediaSource = hlsMediaSource(uri, PlayerActivityNewCode.this);
                 break;
             case "youtube":
-                extractYoutubeUrl(url, PlayerActivity.this, 18);
+                extractYoutubeUrl(url, PlayerActivityNewCode.this, 18);
                 break;
             case "youtube-live":
-                extractYoutubeUrl(url, PlayerActivity.this, 133);
+                extractYoutubeUrl(url, PlayerActivityNewCode.this, 133);
                 break;
             case "rtmp":
                 mediaSource = rtmpMediaSource(uri);
                 break;
             case "mp4":
-                mediaSource = mediaSource(uri, PlayerActivity.this);
+                mediaSource = mediaSource(uri, PlayerActivityNewCode.this);
                 break;
             default:
-                mediaSource = mediaSource(uri, PlayerActivity.this);
+                mediaSource = mediaSource(uri, PlayerActivityNewCode.this);
                 break;
         }
         if (!type.contains("youtube")) {

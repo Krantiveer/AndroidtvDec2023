@@ -14,17 +14,13 @@ public class LatestMovieSingleDetailList implements Parcelable{
     @SerializedName("media_url")
     @Expose
     private String media_url;
-
-    public String getMedia_url() {
-        return media_url;
-    }
-
-    public void setMedia_url(String media_url) {
-        this.media_url = media_url;
-    }
+    @SerializedName("is_watchlist")
+    @Expose
+    private String is_watchlist;
 
     protected LatestMovieSingleDetailList(Parcel in) {
         media_url = in.readString();
+        is_watchlist = in.readString();
     }
 
     public static final Creator<LatestMovieSingleDetailList> CREATOR = new Creator<LatestMovieSingleDetailList>() {
@@ -39,6 +35,22 @@ public class LatestMovieSingleDetailList implements Parcelable{
         }
     };
 
+    public String getMedia_url() {
+        return media_url;
+    }
+
+    public void setMedia_url(String media_url) {
+        this.media_url = media_url;
+    }
+
+    public String getIs_watchlist() {
+        return is_watchlist;
+    }
+
+    public void setIs_watchlist(String is_watchlist) {
+        this.is_watchlist = is_watchlist;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -47,7 +59,10 @@ public class LatestMovieSingleDetailList implements Parcelable{
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(media_url);
+        dest.writeString(is_watchlist);
     }
+
+
    /* @SerializedName("id")
     @Expose
     private Integer id;

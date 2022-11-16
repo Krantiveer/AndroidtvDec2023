@@ -109,7 +109,9 @@ public class LatestMovieList implements Parcelable {
     @SerializedName("genres")
     @Expose
     private List<String> genres = null;
-
+    @SerializedName("trailers")
+    @Expose
+    private List<LatestMovieSingleDetailList> trailers = null;
 
     protected LatestMovieList(Parcel in) {
         if (in.readByte() == 0) {
@@ -174,14 +176,7 @@ public class LatestMovieList implements Parcelable {
             is_active = in.readInt();
         }
         genres = in.createStringArrayList();
-    }
-
-    public String getLanguage_str() {
-        return language_str;
-    }
-
-    public void setLanguage_str(String language_str) {
-        this.language_str = language_str;
+        trailers = in.createTypedArrayList(LatestMovieSingleDetailList.CREATOR);
     }
 
     public static final Creator<LatestMovieList> CREATOR = new Creator<LatestMovieList>() {
@@ -364,6 +359,14 @@ public class LatestMovieList implements Parcelable {
         this.release_date = release_date;
     }
 
+    public String getLanguage_str() {
+        return language_str;
+    }
+
+    public void setLanguage_str(String language_str) {
+        this.language_str = language_str;
+    }
+
     public Integer getPublish_year() {
         return publish_year;
     }
@@ -404,83 +407,92 @@ public class LatestMovieList implements Parcelable {
         this.genres = genres;
     }
 
+    public List<LatestMovieSingleDetailList> getTrailers() {
+        return trailers;
+    }
+
+    public void setTrailers(List<LatestMovieSingleDetailList> trailers) {
+        this.trailers = trailers;
+    }
+
     @Override
     public int describeContents() {
         return 0;
     }
 
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
+    public void writeToParcel(Parcel dest, int flags) {
         if (id == null) {
-            parcel.writeByte((byte) 0);
+            dest.writeByte((byte) 0);
         } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(id);
+            dest.writeByte((byte) 1);
+            dest.writeInt(id);
         }
-        parcel.writeString(title);
-        parcel.writeString(description);
-        parcel.writeString(thumbnail);
-        parcel.writeString(thumbnail_vertical);
-        parcel.writeString(circular_thumbnail);
-        parcel.writeString(poster);
-        parcel.writeString(poster_vertical);
-        parcel.writeString(created_at);
+        dest.writeString(title);
+        dest.writeString(description);
+        dest.writeString(thumbnail);
+        dest.writeString(thumbnail_vertical);
+        dest.writeString(circular_thumbnail);
+        dest.writeString(poster);
+        dest.writeString(poster_vertical);
+        dest.writeString(created_at);
         if (is_free == null) {
-            parcel.writeByte((byte) 0);
+            dest.writeByte((byte) 0);
         } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(is_free);
+            dest.writeByte((byte) 1);
+            dest.writeInt(is_free);
         }
         if (is_live == null) {
-            parcel.writeByte((byte) 0);
+            dest.writeByte((byte) 0);
         } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(is_live);
+            dest.writeByte((byte) 1);
+            dest.writeInt(is_live);
         }
-        parcel.writeString(phando_media_id);
-        parcel.writeString(type);
+        dest.writeString(phando_media_id);
+        dest.writeString(type);
         if (price == null) {
-            parcel.writeByte((byte) 0);
+            dest.writeByte((byte) 0);
         } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(price);
+            dest.writeByte((byte) 1);
+            dest.writeInt(price);
         }
-        parcel.writeString(detail);
-        parcel.writeString(keyword);
+        dest.writeString(detail);
+        dest.writeString(keyword);
         if (rating == null) {
-            parcel.writeByte((byte) 0);
+            dest.writeByte((byte) 0);
         } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(rating);
+            dest.writeByte((byte) 1);
+            dest.writeInt(rating);
         }
-        parcel.writeString(maturity_rating);
+        dest.writeString(maturity_rating);
         if (duration == null) {
-            parcel.writeByte((byte) 0);
+            dest.writeByte((byte) 0);
         } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(duration);
+            dest.writeByte((byte) 1);
+            dest.writeInt(duration);
         }
-        parcel.writeString(duration_str);
-        parcel.writeString(release_date);
-        parcel.writeString(language_str);
+        dest.writeString(duration_str);
+        dest.writeString(release_date);
+        dest.writeString(language_str);
         if (publish_year == null) {
-            parcel.writeByte((byte) 0);
+            dest.writeByte((byte) 0);
         } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(publish_year);
+            dest.writeByte((byte) 1);
+            dest.writeInt(publish_year);
         }
         if (last_watch_time == null) {
-            parcel.writeByte((byte) 0);
+            dest.writeByte((byte) 0);
         } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(last_watch_time);
+            dest.writeByte((byte) 1);
+            dest.writeInt(last_watch_time);
         }
         if (is_active == null) {
-            parcel.writeByte((byte) 0);
+            dest.writeByte((byte) 0);
         } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(is_active);
+            dest.writeByte((byte) 1);
+            dest.writeInt(is_active);
         }
-        parcel.writeStringList(genres);
+        dest.writeStringList(genres);
+        dest.writeTypedList(trailers);
     }
 }

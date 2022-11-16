@@ -27,55 +27,6 @@ import androidx.room.TypeConverters;
 
 
 public class BrowseData implements Parcelable {
-    protected BrowseData(Parcel in) {
-        if (in.readByte() == 0) {
-            id = null;
-        } else {
-            id = in.readInt();
-        }
-        title = in.readString();
-        displayType = in.readString();
-        if (in.readByte() == 0) {
-            image_orientation = null;
-        } else {
-            image_orientation = in.readInt();
-        }
-    }
-
-    public static final Creator<BrowseData> CREATOR = new Creator<BrowseData>() {
-        @Override
-        public BrowseData createFromParcel(Parcel in) {
-            return new BrowseData(in);
-        }
-
-        @Override
-        public BrowseData[] newArray(int size) {
-            return new BrowseData[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        if (id == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(id);
-        }
-        parcel.writeString(title);
-        parcel.writeString(displayType);
-        if (image_orientation == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(image_orientation);
-        }
-    }
 
     @SerializedName("id")
     @Expose
@@ -136,4 +87,57 @@ public class BrowseData implements Parcelable {
     public void setList(List<LatestMovieList> list) {
         this.list = list;
     }
+
+
+    protected BrowseData(Parcel in) {
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readInt();
+        }
+        title = in.readString();
+        displayType = in.readString();
+        if (in.readByte() == 0) {
+            image_orientation = null;
+        } else {
+            image_orientation = in.readInt();
+        }
+    }
+
+    public static final Creator<BrowseData> CREATOR = new Creator<BrowseData>() {
+        @Override
+        public BrowseData createFromParcel(Parcel in) {
+            return new BrowseData(in);
+        }
+
+        @Override
+        public BrowseData[] newArray(int size) {
+            return new BrowseData[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        if (id == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(id);
+        }
+        parcel.writeString(title);
+        parcel.writeString(displayType);
+        if (image_orientation == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(image_orientation);
+        }
+    }
+
+
 }

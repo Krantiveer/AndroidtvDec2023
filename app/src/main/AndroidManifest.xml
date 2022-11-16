@@ -139,6 +139,12 @@
             android:screenOrientation="landscape"
             android:supportsPictureInPicture="true" />
         <activity
+            android:name=".model.phando.PlayerActivityNewCode"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:resizeableActivity="true"
+            android:screenOrientation="landscape"
+            android:supportsPictureInPicture="true" />
+        <activity
             android:name=".ui.activity.LoginActivity"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme" />

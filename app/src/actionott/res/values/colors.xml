@@ -2,14 +2,14 @@
 <resources>
 
     <color name="textcolor">#FFFF</color>
-    <color name="main_color">#E40000</color>
+    <color name="main_color">#EF3C23</color>
     <color name="focus">#ffffff</color>
     //this we using card selected and click card
     <color name="colorButtonFocusedTV">@color/main_color</color>
     <color name="colorButtonPressedTV">@color/main_color</color>
-    <color name="colorButtonFocusedTVHome">@color/white</color>
-    <color name="colorButtonPressedTVHome">@color/white</color>
-    <color name="bcn_selected_color">@color/focus</color>
+    <color name="colorButtonFocusedTVHome">@color/main_color</color>
+    <color name="colorButtonPressedTVHome">@color/main_color</color>
+    <color name="bcn_selected_color">@color/main_color</color>
     <color name="progressbar">@color/main_color</color>
 
 </resources>
