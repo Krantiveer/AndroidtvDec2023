@@ -27,12 +27,23 @@ public class Wishlist implements Parcelable {
     @SerializedName("value")
     @Expose
     private String value;
-
+    @SerializedName("status_code")
+    @Expose
+    private String status_code;
+    @SerializedName("status")
+    @Expose
+    private String status;
+    @SerializedName("message")
+    @Expose
+    private String message;
 
     protected Wishlist(Parcel in) {
         id = in.readString();
         type = in.readString();
         value = in.readString();
+        status_code = in.readString();
+        status = in.readString();
+        message = in.readString();
     }
 
     public static final Creator<Wishlist> CREATOR = new Creator<Wishlist>() {
@@ -71,15 +82,42 @@ public class Wishlist implements Parcelable {
         this.value = value;
     }
 
+    public String getStatus_code() {
+        return status_code;
+    }
+
+    public void setStatus_code(String status_code) {
+        this.status_code = status_code;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     @Override
     public int describeContents() {
         return 0;
     }
 
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(id);
-        parcel.writeString(type);
-        parcel.writeString(value);
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(type);
+        dest.writeString(value);
+        dest.writeString(status_code);
+        dest.writeString(status);
+        dest.writeString(message);
     }
 }

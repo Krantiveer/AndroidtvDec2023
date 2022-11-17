@@ -3,12 +3,16 @@ package com.ott.tv.network.api;
 import com.ott.tv.model.BrowseData;
 import com.ott.tv.model.home_content.HomeContent;
 import com.ott.tv.model.phando.MediaplaybackData;
+import com.ott.tv.model.phando.Wishlist;
 
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface Dashboard {
@@ -37,11 +41,19 @@ public interface Dashboard {
 
     @GET("mediaplayback")
     Call<MediaplaybackData> getSingleDetailAPI(
-            @Header("API-KEY") String apiKey,
+
             @Query("id") String id,
             @Query("type") String type,
             @Query("test") String test
     );
+
+    @FormUrlEncoded
+    @POST("addwishlist")
+    Call<Wishlist> updateWatchList(
+            @Header("Authorization") String token,
+            @Field("id") String id,
+            @Field("type") String type,
+            @Field("value") Integer value);
 
 
 }

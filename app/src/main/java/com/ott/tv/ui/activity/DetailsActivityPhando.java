@@ -37,6 +37,7 @@ import com.ott.tv.model.FavoriteModel;
 import com.ott.tv.model.Video;
 import com.ott.tv.model.phando.MediaplaybackData;
 import com.ott.tv.model.phando.PlayerActivityNewCode;
+import com.ott.tv.model.phando.Wishlist;
 import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.Dashboard;
 import com.ott.tv.network.api.FavouriteApi;
@@ -173,20 +174,22 @@ public class DetailsActivityPhando extends FragmentActivity {
         }
 
         imgWatchList.setOnClickListener(v -> {
+
             if (isWatchLater) {
-                removeFromFav(Constants.WishListType.watch_later);
+                addToFav("1");
+
             } else {
-                addToFav(Constants.WishListType.watch_later);
+                addToFav("0");
             }
         });
 
-        imgFavList.setOnClickListener(v -> {
+       /* imgFavList.setOnClickListener(v -> {
             if (isFav) {
                 removeFromFav(Constants.WishListType.fav);
             } else {
                 addToFav(Constants.WishListType.fav);
             }
-        });
+        });*/
         //  getFavStatus(Constants.WishListType.watch_later);
         //  getFavStatus(Constants.WishListType.fav);
         tvWatchNow.setOnClickListener(v -> payAndWatchTV());
@@ -377,7 +380,7 @@ public class DetailsActivityPhando extends FragmentActivity {
         }
         //  PreferenceUtils.getInstance().getUsersIdActionOTT(this);
         Dashboard api = retrofit.create(Dashboard.class);
-        Call<MediaplaybackData> call = api.getSingleDetailAPI(Config.API_KEY, videoId, videoType, "1");
+        Call<MediaplaybackData> call = api.getSingleDetailAPI(videoId, videoType, "1");
         activityIndicator(true);
         call.enqueue(new Callback<MediaplaybackData>() {
             @Override
@@ -385,16 +388,15 @@ public class DetailsActivityPhando extends FragmentActivity {
                 activityIndicator(false);
                 if (response.code() == 200 && response.body() != null) {
                     singleDetails = response.body();
-                    Log.i("kranti", "onResponse: " + singleDetails.getList().getMedia_url());
-                    if(singleDetails.getList().getIs_watchlist().equalsIgnoreCase("1")){
-                        isWatchLater=true;
+                    if (singleDetails.getList().getIs_watchlist().equalsIgnoreCase("1")) {
+                        isWatchLater = true;
                         imgWatchList.setText("Remove to Watchlist");
 
-                    }else{
+                    } else {
                         imgWatchList.setText("Add to Watchlist");
-                        isWatchLater=false;
+                        isWatchLater = false;
                     }
-                  //  if(singleDetails.getMediaCode())
+                    //  if(singleDetails.getMediaCode())
                     //  singleDetails.setType("M");
 
 
@@ -567,27 +569,35 @@ public class DetailsActivityPhando extends FragmentActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    private void addToFav(String type) {
+    private void addToFav(String value) {
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
-        FavouriteApi api = retrofit.create(FavouriteApi.class);
-        Call<FavoriteModel> call = api.addToFavorite(Config.API_KEY, userid, videoId, type);
-        call.enqueue(new Callback<FavoriteModel>() {
+        Dashboard api = retrofit.create(Dashboard.class);
+        String accessToken="Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(this);
+                Log.i("==>", "addToFav: "+accessToken);
+        Call<Wishlist> call = api.updateWatchList( accessToken,videoId, type, 1);
+        call.enqueue(new Callback<Wishlist>() {
             @Override
-            public void onResponse(@NonNull Call<FavoriteModel> call, @NonNull Response<FavoriteModel> response) {
+            public void onResponse(@NonNull Call<Wishlist> call, @NonNull Response<Wishlist> response) {
                 if (response.code() == 200 && response.body() != null) {
+
+
                     if (response.body().getStatus().equalsIgnoreCase("success")) {
                         new ToastMsg(DetailsActivityPhando.this).toastIconSuccess(response.body().getMessage());
-                        if (type.equals(Constants.WishListType.watch_later)) {
-                            isWatchLater = true;
-                            //kranti
-                            imgWatchList.setText("Remove to Watchlist");
-                            //imgWatchList.setColorFilter(ContextCompat.getColor(DetailsActivity.this, R.color.colorGold), android.graphics.PorterDuff.Mode.SRC_IN);
-                        } else {
-                            isFav = true;
-                            imgFavList.setText("Remove to Favorite");
+                        if (response.body().getStatus_code() != null) {
+                            if (response.body().getStatus_code().equalsIgnoreCase("1")) {
+                                isWatchLater = true;
 
-                       /*     imgAddFav.setImageResource(R.drawable.ic_circle_fav);
+                                imgWatchList.setText("Remove to Watchlist");
+                                //imgWatchList.setColorFilter(ContextCompat.getColor(DetailsActivity.this, R.color.colorGold), android.graphics.PorterDuff.Mode.SRC_IN);
+                            } else {
+                                isWatchLater = false;
+
+                                imgWatchList.setText("Add to Watchlist");
+
+
+                       /*    imgAddFav.setImageResource(R.drawable.ic_circle_fav);
                             favIv.setImageResource(R.drawable.ic_circle_fav);*/
+                            }
                         }
                     } else {
                         new ToastMsg(DetailsActivityPhando.this).toastIconError(response.body().getMessage());
@@ -598,7 +608,7 @@ public class DetailsActivityPhando extends FragmentActivity {
             }
 
             @Override
-            public void onFailure(@NonNull Call<FavoriteModel> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<Wishlist> call, @NonNull Throwable t) {
                 new ToastMsg(DetailsActivityPhando.this).toastIconError(getString(R.string.error_toast));
 
             }

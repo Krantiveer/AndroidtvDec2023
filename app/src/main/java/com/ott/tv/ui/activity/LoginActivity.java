@@ -32,7 +32,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class LoginActivity extends Activity {
-    private EditText etEmail=null, etPass=null;
+    private EditText etEmail = null, etPass = null;
     private ProgressBar progressBar;
 
 
@@ -83,17 +83,19 @@ public class LoginActivity extends Activity {
             login(email, pass);
         }
     }
+
     public void mobileSignInBtnMobile(View view) {
         Intent intent = new Intent(getApplicationContext(), LoginMobileActivity.class);
         startActivity(intent);
         finishAffinity();
         overridePendingTransition(R.anim.enter, R.anim.exit);
     }
+
     private void login(String email, final String password) {
         progressBar.setVisibility(View.VISIBLE);
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
         LoginApi api = retrofit.create(LoginApi.class);
-        Call<User> call = api.postLoginStatus(Config.API_KEY, email, password);
+        Call<User> call = api.postLoginStatus(email, password);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
@@ -117,7 +119,7 @@ public class LoginActivity extends Activity {
                         preferences.putBoolean(Constants.USER_LOGIN_STATUS, true);
                         preferences.apply();
 
-                        PreferenceUtils.getInstance().setAccessTokenNPref(getApplicationContext(),response.body().getAccess_token());
+                        PreferenceUtils.getInstance().setAccessTokenNPref(getApplicationContext(), response.body().getAccess_token());
 
                      /*   //save user login time, expire time
                         updateSubscriptionStatus(user.getUserId());*/
@@ -130,12 +132,12 @@ public class LoginActivity extends Activity {
                         new ToastMsg(LoginActivity.this).toastIconError(response.body().getData());
                         progressBar.setVisibility(View.GONE);
                     }
-                }else{
-                    if(response.code()==401){
-                     //   CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter OTP"), 2, 10000);
+                } else {
+                    if (response.code() == 401) {
+                        //   CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter OTP"), 2, 10000);
                         new ToastMsg(LoginActivity.this).toastIconError(response.message());
-                    }else{
-                        new ToastMsg(LoginActivity.this).toastIconError("Please Try Again Getting"+response.code());
+                    } else {
+                        new ToastMsg(LoginActivity.this).toastIconError("Please Try Again Getting" + response.code());
                     }
                     progressBar.setVisibility(View.GONE);
 

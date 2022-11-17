@@ -13,7 +13,7 @@ public interface LoginApi {
 
     @FormUrlEncoded
     @POST("login")
-    Call<User> postLoginStatus(@Header("API-KEY") String apiKey,
+    Call<User> postLoginStatus(
                                @Field("email") String email,
                                @Field("password") String password);
 }

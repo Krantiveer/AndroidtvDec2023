@@ -1,10 +1,16 @@
 package com.ott.tv.network;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.ott.tv.Config;
+import com.ott.tv.Constants;
+import com.ott.tv.utils.PreferenceUtils;
 
 import java.io.IOException;
 
@@ -22,13 +28,18 @@ public class RetrofitClient {
     private static final String API_PASSWORD = "1234";
     private static Retrofit retrofitAuth, retrofit;
 
+
     public static Retrofit getRetrofitInstance() {
+
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient.Builder client = new OkHttpClient.Builder();
          client.addInterceptor(chain -> {
-             Request request = chain.request().newBuilder().addHeader("publisherid", Config.Publisher_id).build();
+
+
+             Request request = chain.request().newBuilder().addHeader("publisherid", Config.Publisher_id)/*.addHeader("Authorization", "Bearer " + token)*/
+                     .addHeader("API-KEY",Config.API_KEY).build();
              return chain.proceed(request);
          });
          client.addInterceptor(new BasicAuthInterceptor(API_USER_NAME,API_PASSWORD));
