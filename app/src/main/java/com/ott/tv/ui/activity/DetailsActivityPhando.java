@@ -611,6 +611,7 @@ public class DetailsActivityPhando extends FragmentActivity {
             @Override
             public void onFailure(@NonNull Call<Wishlist> call, @NonNull Throwable t) {
                 new ToastMsg(DetailsActivityPhando.this).toastIconError(getString(R.string.error_toast));
+                Log.e("DetailsActivityPhando", "onFailure: "+t );
 
             }
         });

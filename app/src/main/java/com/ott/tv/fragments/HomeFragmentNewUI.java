@@ -1,5 +1,7 @@
 package com.ott.tv.fragments;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,14 +27,18 @@ import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.source.hls.HlsMediaSource;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.upstream.BandwidthMeter;
+import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
+import com.google.android.exoplayer2.util.Util;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.ott.tv.Config;
 import com.ott.tv.Constants;
@@ -52,6 +59,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import at.huber.youtubeExtractor.VideoMeta;
+import at.huber.youtubeExtractor.YouTubeExtractor;
+import at.huber.youtubeExtractor.YtFile;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
@@ -206,9 +216,9 @@ public class HomeFragmentNewUI extends Fragment {
                 }
             });
             Uri uri = Uri.parse(url);
-            type = "mp4";
+            type = Config.VideoURLTypeHls;
             switch (type) {
-            /*case "hls":
+            case "hls":
                 mediaSource = hlsMediaSource(uri, getContext());
                 break;
             case "youtube":
@@ -217,10 +227,10 @@ public class HomeFragmentNewUI extends Fragment {
             case "youtube-live":
                 extractYoutubeUrl(url, getContext(), 133);
                 break;
-            case "rtmp":
+          /*  case "rtmp":
                 mediaSource = rtmpMediaSource(uri);
-                break;*/
-                case "mp4":
+                break;
+           */     case "mp4":
                     mediaSource = mediaSource(uri, HomeFragmentNewUI.this);
                     break;
                 default:
@@ -239,14 +249,43 @@ public class HomeFragmentNewUI extends Fragment {
 
         }
     }
+    @SuppressLint("StaticFieldLeak")
+    private void extractYoutubeUrl(String url, final Context context, final int tag) {
 
+        new YouTubeExtractor(context) {
+            @Override
+            public void onExtractionComplete(SparseArray<YtFile> ytFiles, VideoMeta vMeta) {
+                if (ytFiles != null) {
+                    String dashUrl = ytFiles.get(tag).getUrl();
+
+                    try {
+                        MediaSource source = mediaSource(Uri.parse(dashUrl), HomeFragmentNewUI.this);
+                        player.prepare(source, true, false);
+                        //player.setPlayWhenReady(false);
+                        exoPlayerView.setPlayer(player);
+                        player.setPlayWhenReady(true);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }.extract(url, true, true);
+
+    }
     private MediaSource mediaSource(Uri uri, HomeFragmentNewUI homeFragmentNewUI) {
         return new ExtractorMediaSource.Factory(
                 new DefaultHttpDataSourceFactory("exoplayer")).
                 createMediaSource(uri);
     }
 
-
+    private MediaSource hlsMediaSource(Uri uri, Context context) {
+        DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
+        DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(context,
+                Util.getUserAgent(context, "phando"), bandwidthMeter);
+        MediaSource videoSource = new HlsMediaSource.Factory(dataSourceFactory)
+                .createMediaSource(uri);
+        return videoSource;
+    }
     private void getHomeContentDataFromServer() {
         if (getActivity() != null) {
             final SpinnerFragment mSpinnerFragment = new SpinnerFragment();
