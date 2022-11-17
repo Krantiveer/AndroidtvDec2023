@@ -176,10 +176,10 @@ public class DetailsActivityPhando extends FragmentActivity {
         imgWatchList.setOnClickListener(v -> {
 
             if (isWatchLater) {
-                addToFav("1");
+                addToFav("0");
 
             } else {
-                addToFav("0");
+                addToFav("1");
             }
         });
 
@@ -378,9 +378,10 @@ public class DetailsActivityPhando extends FragmentActivity {
         } else {
             userid = " ";
         }
+        String accessToken="Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(this);
         //  PreferenceUtils.getInstance().getUsersIdActionOTT(this);
         Dashboard api = retrofit.create(Dashboard.class);
-        Call<MediaplaybackData> call = api.getSingleDetailAPI(videoId, videoType, "1");
+        Call<MediaplaybackData> call = api.getSingleDetailAPI(accessToken,videoId, videoType, "1");
         activityIndicator(true);
         call.enqueue(new Callback<MediaplaybackData>() {
             @Override
@@ -388,7 +389,7 @@ public class DetailsActivityPhando extends FragmentActivity {
                 activityIndicator(false);
                 if (response.code() == 200 && response.body() != null) {
                     singleDetails = response.body();
-                    if (singleDetails.getList().getIs_watchlist().equalsIgnoreCase("1")) {
+                    if (singleDetails.getList().getIs_wishlist().equalsIgnoreCase("1")) {
                         isWatchLater = true;
                         imgWatchList.setText("Remove to Watchlist");
 
@@ -573,8 +574,8 @@ public class DetailsActivityPhando extends FragmentActivity {
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
         Dashboard api = retrofit.create(Dashboard.class);
         String accessToken="Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(this);
-                Log.i("==>", "addToFav: "+accessToken);
-        Call<Wishlist> call = api.updateWatchList( accessToken,videoId, type, 1);
+
+        Call<Wishlist> call = api.updateWatchList( accessToken,videoId, type, Integer.valueOf(value));
         call.enqueue(new Callback<Wishlist>() {
             @Override
             public void onResponse(@NonNull Call<Wishlist> call, @NonNull Response<Wishlist> response) {

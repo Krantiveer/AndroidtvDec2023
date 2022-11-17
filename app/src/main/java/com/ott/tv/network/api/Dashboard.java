@@ -41,7 +41,7 @@ public interface Dashboard {
 
     @GET("mediaplayback")
     Call<MediaplaybackData> getSingleDetailAPI(
-
+            @Header("Authorization") String token,
             @Query("id") String id,
             @Query("type") String type,
             @Query("test") String test

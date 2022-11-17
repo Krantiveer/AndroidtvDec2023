@@ -96,7 +96,7 @@ public class HomeFragment extends RowsSupportFragment {
             LeanbackActivity activity = (LeanbackActivity) getActivity();
             activity.showLogo();
             setOnItemViewClickedListener(getDefaultItemViewClickedListener());
-            //   setOnItemViewSelectedListener(getDefaultItemSelectedListener());
+              setOnItemViewSelectedListener(getDefaultItemSelectedListener());
             if (new NetworkInst(activity).isNetworkAvailable()) {
                 //    getHomeContentDataFromServer();
                 String id = "";
@@ -522,7 +522,7 @@ public class HomeFragment extends RowsSupportFragment {
     }
 
     //listener for setting blur background each time when the item will select.
-/*    protected OnItemViewSelectedListener getDefaultItemSelectedListener() {
+    protected OnItemViewSelectedListener getDefaultItemSelectedListener() {
         return (itemViewHolder, item, rowViewHolder, row) -> {
             if (getActivity() != null) {
                 if (item instanceof VideoContent) {
@@ -538,6 +538,6 @@ public class HomeFragment extends RowsSupportFragment {
 
             }
         };
-    }*/
+    }
 
 }

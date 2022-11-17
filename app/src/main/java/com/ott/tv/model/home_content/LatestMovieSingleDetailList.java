@@ -17,10 +17,14 @@ public class LatestMovieSingleDetailList implements Parcelable{
     @SerializedName("is_watchlist")
     @Expose
     private String is_watchlist;
+    @SerializedName("is_wishlist")
+    @Expose
+    private String is_wishlist;
 
     protected LatestMovieSingleDetailList(Parcel in) {
         media_url = in.readString();
         is_watchlist = in.readString();
+        is_wishlist = in.readString();
     }
 
     public static final Creator<LatestMovieSingleDetailList> CREATOR = new Creator<LatestMovieSingleDetailList>() {
@@ -51,6 +55,14 @@ public class LatestMovieSingleDetailList implements Parcelable{
         this.is_watchlist = is_watchlist;
     }
 
+    public String getIs_wishlist() {
+        return is_wishlist;
+    }
+
+    public void setIs_wishlist(String is_wishlist) {
+        this.is_wishlist = is_wishlist;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -60,10 +72,9 @@ public class LatestMovieSingleDetailList implements Parcelable{
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(media_url);
         dest.writeString(is_watchlist);
+        dest.writeString(is_wishlist);
     }
-
-
-   /* @SerializedName("id")
+/* @SerializedName("id")
     @Expose
     private Integer id;
 
