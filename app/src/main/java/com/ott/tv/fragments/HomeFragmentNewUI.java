@@ -218,19 +218,20 @@ public class HomeFragmentNewUI extends Fragment {
             Uri uri = Uri.parse(url);
             type = Config.VideoURLTypeHls;
             switch (type) {
-            case "hls":
-                mediaSource = hlsMediaSource(uri, getContext());
-                break;
-            case "youtube":
-                extractYoutubeUrl(url, getContext(), 18);
-                break;
-            case "youtube-live":
-                extractYoutubeUrl(url, getContext(), 133);
-                break;
+                case "hls":
+                    mediaSource = hlsMediaSource(uri, getContext());
+                    break;
+                case "youtube":
+                    extractYoutubeUrl(url, getContext(), 18);
+                    break;
+                case "youtube-live":
+                    extractYoutubeUrl(url, getContext(), 133);
+                    break;
           /*  case "rtmp":
                 mediaSource = rtmpMediaSource(uri);
                 break;
-           */     case "mp4":
+           */
+                case "mp4":
                     mediaSource = mediaSource(uri, HomeFragmentNewUI.this);
                     break;
                 default:
@@ -249,6 +250,7 @@ public class HomeFragmentNewUI extends Fragment {
 
         }
     }
+
     @SuppressLint("StaticFieldLeak")
     private void extractYoutubeUrl(String url, final Context context, final int tag) {
 
@@ -272,6 +274,7 @@ public class HomeFragmentNewUI extends Fragment {
         }.extract(url, true, true);
 
     }
+
     private MediaSource mediaSource(Uri uri, HomeFragmentNewUI homeFragmentNewUI) {
         return new ExtractorMediaSource.Factory(
                 new DefaultHttpDataSourceFactory("exoplayer")).
@@ -286,6 +289,7 @@ public class HomeFragmentNewUI extends Fragment {
                 .createMediaSource(uri);
         return videoSource;
     }
+
     private void getHomeContentDataFromServer() {
         if (getActivity() != null) {
             final SpinnerFragment mSpinnerFragment = new SpinnerFragment();
@@ -304,9 +308,14 @@ public class HomeFragmentNewUI extends Fragment {
                         if (response.code() == 200 && response.body() != null) {
                             homeContent = response.body();
                             homeContent.setHomeContentId(1);
-                            Constants.IS_FROM_HOME=true;
-                            setTextViewBanner(homeContent.getSlider().getSlideArrayList().get(0));
-                            loadRows(homeContent.getFeaturesGenreAndMovie(), homeContent.getSlider().getSlideArrayList());
+                            Constants.IS_FROM_HOME = true;
+                            if (homeContent.getSlider().getSlideArrayList() != null&&homeContent.getSlider().getSlideArrayList().size()>0) {
+
+                                setTextViewBanner(homeContent.getSlider().getSlideArrayList().get(0));
+                                loadRows(homeContent.getFeaturesGenreAndMovie(), homeContent.getSlider().getSlideArrayList());
+                            } else {
+                                loadRows(homeContent.getFeaturesGenreAndMovie());
+                            }
                             ArrayList<Video> slideArrayList = homeContent.getSlider().getSlideArrayList();
 
                         } else if (response.errorBody() != null) {
@@ -340,6 +349,16 @@ public class HomeFragmentNewUI extends Fragment {
         adapter.setSendInterfacedata(description -> setTextViewBanner(description));
         adapter.setSendInterfaceClick(() -> releasePlayer());
         recyclerViewBannerTop.setAdapter(adapter);
+
+        HomeBannerSecAdapter homeBannerSecAdapter = new HomeBannerSecAdapter(homeContents, getContext());
+
+        homeBannerSecAdapter.setSendInterfacedata(description -> setTextViewBanner(description));
+        homeBannerSecAdapter.setSendInterfaceClick(() -> releasePlayer());
+
+        recyclerViewBannerBottom.setAdapter(homeBannerSecAdapter);
+    }
+
+    private void loadRows(List<FeaturesGenreAndMovie> homeContents) {
 
         HomeBannerSecAdapter homeBannerSecAdapter = new HomeBannerSecAdapter(homeContents, getContext());
 

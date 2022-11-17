@@ -1,6 +1,9 @@
 
 package com.ott.tv.model.home_content;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -20,7 +23,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 @Entity(tableName = "home_content_table")
-public class HomeContent {
+public class HomeContent implements Parcelable {
     @PrimaryKey()
     @ColumnInfo(name = "home_content_id")
     private int homeContentId;
@@ -66,6 +69,7 @@ public class HomeContent {
     @SerializedName("features_genre_and_movie")
     @Expose
     private List<FeaturesGenreAndMovie> featuresGenreAndMovie = null;
+
     private List<FeaturesGenreAndMovie> featuresGenreAndMovieSlider = null;
 
     @ColumnInfo(name = "popular_stars")
@@ -73,6 +77,23 @@ public class HomeContent {
     @SerializedName("popular_stars")
     @Expose
     private List<PopularStars> popularStarsList = null;
+
+    protected HomeContent(Parcel in) {
+        homeContentId = in.readInt();
+    }
+
+    public static final Creator<HomeContent> CREATOR = new Creator<HomeContent>() {
+        @Override
+        public HomeContent createFromParcel(Parcel in) {
+            return new HomeContent(in);
+        }
+
+        @Override
+        public HomeContent[] newArray(int size) {
+            return new HomeContent[size];
+        }
+    };
+
     public int getHomeContentId() {
         return homeContentId;
     }
@@ -94,18 +115,15 @@ public class HomeContent {
     }
 
     public void setAllCountry(List<AllCountry> allCountry) {
-      this.allCountry=null;
-     //   this.allCountry = allCountry;
+        this.allCountry = allCountry;
     }
 
     public List<AllGenre> getAllGenre() {
-
         return allGenre;
     }
 
     public void setAllGenre(List<AllGenre> allGenre) {
-       this.allGenre=null;
-       // this.allGenre = allGenre;
+        this.allGenre = allGenre;
     }
 
     public List<FeaturedTvChannel> getFeaturedTvChannel() {
@@ -113,8 +131,7 @@ public class HomeContent {
     }
 
     public void setFeaturedTvChannel(List<FeaturedTvChannel> featuredTvChannel) {
-       this.featuredTvChannel=null;
-       // this.featuredTvChannel = featuredTvChannel;
+        this.featuredTvChannel = featuredTvChannel;
     }
 
     public List<LatestMovie> getLatestMovies() {
@@ -122,8 +139,7 @@ public class HomeContent {
     }
 
     public void setLatestMovies(List<LatestMovie> latestMovies) {
-        this.latestMovies = null;
-        //this.latestMovies = latestMovies;
+        this.latestMovies = latestMovies;
     }
 
     public List<LatestTvseries> getLatestTvseries() {
@@ -131,8 +147,7 @@ public class HomeContent {
     }
 
     public void setLatestTvseries(List<LatestTvseries> latestTvseries) {
-        this.latestTvseries = null;
-      //  this.latestTvseries = latestTvseries;
+        this.latestTvseries = latestTvseries;
     }
 
     public List<FeaturesGenreAndMovie> getFeaturesGenreAndMovie() {
@@ -142,13 +157,30 @@ public class HomeContent {
     public void setFeaturesGenreAndMovie(List<FeaturesGenreAndMovie> featuresGenreAndMovie) {
         this.featuresGenreAndMovie = featuresGenreAndMovie;
     }
+
+    public List<FeaturesGenreAndMovie> getFeaturesGenreAndMovieSlider() {
+        return featuresGenreAndMovieSlider;
+    }
+
+    public void setFeaturesGenreAndMovieSlider(List<FeaturesGenreAndMovie> featuresGenreAndMovieSlider) {
+        this.featuresGenreAndMovieSlider = featuresGenreAndMovieSlider;
+    }
+
     public List<PopularStars> getPopularStarsList() {
         return popularStarsList;
     }
 
     public void setPopularStarsList(List<PopularStars> popularStarsList) {
-      this.popularStarsList=null;
-      //we are not require to call popularStarlist
-        //  this.popularStarsList = popularStarsList;
+        this.popularStarsList = popularStarsList;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(homeContentId);
     }
 }
