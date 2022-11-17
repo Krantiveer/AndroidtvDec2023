@@ -88,7 +88,7 @@ public class HomeFragmentNewUI extends Fragment {
         releasePlayer();
         //  String url = "https://action-ott-live.s3.ap-south-1.amazonaws.com/Sultan+Trailer/sultan+(1).mp4";
         if (video.getTrailer_aws_source() != null) {
-            String url = "https://phando010.s.llnwi.net/633d7daf012dd/633d7daf012dd_sec.mp4";
+            String url = video.getTrailer_aws_source();
             initVideoPlayer(url, "movie");
         } else {
             if (video.getTrailler_youtube_source() != null) {

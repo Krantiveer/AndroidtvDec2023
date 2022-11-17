@@ -116,7 +116,6 @@ public class HomeFragment extends RowsSupportFragment {
         if (getActivity() != null) {
             Retrofit retrofit = RetrofitClient.getRetrofitInstance();
             Dashboard api = retrofit.create(Dashboard.class);
-
             Constants.IS_FROM_HOME = false;
             Call<List<BrowseData>> call = api.getBrowseDataList(Config.API_KEY, type, "", "", "", 10, offset);
             call.enqueue(new Callback<List<BrowseData>>() {

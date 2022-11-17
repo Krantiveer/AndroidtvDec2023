@@ -380,7 +380,7 @@ public class DetailsActivity extends FragmentActivity {
             @Override
             public void onFailure(@NonNull Call<MovieSingleDetails> call, @NonNull Throwable t) {
                 activityIndicator(false);
-                Log.i("DetailISSUE_kranti", "onResponse: "+t);
+                Log.e("DetailISSUE_kranti", "onResponse: "+t);
                 CMHelper.setSnackBar(DetailsActivity.this.getCurrentFocus(), "We are sorry, This video content not available, Please try another"+t, 2);
             }
         });
