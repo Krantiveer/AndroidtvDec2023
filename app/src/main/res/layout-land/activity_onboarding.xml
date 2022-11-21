@@ -6,5 +6,5 @@
     android:name="com.ott.tv.fragments.TvSplashFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:keepScreenOn="true"
+    android:keepScreenOn="true"
     tools:layout="@layout/activity_splash_screen" />

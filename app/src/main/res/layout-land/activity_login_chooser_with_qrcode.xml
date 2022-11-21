@@ -104,7 +104,7 @@
                             android:layout_height="@dimen/_150sdp"
                             android:layout_marginTop="@dimen/_10sdp"
                             android:id="@+id/qrcode_demo_image"
-                            android:src="@drawable/qrcode_demo" />
+                            android:src="@drawable/qrcode_demo_image" />
 
                         <TextView
                             android:id="@+id/tv_qrCode"

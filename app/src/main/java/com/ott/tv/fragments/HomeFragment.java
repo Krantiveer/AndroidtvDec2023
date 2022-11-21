@@ -3,6 +3,7 @@ package com.ott.tv.fragments;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.leanback.app.RowsSupportFragment;
 import androidx.leanback.widget.ArrayObjectAdapter;
 import androidx.leanback.widget.HeaderItem;
@@ -344,6 +346,8 @@ public class HomeFragment extends RowsSupportFragment {
                     if (videoContent.getTrailers() != null && videoContent.getTrailers().size() > 0 && videoContent.getTrailers().get(0) != null && videoContent.getTrailers().get(0).getMedia_url() != null) {
                         intent.putExtra("trailer", videoContent.getTrailers().get(0).getMedia_url());
                     }
+
+
                     if (videoContent.getGenres() != null) {
                         String genres;
                         genres = videoContent.getGenres().get(0);
@@ -351,10 +355,7 @@ public class HomeFragment extends RowsSupportFragment {
                             genres = genres.concat("," + videoContent.getGenres().get(i));
                         }
                         intent.putExtra("genres", genres);
-
                     }
-
-
                     getContext().startActivity(intent);
                     getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
 

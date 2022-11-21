@@ -42,7 +42,7 @@ public class PreferenceUtils {
 
     public static boolean isActivePlan(Context context) {
         String status = getSubscriptionStatus(context);
-        Log.e("Status", status);
+
         if (status != null) {
             return status.equals("active");
         } else {

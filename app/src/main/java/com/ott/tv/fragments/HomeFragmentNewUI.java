@@ -309,11 +309,11 @@ public class HomeFragmentNewUI extends Fragment {
                             homeContent = response.body();
                             homeContent.setHomeContentId(1);
                             Constants.IS_FROM_HOME = true;
-                            if (homeContent.getSlider().getSlideArrayList() != null&&homeContent.getSlider().getSlideArrayList().size()>0) {
+                          /*  if (homeContent.getSlider().getSlideArrayList() != null&&homeContent.getSlider().getSlideArrayList().size()>0) {
 
                                 setTextViewBanner(homeContent.getSlider().getSlideArrayList().get(0));
                                 loadRows(homeContent.getFeaturesGenreAndMovie(), homeContent.getSlider().getSlideArrayList());
-                            } else {
+                            } else */{
                                 loadRows(homeContent.getFeaturesGenreAndMovie());
                             }
                             ArrayList<Video> slideArrayList = homeContent.getSlider().getSlideArrayList();
