@@ -97,7 +97,7 @@ public class DetailsActivityPhando extends FragmentActivity {
     private HomePageAdapter relatedAdapter;
     private RelativeLayout activity_rv;
     private ProgressBar progress_indicator;
-    String releaseDate, description, title, tvispaid, maturity_rating, ratingData, language, genres;
+    String releaseDate, description, title, tvispaid, maturity_rating, ratingData, language, genres,is_live;
     private ImageView content_rating_image, content_duration_image, releasedate_image, language_image, maturity_rating_image, genres_image;
     private TextView content_rating_text, duration_time, tvReleaseDate, language_tv, maturity_rating_tv, genres_tv;
     String type;
@@ -123,6 +123,7 @@ public class DetailsActivityPhando extends FragmentActivity {
         tvispaid = this.getIntent().getStringExtra("ispaid");
         ratingData = this.getIntent().getStringExtra("rating");
         language = this.getIntent().getStringExtra("language_str");
+        is_live = this.getIntent().getStringExtra("is_live");
         genres = this.getIntent().getStringExtra("genres");
 
         //  id = this.getIntent().getStringExtra("id");
@@ -157,11 +158,16 @@ public class DetailsActivityPhando extends FragmentActivity {
 
         tvVideoQualityType = findViewById(R.id.tvVideoQualityType);
         tvWatchNow = findViewById(R.id.tvWatchNow);
+        imgWatchList = findViewById(R.id.imgWatchList);
+        if(is_live.equalsIgnoreCase("1")){
+            tvWatchTrailer.setVisibility(GONE);
+            imgWatchList.setVisibility(GONE);
+        }
 
         rvRelated = findViewById(R.id.rv_related);
         playerView = findViewById(R.id.video_view);
         activity_rv = findViewById(R.id.activity_rv);
-        imgWatchList = findViewById(R.id.imgWatchList);
+
         imgFavList = findViewById(R.id.imgFavList);
         progress_indicator = findViewById(R.id.progress_indicator);
 

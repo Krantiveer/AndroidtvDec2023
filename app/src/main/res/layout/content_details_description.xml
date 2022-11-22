@@ -57,6 +57,7 @@
         <LinearLayout
             android:id="@+id/contnet_general_info"
             android:layout_width="wrap_content"
+            android:visibility="gone"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -194,6 +195,7 @@
             android:layout_width="350dp"
             android:layout_height="1dp"
             android:layout_marginTop="2dp"
+            android:visibility="gone"
             android:layout_marginBottom="2sp"
             android:background="@color/color_lightyellow" />
 

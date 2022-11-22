@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -11,22 +12,24 @@ import androidx.leanback.app.VerticalGridSupportFragment;
 import androidx.leanback.widget.ArrayObjectAdapter;
 import androidx.leanback.widget.OnItemViewClickedListener;
 import androidx.leanback.widget.OnItemViewSelectedListener;
-
 import androidx.leanback.widget.VerticalGridPresenter;
 
 import com.ott.tv.Config;
 import com.ott.tv.Constants;
+import com.ott.tv.R;
+import com.ott.tv.database.DatabaseHelper;
 import com.ott.tv.model.BrowseData;
 import com.ott.tv.model.Movie;
+import com.ott.tv.model.home_content.LatestMovieList;
+import com.ott.tv.model.phando.ShowWatchlist;
 import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.Dashboard;
-import com.ott.tv.network.api.MovieApi;
 import com.ott.tv.ui.activity.DetailsActivity;
-
+import com.ott.tv.ui.activity.DetailsActivityPhando;
 import com.ott.tv.ui.activity.LeanbackActivity;
 import com.ott.tv.ui.presenter.CardPresenter;
 import com.ott.tv.ui.presenter.HorizontalCardPresenter;
-
+import com.ott.tv.utils.PreferenceUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,15 +38,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.http.Query;
 
-import com.ott.tv.R;
-
-public class MoviesFragment extends VerticalGridSupportFragment {
+public class ShowWatchlistFragment extends VerticalGridSupportFragment {
 
     private static final String TAG = ItemCountryFragment.class.getSimpleName();
     private static final int NUM_COLUMNS = 4;
-    private List<Movie> movies = new ArrayList<>();
+    private List<ShowWatchlist> movies = new ArrayList<>();
     private ArrayObjectAdapter mAdapter;
     //private BackgroundHelper bgHelper;
     public static final String MOVIE = "movie";
@@ -71,12 +71,11 @@ public class MoviesFragment extends VerticalGridSupportFragment {
         }
         Log.i(TAG, "onCreate: " + datatype + id + title);
 
-        if (datatype.equalsIgnoreCase("Pay And Watch")) {
-            setTitle("Pay and Watch");
-            //  setBadgeDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ul_pay_and_watch));
-        } else {
-            setTitle("Movies");
-            // setBadgeDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ul_movies));
+        if(datatype.equalsIgnoreCase("Watchlist")){
+            //setTitle("Watchlist");
+
+        }else{
+
         }
         //bgHelper = new BackgroundHelper(getActivity());
         setOnItemViewClickedListener(getDefaultItemViewClickedListener());
@@ -86,42 +85,44 @@ public class MoviesFragment extends VerticalGridSupportFragment {
     }
 
     private void setupFragment(String datatype) {
+        //  setCustomPadding();
+        Constants.IS_FROM_HOME = false;
         VerticalGridPresenter gridPresenter = new VerticalGridPresenter();
         gridPresenter.setNumberOfColumns(NUM_COLUMNS);
         setGridPresenter(gridPresenter);
-        //   mAdapter = new ArrayObjectAdapter(cardPresenter);
+        //  mAdapter = new ArrayObjectAdapter(cardPresenter);
         mAdapter = new ArrayObjectAdapter(new HorizontalCardPresenter(datatype));
         setAdapter(mAdapter);
         String type = "movies";
         int limit = 10;
         int offset = 0;
-        fetchMovieData(id, type, limit, offset);
+        //fetchMovieData(id, type, limit, offset);
+        fetchMovieData();
+    }
+    private void setCustomPadding() {
+        if (getView() != null) {
+            getView().setPadding(920, 0, 10, -500);
+        }
     }
 
-    private void fetchMovieData(String id, String type, int limit, int offset) {
-
-       /* @Query("type") String type,
-        @Query("genre_id") String genre_id,
-        @Query("filter") String filter,
-        @Query("filter_type") String filter_type,
-        @Query("limit") int limit,
-        @Query("offset") int offset*/
+    private void fetchMovieData() {
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
         Dashboard api = retrofit.create(Dashboard.class);
-
         Constants.IS_FROM_HOME = false;
-        Call<List<BrowseData>> call = api.getBrowseDataList(Config.API_KEY, type, "", "", "", 10, offset);
-        call.enqueue(new Callback<List<BrowseData>>() {
+        String accessToken="Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(getContext());
+        Call<List<ShowWatchlist>> call = api.getShowWishListAPI(accessToken);
+        call.enqueue(new Callback<List<ShowWatchlist>>() {
             @Override
-            public void onResponse(@NonNull Call<List<BrowseData>> call, @NonNull Response<List<BrowseData>> response) {
+            public void onResponse(@NonNull Call<List<ShowWatchlist>> call, @NonNull Response<List<ShowWatchlist>> response) {
                 if (response.code() == 200) {
-                    List<BrowseData> movieList = response.body();
+                    List<ShowWatchlist> movieList = response.body();
+                    assert movieList != null;
                     if (movieList.size() <= 0) {
                         dataAvailable = false;
-                        //Toast.makeText(activity, getResources().getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity, getResources().getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
                     }
 
-                    for (BrowseData movie : movieList) {
+                    for (ShowWatchlist movie : movieList) {
                         mAdapter.add(movie);
                     }
 
@@ -132,7 +133,7 @@ public class MoviesFragment extends VerticalGridSupportFragment {
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<BrowseData>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<List<ShowWatchlist>> call, @NonNull Throwable t) {
                 Log.e("Genre Item", "code: " + t.getLocalizedMessage());
             }
         });
@@ -178,6 +179,7 @@ public class MoviesFragment extends VerticalGridSupportFragment {
     // click listener
     private OnItemViewClickedListener getDefaultItemViewClickedListener() {
         return (viewHolder, o, viewHolder2, row) -> {
+/*
 
             Movie movie = (Movie) o;
             Intent intent = new Intent(getActivity(), DetailsActivity.class);
@@ -191,7 +193,57 @@ public class MoviesFragment extends VerticalGridSupportFragment {
             intent.putExtra("video_quality", movie.getVideoQuality());
             intent.putExtra("duration", movie.getRuntime());
             intent.putExtra("ispaid", movie.getIsPaid());
-            startActivity(intent);
+*/
+
+
+            ShowWatchlist videoContent = (ShowWatchlist) o;
+
+            String status = new DatabaseHelper(getContext()).getActiveStatusData().getStatus();
+            if (videoContent.getType().equals("M")) {
+                Intent intent = new Intent(getActivity(), DetailsActivityPhando.class);
+                if (videoContent.getType() != null)
+                    intent.putExtra("type", videoContent.getType());
+                if (videoContent.getThumbnail() != null)
+                    intent.putExtra("thumbImage", videoContent.getThumbnail());
+                if (videoContent.getId() != null)
+                    intent.putExtra("video_id", videoContent.getId().toString());
+                if (videoContent.getTitle() != null)
+                    intent.putExtra("title", videoContent.getTitle());
+                if (videoContent.getDetail() != null)
+                    intent.putExtra("description", videoContent.getDetail());
+                if (videoContent.getRelease_date() != null)
+                    intent.putExtra("release", videoContent.getRelease_date());
+                if (videoContent.getDuration_str() != null)
+                    intent.putExtra("duration", videoContent.getDuration_str());
+                if (videoContent.getMaturity_rating() != null)
+                    intent.putExtra("maturity_rating", videoContent.getMaturity_rating());
+                if (videoContent.getIs_free() != null)
+                    intent.putExtra("ispaid", videoContent.getIs_free().toString());
+                if (videoContent.getLanguage_str() != null)
+                    intent.putExtra("language_str", videoContent.getLanguage_str());
+                if (videoContent.getIs_live() != null)
+                    intent.putExtra("is_live", videoContent.getIs_live());
+                if (videoContent.getRating() != null)
+                    intent.putExtra("rating", videoContent.getRating().toString());
+                if (videoContent.getTrailers() != null && videoContent.getTrailers().size() > 0 && videoContent.getTrailers().get(0) != null && videoContent.getTrailers().get(0).getMedia_url() != null) {
+                    intent.putExtra("trailer", videoContent.getTrailers().get(0).getMedia_url());
+                }
+
+
+                if (videoContent.getGenres() != null) {
+                    String genres;
+                    genres = videoContent.getGenres().get(0);
+                    for (int i = 1; i < videoContent.getGenres().size(); i++) {
+                        genres = genres.concat("," + videoContent.getGenres().get(i));
+                    }
+                    intent.putExtra("genres", genres);
+                }
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
+
+            }
+
+            //startActivity(intent);
         };
     }
 

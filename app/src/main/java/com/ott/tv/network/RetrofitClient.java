@@ -38,7 +38,9 @@ public class RetrofitClient {
          client.addInterceptor(chain -> {
 
 
-             Request request = chain.request().newBuilder().addHeader("publisherid", Config.Publisher_id)/*.addHeader("Authorization", "Bearer " + token)*/
+             Request request = chain.request().newBuilder()
+                     .addHeader("Accept", "application/json")/*.addHeader("Authorization", "Bearer " + token)*/
+                     .addHeader("publisherid", Config.Publisher_id)/*.addHeader("Authorization", "Bearer " + token)*/
                      .addHeader("API-KEY",Config.API_KEY).build();
              return chain.proceed(request);
          });

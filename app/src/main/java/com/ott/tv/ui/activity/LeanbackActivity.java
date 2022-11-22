@@ -39,6 +39,7 @@ import com.ott.tv.fragments.HomeFragmentNewUI;
 import com.ott.tv.fragments.MainFragment;
 import com.ott.tv.fragments.MoviesFragment;
 import com.ott.tv.fragments.MyAccountFragment;
+import com.ott.tv.fragments.ShowWatchlistFragment;
 import com.ott.tv.fragments.TvSeriesFragment;
 import com.ott.tv.model.BrowseData;
 import com.ott.tv.network.RetrofitClient;
@@ -109,7 +110,7 @@ public class LeanbackActivity extends FragmentActivity {
         fragments = new LinkedHashMap<>();
 
 
-        int CATEGORIES_NUMBER = 8;
+        int CATEGORIES_NUMBER = 10;
         for (int i = 0; i < CATEGORIES_NUMBER; i++) {
             if (i == 0) {
                 HomeFragmentNewUI fragment = new HomeFragmentNewUI();
@@ -172,7 +173,7 @@ public class LeanbackActivity extends FragmentActivity {
             } else if (i == 5) {
                 HomeFragment fragment = new HomeFragment();
                 Bundle bundle = new Bundle();
-                bundle.putString("type", "live");
+                bundle.putString("type", "27");
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
                 fragments.put(i, fragment);
@@ -183,20 +184,39 @@ public class LeanbackActivity extends FragmentActivity {
                 bundle.putString("type", "movie");
                 fragment.setArguments(bundle);
                 fragments.put(i, fragment);*/
-            } else if (i == 6) {/*
+            } else if (i == 6) {
+
+                Bundle bundle = new Bundle();
+                bundle.putInt("menu", i);
+                bundle.putString("type", "Watchlist");
+                ShowWatchlistFragment fragment = new ShowWatchlistFragment();
+                fragment.setArguments(bundle);
+                fragments.put(i, fragment);
+
+/*                HomeFragment fragment = new HomeFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("type", "live");
+                bundle.putInt("menu", i);
+                fragment.setArguments(bundle);
+                fragments.put(i, fragment);*/
+               /* MyAccountFragment fragment = new MyAccountFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("menu", i);
+                fragment.setArguments(bundle);
+                fragments.put(i, fragment);*/
+                /*
                 CountryMovieFragment fragment = new CountryMovieFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
                 fragments.put(i, fragment);*/
 
-            } else if (i == 7) {/*
+            } else if (i == 7) {
                 MyAccountFragment fragment = new MyAccountFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
-
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);*/
+                fragments.put(i, fragment);
 
             } else {/*
                 MyAccountFragment fragment = new MyAccountFragment();
@@ -339,6 +359,13 @@ public class LeanbackActivity extends FragmentActivity {
                     return (VerticalGridView) getVerticalGridViewMethod.invoke(fragment, (Object[]) null);
                 }
             } else if (fragment instanceof MoviesFragment) {
+
+                Class<?> baseRowFragmentClass = getClassLoader().loadClass("androidx/leanback/app/BaseSupportFragment");
+                Method getVerticalGridViewMethod = baseRowFragmentClass.getDeclaredMethod("getVerticalGridView");
+                getVerticalGridViewMethod.setAccessible(true);
+                return (VerticalGridView) getVerticalGridViewMethod.invoke(fragment, (Object[]) null);
+
+            }else if (fragment instanceof ShowWatchlistFragment) {
 
                 Class<?> baseRowFragmentClass = getClassLoader().loadClass("androidx/leanback/app/BaseSupportFragment");
                 Method getVerticalGridViewMethod = baseRowFragmentClass.getDeclaredMethod("getVerticalGridView");

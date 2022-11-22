@@ -87,9 +87,4 @@ public class ImageCardView extends BaseCardView {
     }
 
 
-
-
-
-
-
 }

@@ -30,7 +30,7 @@ android {
     productFlavors {
 
         actionott {
-            applicationId "com.actionott.tv"
+            applicationId "com.uvtv.tv"
 
         }
        /* nammestarott {

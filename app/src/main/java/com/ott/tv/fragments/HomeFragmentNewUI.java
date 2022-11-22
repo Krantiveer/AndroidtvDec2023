@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.exoplayer2.ExoPlayerFactory;
@@ -313,19 +314,25 @@ public class HomeFragmentNewUI extends Fragment {
 
                                 setTextViewBanner(homeContent.getSlider().getSlideArrayList().get(0));
                                 loadRows(homeContent.getFeaturesGenreAndMovie(), homeContent.getSlider().getSlideArrayList());
-                            } else */{
+                            } else */
+                            {
                                 loadRows(homeContent.getFeaturesGenreAndMovie());
                             }
                             ArrayList<Video> slideArrayList = homeContent.getSlider().getSlideArrayList();
 
                         } else if (response.errorBody() != null) {
-                            CMHelper.setSnackBar(requireView(), response.errorBody().toString(), 2);
+                            Toast.makeText(getContext(), response.errorBody().toString(), Toast.LENGTH_SHORT).show();
+                            /*      CMHelper.setSnackBar(, response.errorBody().toString(), 2);*/
                         } else {
-                            CMHelper.setSnackBar(requireView(), "Sorry! Something went wrong. Please try again after some time", 2);
+                            Toast.makeText(getContext(), "Sorry! Something went wrong. Please try again after some time", Toast.LENGTH_SHORT).show();
+
+                            //          CMHelper.setSnackBar(requireView(), "Sorry! Something went wrong. Please try again after some time", 2);
                         }
 
                     } else {
-                        CMHelper.setSnackBar(requireView(), "Sorry! Something went wrong. Please try again after some time", 2);
+                        Toast.makeText(getContext(), "Sorry! Something went wrong. Please try again after some time", Toast.LENGTH_SHORT).show();
+
+                        //CMHelper.setSnackBar(requireView(), "Sorry! Something went wrong. Please try again after some time", 2);
                     }
                     /*recyclerViewBannerTop.scrollToPosition(1);*/
                     fm.beginTransaction().remove(mSpinnerFragment).commitAllowingStateLoss();

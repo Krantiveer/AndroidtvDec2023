@@ -1,65 +1,42 @@
 {
   "project_info": {
-    "project_number": "543654331134",
-    "project_id": "action-ott",
-    "storage_bucket": "action-ott.appspot.com"
+    "project_number": "588309494740",
+    "project_id": "uvtv-3797b",
+    "storage_bucket": "uvtv-3797b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:543654331134:android:d6bb633109c91fddd99baf",
+        "mobilesdk_app_id": "1:588309494740:android:12140ec1fe3637fe85b441",
         "android_client_info": {
-          "package_name": "com.actionott.android"
+          "package_name": "com.uvtv.ott"
         }
       },
       "oauth_client": [
         {
-          "client_id": "543654331134-1c9ri0b6t8oirbabkivc1vtn5nvmm8me.apps.googleusercontent.com",
+          "client_id": "588309494740-nm7bc3soj6a5kt36msptef9l3g6hfk6t.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.actionott.android",
-            "certificate_hash": "c1e3e071298aa627afb8c9ea5186ba314193d8dc"
+            "package_name": "com.uvtv.ott",
+            "certificate_hash": "686c90fc0ee61a0caab7d77b5693a391b5c69a60"
           }
         },
         {
-          "client_id": "543654331134-oo05vf3rt59mbiolg5k76r9g79u21vjd.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.actionott.android",
-            "certificate_hash": "56eb24e64f8cb628816eb433ed7215dee01680cf"
-          }
-        },
-        {
-          "client_id": "543654331134-pg32r693e2hjnpa5otrl5292pc23airq.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.actionott.android",
-            "certificate_hash": "e9dbeb207afd3473ff98ec06b9d3f63af360b84e"
-          }
-        },
-        {
-          "client_id": "543654331134-180saoiflp3vame4c2m3i8b3d93rdg0n.apps.googleusercontent.com",
+          "client_id": "588309494740-9e511inea2f9uf89vr2edmbbj78l11ro.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBd6ahUI2RT6TClE6F_gjjCUv2IuWDk_i0"
+          "current_key": "AIzaSyCBtt0-cCbkgAVO7bkeMX6_BumzZk2hkF4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "543654331134-180saoiflp3vame4c2m3i8b3d93rdg0n.apps.googleusercontent.com",
+              "client_id": "588309494740-9e511inea2f9uf89vr2edmbbj78l11ro.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "543654331134-7cbm74e5dncg2ueqnv5don0jr1sjbkpg.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.action-ott"
-              }
             }
           ]
         }
@@ -67,35 +44,28 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:543654331134:android:dfed62d7c0a19964d99baf",
+        "mobilesdk_app_id": "1:588309494740:android:828be1d691710f0c85b441",
         "android_client_info": {
-          "package_name": "com.actionott.tv"
+          "package_name": "com.uvtv.tv"
         }
       },
       "oauth_client": [
         {
-          "client_id": "543654331134-180saoiflp3vame4c2m3i8b3d93rdg0n.apps.googleusercontent.com",
+          "client_id": "588309494740-9e511inea2f9uf89vr2edmbbj78l11ro.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBd6ahUI2RT6TClE6F_gjjCUv2IuWDk_i0"
+          "current_key": "AIzaSyCBtt0-cCbkgAVO7bkeMX6_BumzZk2hkF4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "543654331134-180saoiflp3vame4c2m3i8b3d93rdg0n.apps.googleusercontent.com",
+              "client_id": "588309494740-9e511inea2f9uf89vr2edmbbj78l11ro.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "543654331134-7cbm74e5dncg2ueqnv5don0jr1sjbkpg.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.action-ott"
-              }
             }
           ]
         }

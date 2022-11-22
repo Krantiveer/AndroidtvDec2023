@@ -25,7 +25,8 @@
         android:layout_gravity="start"
         android:src="@null"
         android:visibility="visible"
-        style="?attr/browseTitleIconStyle"/>
+        style="?attr/browseTitleIconStyle"
+        android:contentDescription="@string/contentDescription" />
 
     <TextView
         android:id="@+id/title_text"

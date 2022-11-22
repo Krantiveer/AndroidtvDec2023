@@ -10,6 +10,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -55,6 +56,7 @@ import com.ott.tv.ui.activity.ErrorActivity;
 import com.ott.tv.ui.activity.LeanbackActivity;
 import com.ott.tv.ui.presenter.CardPresenter;
 import com.ott.tv.utils.PaidDialog;
+import com.ott.tv.utils.ToastMsg;
 import com.ott.tv.video_service.PlaybackModel;
 import com.ott.tv.video_service.VideoPlaybackActivity;
 
@@ -119,7 +121,9 @@ public class HomeFragment extends RowsSupportFragment {
             Retrofit retrofit = RetrofitClient.getRetrofitInstance();
             Dashboard api = retrofit.create(Dashboard.class);
             Constants.IS_FROM_HOME = false;
-            Call<List<BrowseData>> call = api.getBrowseDataList(Config.API_KEY, type, "", "", "", 10, offset);
+            String accessToken="Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(getContext());
+
+            Call<List<BrowseData>> call = api.getBrowseDataList(accessToken, type, "", "", "", 10, offset);
             call.enqueue(new Callback<List<BrowseData>>() {
                 @Override
                 public void onResponse(@NonNull Call<List<BrowseData>> call, @NonNull Response<List<BrowseData>> response) {
@@ -140,19 +144,32 @@ public class HomeFragment extends RowsSupportFragment {
                     }
                     //   movies.addAll(movieList);*/
 
-                    } else if (response.errorBody() != null) {
-                        CMHelper.setSnackBar(requireView(), response.errorBody().toString(), 2);
-                    } else {
-                        CMHelper.setSnackBar(requireView(), "Sorry! Something went wrong. Please try again after some time", 2);
+                    }else if(response.code()==401){
+//write code for logout
+                        Toast.makeText(getContext(),response.message(),Toast.LENGTH_LONG).show();
                     }
+
+                    else if (response.errorBody() != null) {
+                        Toast.makeText(getContext(),"sorry! Something went wrong. Please try again after some time"+response.errorBody(),Toast.LENGTH_SHORT).show();
+
+                        //  CMHelper.setSnackBar(requireView(), response.errorBody().toString(), 2);
+                    } else {
+                        Toast.makeText(getContext(),"sorry! Something went wrong. Please try again after some time",Toast.LENGTH_SHORT).show();
+                     }
 
 
                 }
 
                 @Override
                 public void onFailure(@NonNull Call<List<BrowseData>> call, @NonNull Throwable t) {
-                    CMHelper.setSnackBar(requireView(), t.getMessage(), 2);
+                 //   CMHelper.setSnackBar(requireView(), t.getMessage(), 2);
+                    if(getContext()!=null) {
+                        Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }else{
+
+                    }
                 }
+
             });
         }
     }
@@ -341,6 +358,8 @@ public class HomeFragment extends RowsSupportFragment {
                         intent.putExtra("ispaid", videoContent.getIs_free().toString());
                     if (videoContent.getLanguage_str() != null)
                         intent.putExtra("language_str", videoContent.getLanguage_str());
+                    if (videoContent.getIs_live() != null)
+                        intent.putExtra("is_live", videoContent.getIs_live().toString());
                     if (videoContent.getRating() != null)
                         intent.putExtra("rating", videoContent.getRating().toString());
                     if (videoContent.getTrailers() != null && videoContent.getTrailers().size() > 0 && videoContent.getTrailers().get(0) != null && videoContent.getTrailers().get(0).getMedia_url() != null) {

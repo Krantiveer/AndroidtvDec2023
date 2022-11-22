@@ -1,5 +1,7 @@
 package com.ott.tv.ui.presenter;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 import static com.ott.tv.video_service.VideoPlaybackActivity.TAG;
 
 import android.annotation.SuppressLint;
@@ -16,14 +18,14 @@ import androidx.leanback.widget.Presenter;
 
 import com.bumptech.glide.Glide;
 import com.ott.tv.R;
-import com.ott.tv.model.Movie;
-import com.ott.tv.model.home_content.Video;
+
+import com.ott.tv.model.phando.ShowWatchlist;
 import com.ott.tv.ui.views.ImageCardView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 public class HorizontalCardPresenter extends Presenter {
-    private String type;
+    private final String type;
     private static Context mContext;
     private static int sSelectedBackgroundColor;
     private static int sDefaultBackgroundColor;
@@ -66,13 +68,15 @@ public class HorizontalCardPresenter extends Presenter {
     @Override
     public void onBindViewHolder(Presenter.ViewHolder viewHolder, Object item) {
 
-        Movie movie = (Movie) item;
+        ShowWatchlist movie = (ShowWatchlist) item;
       //  ((ViewHolder) viewHolder).mCardView.setMainImageDimensions(CARD_WIDTH, CARD_HEIGHT);
-        ((ViewHolder) viewHolder).updateCardViewImage(movie.getPosterUrl());
-        if(movie.getIsPaid().equalsIgnoreCase("1")){
-            ((ViewHolder) viewHolder).mCardView.getTextPrimeView().setVisibility(View.VISIBLE);
+        ((ViewHolder) viewHolder).updateCardViewImage(movie.getThumbnail());
+        Log.i(TAG, "onBindViewHolder: "+movie.getThumbnail());
+
+        if(movie.getIs_free().toString().equalsIgnoreCase("1")){
+            ((ViewHolder) viewHolder).mCardView.getTextPrimeView().setVisibility(GONE);
         }else{
-            ((ViewHolder) viewHolder).mCardView.getTextPrimeView().setVisibility(View.GONE);
+            ((ViewHolder) viewHolder).mCardView.getTextPrimeView().setVisibility(VISIBLE);
         }
         if(type.equalsIgnoreCase("Pay And Watch")){
             ((ViewHolder) viewHolder).mCardView.getTextPrimeView().setText("Pay And Watch");
@@ -80,7 +84,6 @@ public class HorizontalCardPresenter extends Presenter {
     */        //    ((ViewHolder) viewHolder).mCardView.getTextPrimeView().setBackgroundResource(R.drawable.premium_paywatchbg);
 
         }
-        Log.i(TAG, "onBindViewHolder: horizontal "+movie.getIsPaid()+movie.getVideo_view_type());
        /* if (type.equals(TvSeriesFragment.TV_SERIES)) {
             Movie movie = (Movie) item;
            // ((ViewHolder) viewHolder).mCardView.setMainImageDimensions(CARD_WIDTH, CARD_HEIGHT);

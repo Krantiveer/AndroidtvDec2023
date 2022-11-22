@@ -210,7 +210,7 @@ public class LoginChooserActivity extends Activity {
             @Override
             public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
                 progressBar.setVisibility(View.GONE);
-                new ToastMsg(getApplicationContext()).toastIconError(getString(R.string.error_toast));
+            //    new ToastMsg(getApplicationContext()).toastIconError(getString(R.string.error_toast));
             }
         });
     }

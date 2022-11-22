@@ -41,7 +41,7 @@ import retrofit2.Retrofit;
 
 public class LoginMobileActivity extends Activity {
     private EditText editMobileNumber, editVerifiedOTP;
-    private ProgressBar progressBar;
+    private ProgressBar progressBar,progress_login_resend;
     private Button send_otp, bt_verified_login, bt_resend;
     private String mob_number, country_code;
 
@@ -69,6 +69,7 @@ public class LoginMobileActivity extends Activity {
         ll_send_otp = findViewById(R.id.ll_send_otp);
         ll_verify_otp = findViewById(R.id.ll_verify_otp);
         progressBar = findViewById(R.id.progress_login);
+        progress_login_resend = findViewById(R.id.progress_login_resend);
         send_otp = findViewById(R.id.send_otp);
         bt_verified_login = findViewById(R.id.bt_verified_login);
         editMobileNumber = findViewById(R.id.editMobileNumber);
@@ -162,7 +163,10 @@ public class LoginMobileActivity extends Activity {
     public void checkMobEdittxt() {
         if (editMobileNumber.getText().toString().trim().equals("") || editMobileNumber.getText().toString().trim().equals("")) {
             CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter Mobile Number"), 2, 10000);
-        } else {
+        }else if(editMobileNumber.getText().length()<=9){
+            CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter Valid Mobile Number"), 2, 10000);
+        }
+        else {
             countryCode = countryCode.replace("+", "");
             // country_code
             mob_number = editMobileNumber.getText().toString();
@@ -221,7 +225,7 @@ public class LoginMobileActivity extends Activity {
     }
 */
     private void getVerifyOTP(String mob_number, String otp) {
-        progressBar.setVisibility(View.VISIBLE);
+        progress_login_resend.setVisibility(View.VISIBLE);
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
         SendOTPApi api = retrofit.create(SendOTPApi.class);
         Call<User> call = api.postVerifyOTP(Config.API_KEY, mob_number, otp);
@@ -255,11 +259,11 @@ public class LoginMobileActivity extends Activity {
                         finishAffinity();
                         overridePendingTransition(R.anim.enter, R.anim.exit);
 
-                        progressBar.setVisibility(View.GONE);
+                        progress_login_resend.setVisibility(View.GONE);
 
                     } else {
                         new ToastMsg(getApplicationContext()).toastIconError(response.body().getMessage());
-                        progressBar.setVisibility(View.GONE);
+                        progress_login_resend.setVisibility(View.GONE);
                     }
                 } else {
                     if (response.code() == 401) {
@@ -268,15 +272,15 @@ public class LoginMobileActivity extends Activity {
                     } else {
                         new ToastMsg(getApplicationContext()).toastIconError( response.message());
                     }
-                    progressBar.setVisibility(View.GONE);
+                    progress_login_resend.setVisibility(View.GONE);
 
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
-                progressBar.setVisibility(View.GONE);
-                new ToastMsg(getApplicationContext()).toastIconError(getString(R.string.error_toast));
+                progress_login_resend.setVisibility(View.GONE);
+                new ToastMsg(getApplicationContext()).toastIconError(getString(R.string.error_toast)+t);
             }
         });
     }
@@ -286,6 +290,7 @@ public class LoginMobileActivity extends Activity {
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
         SendOTPApi api = retrofit.create(SendOTPApi.class);
         Call<User> call = api.postSendOTP(Config.API_KEY, mob_number, country_code);
+
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
