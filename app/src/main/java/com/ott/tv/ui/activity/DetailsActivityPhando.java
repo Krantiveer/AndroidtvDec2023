@@ -159,10 +159,11 @@ public class DetailsActivityPhando extends FragmentActivity {
         tvVideoQualityType = findViewById(R.id.tvVideoQualityType);
         tvWatchNow = findViewById(R.id.tvWatchNow);
         imgWatchList = findViewById(R.id.imgWatchList);
+        if(is_live!=null){
         if(is_live.equalsIgnoreCase("1")){
             tvWatchTrailer.setVisibility(GONE);
             imgWatchList.setVisibility(GONE);
-        }
+        }}
 
         rvRelated = findViewById(R.id.rv_related);
         playerView = findViewById(R.id.video_view);
@@ -346,9 +347,12 @@ public class DetailsActivityPhando extends FragmentActivity {
             video.setVideoUrl(singleDetails.getList().getMedia_url());
             video.setCardImageUrl(poster_url);
             video.setIstrailer(false);
+
             video.setBgImageUrl(thumbUrl);
             video.setIsPaid("free");
+
             //  video.setVideo(singleDetails.getVideos().get(0));
+
             Intent intent = new Intent(this, PlayerActivityNewCode.class);
             intent.putExtra(VideoPlaybackActivity.EXTRA_VIDEO, video);
             startActivity(intent);

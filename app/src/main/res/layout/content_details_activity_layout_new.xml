@@ -6,18 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginStart="@dimen/_10sdp">
-
     <ImageView
         android:id="@+id/bg_imageview"
-        android:layout_width="match_parent"
+        android:layout_width="600dp"
         android:layout_height="match_parent"
-        android:scaleType="fitXY" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
 
+        android:scaleType="fitXY" />
     <com.google.android.exoplayer2.ui.PlayerView
         android:id="@+id/player_view_home"
-        android:layout_width="match_parent"
+        android:layout_width="600dp"
         android:layout_height="match_parent"
-        android:layout_marginEnd="-300dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:background="@color/transparent"
         android:visibility="visible"
         app:auto_show="true"
@@ -26,21 +28,27 @@
         app:show_timeout="0"
         app:use_controller="false"
         />
+
     <RelativeLayout
         android:id="@+id/bg_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_gradient">
+        >
 
         <FrameLayout
             android:id="@+id/content_details_overview_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="50dp">
+            android:background="@drawable/bg_gradient"
+
+           >
 
             <include
+
                 android:id="@+id/description_container_layout"
                 layout="@layout/details_description_overview_new" />
+
+
         </FrameLayout>
 
         <FrameLayout

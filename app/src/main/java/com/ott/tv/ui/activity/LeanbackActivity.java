@@ -1,6 +1,8 @@
 package com.ott.tv.ui.activity;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -303,7 +305,7 @@ public class LeanbackActivity extends FragmentActivity {
                 if (childId == R.id.rows_container) {
                     Log.d(TAG, "keyCode backbutton focus row" + rowsContainerFocused + focus);
 //here we are focuse in tv row  contenter only not header
-                    logoIv.setVisibility(View.INVISIBLE);
+                    logoIv.setVisibility(View.VISIBLE);
                     /*logoIvNew.setVisibility(View.VISIBLE);*/
                     if (focus == 0) {
                         if (!rowsContainerFocused) {
@@ -552,7 +554,22 @@ public class LeanbackActivity extends FragmentActivity {
             Log.d(TAG, "toggleHeadersFragment: " + rowsFragment.getView().hasFocus() + headersFragment.getView().hasFocus());
 
         } else {
-            finishAffinity();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Are you sure you want to exit?")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            finishAffinity();
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
+
 
 
         }

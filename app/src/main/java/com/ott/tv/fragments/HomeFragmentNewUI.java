@@ -110,16 +110,15 @@ public class HomeFragmentNewUI extends Fragment {
         textViewBanner.setText(video.getTitle());
         /*Glide.with(getContext()).load(video.getImageLink()).into(imageViewBGBanner);*/
         if (video.getImageLink() == null) {
-            video.setImageLink(video.getPosterUrl());
+            video.setImageLink(video.getThumbnailUrl());
         }
         if (getActivity() == null) {
             return;
         }
         Glide.with(HomeFragmentNewUI.this)
                 .load(video.getImageLink())
-                .placeholder(R.drawable.poster_placeholder_land)
-                .error(R.drawable.poster_placeholder_land)
-                .centerCrop()
+                .placeholder(R.drawable.logo)
+                .error(R.drawable.logo)
                 .into(imageViewBGBanner);
 
         if (video.getLanguage() != null) {

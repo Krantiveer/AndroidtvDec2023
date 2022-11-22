@@ -35,7 +35,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="top|start"
         android:keepScreenOn="true"
-        android:paddingRight="@dimen/_5sdp" />
+         />
 
     <FrameLayout
         android:id="@+id/rows_container"
@@ -47,10 +47,9 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="@dimen/_113sdp"
-        android:layout_height="@dimen/_60sdp"
+        android:layout_width="@dimen/_103sdp"
+        android:layout_height="@dimen/_50sdp"
         android:layout_gravity="start"
-        android:layout_marginStart="35sp"
         android:layout_marginTop="37dp"
         android:contentDescription="@string/image_description"
         android:src="@drawable/logo" />

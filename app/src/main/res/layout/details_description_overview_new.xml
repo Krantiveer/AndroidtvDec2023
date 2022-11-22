@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:paddingStart="@dimen/_30sdp"
     android:paddingEnd="@dimen/margin_gap_32"
+    android:layout_marginTop="50dp"
     android:orientation="vertical"
     android:descendantFocusability="afterDescendants"
     android:weightSum="2">
