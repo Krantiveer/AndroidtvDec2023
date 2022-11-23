@@ -174,6 +174,9 @@ public class DetailsActivityPhando extends FragmentActivity {
         imgFavList = findViewById(R.id.imgFavList);
         progress_indicator = findViewById(R.id.progress_indicator);
 
+        if(type==null){
+            type="M";
+        }
         if (type.equals("M")) {
             if (videoId != null) {
                 getData(type, videoId);

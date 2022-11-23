@@ -24,6 +24,7 @@ import com.ott.tv.R;
 import com.ott.tv.model.home_content.FeaturesGenreAndMovie;
 import com.ott.tv.model.home_content.Video;
 import com.ott.tv.ui.activity.DetailsActivity;
+import com.ott.tv.ui.activity.DetailsActivityPhando;
 import com.ott.tv.ui.activity.DetailsActivityTvSeries;
 
 import java.util.ArrayList;
@@ -193,44 +194,8 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
 
     private void detailActivity(Video video) {
         Video videoContent = video;
-       /* if(movie.getVideosId()==null){
-            movie.setVideosId(movie.getId());
-        }*/
-        if (videoContent.getActionType() != null) {
-            if (videoContent.getActionType().equalsIgnoreCase("tvseries")) {
-                Intent intent = new Intent(context, DetailsActivityTvSeries.class);
-                intent.putExtra("id", videoContent.getVideosId());
-                intent.putExtra("video_id", videoContent.getId());
-                intent.putExtra("actions_type", videoContent.getActionType());
-                intent.putExtra("type", "tvseries");
-                intent.putExtra("thumbImage", videoContent.getThumbnailUrl());
-                intent.putExtra("poster_url", videoContent.getImageLink());
-                intent.putExtra("title", videoContent.getTitle());
-                intent.putExtra("description", videoContent.getDescription());
-                intent.putExtra("release", videoContent.getRelease());
-                intent.putExtra("video_quality", videoContent.getVideoQuality());
-                intent.putExtra("duration", videoContent.getRuntime());
-                intent.putExtra("ispaid", videoContent.getIsPaid());
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
 
-            } else {
-                Intent intent = new Intent(context, DetailsActivity.class);
-                intent.putExtra("video_id", videoContent.getId());
-                intent.putExtra("type", videoContent.getActionType());
-                intent.putExtra("thumbImage", videoContent.getThumbnailUrl());
-                intent.putExtra("poster_url", videoContent.getImageLink());
-                intent.putExtra("title", videoContent.getTitle());
-                intent.putExtra("description", videoContent.getDescription());
-                intent.putExtra("release", videoContent.getRelease());
-                intent.putExtra("video_quality", videoContent.getVideoQuality());
-                intent.putExtra("duration", videoContent.getRuntime());
-                intent.putExtra("ispaid", videoContent.getIsPaid());
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-
-            }
-        } else {
+       {
             if (videoContent.getIsTvseries() != null) {
                 if (videoContent.getIsTvseries().equalsIgnoreCase("1")) {
                     Intent intent = new Intent(context, DetailsActivityTvSeries.class);
@@ -249,34 +214,81 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 } else {
-                    Intent intent = new Intent(context, DetailsActivity.class);
-                    intent.putExtra("video_id", videoContent.getVideosId());
-                    intent.putExtra("type", videoContent.getType());
-                    intent.putExtra("thumbImage", videoContent.getThumbnailUrl());
-                    intent.putExtra("poster_url", videoContent.getPosterUrl());
-                    intent.putExtra("title", videoContent.getTitle());
-                    intent.putExtra("description", videoContent.getDescription());
-                    intent.putExtra("release", videoContent.getRelease());
-                    intent.putExtra("video_quality", videoContent.getVideoQuality());
-                    intent.putExtra("duration", videoContent.getRuntime());
-                    intent.putExtra("ispaid", videoContent.getIsPaid());
+                    Intent intent = new Intent(context, DetailsActivityPhando.class);
+
+                    if (videoContent.getType() != null)
+                        intent.putExtra("type", videoContent.getType());
+                    if (videoContent.getThumbnailUrl() != null)
+                        intent.putExtra("thumbImage", videoContent.getThumbnailUrl());
+                    if (videoContent.getId() != null)
+                        intent.putExtra("video_id", videoContent.getVideosId());
+                    if (videoContent.getId() != null)
+                        intent.putExtra("id", videoContent.getId().toString());
+                     if (videoContent.getVideosId() != null)
+                        intent.putExtra("video_id", videoContent.getVideosId().toString());
+                    if (videoContent.getTitle() != null)
+                        intent.putExtra("title", videoContent.getTitle());
+                    if (videoContent.getDescription() != null)
+                        intent.putExtra("description", videoContent.getDescription());
+                    if (videoContent.getRelease() != null)
+                        intent.putExtra("release", videoContent.getRelease());
+                    if (videoContent.getRuntime() != null)
+                        intent.putExtra("duration", videoContent.getRuntime());
+                    if (videoContent.getMaturity_rating() != null)
+                        intent.putExtra("maturity_rating", videoContent.getMaturity_rating());
+                    if (videoContent.getIs_free() != null)
+                        intent.putExtra("ispaid", videoContent.getIs_free().toString());
+                    if (videoContent.getGenre() != null)
+                        intent.putExtra("language_str", videoContent.getGenre());
+                    if (videoContent.getIs_live() != null)
+                        intent.putExtra("is_live", videoContent.getIs_live().toString());
+                    if (videoContent.getRating() != null)
+                        intent.putExtra("rating", videoContent.getRating().toString());
+                    if (videoContent.getTrailer_aws_source() != null ) {
+                        intent.putExtra("trailer", videoContent.getTrailer_aws_source());
+                    }
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 }
             } else {
-                Intent intent = new Intent(context, DetailsActivity.class);
-                intent.putExtra("video_id", videoContent.getVideosId());
-                intent.putExtra("type", videoContent.getType());
-                intent.putExtra("thumbImage", videoContent.getThumbnailUrl());
-                intent.putExtra("poster_url", videoContent.getPosterUrl());
-                intent.putExtra("title", videoContent.getTitle());
-                intent.putExtra("description", videoContent.getDescription());
-                intent.putExtra("release", videoContent.getRelease());
-                intent.putExtra("video_quality", videoContent.getVideoQuality());
-                intent.putExtra("duration", videoContent.getRuntime());
-                intent.putExtra("ispaid", videoContent.getIsPaid());
+                Intent intent = new Intent(context, DetailsActivityPhando.class);
+
+                if (videoContent.getType() != null)
+                    intent.putExtra("type", videoContent.getType());
+                if (videoContent.getThumbnailUrl() != null)
+                    intent.putExtra("thumbImage", videoContent.getThumbnailUrl());
+                if (videoContent.getId() != null)
+                    intent.putExtra("video_id", videoContent.getId().toString());
+                if (videoContent.getTitle() != null)
+                    intent.putExtra("title", videoContent.getTitle());
+                if (videoContent.getDetail() != null)
+                    intent.putExtra("description", videoContent.getDetail());
+                if (videoContent.getRelease_date() != null)
+                    intent.putExtra("release", videoContent.getRelease_date());
+                if (videoContent.getRuntime() != null)
+                    intent.putExtra("duration", videoContent.getRuntime());
+                if (videoContent.getMaturity_rating() != null)
+                    intent.putExtra("maturity_rating", videoContent.getMaturity_rating());
+                if (videoContent.getIs_free() != null)
+                    intent.putExtra("ispaid", videoContent.getIs_free().toString());
+                if (videoContent.getGenre() != null)
+                    intent.putExtra("language_str", videoContent.getGenre());
+                if (videoContent.getIs_live() != null)
+                    intent.putExtra("is_live", videoContent.getIs_live().toString());
+                if (videoContent.getRating() != null)
+                    intent.putExtra("rating", videoContent.getRating().toString());
+                if (videoContent.getTrailer_aws_source() != null ) {
+                    intent.putExtra("trailer", videoContent.getTrailer_aws_source());
+                }
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
+
+
+
+
+         /*       intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);*/
+
             }
         }
 

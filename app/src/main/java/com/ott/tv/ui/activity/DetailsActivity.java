@@ -8,6 +8,7 @@ import static android.view.View.VISIBLE;
 import android.annotation.SuppressLint;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -96,7 +97,7 @@ public class DetailsActivity extends FragmentActivity {
     boolean playWhenReady = true;
     int current_Window = 0;
     long playbackPosition = 0;
-    private ShimmerTextView premiumIconImage;
+    private ImageView premiumIconImage;
 
     final private ArrayList<CustomAddsModel> customAddsModelArrayList = new ArrayList<>();
 
@@ -427,8 +428,8 @@ public class DetailsActivity extends FragmentActivity {
     @SuppressLint("SetTextI18n")
     private void setMovieData() {
         if (singleDetails.video_view_type != null && singleDetails.video_view_type.equalsIgnoreCase("Subscription Based")) {
-            if (PreferenceUtils.isActivePlan(DetailsActivity.this)) {
-                if (PreferenceUtils.isValid(DetailsActivity.this)) {
+            if (PreferenceUtils.isActivePlan(DetailsActivity.this)||true) {
+                if (PreferenceUtils.isValid(DetailsActivity.this)||true) {
                     tvWatchNow.setText("Watch Now");
                 } else {
                     tvWatchNow.setText("Please Subscribe");
