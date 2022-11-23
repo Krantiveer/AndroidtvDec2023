@@ -2,12 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:keepScreenOn="true">
+    android:keepScreenOn="true">
 
     <fragment
         android:id="@+id/musicFragment"
         android:name="com.ott.tv.music_service.MusicConsumptionExampleFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-android:keepScreenOn="true" />
+        android:keepScreenOn="true" />
 </RelativeLayout>

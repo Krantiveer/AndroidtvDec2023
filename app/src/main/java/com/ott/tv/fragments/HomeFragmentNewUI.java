@@ -71,7 +71,7 @@ import retrofit2.Retrofit;
 public class HomeFragmentNewUI extends Fragment {
     private RecyclerView recyclerViewBannerTop;
     private RecyclerView recyclerViewBannerBottom;
-    private ImageView imageViewBGBanner;
+    private ImageView imageViewBGBanner, content_premiumIconImage;
     private TextView textViewBanner;
     private TextView textViewBannerDescription;
     private TextView textViewBannerReleaseYear;
@@ -108,6 +108,13 @@ public class HomeFragmentNewUI extends Fragment {
             }
         }
         textViewBanner.setText(video.getTitle());
+        if (video.getIsPaid().equalsIgnoreCase("1")) {
+            content_premiumIconImage.setVisibility(View.INVISIBLE);
+        }else{
+            content_premiumIconImage.setVisibility(View.VISIBLE);
+
+        }
+
         /*Glide.with(getContext()).load(video.getImageLink()).into(imageViewBGBanner);*/
         if (video.getImageLink() == null) {
             video.setImageLink(video.getThumbnailUrl());
@@ -117,7 +124,7 @@ public class HomeFragmentNewUI extends Fragment {
         }
         Glide.with(HomeFragmentNewUI.this)
                 .load(video.getImageLink())
-                .placeholder(R.drawable.logo)
+
                 .error(R.drawable.logo)
                 .into(imageViewBGBanner);
 
@@ -156,6 +163,7 @@ public class HomeFragmentNewUI extends Fragment {
         textViewBannerGenre = view.findViewById(R.id.content_genre);
         textViewDuration = view.findViewById(R.id.content_duration);
         exoPlayerView = view.findViewById(R.id.player_view_home);
+        content_premiumIconImage = view.findViewById(R.id.content_premiumIconImage);
     }
 
     private void releasePlayer() {

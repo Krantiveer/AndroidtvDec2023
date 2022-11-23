@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_margin="2sp"
+                android:layout_margin="5sp"
                 android:src="@drawable/prime_icon" />
 
             <ProgressBar
@@ -75,12 +75,23 @@
 
             <TextView
                 android:id="@+id/title_name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_marginBottom="5dp"
-                android:text="kranti"
-                android:textColor="@color/white" />
+                android:layout_marginTop="2sp"
+
+                android:background="@drawable/bg_gradient_soft_new"
+                android:ellipsize="end"
+
+                android:fontFamily="@font/amazon"
+                android:maxLines="1"
+
+                android:paddingStart="4sp"
+                android:paddingEnd="4sp"
+                android:paddingBottom="5sp"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                tools:text="title movie" />
         </androidx.cardview.widget.CardView>
 
 

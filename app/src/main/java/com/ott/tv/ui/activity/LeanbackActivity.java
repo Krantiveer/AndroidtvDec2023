@@ -125,7 +125,7 @@ public class LeanbackActivity extends FragmentActivity {
                 HomeFragment fragment = new HomeFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
-                bundle.putString("type", "movies");
+                bundle.putString("type", "24");///movie
                 fragment.setArguments(bundle);
                 fragments.put(i, fragment);
 
@@ -139,7 +139,7 @@ public class LeanbackActivity extends FragmentActivity {
             } else if (i == 2) {
                 HomeFragment fragment = new HomeFragment();
                 Bundle bundle = new Bundle();
-                bundle.putString("type", "live");
+                bundle.putString("type", "15");//live
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
                 fragments.put(i, fragment);
@@ -162,7 +162,7 @@ public class LeanbackActivity extends FragmentActivity {
                 HomeFragment fragment = new HomeFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
-                bundle.putString("type", "live");
+                bundle.putString("type", "15");//live
                 fragment.setArguments(bundle);
                 fragments.put(i, fragment);
                 /*
@@ -304,16 +304,22 @@ public class LeanbackActivity extends FragmentActivity {
                 int childId = child.getId();
                 if (childId == R.id.rows_container) {
                     Log.d(TAG, "keyCode backbutton focus row" + rowsContainerFocused + focus);
+                    Log.d(TAG, "keyCode backbutton focus row" + rowsContainerFocused);
 //here we are focuse in tv row  contenter only not header
                     logoIv.setVisibility(View.VISIBLE);
                     /*logoIvNew.setVisibility(View.VISIBLE);*/
+
                     if (focus == 0) {
                         if (!rowsContainerFocused) {
                             toggleHeadersFragment(false);
                             rowsContainerFocused = true;
                         }
                         Log.d(TAG, "keyCode backbutton focus row2" + rowsContainerFocused + focus);
-                    } else {
+                    }else if(focus==0){
+
+                    }
+
+                    else {
                         if (headersFragment.getView() != null)
                             headersFragment.requireView().requestFocus();
                     }
@@ -508,7 +514,7 @@ public class LeanbackActivity extends FragmentActivity {
 
                 });
 
-                animation.setDuration(100);
+                animation.setDuration(1);
                 ((View) rowsContainer.getParent()).startAnimation(animation);
             }
         }

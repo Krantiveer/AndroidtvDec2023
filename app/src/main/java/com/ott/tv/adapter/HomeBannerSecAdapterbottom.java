@@ -37,14 +37,17 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
         this.listdata = listdata;
         this.context = context;
     }
+
     public interface SendInterfaceClickSec {
         void sendclickSec();
     }
+
     public HomeBannerSecAdapterbottom.SendInterfaceClickSec sendInterfaceClickSec;
 
     public void setSendInterfaceClick(HomeBannerSecAdapterbottom.SendInterfaceClickSec sendInterfaceClick) {
         this.sendInterfaceClickSec = sendInterfaceClick;
     }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
@@ -56,6 +59,7 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
     public interface SendInterfaceDataBottom {
         void sendDescriptionBottom(Video description);
     }
+
     public SendInterfaceDataBottom SendInterfaceDataBottom;
 
     public void setSendInterfacedata(SendInterfaceDataBottom SendInterfaceDataBottom) {
@@ -71,14 +75,15 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
             Integer percentageProgressbar;
             Integer watch_runtime;
             if (listdata.getVideos().get(position) != null) {
-                if(listdata.getVideos().get(position).getRuntime_in_minutes()!=null){
-                 total_runtime = Integer.valueOf(listdata.getVideos().get(position).getRuntime_in_minutes());}
-                else{
-                     total_runtime =0;
-                }if (listdata.getVideos().get(position).continue_watch_minutes.getLast_watched_at()!=null) {
-                     watch_runtime = Integer.parseInt(listdata.getVideos().get(position).continue_watch_minutes.getLast_watched_at()) / 60;
-                }else{
-                     watch_runtime = 100;
+                if (listdata.getVideos().get(position).getRuntime_in_minutes() != null) {
+                    total_runtime = Integer.valueOf(listdata.getVideos().get(position).getRuntime_in_minutes());
+                } else {
+                    total_runtime = 0;
+                }
+                if (listdata.getVideos().get(position).continue_watch_minutes.getLast_watched_at() != null) {
+                    watch_runtime = Integer.parseInt(listdata.getVideos().get(position).continue_watch_minutes.getLast_watched_at()) / 60;
+                } else {
+                    watch_runtime = 100;
 
                 }
 
@@ -98,7 +103,7 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
             } else {
                 holder.progressBarMovie.setVisibility(View.GONE);
             }
-        }else{
+        } else {
 
         }
         if (true) {
@@ -111,6 +116,9 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
                             .error(R.drawable.poster_placeholder_land)
                             .into(holder.main_image);
             } else*/
+            if (listdata.getVideos().get(position) != null) {
+                holder.title_name.setText(listdata.getVideos().get(position).getTitle());
+            }
             {
                 holder.primary_text.setText(listdata.getVideos().get(position).getTitle());
                 if (!TextUtils.isEmpty(listdata.getVideos().get(position).getThumbnailUrl())) {
@@ -131,7 +139,7 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
                 //   Toast.makeText(view.getContext(), "click on item: " + position, Toast.LENGTH_LONG).show();
                 detailActivity(listdata.getVideos().get(position));
 
-                if(sendInterfaceClickSec!=null){
+                if (sendInterfaceClickSec != null) {
                     sendInterfaceClickSec.sendclickSec();
                 }
             });
@@ -169,6 +177,7 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView main_image;
         public TextView primary_text;
+        public TextView title_name;
         public ProgressBar progressBarMovie;
         public RelativeLayout relativeLayout_parent;
 
@@ -176,10 +185,12 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
             super(itemView);
             this.main_image = (ImageView) itemView.findViewById(R.id.main_image);
             this.primary_text = (TextView) itemView.findViewById(R.id.primary_text);
+            this.title_name = (TextView) itemView.findViewById(R.id.title_name);
             this.progressBarMovie = (ProgressBar) itemView.findViewById(R.id.progress_bar_movie);
             relativeLayout_parent = (RelativeLayout) itemView.findViewById(R.id.relativeLayout);
         }
     }
+
     private void detailActivity(Video video) {
         Video videoContent = video;
        /* if(movie.getVideosId()==null){

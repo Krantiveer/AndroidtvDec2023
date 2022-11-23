@@ -119,8 +119,9 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
                     assert movieList != null;
                     if (movieList.size() <= 0) {
                         dataAvailable = false;
-                        Toast.makeText(activity, getResources().getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
-                    }
+                        if(getContext()!=null){
+                        Toast.makeText(getContext(), getResources().getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
+                    }}
 
                     for (ShowWatchlist movie : movieList) {
                         mAdapter.add(movie);

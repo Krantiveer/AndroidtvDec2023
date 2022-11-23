@@ -6,6 +6,7 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.ott.tv.model.phando.ShowWatchlist;
 
 import java.util.List;
 
@@ -20,11 +21,15 @@ public class LatestMovieSingleDetailList implements Parcelable{
     @SerializedName("is_wishlist")
     @Expose
     private String is_wishlist;
+    @SerializedName("related")
+    @Expose
+    private List<ShowWatchlist> related;
 
     protected LatestMovieSingleDetailList(Parcel in) {
         media_url = in.readString();
         is_watchlist = in.readString();
         is_wishlist = in.readString();
+        related = in.createTypedArrayList(ShowWatchlist.CREATOR);
     }
 
     public static final Creator<LatestMovieSingleDetailList> CREATOR = new Creator<LatestMovieSingleDetailList>() {
@@ -63,6 +68,14 @@ public class LatestMovieSingleDetailList implements Parcelable{
         this.is_wishlist = is_wishlist;
     }
 
+    public List<ShowWatchlist> getRelated() {
+        return related;
+    }
+
+    public void setRelated(List<ShowWatchlist> related) {
+        this.related = related;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -73,6 +86,7 @@ public class LatestMovieSingleDetailList implements Parcelable{
         dest.writeString(media_url);
         dest.writeString(is_watchlist);
         dest.writeString(is_wishlist);
+        dest.writeTypedList(related);
     }
 /* @SerializedName("id")
     @Expose

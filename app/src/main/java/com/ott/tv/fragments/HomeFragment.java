@@ -164,7 +164,7 @@ public class HomeFragment extends RowsSupportFragment {
                 public void onFailure(@NonNull Call<List<BrowseData>> call, @NonNull Throwable t) {
                  //   CMHelper.setSnackBar(requireView(), t.getMessage(), 2);
                     if(getContext()!=null) {
-                        Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                     }else{
 
                     }

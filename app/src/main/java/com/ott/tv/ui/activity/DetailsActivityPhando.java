@@ -21,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.FragmentActivity;
 import androidx.leanback.widget.ArrayObjectAdapter;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -37,6 +38,7 @@ import com.ott.tv.model.FavoriteModel;
 import com.ott.tv.model.Video;
 import com.ott.tv.model.phando.MediaplaybackData;
 import com.ott.tv.model.phando.PlayerActivityNewCode;
+import com.ott.tv.model.phando.ShowWatchlist;
 import com.ott.tv.model.phando.Wishlist;
 import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.Dashboard;
@@ -411,17 +413,17 @@ public class DetailsActivityPhando extends FragmentActivity {
                     //  singleDetails.setType("M");
 
 
-/*                    //----related post---------------
-                    for (int i = 0; i < singleDetails.getRelatedMovie().size(); i++) {
-                        RelatedMovie relatedMovie = singleDetails.getRelatedMovie().get(i);
+                    //----related post---------------
+                    for (int i = 0; i < singleDetails.getList().getRelated().size(); i++) {
+                        ShowWatchlist relatedMovie = singleDetails.getList().getRelated().get(i);
                         CommonModels models = new CommonModels();
                         models.setTitle(relatedMovie.getTitle());
-                        models.setImageUrl(relatedMovie.getThumbnailUrl());
-                        models.setId(relatedMovie.getVideosId());
-                        models.setVideoType("movie");
-                        models.setIsPaid(relatedMovie.getIsPaid());
-                        models.setIsPaid(relatedMovie.getIsPaid());
-                        models.setVideo_view_type(relatedMovie.getVideo_view_type());
+                        models.setImageUrl(relatedMovie.getThumbnail());
+                        models.setId(relatedMovie.getId().toString());
+                        models.setVideoType(relatedMovie.getType());
+                        models.setIsPaid(relatedMovie.getIs_free().toString());
+                     /*   models.setIsLive(relatedMovie.getIsPaid());*/
+                      /*  models.setVideo_view_type(relatedMovie.getVideo_view_type());*/
                         listRelated.add(models);
                     }
                     relatedAdapter = new HomePageAdapter(getBaseContext(), listRelated, "");
@@ -429,7 +431,6 @@ public class DetailsActivityPhando extends FragmentActivity {
                             false));
                     rvRelated.setHasFixedSize(false);
                     rvRelated.setAdapter(relatedAdapter);
-*/
                     setMovieData();
                 } else {
                     CMHelper.setSnackBar(DetailsActivityPhando.this.getCurrentFocus(), "We are sorry, This video content not available, Please try another", 2);
