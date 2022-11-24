@@ -47,7 +47,6 @@
                 android:paddingEnd="@dimen/_8sdp"
                 android:paddingBottom="@dimen/_4sdp"
                 android:text="@string/premium"
-
                 android:textColor="@color/cardTextColor"
                 android:textSize="@dimen/_9sdp"
                 android:visibility="gone"
@@ -73,6 +72,20 @@
                 android:visibility="gone"
                 tools:visibility="visible" />
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="2sp"
+                android:background="@drawable/bg_gradient_soft_new"
+                android:ellipsize="end"
+                android:paddingStart="4sp"
+                android:paddingEnd="4sp"
+                android:paddingBottom="5sp"
+                android:textColor="@color/white"
+
+                />
+
             <TextView
                 android:id="@+id/title_name"
                 android:layout_width="match_parent"
@@ -83,7 +96,7 @@
                 android:background="@drawable/bg_gradient_soft_new"
                 android:ellipsize="end"
 
-                android:fontFamily="@font/amazon"
+                android:fontFamily="@font/vag_rounded_regular"
                 android:maxLines="1"
 
                 android:paddingStart="4sp"

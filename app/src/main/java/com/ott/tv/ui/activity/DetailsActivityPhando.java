@@ -125,7 +125,7 @@ public class DetailsActivityPhando extends FragmentActivity {
         tvispaid = this.getIntent().getStringExtra("ispaid");
         ratingData = this.getIntent().getStringExtra("rating");
         language = this.getIntent().getStringExtra("language_str");
-        is_live = this.getIntent().getStringExtra("is_live");
+        is_live = this.getIntent().getStringExtra("is_live").toString();
         genres = this.getIntent().getStringExtra("genres");
 
         //  id = this.getIntent().getStringExtra("id");

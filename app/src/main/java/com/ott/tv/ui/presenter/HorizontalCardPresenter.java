@@ -29,14 +29,17 @@ public class HorizontalCardPresenter extends Presenter {
     private static Context mContext;
     private static int sSelectedBackgroundColor;
     private static int sDefaultBackgroundColor;
+
     public HorizontalCardPresenter(String type) {
         this.type = type;
     }
+
     private int itemViewType;
     private CardPresenter.OnSelectionListener onSelectionListener;
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent) {
-        Log.d("krantiveer","data"+type);
+        Log.d("krantiveer", "data" + type);
         Log.d("onCreateViewHolder", "creating viewholder");
         sDefaultBackgroundColor = parent.getResources().getColor(R.color.transparent);
         sSelectedBackgroundColor = parent.getResources().getColor(R.color.bcn_selected_color);
@@ -69,21 +72,30 @@ public class HorizontalCardPresenter extends Presenter {
     public void onBindViewHolder(Presenter.ViewHolder viewHolder, Object item) {
 
         ShowWatchlist movie = (ShowWatchlist) item;
-      //  ((ViewHolder) viewHolder).mCardView.setMainImageDimensions(CARD_WIDTH, CARD_HEIGHT);
+        //  ((ViewHolder) viewHolder).mCardView.setMainImageDimensions(CARD_WIDTH, CARD_HEIGHT);
         ((ViewHolder) viewHolder).updateCardViewImage(movie.getThumbnail());
-        Log.i(TAG, "onBindViewHolder: "+movie.getThumbnail());
+        Log.i(TAG, "onBindViewHolder: " + movie.getThumbnail());
 
-        if(movie.getIs_free().toString().equalsIgnoreCase("1")){
+        ((ViewHolder) viewHolder).mCardView.getTextPrimeView();
+        if (movie.getIs_free().toString().equalsIgnoreCase("1")) {
+            ((ViewHolder) viewHolder).mCardView.getPrimeImageView().setVisibility(GONE);
+        } else {
+            ((ViewHolder) viewHolder).mCardView.getPrimeImageView().setVisibility(VISIBLE);
+        }
+        if(movie.getTitle()!=null){
+            ((ViewHolder) viewHolder).mCardView.getTextTitle().setText(movie.getTitle());
+        }
+ /*       if (movie.getIs_free().toString().equalsIgnoreCase("1")) {
             ((ViewHolder) viewHolder).mCardView.getTextPrimeView().setVisibility(GONE);
-        }else{
+        } else {
             ((ViewHolder) viewHolder).mCardView.getTextPrimeView().setVisibility(VISIBLE);
         }
-        if(type.equalsIgnoreCase("Pay And Watch")){
+        if (type.equalsIgnoreCase("Pay And Watch")) {
             ((ViewHolder) viewHolder).mCardView.getTextPrimeView().setText("Pay And Watch");
-    /*        Note change text backgroud color
-    */        //    ((ViewHolder) viewHolder).mCardView.getTextPrimeView().setBackgroundResource(R.drawable.premium_paywatchbg);
+            *//*        Note change text backgroud color
+             *//*        //    ((ViewHolder) viewHolder).mCardView.getTextPrimeView().setBackgroundResource(R.drawable.premium_paywatchbg);
 
-        }
+        }*/
        /* if (type.equals(TvSeriesFragment.TV_SERIES)) {
             Movie movie = (Movie) item;
            // ((ViewHolder) viewHolder).mCardView.setMainImageDimensions(CARD_WIDTH, CARD_HEIGHT);

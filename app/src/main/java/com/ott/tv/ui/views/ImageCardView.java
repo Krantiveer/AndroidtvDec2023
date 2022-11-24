@@ -49,6 +49,10 @@ public class ImageCardView extends BaseCardView {
     public TextView getTextPrimeView() {
         return (TextView) findViewById(R.id.premiumIcon);
     }
+      public TextView getTextTitle() {
+        return (TextView) findViewById(R.id.title_name);
+    }
+
 
 
     //  private String imageType = APIConstants.IMAGE_TYPE_COVERPOSTER;

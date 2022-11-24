@@ -2,12 +2,8 @@ package com.ott.tv.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.ott.tv.database.homeContent.converters.LatestMovieConverter;
-import com.ott.tv.model.Subtitle;
-import com.ott.tv.model.home_content.LatestMovie;
-import com.ott.tv.model.home_content.LatestMovieList;
+import com.ott.tv.model.phando.LatestMovieList;
 
-import java.io.Serializable;
 import java.util.List;
 
 /*data class BrowseData (
@@ -21,9 +17,6 @@ import java.util.List;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import androidx.room.ColumnInfo;
-import androidx.room.TypeConverters;
 
 
 public class BrowseData implements Parcelable {

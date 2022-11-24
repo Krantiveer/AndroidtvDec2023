@@ -80,6 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_email"
         android:text="@string/active_plan"
+        android:visibility="gone"
         android:textColor="@color/white"
         android:textSize="20sp" />
 
@@ -91,12 +92,14 @@
         android:layout_marginLeft="10sp"
         android:layout_toEndOf="@+id/tv_activeplan"
         android:textColor="@color/white"
+        android:visibility="gone"
         android:textSize="20sp" />
 
     <TextView
         android:id="@+id/tv_expire"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:layout_below="@id/tv_activeplan"
         android:text="@string/expire_date"
         android:textColor="@color/white"
@@ -110,6 +113,7 @@
         android:layout_below="@id/tv_activeplan"
         android:layout_marginLeft="10sp"
         android:layout_marginBottom="@dimen/_20sdp"
+        android:visibility="gone"
         android:layout_toEndOf="@+id/tv_expire"
         android:textColor="@color/white"
         android:textSize="20sp" />

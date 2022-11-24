@@ -7,24 +7,19 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.leanback.app.VerticalGridSupportFragment;
 import androidx.leanback.widget.ArrayObjectAdapter;
 import androidx.leanback.widget.OnItemViewClickedListener;
 import androidx.leanback.widget.OnItemViewSelectedListener;
 import androidx.leanback.widget.VerticalGridPresenter;
 
-import com.ott.tv.Config;
 import com.ott.tv.Constants;
 import com.ott.tv.R;
 import com.ott.tv.database.DatabaseHelper;
-import com.ott.tv.model.BrowseData;
 import com.ott.tv.model.Movie;
-import com.ott.tv.model.home_content.LatestMovieList;
 import com.ott.tv.model.phando.ShowWatchlist;
 import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.Dashboard;
-import com.ott.tv.ui.activity.DetailsActivity;
 import com.ott.tv.ui.activity.DetailsActivityPhando;
 import com.ott.tv.ui.activity.LeanbackActivity;
 import com.ott.tv.ui.presenter.CardPresenter;
@@ -110,6 +105,7 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
         Dashboard api = retrofit.create(Dashboard.class);
         Constants.IS_FROM_HOME = false;
         String accessToken="Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(getContext());
+        Log.i(TAG, "Access Token --->"+PreferenceUtils.getInstance().getAccessTokenPref(getContext()));
         Call<List<ShowWatchlist>> call = api.getShowWishListAPI(accessToken);
         call.enqueue(new Callback<List<ShowWatchlist>>() {
             @Override

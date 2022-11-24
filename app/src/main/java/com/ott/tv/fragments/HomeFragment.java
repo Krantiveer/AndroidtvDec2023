@@ -1,19 +1,15 @@
 package com.ott.tv.fragments;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.leanback.app.RowsSupportFragment;
 import androidx.leanback.widget.ArrayObjectAdapter;
 import androidx.leanback.widget.HeaderItem;
@@ -21,9 +17,7 @@ import androidx.leanback.widget.ListRow;
 import androidx.leanback.widget.ListRowPresenter;
 import androidx.leanback.widget.OnItemViewClickedListener;
 import androidx.leanback.widget.OnItemViewSelectedListener;
-import androidx.leanback.widget.VerticalGridView;
 
-import com.ott.tv.Config;
 import com.ott.tv.Constants;
 import com.ott.tv.NetworkInst;
 import com.ott.tv.R;
@@ -31,38 +25,24 @@ import com.ott.tv.database.homeContent.HomeContentViewModel;
 import com.ott.tv.model.BrowseData;
 import com.ott.tv.model.Channel;
 import com.ott.tv.model.VideoContent;
-import com.ott.tv.model.home_content.FeaturesGenreAndMovie;
 import com.ott.tv.model.home_content.HomeContent;
-import com.ott.tv.model.home_content.LatestMovieList;
+import com.ott.tv.model.phando.LatestMovieList;
 import com.ott.tv.model.home_content.LatestTvseries;
-import com.ott.tv.model.home_content.Video;
 
 import com.ott.tv.network.api.Dashboard;
-import com.ott.tv.ui.activity.DetailsActivity;
 import com.ott.tv.ui.activity.DetailsActivityPhando;
-import com.ott.tv.ui.activity.DetailsActivityTvSeries;
-import com.ott.tv.ui.activity.PlayerActivity;
+import com.ott.tv.ui.activity.LoginChooserActivity;
 import com.ott.tv.ui.presenter.CardPresenterBanner;
 import com.ott.tv.ui.presenter.CardPresenterNewLanscape;
 import com.ott.tv.ui.presenter.SliderCardPresenter;
 import com.ott.tv.ui.presenter.TvPresenter;
-import com.ott.tv.utils.CMHelper;
 import com.ott.tv.utils.PreferenceUtils;
 import com.ott.tv.database.DatabaseHelper;
 import com.ott.tv.network.RetrofitClient;
-import com.ott.tv.network.api.HomeApi;
 import com.ott.tv.ui.BackgroundHelper;
 import com.ott.tv.ui.activity.ErrorActivity;
 import com.ott.tv.ui.activity.LeanbackActivity;
-import com.ott.tv.ui.presenter.CardPresenter;
-import com.ott.tv.utils.PaidDialog;
-import com.ott.tv.utils.ToastMsg;
-import com.ott.tv.video_service.PlaybackModel;
-import com.ott.tv.video_service.VideoPlaybackActivity;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -145,15 +125,18 @@ public class HomeFragment extends RowsSupportFragment {
                     //   movies.addAll(movieList);*/
 
                     }else if(response.code()==401){
-//write code for logout
-                        Toast.makeText(getContext(),response.message(),Toast.LENGTH_LONG).show();
+
+                        signOut();
+
                     }
 
                     else if (response.errorBody() != null) {
-                        Toast.makeText(getContext(),"sorry! Something went wrong. Please try again after some time"+response.errorBody(),Toast.LENGTH_SHORT).show();
-
+                        if(getContext()!=null) {
+                            Toast.makeText(getContext(), "sorry! Something went wrong. Please try again after some time" + response.errorBody(), Toast.LENGTH_SHORT).show();
+                        }
                         //  CMHelper.setSnackBar(requireView(), response.errorBody().toString(), 2);
                     } else {
+                        if(getContext()!=null)
                         Toast.makeText(getContext(),"sorry! Something went wrong. Please try again after some time",Toast.LENGTH_SHORT).show();
                      }
 
@@ -174,7 +157,26 @@ public class HomeFragment extends RowsSupportFragment {
         }
     }
 
-
+    private void signOut() {
+        if (getContext() != null && getActivity() != null) {
+            DatabaseHelper databaseHelper = new DatabaseHelper(getContext());
+        /*    String userId = databaseHelper.getUserData().getUserId();
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if (user != null) {
+                FirebaseAuth.getInstance().signOut();
+            }*/
+            if (PreferenceUtils.getInstance().getAccessTokenPref(getContext()) != "") {
+                SharedPreferences.Editor editor = getContext().getSharedPreferences(Constants.USER_LOGIN_STATUS, MODE_PRIVATE).edit();
+                editor.putBoolean(Constants.USER_LOGIN_STATUS, false);
+                editor.apply();
+                databaseHelper.deleteUserData();
+                PreferenceUtils.clearSubscriptionSavedData(getContext());
+                PreferenceUtils.getInstance().setAccessTokenNPref(getContext(), "");
+                startActivity(new Intent(getContext(), LoginChooserActivity.class));
+                getActivity().finish();
+            }
+        }
+    }
 /*
     private void getHomeContentDataFromServer() {
         if (getActivity() != null) {
@@ -336,7 +338,50 @@ public class HomeFragment extends RowsSupportFragment {
                 LatestMovieList videoContent = (LatestMovieList) o;
 
                 String status = new DatabaseHelper(getContext()).getActiveStatusData().getStatus();
-                if (videoContent.getType().equals("M")) {
+                if (videoContent.getType().equals("M") && videoContent.getIs_live().toString().equalsIgnoreCase("0")) {
+                    Intent intent = new Intent(getActivity(), DetailsActivityPhando.class);
+                    if (videoContent.getType() != null)
+                        intent.putExtra("type", videoContent.getType());
+                    if (videoContent.getThumbnail() != null)
+                        intent.putExtra("thumbImage", videoContent.getThumbnail());
+                    if (videoContent.getId() != null)
+                        intent.putExtra("video_id", videoContent.getId().toString());
+                    if (videoContent.getTitle() != null)
+                        intent.putExtra("title", videoContent.getTitle());
+                    if (videoContent.getDetail() != null)
+                        intent.putExtra("description", videoContent.getDetail());
+                    if (videoContent.getRelease_date() != null)
+                        intent.putExtra("release", videoContent.getRelease_date());
+                    if (videoContent.getDuration_str() != null)
+                        intent.putExtra("duration", videoContent.getDuration_str());
+                    if (videoContent.getMaturity_rating() != null)
+                        intent.putExtra("maturity_rating", videoContent.getMaturity_rating());
+                    if (videoContent.getIs_free() != null)
+                        intent.putExtra("ispaid", videoContent.getIs_free().toString());
+                    if (videoContent.getLanguage_str() != null)
+                        intent.putExtra("language_str", videoContent.getLanguage_str());
+                    if (videoContent.getIs_live() != null)
+                        intent.putExtra("is_live", videoContent.getIs_live().toString());
+                    if (videoContent.getRating() != null)
+                        intent.putExtra("rating", videoContent.getRating().toString());
+                    if (videoContent.getTrailers() != null && videoContent.getTrailers().size() > 0 && videoContent.getTrailers().get(0) != null && videoContent.getTrailers().get(0).getMedia_url() != null) {
+                        intent.putExtra("trailer", videoContent.getTrailers().get(0).getMedia_url());
+                    }
+
+//kranti
+                    if (videoContent.getGenres() != null) {
+                        String genres;
+                        genres = videoContent.getGenres().get(0);
+                        for (int i = 1; i < videoContent.getGenres().size(); i++) {
+                            genres = genres.concat("," + videoContent.getGenres().get(i));
+                        }
+                        intent.putExtra("genres", genres);
+                    }
+                    getContext().startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
+
+                }
+                if (videoContent.getType().equals("T")) {
                     Intent intent = new Intent(getActivity(), DetailsActivityPhando.class);
                     if (videoContent.getType() != null)
                         intent.putExtra("type", videoContent.getType());
@@ -367,6 +412,49 @@ public class HomeFragment extends RowsSupportFragment {
                     }
 
 
+                    if (videoContent.getGenres() != null) {
+                        String genres;
+                        genres = videoContent.getGenres().get(0);
+                        for (int i = 1; i < videoContent.getGenres().size(); i++) {
+                            genres = genres.concat("," + videoContent.getGenres().get(i));
+                        }
+                        intent.putExtra("genres", genres);
+                    }
+                    getContext().startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
+
+                }
+                if (videoContent.getType().equals("M") && videoContent.getIs_live().toString().equalsIgnoreCase("1")) {
+                    Intent intent = new Intent(getActivity(), DetailsActivityPhando.class);
+                    if (videoContent.getType() != null)
+                        intent.putExtra("type", videoContent.getType());
+                    if (videoContent.getThumbnail() != null)
+                        intent.putExtra("thumbImage", videoContent.getThumbnail());
+                    if (videoContent.getId() != null)
+                        intent.putExtra("video_id", videoContent.getId().toString());
+                    if (videoContent.getTitle() != null)
+                        intent.putExtra("title", videoContent.getTitle());
+                    if (videoContent.getDetail() != null)
+                        intent.putExtra("description", videoContent.getDetail());
+                    if (videoContent.getRelease_date() != null)
+                        intent.putExtra("release", videoContent.getRelease_date());
+                    if (videoContent.getDuration_str() != null)
+                        intent.putExtra("duration", videoContent.getDuration_str());
+                    if (videoContent.getMaturity_rating() != null)
+                        intent.putExtra("maturity_rating", videoContent.getMaturity_rating());
+                    if (videoContent.getIs_free() != null)
+                        intent.putExtra("ispaid", videoContent.getIs_free().toString());
+                    if (videoContent.getLanguage_str() != null)
+                        intent.putExtra("language_str", videoContent.getLanguage_str());
+                    if (videoContent.getIs_live() != null)
+                        intent.putExtra("is_live", videoContent.getIs_live().toString());
+                    if (videoContent.getRating() != null)
+                        intent.putExtra("rating", videoContent.getRating().toString());
+                    if (videoContent.getTrailers() != null && videoContent.getTrailers().size() > 0 && videoContent.getTrailers().get(0) != null && videoContent.getTrailers().get(0).getMedia_url() != null) {
+                        intent.putExtra("trailer", videoContent.getTrailers().get(0).getMedia_url());
+                    }
+
+//kranti
                     if (videoContent.getGenres() != null) {
                         String genres;
                         genres = videoContent.getGenres().get(0);

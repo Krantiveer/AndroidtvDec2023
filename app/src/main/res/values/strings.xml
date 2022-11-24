@@ -136,7 +136,7 @@
     <string name="user_name">User Name:</string>
     <string name="emailTv">Email:</string>
     <string name="expire_date">Expire date:</string>
-    <string name="signed_in_as">Signed in as:</string>
+    <string name="signed_in_as">Profile</string>
     <string name="connecting">Connecting…</string>
     <string name="active_plan">Active Plan:</string>
 

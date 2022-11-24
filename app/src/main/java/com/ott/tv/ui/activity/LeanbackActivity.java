@@ -139,7 +139,7 @@ public class LeanbackActivity extends FragmentActivity {
             } else if (i == 2) {
                 HomeFragment fragment = new HomeFragment();
                 Bundle bundle = new Bundle();
-                bundle.putString("type", "15");//live
+                bundle.putString("type", "22");//series
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
                 fragments.put(i, fragment);
@@ -148,7 +148,7 @@ public class LeanbackActivity extends FragmentActivity {
                 HomeFragment fragment = new HomeFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
-                fragment.setArguments(bundle);
+                fragment.setArguments(bundle);//uvtv bharat
                 fragments.put(i, fragment);
                 /*
                 FavouriteFragment fragment = new FavouriteFragment();

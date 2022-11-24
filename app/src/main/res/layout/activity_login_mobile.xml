@@ -142,7 +142,7 @@
                     android:paddingBottom="@dimen/_10sdp"
                     android:singleLine="true"
                     android:textColor="@color/white"
-                    android:textColorHint="@color/white"
+                    android:textColorHint="@color/default_text"
                     tools:ignore="RtlSymmetry" />
 
                 <Button
@@ -155,7 +155,7 @@
                     android:paddingTop="@dimen/_10sdp"
                     android:paddingBottom="@dimen/_10sdp"
                     android:text="@string/login"
-                    android:textAllCaps="true"
+                    android:textAllCaps="false"
                     android:textColor="@color/btn_txt_color"
                     android:textSize="@dimen/_14sp" />
                 <androidx.appcompat.widget.LinearLayoutCompat
@@ -242,16 +242,18 @@
                           android:hint="@string/email_address"
                           android:inputType="textEmailAddress" />-->
                 <TextView
+                    android:paddingEnd="@dimen/_17sdp"
+                    android:drawablePadding="@dimen/_30sdp"
                     android:id="@+id/mobile_code_in"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_30sdp"
                     android:background="@drawable/edit_focus"
-                    android:drawableEnd="@drawable/quantum_ic_keyboard_arrow_down_white_36"
+                    android:drawableEnd="@drawable/ic_drop_down"
                     android:focusable="true"
                     android:padding="10dp"
                     android:text="@string/_91"
-
+                    android:textColor="@color/white"
                     android:textSize="22sp" />
 
 
@@ -271,7 +273,7 @@
                     android:paddingBottom="@dimen/_10sdp"
                     android:singleLine="true"
                     android:textColor="@color/white"
-                    android:textColorHint="@color/white"
+                    android:textColorHint="@color/default_text"
 
 
                     tools:ignore="RtlSymmetry" />
@@ -317,7 +319,7 @@
                     android:paddingTop="@dimen/_10sdp"
                     android:paddingBottom="@dimen/_10sdp"
                     android:text="@string/send_otp"
-                    android:textAllCaps="true"
+                    android:textAllCaps="false"
                     android:textColor="@color/btn_txt_color"
                     android:textSize="@dimen/_14sp" />
 

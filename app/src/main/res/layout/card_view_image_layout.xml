@@ -53,12 +53,12 @@
                 tools:ignore="RelativeOverlap,SpUsage" />
 
             <ImageView
-
                 android:id="@+id/premiumIconImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_margin="5sp"
+                android:contentDescription="@string/contentDescription"
                 android:src="@drawable/prime_icon" />
 
             <ProgressBar
@@ -73,6 +73,21 @@
                 android:visibility="gone"
                 tools:visibility="visible" />
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="2sp"
+                android:contentDescription="@string/contentDescription"
+                android:background="@drawable/bg_gradient_soft_new"
+                android:ellipsize="end"
+                android:paddingStart="4sp"
+                android:paddingEnd="4sp"
+                android:paddingBottom="5sp"
+                android:textColor="@color/white"
+
+                />
+
             <TextView
                 android:id="@+id/title_name"
                 android:layout_width="match_parent"
@@ -83,7 +98,7 @@
                 android:background="@drawable/bg_gradient_soft_new"
                 android:ellipsize="end"
 
-                android:fontFamily="@font/amazon"
+                android:fontFamily="@font/vag_rounded_regular"
                 android:maxLines="1"
 
                 android:paddingStart="4sp"

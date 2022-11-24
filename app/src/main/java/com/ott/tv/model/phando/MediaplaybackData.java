@@ -5,10 +5,7 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.ott.tv.model.home_content.LatestMovieList;
 import com.ott.tv.model.home_content.LatestMovieSingleDetailList;
-
-import java.util.List;
 
 
 public class MediaplaybackData implements Parcelable{

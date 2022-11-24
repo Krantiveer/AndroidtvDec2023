@@ -65,15 +65,20 @@ public class HomeBannerAdapter extends RecyclerView.Adapter<HomeBannerAdapter.Vi
         Log.d(TAG, "onBindViewHolder: " + listdata.get(position).getTitle() + "---->" + position);
 
      {
-         {
+
                 holder.primary_text.setText(listdata.get(position).getTitle());
-                if (!TextUtils.isEmpty(listdata.get(position).getImageLink()))
+                if (!TextUtils.isEmpty(listdata.get(position).getImageLink())){
                     Glide.with(context)
                             .load(listdata.get(position).getImageLink()).
                             placeholder(R.drawable.poster_placeholder_land)
                             .error(R.drawable.poster_placeholder_land)
-                            .into(holder.main_image);
-            }
+                            .into(holder.main_image);}
+                if(listdata.get(position).getIsPaid().equalsIgnoreCase("1")){
+                    holder.premiumIconImage.setVisibility(View.GONE);
+                }else{
+                    holder.premiumIconImage.setVisibility(View.VISIBLE);
+                }
+
             holder.relativeLayout.setOnClickListener(view -> {
                 detailActivity(listdata.get(position));
                 if(sendInterfaceclick!=null){
@@ -199,15 +204,17 @@ public class HomeBannerAdapter extends RecyclerView.Adapter<HomeBannerAdapter.Vi
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView main_image;
+        public ImageView main_image,premiumIconImage;
         public TextView primary_text;
         public RelativeLayout relativeLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
             this.main_image = (ImageView) itemView.findViewById(R.id.main_image);
+            this.premiumIconImage = (ImageView) itemView.findViewById(R.id.premiumIconImage);
             this.primary_text = (TextView) itemView.findViewById(R.id.primary_text);
             relativeLayout = (RelativeLayout) itemView.findViewById(R.id.relativeLayout);
+
         }
     }
 }

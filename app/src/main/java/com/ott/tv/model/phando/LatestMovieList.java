@@ -1,13 +1,14 @@
 
-package com.ott.tv.model.home_content;
+package com.ott.tv.model.phando;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.ott.tv.model.home_content.GenreResource;
+import com.ott.tv.model.home_content.LatestMovieSingleDetailList;
 
-import java.lang.reflect.Array;
 import java.util.List;
 
 public class LatestMovieList implements Parcelable {

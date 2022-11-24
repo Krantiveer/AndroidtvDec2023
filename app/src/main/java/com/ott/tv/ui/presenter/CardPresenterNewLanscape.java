@@ -13,8 +13,7 @@ import androidx.leanback.widget.Presenter;
 
 import com.bumptech.glide.Glide;
 import com.ott.tv.R;
-import com.ott.tv.model.home_content.LatestMovieList;
-import com.ott.tv.model.home_content.Video;
+import com.ott.tv.model.phando.LatestMovieList;
 import com.ott.tv.ui.views.ImageCardView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;

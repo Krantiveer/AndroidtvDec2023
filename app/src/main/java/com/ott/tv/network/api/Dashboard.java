@@ -1,10 +1,10 @@
 package com.ott.tv.network.api;
 
-import com.ott.tv.fragments.ShowWatchlistFragment;
 import com.ott.tv.model.BrowseData;
-import com.ott.tv.model.home_content.HomeContent;
+import com.ott.tv.model.phando.LatestMoviesTVSeriesList;
 import com.ott.tv.model.phando.MediaplaybackData;
 import com.ott.tv.model.phando.ShowWatchlist;
+import com.ott.tv.model.phando.UserProfile;
 import com.ott.tv.model.phando.Wishlist;
 
 import java.util.List;
@@ -28,6 +28,12 @@ public interface Dashboard {
             @Query("filter_type") String filter_type,
             @Query("limit") int limit,
             @Query("offset") int offset
+    );
+  @GET("tvseries")
+    Call<LatestMoviesTVSeriesList> getBrowseDataList(
+            @Header("Authorization") String token,
+            @Query("id") String id
+
     );
 
     @GET("category_v1")
@@ -61,6 +67,11 @@ public interface Dashboard {
 
     @GET("showwishlist")
     Call<List<ShowWatchlist>> getShowWishListAPI(
+            @Header("Authorization") String token
+    );
+
+    @GET("userProfile")
+    Call<UserProfile> getUserProfileAPI(
             @Header("Authorization") String token
     );
 }
