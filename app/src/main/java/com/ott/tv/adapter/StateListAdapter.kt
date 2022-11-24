@@ -1,18 +1,15 @@
 package com.ott.tv.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.ott.tv.R
-import com.ott.tv.model.phando.LatestMovieList
+
 class StateListAdapter(
     private val mList: List<String>,
-    private val mClickListener: AdapterClickListener
+    private val mClickListener: ClickListener
 ) :
     RecyclerView.Adapter<StateListAdapter.ViewHolder>() {
 
@@ -37,4 +34,9 @@ class StateListAdapter(
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val title: TextView = itemView.findViewById(R.id.txtTitle)
     }
+}
+
+
+interface ClickListener {
+    fun onItemClick(data: Any)
 }

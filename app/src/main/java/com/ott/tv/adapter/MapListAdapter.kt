@@ -51,5 +51,5 @@ class MapListAdapter(
 }
 
 interface AdapterClickListener {
-    fun onItemClick(data: Any)
+    fun onItemClick(data: LatestMovieList)
 }

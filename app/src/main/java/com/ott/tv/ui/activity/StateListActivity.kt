@@ -11,12 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ott.tv.R
 import com.ott.tv.adapter.AdapterClickListener
+import com.ott.tv.adapter.ClickListener
 import com.ott.tv.adapter.StateListAdapter
-import com.ott.tv.countrycodepicker.CountryCodeActivity
 import com.ott.tv.utils.PreferenceUtils
 
 
-class StateListActivity : AppCompatActivity(), AdapterClickListener {
+class StateListActivity : AppCompatActivity(), ClickListener {
 
     lateinit var rvList: RecyclerView
     lateinit var search: EditText
