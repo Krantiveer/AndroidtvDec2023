@@ -189,7 +189,11 @@ public class DetailsActivityPhando extends FragmentActivity {
             } else {
                 getData(type, id);
             }
+        }else if(type.equals("T")){
+
+            getData(type, videoId);
         }
+
 
         imgWatchList.setOnClickListener(v -> {
 

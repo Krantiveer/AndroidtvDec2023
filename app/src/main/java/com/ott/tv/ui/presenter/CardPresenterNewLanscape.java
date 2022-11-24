@@ -68,7 +68,6 @@ public class CardPresenterNewLanscape extends Presenter {
     public void onBindViewHolder(Presenter.ViewHolder viewHolder, Object item) {
         LatestMovieList video = (LatestMovieList) item;
         //here we are adding code for thumnail or poster url
-        //    ((ViewHolder) viewHolder).updateCardViewImage(video.getThumbnailUrl());
 
         if (video.getThumbnail() != null) {
             ((ViewHolder) viewHolder).updateCardViewImage(video.getThumbnail());

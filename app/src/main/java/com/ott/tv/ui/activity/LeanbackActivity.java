@@ -16,7 +16,6 @@ import android.view.animation.Transformation;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -25,8 +24,8 @@ import androidx.leanback.widget.HorizontalGridView;
 import androidx.leanback.widget.SearchOrbView;
 import androidx.leanback.widget.VerticalGridView;
 
-import com.ott.tv.Config;
 import com.ott.tv.Constants;
+import com.ott.tv.MapFragmentUVTV;
 import com.ott.tv.NetworkInst;
 import com.ott.tv.R;
 import com.ott.tv.fragments.CountryMovieFragment;
@@ -39,28 +38,18 @@ import com.ott.tv.fragments.GenreMovieFragment;
 import com.ott.tv.fragments.HomeFragment;
 import com.ott.tv.fragments.HomeFragmentNewUI;
 import com.ott.tv.fragments.MainFragment;
+
 import com.ott.tv.fragments.MoviesFragment;
 import com.ott.tv.fragments.MyAccountFragment;
 import com.ott.tv.fragments.ShowWatchlistFragment;
 import com.ott.tv.fragments.TvSeriesFragment;
-import com.ott.tv.model.BrowseData;
-import com.ott.tv.network.RetrofitClient;
-import com.ott.tv.network.api.Dashboard;
 import com.ott.tv.ui.CustomFrameLayout;
 import com.ott.tv.ui.Utils;
-import com.ott.tv.utils.CMHelper;
 import com.ott.tv.utils.PreferenceUtils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Objects;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class LeanbackActivity extends FragmentActivity {
     private static final String TAG = "LeanbackMainActivity";
@@ -145,11 +134,18 @@ public class LeanbackActivity extends FragmentActivity {
                 fragments.put(i, fragment);
             } else if (i == 3) {
 
-                HomeFragment fragment = new HomeFragment();
+                /*HomeFragment fragment = new HomeFragment();
                 Bundle bundle = new Bundle();
+                bundle.putString("type", "22");//series
+                bundle.putInt("menu", i);
+                fragment.setArguments(bundle);
+                fragments.put(i, fragment);
+                */
+                MapFragmentUVTV fragment = new MapFragmentUVTV();
+               /* Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);//uvtv bharat
-                fragments.put(i, fragment);
+               */ fragments.put(i, fragment);
                 /*
                 FavouriteFragment fragment = new FavouriteFragment();
                 Bundle bundle = new Bundle();
@@ -422,6 +418,12 @@ public class LeanbackActivity extends FragmentActivity {
                 return (VerticalGridView) getVerticalGridViewMethod.invoke(fragment, (Object[]) null);
 
             } else if (fragment instanceof MyAccountFragment) {
+                Class<?> baseRowFragmentClass = getClassLoader().loadClass("androidx/leanback/app/BaseSupportFragment");
+                Method getVerticalGridViewMethod = baseRowFragmentClass.getDeclaredMethod("getVerticalGridView");
+                getVerticalGridViewMethod.setAccessible(true);
+                return (VerticalGridView) getVerticalGridViewMethod.invoke(fragment, (Object[]) null);
+
+            } else if (fragment instanceof MapFragmentUVTV) {
                 Class<?> baseRowFragmentClass = getClassLoader().loadClass("androidx/leanback/app/BaseSupportFragment");
                 Method getVerticalGridViewMethod = baseRowFragmentClass.getDeclaredMethod("getVerticalGridView");
                 getVerticalGridViewMethod.setAccessible(true);

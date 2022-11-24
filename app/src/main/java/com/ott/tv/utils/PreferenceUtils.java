@@ -35,6 +35,8 @@ public class PreferenceUtils {
     public static final String country_code = "country_code";
     public static final String country_name = "country_name";
     public static final String access_token = "access_token";
+    public static final String state_name = "state_name";
+
 
     public static PreferenceUtils getInstance() {
         return INSTANCE;
@@ -223,5 +225,17 @@ public class PreferenceUtils {
     public String getAccessTokenPref(Context context) {
         return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
                 .getString(access_token, "");
+    }
+
+    public void setStateNamePref(Context context, String name) {
+        SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(state_name, name);
+        editor.apply();
+    }
+
+    public String getStateNamePref(Context context) {
+        return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
+                .getString(state_name, "");
     }
 }
