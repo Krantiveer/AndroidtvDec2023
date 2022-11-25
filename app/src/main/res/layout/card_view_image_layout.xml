@@ -13,12 +13,14 @@
         android:id="@+id/main_image_container"
         android:layout_width="@dimen/android_Tv_card_size_width"
         android:layout_height="@dimen/android_Tv_card_size_height"
+        android:backgroundTint="@color/black_color"
         android:layout_margin="3dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:elevation="10dp"
+            android:backgroundTint="@color/black_color"
             app:cardCornerRadius="4dp">
 
             <ImageView

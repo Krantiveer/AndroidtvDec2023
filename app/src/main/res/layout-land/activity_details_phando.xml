@@ -293,6 +293,8 @@
                         android:textSize="18sp"
                         android:topLeftRadius="30dp"
                         android:topRightRadius="30dp"
+                        android:visibility="visible"
+                        tools:visibility="visible"
                         tools:text="Watch Now" />
 
 
@@ -310,7 +312,6 @@
                         android:gravity="center"
                         android:paddingStart="10dp"
                         android:drawablePadding="13sp"
-
                         android:paddingTop="8dp"
                         android:paddingEnd="10dp"
                         android:paddingBottom="8dp"
@@ -318,6 +319,8 @@
                         android:textColor="@color/white"
                         android:textSize="18sp"
                         android:topLeftRadius="30dp"
+                        android:visibility="gone"
+                        tools:visibility="visible"
                         android:topRightRadius="30dp"
                         tools:text="Watch Trailer" />
 
@@ -344,6 +347,7 @@
                         android:topLeftRadius="30dp"
                         android:topRightRadius="30dp"
                         tools:text="@string/add_watchlist"
+                        android:visibility="gone"
                         tools:visibility="visible" />
 
                     <androidx.appcompat.widget.AppCompatButton

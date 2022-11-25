@@ -99,9 +99,9 @@ public class DetailsActivityPhando extends FragmentActivity {
     private HomePageAdapter relatedAdapter;
     private RelativeLayout activity_rv;
     private ProgressBar progress_indicator;
-    String releaseDate, description, title, tvispaid, maturity_rating, ratingData, language, genres,is_live;
+    String releaseDate, description, title, tvispaid, maturity_rating, ratingData, language, genres, is_live;
     private ImageView content_rating_image, content_duration_image, releasedate_image, language_image, maturity_rating_image, genres_image;
-    private TextView content_rating_text, duration_time, tvReleaseDate, language_tv, maturity_rating_tv, genres_tv;
+    private TextView content_rating_text, duration_time, tvReleaseDate, language_tv, maturity_rating_tv, genres_tv, tv_related;
     String type;
 
     public DetailsActivityPhando() {
@@ -125,7 +125,11 @@ public class DetailsActivityPhando extends FragmentActivity {
         tvispaid = this.getIntent().getStringExtra("ispaid");
         ratingData = this.getIntent().getStringExtra("rating");
         language = this.getIntent().getStringExtra("language_str");
-        is_live = this.getIntent().getStringExtra("is_live").toString();
+        if(this.getIntent().getStringExtra("is_live")!=null) {
+            is_live = this.getIntent().getStringExtra("is_live").toString();
+        }else{
+            is_live="0";
+        }
         genres = this.getIntent().getStringExtra("genres");
 
         //  id = this.getIntent().getStringExtra("id");
@@ -137,6 +141,7 @@ public class DetailsActivityPhando extends FragmentActivity {
         thumbnail_image = findViewById(R.id.thumbnail_image);
         premiumIconImage = findViewById(R.id.premiumIcon);
         tvWatchTrailer = findViewById(R.id.tvWatchTrailer);
+        tv_related = findViewById(R.id.tv_related);
         contentFromPreviousScreen();
 
         if (tvispaid != null) {
@@ -161,11 +166,12 @@ public class DetailsActivityPhando extends FragmentActivity {
         tvVideoQualityType = findViewById(R.id.tvVideoQualityType);
         tvWatchNow = findViewById(R.id.tvWatchNow);
         imgWatchList = findViewById(R.id.imgWatchList);
-        if(is_live!=null){
-        if(is_live.equalsIgnoreCase("1")){
-            tvWatchTrailer.setVisibility(GONE);
-            imgWatchList.setVisibility(GONE);
-        }}
+        if (is_live != null) {
+            if (is_live.equalsIgnoreCase("1")) {
+                tvWatchTrailer.setVisibility(GONE);
+                imgWatchList.setVisibility(GONE);
+            }
+        }
 
         rvRelated = findViewById(R.id.rv_related);
         playerView = findViewById(R.id.video_view);
@@ -174,8 +180,8 @@ public class DetailsActivityPhando extends FragmentActivity {
         imgFavList = findViewById(R.id.imgFavList);
         progress_indicator = findViewById(R.id.progress_indicator);
 
-        if(type==null){
-            type="M";
+        if (type == null) {
+            type = "M";
         }
         if (type.equals("M")) {
             if (videoId != null) {
@@ -183,7 +189,11 @@ public class DetailsActivityPhando extends FragmentActivity {
             } else {
                 getData(type, id);
             }
+        }else if(type.equals("T")){
+
+            getData(type, videoId);
         }
+
 
         imgWatchList.setOnClickListener(v -> {
 
@@ -393,10 +403,10 @@ public class DetailsActivityPhando extends FragmentActivity {
         } else {
             userid = " ";
         }
-        String accessToken="Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(this);
+        String accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(this);
         //  PreferenceUtils.getInstance().getUsersIdActionOTT(this);
         Dashboard api = retrofit.create(Dashboard.class);
-        Call<MediaplaybackData> call = api.getSingleDetailAPI(accessToken,videoId, videoType, "1");
+        Call<MediaplaybackData> call = api.getSingleDetailAPI(accessToken, videoId, videoType, "1");
         activityIndicator(true);
         call.enqueue(new Callback<MediaplaybackData>() {
             @Override
@@ -404,37 +414,46 @@ public class DetailsActivityPhando extends FragmentActivity {
                 activityIndicator(false);
                 if (response.code() == 200 && response.body() != null) {
                     singleDetails = response.body();
-                    if (singleDetails.getList().getIs_wishlist().equalsIgnoreCase("1")) {
-                        isWatchLater = true;
-                        imgWatchList.setText("Remove to Watchlist");
+                    if (singleDetails.getList() != null) {
+                        if (singleDetails.getList().getIs_wishlist().equalsIgnoreCase("1")) {
+                            isWatchLater = true;
+                            imgWatchList.setText("Remove to Watchlist");
 
-                    } else {
-                        imgWatchList.setText("Add to Watchlist");
-                        isWatchLater = false;
+                        } else {
+                            imgWatchList.setText("Add to Watchlist");
+                            isWatchLater = false;
+                        }
+                        if (singleDetails.getList().getMedia_url() == null) {
+                            tvWatchNow.setVisibility(GONE);
+                        }
+                        //  if(singleDetails.getMediaCode())
+                        //  singleDetails.setType("M");
+
+                        if (singleDetails.getList().getRelated().size() > 0) {
+                            //----related post---------------
+                            for (int i = 0; i < singleDetails.getList().getRelated().size(); i++) {
+                                ShowWatchlist relatedMovie = singleDetails.getList().getRelated().get(i);
+                                CommonModels models = new CommonModels();
+                                models.setTitle(relatedMovie.getTitle());
+                                models.setImageUrl(relatedMovie.getThumbnail());
+                                models.setId(relatedMovie.getId().toString());
+                                models.setVideoType(relatedMovie.getType());
+                                models.setIsPaid(relatedMovie.getIs_free().toString());
+                                /*   models.setIsLive(relatedMovie.getIsPaid());*/
+                                /*  models.setVideo_view_type(relatedMovie.getVideo_view_type());*/
+                                listRelated.add(models);
+                            }
+                            relatedAdapter = new HomePageAdapter(getBaseContext(), listRelated, "");
+                            rvRelated.setLayoutManager(new LinearLayoutManager(getBaseContext(), LinearLayoutManager.HORIZONTAL,
+                                    false));
+                            rvRelated.setHasFixedSize(false);
+                            rvRelated.setAdapter(relatedAdapter);
+                        } else {
+                            tv_related.setVisibility(GONE);
+                            rvRelated.setVisibility(GONE);
+                        }
+                        setMovieData();
                     }
-                    //  if(singleDetails.getMediaCode())
-                    //  singleDetails.setType("M");
-
-
-                    //----related post---------------
-                    for (int i = 0; i < singleDetails.getList().getRelated().size(); i++) {
-                        ShowWatchlist relatedMovie = singleDetails.getList().getRelated().get(i);
-                        CommonModels models = new CommonModels();
-                        models.setTitle(relatedMovie.getTitle());
-                        models.setImageUrl(relatedMovie.getThumbnail());
-                        models.setId(relatedMovie.getId().toString());
-                        models.setVideoType(relatedMovie.getType());
-                        models.setIsPaid(relatedMovie.getIs_free().toString());
-                     /*   models.setIsLive(relatedMovie.getIsPaid());*/
-                      /*  models.setVideo_view_type(relatedMovie.getVideo_view_type());*/
-                        listRelated.add(models);
-                    }
-                    relatedAdapter = new HomePageAdapter(getBaseContext(), listRelated, "");
-                    rvRelated.setLayoutManager(new LinearLayoutManager(getBaseContext(), LinearLayoutManager.HORIZONTAL,
-                            false));
-                    rvRelated.setHasFixedSize(false);
-                    rvRelated.setAdapter(relatedAdapter);
-                    setMovieData();
                 } else {
                     CMHelper.setSnackBar(DetailsActivityPhando.this.getCurrentFocus(), "We are sorry, This video content not available, Please try another", 2);
 
@@ -587,9 +606,9 @@ public class DetailsActivityPhando extends FragmentActivity {
     private void addToFav(String value) {
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
         Dashboard api = retrofit.create(Dashboard.class);
-        String accessToken="Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(this);
+        String accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(this);
 
-        Call<Wishlist> call = api.updateWatchList( accessToken,videoId, type, Integer.valueOf(value));
+        Call<Wishlist> call = api.updateWatchList(accessToken, videoId, type, Integer.valueOf(value));
         call.enqueue(new Callback<Wishlist>() {
             @Override
             public void onResponse(@NonNull Call<Wishlist> call, @NonNull Response<Wishlist> response) {
@@ -625,7 +644,7 @@ public class DetailsActivityPhando extends FragmentActivity {
             @Override
             public void onFailure(@NonNull Call<Wishlist> call, @NonNull Throwable t) {
                 new ToastMsg(DetailsActivityPhando.this).toastIconError(getString(R.string.error_toast));
-                Log.e("DetailsActivityPhando", "onFailure: "+t );
+                Log.e("DetailsActivityPhando", "onFailure: " + t);
 
             }
         });

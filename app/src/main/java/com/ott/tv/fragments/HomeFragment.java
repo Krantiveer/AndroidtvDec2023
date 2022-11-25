@@ -136,9 +136,9 @@ public class HomeFragment extends RowsSupportFragment {
                         }
                         //  CMHelper.setSnackBar(requireView(), response.errorBody().toString(), 2);
                     } else {
-                        if(getContext()!=null)
+                        if(getContext()!=null){
                         Toast.makeText(getContext(),"sorry! Something went wrong. Please try again after some time",Toast.LENGTH_SHORT).show();
-                     }
+                     }}
 
 
                 }
@@ -370,13 +370,14 @@ public class HomeFragment extends RowsSupportFragment {
 
 //kranti
                     if (videoContent.getGenres() != null) {
+                    if (videoContent.getGenres().size()>0) {
                         String genres;
                         genres = videoContent.getGenres().get(0);
                         for (int i = 1; i < videoContent.getGenres().size(); i++) {
                             genres = genres.concat("," + videoContent.getGenres().get(i));
                         }
                         intent.putExtra("genres", genres);
-                    }
+                    }}
                     getContext().startActivity(intent);
                     getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
 

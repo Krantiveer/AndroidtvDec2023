@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,7 +68,6 @@ public class CardPresenterNewLanscape extends Presenter {
     public void onBindViewHolder(Presenter.ViewHolder viewHolder, Object item) {
         LatestMovieList video = (LatestMovieList) item;
         //here we are adding code for thumnail or poster url
-        //    ((ViewHolder) viewHolder).updateCardViewImage(video.getThumbnailUrl());
 
         if (video.getThumbnail() != null) {
             ((ViewHolder) viewHolder).updateCardViewImage(video.getThumbnail());
@@ -75,6 +75,9 @@ public class CardPresenterNewLanscape extends Presenter {
         } else {
             ((ViewHolder) viewHolder).updateCardViewImage(video.getPoster());
 
+        }
+        if (video.getTitle() != null) {
+            ((ViewHolder) viewHolder).mCardView.getTextTitle().setText(video.getTitle());
         }
 
         if (video.getIs_free() != null) {

@@ -446,7 +446,7 @@ public class VideoDetailsFragment extends DetailsSupportFragment implements Pale
                             }
                             HeaderItem header = new HeaderItem(i, subcategories[0]);
                             mAdapter.add(new ListRow(header, rowAdapter));
-                        } else {
+                        } else {}/*{
                             // set season content
                             Season season = seasons.get(i);
                             ArrayObjectAdapter rowAdapter = new ArrayObjectAdapter(new EpisodPresenter());
@@ -461,7 +461,7 @@ public class VideoDetailsFragment extends DetailsSupportFragment implements Pale
                             HeaderItem header = new HeaderItem(i, "Season: " + season.getSeasonsName());
                             mAdapter.add(new ListRow(header, rowAdapter));
 
-                        }
+                        }*/
 
                     }
 
