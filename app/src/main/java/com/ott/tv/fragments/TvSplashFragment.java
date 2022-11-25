@@ -30,7 +30,7 @@ public class TvSplashFragment extends Fragment {
 
     private static final String TAG = "TvSplashScreen";
     public static boolean COMPLETED_SPLASH = false;
-    private static final long SPLASH_DURATION_MS = 2000;
+    private static final long SPLASH_DURATION_MS = 3000;
 
     final String AMAZON_FEATURE_FIRE_TV = "amazon.hardware.fire_tv";
 
@@ -46,7 +46,7 @@ public class TvSplashFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_splash_screen, container, false);
         ImageView splashImgView = view.findViewById(R.id.splash_img_view);
-        Glide.with(this).load(R.drawable.logo_land_anim).into(splashImgView);
+        Glide.with(this).load(R.drawable.logo_splash).into(splashImgView);
         if (getContext() != null && getContext().getPackageManager().hasSystemFeature(AMAZON_FEATURE_FIRE_TV)) {
             Log.v(TAG, "Yes, this is a Fire TV device.");
         } else {

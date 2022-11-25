@@ -25,6 +25,7 @@ import androidx.leanback.widget.HorizontalGridView;
 import androidx.leanback.widget.SearchOrbView;
 import androidx.leanback.widget.VerticalGridView;
 
+import com.ott.tv.BuildConfig;
 import com.ott.tv.Config;
 import com.ott.tv.Constants;
 import com.ott.tv.NetworkInst;
@@ -144,13 +145,16 @@ public class LeanbackActivity extends FragmentActivity {
                 fragment.setArguments(bundle);
                 fragments.put(i, fragment);
             } else if (i == 3) {
+                if(BuildConfig.FLAVOR.equalsIgnoreCase("solidtv"))
+                {
 
-                HomeFragment fragment = new HomeFragment();
-                Bundle bundle = new Bundle();
-                bundle.putInt("menu", i);
-                fragment.setArguments(bundle);//uvtv bharat
-                fragments.put(i, fragment);
-                /*
+                }else {
+                    HomeFragment fragment = new HomeFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("menu", i);
+                    fragment.setArguments(bundle);//uvtv bharat
+                    fragments.put(i, fragment);
+                }/*
                 FavouriteFragment fragment = new FavouriteFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);

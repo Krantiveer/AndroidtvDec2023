@@ -29,6 +29,7 @@ import androidx.leanback.widget.Row;
 import androidx.leanback.widget.RowHeaderPresenter;
 import androidx.leanback.widget.VerticalGridView;
 
+import com.ott.tv.BuildConfig;
 import com.ott.tv.R;
 import com.ott.tv.ui.IconHeaderItem;
 import com.ott.tv.ui.Utils;
@@ -108,15 +109,29 @@ public class CustomHeadersFragment extends HeadersSupportFragment {
 
 
     private void setHeaderAdapter() {
-        String[] headerItem = new String[]{"Home", "Movie", "Series", "UVTV Bharat", "Live Channels", "Coming Soon", "Watchlist", "Profile"};
+        String[] headerItem;
+        int[] headerIcon;
+        if (BuildConfig.FLAVOR.equalsIgnoreCase("solidtv")) {
+            headerItem = new String[]{"Home", "Movie", "Series", "Live Channels", "Coming Soon", "Watchlist", "Profile"};
 
-        int[] headerIcon = new int[]{R.drawable.homeslidernavnew, R.drawable.moviessidenav,
-                R.drawable.seriessidenav,
-                R.drawable.watch_later,
-                R.drawable.live_sidenav,
-                R.drawable.commingsoon_sidenav,
-                R.drawable.ic_baseline_flag_24,
-                R.drawable.ic_baseline_exit_to_app_24};
+            headerIcon = new int[]{R.drawable.homeslidernavnew, R.drawable.moviessidenav,
+                    R.drawable.seriessidenav,
+
+                    R.drawable.live_sidenav,
+                    R.drawable.commingsoon_sidenav,
+                    R.drawable.ic_baseline_flag_24,
+                    R.drawable.ic_baseline_exit_to_app_24};
+        } else {
+            headerItem = new String[]{"Home", "Movie", "Series", "UVTV Bharat", "Live Channels", "Coming Soon", "Watchlist", "Profile"};
+            headerIcon = new int[]{R.drawable.homeslidernavnew, R.drawable.moviessidenav,
+                    R.drawable.seriessidenav,
+                    R.drawable.watch_later,
+                    R.drawable.live_sidenav,
+                    R.drawable.commingsoon_sidenav,
+                    R.drawable.ic_baseline_flag_24,
+                    R.drawable.ic_baseline_exit_to_app_24};
+        }
+
 
         ArrayObjectAdapter adapter = new ArrayObjectAdapter();
         if (getActivity() != null) {

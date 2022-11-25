@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:id="@+id/splash_screen_ll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:keepScreenOn="true"
     android:background="@color/colorPrimary"
-    android:id="@+id/splash_screen_ll"
-    android:gravity="center">
+    android:gravity="center"
+    android:keepScreenOn="true"
+    android:orientation="vertical">
 
     <ImageView
+        android:id="@+id/splash_img_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/splash_img_view"
-        android:src="@drawable/logo_land_anim"
         android:layout_gravity="center"
-        android:contentDescription="TODO" />
+        android:contentDescription="TODO"
+        android:src="@drawable/logo_splash" />
 </LinearLayout>

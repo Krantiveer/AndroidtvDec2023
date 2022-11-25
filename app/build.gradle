@@ -21,7 +21,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles file("proguard-android.txt"), 'proguard-rules.pro'
-            }
+        }
         debug {
             minifyEnabled false
             proguardFiles file("proguard-android.txt"), 'proguard-rules.pro'
@@ -33,9 +33,13 @@ android {
             applicationId "com.uvtv.tv"
 
         }
-       /* nammestarott {
-            applicationId "com.nammestar.android"
-        }*/
+        solidtv {
+            applicationId "com.solidtv.tv"
+        }
+
+        /* nammestarott {
+             applicationId "com.nammestar.android"
+         }*/
 
     }
 
