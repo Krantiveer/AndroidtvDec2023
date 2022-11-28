@@ -108,13 +108,14 @@ public class HomeFragmentNewUI extends Fragment {
             }
         }
         textViewBanner.setText(video.getTitle());
-        if (video.getIsPaid().equalsIgnoreCase("1")) {
-            content_premiumIconImage.setVisibility(View.INVISIBLE);
-        }else{
-            content_premiumIconImage.setVisibility(View.VISIBLE);
+        if(video.getIsPaid()!=null) {
+            if (video.getIsPaid().equalsIgnoreCase("1")) {
+                content_premiumIconImage.setVisibility(View.INVISIBLE);
+            } else {
+                content_premiumIconImage.setVisibility(View.VISIBLE);
 
+            }
         }
-
         /*Glide.with(getContext()).load(video.getImageLink()).into(imageViewBGBanner);*/
         if (video.getImageLink() == null) {
             video.setImageLink(video.getThumbnailUrl());
@@ -322,7 +323,11 @@ public class HomeFragmentNewUI extends Fragment {
                                 setTextViewBanner(homeContent.getSlider().getSlideArrayList().get(0));
                                 loadRows(homeContent.getFeaturesGenreAndMovie(), homeContent.getSlider().getSlideArrayList());
                             } else */
+                            if(homeContent.getFeaturesGenreAndMovie()!=null)
                             {
+
+                                setTextViewBanner(homeContent.getFeaturesGenreAndMovie().get(0).getVideos().get(0));
+
                                 loadRows(homeContent.getFeaturesGenreAndMovie());
                             }
                             ArrayList<Video> slideArrayList = homeContent.getSlider().getSlideArrayList();
