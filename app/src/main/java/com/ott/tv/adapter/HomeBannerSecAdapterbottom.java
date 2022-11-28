@@ -72,12 +72,12 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
     public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         if (listdata.getName().equalsIgnoreCase("Continue watching")) {
             holder.progressBarMovie.setVisibility(View.VISIBLE);
-            Integer total_runtime;
-            Integer percentageProgressbar;
-            Integer watch_runtime;
+            int total_runtime;
+            int percentageProgressbar;
+            int watch_runtime;
             if (listdata.getVideos().get(position) != null) {
                 if (listdata.getVideos().get(position).getRuntime_in_minutes() != null) {
-                    total_runtime = Integer.valueOf(listdata.getVideos().get(position).getRuntime_in_minutes());
+                    total_runtime = Integer.parseInt(listdata.getVideos().get(position).getRuntime_in_minutes());
                 } else {
                     total_runtime = 0;
                 }
@@ -120,6 +120,12 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
             if (listdata.getVideos().get(position) != null) {
                 holder.title_name.setText(listdata.getVideos().get(position).getTitle());
             }
+            if (listdata.getVideos().get(position).getIsPaid().equalsIgnoreCase("1")) {
+                holder.premiumIconImage.setVisibility(View.GONE);
+            } else {
+                holder.premiumIconImage.setVisibility(View.VISIBLE);
+            }
+
             {
                 holder.primary_text.setText(listdata.getVideos().get(position).getTitle());
                 if (!TextUtils.isEmpty(listdata.getVideos().get(position).getThumbnailUrl())) {
@@ -176,7 +182,7 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView main_image;
+        public ImageView main_image, premiumIconImage;
         public TextView primary_text;
         public TextView title_name;
         public ProgressBar progressBarMovie;
@@ -185,6 +191,7 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
         public ViewHolder(View itemView) {
             super(itemView);
             this.main_image = (ImageView) itemView.findViewById(R.id.main_image);
+            this.premiumIconImage = (ImageView) itemView.findViewById(R.id.premiumIconImage);
             this.primary_text = (TextView) itemView.findViewById(R.id.primary_text);
             this.title_name = (TextView) itemView.findViewById(R.id.title_name);
             this.progressBarMovie = (ProgressBar) itemView.findViewById(R.id.progress_bar_movie);
@@ -195,7 +202,7 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
     private void detailActivity(Video video) {
         Video videoContent = video;
 
-       {
+        {
             if (videoContent.getIsTvseries() != null) {
                 if (videoContent.getIsTvseries().equalsIgnoreCase("1")) {
                     Intent intent = new Intent(context, DetailsActivityTvSeries.class);
@@ -224,7 +231,7 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
                         intent.putExtra("video_id", videoContent.getVideosId());
                     if (videoContent.getId() != null)
                         intent.putExtra("id", videoContent.getId().toString());
-                     if (videoContent.getVideosId() != null)
+                    if (videoContent.getVideosId() != null)
                         intent.putExtra("video_id", videoContent.getVideosId().toString());
                     if (videoContent.getTitle() != null)
                         intent.putExtra("title", videoContent.getTitle());
@@ -244,7 +251,7 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
                         intent.putExtra("is_live", videoContent.getIs_live().toString());
                     if (videoContent.getRating() != null)
                         intent.putExtra("rating", videoContent.getRating().toString());
-                    if (videoContent.getTrailer_aws_source() != null ) {
+                    if (videoContent.getTrailer_aws_source() != null) {
                         intent.putExtra("trailer", videoContent.getTrailer_aws_source());
                     }
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -277,7 +284,7 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
                     intent.putExtra("is_live", videoContent.getIs_live().toString());
                 if (videoContent.getRating() != null)
                     intent.putExtra("rating", videoContent.getRating().toString());
-                if (videoContent.getTrailer_aws_source() != null ) {
+                if (videoContent.getTrailer_aws_source() != null) {
                     intent.putExtra("trailer", videoContent.getTrailer_aws_source());
                 }
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

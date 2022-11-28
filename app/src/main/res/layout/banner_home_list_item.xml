@@ -58,6 +58,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_margin="5sp"
+                tools:visibility="visible"
+                android:visibility="gone"
                 android:src="@drawable/prime_icon" />
 
             <ProgressBar
