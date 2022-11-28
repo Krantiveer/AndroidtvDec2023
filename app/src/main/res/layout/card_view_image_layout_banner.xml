@@ -20,8 +20,8 @@
     android:layout_height="wrap_content">
 
     <RelativeLayout
-        android:layout_width="780sp"
-        android:layout_height="320sp"
+        android:layout_width="640sp"
+        android:layout_height="360sp"
         android:gravity="left"
         android:orientation="horizontal"
         tools:ignore="RtlHardcoded">
@@ -53,6 +53,17 @@
                 android:indeterminateTintMode="src_atop"
                 android:padding="36dp"
                 android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/premiumIconImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="end"
+                android:layout_margin="6sp"
+                android:contentDescription="@string/contentDescription"
+                android:src="@drawable/prime_icon" />
+
         </RelativeLayout>
         <ImageView
             android:id="@+id/premiumIcon"
@@ -62,6 +73,7 @@
             android:layout_alignParentEnd="true"
             android:visibility="gone"
             android:src="@drawable/premium" />
+
 
         <TextView
             android:id="@+id/primary_text"

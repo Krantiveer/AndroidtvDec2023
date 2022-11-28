@@ -52,7 +52,7 @@ import retrofit2.Retrofit;
  */
 public class MyAccountFragment extends Fragment {
     private Button sign_out;
-    private TextView user_name;
+    private TextView user_name,tv_mobileno;
     private TextView user_email;
     private TextView expire_date;
     private TextView active_plan;
@@ -85,8 +85,9 @@ public class MyAccountFragment extends Fragment {
     private void initViews(View view) {
         sign_out = view.findViewById(R.id.sign_out_button);
         user_name = view.findViewById(R.id.userNameTv);
+        tv_mobileno = view.findViewById(R.id.tv_mobileno);
         user_email = view.findViewById(R.id.userEmailTv);
-        active_plan = view.findViewById(R.id.activePlanTv);
+    //    active_plan = view.findViewById(R.id.activePlanTv);
         expire_date = view.findViewById(R.id.expireDateTv);
         if (getContext() != null) {
             if (PreferenceUtils.isLoggedIn(getContext())) {
@@ -97,7 +98,7 @@ public class MyAccountFragment extends Fragment {
 
         ActiveStatus activeStatus = db.getActiveStatusData();
 
-        active_plan.setText(activeStatus.getPackageTitle());
+      //  active_plan.setText(activeStatus.getPackageTitle());
         expire_date.setText(activeStatus.getExpireDate());
         getUserProfileDataFromServer();
     }
@@ -146,6 +147,7 @@ public class MyAccountFragment extends Fragment {
                             userProfile = response.body();
                             user_name.setText(userProfile.getUser().getName());
                             user_email.setText(userProfile.getUser().getEmail());
+                            tv_mobileno.setText(userProfile.getUser().getMobile());
 
                         } else if (response.errorBody() != null) {
                             Toast.makeText(getContext(), response.errorBody().toString(), Toast.LENGTH_SHORT).show();

@@ -15,6 +15,7 @@ import androidx.leanback.widget.Presenter;
 import com.bumptech.glide.Glide;
 import com.ott.tv.R;
 import com.ott.tv.model.home_content.Video;
+import com.ott.tv.model.phando.LatestMovieList;
 import com.ott.tv.ui.views.ImageCardView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -71,17 +72,18 @@ public class CardPresenterBanner extends Presenter {
 
     @Override
     public void onBindViewHolder(Presenter.ViewHolder viewHolder, Object item) {
-        Video video = (Video) item;
+        LatestMovieList video = (LatestMovieList) item;
         //here we are adding code for thumnail or poster url
     //    ((ViewHolder) viewHolder).updateCardViewImage(video.getThumbnailUrl());
 
-        if (video.getPosterUrl()!=null) {
-            ((ViewHolder) viewHolder).updateCardViewImage(video.getPosterUrl());
+        if (video.getThumbnail() != null) {
+            ((CardPresenterBanner.ViewHolder) viewHolder).updateCardViewImage(video.getThumbnail());
 
-        }else{
-            ((ViewHolder) viewHolder).updateCardViewImage(video.getImageLink());
+        } else {
+            ((CardPresenterBanner.ViewHolder) viewHolder).updateCardViewImage(video.getPoster());
 
         }
+
 /*
         ((ViewHolder) viewHolder).updateCardViewImage(video.getPosterUrl());
 */
@@ -115,15 +117,6 @@ public class CardPresenterBanner extends Presenter {
         }
 
         protected void updateCardViewImage(String url) {
-
-         /*   Picasso.get()
-                    .load(url)
-                        .placeholder(R.drawable.poster_placeholder_land)
-                    .error(mDefaultCardImage)
-                    .into(mCardView.getImageView());
-
-*/
-
             Glide.with(onCreateViewHolder(getCardView()).view.getContext())
                     .load(url)
                     /*.override(100,300)*/

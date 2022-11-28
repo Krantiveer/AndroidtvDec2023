@@ -44,6 +44,7 @@ import com.ott.tv.ui.activity.ErrorActivity;
 import com.ott.tv.ui.activity.LeanbackActivity;
 
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -76,11 +77,12 @@ public class HomeFragment extends RowsSupportFragment {
         if (getActivity() != null) {
             bgHelper = new BackgroundHelper(getActivity());
 
+            assert getArguments() != null;
             typeCategory = getArguments().getString("type");
             LeanbackActivity activity = (LeanbackActivity) getActivity();
             activity.showLogo();
             setOnItemViewClickedListener(getDefaultItemViewClickedListener());
-              setOnItemViewSelectedListener(getDefaultItemSelectedListener());
+            setOnItemViewSelectedListener(getDefaultItemSelectedListener());
             if (new NetworkInst(activity).isNetworkAvailable()) {
                 //    getHomeContentDataFromServer();
                 String id = "";
@@ -101,7 +103,7 @@ public class HomeFragment extends RowsSupportFragment {
             Retrofit retrofit = RetrofitClient.getRetrofitInstance();
             Dashboard api = retrofit.create(Dashboard.class);
             Constants.IS_FROM_HOME = false;
-            String accessToken="Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(getContext());
+            String accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(requireContext());
 
             Call<List<BrowseData>> call = api.getBrowseDataList(accessToken, type, "", "", "", 10, offset);
             call.enqueue(new Callback<List<BrowseData>>() {
@@ -124,31 +126,30 @@ public class HomeFragment extends RowsSupportFragment {
                     }
                     //   movies.addAll(movieList);*/
 
-                    }else if(response.code()==401){
+                    } else if (response.code() == 401) {
 
                         signOut();
 
-                    }
-
-                    else if (response.errorBody() != null) {
-                        if(getContext()!=null) {
+                    } else if (response.errorBody() != null) {
+                        if (getContext() != null) {
                             Toast.makeText(getContext(), "sorry! Something went wrong. Please try again after some time" + response.errorBody(), Toast.LENGTH_SHORT).show();
                         }
                         //  CMHelper.setSnackBar(requireView(), response.errorBody().toString(), 2);
                     } else {
-                        if(getContext()!=null){
-                        Toast.makeText(getContext(),"sorry! Something went wrong. Please try again after some time",Toast.LENGTH_SHORT).show();
-                     }}
+                        if (getContext() != null) {
+                            Toast.makeText(getContext(), "sorry! Something went wrong. Please try again after some time", Toast.LENGTH_SHORT).show();
+                        }
+                    }
 
 
                 }
 
                 @Override
                 public void onFailure(@NonNull Call<List<BrowseData>> call, @NonNull Throwable t) {
-                 //   CMHelper.setSnackBar(requireView(), t.getMessage(), 2);
-                    if(getContext()!=null) {
+                    //   CMHelper.setSnackBar(requireView(), t.getMessage(), 2);
+                    if (getContext() != null) {
                         Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                    }else{
+                    } else {
 
                     }
                 }
@@ -277,17 +278,18 @@ public class HomeFragment extends RowsSupportFragment {
         for (int i = 0; i < movieListContent.size(); i++) {
             ArrayObjectAdapter listRowAdapter;
             HeaderItem header;
-            if (i == 0) {
-                // load slider
-                listRowAdapter = new ArrayObjectAdapter(cardPresenter);
+            if (movieListContent.get(i).getDisplayType().equalsIgnoreCase("TOP_BANNER")) {
+                listRowAdapter = new ArrayObjectAdapter(cardPresenterBanner);
                 header = new HeaderItem(i, movieListContent.get(i).getTitle());
-            }
+
+            } else {
+
          /*   else if (i == 5) {
                 //load tv layout
                 listRowAdapter = new ArrayObjectAdapter(cardPresenterBanner);
                 header = new HeaderItem(i, homeContents.get(i).getName());
             }*/
-            else {
+
                 listRowAdapter = new ArrayObjectAdapter(cardPresenter);
                 header = new HeaderItem(i, movieListContent.get(i).getTitle());
             }
@@ -370,14 +372,15 @@ public class HomeFragment extends RowsSupportFragment {
 
 //kranti
                     if (videoContent.getGenres() != null) {
-                    if (videoContent.getGenres().size()>0) {
-                        String genres;
-                        genres = videoContent.getGenres().get(0);
-                        for (int i = 1; i < videoContent.getGenres().size(); i++) {
-                            genres = genres.concat("," + videoContent.getGenres().get(i));
+                        if (videoContent.getGenres().size() > 0) {
+                            String genres;
+                            genres = videoContent.getGenres().get(0);
+                            for (int i = 1; i < videoContent.getGenres().size(); i++) {
+                                genres = genres.concat("," + videoContent.getGenres().get(i));
+                            }
+                            intent.putExtra("genres", genres);
                         }
-                        intent.putExtra("genres", genres);
-                    }}
+                    }
                     getContext().startActivity(intent);
                     getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
 

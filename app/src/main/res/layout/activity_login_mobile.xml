@@ -18,8 +18,8 @@
         tools:ignore="UselessParent">
 
         <ImageView
-            android:layout_width="@dimen/_60sdp"
-            android:layout_height="@dimen/_62sdp"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_82sdp"
             android:layout_marginLeft="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_40sdp"
             android:contentDescription="TODO"
@@ -109,20 +109,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
+                    android:fontFamily="@font/poppins_regular"
                     android:gravity="center"
                     android:text="Enter OTP sent to"
                     android:textColor="@color/textcolor"
-                    android:textSize="28sp" />
+
+                    android:textSize="26sp" />
 
                 <TextView
                     android:id="@+id/tv_verify_otp_mobileNo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
+                    android:fontFamily="@font/poppins_regular"
                     android:gravity="center"
                     android:text="@string/mobile_number"
                     android:textColor="@color/textcolor"
-                    android:textSize="28sp" />
+
+                    android:textSize="26sp" />
 
 
                 <EditText
@@ -158,6 +162,7 @@
                     android:textAllCaps="false"
                     android:textColor="@color/btn_txt_color"
                     android:textSize="@dimen/_14sp" />
+
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -197,6 +202,7 @@
                         android:visibility="gone"
                         tools:visibility="visible" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
+
                 <ProgressBar
                     android:id="@+id/progress_login_resend"
                     android:layout_width="match_parent"
@@ -214,8 +220,6 @@
                 android:layout_width="@dimen/_400sdp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-
-
                 android:gravity="center"
                 android:keepScreenOn="true"
                 android:orientation="vertical"
@@ -227,10 +231,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="start"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/poppins_regular"
                     android:text="@string/login_with_mobile_number"
                     android:textColor="@color/textcolor"
-                    android:textSize="30sp" />
+                    android:textSize="26sp" />
 
                 <!--      <EditText
                           android:id="@+id/email_edit_text"
@@ -242,16 +247,16 @@
                           android:hint="@string/email_address"
                           android:inputType="textEmailAddress" />-->
                 <TextView
-                    android:paddingEnd="@dimen/_17sdp"
-                    android:drawablePadding="@dimen/_30sdp"
                     android:id="@+id/mobile_code_in"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_30sdp"
                     android:background="@drawable/edit_focus"
                     android:drawableEnd="@drawable/ic_drop_down"
+                    android:drawablePadding="@dimen/_30sdp"
                     android:focusable="true"
                     android:padding="10dp"
+                    android:paddingEnd="@dimen/_17sdp"
                     android:text="@string/_91"
                     android:textColor="@color/white"
                     android:textSize="22sp" />

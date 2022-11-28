@@ -170,6 +170,8 @@ public class DetailsActivityPhando extends FragmentActivity {
             if (is_live.equalsIgnoreCase("1")) {
                 tvWatchTrailer.setVisibility(GONE);
                 imgWatchList.setVisibility(GONE);
+            }else{
+                imgWatchList.setVisibility(VISIBLE);
             }
         }
 

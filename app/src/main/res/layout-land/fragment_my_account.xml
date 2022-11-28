@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -75,24 +76,24 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/tv_activeplan"
+        android:id="@+id/tv_mobileno_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_email"
-        android:text="@string/active_plan"
-        android:visibility="gone"
+        android:text="@string/mobile_number"
+        android:visibility="visible"
         android:textColor="@color/white"
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/activePlanTv"
+        android:id="@+id/tv_mobileno"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_email"
         android:layout_marginLeft="10sp"
-        android:layout_toEndOf="@+id/tv_activeplan"
+        android:layout_toEndOf="@+id/tv_mobileno_icon"
         android:textColor="@color/white"
-        android:visibility="gone"
+        android:visibility="visible"
         android:textSize="20sp" />
 
     <TextView
@@ -100,7 +101,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        android:layout_below="@id/tv_activeplan"
+        android:layout_below="@id/tv_mobileno_icon"
         android:text="@string/expire_date"
         android:textColor="@color/white"
         android:textSize="20sp" />
@@ -110,7 +111,7 @@
         android:id="@+id/expireDateTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_activeplan"
+        android:layout_below="@id/tv_mobileno_icon"
         android:layout_marginLeft="10sp"
         android:layout_marginBottom="@dimen/_20sdp"
         android:visibility="gone"
@@ -133,3 +134,206 @@
 
 
 </RelativeLayout>
+
+<!--
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:layout_gravity="center"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:layout_marginEnd="@dimen/_40sdp"
+    android:background="@drawable/bg_gradient_soft"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txt_signin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/signed_in_as"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:textColor="@color/white"
+        android:textSize="25sp" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_layout"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_135sdp"
+        android:background="@drawable/bg_gradient_soft"
+        android:orientation="horizontal"
+
+        >
+
+        <LinearLayout
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:background="@drawable/user_icon_image"
+            android:gravity="center">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageView"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:padding="5dp"
+                android:scaleType="centerCrop" />
+        </LinearLayout>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_17sdp"
+            android:backgroundTint="@color/transparent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30sp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/userNameTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="User Name"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Subscriber id:  "
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_mobileno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/_20sp"
+            android:text="9877665544"
+            android:textSize="20sp" />
+
+
+        <TextView
+            android:id="@+id/userEmailTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="jerry032@bing.com"
+            android:textSize="20sp" />
+
+
+        &lt;!&ndash; <Button
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="log out"
+             android:layout_marginStart="90dp"/>&ndash;&gt;
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/sign_out_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_expire"
+
+        android:layout_centerHorizontal="true"
+
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:background="@drawable/button_focus"
+        android:text="@string/signout"
+        android:textAllCaps="false" />
+
+    &lt;!&ndash;   <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+
+           >&ndash;&gt;
+    &lt;!&ndash; <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center"
+         android:layout_marginTop="80dp"
+         android:text="@string/signed_in_as"
+         android:textColor="@color/white"
+         android:textSize="25sp" />&ndash;&gt;
+    <TextView
+        android:id="@+id/userid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_signin"
+        android:text="@string/user_name"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
+
+    <TextView
+        android:id="@+id/tv_activeplan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/active_plan"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/activePlanTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10sp"
+        android:layout_toEndOf="@+id/tv_activeplan"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_expire"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_activeplan"
+        android:text="@string/expire_date"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
+
+    <TextView
+        android:id="@+id/expireDateTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_activeplan"
+        android:layout_marginLeft="10sp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:layout_toEndOf="@+id/tv_expire"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
+
+</RelativeLayout>-->

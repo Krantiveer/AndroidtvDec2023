@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?><!--suppress ALL -->
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,8 +16,8 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="@dimen/_60sdp"
-            android:layout_height="@dimen/_62sdp"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_82sdp"
             android:layout_marginLeft="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_40sdp"
             android:contentDescription="TODO"
@@ -99,12 +100,24 @@
                         android:layout_marginTop="@dimen/_36sdp"
                         android:orientation="horizontal">
 
-                        <ImageView
-                            android:layout_width="@dimen/_150sdp"
-                            android:layout_height="@dimen/_150sdp"
-                            android:layout_marginTop="@dimen/_10sdp"
+                        <androidx.cardview.widget.CardView
+
                             android:id="@+id/qrcode_demo_image"
-                            android:src="@drawable/qrcode_demo_image" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:backgroundTint="@color/black_color"
+                            android:src="@drawable/qrcode_demo_image"
+                            app:cardCornerRadius="@dimen/_12sdp">
+
+                            <ImageView
+                                android:id="@+id/qrcode_demo_image"
+                                android:layout_width="@dimen/_150sdp"
+                                android:layout_height="@dimen/_150sdp"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:background="@drawable/rounded_black_transparent"
+                                android:src="@drawable/qrcode_demo_image" />
+                        </androidx.cardview.widget.CardView>
 
                         <TextView
                             android:id="@+id/tv_qrCode"

@@ -3,113 +3,113 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:keepScreenOn="true"
-    tools:ctx=".tv.ui.fragments.MyAccountFragment"
     android:background="@drawable/bg_gradient_soft"
-    android:orientation="vertical">
+    android:keepScreenOn="true"
+    android:orientation="vertical"
+    tools:ctx=".tv.ui.fragments.MyAccountFragment">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/signed_in_as"
-        android:textSize="25sp"
-        android:textColor="@color/white"
         android:layout_gravity="center"
-        android:layout_marginTop="80dp" />
+        android:layout_marginTop="80dp"
+        android:text="@string/signed_in_as"
+        android:textColor="@color/white"
+        android:textSize="25sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="left"
         android:layout_gravity="center"
-        android:layout_marginBottom="50dp"
         android:layout_marginTop="10dp"
-        android:weightSum="2"
-        android:baselineAligned="false">
+        android:layout_marginBottom="50dp"
+        android:baselineAligned="false"
+        android:gravity="left"
+        android:orientation="horizontal"
+        android:weightSum="2">
 
         <LinearLayout
-            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-android:keepScreenOn="true"
-            android:orientation="vertical"
             android:layout_marginEnd="20dp"
-            android:gravity="right">
+            android:layout_weight="1"
+            android:gravity="right"
+            android:keepScreenOn="true"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/user_name"
-                android:textSize="20sp"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/emailTv"
-                android:textSize="20sp"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:textColor="@color/white" />
+                android:text="@string/emailTv"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/active_plan"
-                android:textSize="20sp"
                 android:maxLines="1"
-                android:textColor="@color/white" />
+                android:text="@string/active_plan"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/expire_date"
-                android:textSize="20sp"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-android:keepScreenOn="true"
-            android:orientation="vertical"
             android:layout_marginStart="20dp"
-            android:gravity="left">
+            android:layout_weight="1"
+            android:gravity="left"
+            android:keepScreenOn="true"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/userNameTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/userEmailTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/activePlanTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/expireDateTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -120,9 +120,9 @@ android:keepScreenOn="true"
         android:id="@+id/sign_out_button"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="@string/signout"
+        android:layout_gravity="center"
         android:background="@drawable/button_focus"
-        android:textAllCaps="false"
-        android:layout_gravity="center" />
+        android:text="@string/signout"
+        android:textAllCaps="false" />
 
 </LinearLayout>

@@ -147,18 +147,20 @@ public class LeanbackActivity extends FragmentActivity {
             } else if (i == 3) {
                 if(BuildConfig.FLAVOR.equalsIgnoreCase("solidtv"))
                 {
+
+                }else {
+
                     MapFragmentUVTV fragment = new MapFragmentUVTV();
                /* Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);//uvtv bharat
-               */ fragments.put(i, fragment);
-                }else {
+               */ fragments.put(i, fragment);/*
                     HomeFragment fragment = new HomeFragment();
                     Bundle bundle = new Bundle();
                     bundle.putInt("menu", i);
                     fragment.setArguments(bundle);//uvtv bharat
                     fragments.put(i, fragment);
-                }/*
+*/                }/*
                 /*HomeFragment fragment = new HomeFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString("type", "22");//series

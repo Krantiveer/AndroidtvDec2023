@@ -30,7 +30,7 @@ public interface Dashboard {
             @Query("offset") int offset
     );
   @GET("tvseries")
-    Call<LatestMoviesTVSeriesList> getBrowseDataList(
+    Call<LatestMoviesTVSeriesList> getBrowseDataTvSeriesList(
             @Header("Authorization") String token,
             @Query("id") String id
 
