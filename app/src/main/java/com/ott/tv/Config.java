@@ -4,6 +4,7 @@ public class Config {
     //  public static final String DOMAIN = "https://actionott.com/";
   // public static final String DOMAIN = "https://dev.actionott.com/";
     //public static final String DOMAIN = "https://lifeott.com/";
+//    public static final String DOMAIN = "https://uvtvstage.phando.com/";
     public static final String DOMAIN = "https://uvtvstage.phando.com/";
     public static final String WebsiteURL="https://uvtv.phando.com";
 

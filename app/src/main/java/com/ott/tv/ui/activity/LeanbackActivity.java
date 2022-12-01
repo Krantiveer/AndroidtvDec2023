@@ -25,13 +25,12 @@ import androidx.leanback.widget.SearchOrbView;
 import androidx.leanback.widget.VerticalGridView;
 
 import com.ott.tv.BuildConfig;
-import com.ott.tv.Config;
 import com.ott.tv.Constants;
 import com.ott.tv.MapFragmentUVTV;
 import com.ott.tv.NetworkInst;
 import com.ott.tv.R;
-import com.ott.tv.fragments.CountryMovieFragment;
 import com.ott.tv.fragments.CountryFragment;
+import com.ott.tv.fragments.CountryMovieFragment;
 import com.ott.tv.fragments.CustomHeadersFragment;
 import com.ott.tv.fragments.CustomRowsFragment;
 import com.ott.tv.fragments.FavouriteFragment;
@@ -44,24 +43,13 @@ import com.ott.tv.fragments.MoviesFragment;
 import com.ott.tv.fragments.MyAccountFragment;
 import com.ott.tv.fragments.ShowWatchlistFragment;
 import com.ott.tv.fragments.TvSeriesFragment;
-import com.ott.tv.model.BrowseData;
-import com.ott.tv.network.RetrofitClient;
-import com.ott.tv.network.api.Dashboard;
 import com.ott.tv.ui.CustomFrameLayout;
 import com.ott.tv.ui.Utils;
-import com.ott.tv.utils.CMHelper;
 import com.ott.tv.utils.PreferenceUtils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Objects;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class LeanbackActivity extends FragmentActivity {
     private static final String TAG = "LeanbackMainActivity";
@@ -113,7 +101,7 @@ public class LeanbackActivity extends FragmentActivity {
         fragments = new LinkedHashMap<>();
 
 
-        int CATEGORIES_NUMBER = 10;
+        int CATEGORIES_NUMBER = 8;
         for (int i = 0; i < CATEGORIES_NUMBER; i++) {
             if (i == 0) {
                 HomeFragmentNewUI fragment = new HomeFragmentNewUI();
@@ -192,12 +180,18 @@ public class LeanbackActivity extends FragmentActivity {
                 fragments.put(i, fragment);*/
 
             } else if (i == 5) {
-                HomeFragment fragment = new HomeFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("menu", i);
+                bundle.putString("type", "Watchlist");
+                ShowWatchlistFragment fragment = new ShowWatchlistFragment();
+                fragment.setArguments(bundle);
+                fragments.put(i, fragment);
+              /*  HomeFragment fragment = new HomeFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString("type", "27");
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);
+                fragments.put(i, fragment);*/
                 /*
                 FavouriteFragment fragment = new FavouriteFragment();
                 Bundle bundle = new Bundle();
@@ -207,10 +201,9 @@ public class LeanbackActivity extends FragmentActivity {
                 fragments.put(i, fragment);*/
             } else if (i == 6) {
 
+                MyAccountFragment fragment = new MyAccountFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
-                bundle.putString("type", "Watchlist");
-                ShowWatchlistFragment fragment = new ShowWatchlistFragment();
                 fragment.setArguments(bundle);
                 fragments.put(i, fragment);
 
@@ -233,11 +226,11 @@ public class LeanbackActivity extends FragmentActivity {
                 fragments.put(i, fragment);*/
 
             } else if (i == 7) {
-                MyAccountFragment fragment = new MyAccountFragment();
+           /*     MyAccountFragment fragment = new MyAccountFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);
+                fragments.put(i, fragment);*/
 
             } else {/*
                 MyAccountFragment fragment = new MyAccountFragment();

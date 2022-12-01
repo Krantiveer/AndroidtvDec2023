@@ -13,15 +13,14 @@
         android:id="@+id/main_image_container"
         android:layout_width="@dimen/android_Tv_card_size_width"
         android:layout_height="@dimen/android_Tv_card_size_height"
-        android:backgroundTint="@color/black_color"
-        android:layout_margin="3dp">
+        android:layout_margin="3dp"
+        android:backgroundTint="@color/black_color">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:elevation="10dp"
             android:backgroundTint="@color/black_color"
-            android:ellipsize="end"
+            android:elevation="10dp"
             app:cardCornerRadius="4dp">
 
             <ImageView
@@ -81,8 +80,8 @@
                 android:layout_height="@dimen/_80sdp"
                 android:layout_gravity="bottom"
                 android:layout_marginTop="2sp"
-                android:contentDescription="@string/contentDescription"
                 android:background="@drawable/bg_gradient_soft_new"
+                android:contentDescription="@string/contentDescription"
                 android:ellipsize="end"
                 android:paddingStart="4sp"
                 android:paddingEnd="4sp"
@@ -97,16 +96,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_marginTop="2sp"
-
                 android:background="@drawable/bg_gradient_soft_new"
                 android:ellipsize="end"
-
                 android:fontFamily="@font/vag_rounded_regular"
                 android:maxLines="1"
-
                 android:paddingStart="4sp"
                 android:paddingEnd="4sp"
                 android:paddingBottom="5sp"
+                android:singleLine="true"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 tools:text="title movie" />

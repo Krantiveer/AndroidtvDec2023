@@ -116,8 +116,7 @@ public class LatestMoviesTVSeriesList implements Parcelable {
     private List<LatestMovieSingleDetailList> trailers = null;
     @SerializedName("seasons")
     @Expose
-    private List<Season> seasons = null;
-
+    private List<SeasonList> seasons = null;
 
     protected LatestMoviesTVSeriesList(Parcel in) {
         if (in.readByte() == 0) {
@@ -419,6 +418,14 @@ public class LatestMoviesTVSeriesList implements Parcelable {
 
     public void setTrailers(List<LatestMovieSingleDetailList> trailers) {
         this.trailers = trailers;
+    }
+
+    public List<SeasonList> getSeasons() {
+        return seasons;
+    }
+
+    public void setSeasons(List<SeasonList> seasons) {
+        this.seasons = seasons;
     }
 
     @Override

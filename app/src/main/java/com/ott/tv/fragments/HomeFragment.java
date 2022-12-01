@@ -31,6 +31,7 @@ import com.ott.tv.model.home_content.LatestTvseries;
 
 import com.ott.tv.network.api.Dashboard;
 import com.ott.tv.ui.activity.DetailsActivityPhando;
+import com.ott.tv.ui.activity.DetailsActivityTvSeries;
 import com.ott.tv.ui.activity.LoginChooserActivity;
 import com.ott.tv.ui.presenter.CardPresenterBanner;
 import com.ott.tv.ui.presenter.CardPresenterNewLanscape;
@@ -485,9 +486,9 @@ public class HomeFragment extends RowsSupportFragment {
 
                 }
 */
-
+/*
                 if (videoContent.getType().equals("tv")) {
-                } /*{
+                } *//*{
                     if (videoContent.getIsPaid().equals("1")) {
                         if (PreferenceUtils.isValid(getActivity())) {
                             if (status.equals("active")) {

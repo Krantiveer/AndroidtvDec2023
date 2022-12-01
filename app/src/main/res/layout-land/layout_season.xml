@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
-    android:background="@drawable/round_ll_details"
+    android:background="@drawable/round_ll_tvseries_season"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/_10sdp"
     tools:ignore="MissingDefaultResource">
@@ -12,9 +12,12 @@
         android:id="@+id/seasons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_margin="1dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:bottomLeftRadius="30dp"
+        android:bottomRightRadius="30dp"
         android:focusable="true"
         android:gravity="center"
         android:paddingStart="10dp"
@@ -23,26 +26,25 @@
         android:paddingBottom="8dp"
         android:textColor="@color/white"
         android:textSize="16sp"
-        android:bottomRightRadius="30dp"
-        android:bottomLeftRadius="30dp"
         android:topLeftRadius="30dp"
-        tools:text="Season 1"
-        android:topRightRadius="30dp"
 
-        />
+        android:topRightRadius="30dp"
+        tools:text="Season 1" />
 
 
     <TextView
         android:id="@+id/episode_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
         android:layout_toEndOf="@id/seasons"
         android:layout_toRightOf="@id/seasons"
-        tools:text=" 1 Episode"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_margin="1dp"
+        android:bottomLeftRadius="30dp"
+        android:bottomRightRadius="30dp"
         android:focusable="true"
         android:gravity="center"
         android:paddingStart="10dp"
@@ -51,11 +53,9 @@
         android:paddingBottom="8dp"
         android:textColor="@color/white"
         android:textSize="16sp"
-        android:bottomRightRadius="30dp"
-        android:bottomLeftRadius="30dp"
         android:topLeftRadius="30dp"
-        android:topRightRadius="30dp"
 
-        />
+        android:topRightRadius="30dp"
+        tools:text=" 1 Episode" />
 
 </RelativeLayout>

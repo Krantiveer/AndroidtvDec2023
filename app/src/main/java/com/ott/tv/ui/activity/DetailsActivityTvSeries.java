@@ -157,13 +157,13 @@ public class DetailsActivityTvSeries extends FragmentActivity {
         imgWatchList = findViewById(R.id.imgWatchList);
         playerView = findViewById(R.id.video_view);
         episode_rv = findViewById(R.id.episode_rv);
-        if (type.equals("movie")) {
+        /*if (type.equals("movie")) {
             if (id != null) {
                 getData(type, id);
             }
-        }
-
-        if (type.equals("tvseries")) {
+        }*/
+/*
+        if (type.equals("tvseries"))*/ {
             if (id != null) {
                 getSeriesData(type, id);
             } else {
@@ -176,7 +176,7 @@ public class DetailsActivityTvSeries extends FragmentActivity {
 
         imgWatchList.setOnClickListener(v -> {
             if (isWatchLater) {
-                removeFromFav(Constants.WishListType.watch_later);
+              //  removeFromFav(Constants.WishListType.watch_later);
             } else {
                 addToFav(Constants.WishListType.watch_later);
             }
@@ -277,49 +277,6 @@ public class DetailsActivityTvSeries extends FragmentActivity {
 
     }
 
-    private void removeFromFav(String type) {
-        Retrofit retrofit = RetrofitClient.getRetrofitInstance();
-        FavouriteApi api = retrofit.create(FavouriteApi.class);
-
-        Call<FavoriteModel> call = api.removeFromFavorite(Config.API_KEY, userid, id, type);
-        call.enqueue(new Callback<FavoriteModel>() {
-            @Override
-            public void onResponse(@NonNull Call<FavoriteModel> call, @NonNull retrofit2.Response<FavoriteModel> response) {
-                if (response.code() == 200 && response.body() != null) {
-                    if (response.body().getStatus().equalsIgnoreCase("success")) {
-                        new ToastMsg(DetailsActivityTvSeries.this).toastIconSuccess(response.body().getMessage());
-                        if (type.equals(Constants.WishListType.fav)) {
-                            isFav = false;
-                      /*      imgAddFav.setImageResource(R.drawable.ic_bottom_fav);
-                            favIv.setImageResource(R.drawable.ic_bottom_fav);*/
-                        } else {
-                            isWatchLater = false;
-                            //kranti
-                            imgWatchList.setText("Add to Watchlist");
-                            // imgWatchList.setColorFilter(ContextCompat.getColor(DetailsActivityTvSeries.this, R.color.colorHint), android.graphics.PorterDuff.Mode.SRC_IN);
-                        }
-                    } else {
-                        new ToastMsg(DetailsActivityTvSeries.this).toastIconError(response.body().getMessage());
-                        if (type.equals(Constants.WishListType.fav)) {
-                            isFav = true;
-                    /*        imgAddFav.setImageResource(R.drawable.ic_circle_fav);
-                            favIv.setImageResource(R.drawable.ic_circle_fav);*/
-                        } else {
-                            isWatchLater = true;
-                            //kranti
-                            imgWatchList.setText("Remove to Watchlist");
-                            //     imgWatchList.setColorFilter(ContextCompat.getColor(DetailsActivityTvSeries.this, R.color.colorGold), android.graphics.PorterDuff.Mode.SRC_IN);
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<FavoriteModel> call, @NonNull Throwable t) {
-                new ToastMsg(DetailsActivityTvSeries.this).toastIconError(getString(R.string.fetch_error));
-            }
-        });
-    }
 
     public void SeasonListClick(boolean isShow) {
         if (singleDetails != null) {

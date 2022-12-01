@@ -4,21 +4,28 @@ package com.ott.tv.ui.activity;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
+import static com.ott.tv.utils.PreferenceUtils.TAG;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.leanback.widget.ArrayObjectAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,10 +41,17 @@ import com.ott.tv.R;
 import com.ott.tv.adapter.HomePageAdapter;
 import com.ott.tv.model.CommonModels;
 import com.ott.tv.model.CustomAddsModel;
+import com.ott.tv.model.EpiModel;
+import com.ott.tv.model.Episode;
 import com.ott.tv.model.FavoriteModel;
+import com.ott.tv.model.Season;
 import com.ott.tv.model.Video;
+import com.ott.tv.model.VideoNew;
+import com.ott.tv.model.phando.EpisodeList;
+import com.ott.tv.model.phando.LatestMoviesTVSeriesList;
 import com.ott.tv.model.phando.MediaplaybackData;
 import com.ott.tv.model.phando.PlayerActivityNewCode;
+import com.ott.tv.model.phando.SeasonList;
 import com.ott.tv.model.phando.ShowWatchlist;
 import com.ott.tv.model.phando.Wishlist;
 import com.ott.tv.network.RetrofitClient;
@@ -53,6 +67,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -70,16 +85,20 @@ public class DetailsActivityPhando extends FragmentActivity {
     private FrameLayout contentView;
 
 
-    private ImageView tvVideoQualityType;
-
     private boolean isWatchLater = false;
     private boolean isFav = false;
     private ImageView favIv;
     private AppCompatButton tvWatchNow;
     private AppCompatButton tvWatchTrailer;
-    private AppCompatButton imgWatchList;
+    private AppCompatButton imgWatchList, btn_seasonAndEpisode;
     private AppCompatButton imgFavList;
     private MediaplaybackData singleDetails = null;
+    private LatestMoviesTVSeriesList singleDetailsTVseries = null;
+    private RecyclerView rv_SeasonList;
+    private LinearLayout episode_rv;
+    private LinearLayoutCompat details_fragment_root;
+    private String episode_url = "";
+
     private final List<CommonModels> listRelated = new ArrayList<>();
     String userid = null;
     String tvDurationTime_value;
@@ -103,6 +122,9 @@ public class DetailsActivityPhando extends FragmentActivity {
     private ImageView content_rating_image, content_duration_image, releasedate_image, language_image, maturity_rating_image, genres_image;
     private TextView content_rating_text, duration_time, tvReleaseDate, language_tv, maturity_rating_tv, genres_tv, tv_related;
     String type;
+    final List<String> seasonList = new ArrayList<>();
+    List<EpiModel> epList = new ArrayList<>();
+    private TextView movie_title;
 
     public DetailsActivityPhando() {
     }
@@ -125,10 +147,10 @@ public class DetailsActivityPhando extends FragmentActivity {
         tvispaid = this.getIntent().getStringExtra("ispaid");
         ratingData = this.getIntent().getStringExtra("rating");
         language = this.getIntent().getStringExtra("language_str");
-        if(this.getIntent().getStringExtra("is_live")!=null) {
+        if (this.getIntent().getStringExtra("is_live") != null) {
             is_live = this.getIntent().getStringExtra("is_live").toString();
-        }else{
-            is_live="0";
+        } else {
+            is_live = "0";
         }
         genres = this.getIntent().getStringExtra("genres");
 
@@ -156,21 +178,21 @@ public class DetailsActivityPhando extends FragmentActivity {
         bannerImageView = findViewById(R.id.bannerImageView);
 
         setBannerImage(poster_url);
-
-        TextView movie_title = findViewById(R.id.movie_title);
+        movie_title = findViewById(R.id.movie_title);
         movie_title.setText(title);
         TextView movie_description_tv = findViewById(R.id.movie_description_tv);
         movie_description_tv.setText(description);
 
 
-        tvVideoQualityType = findViewById(R.id.tvVideoQualityType);
+        ImageView tvVideoQualityType = findViewById(R.id.tvVideoQualityType);
         tvWatchNow = findViewById(R.id.tvWatchNow);
         imgWatchList = findViewById(R.id.imgWatchList);
+        btn_seasonAndEpisode = findViewById(R.id.img_series);
         if (is_live != null) {
             if (is_live.equalsIgnoreCase("1")) {
                 tvWatchTrailer.setVisibility(GONE);
                 imgWatchList.setVisibility(GONE);
-            }else{
+            } else {
                 imgWatchList.setVisibility(VISIBLE);
             }
         }
@@ -181,6 +203,9 @@ public class DetailsActivityPhando extends FragmentActivity {
 
         imgFavList = findViewById(R.id.imgFavList);
         progress_indicator = findViewById(R.id.progress_indicator);
+        episode_rv = findViewById(R.id.episode_rv_ll);
+        details_fragment_root = findViewById(R.id.details_fragment_root);
+
 
         if (type == null) {
             type = "M";
@@ -191,9 +216,9 @@ public class DetailsActivityPhando extends FragmentActivity {
             } else {
                 getData(type, id);
             }
-        }else if(type.equals("T")){
+        } else if (type.equals("T")) {
 
-            getData(type, videoId);
+            getDataTvseries(type, videoId);
         }
 
 
@@ -207,6 +232,8 @@ public class DetailsActivityPhando extends FragmentActivity {
             }
         });
 
+
+
        /* imgFavList.setOnClickListener(v -> {
             if (isFav) {
                 removeFromFav(Constants.WishListType.fav);
@@ -218,7 +245,286 @@ public class DetailsActivityPhando extends FragmentActivity {
         //  getFavStatus(Constants.WishListType.fav);
         tvWatchNow.setOnClickListener(v -> payAndWatchTV());
         tvWatchTrailer.setOnClickListener(view -> trailerClick());
-        PreferenceUtils.updateSubscriptionStatus(DetailsActivityPhando.this);
+        btn_seasonAndEpisode.setOnClickListener(v -> EpisodeAndSeason());
+        //    PreferenceUtils.updateSubscriptionStatus(DetailsActivityPhando.this);
+    }
+
+    private void EpisodeAndSeason() {
+        if (singleDetailsTVseries != null) {
+
+            if (id == null) {
+                id = videoId;
+            }
+            SeasonListClick(false);
+            List<SeasonList> season = singleDetailsTVseries.getSeasons();
+            rv_SeasonList = (RecyclerView) findViewById(R.id.rv_SeasonList);
+            DetailsActivityPhando.SeasonAdapter seasonAdapter = new DetailsActivityPhando.SeasonAdapter(season);
+            rv_SeasonList.setHasFixedSize(true);
+            rv_SeasonList.setLayoutManager(new LinearLayoutManager(this));
+            rv_SeasonList.setAdapter(seasonAdapter);
+
+            List<EpisodeList> episodes = singleDetailsTVseries.getSeasons().get(0).getEpisodes();
+            RecyclerView rv_EpisodeList = (RecyclerView) findViewById(R.id.rv_EpisodeList);
+            DetailsActivityPhando.EpisodeAdapter episodeAdapter = new DetailsActivityPhando.EpisodeAdapter(episodes);
+            rv_EpisodeList.setHasFixedSize(true);
+            rv_EpisodeList.setLayoutManager(new LinearLayoutManager(this));
+            rv_EpisodeList.setAdapter(episodeAdapter);
+        }
+
+    }
+
+    private class EpisodeAdapter extends RecyclerView.Adapter<DetailsActivityPhando.EpisodeAdapter.ViewHolder> {
+        private List<EpisodeList> listdata;
+
+        public EpisodeAdapter(List<EpisodeList> listdata) {
+            this.listdata = listdata;
+        }
+
+        @Override
+        public DetailsActivityPhando.EpisodeAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+            View listItem = layoutInflater.inflate(R.layout.layout_episode, parent, false);
+            DetailsActivityPhando.EpisodeAdapter.ViewHolder viewHolder = new DetailsActivityPhando.EpisodeAdapter.ViewHolder(listItem);
+            return viewHolder;
+        }
+
+        @SuppressLint({"SetTextI18n", "RestrictedApi"})
+        @Override
+        public void onBindViewHolder(DetailsActivityPhando.EpisodeAdapter.ViewHolder holder, int position) {
+            if (listdata != null) {
+                if (listdata.get(position) != null) {
+                    holder.episode_title.setText(listdata.get(position).getTitle());
+                    holder.episode_description.setText(listdata.get(position).getDetail());
+                    holder.episode_time.setText(listdata.get(position).getDuration_str());
+                    Glide.with(getApplicationContext()).load(listdata.get(position).getThumbnail())
+                            .error(R.drawable.poster_placeholder_land)
+                            .fitCenter()
+                            .placeholder(R.drawable.poster_placeholder_land)
+                            .into(holder.episode_image);
+
+
+                    holder.episode_ll.setOnClickListener(view -> {
+                        String categoryType;
+                        int pos = holder.getAbsoluteAdapterPosition();
+
+               /* String fileType = "movie";
+                if (fileType.equals("movie")) {
+                    categoryType = "movie";
+                    // Do your task here
+                } else {
+                    categoryType = "youtube";
+                }*/
+                        categoryType = "E";
+
+//todo:we need to add description in below
+                        getDataEpisode(categoryType, listdata.get(holder.getAbsoluteAdapterPosition()).getId().toString(), listdata.get(holder.getAbsoluteAdapterPosition()));
+
+
+                      //  Log.i(TAG, "onClick: " + categoryType + listdata.get(pos).getTitle());
+            /*    VideoNew mSelectedVideo = new VideoNew(
+                        Long.parseLong(listdata.get(holder.getAbsoluteAdapterPosition()).getId().toString()),
+                        "movie",
+                        listdata.get(pos).getTitle(),
+                        "",episode_url,
+
+                        *//* kingsa          listdata.get(pos).getFileUrl(),*//*
+                        listdata.get(pos).getThumbnail(),
+                        listdata.get(pos).getThumbnail(),
+                        listdata.get(pos).getThumbnail());
+                Intent intent = new Intent(getApplicationContext(), PlaybackActivityNew.class);
+                intent.putExtra(VideoDetailsActivity.VIDEO, mSelectedVideo);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                getApplicationContext().startActivity(intent);*/
+
+
+                    });
+                }
+            }
+        }
+
+
+        @Override
+        public int getItemCount() {
+            return listdata.size();
+        }
+
+
+        class ViewHolder extends RecyclerView.ViewHolder {
+            public TextView episode_title, episode_description, episode_time;
+            public TextView episodeTv;
+            public LinearLayout episode_ll;
+            public ImageView episode_image;
+
+            public ViewHolder(View itemView) {
+                super(itemView);
+                this.episode_image = itemView.findViewById(R.id.episode_image);
+                this.episode_title = (TextView) itemView.findViewById(R.id.episode_title);
+                this.episode_description = (TextView) itemView.findViewById(R.id.episode_description);
+                this.episode_time = (TextView) itemView.findViewById(R.id.episode_time);
+                // this.episodeTv = (TextView) itemView.findViewById(R.id.episode_tv);
+                episode_ll = (LinearLayout) itemView.findViewById(R.id.episode_ll);
+            }
+
+
+        }
+
+    }
+
+    private void getDataEpisode(String videoType, final String videoId, EpisodeList dataEpisode) {
+        Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+
+        String accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(this);
+        //  PreferenceUtils.getInstance().getUsersIdActionOTT(this);
+        Dashboard api = retrofit.create(Dashboard.class);
+        Call<MediaplaybackData> call = api.getSingleDetailAPI(accessToken, videoId, videoType, "1");
+        activityIndicator(true);
+        call.enqueue(new Callback<MediaplaybackData>() {
+            @Override
+            public void onResponse(@NonNull Call<MediaplaybackData> call, @NonNull Response<MediaplaybackData> response) {
+                activityIndicator(false);
+                if (response.code() == 200 && response.body() != null) {
+                    singleDetails = response.body();
+                    if (singleDetails.getList() != null) {
+                        episode_url = singleDetails.getList().getMedia_url();
+
+
+                        List<Video> videoList = new ArrayList<>();
+
+                        if (tvWatchNow.getText() == null || !tvWatchNow.getText().toString().equalsIgnoreCase("Watch Now")) {
+                            Toast.makeText(getApplicationContext(), "Hey, Please upgrade your account from MOBILE APP | WEBSITE - UVTV", Toast.LENGTH_SHORT).show();
+                            return;
+                        } else if (singleDetails.getList().getMedia_url().isEmpty()) {
+                            /*CMHelper.setSnackBar(this.getCurrentFocus(), "We are sorry, Video not available for your selected content", 2);*/
+                            Toast.makeText(getApplicationContext(), "We are sorry, Video not available for your selected content", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        PlaybackModel video = new PlaybackModel();
+                        ArrayList<Video> videoListForIntent = new ArrayList<>(videoList);
+                        video.setId(Long.parseLong(videoId));
+                        video.setTitle(dataEpisode.getTitle());
+                        video.setDescription(dataEpisode.getDetail());
+                        video.setVideoType(Config.VideoURLTypeHls);
+                        video.setCategory("movie");
+                        video.setVideoUrl(singleDetails.getList().getMedia_url());
+                        video.setCardImageUrl(dataEpisode.getPoster());
+                        video.setIstrailer(false);
+
+                        //  video.setBgImageUrl(thumbUrl);
+                        video.setIsPaid("free");
+
+                        //  video.setVideo(singleDetails.getVideos().get(0));
+
+                        Intent intent = new Intent(getApplicationContext(), PlayerActivityNewCode.class);
+                        intent.putExtra(VideoPlaybackActivity.EXTRA_VIDEO, video);
+                        startActivity(intent);
+
+                    } else {
+                        episode_url = "";
+                    }
+                } else {
+                    CMHelper.setSnackBar(DetailsActivityPhando.this.getCurrentFocus(), "We are sorry, This video content not available, Please try another", 2);
+
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<MediaplaybackData> call, @NonNull Throwable t) {
+                activityIndicator(false);
+                Log.i("DetailISSUE_kranti", "onResponse: " + t);
+                CMHelper.setSnackBar(DetailsActivityPhando.this.getCurrentFocus(), "We are sorry, This video content not available, Please try another" + t, 2);
+            }
+        });
+
+    }
+
+    private class SeasonAdapter extends RecyclerView.Adapter<DetailsActivityPhando.SeasonAdapter.ViewHolder> {
+        private List<SeasonList> listdata;
+
+        // RecyclerView recyclerView;
+        public SeasonAdapter(List<SeasonList> listdata) {
+            this.listdata = listdata;
+        }
+
+        @Override
+        public DetailsActivityPhando.SeasonAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+            View listItem = layoutInflater.inflate(R.layout.layout_season, parent, false);
+            DetailsActivityPhando.SeasonAdapter.ViewHolder viewHolder = new DetailsActivityPhando.SeasonAdapter.ViewHolder(listItem);
+            return viewHolder;
+        }
+
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onBindViewHolder(DetailsActivityPhando.SeasonAdapter.ViewHolder holder, int position) {
+            holder.seasonsTv.setText(listdata.get(position).getTitle());
+            if (listdata.get(position).getEpisodes() != null) {
+               /* if (!listdata.get(position).getEpisodes().isEmpty()) {
+                    holder.episodeTv.setText("    " + listdata.get(position).getEpisodes().size() + " Episodes");
+                }*/
+            }
+
+            holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (holder.episodeTv.getText().toString().isEmpty()) {
+                        CMHelper.setSnackBar(view, "Episode not Available", 1);
+
+                    } else {
+                        List<EpisodeList> episodes = singleDetailsTVseries.getSeasons().get(holder.getAbsoluteAdapterPosition()).getEpisodes();
+                        RecyclerView rv_EpisodeList = (RecyclerView) findViewById(R.id.rv_EpisodeList);
+                        DetailsActivityPhando.EpisodeAdapter episodeAdapter = new DetailsActivityPhando.EpisodeAdapter(episodes);
+                        rv_EpisodeList.setHasFixedSize(true);
+                        rv_EpisodeList.setLayoutManager(new LinearLayoutManager(DetailsActivityPhando.this));
+                        rv_EpisodeList.setAdapter(episodeAdapter);
+                    }
+
+
+                    //      CMHelper.setSnackBar(view, "Episode not Available" + holder.getAbsoluteAdapterPosition(), 1);
+
+                }
+            });
+        }
+
+
+        @Override
+        public int getItemCount() {
+            return listdata.size();
+        }
+
+        class ViewHolder extends RecyclerView.ViewHolder {
+            public TextView seasonsTv;
+            public TextView episodeTv;
+            public RelativeLayout relativeLayout;
+
+            public ViewHolder(View itemView) {
+                super(itemView);
+                this.seasonsTv = (TextView) itemView.findViewById(R.id.seasons);
+                this.episodeTv = (TextView) itemView.findViewById(R.id.episode_tv);
+                relativeLayout = (RelativeLayout) itemView.findViewById(R.id.relativeLayout);
+            }
+
+
+        }
+
+    }
+
+    public void SeasonListClick(boolean isShow) {
+        if (singleDetailsTVseries != null) {
+            if (isShow) {
+                episode_rv.setVisibility(GONE);
+                movie_title.setVisibility(VISIBLE);
+                details_fragment_root.setVisibility(VISIBLE);
+
+            } else {
+                episode_rv.setVisibility(VISIBLE);
+                tvWatchTrailer.setVisibility(GONE);
+                movie_title.setVisibility(GONE);
+                details_fragment_root.setVisibility(GONE);
+
+
+            }
+        }
     }
 
     private void contentFromPreviousScreen() {
@@ -340,27 +646,20 @@ public class DetailsActivityPhando extends FragmentActivity {
                 CMHelper.setSnackBar(this.getCurrentFocus(), "We are sorry, Video not available for your selected content", 2);
                 return;
             }
-/*            PlaybackModel video = new PlaybackModel();
-            ArrayList<Video> videoListForIntent = new ArrayList<>(videoList);
-            video.setVideoList(videoListForIntent);
-            VideoNew mSelectedVideo = new VideoNew(
-                    Long.parseLong(videoId),
-                    "movie",title,
-                    description,
-                    singleDetails.getList().getMedia_url(),
-                    poster_url,
-                    thumbUrl,
-                    poster_url);
-            Intent intent = new Intent(this, PlaybackActivityNew.class);
-            intent.putExtra(VideoDetailsActivity.VIDEO, mSelectedVideo);
-            startActivity(intent);*/
+
             PlaybackModel video = new PlaybackModel();
             ArrayList<Video> videoListForIntent = new ArrayList<>(videoList);
             video.setId(Long.parseLong(videoId));
             video.setTitle(title);
             video.setDescription(description);
             video.setVideoType(Config.VideoURLTypeHls);
-            video.setCategory(type);
+            if(Objects.equals(type, "M")){
+                video.setCategory("movie");
+            }else{
+                video.setCategory("movie");
+
+            }
+          //  video.setCategory(type);
             video.setVideoUrl(singleDetails.getList().getMedia_url());
             video.setCardImageUrl(poster_url);
             video.setIstrailer(false);
@@ -374,6 +673,7 @@ public class DetailsActivityPhando extends FragmentActivity {
             intent.putExtra(VideoPlaybackActivity.EXTRA_VIDEO, video);
             startActivity(intent);
         }
+
     }
 
     public void trailerClick() {
@@ -472,42 +772,123 @@ public class DetailsActivityPhando extends FragmentActivity {
 
     }
 
-/*
-    private void updateContinueWatchingDataToServer() {
-        if ((playerCurrentPosition / 1000) > 5) {
-            long fromTime=0L;
-            if (getIntent().hasExtra(POSITION)){
-                String pos = getIntent().getStringExtra(POSITION);
-                if (pos != null) {
-                    fromTime = Long.parseLong(pos) ;
+    private void getDataTvseries(String videoType, final String videoId) {
+        Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+        if (PreferenceUtils.getUserId(getApplicationContext()) != null) {
+            userid = PreferenceUtils.getUserId(getApplicationContext());
+        } else {
+            userid = " ";
+        }
+        String accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(this);
+        //  PreferenceUtils.getInstance().getUsersIdActionOTT(this);
+        Dashboard api = retrofit.create(Dashboard.class);
+        Call<LatestMoviesTVSeriesList> call = api.getSingleDetailAPITvSeries(accessToken, videoId);
+        activityIndicator(true);
+        call.enqueue(new Callback<LatestMoviesTVSeriesList>() {
+            @Override
+            public void onResponse(@NonNull Call<LatestMoviesTVSeriesList> call, @NonNull Response<LatestMoviesTVSeriesList> response) {
+                activityIndicator(false);
+                if (response.code() == 200 && response.body() != null) {
+                    singleDetailsTVseries = response.body();
+                    if (singleDetailsTVseries.getList() != null) {
+
+                        imgWatchList.setVisibility(GONE);
+                        tvWatchNow.setVisibility(GONE);
+
+                        setMovieDataTVSeries();
+                        btn_seasonAndEpisode.setVisibility(VISIBLE);
+                    }
+                } else {
+                    CMHelper.setSnackBar(DetailsActivityPhando.this.getCurrentFocus(), "We are sorry, This video content not available, Please try another", 2);
+
                 }
             }
 
-            Retrofit retrofit = RetrofitClient.getRetrofitInstance();
-            ContinueWatchApi api = retrofit.create(ContinueWatchApi.class);
-            Call<APIResponse<Object>> call = api.saveContinueWatch(Config.API_KEY, userId, id,
-                    String.valueOf((playerCurrentPosition / 1000)),
-                    categoryType, String.valueOf(fromTime),String.valueOf((playerCurrentPosition / 1000)), AppConfig.Device_Type);
+            @Override
+            public void onFailure(@NonNull Call<LatestMoviesTVSeriesList> call, @NonNull Throwable t) {
+                activityIndicator(false);
+                Log.i("DetailISSUE_kranti", "onResponse: " + t);
+                CMHelper.setSnackBar(DetailsActivityPhando.this.getCurrentFocus(), "We are sorry, This video content not available, Please try another" + t, 2);
+            }
+        });
 
-            call.enqueue(new Callback<APIResponse<Object>>() {
-                @Override
-                public void onResponse(@NonNull Call<APIResponse<Object>> call, @NonNull Response<APIResponse<Object>> response) {
-                    try {
-                        Log.d(TAG, "onResponse: " + response.body());
-                    } catch (Exception e) {
-                        e.printStackTrace();
+    }
+
+    private void setMovieDataTVSeries() {
+
+        //----season and episode download------------
+
+        for (int i = 0; i < singleDetailsTVseries.getSeasons().size(); i++) {
+            SeasonList season = singleDetailsTVseries.getSeasons().get(i);
+            CommonModels models = new CommonModels();
+            String season_name = season.getTitle();
+            models.setTitle(season.getTitle());
+            seasonList.add("Season: " + season.getTitle());
+            if (singleDetailsTVseries.getSeasons().get(0).getTitle() != null) {
+                tvWatchTrailer.setText(singleDetailsTVseries.getSeasons().get(0).getTitle());
+            } else {
+                tvWatchTrailer.setText("Play Season ");
+            }
+            // singleDetails.season.get(0).seasonsName
+            //----episode------
+            // List<EpiModel> epList = new ArrayList<>();
+            for (int j = 0; j < singleDetailsTVseries.getSeasons().get(i).getEpisodes().size(); j++) {
+                EpisodeList episode = singleDetailsTVseries.getSeasons().get(i).getEpisodes().get(j);
+
+                EpiModel model = new EpiModel();
+                model.setSeson(season_name);
+                model.setEpi(episode.getTitle());
+                //kingsa
+                //  model.setStreamURL(episode.getFileUrl());
+                model.setServerType(episode.getType());
+                model.setImageUrl(episode.getThumbnail());
+                // model.setSubtitleList(episode.getSubtitle());
+                epList.add(model);
+            }
+
+            // models.setListEpi(epList);
+            //   listServer.add(models);
+        }
+
+
+    }
+
+    /*
+        private void updateContinueWatchingDataToServer() {
+            if ((playerCurrentPosition / 1000) > 5) {
+                long fromTime=0L;
+                if (getIntent().hasExtra(POSITION)){
+                    String pos = getIntent().getStringExtra(POSITION);
+                    if (pos != null) {
+                        fromTime = Long.parseLong(pos) ;
                     }
                 }
 
-                @Override
-                public void onFailure(@NonNull Call<APIResponse<Object>> call, @NonNull Throwable t) {
-                    t.printStackTrace();
-                }
-            });
+                Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+                ContinueWatchApi api = retrofit.create(ContinueWatchApi.class);
+                Call<APIResponse<Object>> call = api.saveContinueWatch(Config.API_KEY, userId, id,
+                        String.valueOf((playerCurrentPosition / 1000)),
+                        categoryType, String.valueOf(fromTime),String.valueOf((playerCurrentPosition / 1000)), AppConfig.Device_Type);
 
+                call.enqueue(new Callback<APIResponse<Object>>() {
+                    @Override
+                    public void onResponse(@NonNull Call<APIResponse<Object>> call, @NonNull Response<APIResponse<Object>> response) {
+                        try {
+                            Log.d(TAG, "onResponse: " + response.body());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<APIResponse<Object>> call, @NonNull Throwable t) {
+                        t.printStackTrace();
+                    }
+                });
+
+            }
         }
-    }
-*/
+    */
 
     @SuppressLint("SetTextI18n")
     private void setMovieData() {
@@ -588,6 +969,10 @@ public class DetailsActivityPhando extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
+        if (movie_title.getVisibility() == GONE) {
+            SeasonListClick(true);
+            return;
+        }
         super.onBackPressed();
         overridePendingTransition(R.anim.pop_enter, R.anim.pop_exit);
     }

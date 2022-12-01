@@ -1,7 +1,9 @@
 package com.ott.tv.network.api;
 
 import com.ott.tv.model.BrowseData;
+import com.ott.tv.model.Video;
 import com.ott.tv.model.phando.LatestMoviesTVSeriesList;
+import com.ott.tv.model.phando.MapList;
 import com.ott.tv.model.phando.MediaplaybackData;
 import com.ott.tv.model.phando.ShowWatchlist;
 import com.ott.tv.model.phando.UserProfile;
@@ -29,12 +31,7 @@ public interface Dashboard {
             @Query("limit") int limit,
             @Query("offset") int offset
     );
-  @GET("tvseries")
-    Call<LatestMoviesTVSeriesList> getBrowseDataTvSeriesList(
-            @Header("Authorization") String token,
-            @Query("id") String id
 
-    );
 
     @GET("category_v1")
     Call<List<BrowseData>> getCategoryList(
@@ -55,6 +52,12 @@ public interface Dashboard {
             @Query("test") String test
     );
 
+    @GET("tvseries")
+    Call<LatestMoviesTVSeriesList> getSingleDetailAPITvSeries(
+            @Header("Authorization") String token,
+            @Query("id") String id
+
+    );
 
     @FormUrlEncoded
     @POST("addwishlist")
@@ -74,4 +77,10 @@ public interface Dashboard {
     Call<UserProfile> getUserProfileAPI(
             @Header("Authorization") String token
     );
+
+    @GET("states-data")
+    Call<List<MapList>> getMapDataList(
+            @Header("Authorization") String token,
+            @Query("state_name") String state_name);
+
 }

@@ -222,12 +222,13 @@ public class PlayerActivityNewCode extends Activity {
         fastForwardButton = findViewById(R.id.exo_ffwd);
         liveTvTextInController = findViewById(R.id.live_tv);
         seekBarLayout = findViewById(R.id.seekbar_layout);
-        if (category.equalsIgnoreCase("tv")) {
+        if (category.equalsIgnoreCase("t")) {
             serverButton.setVisibility(View.GONE);
             subtitleButton.setVisibility(View.GONE);
             //seekBarLayout.setVisibility(View.GONE);
             fastForwardButton.setVisibility(View.GONE);
             liveTvTextInController.setVisibility(View.VISIBLE);
+            seekBarLayout.setVisibility(GONE);
         }
         if (category.equalsIgnoreCase("tvseries")) {
             serverButton.setVisibility(View.GONE);
@@ -260,7 +261,7 @@ public class PlayerActivityNewCode extends Activity {
             if (model.getIstrailer()) {
                 imgVideoQuality.setVisibility(GONE);
             } else {
-                setResolutionHashMaps(model.getVideo());
+         //       setResolutionHashMaps(model.getVideo());
             }
 
         }
@@ -544,7 +545,7 @@ public class PlayerActivityNewCode extends Activity {
     }
 
     public void setResolutionHashMaps(Video model) {
-        Log.d("kingsa", "" + model.resolution_1);
+
         resolutionHashMap = new HashMap<>();
         if (model.resolution_1 != null && !model.resolution_1.isEmpty()) {
             resolutionHashMap.put(getString(R.string._144p), model.resolution_1);

@@ -5,15 +5,12 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.ott.tv.model.Episode;
-import com.ott.tv.model.home_content.GenreResource;
-import com.ott.tv.model.home_content.LatestMovieSingleDetailList;
+import com.ott.tv.model.Subtitle;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class SeasonList implements Parcelable {
-
-
+public class EpisodeList  implements Parcelable {
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -27,6 +24,9 @@ public class SeasonList implements Parcelable {
     @SerializedName("title")
     @Expose
     private String title;
+    @SerializedName("episode_no")
+    @Expose
+    private Integer episode_no;
 
     @SerializedName("publish_year")
     @Expose
@@ -62,7 +62,6 @@ public class SeasonList implements Parcelable {
     @SerializedName("is_live")
     @Expose
     private Integer is_live;
-
     @SerializedName("type")
     @Expose
     private String type;
@@ -73,22 +72,6 @@ public class SeasonList implements Parcelable {
     @Expose
     private String detail;
 
-
-
-    @SerializedName("created_at")
-    @Expose
-    private String created_at;
-
-    @SerializedName("keyword")
-    @Expose
-    private String keyword;
-    @SerializedName("rating")
-    @Expose
-    private Integer rating;
-    @SerializedName("maturity_rating")
-    @Expose
-    private String maturity_rating;
-
     @SerializedName("duration")
     @Expose
     private Integer duration;
@@ -97,38 +80,14 @@ public class SeasonList implements Parcelable {
     @Expose
     private String duration_str;
 
-    @SerializedName("release_date")
-    @Expose
-    private String release_date;
     @SerializedName("language_str")
     @Expose
     private String language_str;
-
-
     @SerializedName("last_watch_time")
     @Expose
     private Integer last_watch_time;
-    @SerializedName("is_active")
-    @Expose
-    private Integer is_active;
 
-
-    @SerializedName("genres_resource")
-    @Expose
-    private List<GenreResource> list = null;
-
-    @SerializedName("genres")
-    @Expose
-    private List<String> genres = null;
-    @SerializedName("trailers")
-    @Expose
-    private List<LatestMovieSingleDetailList> trailers = null;
-
-    @SerializedName("episodes")
-    @Expose
-    private List<EpisodeList> episodes = null;
-
-    protected SeasonList(Parcel in) {
+    protected EpisodeList(Parcel in) {
         if (in.readByte() == 0) {
             id = null;
         } else {
@@ -145,6 +104,11 @@ public class SeasonList implements Parcelable {
             season_no = in.readInt();
         }
         title = in.readString();
+        if (in.readByte() == 0) {
+            episode_no = null;
+        } else {
+            episode_no = in.readInt();
+        }
         if (in.readByte() == 0) {
             publish_year = null;
         } else {
@@ -174,45 +138,29 @@ public class SeasonList implements Parcelable {
             price = in.readInt();
         }
         detail = in.readString();
-        created_at = in.readString();
-        keyword = in.readString();
-        if (in.readByte() == 0) {
-            rating = null;
-        } else {
-            rating = in.readInt();
-        }
-        maturity_rating = in.readString();
         if (in.readByte() == 0) {
             duration = null;
         } else {
             duration = in.readInt();
         }
         duration_str = in.readString();
-        release_date = in.readString();
         language_str = in.readString();
         if (in.readByte() == 0) {
             last_watch_time = null;
         } else {
             last_watch_time = in.readInt();
         }
-        if (in.readByte() == 0) {
-            is_active = null;
-        } else {
-            is_active = in.readInt();
-        }
-        genres = in.createStringArrayList();
-        trailers = in.createTypedArrayList(LatestMovieSingleDetailList.CREATOR);
     }
 
-    public static final Creator<SeasonList> CREATOR = new Creator<SeasonList>() {
+    public static final Creator<EpisodeList> CREATOR = new Creator<EpisodeList>() {
         @Override
-        public SeasonList createFromParcel(Parcel in) {
-            return new SeasonList(in);
+        public EpisodeList createFromParcel(Parcel in) {
+            return new EpisodeList(in);
         }
 
         @Override
-        public SeasonList[] newArray(int size) {
-            return new SeasonList[size];
+        public EpisodeList[] newArray(int size) {
+            return new EpisodeList[size];
         }
     };
 
@@ -246,6 +194,14 @@ public class SeasonList implements Parcelable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Integer getEpisode_no() {
+        return episode_no;
+    }
+
+    public void setEpisode_no(Integer episode_no) {
+        this.episode_no = episode_no;
     }
 
     public Integer getPublish_year() {
@@ -352,38 +308,6 @@ public class SeasonList implements Parcelable {
         this.detail = detail;
     }
 
-    public String getCreated_at() {
-        return created_at;
-    }
-
-    public void setCreated_at(String created_at) {
-        this.created_at = created_at;
-    }
-
-    public String getKeyword() {
-        return keyword;
-    }
-
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
-    }
-
-    public Integer getRating() {
-        return rating;
-    }
-
-    public void setRating(Integer rating) {
-        this.rating = rating;
-    }
-
-    public String getMaturity_rating() {
-        return maturity_rating;
-    }
-
-    public void setMaturity_rating(String maturity_rating) {
-        this.maturity_rating = maturity_rating;
-    }
-
     public Integer getDuration() {
         return duration;
     }
@@ -400,14 +324,6 @@ public class SeasonList implements Parcelable {
         this.duration_str = duration_str;
     }
 
-    public String getRelease_date() {
-        return release_date;
-    }
-
-    public void setRelease_date(String release_date) {
-        this.release_date = release_date;
-    }
-
     public String getLanguage_str() {
         return language_str;
     }
@@ -422,46 +338,6 @@ public class SeasonList implements Parcelable {
 
     public void setLast_watch_time(Integer last_watch_time) {
         this.last_watch_time = last_watch_time;
-    }
-
-    public Integer getIs_active() {
-        return is_active;
-    }
-
-    public void setIs_active(Integer is_active) {
-        this.is_active = is_active;
-    }
-
-    public List<GenreResource> getList() {
-        return list;
-    }
-
-    public void setList(List<GenreResource> list) {
-        this.list = list;
-    }
-
-    public List<String> getGenres() {
-        return genres;
-    }
-
-    public void setGenres(List<String> genres) {
-        this.genres = genres;
-    }
-
-    public List<LatestMovieSingleDetailList> getTrailers() {
-        return trailers;
-    }
-
-    public void setTrailers(List<LatestMovieSingleDetailList> trailers) {
-        this.trailers = trailers;
-    }
-
-    public List<EpisodeList> getEpisodes() {
-        return episodes;
-    }
-
-    public void setEpisodes(List<EpisodeList> episodes) {
-        this.episodes = episodes;
     }
 
     @Override
@@ -490,6 +366,12 @@ public class SeasonList implements Parcelable {
             dest.writeInt(season_no);
         }
         dest.writeString(title);
+        if (episode_no == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(episode_no);
+        }
         if (publish_year == null) {
             dest.writeByte((byte) 0);
         } else {
@@ -523,15 +405,6 @@ public class SeasonList implements Parcelable {
             dest.writeInt(price);
         }
         dest.writeString(detail);
-        dest.writeString(created_at);
-        dest.writeString(keyword);
-        if (rating == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeInt(rating);
-        }
-        dest.writeString(maturity_rating);
         if (duration == null) {
             dest.writeByte((byte) 0);
         } else {
@@ -539,7 +412,6 @@ public class SeasonList implements Parcelable {
             dest.writeInt(duration);
         }
         dest.writeString(duration_str);
-        dest.writeString(release_date);
         dest.writeString(language_str);
         if (last_watch_time == null) {
             dest.writeByte((byte) 0);
@@ -547,13 +419,5 @@ public class SeasonList implements Parcelable {
             dest.writeByte((byte) 1);
             dest.writeInt(last_watch_time);
         }
-        if (is_active == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeInt(is_active);
-        }
-        dest.writeStringList(genres);
-        dest.writeTypedList(trailers);
     }
 }

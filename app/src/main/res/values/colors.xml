@@ -122,6 +122,7 @@
     //HomeFragment button press
     <color name="bcn_selected_color">#DCBC4F</color>
     <color name="dot_background_color">@color/color_dark_yellow_high_transparent</color>
+    <color name="bg_seires_episode">#040E21</color>
 
 
 </resources>

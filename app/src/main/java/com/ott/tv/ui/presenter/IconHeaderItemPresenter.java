@@ -1,6 +1,9 @@
 package com.ott.tv.ui.presenter;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.Log;
@@ -12,12 +15,15 @@ import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
+import androidx.leanback.app.HeadersSupportFragment;
 import androidx.leanback.widget.ListRow;
 import androidx.leanback.widget.Presenter;
+import androidx.leanback.widget.Row;
 import androidx.leanback.widget.RowHeaderPresenter;
 
 import com.ott.tv.R;
 import com.ott.tv.ui.IconHeaderItem;
+import com.ott.tv.ui.activity.LoginActivity;
 
 
 /**
@@ -77,7 +83,32 @@ public class IconHeaderItemPresenter extends RowHeaderPresenter {
             holder.view.setBackgroundColor(ContextCompat.getColor(holder.view.getContext(), android.R.color.transparent));
             view.setVisibility(View.GONE);
         }
-       // holder.view.setAlpha(mUnselectedAlpha + holder.getSelectLevel() * (1.0f - mUnselectedAlpha));
+        // holder.view.setAlpha(mUnselectedAlpha + holder.getSelectLevel() * (1.0f - mUnselectedAlpha));
     }
+        /*
+        TextView header_label = holder.view.findViewById(R.id.header_label);
+        ImageView header_icon = holder.view.findViewById(R.id.header_icon);
+        Log.i(TAG, "onSelectLevelChanged: "+header_label.getText());
+        if (holder.getSelectLevel() == 1) {
+            view.setVisibility(View.VISIBLE);
+            */
+/*header_label.setVisibility(View.VISIBLE);*//*
+
+            holder.view.setBackgroundColor(ContextCompat.getColor(holder.view.getContext(), R.color.white_bg));
+            header_icon.setColorFilter(header_icon.getContext().getResources().getColor(R.color.colorGold), PorterDuff.Mode.SRC_ATOP);
+
+        } else {
+            holder.view.setBackgroundColor(ContextCompat.getColor(holder.view.getContext(), android.R.color.transparent));
+            header_icon.setColorFilter(header_icon.getContext().getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+            view.setVisibility(View.GONE);
+        */
+/*    header_label.setVisibility(View.GONE);*//*
+
+        }
+
+        // holder.view.setAlpha(mUnselectedAlpha + holder.getSelectLevel() * (1.0f - mUnselectedAlpha));
+    }
+*/
+
 
 }
