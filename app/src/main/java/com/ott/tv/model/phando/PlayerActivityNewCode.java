@@ -140,13 +140,22 @@ public class PlayerActivityNewCode extends Activity {
 
         assert model != null;
         url = model.getVideoUrl();
-        videoType = model.getVideoType();
+        if (model.getVideoType() != null) {
+            videoType = model.getVideoType();
+        } else {
+            videoType = Config.VideoURLTypeHls;
+        }
+
+
         category = model.getCategory();
         if (model.getVideo() != null)
             video = model.getVideo();
-        if(model.getCategory()!=null){
-        categoryType=model.getCategory();}
-        id= String.valueOf(model.getId());
+        if (model.getCategory() != null) {
+            categoryType = model.getCategory();
+        }
+        id = String.valueOf(model.getId());
+
+
       /*  if (model.getCategory().equals("movie") && mChannelId > -1L && model.getIsPaid().equals("1")) {
             //Paid Content from Channel
             //check user has subscription or not
@@ -163,7 +172,7 @@ public class PlayerActivityNewCode extends Activity {
             }
         }*/
         intiViews();
-        initVideoPlayer(url, Config.VideoURLTypeHls);
+        initVideoPlayer(url, videoType);
 
     }
 
@@ -172,7 +181,7 @@ public class PlayerActivityNewCode extends Activity {
             playerCurrentPosition = player.getCurrentPosition();
             Log.d("VideoFragment3", "Is prepped, seeking to " + player.getCurrentPosition());
         }
-        Log.i(TAG, "onKeyDown: "+"here click"+playerCurrentPosition);
+        Log.i(TAG, "onKeyDown: " + "here click" + playerCurrentPosition);
         if ((playerCurrentPosition / 1000) > 5) {
             double fromTime = 0L;
             if (getIntent().hasExtra(Constants.POSITION)) {
@@ -261,7 +270,7 @@ public class PlayerActivityNewCode extends Activity {
             if (model.getIstrailer()) {
                 imgVideoQuality.setVisibility(GONE);
             } else {
-         //       setResolutionHashMaps(model.getVideo());
+                //       setResolutionHashMaps(model.getVideo());
             }
 
         }
@@ -631,7 +640,7 @@ public class PlayerActivityNewCode extends Activity {
                 if (exoPlayerView.isControllerVisible()) {
                     exoPlayerView.hideController();
                 } else {
-                    Log.i(TAG, "onKeyDown: "+"here click");
+                    Log.i(TAG, "onKeyDown: " + "here click");
                     updateContinueWatchingDataToServer();
                     releasePlayer();
                     // mediaSessionHelper.stopMediaSession();

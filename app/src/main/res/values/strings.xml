@@ -207,7 +207,7 @@
     <string name="country_code_default">+91</string>
     <string name="country_name_default">India</string>
     <string name="enter_otp">Enter OTP</string>
-    <string name="qrCodeUrl">www.uvplay.com/activatetv</string>
+    <string name="qrCodeUrl">https://uvplay.com/mytv</string>
     <string name="browse_all_seasons_and_episodes">Browse all Seasons &amp; Episodes</string>
 
 

@@ -5,7 +5,15 @@ public class Config {
   // public static final String DOMAIN = "https://dev.actionott.com/";
     //public static final String DOMAIN = "https://lifeott.com/";
 //    public static final String DOMAIN = "https://uvtvstage.phando.com/";
-    public static final String DOMAIN = "https://uvtvstage.phando.com/";
+  /*  public static final String DOMAIN = "https://uvtvstage.phando.com/";
+    public static final String Publisher_id = "4";
+  */
+       /*public static final String DOMAIN = "https://kaafaltv.com/";
+    public static final String Publisher_id = "5";
+*/
+    public static final String DOMAIN = "https://solidtv.phando.com/";
+    public static final String Publisher_id = "6";
+
     public static final String WebsiteURL="https://uvtv.phando.com";
 
     public static final String API_SERVER_URL = DOMAIN + "api/";
@@ -20,8 +28,7 @@ public class Config {
 
     //Google authentication
     public static final boolean ENABLE_GOOGLE_LOGIN = false;
-    //Add publisher id
-    public static final String Publisher_id = "4";
+
     public static final String VideoURLTypeHls = "hls";
 
 }

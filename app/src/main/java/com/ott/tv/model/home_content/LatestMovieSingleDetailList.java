@@ -10,11 +10,20 @@ import com.ott.tv.model.phando.ShowWatchlist;
 
 import java.util.List;
 
-public class LatestMovieSingleDetailList implements Parcelable{
+public class LatestMovieSingleDetailList implements Parcelable {
 
     @SerializedName("media_url")
     @Expose
     private String media_url;
+
+    @SerializedName("youtube_url")
+    @Expose
+    private String youtube_url;
+    @SerializedName("is_youtube")
+    @Expose
+    private Integer is_youtube;
+
+
     @SerializedName("is_watchlist")
     @Expose
     private String is_watchlist;
@@ -27,6 +36,12 @@ public class LatestMovieSingleDetailList implements Parcelable{
 
     protected LatestMovieSingleDetailList(Parcel in) {
         media_url = in.readString();
+        youtube_url = in.readString();
+        if (in.readByte() == 0) {
+            is_youtube = null;
+        } else {
+            is_youtube = in.readInt();
+        }
         is_watchlist = in.readString();
         is_wishlist = in.readString();
         related = in.createTypedArrayList(ShowWatchlist.CREATOR);
@@ -50,6 +65,22 @@ public class LatestMovieSingleDetailList implements Parcelable{
 
     public void setMedia_url(String media_url) {
         this.media_url = media_url;
+    }
+
+    public String getYoutube_url() {
+        return youtube_url;
+    }
+
+    public void setYoutube_url(String youtube_url) {
+        this.youtube_url = youtube_url;
+    }
+
+    public Integer getIs_youtube() {
+        return is_youtube;
+    }
+
+    public void setIs_youtube(Integer is_youtube) {
+        this.is_youtube = is_youtube;
     }
 
     public String getIs_watchlist() {
@@ -84,11 +115,20 @@ public class LatestMovieSingleDetailList implements Parcelable{
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(media_url);
+        dest.writeString(youtube_url);
+        if (is_youtube == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(is_youtube);
+        }
         dest.writeString(is_watchlist);
         dest.writeString(is_wishlist);
         dest.writeTypedList(related);
     }
-/* @SerializedName("id")
+}
+
+    /* @SerializedName("id")
     @Expose
     private Integer id;
 
@@ -187,4 +227,3 @@ public class LatestMovieSingleDetailList implements Parcelable{
     private List<String> genres = null;
 */
 
-}

@@ -190,8 +190,8 @@ public class HomeFragmentNewUI extends Fragment {
                     DefaultTrackSelector(videoTrackSelectionFactory);
 
             player = ExoPlayerFactory.newSimpleInstance(getContext(), trackSelector);
-
-            player.setVolume(.05f);
+//to set volume
+            player.setVolume(.0f);
             exoPlayerView.setPlayer(player);
             // below 2 lines will make screen size to fit
             exoPlayerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_ZOOM);

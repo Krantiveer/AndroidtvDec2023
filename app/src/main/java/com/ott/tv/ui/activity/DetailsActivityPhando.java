@@ -320,7 +320,7 @@ public class DetailsActivityPhando extends FragmentActivity {
                         getDataEpisode(categoryType, listdata.get(holder.getAbsoluteAdapterPosition()).getId().toString(), listdata.get(holder.getAbsoluteAdapterPosition()));
 
 
-                      //  Log.i(TAG, "onClick: " + categoryType + listdata.get(pos).getTitle());
+                        //  Log.i(TAG, "onClick: " + categoryType + listdata.get(pos).getTitle());
             /*    VideoNew mSelectedVideo = new VideoNew(
                         Long.parseLong(listdata.get(holder.getAbsoluteAdapterPosition()).getId().toString()),
                         "movie",
@@ -653,14 +653,26 @@ public class DetailsActivityPhando extends FragmentActivity {
             video.setTitle(title);
             video.setDescription(description);
             video.setVideoType(Config.VideoURLTypeHls);
-            if(Objects.equals(type, "M")){
+            if (Objects.equals(type, "M")) {
                 video.setCategory("movie");
-            }else{
+            } else {
                 video.setCategory("movie");
-
             }
-          //  video.setCategory(type);
-            video.setVideoUrl(singleDetails.getList().getMedia_url());
+            //  video.setCategory(type);
+            if (singleDetails.getList().getIs_youtube() != null) {
+                if (singleDetails.getList().getIs_youtube().toString().equalsIgnoreCase("1")) {
+                    video.setVideoType("youtube");
+                    video.setVideoUrl(singleDetails.getList().getYoutube_url());
+
+                } else if (singleDetails.getList().getIs_youtube().toString().equalsIgnoreCase("2")) {
+                    video.setVideoType("youtube-live");
+                    video.setVideoUrl(singleDetails.getList().getYoutube_url());
+                } else {
+                    video.setVideoType("hls");
+                    video.setVideoUrl(singleDetails.getList().getMedia_url());
+
+                }
+            }
             video.setCardImageUrl(poster_url);
             video.setIstrailer(false);
 

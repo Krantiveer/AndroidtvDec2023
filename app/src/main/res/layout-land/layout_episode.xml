@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="105sp"
     android:layout_marginBottom="@dimen/_10sdp"
-    android:background="@drawable/round_ll_detail_button"
+    android:background="@drawable/round_ll_tvseries_season"
     android:orientation="horizontal"
     android:padding="@dimen/corner_radius_series"
     tools:ignore="MissingDefaultResource">

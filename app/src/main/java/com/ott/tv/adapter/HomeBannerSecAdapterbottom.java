@@ -245,8 +245,8 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
                         intent.putExtra("maturity_rating", videoContent.getMaturity_rating());
                     if (videoContent.getIs_free() != null)
                         intent.putExtra("ispaid", videoContent.getIs_free().toString());
-                    if (videoContent.getGenre() != null)
-                        intent.putExtra("language_str", videoContent.getGenre());
+                    if (videoContent.getLanguage() != null)
+                        intent.putExtra("language_str", videoContent.getLanguage());
                     if (videoContent.getIs_live() != null)
                         intent.putExtra("is_live", videoContent.getIs_live().toString());
                     if (videoContent.getRating() != null)
