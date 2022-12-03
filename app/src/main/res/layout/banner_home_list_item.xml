@@ -58,9 +58,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_margin="5sp"
-                tools:visibility="visible"
+                android:src="@drawable/prime_icon"
                 android:visibility="gone"
-                android:src="@drawable/prime_icon" />
+                tools:visibility="visible" />
 
             <ProgressBar
                 android:id="@+id/progress_bar_movie"
@@ -90,13 +90,13 @@
 
             <TextView
                 android:id="@+id/title_name"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_marginTop="2sp"
 
                 android:background="@drawable/bg_gradient_soft_new"
-                android:ellipsize="end"
+                android:ellipsize="marquee"
 
                 android:fontFamily="@font/vag_rounded_regular"
                 android:maxLines="1"

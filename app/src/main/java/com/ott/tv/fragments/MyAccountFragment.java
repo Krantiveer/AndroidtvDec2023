@@ -52,8 +52,8 @@ import retrofit2.Retrofit;
  */
 public class MyAccountFragment extends Fragment {
     private Button sign_out;
-    private TextView user_name,tv_mobileno;
-    private TextView user_email;
+    private TextView user_name, tv_mobileno;
+    private TextView user_email, tv_email;
     private TextView expire_date;
     private TextView active_plan;
     private DatabaseHelper db;
@@ -87,7 +87,8 @@ public class MyAccountFragment extends Fragment {
         user_name = view.findViewById(R.id.userNameTv);
         tv_mobileno = view.findViewById(R.id.tv_mobileno);
         user_email = view.findViewById(R.id.userEmailTv);
-    //    active_plan = view.findViewById(R.id.activePlanTv);
+        tv_email = view.findViewById(R.id.tv_email);
+        //    active_plan = view.findViewById(R.id.activePlanTv);
         expire_date = view.findViewById(R.id.expireDateTv);
         if (getContext() != null) {
             if (PreferenceUtils.isLoggedIn(getContext())) {
@@ -98,7 +99,7 @@ public class MyAccountFragment extends Fragment {
 
         ActiveStatus activeStatus = db.getActiveStatusData();
 
-      //  active_plan.setText(activeStatus.getPackageTitle());
+        //  active_plan.setText(activeStatus.getPackageTitle());
         expire_date.setText(activeStatus.getExpireDate());
         getUserProfileDataFromServer();
     }
@@ -146,7 +147,12 @@ public class MyAccountFragment extends Fragment {
                         if (response.code() == 200 && response.body() != null) {
                             userProfile = response.body();
                             user_name.setText(userProfile.getUser().getName());
-                            user_email.setText(userProfile.getUser().getEmail());
+                            if (userProfile.getUser().getEmail() != null) {
+                                user_email.setVisibility(View.VISIBLE);
+                                tv_email.setVisibility(View.VISIBLE);
+                                user_email.setText(userProfile.getUser().getEmail());
+
+                            }
                             tv_mobileno.setText(userProfile.getUser().getMobile());
 
                         } else if (response.errorBody() != null) {
