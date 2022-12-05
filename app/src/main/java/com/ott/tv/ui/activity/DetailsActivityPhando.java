@@ -190,8 +190,8 @@ public class DetailsActivityPhando extends FragmentActivity {
         btn_seasonAndEpisode = findViewById(R.id.img_series);
         if (is_live != null) {
             if (is_live.equalsIgnoreCase("1")) {
-                tvWatchTrailer.setVisibility(GONE);
-                imgWatchList.setVisibility(GONE);
+
+                imgWatchList.setVisibility(VISIBLE);
             } else {
                 imgWatchList.setVisibility(VISIBLE);
             }
@@ -467,10 +467,10 @@ public class DetailsActivityPhando extends FragmentActivity {
             holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (holder.episodeTv.getText().toString().isEmpty()) {
+                  /*  if (holder.episodeTv.getText().toString().isEmpty()) {
                         CMHelper.setSnackBar(view, "Episode not Available", 1);
 
-                    } else {
+                    } else */{
                         List<EpisodeList> episodes = singleDetailsTVseries.getSeasons().get(holder.getAbsoluteAdapterPosition()).getEpisodes();
                         RecyclerView rv_EpisodeList = (RecyclerView) findViewById(R.id.rv_EpisodeList);
                         DetailsActivityPhando.EpisodeAdapter episodeAdapter = new DetailsActivityPhando.EpisodeAdapter(episodes);
@@ -586,7 +586,7 @@ public class DetailsActivityPhando extends FragmentActivity {
             genres_image.setVisibility(GONE);
             genres_tv.setVisibility(GONE);
         }
-        if (trailer_url != null) {
+        if (trailer_url != null &&!trailer_url.isEmpty()) {
             tvWatchTrailer.setVisibility(VISIBLE);
         } else {
             tvWatchTrailer.setVisibility(GONE);

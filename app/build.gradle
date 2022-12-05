@@ -38,6 +38,10 @@ android {
         }
         solidtv {
             applicationId "com.solidtv.tv"
+
+        }
+        kaafaltv {
+            applicationId "com.kaafaltv.tv"
         }
 
         /* nammestarott {
