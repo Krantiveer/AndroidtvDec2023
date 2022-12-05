@@ -103,19 +103,18 @@
                         <androidx.cardview.widget.CardView
 
                             android:id="@+id/qrcode_demo_image"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="@dimen/_150sdp"
+                            android:layout_height="@dimen/_150sdp"
+                            android:background="@drawable/rounded_black_transparent"
 
                             android:backgroundTint="@color/black_color"
                             android:src="@drawable/qrcode_demo_image"
-                            app:cardCornerRadius="@dimen/_12sdp">
+                            app:cardCornerRadius="@dimen/_10sdp">
 
                             <ImageView
                                 android:id="@+id/qrcode_demo_image"
-                                android:layout_width="@dimen/_150sdp"
-                                android:layout_height="@dimen/_150sdp"
-                                android:layout_marginTop="@dimen/_10sdp"
-                                android:background="@drawable/rounded_black_transparent"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:src="@drawable/qrcode_demo_image" />
                         </androidx.cardview.widget.CardView>
 
@@ -216,6 +215,7 @@
                     android:paddingTop="@dimen/_10sdp"
                     android:paddingEnd="20dp"
                     android:paddingBottom="@dimen/_10sdp"
+                    android:focusedByDefault="true"
                     android:text="@string/fui_sign_in_with_phone"
                     android:textAllCaps="false"
                     android:textColor="@color/btn_txt_color"
@@ -228,11 +228,9 @@
                     android:layout_marginTop="10dp"
                     android:background="@drawable/button_focus"
                     android:drawableStart="@drawable/envelope"
-                    android:focusedByDefault="true"
                     android:onClick="emailSignInBtn"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
-
                     android:text="Login with Email"
                     android:textAllCaps="false"
                     android:textColor="@color/btn_txt_color"
