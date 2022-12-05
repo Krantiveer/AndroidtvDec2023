@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "391192379700",
+    "project_id": "kaafaltv",
+    "storage_bucket": "kaafaltv.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:391192379700:android:d3061ab3061f7be2726561",
+        "android_client_info": {
+          "package_name": "com.kaafal.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "391192379700-glgetqf3c9m1vhouoloomkhpets98jdp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzri5UvHr_lpLS5g6-k6TOH_t-jwG0wts"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "391192379700-glgetqf3c9m1vhouoloomkhpets98jdp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:391192379700:android:24729636d70aacb6726561",
+        "android_client_info": {
+          "package_name": "com.kaafaltv.tv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "391192379700-glgetqf3c9m1vhouoloomkhpets98jdp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzri5UvHr_lpLS5g6-k6TOH_t-jwG0wts"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "391192379700-glgetqf3c9m1vhouoloomkhpets98jdp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

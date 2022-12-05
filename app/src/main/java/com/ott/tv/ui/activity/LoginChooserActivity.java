@@ -51,6 +51,7 @@ public class LoginChooserActivity extends Activity {
     private ProgressBar progressBar;
     private Button googleSignInButton, phoneSignInButton;
     final Handler handler = new Handler();
+    final Handler handlerqr = new Handler();
     String randomNumber;
     private TextView tv_qrCode;
 
@@ -134,11 +135,11 @@ public class LoginChooserActivity extends Activity {
     }
 
     private void CallHandlerQrCode() {
-        handler.postDelayed(new Runnable() {
+        handlerqr.postDelayed(new Runnable() {
             @Override
             public void run() {
                 Log.i(TAG, "Handler run run:1 " + randomNumber);
-                handler.postDelayed(this, 15000);
+                handlerqr.postDelayed(this, 15000);
                 CheckAccessCode(randomNumber);
                 //Do something after 20 seconds
             }
@@ -513,9 +514,11 @@ public class LoginChooserActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-        handler.removeCallbacksAndMessages(null);
+
         CallHandler();
         CallHandlerQrCode();
+        handlerqr.removeCallbacksAndMessages(null);
+        handler.removeCallbacksAndMessages(null);
 
 
     }
