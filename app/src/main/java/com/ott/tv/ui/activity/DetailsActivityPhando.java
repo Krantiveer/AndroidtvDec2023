@@ -188,14 +188,15 @@ public class DetailsActivityPhando extends FragmentActivity {
         tvWatchNow = findViewById(R.id.tvWatchNow);
         imgWatchList = findViewById(R.id.imgWatchList);
         btn_seasonAndEpisode = findViewById(R.id.img_series);
-    /*    if (is_live != null) {
+        if (is_live != null) {
             if (is_live.equalsIgnoreCase("1")) {
+
                 imgWatchList.setVisibility(VISIBLE);
             } else {
                 imgWatchList.setVisibility(VISIBLE);
             }
         }
-*/
+
         rvRelated = findViewById(R.id.rv_related);
         playerView = findViewById(R.id.video_view);
         activity_rv = findViewById(R.id.activity_rv);
