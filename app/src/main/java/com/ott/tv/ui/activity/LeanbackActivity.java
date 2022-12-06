@@ -1,6 +1,8 @@
 package com.ott.tv.ui.activity;
 
 
+import static java.security.AccessController.getContext;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,6 +18,7 @@ import android.view.animation.Transformation;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -43,6 +46,10 @@ import com.ott.tv.fragments.MoviesFragment;
 import com.ott.tv.fragments.MyAccountFragment;
 import com.ott.tv.fragments.ShowWatchlistFragment;
 import com.ott.tv.fragments.TvSeriesFragment;
+import com.ott.tv.model.BrowseData;
+import com.ott.tv.model.phando.CategoryType;
+import com.ott.tv.network.RetrofitClient;
+import com.ott.tv.network.api.Dashboard;
 import com.ott.tv.ui.CustomFrameLayout;
 import com.ott.tv.ui.Utils;
 import com.ott.tv.utils.PreferenceUtils;
@@ -50,6 +57,12 @@ import com.ott.tv.utils.PreferenceUtils;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.LinkedHashMap;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class LeanbackActivity extends FragmentActivity {
     private static final String TAG = "LeanbackMainActivity";
@@ -68,6 +81,7 @@ public class LeanbackActivity extends FragmentActivity {
     int focus = 2;
     int deltaValue = 450;
     int headerValue = 50;
+    private List<CategoryType> menu = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,24 +113,26 @@ public class LeanbackActivity extends FragmentActivity {
         PreferenceUtils.updateSubscriptionStatus(this);
 
         fragments = new LinkedHashMap<>();
+        //    fetchCategory();
 
 
         int CATEGORIES_NUMBER = 8;
-        for (int i = 0; i < CATEGORIES_NUMBER; i++) {
-            if (i == 0) {
-                HomeFragmentNewUI fragment = new HomeFragmentNewUI();
-                Bundle bundle = new Bundle();
-                bundle.putInt("menu", i);
-                fragment.setArguments(bundle);
-                fragments.put(i, fragment);
-            } else if (i == 1) {
+        if (BuildConfig.FLAVOR.equalsIgnoreCase("kaafaltv")) {
+            for (int i = 0; i < CATEGORIES_NUMBER; i++) {
+                if (i == 0) {
+                    HomeFragmentNewUI fragment = new HomeFragmentNewUI();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("menu", i);
+                    fragment.setArguments(bundle);
+                    fragments.put(i, fragment);
+                } else if (i == 1) {
 
-                HomeFragment fragment = new HomeFragment();
-                Bundle bundle = new Bundle();
-                bundle.putInt("menu", i);
-                bundle.putString("type", "24");///movie
-                fragment.setArguments(bundle);
-                fragments.put(i, fragment);
+                    HomeFragment fragment = new HomeFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("menu", i);
+                    bundle.putString("type", "28");///movie
+                    fragment.setArguments(bundle);
+                    fragments.put(i, fragment);
 
 /*
                 Bundle bundle = new Bundle();
@@ -125,53 +141,38 @@ public class LeanbackActivity extends FragmentActivity {
                 MoviesFragment fragment = new MoviesFragment();
                 fragment.setArguments(bundle);
                 fragments.put(i, fragment);*/
-            } else if (i == 2) {
-                HomeFragment fragment = new HomeFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString("type", "22");//series
-                bundle.putInt("menu", i);
-                fragment.setArguments(bundle);
-                fragments.put(i, fragment);
-            } else if (i == 3) {
-                if(BuildConfig.FLAVOR.equalsIgnoreCase("solidtv"))
-                {
+                } else if (i == 2) {
+                    HomeFragment fragment = new HomeFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("type", "29");//series
+                    bundle.putInt("menu", i);
+                    fragment.setArguments(bundle);
+                    fragments.put(i, fragment);
+                } /*else if (i == 3) {
+                    if (BuildConfig.FLAVOR.equalsIgnoreCase("solidtv")) {
 
-                }else {
+                    } else {
 
-                    MapFragmentUVTV fragment = new MapFragmentUVTV();
-               /* Bundle bundle = new Bundle();
+                        MapFragmentUVTV fragment = new MapFragmentUVTV();
+               *//* Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);//uvtv bharat
-               */ fragments.put(i, fragment);/*
+               *//*
+                        fragments.put(i, fragment);*//*
                     HomeFragment fragment = new HomeFragment();
                     Bundle bundle = new Bundle();
                     bundle.putInt("menu", i);
                     fragment.setArguments(bundle);//uvtv bharat
                     fragments.put(i, fragment);
-*/                }/*
-                /*HomeFragment fragment = new HomeFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString("type", "22");//series
-                bundle.putInt("menu", i);
-                fragment.setArguments(bundle);
-                fragments.put(i, fragment);
-                */
-
-                /*
-                FavouriteFragment fragment = new FavouriteFragment();
-                Bundle bundle = new Bundle();
-                bundle.putInt("menu", i);
-
-                bundle.putString("type", "Watch Later");
-                fragment.setArguments(bundle);
-                fragments.put(i, fragment);*/
-            } else if (i == 4) {
-                HomeFragment fragment = new HomeFragment();
-                Bundle bundle = new Bundle();
-                bundle.putInt("menu", i);
-                bundle.putString("type", "15");//live
-                fragment.setArguments(bundle);
-                fragments.put(i, fragment);
+*//*
+                    }
+                } */else if (i == 3) {
+                    HomeFragment fragment = new HomeFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("menu", i);
+                    bundle.putString("type", "30");//live
+                    fragment.setArguments(bundle);
+                    fragments.put(i, fragment);
                 /*
                 GenreMovieFragment fragment = new GenreMovieFragment();
                 Bundle bundle = new Bundle();
@@ -179,13 +180,13 @@ public class LeanbackActivity extends FragmentActivity {
                 fragment.setArguments(bundle);
                 fragments.put(i, fragment);*/
 
-            } else if (i == 5) {
-                Bundle bundle = new Bundle();
-                bundle.putInt("menu", i);
-                bundle.putString("type", "Watchlist");
-                ShowWatchlistFragment fragment = new ShowWatchlistFragment();
-                fragment.setArguments(bundle);
-                fragments.put(i, fragment);
+                } else if (i == 4) {
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("menu", i);
+                    bundle.putString("type", "Watchlist");
+                    ShowWatchlistFragment fragment = new ShowWatchlistFragment();
+                    fragment.setArguments(bundle);
+                    fragments.put(i, fragment);
               /*  HomeFragment fragment = new HomeFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString("type", "27");
@@ -199,13 +200,13 @@ public class LeanbackActivity extends FragmentActivity {
                 bundle.putString("type", "movie");
                 fragment.setArguments(bundle);
                 fragments.put(i, fragment);*/
-            } else if (i == 6) {
+                } else if (i == 5) {
 
-                MyAccountFragment fragment = new MyAccountFragment();
-                Bundle bundle = new Bundle();
-                bundle.putInt("menu", i);
-                fragment.setArguments(bundle);
-                fragments.put(i, fragment);
+                    MyAccountFragment fragment = new MyAccountFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("menu", i);
+                    fragment.setArguments(bundle);
+                    fragments.put(i, fragment);
 
 /*                HomeFragment fragment = new HomeFragment();
                 Bundle bundle = new Bundle();
@@ -225,19 +226,145 @@ public class LeanbackActivity extends FragmentActivity {
                 fragment.setArguments(bundle);
                 fragments.put(i, fragment);*/
 
-            } else if (i == 7) {
+                } else if (i == 7) {
            /*     MyAccountFragment fragment = new MyAccountFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
                 fragments.put(i, fragment);*/
 
-            } else {/*
+                } else {/*
                 MyAccountFragment fragment = new MyAccountFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
                 fragments.put(i, fragment);*/
+                }
+            }
+        } else {
+
+            for (int i = 0; i < CATEGORIES_NUMBER; i++) {
+                if (i == 0) {
+                    HomeFragmentNewUI fragment = new HomeFragmentNewUI();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("menu", i);
+                    fragment.setArguments(bundle);
+                    fragments.put(i, fragment);
+                } else if (i == 1) {
+
+                    HomeFragment fragment = new HomeFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("menu", i);
+                    bundle.putString("type", "24");///movie
+                    fragment.setArguments(bundle);
+                    fragments.put(i, fragment);
+
+/*
+                Bundle bundle = new Bundle();
+                bundle.putInt("menu", i);
+                bundle.putString("type", "Pay And Watch");
+                MoviesFragment fragment = new MoviesFragment();
+                fragment.setArguments(bundle);
+                fragments.put(i, fragment);*/
+                } else if (i == 2) {
+                    HomeFragment fragment = new HomeFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("type", "22");//series
+                    bundle.putInt("menu", i);
+                    fragment.setArguments(bundle);
+                    fragments.put(i, fragment);
+                } else if (i == 3) {
+                    if (BuildConfig.FLAVOR.equalsIgnoreCase("solidtv")) {
+
+                    } else {
+
+                        MapFragmentUVTV fragment = new MapFragmentUVTV();
+               /* Bundle bundle = new Bundle();
+                bundle.putInt("menu", i);
+                fragment.setArguments(bundle);//uvtv bharat
+               */
+                        fragments.put(i, fragment);/*
+                    HomeFragment fragment = new HomeFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("menu", i);
+                    fragment.setArguments(bundle);//uvtv bharat
+                    fragments.put(i, fragment);
+*/
+                    }
+                } else if (i == 4) {
+                    HomeFragment fragment = new HomeFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("menu", i);
+                    bundle.putString("type", "15");//live
+                    fragment.setArguments(bundle);
+                    fragments.put(i, fragment);
+                /*
+                GenreMovieFragment fragment = new GenreMovieFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("menu", i);
+                fragment.setArguments(bundle);
+                fragments.put(i, fragment);*/
+
+                } else if (i == 5) {
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("menu", i);
+                    bundle.putString("type", "Watchlist");
+                    ShowWatchlistFragment fragment = new ShowWatchlistFragment();
+                    fragment.setArguments(bundle);
+                    fragments.put(i, fragment);
+              /*  HomeFragment fragment = new HomeFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("type", "27");
+                bundle.putInt("menu", i);
+                fragment.setArguments(bundle);
+                fragments.put(i, fragment);*/
+                /*
+                FavouriteFragment fragment = new FavouriteFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("menu", i);
+                bundle.putString("type", "movie");
+                fragment.setArguments(bundle);
+                fragments.put(i, fragment);*/
+                } else if (i == 6) {
+
+                    MyAccountFragment fragment = new MyAccountFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("menu", i);
+                    fragment.setArguments(bundle);
+                    fragments.put(i, fragment);
+
+/*                HomeFragment fragment = new HomeFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("type", "live");
+                bundle.putInt("menu", i);
+                fragment.setArguments(bundle);
+                fragments.put(i, fragment);*/
+               /* MyAccountFragment fragment = new MyAccountFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("menu", i);
+                fragment.setArguments(bundle);
+                fragments.put(i, fragment);*/
+                /*
+                CountryMovieFragment fragment = new CountryMovieFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("menu", i);
+                fragment.setArguments(bundle);
+                fragments.put(i, fragment);*/
+
+                } else if (i == 7) {
+           /*     MyAccountFragment fragment = new MyAccountFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("menu", i);
+                fragment.setArguments(bundle);
+                fragments.put(i, fragment);*/
+
+                } else {/*
+                MyAccountFragment fragment = new MyAccountFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("menu", i);
+                fragment.setArguments(bundle);
+                fragments.put(i, fragment);*/
+                }
             }
         }
 
@@ -262,38 +389,65 @@ public class LeanbackActivity extends FragmentActivity {
 
 
     }
-/*
+
     private void fetchCategory() {
-            Retrofit retrofit = RetrofitClient.getRetrofitInstance();
-            Dashboard api = retrofit.create(Dashboard.class);
+        Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+        Dashboard api = retrofit.create(Dashboard.class);
+        Constants.IS_FROM_HOME = false;
+        String accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(getApplicationContext());
 
-            Constants.IS_FROM_HOME = false;
-            Call<List<BrowseData>> call = api.getBrowseDataList(Config.API_KEY, type, "", "", "", 10, offset);
-            call.enqueue(new Callback<List<BrowseData>>() {
-                @Override
-                public void onResponse(@NonNull Call<List<BrowseData>> call, @NonNull Response<List<BrowseData>> response) {
-                    if (response.code() == 200) {
-                        movieListContent = response.body();
+        Call<List<CategoryType>> call = api.getCategoryList(accessToken);
+        call.enqueue(new Callback<List<CategoryType>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<CategoryType>> call, @NonNull Response<List<CategoryType>> response) {
+                if (response.code() == 200) {
+                    menu = response.body();
 
-                        loadRows();
+                    //  homeContent.setHomeContentId(1);
+                    //   homeContent.getSlider();
+                    //  loadSliderRows(homeContent.getSlider().getSlideArrayList());
 
-                    } else if (response.errorBody() != null) {
-                        CMHelper.setSnackBar(requireView(), response.errorBody().toString(), 2);
-                    } else {
-                        CMHelper.setSnackBar(requireView(), "Sorry! Something went wrong. Please try again after some time", 2);
+                    //   loadRows();
+                    /*if (movieList.size() <= 0) {
+
                     }
 
+                    for (BrowseData movie : movieList) {
 
+                    }
+                    //   movies.addAll(movieList);*/
+
+                } else if (response.code() == 401) {
+
+                    // signOut();
+
+                } else if (response.errorBody() != null) {
+                    if (getContext() != null) {
+                        Toast.makeText(getApplicationContext(), "sorry! Something went wrong. Please try again after some time" + response.errorBody(), Toast.LENGTH_SHORT).show();
+                    }
+                    //  CMHelper.setSnackBar(requireView(), response.errorBody().toString(), 2);
+                } else {
+                    if (getContext() != null) {
+                        Toast.makeText(getApplicationContext(), "sorry! Something went wrong. Please try again after some time", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
-                @Override
-                public void onFailure(@NonNull Call<List<BrowseData>> call, @NonNull Throwable t) {
-                    CMHelper.setSnackBar(requireView(), t.getMessage(), 2);
-                }
-            });
 
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<CategoryType>> call, @NonNull Throwable t) {
+                //   CMHelper.setSnackBar(requireView(), t.getMessage(), 2);
+                if (getContext() != null) {
+                    Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                } else {
+
+                }
+            }
+
+        });
     }
-*/
+
 
     public LinkedHashMap<Integer, Fragment> getFragments() {
         return fragments;
@@ -318,7 +472,12 @@ public class LeanbackActivity extends FragmentActivity {
                     Log.d(TAG, "keyCode backbutton focus row" + rowsContainerFocused + focus);
                     Log.d(TAG, "keyCode backbutton focus row" + rowsContainerFocused);
 //here we are focuse in tv row  contenter only not header
-                    logoIv.setVisibility(View.VISIBLE);
+                    if (BuildConfig.FLAVOR.equalsIgnoreCase("kaafaltv")) {
+                        logoIv.setVisibility(View.INVISIBLE);
+                    } else {
+                        logoIv.setVisibility(View.VISIBLE);
+                    }
+
                     /*logoIvNew.setVisibility(View.VISIBLE);*/
 
                     if (focus == 0) {
@@ -327,18 +486,16 @@ public class LeanbackActivity extends FragmentActivity {
                             rowsContainerFocused = true;
                         }
                         Log.d(TAG, "keyCode backbutton focus row2" + rowsContainerFocused + focus);
-                    }else if(focus==0){
+                    } else if (focus == 0) {
 
-                    }
-
-                    else {
+                    } else {
                         if (headersFragment.getView() != null)
                             headersFragment.requireView().requestFocus();
                     }
                 } else if (childId == R.id.header_container) {
                     Log.d(TAG, "keyCode backbutton focus header" + childId + "focus" + focus);
-                    logoIv.setVisibility(View.VISIBLE);
                     focus = 0;
+                    logoIv.setVisibility(View.VISIBLE);
                     /*logoIvNew.setVisibility(View.INVISIBLE);*/
                     toggleHeadersFragment(true);
                     rowsContainerFocused = false;
@@ -385,7 +542,7 @@ public class LeanbackActivity extends FragmentActivity {
                 getVerticalGridViewMethod.setAccessible(true);
                 return (VerticalGridView) getVerticalGridViewMethod.invoke(fragment, (Object[]) null);
 
-            }else if (fragment instanceof ShowWatchlistFragment) {
+            } else if (fragment instanceof ShowWatchlistFragment) {
 
                 Class<?> baseRowFragmentClass = getClassLoader().loadClass("androidx/leanback/app/BaseSupportFragment");
                 Method getVerticalGridViewMethod = baseRowFragmentClass.getDeclaredMethod("getVerticalGridView");
@@ -593,7 +750,6 @@ public class LeanbackActivity extends FragmentActivity {
                     });
             AlertDialog alert = builder.create();
             alert.show();
-
 
 
         }

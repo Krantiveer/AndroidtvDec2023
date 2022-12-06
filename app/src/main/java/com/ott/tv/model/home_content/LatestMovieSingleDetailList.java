@@ -22,6 +22,9 @@ public class LatestMovieSingleDetailList implements Parcelable {
     @SerializedName("is_youtube")
     @Expose
     private Integer is_youtube;
+    @SerializedName("is_live")
+    @Expose
+    private Integer is_live;
 
 
     @SerializedName("is_watchlist")
@@ -42,9 +45,40 @@ public class LatestMovieSingleDetailList implements Parcelable {
         } else {
             is_youtube = in.readInt();
         }
+        if (in.readByte() == 0) {
+            is_live = null;
+        } else {
+            is_live = in.readInt();
+        }
         is_watchlist = in.readString();
         is_wishlist = in.readString();
         related = in.createTypedArrayList(ShowWatchlist.CREATOR);
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(media_url);
+        dest.writeString(youtube_url);
+        if (is_youtube == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(is_youtube);
+        }
+        if (is_live == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(is_live);
+        }
+        dest.writeString(is_watchlist);
+        dest.writeString(is_wishlist);
+        dest.writeTypedList(related);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<LatestMovieSingleDetailList> CREATOR = new Creator<LatestMovieSingleDetailList>() {
@@ -83,6 +117,14 @@ public class LatestMovieSingleDetailList implements Parcelable {
         this.is_youtube = is_youtube;
     }
 
+    public Integer getIs_live() {
+        return is_live;
+    }
+
+    public void setIs_live(Integer is_live) {
+        this.is_live = is_live;
+    }
+
     public String getIs_watchlist() {
         return is_watchlist;
     }
@@ -106,27 +148,8 @@ public class LatestMovieSingleDetailList implements Parcelable {
     public void setRelated(List<ShowWatchlist> related) {
         this.related = related;
     }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(media_url);
-        dest.writeString(youtube_url);
-        if (is_youtube == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeInt(is_youtube);
-        }
-        dest.writeString(is_watchlist);
-        dest.writeString(is_wishlist);
-        dest.writeTypedList(related);
-    }
 }
+
 
     /* @SerializedName("id")
     @Expose

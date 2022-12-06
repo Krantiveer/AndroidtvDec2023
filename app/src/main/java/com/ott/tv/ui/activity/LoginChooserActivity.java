@@ -159,6 +159,8 @@ public class LoginChooserActivity extends Activity {
                     if (response.body().getStatus().equalsIgnoreCase("success")) {
                         if (response.body().getAccess_token() != null) {
                             handler.removeCallbacksAndMessages(null);
+                            handlerqr.removeCallbacksAndMessages(null);
+
                             User user = response.body();
                             DatabaseHelper db = new DatabaseHelper(getApplicationContext());
                             if (db.getUserDataCount() > 1) {
@@ -211,7 +213,7 @@ public class LoginChooserActivity extends Activity {
             @Override
             public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
                 progressBar.setVisibility(View.GONE);
-            //    new ToastMsg(getApplicationContext()).toastIconError(getString(R.string.error_toast));
+                //    new ToastMsg(getApplicationContext()).toastIconError(getString(R.string.error_toast));
             }
         });
     }
@@ -225,6 +227,7 @@ public class LoginChooserActivity extends Activity {
 
     public void emailSignInBtn(View view) {
         handler.removeCallbacksAndMessages(null);
+        handlerqr.removeCallbacksAndMessages(null);
         Intent intent = new Intent(LoginChooserActivity.this, LoginActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.enter, R.anim.exit);
@@ -233,6 +236,7 @@ public class LoginChooserActivity extends Activity {
     public void mobileSignInBtn(View view) {
 
         handler.removeCallbacksAndMessages(null);
+        handlerqr.removeCallbacksAndMessages(null);
 
         Intent intent = new Intent(LoginChooserActivity.this, LoginMobileActivity.class);
         startActivity(intent);
@@ -514,11 +518,10 @@ public class LoginChooserActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-
-        CallHandler();
-        CallHandlerQrCode();
         handlerqr.removeCallbacksAndMessages(null);
         handler.removeCallbacksAndMessages(null);
+        CallHandler();
+        CallHandlerQrCode();
 
 
     }

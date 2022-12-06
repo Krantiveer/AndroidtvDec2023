@@ -84,6 +84,18 @@ public class CardPresenterBanner extends Presenter {
 
         }
 
+    /*    if (video.getIs_free() != null) {
+            if (video.getIs_free().toString().equalsIgnoreCase("1")) {
+                //if item free set image
+                ((CardPresenterNewLanscape.ViewHolder) viewHolder).mCardView.getPrimeImageView().setVisibility(View.GONE);
+
+            }else{
+                ((CardPresenterNewLanscape.ViewHolder) viewHolder).mCardView.getPrimeImageView().setVisibility(View.VISIBLE);
+
+            }
+
+        }*/
+
 /*
         ((ViewHolder) viewHolder).updateCardViewImage(video.getPosterUrl());
 */

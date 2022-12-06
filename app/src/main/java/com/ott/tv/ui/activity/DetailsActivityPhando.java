@@ -118,7 +118,7 @@ public class DetailsActivityPhando extends FragmentActivity {
     private HomePageAdapter relatedAdapter;
     private RelativeLayout activity_rv;
     private ProgressBar progress_indicator;
-    String releaseDate, description, title, tvispaid, maturity_rating, ratingData, language, genres, is_live;
+    String releaseDate, description, title, tvispaid, maturity_rating, ratingData, language, genres, is_live,is_youtube;
     private ImageView content_rating_image, content_duration_image, releasedate_image, language_image, maturity_rating_image, genres_image;
     private TextView content_rating_text, duration_time, tvReleaseDate, language_tv, maturity_rating_tv, genres_tv, tv_related;
     String type;
@@ -188,15 +188,14 @@ public class DetailsActivityPhando extends FragmentActivity {
         tvWatchNow = findViewById(R.id.tvWatchNow);
         imgWatchList = findViewById(R.id.imgWatchList);
         btn_seasonAndEpisode = findViewById(R.id.img_series);
-        if (is_live != null) {
+    /*    if (is_live != null) {
             if (is_live.equalsIgnoreCase("1")) {
-
                 imgWatchList.setVisibility(VISIBLE);
             } else {
                 imgWatchList.setVisibility(VISIBLE);
             }
         }
-
+*/
         rvRelated = findViewById(R.id.rv_related);
         playerView = findViewById(R.id.video_view);
         activity_rv = findViewById(R.id.activity_rv);
@@ -391,7 +390,7 @@ public class DetailsActivityPhando extends FragmentActivity {
                         List<Video> videoList = new ArrayList<>();
 
                         if (tvWatchNow.getText() == null || !tvWatchNow.getText().toString().equalsIgnoreCase("Watch Now")) {
-                            Toast.makeText(getApplicationContext(), "Hey, Please upgrade your account from MOBILE APP | WEBSITE - UVTV", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Hey, Please upgrade your account from MOBILE APP | WEBSITE - "+Config.DOMAIN, Toast.LENGTH_SHORT).show();
                             return;
                         } else if (singleDetails.getList().getMedia_url().isEmpty()) {
                             /*CMHelper.setSnackBar(this.getCurrentFocus(), "We are sorry, Video not available for your selected content", 2);*/
@@ -531,12 +530,16 @@ public class DetailsActivityPhando extends FragmentActivity {
         content_rating_text = findViewById(R.id.content_rating_text);
         content_rating_image = findViewById(R.id.content_rating_image);
         if (ratingData != null) {
-            content_rating_text.setText(ratingData);
-        } else {
+            if (! ratingData.equalsIgnoreCase("0")) {
+                content_rating_text.setText(ratingData);
+            } else {
+                content_rating_image.setVisibility(GONE);
+                content_rating_text.setVisibility(GONE);
+            }
+        }else {
             content_rating_image.setVisibility(GONE);
             content_rating_text.setVisibility(GONE);
         }
-
         content_duration_image = findViewById(R.id.content_duration_image);
         duration_time = findViewById(R.id.duration_time);
 
@@ -551,12 +554,17 @@ public class DetailsActivityPhando extends FragmentActivity {
         tvReleaseDate = findViewById(R.id.tvReleaseDate);
 
         if (releaseDate != null) {
-            tvReleaseDate.setText(releaseDate);
-        } else {
+            if (!releaseDate.equalsIgnoreCase("0")) {
+                tvReleaseDate.setText(releaseDate);
+            } else {
+                releasedate_image.setVisibility(GONE);
+                tvReleaseDate.setVisibility(GONE);
+            }
+        }else{
             releasedate_image.setVisibility(GONE);
             tvReleaseDate.setVisibility(GONE);
-        }
 
+        }
         language_image = findViewById(R.id.language_image);
         language_tv = findViewById(R.id.language_tv);
 
@@ -640,7 +648,7 @@ public class DetailsActivityPhando extends FragmentActivity {
                 }
             }*/
             if (tvWatchNow.getText() == null || !tvWatchNow.getText().toString().equalsIgnoreCase("Watch Now")) {
-                CMHelper.setSnackBar(this.getCurrentFocus(), "Hey, Please upgrade your account from MOBILE APP | WEBSITE - UVTV ", 1, 10000);
+                CMHelper.setSnackBar(this.getCurrentFocus(), "Hey, Please upgrade your account from MOBILE APP | WEBSITE -  "+Config.DOMAIN, 1, 10000);
                 return;
             } else if (singleDetails.getList().getMedia_url().isEmpty()) {
                 CMHelper.setSnackBar(this.getCurrentFocus(), "We are sorry, Video not available for your selected content", 2);
@@ -658,6 +666,10 @@ public class DetailsActivityPhando extends FragmentActivity {
             } else {
                 video.setCategory("movie");
             }
+            Log.i(TAG, "payAndWatchTV: "+is_live);
+            if(is_live.equalsIgnoreCase("1")){}
+
+
             //  video.setCategory(type);
             if (singleDetails.getList().getIs_youtube() != null) {
                 if (singleDetails.getList().getIs_youtube().toString().equalsIgnoreCase("1")) {
@@ -739,6 +751,13 @@ public class DetailsActivityPhando extends FragmentActivity {
                         }
                         if (singleDetails.getList().getMedia_url() == null) {
                             tvWatchNow.setVisibility(GONE);
+                        }
+                        if(singleDetails.getList().getIs_youtube()!=null)
+                        {
+                            is_live=singleDetails.getList().getIs_live().toString();
+                        }
+                        if(singleDetails.getList().getIs_live()!=null){
+                            is_youtube=singleDetails.getList().getIs_live().toString();
                         }
                         //  if(singleDetails.getMediaCode())
                         //  singleDetails.setType("M");
@@ -1024,7 +1043,6 @@ public class DetailsActivityPhando extends FragmentActivity {
                                 //imgWatchList.setColorFilter(ContextCompat.getColor(DetailsActivity.this, R.color.colorGold), android.graphics.PorterDuff.Mode.SRC_IN);
                             } else {
                                 isWatchLater = false;
-
                                 imgWatchList.setText("Add to Watchlist");
 
 
