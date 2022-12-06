@@ -108,14 +108,26 @@ public class HomeFragmentNewUI extends Fragment {
             }
         }
         textViewBanner.setText(video.getTitle());
-        if(video.getIsPaid()!=null) {
+
+
+   /*     if(video.getIsPaid()!=null) {
             if (video.getIsPaid().equalsIgnoreCase("1")) {
                 content_premiumIconImage.setVisibility(View.INVISIBLE);
             } else {
                 content_premiumIconImage.setVisibility(View.VISIBLE);
 
             }
+        }*/
+        if(video.getIs_free()!=null){
+            if(video.getIs_free().toString().equalsIgnoreCase("1")){
+                content_premiumIconImage.setVisibility(View.GONE);
+            }else{
+                content_premiumIconImage.setVisibility(View.VISIBLE);
+
+            }
         }
+
+
         /*Glide.with(getContext()).load(video.getImageLink()).into(imageViewBGBanner);*/
         if (video.getImageLink() == null) {
             video.setImageLink(video.getThumbnailUrl());

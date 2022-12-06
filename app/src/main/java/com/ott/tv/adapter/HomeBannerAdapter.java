@@ -73,11 +73,20 @@ public class HomeBannerAdapter extends RecyclerView.Adapter<HomeBannerAdapter.Vi
                             placeholder(R.drawable.poster_placeholder_land)
                             .error(R.drawable.poster_placeholder_land)
                             .into(holder.main_image);}
-                if(listdata.get(position).getIsPaid().equalsIgnoreCase("1")){
+            /*    if(listdata.get(position).getIsPaid().equalsIgnoreCase("1")){
                     holder.premiumIconImage.setVisibility(View.GONE);
                 }else{
                     holder.premiumIconImage.setVisibility(View.VISIBLE);
-                }
+                }*/
+
+         if(listdata.get(position).getIs_free()!=null){
+             if(listdata.get(position).getIs_free().toString().equalsIgnoreCase("1")){
+                 holder.premiumIconImage.setVisibility(View.GONE);
+             }else{
+                 holder.premiumIconImage.setVisibility(View.VISIBLE);
+
+             }
+         }
 
             holder.relativeLayout.setOnClickListener(view -> {
                 detailActivity(listdata.get(position));

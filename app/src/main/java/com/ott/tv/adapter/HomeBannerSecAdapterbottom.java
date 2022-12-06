@@ -120,13 +120,22 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
             if (listdata.getVideos().get(position) != null) {
                 holder.title_name.setText(listdata.getVideos().get(position).getTitle());
             }
-            if (listdata.getVideos().get(position).getIsPaid().equalsIgnoreCase("1")) {
+
+         /*   if (listdata.getVideos().get(position).getIsPaid()!=null) {
+            if (listdata.getVideos().get(position).getIsPaid().equalsIgnoreCase("0")) {
                 holder.premiumIconImage.setVisibility(View.GONE);
             } else {
                 holder.premiumIconImage.setVisibility(View.VISIBLE);
+            }}*/
+            if(listdata.getVideos().get(position).getIs_free()!=null){
+                if(listdata.getVideos().get(position).getIs_free().toString().equalsIgnoreCase("1")){
+                    holder.premiumIconImage.setVisibility(View.GONE);
+                }else{
+                    holder.premiumIconImage.setVisibility(View.VISIBLE);
+
+                }
             }
 
-            {
                 holder.primary_text.setText(listdata.getVideos().get(position).getTitle());
                 if (!TextUtils.isEmpty(listdata.getVideos().get(position).getThumbnailUrl())) {
                     Glide.with(context)
@@ -141,7 +150,7 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
                             .error(R.drawable.poster_placeholder_land)
                             .into(holder.main_image);
                 }
-            }
+
             holder.relativeLayout_parent.setOnClickListener(view -> {
                 //   Toast.makeText(view.getContext(), "click on item: " + position, Toast.LENGTH_LONG).show();
                 detailActivity(listdata.getVideos().get(position));
