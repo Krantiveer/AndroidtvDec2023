@@ -81,25 +81,13 @@ public class CardPresenterNewLanscape extends Presenter {
         }
 
         if (video.getIs_free() != null) {
-            if (video.getIs_free().equals("1")) {
+            if (video.getIs_free().toString().equalsIgnoreCase("1")) {
                 //if item free set image
                 ((ViewHolder) viewHolder).mCardView.getPrimeImageView().setVisibility(View.GONE);
 
-            }
-            //is paid
-            if (video.getIs_free().equals("0")) {
-
+            }else{
                 ((ViewHolder) viewHolder).mCardView.getPrimeImageView().setVisibility(View.VISIBLE);
-            } else {
-                ((ViewHolder) viewHolder).mCardView.getPrimeImageView().setVisibility(View.GONE);
-            }
-            //is subcribe
 
-            if (video.getIs_free().equals("2")) {
-
-                ((ViewHolder) viewHolder).mCardView.getPrimeImageView().setVisibility(View.VISIBLE);
-            } else {
-                ((ViewHolder) viewHolder).mCardView.getPrimeImageView().setVisibility(View.GONE);
             }
 
         }
