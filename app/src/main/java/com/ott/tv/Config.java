@@ -7,16 +7,14 @@ public class Config {
 //    public static final String DOMAIN = "https://uvtvstage.phando.com/";
 
 
-/*
 
     public static final String DOMAIN = "https://uvtvstage.phando.com/";
     public static final String Publisher_id = "4";
 
-*/
 
 
-    public static final String DOMAIN = "https://kaafaltv.com/";
-    public static final String Publisher_id = "5";
+  /*  public static final String DOMAIN = "https://kaafaltv.com/";
+    public static final String Publisher_id = "5";*/
 
 
     /*

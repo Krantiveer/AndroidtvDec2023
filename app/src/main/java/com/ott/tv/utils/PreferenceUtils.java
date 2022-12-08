@@ -34,6 +34,7 @@ public class PreferenceUtils {
     private static final String shared_preferences = "shared_preferences";
     public static final String country_code = "country_code";
     public static final String country_name = "country_name";
+    public static final String uvtv_state_name = "uvtv_state_name";
     public static final String access_token = "access_token";
     public static final String state_name = "state_name";
 
@@ -213,6 +214,17 @@ public class PreferenceUtils {
     public String getCountyNamePref(Context context) {
         return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
                 .getString(country_name, context.getString(R.string.country_name_default));
+    }
+    public void setUvtv_state_namePref(Context context, String stateName) {
+        SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(uvtv_state_name, stateName);
+        editor.apply();
+    }
+
+    public String getUvtv_state_namePref(Context context) {
+        return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
+                .getString(uvtv_state_name, context.getString(R.string.uvtv_state_name_default));
     }
 
     public void setAccessTokenNPref(Context context, String accessToken) {

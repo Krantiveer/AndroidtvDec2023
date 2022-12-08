@@ -79,4 +79,17 @@ public interface Dashboard {
             @Header("Authorization") String token,
             @Query("state_name") String state_name);
 
+    @GET("mediasearch")
+    Call<List<ShowWatchlist>> searchVideo(
+            @Header("Authorization") String token,
+            @Query("term") String search,
+            @Query("genre_id") String genre_id,
+            @Query("language_id") String filter,
+            @Query("limit") String limit);
+
+
+
+
+
+
 }

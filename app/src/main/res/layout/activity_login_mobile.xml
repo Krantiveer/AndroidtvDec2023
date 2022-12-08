@@ -22,7 +22,7 @@
             android:layout_height="@dimen/_82sdp"
             android:layout_marginLeft="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_40sdp"
-            android:contentDescription="TODO"
+            android:contentDescription="@string/contentDescription"
             android:src="@drawable/logo" />
 
         <!--

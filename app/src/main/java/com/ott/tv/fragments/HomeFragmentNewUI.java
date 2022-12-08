@@ -316,7 +316,7 @@ public class HomeFragmentNewUI extends Fragment {
             final SpinnerFragment mSpinnerFragment = new SpinnerFragment();
             final FragmentManager fm = getFragmentManager();
             assert fm != null;
-            fm.beginTransaction().add(R.id.custom_frame_layout, mSpinnerFragment).commit();
+            fm.beginTransaction().add(R.id.browserSection, mSpinnerFragment).commit();
 
             String userId = new DatabaseHelper(requireContext()).getUserData().getUserId();
             Retrofit retrofit = RetrofitClient.getRetrofitInstanceWithV1();
@@ -359,7 +359,7 @@ public class HomeFragmentNewUI extends Fragment {
                         //CMHelper.setSnackBar(requireView(), "Sorry! Something went wrong. Please try again after some time", 2);
                     }
                     /*recyclerViewBannerTop.scrollToPosition(1);*/
-                    fm.beginTransaction().remove(mSpinnerFragment).commitAllowingStateLoss();
+                   fm.beginTransaction().remove(mSpinnerFragment).commitAllowingStateLoss();
 
 
                 }

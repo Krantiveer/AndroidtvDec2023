@@ -52,8 +52,8 @@ class MapFragmentUVTV : Fragment() {
         }
 
         llSelectedState.setOnClickListener {
-            val intent = Intent(requireContext(), StateListActivity::class.java)
-            requireActivity().startActivity(intent)
+       /*     val intent = Intent(requireContext(), StateListActivity::class.java)
+            requireActivity().startActivity(intent)*/
         }
 
     }

@@ -42,6 +42,7 @@ import com.ott.tv.fragments.GenreMovieFragment;
 import com.ott.tv.fragments.HomeFragment;
 import com.ott.tv.fragments.HomeFragmentNewUI;
 import com.ott.tv.fragments.MainFragment;
+import com.ott.tv.fragments.MapFragment;
 import com.ott.tv.fragments.MoviesFragment;
 import com.ott.tv.fragments.MyAccountFragment;
 import com.ott.tv.fragments.ShowWatchlistFragment;
@@ -84,9 +85,17 @@ public class LeanbackActivity extends FragmentActivity {
     private List<CategoryType> menu = null;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leanback);
+        Intent intent=new Intent(this,NewMainActivity.class);
+        startActivity(intent);
+    } /*{
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_leanback);
+        Intent intent=new Intent(this,NewMainActivity.class);
+        startActivity(intent);
+
         orbView = findViewById(R.id.custom_search_orb);
         orbView.bringToFront();
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -97,19 +106,19 @@ public class LeanbackActivity extends FragmentActivity {
             Log.i(TAG, "onCreate hight: less then 1080");
             deltaValue = 250;
             headerValue = 0;
-            /*PreferenceUtils.getInstance().setWindowHeightPref(getApplicationContext(), "false");*/
+            *//*PreferenceUtils.getInstance().setWindowHeightPref(getApplicationContext(), "false");*//*
         } else {
             deltaValue = 450;
             headerValue = 50;
-            /*PreferenceUtils.getInstance().setWindowHeightPref(getApplicationContext(), "true");*/
+            *//*PreferenceUtils.getInstance().setWindowHeightPref(getApplicationContext(), "true");*//*
         }
         Log.i(TAG, "onCreate: " + height + width);
         orbView.setOnOrbClickedListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
-            startActivity(intent);
+       *//*     Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+            startActivity(intent);*//*
         });
         logoIv = findViewById(R.id.logo);
-        /*logoIvNew = findViewById(R.id.logonew);*/
+        *//*logoIvNew = findViewById(R.id.logonew);*//*
         PreferenceUtils.updateSubscriptionStatus(this);
 
         fragments = new LinkedHashMap<>();
@@ -119,6 +128,7 @@ public class LeanbackActivity extends FragmentActivity {
         int CATEGORIES_NUMBER = 8;
         if (BuildConfig.FLAVOR.equalsIgnoreCase("kaafaltv")) {
             for (int i = 0; i < CATEGORIES_NUMBER; i++) {
+
                 if (i == 0) {
                     HomeFragmentNewUI fragment = new HomeFragmentNewUI();
                     Bundle bundle = new Bundle();
@@ -134,13 +144,13 @@ public class LeanbackActivity extends FragmentActivity {
                     fragment.setArguments(bundle);
                     fragments.put(i, fragment);
 
-/*
+*//*
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 bundle.putString("type", "Pay And Watch");
                 MoviesFragment fragment = new MoviesFragment();
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);*/
+                fragments.put(i, fragment);*//*
                 } else if (i == 2) {
                     HomeFragment fragment = new HomeFragment();
                     Bundle bundle = new Bundle();
@@ -148,37 +158,37 @@ public class LeanbackActivity extends FragmentActivity {
                     bundle.putInt("menu", i);
                     fragment.setArguments(bundle);
                     fragments.put(i, fragment);
-                } /*else if (i == 3) {
+                } *//*else if (i == 3) {
                     if (BuildConfig.FLAVOR.equalsIgnoreCase("solidtv")) {
 
                     } else {
 
                         MapFragmentUVTV fragment = new MapFragmentUVTV();
-               *//* Bundle bundle = new Bundle();
+               *//**//* Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);//uvtv bharat
-               *//*
-                        fragments.put(i, fragment);*//*
+               *//**//*
+                        fragments.put(i, fragment);*//**//*
                     HomeFragment fragment = new HomeFragment();
                     Bundle bundle = new Bundle();
                     bundle.putInt("menu", i);
                     fragment.setArguments(bundle);//uvtv bharat
                     fragments.put(i, fragment);
-*//*
+*//**//*
                     }
-                } */else if (i == 3) {
+                } *//*else if (i == 3) {
                     HomeFragment fragment = new HomeFragment();
                     Bundle bundle = new Bundle();
                     bundle.putInt("menu", i);
                     bundle.putString("type", "30");//live
                     fragment.setArguments(bundle);
                     fragments.put(i, fragment);
-                /*
+                *//*
                 GenreMovieFragment fragment = new GenreMovieFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);*/
+                fragments.put(i, fragment);*//*
 
                 } else if (i == 4) {
                     Bundle bundle = new Bundle();
@@ -187,19 +197,19 @@ public class LeanbackActivity extends FragmentActivity {
                     ShowWatchlistFragment fragment = new ShowWatchlistFragment();
                     fragment.setArguments(bundle);
                     fragments.put(i, fragment);
-              /*  HomeFragment fragment = new HomeFragment();
+              *//*  HomeFragment fragment = new HomeFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString("type", "27");
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);*/
-                /*
+                fragments.put(i, fragment);*//*
+                *//*
                 FavouriteFragment fragment = new FavouriteFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 bundle.putString("type", "movie");
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);*/
+                fragments.put(i, fragment);*//*
                 } else if (i == 5) {
 
                     MyAccountFragment fragment = new MyAccountFragment();
@@ -208,37 +218,37 @@ public class LeanbackActivity extends FragmentActivity {
                     fragment.setArguments(bundle);
                     fragments.put(i, fragment);
 
-/*                HomeFragment fragment = new HomeFragment();
+*//*                HomeFragment fragment = new HomeFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString("type", "live");
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);*/
-               /* MyAccountFragment fragment = new MyAccountFragment();
+                fragments.put(i, fragment);*//*
+               *//* MyAccountFragment fragment = new MyAccountFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);*/
-                /*
+                fragments.put(i, fragment);*//*
+                *//*
                 CountryMovieFragment fragment = new CountryMovieFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);*/
+                fragments.put(i, fragment);*//*
 
                 } else if (i == 7) {
-           /*     MyAccountFragment fragment = new MyAccountFragment();
+           *//*     MyAccountFragment fragment = new MyAccountFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);*/
+                fragments.put(i, fragment);*//*
 
-                } else {/*
+                } else {*//*
                 MyAccountFragment fragment = new MyAccountFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);*/
+                fragments.put(i, fragment);*//*
                 }
             }
         } else {
@@ -259,13 +269,13 @@ public class LeanbackActivity extends FragmentActivity {
                     fragment.setArguments(bundle);
                     fragments.put(i, fragment);
 
-/*
+*//*
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 bundle.putString("type", "Pay And Watch");
                 MoviesFragment fragment = new MoviesFragment();
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);*/
+                fragments.put(i, fragment);*//*
                 } else if (i == 2) {
                     HomeFragment fragment = new HomeFragment();
                     Bundle bundle = new Bundle();
@@ -278,18 +288,18 @@ public class LeanbackActivity extends FragmentActivity {
 
                     } else {
 
-                        MapFragmentUVTV fragment = new MapFragmentUVTV();
-               /* Bundle bundle = new Bundle();
+                        MapFragment fragment = new MapFragment();
+               *//* Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);//uvtv bharat
-               */
-                        fragments.put(i, fragment);/*
+               *//*
+                        fragments.put(i, fragment);*//*
                     HomeFragment fragment = new HomeFragment();
                     Bundle bundle = new Bundle();
                     bundle.putInt("menu", i);
                     fragment.setArguments(bundle);//uvtv bharat
                     fragments.put(i, fragment);
-*/
+*//*
                     }
                 } else if (i == 4) {
                     HomeFragment fragment = new HomeFragment();
@@ -298,12 +308,12 @@ public class LeanbackActivity extends FragmentActivity {
                     bundle.putString("type", "15");//live
                     fragment.setArguments(bundle);
                     fragments.put(i, fragment);
-                /*
+                *//*
                 GenreMovieFragment fragment = new GenreMovieFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);*/
+                fragments.put(i, fragment);*//*
 
                 } else if (i == 5) {
                     Bundle bundle = new Bundle();
@@ -312,19 +322,19 @@ public class LeanbackActivity extends FragmentActivity {
                     ShowWatchlistFragment fragment = new ShowWatchlistFragment();
                     fragment.setArguments(bundle);
                     fragments.put(i, fragment);
-              /*  HomeFragment fragment = new HomeFragment();
+              *//*  HomeFragment fragment = new HomeFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString("type", "27");
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);*/
-                /*
+                fragments.put(i, fragment);*//*
+                *//*
                 FavouriteFragment fragment = new FavouriteFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 bundle.putString("type", "movie");
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);*/
+                fragments.put(i, fragment);*//*
                 } else if (i == 6) {
 
                     MyAccountFragment fragment = new MyAccountFragment();
@@ -333,37 +343,37 @@ public class LeanbackActivity extends FragmentActivity {
                     fragment.setArguments(bundle);
                     fragments.put(i, fragment);
 
-/*                HomeFragment fragment = new HomeFragment();
+*//*                HomeFragment fragment = new HomeFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString("type", "live");
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);*/
-               /* MyAccountFragment fragment = new MyAccountFragment();
+                fragments.put(i, fragment);*//*
+               *//* MyAccountFragment fragment = new MyAccountFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);*/
-                /*
+                fragments.put(i, fragment);*//*
+                *//*
                 CountryMovieFragment fragment = new CountryMovieFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);*/
+                fragments.put(i, fragment);*//*
 
                 } else if (i == 7) {
-           /*     MyAccountFragment fragment = new MyAccountFragment();
+           *//*     MyAccountFragment fragment = new MyAccountFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);*/
+                fragments.put(i, fragment);*//*
 
-                } else {/*
+                } else {*//*
                 MyAccountFragment fragment = new MyAccountFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt("menu", i);
                 fragment.setArguments(bundle);
-                fragments.put(i, fragment);*/
+                fragments.put(i, fragment);*//*
                 }
             }
         }
@@ -382,13 +392,13 @@ public class LeanbackActivity extends FragmentActivity {
             transaction.commit();
         } else {
             // show no internet page
-            Intent intent = new Intent(this, ErrorActivity.class);
+          *//*  Intent intent = new Intent(this, ErrorActivity.class);
             startActivity(intent);
-            finish();
+            finish();*//*
         }
 
 
-    }
+    }*/
 
     private void fetchCategory() {
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
@@ -596,7 +606,7 @@ public class LeanbackActivity extends FragmentActivity {
                 getVerticalGridViewMethod.setAccessible(true);
                 return (VerticalGridView) getVerticalGridViewMethod.invoke(fragment, (Object[]) null);
 
-            } else if (fragment instanceof MapFragmentUVTV) {
+            } else if (fragment instanceof MapFragment) {
                 Class<?> baseRowFragmentClass = getClassLoader().loadClass("androidx/leanback/app/BaseSupportFragment");
                 Method getVerticalGridViewMethod = baseRowFragmentClass.getDeclaredMethod("getVerticalGridView");
                 getVerticalGridViewMethod.setAccessible(true);

@@ -54,6 +54,17 @@
         android:padding="@dimen/_15sdp"
         android:contentDescription="@string/image_description"
         android:src="@drawable/logo" />
+
+ <!--   <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search"
+        android:id="@+id/search_mag_icon"
+        android:layout_marginTop="37dp"
+        android:textColor="@drawable/ic_baseline_search_24"
+        android:visibility="visible"
+        android:drawableStart="@drawable/ic_baseline_search_24"
+        />-->
     <!--    <ImageView
             android:id="@+id/logonew"
 

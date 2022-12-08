@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.leanback.widget.ArrayObjectAdapter;
 import androidx.leanback.widget.HeaderItem;
 import androidx.leanback.widget.ListRow;
@@ -25,12 +26,17 @@ import androidx.leanback.widget.RowPresenter;
 import androidx.leanback.widget.SpeechRecognitionCallback;
 
 import com.ott.tv.Config;
+import com.ott.tv.Constants;
 import com.ott.tv.R;
 import com.ott.tv.model.Movie;
 import com.ott.tv.model.SearchContent;
 import com.ott.tv.model.SearchModel;
 import com.ott.tv.model.TvModel;
+import com.ott.tv.model.phando.LatestMovieList;
+import com.ott.tv.model.phando.MapList;
+import com.ott.tv.model.phando.ShowWatchlist;
 import com.ott.tv.network.RetrofitClient;
+import com.ott.tv.network.api.Dashboard;
 import com.ott.tv.network.api.SearchApi;
 import com.ott.tv.ui.Utils;
 import com.ott.tv.ui.activity.DetailsActivity;
@@ -39,6 +45,7 @@ import com.ott.tv.ui.activity.VideoDetailsActivity;
 import com.ott.tv.ui.presenter.SearchCardPresenter;
 import com.ott.tv.ui.presenter.TvSearchPresenter;
 import com.ott.tv.utils.CMHelper;
+import com.ott.tv.utils.PreferenceUtils;
 import com.ott.tv.utils.ToastMsg;
 
 //import org.jetbrains.annotations.NotNull;
@@ -51,6 +58,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.http.Header;
+import retrofit2.http.Query;
 
 public class SearchFragment extends androidx.leanback.app.SearchFragment implements androidx.leanback.app.SearchFragment.SearchResultProvider {
 
@@ -69,13 +78,11 @@ public class SearchFragment extends androidx.leanback.app.SearchFragment impleme
     private String movieHeader = "";
 
 
-    private final Runnable mDelayedLoad = new Runnable() {
-        @Override
-        public void run() {
-            //loadRows();
-            getQueryData();
+    private final Runnable mDelayedLoad = () -> {
+        //loadRows();
+        Log.e(TAG, "code: ");
+        getQueryData();
 
-        }
     };
 
     @Override
@@ -92,15 +99,13 @@ public class SearchFragment extends androidx.leanback.app.SearchFragment impleme
         if (!Utils.hasPermission(getActivity(), Manifest.permission.RECORD_AUDIO)) {
             // SpeechRecognitionCallback is not required and if not provided recognition will be handled
             // using internal speech recognizer, in which case you must have RECORD_AUDIO permission
-            setSpeechRecognitionCallback(new SpeechRecognitionCallback() {
-                @Override
-                public void recognizeSpeech() {
-                    Log.e(TAG, "recognizeSpeech");
-                    try {
-                        startActivityForResult(getRecognizerIntent(), REQUEST_SPEECH);
-                    } catch (ActivityNotFoundException e) {
-                        Log.e(TAG, "Cannot find activity for speech recognizer", e);
-                    }
+            setSpeechRecognitionCallback(() -> {
+                Log.e(TAG, "recognizeSpeech");
+            //    getQueryData();
+                try {
+                    startActivityForResult(getRecognizerIntent(), REQUEST_SPEECH);
+                } catch (ActivityNotFoundException e) {
+                    Log.e(TAG, "Cannot find activity for speech recognizer", e);
                 }
             });
         }
@@ -112,7 +117,7 @@ public class SearchFragment extends androidx.leanback.app.SearchFragment impleme
             @Override
             public void onItemClicked(Presenter.ViewHolder viewHolder, Object o,
                                       RowPresenter.ViewHolder viewHolder2, Row row) {
-
+                Log.e(TAG, "click");
                 SearchContent searchContent = (SearchContent) o;
                 switch (searchContent.getType()) {
                     case "tv": {
@@ -171,7 +176,7 @@ public class SearchFragment extends androidx.leanback.app.SearchFragment impleme
                         setSearchQuery(data, true);
                         break;
                     case RecognizerIntent.RESULT_CLIENT_ERROR:
-                        Log.w(TAG, Integer.toString(requestCode));
+                        Log.e(TAG, Integer.toString(requestCode));
                 }
         }
     }
@@ -211,24 +216,31 @@ public class SearchFragment extends androidx.leanback.app.SearchFragment impleme
         }
     }
 
-    private void getQueryData() {
+      private void getQueryData() {
         final String query = mQuery;
+
+
+
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
-        SearchApi searchApi = retrofit.create(SearchApi.class);
-        Call<SearchModel> call = searchApi.getSearchData(Config.API_KEY, query, page_number, "movieseries");
-        call.enqueue(new Callback<SearchModel>() {
+        Dashboard searchApi = retrofit.create(Dashboard.class);
+        Constants.IS_FROM_HOME = false;
+        String accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(getContext());
+        Log.e(TAG, "getQueryData: "+""+query);
+
+        Call<List<ShowWatchlist>> call = searchApi.searchVideo(Config.API_KEY, "r", "","", "50");
+        call.enqueue(new Callback<List<ShowWatchlist>>() {
             @Override
-            public void onResponse(Call<SearchModel> call,  Response<SearchModel> response) {
+            public void onResponse(@NonNull Call<List<ShowWatchlist>> call, Response<List<ShowWatchlist>> response) {
                 Log.e(TAG,  "response: " + response.code());
                 mItems = new ArrayList<>();
-                List<Movie> movieResult = new ArrayList<>();
+                List<ShowWatchlist> movieResult = new ArrayList<>();
                 List<Movie> tvSeriesResult = new ArrayList<>();
                 List<TvModel> tvResult = new ArrayList<>();
                 if (response.code() == 200) {
-                    if(response.body().getMovie().size() == 0 ){
+               /*     if(response.body().getMovie().size() == 0 ){
                         Toast.makeText(getContext(), "There is No Data Found", Toast.LENGTH_SHORT).show();
-                    }
-                    if (response.body().getTvChannels().size() != 0) {
+                    }*/
+             /*       if (response.body().getTvChannels().size() != 0) {
                         tvHeader = "Live TV";
                         tvResult.clear();
                         tvResult = response.body().getTvChannels();
@@ -243,26 +255,26 @@ public class SearchFragment extends androidx.leanback.app.SearchFragment impleme
                             SearchContent searchContent = new SearchContent(id, title, description, type, streamUrl, streamFrom, thumbnailUrl);
                             mItems.add(searchContent);
                         }
-                    }
+                    }*/
 
-                    if (response.body().getMovie().size() != 0) {
+                    if (response.body().size() != 0) {
                         movieHeader = "Movies";
                         movieResult.clear();
-                        movieResult = response.body().getMovie();
-                        for (Movie video : movieResult) {
-                            String id = video.getVideosId();
+                        movieResult = response.body();
+                        for (ShowWatchlist video : movieResult) {
+                            String id = video.getId().toString();
                             String title = video.getTitle();
-                            String description = video.getDescription();
+                            String description = video.getDetail();
                             String type = "movie";
                             String streamUrl = "";
                             String streamFrom = "";
-                            String thumbnailUrl = video.getPosterUrl();
+                            String thumbnailUrl = video.getThumbnail();
                             SearchContent searchContent = new SearchContent(id, title, description, type, streamUrl, streamFrom, thumbnailUrl);
                             mItems.add(searchContent);
                         }
                     }
 
-                    if (response.body().getTvseries().size() != 0) {
+             /*       if (response.body().getTvseries().size() != 0) {
                         tvSeriesHeader = "TV Series";
                         tvSeriesResult.clear();
                         tvSeriesResult = response.body().getTvseries();
@@ -277,7 +289,7 @@ public class SearchFragment extends androidx.leanback.app.SearchFragment impleme
                             SearchContent searchContent = new SearchContent(id, title, description, type, streamUrl, streamFrom, thumbnailUrl);
                             mItems.add(searchContent);
                         }
-                    }
+                    }*/
 
 
                     loadRows(movieResult, tvSeriesResult, tvResult);
@@ -286,7 +298,7 @@ public class SearchFragment extends androidx.leanback.app.SearchFragment impleme
             }
 
             @Override
-            public void onFailure(Call<SearchModel> call, Throwable t) {
+            public void onFailure(Call<List<ShowWatchlist>> call, Throwable t) {
                 Log.e(TAG, "response : " + t.getLocalizedMessage());
             }
         });
@@ -294,8 +306,9 @@ public class SearchFragment extends androidx.leanback.app.SearchFragment impleme
     }
 
 
+
     @SuppressLint("StaticFieldLeak")
-    private void loadRows(final List<Movie> movieResult, final List<Movie> tvSeriesResult, final List<TvModel> tvResult) {
+    private void loadRows(final List<ShowWatchlist> movieResult, final List<Movie> tvSeriesResult, final List<TvModel> tvResult) {
         // offload processing from the UI thread
         new AsyncTask<String, Void, List<ListRow>>() {
             private final String query = mQuery;

@@ -20,6 +20,18 @@ public class CategoryType implements Parcelable {
     @SerializedName("displayName")
     @Expose
     private String displayName;
+
+    public boolean isFocused() {
+        return isFocused;
+    }
+
+    public void setFocused(boolean focused) {
+        isFocused = focused;
+    }
+
+    @SerializedName("isFocused")
+    @Expose
+    private boolean isFocused;
     @SerializedName("thumbnail")
     @Expose
     private String thumbnail;

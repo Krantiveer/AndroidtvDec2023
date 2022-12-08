@@ -7,7 +7,7 @@ apply plugin: 'kotlin-parcelize'
 
 android {
     compileSdkVersion 31
-    buildToolsVersion "29.0.3"
+    buildToolsVersion "30.0.2"
     flavorDimensions "default"
     defaultConfig {
         applicationId "com.actionott.tv"
@@ -51,6 +51,10 @@ android {
              applicationId "com.nammestar.android"
          }*/
 
+    }
+
+    dataBinding {
+        enabled = true
     }
 
     compileOptions {

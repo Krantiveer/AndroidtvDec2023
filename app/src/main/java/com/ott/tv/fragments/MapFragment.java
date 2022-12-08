@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,6 +24,8 @@ import com.ott.tv.Constants;
 import com.ott.tv.R;
 import com.ott.tv.adapter.AdapterClickListener;
 import com.ott.tv.adapter.MapListAdapter;
+import com.ott.tv.countrycodepicker.CountryCodeActivity;
+import com.ott.tv.countrycodepicker.StateCodeActivity;
 import com.ott.tv.database.DatabaseHelper;
 import com.ott.tv.model.BrowseData;
 import com.ott.tv.model.phando.LatestMovieList;
@@ -49,6 +52,7 @@ import retrofit2.Retrofit;
 public class MapFragment extends Fragment implements AdapterClickListener {
     LinearLayout llSelectedState;
     RichPathView richPathView;
+    TextView txtSelectedState;
     RecyclerView rvList;
 
     public MapFragment() {
@@ -68,12 +72,18 @@ public class MapFragment extends Fragment implements AdapterClickListener {
         super.onViewCreated(view, savedInstanceState);
         llSelectedState = view.findViewById(R.id.llSelectedState);
         richPathView = view.findViewById(R.id.richPathView);
+        txtSelectedState = view.findViewById(R.id.txtSelectedState);
         rvList = view.findViewById(R.id.rvList);
 
+        txtSelectedState.setText(PreferenceUtils.getInstance().getUvtv_state_namePref(getContext()));
+
         llSelectedState.setOnClickListener(v -> {
-            Intent intent = new Intent(requireContext(), StateListActivity.class);
-            requireActivity().startActivity(intent);
+    /*        Intent i=new Intent(getContext(), StateCodeActivity.class);
+            getContext().startActivity(i);
+            fetchStateApi(PreferenceUtils.getInstance().getUvtv_state_namePref(getContext()));
+*/
         });
+
     }
 
     @Override

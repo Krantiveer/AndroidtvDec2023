@@ -33,6 +33,7 @@ import com.ott.tv.network.api.Dashboard;
 import com.ott.tv.ui.activity.DetailsActivityPhando;
 import com.ott.tv.ui.activity.DetailsActivityTvSeries;
 import com.ott.tv.ui.activity.LoginChooserActivity;
+import com.ott.tv.ui.activity.NewMainActivity;
 import com.ott.tv.ui.presenter.CardPresenterBanner;
 import com.ott.tv.ui.presenter.CardPresenterNewLanscape;
 import com.ott.tv.ui.presenter.SliderCardPresenter;
@@ -80,8 +81,8 @@ public class HomeFragment extends RowsSupportFragment {
 
             assert getArguments() != null;
             typeCategory = getArguments().getString("type");
-            LeanbackActivity activity = (LeanbackActivity) getActivity();
-            activity.showLogo();
+            NewMainActivity activity = (NewMainActivity) getActivity();
+          //  activity.showLogo();
             setOnItemViewClickedListener(getDefaultItemViewClickedListener());
             setOnItemViewSelectedListener(getDefaultItemSelectedListener());
             if (new NetworkInst(activity).isNetworkAvailable()) {
@@ -324,12 +325,12 @@ public class HomeFragment extends RowsSupportFragment {
             rowsAdapter.add(new ListRow(header, listRowAdapter));
         }
         setAdapter(rowsAdapter);
-        setCustomPadding();
+       // setCustomPadding();
     }
 
     private void setCustomPadding() {
         if (getView() != null) {
-            getView().setPadding(20, 0, 10, -500);
+            getView().setPadding(20, 40, 10, -500);
         }
     }
 

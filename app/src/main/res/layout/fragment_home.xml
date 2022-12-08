@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.ott.tv.viewmodel.HomeViewModel" />
+    </data>
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+
+        tools:context=".fragment.HomeFragment">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+          android:drawableStart="@drawable/logo"
+            android:textSize="28sp"
+            android:textColor="@android:color/holo_red_dark"
+            android:drawablePadding="20dp"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="bold"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/list_items"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            android:overScrollMode="never"
+            android:nextFocusLeft="@layout/layout_menu"
+            tools:listitem="@layout/main_fragment_list"
+            />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
+
+</layout>
