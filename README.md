@@ -12,7 +12,7 @@ logo_splash
 2. base url in live.
 3. Publisher id. 
 4. Privacy policy.
-5. Short description *
+5. Short description * [80 words]
 6. Full description *
 7. App name *
 8. App icon *(512X512)

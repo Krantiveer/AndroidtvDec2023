@@ -85,7 +85,6 @@
                 android:paddingEnd="4sp"
                 android:paddingBottom="5sp"
                 android:textColor="@color/white"
-
                 />
 
             <TextView

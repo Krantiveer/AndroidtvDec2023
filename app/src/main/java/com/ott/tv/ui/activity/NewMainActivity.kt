@@ -3,6 +3,8 @@ package com.ott.tv.ui.activity
 import android.app.AlertDialog
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.view.KeyEvent
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
@@ -104,4 +106,21 @@ class NewMainActivity : FragmentActivity() {
 
 
     }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+        Log.e("LoginActivity", "***** keyCode =" + keyCode + "event :" + event)
+        when (keyCode) {
+            KeyEvent.KEYCODE_BACK -> {
+                onBackPressed()
+                return true
+            }
+            KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_DPAD_UP_LEFT, KeyEvent.KEYCODE_DPAD_UP_RIGHT, KeyEvent.KEYCODE_DPAD_DOWN, KeyEvent.KEYCODE_DPAD_DOWN_LEFT, KeyEvent.KEYCODE_DPAD_DOWN_RIGHT -> return false
+            KeyEvent.KEYCODE_DPAD_LEFT, KeyEvent.KEYCODE_DPAD_RIGHT, KeyEvent.KEYCODE_DPAD_UP -> {
+                Log.e("LoginActivity", "movieIndex : ")
+                return false
+            }
+        }
+        return super.onKeyDown(keyCode, event)
+    }
+
 }

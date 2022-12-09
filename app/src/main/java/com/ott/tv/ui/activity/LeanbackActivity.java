@@ -85,320 +85,280 @@ public class LeanbackActivity extends FragmentActivity {
     private List<CategoryType> menu = null;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leanback);
-        Intent intent=new Intent(this,NewMainActivity.class);
-        startActivity(intent);
-    } /*{
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_leanback);
-        Intent intent=new Intent(this,NewMainActivity.class);
-        startActivity(intent);
-
-        orbView = findViewById(R.id.custom_search_orb);
-        orbView.bringToFront();
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        height = displayMetrics.heightPixels;
-        width = displayMetrics.widthPixels;
-        if (height < 1080) {
-            Log.i(TAG, "onCreate hight: less then 1080");
-            deltaValue = 250;
-            headerValue = 0;
-            *//*PreferenceUtils.getInstance().setWindowHeightPref(getApplicationContext(), "false");*//*
-        } else {
-            deltaValue = 450;
-            headerValue = 50;
-            *//*PreferenceUtils.getInstance().setWindowHeightPref(getApplicationContext(), "true");*//*
-        }
-        Log.i(TAG, "onCreate: " + height + width);
-        orbView.setOnOrbClickedListener(view -> {
-       *//*     Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
-            startActivity(intent);*//*
-        });
-        logoIv = findViewById(R.id.logo);
-        *//*logoIvNew = findViewById(R.id.logonew);*//*
-        PreferenceUtils.updateSubscriptionStatus(this);
-
-        fragments = new LinkedHashMap<>();
-        //    fetchCategory();
-
-
-        int CATEGORIES_NUMBER = 8;
-        if (BuildConfig.FLAVOR.equalsIgnoreCase("kaafaltv")) {
-            for (int i = 0; i < CATEGORIES_NUMBER; i++) {
-
-                if (i == 0) {
-                    HomeFragmentNewUI fragment = new HomeFragmentNewUI();
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("menu", i);
-                    fragment.setArguments(bundle);
-                    fragments.put(i, fragment);
-                } else if (i == 1) {
-
-                    HomeFragment fragment = new HomeFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("menu", i);
-                    bundle.putString("type", "28");///movie
-                    fragment.setArguments(bundle);
-                    fragments.put(i, fragment);
-
-*//*
-                Bundle bundle = new Bundle();
-                bundle.putInt("menu", i);
-                bundle.putString("type", "Pay And Watch");
-                MoviesFragment fragment = new MoviesFragment();
-                fragment.setArguments(bundle);
-                fragments.put(i, fragment);*//*
-                } else if (i == 2) {
-                    HomeFragment fragment = new HomeFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("type", "29");//series
-                    bundle.putInt("menu", i);
-                    fragment.setArguments(bundle);
-                    fragments.put(i, fragment);
-                } *//*else if (i == 3) {
-                    if (BuildConfig.FLAVOR.equalsIgnoreCase("solidtv")) {
-
-                    } else {
-
-                        MapFragmentUVTV fragment = new MapFragmentUVTV();
-               *//**//* Bundle bundle = new Bundle();
-                bundle.putInt("menu", i);
-                fragment.setArguments(bundle);//uvtv bharat
-               *//**//*
-                        fragments.put(i, fragment);*//**//*
-                    HomeFragment fragment = new HomeFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("menu", i);
-                    fragment.setArguments(bundle);//uvtv bharat
-                    fragments.put(i, fragment);
-*//**//*
-                    }
-                } *//*else if (i == 3) {
-                    HomeFragment fragment = new HomeFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("menu", i);
-                    bundle.putString("type", "30");//live
-                    fragment.setArguments(bundle);
-                    fragments.put(i, fragment);
-                *//*
-                GenreMovieFragment fragment = new GenreMovieFragment();
-                Bundle bundle = new Bundle();
-                bundle.putInt("menu", i);
-                fragment.setArguments(bundle);
-                fragments.put(i, fragment);*//*
-
-                } else if (i == 4) {
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("menu", i);
-                    bundle.putString("type", "Watchlist");
-                    ShowWatchlistFragment fragment = new ShowWatchlistFragment();
-                    fragment.setArguments(bundle);
-                    fragments.put(i, fragment);
-              *//*  HomeFragment fragment = new HomeFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString("type", "27");
-                bundle.putInt("menu", i);
-                fragment.setArguments(bundle);
-                fragments.put(i, fragment);*//*
-                *//*
-                FavouriteFragment fragment = new FavouriteFragment();
-                Bundle bundle = new Bundle();
-                bundle.putInt("menu", i);
-                bundle.putString("type", "movie");
-                fragment.setArguments(bundle);
-                fragments.put(i, fragment);*//*
-                } else if (i == 5) {
-
-                    MyAccountFragment fragment = new MyAccountFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("menu", i);
-                    fragment.setArguments(bundle);
-                    fragments.put(i, fragment);
-
-*//*                HomeFragment fragment = new HomeFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString("type", "live");
-                bundle.putInt("menu", i);
-                fragment.setArguments(bundle);
-                fragments.put(i, fragment);*//*
-               *//* MyAccountFragment fragment = new MyAccountFragment();
-                Bundle bundle = new Bundle();
-                bundle.putInt("menu", i);
-                fragment.setArguments(bundle);
-                fragments.put(i, fragment);*//*
-                *//*
-                CountryMovieFragment fragment = new CountryMovieFragment();
-                Bundle bundle = new Bundle();
-                bundle.putInt("menu", i);
-                fragment.setArguments(bundle);
-                fragments.put(i, fragment);*//*
-
-                } else if (i == 7) {
-           *//*     MyAccountFragment fragment = new MyAccountFragment();
-                Bundle bundle = new Bundle();
-                bundle.putInt("menu", i);
-                fragment.setArguments(bundle);
-                fragments.put(i, fragment);*//*
-
-                } else {*//*
-                MyAccountFragment fragment = new MyAccountFragment();
-                Bundle bundle = new Bundle();
-                bundle.putInt("menu", i);
-                fragment.setArguments(bundle);
-                fragments.put(i, fragment);*//*
-                }
-            }
-        } else {
-
-            for (int i = 0; i < CATEGORIES_NUMBER; i++) {
-                if (i == 0) {
-                    HomeFragmentNewUI fragment = new HomeFragmentNewUI();
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("menu", i);
-                    fragment.setArguments(bundle);
-                    fragments.put(i, fragment);
-                } else if (i == 1) {
-
-                    HomeFragment fragment = new HomeFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("menu", i);
-                    bundle.putString("type", "24");///movie
-                    fragment.setArguments(bundle);
-                    fragments.put(i, fragment);
-
-*//*
-                Bundle bundle = new Bundle();
-                bundle.putInt("menu", i);
-                bundle.putString("type", "Pay And Watch");
-                MoviesFragment fragment = new MoviesFragment();
-                fragment.setArguments(bundle);
-                fragments.put(i, fragment);*//*
-                } else if (i == 2) {
-                    HomeFragment fragment = new HomeFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("type", "22");//series
-                    bundle.putInt("menu", i);
-                    fragment.setArguments(bundle);
-                    fragments.put(i, fragment);
-                } else if (i == 3) {
-                    if (BuildConfig.FLAVOR.equalsIgnoreCase("solidtv")) {
-
-                    } else {
-
-                        MapFragment fragment = new MapFragment();
-               *//* Bundle bundle = new Bundle();
-                bundle.putInt("menu", i);
-                fragment.setArguments(bundle);//uvtv bharat
-               *//*
-                        fragments.put(i, fragment);*//*
-                    HomeFragment fragment = new HomeFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("menu", i);
-                    fragment.setArguments(bundle);//uvtv bharat
-                    fragments.put(i, fragment);
-*//*
-                    }
-                } else if (i == 4) {
-                    HomeFragment fragment = new HomeFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("menu", i);
-                    bundle.putString("type", "15");//live
-                    fragment.setArguments(bundle);
-                    fragments.put(i, fragment);
-                *//*
-                GenreMovieFragment fragment = new GenreMovieFragment();
-                Bundle bundle = new Bundle();
-                bundle.putInt("menu", i);
-                fragment.setArguments(bundle);
-                fragments.put(i, fragment);*//*
-
-                } else if (i == 5) {
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("menu", i);
-                    bundle.putString("type", "Watchlist");
-                    ShowWatchlistFragment fragment = new ShowWatchlistFragment();
-                    fragment.setArguments(bundle);
-                    fragments.put(i, fragment);
-              *//*  HomeFragment fragment = new HomeFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString("type", "27");
-                bundle.putInt("menu", i);
-                fragment.setArguments(bundle);
-                fragments.put(i, fragment);*//*
-                *//*
-                FavouriteFragment fragment = new FavouriteFragment();
-                Bundle bundle = new Bundle();
-                bundle.putInt("menu", i);
-                bundle.putString("type", "movie");
-                fragment.setArguments(bundle);
-                fragments.put(i, fragment);*//*
-                } else if (i == 6) {
-
-                    MyAccountFragment fragment = new MyAccountFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("menu", i);
-                    fragment.setArguments(bundle);
-                    fragments.put(i, fragment);
-
-*//*                HomeFragment fragment = new HomeFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString("type", "live");
-                bundle.putInt("menu", i);
-                fragment.setArguments(bundle);
-                fragments.put(i, fragment);*//*
-               *//* MyAccountFragment fragment = new MyAccountFragment();
-                Bundle bundle = new Bundle();
-                bundle.putInt("menu", i);
-                fragment.setArguments(bundle);
-                fragments.put(i, fragment);*//*
-                *//*
-                CountryMovieFragment fragment = new CountryMovieFragment();
-                Bundle bundle = new Bundle();
-                bundle.putInt("menu", i);
-                fragment.setArguments(bundle);
-                fragments.put(i, fragment);*//*
-
-                } else if (i == 7) {
-           *//*     MyAccountFragment fragment = new MyAccountFragment();
-                Bundle bundle = new Bundle();
-                bundle.putInt("menu", i);
-                fragment.setArguments(bundle);
-                fragments.put(i, fragment);*//*
-
-                } else {*//*
-                MyAccountFragment fragment = new MyAccountFragment();
-                Bundle bundle = new Bundle();
-                bundle.putInt("menu", i);
-                fragment.setArguments(bundle);
-                fragments.put(i, fragment);*//*
-                }
-            }
-        }
-
-        headersFragment = new CustomHeadersFragment();
-        rowsFragment = fragments.get(0);
-        customFrameLayout = (CustomFrameLayout) ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
-
-        setupCustomFrameLayout();
-
-        if (new NetworkInst(this).isNetworkAvailable()) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.add(R.id.header_container, headersFragment, "CustomHeadersFragment")
-                    .add(R.id.rows_container, rowsFragment, "CustomRowsFragment");
-            transaction.commit();
-        } else {
-            // show no internet page
-          *//*  Intent intent = new Intent(this, ErrorActivity.class);
+     /*   if (!BuildConfig.FLAVOR.equalsIgnoreCase("kaafaltv")) */{
+            Intent intent = new Intent(this, NewMainActivity.class);
             startActivity(intent);
-            finish();*//*
-        }
+        }  /*{
+
+            orbView = findViewById(R.id.custom_search_orb);
+            orbView.bringToFront();
+            DisplayMetrics displayMetrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+            height = displayMetrics.heightPixels;
+            width = displayMetrics.widthPixels;
+            if (height < 1080) {
+                Log.i(TAG, "onCreate hight: less then 1080");
+                deltaValue = 250;
+                headerValue = 0;
+                PreferenceUtils.getInstance().setWindowHeightPref(getApplicationContext(), "false");
+            } else {
+                deltaValue = 450;
+                headerValue = 50;
+                PreferenceUtils.getInstance().setWindowHeightPref(getApplicationContext(), "true");
+            }
+            Log.i(TAG, "onCreate: " + height + width);
+            orbView.setOnOrbClickedListener(view -> {
+                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                startActivity(intent);
+            });
+            logoIv = findViewById(R.id.logo);
+            //logoIvNew = findViewById(R.id.logonew);
+            PreferenceUtils.updateSubscriptionStatus(this);
+
+            fragments = new LinkedHashMap<>();
+            //    fetchCategory();
 
 
-    }*/
+            int CATEGORIES_NUMBER = 8;
+            if (BuildConfig.FLAVOR.equalsIgnoreCase("kaafaltv")) {
+                for (int i = 0; i < CATEGORIES_NUMBER; i++) {
+
+                    if (i == 0) {
+                        HomeFragmentNewUI fragment = new HomeFragmentNewUI();
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("menu", i);
+                        fragment.setArguments(bundle);
+                        fragments.put(i, fragment);
+                    } else if (i == 1) {
+
+                        HomeFragment fragment = new HomeFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("menu", i);
+                        bundle.putString("type", "28");///movie
+                        fragment.setArguments(bundle);
+                        fragments.put(i, fragment);
+
+*//*
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("menu", i);
+                        bundle.putString("type", "Pay And Watch");
+                        MoviesFragment fragment = new MoviesFragment();
+                        fragment.setArguments(bundle);
+                        fragments.put(i, fragment);*//*
+                    } else if (i == 2) {
+                        HomeFragment fragment = new HomeFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("type", "29");//series
+                        bundle.putInt("menu", i);
+                        fragment.setArguments(bundle);
+                        fragments.put(i, fragment);
+                    } else if (i == 3) {
+                        if (BuildConfig.FLAVOR.equalsIgnoreCase("solidtv")) {
+
+                        } else {
+
+                            MapFragmentUVTV fragment = new MapFragmentUVTV();
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("menu", i);
+                            fragment.setArguments(bundle);//uvtv bharat
+
+                            fragments.put(i, fragment);
+                          *//*  HomeFragment fragment = new HomeFragment();
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("menu", i);
+                            fragment.setArguments(bundle);//uvtv bharat
+                            fragments.put(i, fragment);*//*
+
+                        }
+                    } else if (i == 3) {
+                        HomeFragment fragment = new HomeFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("menu", i);
+                        bundle.putString("type", "30");//live
+                        fragment.setArguments(bundle);
+                        fragments.put(i, fragment);
+*//*
+                        GenreMovieFragment fragment = new GenreMovieFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("menu", i);
+                        fragment.setArguments(bundle);
+                        fragments.put(i, fragment);*//*
+
+                    } else if (i == 4) {
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("menu", i);
+                        bundle.putString("type", "Watchlist");
+                        ShowWatchlistFragment fragment = new ShowWatchlistFragment();
+                        fragment.setArguments(bundle);
+                        fragments.put(i, fragment);
+
+                *//*        HomeFragment fragment = new HomeFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("type", "27");
+                        bundle.putInt("menu", i);
+                        fragment.setArguments(bundle);
+                        fragments.put(i, fragment);
+
+                        FavouriteFragment fragment = new FavouriteFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("menu", i);
+                        bundle.putString("type", "movie");
+                        fragment.setArguments(bundle);
+                        fragments.put(i, fragment);*//*
+                    } else if (i == 5) {
+
+                        MyAccountFragment fragment = new MyAccountFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("menu", i);
+                        fragment.setArguments(bundle);
+                        fragments.put(i, fragment);
+
+                 *//*       HomeFragment fragment = new HomeFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("type", "live");
+                        bundle.putInt("menu", i);
+                        fragment.setArguments(bundle);
+                        fragments.put(i, fragment);
+                        MyAccountFragment fragment = new MyAccountFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("menu", i);
+                        fragment.setArguments(bundle);
+                        fragments.put(i, fragment);
+
+                        CountryMovieFragment fragment = new CountryMovieFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("menu", i);
+                        fragment.setArguments(bundle);
+                        fragments.put(i, fragment);*//*
+
+                    } else if (i == 7) {
+                        MyAccountFragment fragment = new MyAccountFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("menu", i);
+                        fragment.setArguments(bundle);
+                        fragments.put(i, fragment);
+
+                    }
+                }
+            } else {
+
+                for (int i = 0; i < CATEGORIES_NUMBER; i++) {
+                    if (i == 0) {
+                        HomeFragmentNewUI fragment = new HomeFragmentNewUI();
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("menu", i);
+                        fragment.setArguments(bundle);
+                        fragments.put(i, fragment);
+                    } else if (i == 1) {
+
+                        HomeFragment fragment = new HomeFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("menu", i);
+                        bundle.putString("type", "24");///movie
+                        fragment.setArguments(bundle);
+                        fragments.put(i, fragment);
+
+
+                  *//*      Bundle bundle = new Bundle();
+                        bundle.putInt("menu", i);
+                        bundle.putString("type", "Pay And Watch");
+                        MoviesFragment fragment = new MoviesFragment();
+                        fragment.setArguments(bundle);
+                        fragments.put(i, fragment);*//*
+                    } else if (i == 2) {
+                        HomeFragment fragment = new HomeFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("type", "22");//series
+                        bundle.putInt("menu", i);
+                        fragment.setArguments(bundle);
+                        fragments.put(i, fragment);
+                    } else if (i == 3) {
+                        if (BuildConfig.FLAVOR.equalsIgnoreCase("solidtv")) {
+
+                        } else {
+
+                            MapFragment fragment = new MapFragment();
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("menu", i);
+                            fragment.setArguments(bundle);//uvtv bharat
+
+                            fragments.put(i, fragment);
+
+
+                        }
+                    } else if (i == 4) {
+                        HomeFragment fragment = new HomeFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("menu", i);
+                        bundle.putString("type", "15");//live
+                        fragment.setArguments(bundle);
+                        fragments.put(i, fragment);
+*//*
+                        GenreMovieFragment fragment = new GenreMovieFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("menu", i);
+                        fragment.setArguments(bundle);
+                        fragments.put(i, fragment);*//*
+
+                    } else if (i == 5) {
+                        HomeFragment fragment = new HomeFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("type", "27");
+                        bundle.putInt("menu", i);
+                        fragment.setArguments(bundle);
+                        fragments.put(i, fragment);
+
+
+                    } else if (i == 6) {
+
+                        MyAccountFragment fragment = new MyAccountFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("menu", i);
+                        fragment.setArguments(bundle);
+                        fragments.put(i, fragment);
+
+
+                    } else if (i == 7) {
+                        MyAccountFragment fragment = new MyAccountFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("menu", i);
+                        fragment.setArguments(bundle);
+                        fragments.put(i, fragment);
+
+                    } else {
+                        MyAccountFragment fragment = new MyAccountFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("menu", i);
+                        fragment.setArguments(bundle);
+                        fragments.put(i, fragment);
+                    }
+                }
+            }
+
+            headersFragment = new CustomHeadersFragment();
+            rowsFragment = fragments.get(0);
+            customFrameLayout = (CustomFrameLayout) ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
+
+            setupCustomFrameLayout();
+
+            if (new NetworkInst(this).isNetworkAvailable()) {
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.add(R.id.header_container, headersFragment, "CustomHeadersFragment")
+                        .add(R.id.rows_container, rowsFragment, "CustomRowsFragment");
+                transaction.commit();
+            } else {
+                // show no internet page
+                Intent intent = new Intent(this, ErrorActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
+        }*/
+    }
 
     private void fetchCategory() {
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();

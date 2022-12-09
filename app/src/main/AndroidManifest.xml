@@ -118,11 +118,11 @@
             android:exported="true"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme" />
-        <activity
+      <!--  <activity
             android:name=".countrycodepicker.StateCodeActivity"
             android:exported="true"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme" />-->
         <activity
             android:name=".ui.activity.DetailsActivityTvSeries"
             android:exported="true"

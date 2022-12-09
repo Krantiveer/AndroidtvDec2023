@@ -44,6 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_margin="5sp"
+            android:contentDescription="@string/contentDescription"
             android:visibility="gone"
             tools:visibility="visible"
             android:src="@drawable/prime_icon" />
@@ -58,7 +59,7 @@
             tools:hint=""
             android:singleLine="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/_26sdp"
+            android:textSize="@dimen/_20sdp"
 
             android:textStyle="bold" />
 
@@ -66,6 +67,7 @@
             android:id="@+id/contnet_general_info"
             android:layout_width="wrap_content"
             android:visibility="gone"
+
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -73,7 +75,7 @@
                 android:id="@+id/content_language"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_3sdp"
+                android:layout_marginStart="@dimen/_3sdp"
                 android:alpha="1"
                 android:ellipsize="end"
                 android:fontFamily="@font/poppins_regular"
@@ -82,7 +84,7 @@
                 tools:visibility="visible"
 
                 android:textColor="@color/iap_grey"
-                android:textSize="@dimen/_12sdp" />
+                android:textSize="@dimen/_8sdp" />
 
             <View
                 android:id="@+id/view1"
@@ -99,7 +101,7 @@
                 android:id="@+id/content_genre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
                 android:alpha="1"
                 android:ellipsize="end"
                 android:fontFamily="@font/poppins_regular"
@@ -112,7 +114,7 @@
                 android:id="@+id/view2"
                 android:layout_width="@dimen/_3sdp"
                 android:layout_height="@dimen/_3sdp"
-                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_6sdp"
                 android:layout_marginRight="@dimen/_4sdp"
                 android:background="@color/iap_grey"
@@ -156,7 +158,7 @@
                 android:id="@+id/content_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_11sdp"
+                android:layout_marginStart="@dimen/_11sdp"
                 android:alpha="1"
                 android:background="@drawable/category_type"
                 android:singleLine="true"
@@ -169,7 +171,7 @@
                 android:id="@+id/hd_image"
                 android:layout_width="@dimen/_18sdp"
                 android:layout_height="@dimen/margin_gap_13"
-                android:layout_marginLeft="@dimen/margin_gap_11"
+                android:layout_marginStart="@dimen/margin_gap_11"
                 android:layout_marginTop="@dimen/margin_gap_4"
 
                 android:background="@drawable/detail_hd_icon"
@@ -188,7 +190,7 @@
                 android:id="@+id/content_rating_value"
                 android:layout_width="@dimen/margin_gap_24"
                 android:layout_height="15dp"
-                android:layout_marginLeft="@dimen/margin_gap_12"
+                android:layout_marginStart="@dimen/margin_gap_12"
                 android:background="@drawable/contentrating_background"
                 android:gravity="center"
                 android:text="13+"
@@ -244,17 +246,15 @@
             android:id="@+id/cast_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/description_layout"
-            android:layout_alignParentLeft="true"
             android:layout_marginTop="@dimen/margin_gap_6"
             android:visibility="gone"
+            tools:visibility="visible"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/carddetailbriefdescription_cast_heading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:alpha="1"
                 android:fontFamily="@font/roboto"
                 android:lineSpacingExtra="4dp"
@@ -267,8 +267,7 @@
                 android:id="@+id/carddetailbriefdescription_cast"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="@dimen/margin_gap_12"
+                android:layout_marginStart="@dimen/margin_gap_12"
                 android:alpha="1"
                 android:ellipsize="end"
                 android:fontFamily="@font/roboto"

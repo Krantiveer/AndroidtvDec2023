@@ -3,6 +3,8 @@ package com.ott.tv.ui.activity;
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
+import android.view.KeyEvent
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
@@ -10,7 +12,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ott.tv.R
-import com.ott.tv.adapter.AdapterClickListener
 import com.ott.tv.adapter.ClickListener
 import com.ott.tv.adapter.StateListAdapter
 import com.ott.tv.utils.PreferenceUtils
@@ -127,4 +128,21 @@ class StateListActivity : AppCompatActivity(), ClickListener {
             }
         }
     }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+        Log.e("LoginActivity", "***** keyCode =" + keyCode + "event :" + event)
+        when (keyCode) {
+            KeyEvent.KEYCODE_BACK -> {
+                onBackPressed()
+                return true
+            }
+            KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_DPAD_UP_LEFT, KeyEvent.KEYCODE_DPAD_UP_RIGHT, KeyEvent.KEYCODE_DPAD_DOWN, KeyEvent.KEYCODE_DPAD_DOWN_LEFT, KeyEvent.KEYCODE_DPAD_DOWN_RIGHT -> return false
+            KeyEvent.KEYCODE_DPAD_LEFT, KeyEvent.KEYCODE_DPAD_RIGHT, KeyEvent.KEYCODE_DPAD_UP -> {
+                Log.e("LoginActivity", "movieIndex : ")
+                return false
+            }
+        }
+        return super.onKeyDown(keyCode, event)
+    }
+
 }
