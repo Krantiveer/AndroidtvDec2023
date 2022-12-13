@@ -1,6 +1,7 @@
 package com.ott.tv.ui.activity
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -79,8 +80,8 @@ class NewMainActivity : FragmentActivity() {
     }
 
 
-    fun onMenuSelection(type :String){
-        Toast.makeText(this, "closeactivity", Toast.LENGTH_SHORT).show()
+    fun onMenuSelection(type: String) {
+        //   Toast.makeText(this, "closeactivity", Toast.LENGTH_SHORT).show()
 
 
 /*
@@ -89,11 +90,17 @@ class NewMainActivity : FragmentActivity() {
         bundle!!.putString("type", type)
 */
 
+        Log.i("new MainActivity", "onMenuSelection: " + type)
         val bundle = bundleOf(
             "menu" to 1,
             "type" to type
 
         )
+        if (type.equals("Search")) {
+            val intent = Intent(this, SearchActivity_Phando::class.java)
+            startActivity(intent)
+        }else{
+
         val newFragment = HomeFragment()
         newFragment.setArguments(bundle)
 
@@ -102,10 +109,7 @@ class NewMainActivity : FragmentActivity() {
             .commit()
 
 
-
-
-
-    }
+    }}
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
         Log.e("LoginActivity", "***** keyCode =" + keyCode + "event :" + event)

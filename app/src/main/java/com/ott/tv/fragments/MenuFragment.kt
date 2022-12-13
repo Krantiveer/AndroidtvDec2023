@@ -29,9 +29,9 @@ import java.security.AccessController
 class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
     private lateinit var binding: FragmentMenuBinding
     //val activity = requireActivity() as NewMainActivity
- //   val activity = requireActivity() as NewMainActivity
+    //   val activity = requireActivity() as NewMainActivity
 
-    private var menu: List<CategoryType>? = ArrayList<CategoryType>()
+     var menu: List<CategoryType>? = ArrayList<CategoryType>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,7 +54,7 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
                 activity.onMenuFocus(false)
                 Toast.makeText(requireActivity(), "closeactivity", Toast.LENGTH_SHORT).show()
 
-            }else{
+            } else {
                 val activity = requireActivity() as NewMainActivity
 
                 activity.onMenuFocus(true)
@@ -62,10 +62,21 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
 
             }
 
-            binding.menuRecycler.setOnClickListener { Toast.makeText(requireActivity(),"click",Toast.LENGTH_SHORT) }
+            binding.menuRecycler.setOnClickListener {
+                Toast.makeText(
+                    requireActivity(),
+                    "click",
+                    Toast.LENGTH_SHORT
+                )
+            }
 
         }
+        binding.searchIcon.setOnClickListener {
 
+            val activity = requireActivity() as NewMainActivity
+            activity.onMenuSelection("Search")
+
+        }
 
 
     }
@@ -83,12 +94,14 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
                 response: Response<List<CategoryType>>
             ) {
                 if (response.code() == 200) {
+
                     menu = response.body()
 
 
+
                     setAdapter()
-                       /* binding.menuRecycler.apply {
-                            *//*adapter = MenuListAdapter(requireActivity(), menu!!, object : ICallback {
+                    /* binding.menuRecycler.apply {
+                         *//*adapter = MenuListAdapter(requireActivity(), menu!!, object : ICallback {
                                 override fun delegate(any: Any) {
                                     val activity = requireActivity() as NewMainActivity
                                     if (any != null && any is Boolean) {
@@ -151,17 +164,17 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
 
     private fun setAdapter() {
 
-       val mListAdapter = MenuListAdapter(requireContext(), menu!!,this, object : ICallback {
-           override fun delegate(any: Any) {
-              val activity = requireActivity() as NewMainActivity
-               if (any != null && any is Boolean) {
-                   activity.onMenuFocus(any)
-               } else {
-                   activity.onMenuFocus(false)
-               }
-           }
+        val mListAdapter = MenuListAdapter(requireContext(), menu!!, this, object : ICallback {
+            override fun delegate(any: Any) {
+                val activity = requireActivity() as NewMainActivity
+                if (any != null && any is Boolean) {
+                    activity.onMenuFocus(any)
+                } else {
+                    activity.onMenuFocus(false)
+                }
+            }
 
-       })
+        })
         binding.menuRecycler.layoutManager =
             LinearLayoutManager(requireContext())
         binding.menuRecycler.adapter = mListAdapter
@@ -169,12 +182,11 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
 
 
     override fun onItemClick(data: CategoryType) {
-        Log.e("@@log", data.displayName+data.type+data.isFocused)
+        Log.e("@@log", data.displayName + data.type + data.isFocused)
+
+
         val activity = requireActivity() as NewMainActivity
-
         activity.onMenuSelection(data.type.toString())
-
-
 
 
         /*  val ft: FragmentTransaction = requireFragmentManager().beginTransaction()

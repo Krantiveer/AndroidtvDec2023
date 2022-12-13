@@ -147,5 +147,19 @@
 
     <style name="yellowProgressBar" parent="Widget.AppCompat.ProgressBar.Horizontal">
         <item name="android:indeterminateTint">@color/red_highlight_color</item>
+
+    </style>
+    <style name="AppTheme.Leanback.Row" parent="Widget.Leanback.ImageCardView.TitleStyle">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">24sp</item>
+        <item name="fontFamily">@font/amazon</item>
+        <item name="android:paddingBottom">0dp</item>
+    </style>
+    <style name="Anivation" parent="@style/AppTheme">
+        <item name="browseRowsMarginTop">20dp</item>
+        <item name="browsePaddingTop">10dp</item>
+        <item name="android:verticalSpacing">5dp</item>
+        <item name="horizontalMargin">5dp</item>
+        <item name="rowHeaderStyle">@style/AppTheme.Leanback.Row</item>
     </style>
 </resources>

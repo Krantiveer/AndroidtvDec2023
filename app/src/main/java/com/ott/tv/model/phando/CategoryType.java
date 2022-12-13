@@ -8,9 +8,9 @@ import com.google.gson.annotations.SerializedName;
 
 
 public class CategoryType implements Parcelable {
-   //0 means not added 1 means added
+    //0 means not added 1 means added
 
-  //  @Field("id") String id, @Field("type") String type, @Field("value") String value
+    //  @Field("id") String id, @Field("type") String type, @Field("value") String value
 
 
     @SerializedName("type")

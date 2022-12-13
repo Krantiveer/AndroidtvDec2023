@@ -45,6 +45,7 @@ import com.ott.tv.fragments.MainFragment;
 import com.ott.tv.fragments.MapFragment;
 import com.ott.tv.fragments.MoviesFragment;
 import com.ott.tv.fragments.MyAccountFragment;
+import com.ott.tv.fragments.SearchFragmentPhando;
 import com.ott.tv.fragments.ShowWatchlistFragment;
 import com.ott.tv.fragments.TvSeriesFragment;
 import com.ott.tv.model.BrowseData;

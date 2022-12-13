@@ -237,25 +237,7 @@ public class SearchFragment extends androidx.leanback.app.SearchFragment impleme
                 List<Movie> tvSeriesResult = new ArrayList<>();
                 List<TvModel> tvResult = new ArrayList<>();
                 if (response.code() == 200) {
-               /*     if(response.body().getMovie().size() == 0 ){
-                        Toast.makeText(getContext(), "There is No Data Found", Toast.LENGTH_SHORT).show();
-                    }*/
-             /*       if (response.body().getTvChannels().size() != 0) {
-                        tvHeader = "Live TV";
-                        tvResult.clear();
-                        tvResult = response.body().getTvChannels();
-                        for (TvModel video : tvResult) {
-                            String id = video.getLiveTvId();
-                            String title = video.getTvName();
-                            String description = video.getDescription();
-                            String type = "tv";
-                            String streamUrl = video.getStreamUrl();
-                            String streamFrom = video.getStreamFrom();
-                            String thumbnailUrl = video.getPosterUrl();
-                            SearchContent searchContent = new SearchContent(id, title, description, type, streamUrl, streamFrom, thumbnailUrl);
-                            mItems.add(searchContent);
-                        }
-                    }*/
+
 
                     if (response.body().size() != 0) {
                         movieHeader = "Movies";
@@ -273,25 +255,6 @@ public class SearchFragment extends androidx.leanback.app.SearchFragment impleme
                             mItems.add(searchContent);
                         }
                     }
-
-             /*       if (response.body().getTvseries().size() != 0) {
-                        tvSeriesHeader = "TV Series";
-                        tvSeriesResult.clear();
-                        tvSeriesResult = response.body().getTvseries();
-                        for (Movie video : tvSeriesResult) {
-                            String id = video.getVideosId();
-                            String title = video.getTitle();
-                            String description = video.getDescription();
-                            String type = "tvseries";
-                            String streamUrl = "";
-                            String streamFrom = "";
-                            String thumbnailUrl = video.getPosterUrl();
-                            SearchContent searchContent = new SearchContent(id, title, description, type, streamUrl, streamFrom, thumbnailUrl);
-                            mItems.add(searchContent);
-                        }
-                    }*/
-
-
                     loadRows(movieResult, tvSeriesResult, tvResult);
                 }
 
