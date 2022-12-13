@@ -6,10 +6,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.leanback.app.BrowseSupportFragment
 import androidx.leanback.widget.*
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.ott.tv.Config
 import com.ott.tv.Constants
@@ -99,56 +95,6 @@ class SearchFragmentPhando : BrowseSupportFragment() {
     }
 
 
-    fun loadData(searchtext: String, accestoken: String) {
-
-        val stringRequest = object : StringRequest(
-            Request.Method.GET,
-            Config.API_SERVER_URL + "mediasearch?term=" + searchtext + "&device_type=tv",
-            Response.Listener { response ->
-                Log.e(TAG, "" + response)
-                var searchContent =
-                    Gson().fromJson(response.toString(), SearchContentPhando::class.java)
-                var listRowPresenter = ListRowPresenter(FocusHighlight.ZOOM_FACTOR_NONE, false)
-                listRowPresenter.selectEffectEnabled = false
-                rowAdapter = ArrayObjectAdapter(listRowPresenter)
-
-
-                var cardPresenter = CardPresenterSearch()
-                cardRowAdapter = ArrayObjectAdapter(cardPresenter)
-                for (j in 0 until searchContent!!.size) {
-                    indexOfRow = j
-                    cardRowAdapter!!.add(searchContent!![j])
-                }
-
-                if (searchContent!!.size == 0) {
-                    cardPresenterHeader =
-                        HeaderItem(0, "No search result found for : " + searchtext.toUpperCase())
-                } else {
-                    cardPresenterHeader =
-                        HeaderItem(0, "Showing search result for : " + searchtext.toUpperCase())
-                }
-
-                rowAdapter!!.add(ListRow(cardPresenterHeader, cardRowAdapter))
-                adapter = rowAdapter
-                progressBar.visibility = View.GONE
-            },
-            Response.ErrorListener {
-                Toast.makeText(activity, "Something went wrong", Toast.LENGTH_LONG)
-                    .show()
-                progressBar.visibility = View.GONE
-
-            }) {
-            override fun getHeaders(): Map<String, String> {
-                val headers = HashMap<String, String>()
-                headers["Accept"] = "application/json"
-                headers["tv-app-name"] = "digiana-tv-app"
-                headers["Authorization"] = "Bearer " + accestoken
-                return headers
-            }
-        }
-        val requestQueue = Volley.newRequestQueue(activity)
-        requestQueue.add(stringRequest)
-    }
 
 
     fun setUpEvents() {

@@ -49,20 +49,25 @@
 
         </LinearLayout>
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:focusedByDefault="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:nextFocusDown="@id/menuRecycler"
             android:id="@+id/search_icon"
             android:padding="10dp">
             <ImageView
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusDown="@id/menuRecycler"
+                android:id="@+id/imgHome"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:padding="5sp"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/home_side_nav"
+                android:src="@drawable/searchbox"
                 android:layout_marginStart="12dp"
                 tools:ignore="UseAppTint" />
             <TextView
@@ -79,10 +84,13 @@
 
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
+            android:fastScrollEnabled="true"
+            android:focusable="true"
+            android:nextFocusUp="@id/search_icon"
+            android:nextFocusDown="@id/search_icon"
             android:id="@+id/menuRecycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/layout_menu" />
 

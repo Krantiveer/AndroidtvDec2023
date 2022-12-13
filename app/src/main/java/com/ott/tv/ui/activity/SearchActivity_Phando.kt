@@ -11,9 +11,6 @@ import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
-import com.google.firebase.FirebaseApp
-import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.firebase.ktx.Firebase
 import com.ott.tv.R
 import com.ott.tv.fragments.SearchFragmentPhando
 

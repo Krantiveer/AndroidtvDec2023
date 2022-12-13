@@ -3,10 +3,12 @@ package com.ott.tv.fragments
 import android.R
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
@@ -28,6 +30,7 @@ import java.security.AccessController
 
 class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
     private lateinit var binding: FragmentMenuBinding
+    var isHome : Boolean = false
     //val activity = requireActivity() as NewMainActivity
     //   val activity = requireActivity() as NewMainActivity
 
@@ -53,10 +56,10 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
 
                 activity.onMenuFocus(false)
                 Toast.makeText(requireActivity(), "closeactivity", Toast.LENGTH_SHORT).show()
+                binding.imgHome.requestFocus()
 
             } else {
                 val activity = requireActivity() as NewMainActivity
-
                 activity.onMenuFocus(true)
                 Toast.makeText(requireActivity(), "openactivity", Toast.LENGTH_SHORT).show()
 
@@ -71,16 +74,35 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
             }
 
         }
-        binding.searchIcon.setOnClickListener {
 
-            val activity = requireActivity() as NewMainActivity
-            activity.onMenuSelection("Search")
 
+        binding.searchIcon.setOnFocusChangeListener { v, hasFocus ->
+            if (!hasFocus) {
+                val activity = requireActivity() as NewMainActivity
+                binding.imgHome.setColorFilter(ContextCompat.getColor(requireContext(), R.color.white))
+                activity.onMenuFocus(false)
+                Toast.makeText(requireActivity(), "closeactivity", Toast.LENGTH_SHORT).show()
+
+            } else {
+                val activity = requireActivity() as NewMainActivity
+                binding.imgHome.setColorFilter(ContextCompat.getColor(requireContext(), R.color.holo_red_dark));
+                activity.onMenuFocus(true)
+                Toast.makeText(requireActivity(), "openactivity", Toast.LENGTH_SHORT).show()
+
+            }
+            binding.menuRecycler.setOnClickListener {
+                Toast.makeText(
+                    requireActivity(),
+                    "click",
+                    Toast.LENGTH_SHORT
+                )
+            }
         }
-
-
+        binding.searchIcon.setOnClickListener {
+            val activity = requireActivity() as NewMainActivity
+            activity.onMenuSelection("Search", "")
+        }
     }
-
     private fun fetchCategory() {
         val retrofit = RetrofitClient.getRetrofitInstance()
         val api = retrofit.create(Dashboard::class.java)
@@ -161,7 +183,6 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
             }
         })
     }
-
     private fun setAdapter() {
 
         val mListAdapter = MenuListAdapter(requireContext(), menu!!, this, object : ICallback {
@@ -179,19 +200,18 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
             LinearLayoutManager(requireContext())
         binding.menuRecycler.adapter = mListAdapter
     }
-
-
     override fun onItemClick(data: CategoryType) {
         Log.e("@@log", data.displayName + data.type + data.isFocused)
 
 
         val activity = requireActivity() as NewMainActivity
-        activity.onMenuSelection(data.type.toString())
+        activity.onMenuSelection(data.type.toString(), data.displayName)
 
 
         /*  val ft: FragmentTransaction = requireFragmentManager().beginTransaction()
           ft.replace(binding.browserSection.id, HomeFragmentNewUI(), "NewFragmentTag")
           ft.commit()*/
     }
+
 
 }

@@ -80,7 +80,7 @@ class NewMainActivity : FragmentActivity() {
     }
 
 
-    fun onMenuSelection(type: String) {
+    fun onMenuSelection(type: String, title: String) {
         //   Toast.makeText(this, "closeactivity", Toast.LENGTH_SHORT).show()
 
 
@@ -90,6 +90,7 @@ class NewMainActivity : FragmentActivity() {
         bundle!!.putString("type", type)
 */
 
+        binding.tvTitle.text = title
         Log.i("new MainActivity", "onMenuSelection: " + type)
         val bundle = bundleOf(
             "menu" to 1,
