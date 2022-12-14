@@ -1,4 +1,5 @@
 package com.ott.tv.fragments
+
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -37,7 +38,8 @@ class SearchFragmentPhando : BrowseSupportFragment() {
         isHeadersTransitionOnBackEnabled = true
         setUpEvents()
     }
-    fun getQueryData( mQuery:String) {
+
+    fun getQueryData(mQuery: String) {
         val searchtext: String = mQuery
         val retrofit = RetrofitClient.getRetrofitInstance()
         val searchApi = retrofit.create(Dashboard::class.java)
@@ -45,7 +47,7 @@ class SearchFragmentPhando : BrowseSupportFragment() {
         val accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(
             context
         )
-      //  Log.e(SearchFragment.TAG, "getQueryData: $query")
+        //  Log.e(SearchFragment.TAG, "getQueryData: $query")
         val call = searchApi.searchVideo(Config.API_KEY, searchtext, "", "", "50")
         call.enqueue(object : Callback<MutableList<ShowWatchlist>> {
             override fun onResponse(
@@ -53,8 +55,8 @@ class SearchFragmentPhando : BrowseSupportFragment() {
                 response: retrofit2.Response<MutableList<ShowWatchlist>>
             ) {
                 Log.e(TAG, "response: " + response.code())
-                var searchContent  = ArrayList<ShowWatchlist>()
-                searchContent= response.body() as ArrayList<ShowWatchlist>
+                var searchContent = ArrayList<ShowWatchlist>()
+                searchContent = response.body() as ArrayList<ShowWatchlist>
                 var movieResult: MutableList<ShowWatchlist> = ArrayList()
 
                 if (response.code() == 200) {
@@ -74,7 +76,10 @@ class SearchFragmentPhando : BrowseSupportFragment() {
 
                     if (searchContent!!.size == 0) {
                         cardPresenterHeader =
-                            HeaderItem(0, "No search result found for : " + searchtext.toUpperCase())
+                            HeaderItem(
+                                0,
+                                "No search result found for : " + searchtext.toUpperCase()
+                            )
                     } else {
                         cardPresenterHeader =
                             HeaderItem(0, "Showing search result for : " + searchtext.toUpperCase())
@@ -84,17 +89,15 @@ class SearchFragmentPhando : BrowseSupportFragment() {
                     adapter = rowAdapter
                     progressBar.visibility = View.GONE
 
-                                   // loadRows(movieResult, tvSeriesResult, tvResult)
+                    // loadRows(movieResult, tvSeriesResult, tvResult)
                 }
             }
 
             override fun onFailure(call: Call<MutableList<ShowWatchlist>>, t: Throwable) {
-            //    Log.e(, "response : " + t.localizedMessage)
+                //    Log.e(, "response : " + t.localizedMessage)
             }
         })
     }
-
-
 
 
     fun setUpEvents() {
@@ -113,11 +116,79 @@ class SearchFragmentPhando : BrowseSupportFragment() {
                 if (item is ShowWatchlist) {
                     val content = item
                     val intent = Intent(activity, DetailsActivityPhando::class.java)
-                    intent.putExtra("data", content)
+                    if (content.getType() != null) intent.putExtra(
+                        "type",
+                        content.getType()
+                    )
+                    if (content.getThumbnail() != null) intent.putExtra(
+                        "thumbImage",
+                        content.getThumbnail()
+                    )
+                    if (content.getId() != null) intent.putExtra(
+                        "video_id",
+                        content.getId().toString()
+                    )
+                    if (content.getTitle() != null) intent.putExtra(
+                        "title",
+                        content.getTitle()
+                    )
+                    if (content.getDetail() != null) intent.putExtra(
+                        "description",
+                        content.getDetail()
+                    )
+                    if (content.getRelease_date() != null) intent.putExtra(
+                        "release",
+                        content.getRelease_date()
+                    )
+                    if (content.getDuration_str() != null) intent.putExtra(
+                        "duration",
+                        content.getDuration_str()
+                    )
+                    if (content.getMaturity_rating() != null) intent.putExtra(
+                        "maturity_rating",
+                        content.getMaturity_rating()
+                    )
+                    if (content.getIs_free() != null) intent.putExtra(
+                        "ispaid",
+                        content.getIs_free().toString()
+                    )
+                    if (content.getLanguage_str() != null) intent.putExtra(
+                        "language_str",
+                        content.getLanguage_str()
+                    )
+                    if (content.getIs_live() != null) intent.putExtra(
+                        "is_live",
+                        content.getIs_live()
+                    )
+                    if (content.getRating() != null) intent.putExtra(
+                        "rating",
+                        content.getRating().toString()
+                    )
+                    if (content.getTrailers() != null && content.getTrailers().size > 0 && content.getTrailers()
+                            .get(0) != null && content.getTrailers().get(0)
+                            .getMedia_url() != null
+                    ) {
+                        intent.putExtra(
+                            "trailer",
+                            content.getTrailers().get(0).getMedia_url()
+                        )
+                    }
+                    if (content.getGenres() != null) {
+                        var genres: String
+                        genres = content.getGenres().get(0)
+                        for (i in 1 until content.getGenres().size) {
+                            genres = genres + "," + content.getGenres().get(i)
+                        }
+                        intent.putExtra("genres", genres)
+                    }
                     startActivity(intent)
                 }
+
             }
+
     }
-
-
 }
+
+
+
+

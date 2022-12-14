@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:hardwareAccelerated="true"
+
     package="com.ott.tv">
 
     <uses-feature
@@ -85,6 +87,7 @@
             android:theme="@style/AppTheme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.DEFAULT" />
 
@@ -125,11 +128,11 @@
             android:exported="true"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme" />
-      <!--  <activity
-            android:name=".countrycodepicker.StateCodeActivity"
-            android:exported="true"
-            android:screenOrientation="landscape"
-            android:theme="@style/AppTheme" />-->
+        <!--  <activity
+              android:name=".countrycodepicker.StateCodeActivity"
+              android:exported="true"
+              android:screenOrientation="landscape"
+              android:theme="@style/AppTheme" />-->
         <activity
             android:name=".ui.activity.DetailsActivityTvSeries"
             android:exported="true"
@@ -210,9 +213,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
-
                 <data
                     android:host="app"
                     android:scheme="action_tv" />

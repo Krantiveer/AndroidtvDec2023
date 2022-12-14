@@ -9,8 +9,12 @@ import android.os.Build;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import androidx.leanback.widget.OnItemViewSelectedListener;
 import androidx.leanback.widget.Presenter;
+import androidx.leanback.widget.Row;
+import androidx.leanback.widget.RowPresenter;
 
 import com.bumptech.glide.Glide;
 import com.ott.tv.R;
@@ -23,7 +27,7 @@ public class CardPresenterNewLanscape extends Presenter {
     private static int sSelectedBackgroundColor;
     private static int sDefaultBackgroundColor;
     private int itemViewType;
-
+    public static final String TAG = "CardPresenterNewLanscape";
     @SuppressLint("StaticFieldLeak")
     private static Context mContext;
     private OnSelectionListener onSelectionListener;
@@ -40,8 +44,9 @@ public class CardPresenterNewLanscape extends Presenter {
             public void setSelected(boolean selected) {
                 if (onSelectionListener != null) {
                     onSelectionListener.onItemSelected(this, selected);
+                    Log.i(TAG, "onItemSelected:1 "+"clickevent haha");
                 }
-            /*    if (!selected) {
+                /*if (!selected) {
                     ((ImageCardView)this).decreaseSize(this);
                 }else{
                     ((ImageCardView)this).increase(this);

@@ -34,7 +34,7 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
     //val activity = requireActivity() as NewMainActivity
     //   val activity = requireActivity() as NewMainActivity
 
-     var menu: List<CategoryType>? = ArrayList<CategoryType>()
+    var menu: List<CategoryType>? = ArrayList<CategoryType>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,7 +53,6 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
         binding.menuRecycler.setOnFocusChangeListener { v, hasFocus ->
             if (!hasFocus) {
                 val activity = requireActivity() as NewMainActivity
-
                 activity.onMenuFocus(false)
                 Toast.makeText(requireActivity(), "closeactivity", Toast.LENGTH_SHORT).show()
                 binding.imgHome.requestFocus()
@@ -100,7 +99,7 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
         }
         binding.searchIcon.setOnClickListener {
             val activity = requireActivity() as NewMainActivity
-            activity.onMenuSelection("Search", "")
+            activity.onMenuSelection("Search", "Search")
         }
     }
     private fun fetchCategory() {

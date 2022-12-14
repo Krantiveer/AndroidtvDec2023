@@ -9,6 +9,8 @@ import android.view.KeyEvent
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
 import com.ott.tv.databinding.ActivityNewMainBinding
 import com.ott.tv.databinding.LayoutMenuBinding
@@ -91,7 +93,14 @@ class NewMainActivity : FragmentActivity() {
 */
 
         binding.tvTitle.text = title
-        Log.i("new MainActivity", "onMenuSelection: " + type)
+        if (title.isEmpty()) {
+            binding.tvTitle.isVisible = false
+        } else if (title.equals("Search")){
+           // binding.tvTitle.isVisible = true
+        } else {
+            binding.tvTitle.isVisible = true
+
+        }
         val bundle = bundleOf(
             "menu" to 1,
             "type" to type
@@ -100,17 +109,18 @@ class NewMainActivity : FragmentActivity() {
         if (type.equals("Search")) {
             val intent = Intent(this, SearchActivity_Phando::class.java)
             startActivity(intent)
-        }else{
+        } else {
 
-        val newFragment = HomeFragment()
-        newFragment.setArguments(bundle)
+            val newFragment = HomeFragment()
+            newFragment.setArguments(bundle)
 
-        supportFragmentManager.beginTransaction()
-            .replace(binding.browserSection.id, newFragment)
-            .commit()
+            supportFragmentManager.beginTransaction()
+                .replace(binding.browserSection.id, newFragment)
+                .commit()
 
 
-    }}
+        }
+    }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
         Log.e("LoginActivity", "***** keyCode =" + keyCode + "event :" + event)

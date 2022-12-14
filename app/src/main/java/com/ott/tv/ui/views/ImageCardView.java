@@ -46,21 +46,22 @@ public class ImageCardView extends BaseCardView {
     public ImageView getPrimeImageView() {
         return (ImageView) findViewById(R.id.premiumIconImage);
     }
+
     public TextView getTextPrimeView() {
         return (TextView) findViewById(R.id.premiumIcon);
     }
-      public TextView getTextTitle() {
+
+    public TextView getTextTitle() {
         return (TextView) findViewById(R.id.title_name);
     }
-
 
 
     //  private String imageType = APIConstants.IMAGE_TYPE_COVERPOSTER;
 
 
     public ImageCardView(Context context, int itemViewType) {
-        super(context, null, R.style.TextCardStyle);
-      //  LayoutInflater.from(getContext()).inflate(R.layout.card_view_image_layout, this);
+        super(context, null, R.style.MyHeaderStyle);
+      //   LayoutInflater.from(getContext()).inflate(R.layout.card_view_image_layout, this);
         switch (itemViewType) {
             case ITEM_TYPE_HORIZONTAL_LIST_BIG_ITEM:
                 showProgressBar = false;
@@ -73,7 +74,7 @@ public class ImageCardView extends BaseCardView {
                 LayoutInflater.from(getContext()).inflate(R.layout.card_view_image_layout, this);
                 break;
 
-                case ITEM_TYPE_SMALLVERTICAL:
+            case ITEM_TYPE_SMALLVERTICAL:
                 showProgressBar = false;
                 imageType = Constants.IMAGE_TYPE_COVERPOSTER;
                 LayoutInflater.from(getContext()).inflate(R.layout.card_view_image_genrelayout, this);
@@ -86,8 +87,10 @@ public class ImageCardView extends BaseCardView {
 
         }
 
- //todo: this code use in future used
+        //todo: this code use in future used
         setFocusable(true);
+     //   setPadding(12,111,12,-10);
+
     }
 
 

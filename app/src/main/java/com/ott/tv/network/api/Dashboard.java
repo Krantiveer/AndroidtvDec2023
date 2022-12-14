@@ -40,6 +40,12 @@ public interface Dashboard {
 
     );
 
+    @GET("menu")
+    Call<List<CategoryType>> menu(
+            @Header("Authorization") String token
+
+    );
+
     @GET("mediaplayback")
     Call<MediaplaybackData> getSingleDetailAPI(
             @Header("Authorization") String token,
@@ -86,10 +92,6 @@ public interface Dashboard {
             @Query("genre_id") String genre_id,
             @Query("language_id") String filter,
             @Query("limit") String limit);
-
-
-
-
 
 
 }

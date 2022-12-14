@@ -38,5 +38,7 @@ public class Config {
     public static final boolean ENABLE_GOOGLE_LOGIN = false;
 
     public static final String VideoURLTypeHls = "hls";
+    public static final boolean LOGIN_REQUIRED = true;
+
 
 }

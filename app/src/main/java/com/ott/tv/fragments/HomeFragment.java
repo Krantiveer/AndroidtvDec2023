@@ -5,6 +5,7 @@ import static android.content.Context.MODE_PRIVATE;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -55,6 +56,7 @@ import retrofit2.Retrofit;
 
 public class HomeFragment extends RowsSupportFragment {
 
+    private static final String TAG = "HomeFragment";
     private BackgroundHelper bgHelper;
     private ArrayObjectAdapter rowsAdapter;
     private CardPresenterNewLanscape cardPresenter;
@@ -294,6 +296,8 @@ public class HomeFragment extends RowsSupportFragment {
 
                 listRowAdapter = new ArrayObjectAdapter(cardPresenter);
                 header = new HeaderItem(i, movieListContent.get(i).getTitle());
+                Log.i(TAG, "onItemSelected: "+"clickevent haha"+movieListContent.get(i).getTitle());
+
             }
             //for (int j = 0; j < NUM_COLS; j++) {
             for (int j = 0; j < movieListContent.get(i).getList().size(); j++) {
