@@ -1,9 +1,12 @@
 package com.ott.tv.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class RelatedMovie {
+public class RelatedMovie implements Parcelable {
 
     @SerializedName("videos_id")
     @Expose
@@ -44,6 +47,34 @@ public class RelatedMovie {
     @SerializedName("video_view_type")
     @Expose
     private String video_view_type;
+
+    protected RelatedMovie(Parcel in) {
+        videosId = in.readString();
+        genre = in.readString();
+        country = in.readString();
+        title = in.readString();
+        description = in.readString();
+        slug = in.readString();
+        release = in.readString();
+        runtime = in.readString();
+        videoQuality = in.readString();
+        thumbnailUrl = in.readString();
+        posterUrl = in.readString();
+        isPaid = in.readString();
+        video_view_type = in.readString();
+    }
+
+    public static final Creator<RelatedMovie> CREATOR = new Creator<RelatedMovie>() {
+        @Override
+        public RelatedMovie createFromParcel(Parcel in) {
+            return new RelatedMovie(in);
+        }
+
+        @Override
+        public RelatedMovie[] newArray(int size) {
+            return new RelatedMovie[size];
+        }
+    };
 
     public String getVideosId() {
         return videosId;
@@ -147,5 +178,27 @@ public class RelatedMovie {
 
     public void setVideo_view_type(String video_view_type) {
         this.video_view_type = video_view_type;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(videosId);
+        dest.writeString(genre);
+        dest.writeString(country);
+        dest.writeString(title);
+        dest.writeString(description);
+        dest.writeString(slug);
+        dest.writeString(release);
+        dest.writeString(runtime);
+        dest.writeString(videoQuality);
+        dest.writeString(thumbnailUrl);
+        dest.writeString(posterUrl);
+        dest.writeString(isPaid);
+        dest.writeString(video_view_type);
     }
 }

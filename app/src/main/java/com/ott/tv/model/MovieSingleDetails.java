@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MovieSingleDetails implements Serializable {
@@ -73,11 +74,11 @@ public class MovieSingleDetails implements Serializable {
     private List<Season> season = null;
     @SerializedName("related_movie")
     @Expose
-    private List<RelatedMovie> relatedMovie = null;
+    private ArrayList<RelatedMovie> relatedMovie = null;
 
     @SerializedName("related_tvseries")
     @Expose
-    private List<RelatedMovie> relatedTvseries = null;
+    private ArrayList<RelatedMovie> relatedTvseries = null;
 
     private String type;
 
@@ -276,11 +277,11 @@ public class MovieSingleDetails implements Serializable {
         this.season = season;
     }
 
-    public List<RelatedMovie> getRelatedMovie() {
+    public ArrayList<RelatedMovie> getRelatedMovie() {
         return relatedMovie;
     }
 
-    public void setRelatedMovie(List<RelatedMovie> relatedMovie) {
+    public void setRelatedMovie(ArrayList<RelatedMovie> relatedMovie) {
         this.relatedMovie = relatedMovie;
     }
 
@@ -288,7 +289,7 @@ public class MovieSingleDetails implements Serializable {
         return relatedTvseries;
     }
 
-    public void setRelatedTvseries(List<RelatedMovie> relatedTvseries) {
+    public void setRelatedTvseries(ArrayList<RelatedMovie> relatedTvseries) {
         this.relatedTvseries = relatedTvseries;
     }
 

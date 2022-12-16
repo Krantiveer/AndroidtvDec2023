@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_rv"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true"
     android:orientation="vertical"
-    tools:context=".ui.activity.DetailsActivity">
+    tools:context=".ui.activity.DetailsActivity"
+    tools:ignore="MissingDefaultResource">
 
     <FrameLayout
         android:id="@+id/contentView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:keepScreenOn="true">
+        android:keepScreenOn="true"
+        android:visibility="visible">
 
         <ImageView
             android:id="@+id/bannerImageView"
@@ -87,7 +90,8 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/ll_detailpage"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="62sp"
                 android:layout_marginTop="40sp"
@@ -98,6 +102,7 @@
                     android:id="@+id/premiumIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/contentDescription"
                     android:gravity="center"
                     android:paddingStart="@dimen/_5sdp"
                     android:paddingTop="@dimen/_2sdp"
@@ -399,6 +404,16 @@
                         tools:text="@string/add_favlist"
                         tools:visibility="gone" />
 
+                    <androidx.fragment.app.FragmentContainerView
+                        android:id="@+id/detailsFragment"
+                        android:name="com.ott.tv.fragments.DetailsFragment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+
+                        tools:context="com.ott.tv.ui.activity.DetailsActivityPhando" />
 
                 </LinearLayout>
 
@@ -538,7 +553,7 @@
             android:orientation="vertical"
             android:visibility="gone"
             android:weightSum="1"
-            tools:visibility="visible">
+            tools:visibility="gone">
 
             <TextView
                 android:id="@+id/movie_title_two"

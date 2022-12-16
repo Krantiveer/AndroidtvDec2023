@@ -9,14 +9,11 @@ import android.view.KeyEvent
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
-import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
 import com.ott.tv.databinding.ActivityNewMainBinding
 import com.ott.tv.databinding.LayoutMenuBinding
-import com.ott.tv.fragments.HomeFragment
-import com.ott.tv.fragments.HomeFragmentNewUI
-import com.ott.tv.fragments.MenuFragment
+import com.ott.tv.fragments.*
 
 
 class NewMainActivity : FragmentActivity() {
@@ -95,8 +92,8 @@ class NewMainActivity : FragmentActivity() {
         binding.tvTitle.text = title
         if (title.isEmpty()) {
             binding.tvTitle.isVisible = false
-        } else if (title.equals("Search")){
-           // binding.tvTitle.isVisible = true
+        } else if (title.equals("Search")) {
+            // binding.tvTitle.isVisible = true
         } else {
             binding.tvTitle.isVisible = true
 
@@ -106,19 +103,36 @@ class NewMainActivity : FragmentActivity() {
             "type" to type
 
         )
-        if (type.equals("Search")) {
+        if (type.equals("search") || type.equals("Search")) {
             val intent = Intent(this, SearchActivity_Phando::class.java)
             startActivity(intent)
-        } else {
-
-            val newFragment = HomeFragment()
+        }
+        else if (type.equals("watchlist") || type.equals("Watchlist")) {
+            val newFragment = ShowWatchlistFragment()
             newFragment.setArguments(bundle)
-
             supportFragmentManager.beginTransaction()
                 .replace(binding.browserSection.id, newFragment)
                 .commit()
+        }else if(type.equals("profile")){
+            val newFragment = MyAccountFragment()
+            newFragment.setArguments(bundle)
+            supportFragmentManager.beginTransaction()
+                .replace(binding.browserSection.id, newFragment)
+                .commit()
+        }else if(type.equals("home")){
+            val newFragment = HomeFragmentNewUI()
+            newFragment.setArguments(bundle)
+            supportFragmentManager.beginTransaction()
+                .replace(binding.browserSection.id, newFragment)
+                .commit()
+        }
 
-
+        else {
+            val newFragment = HomeFragment()
+            newFragment.setArguments(bundle)
+            supportFragmentManager.beginTransaction()
+                .replace(binding.browserSection.id, newFragment)
+                .commit()
         }
     }
 

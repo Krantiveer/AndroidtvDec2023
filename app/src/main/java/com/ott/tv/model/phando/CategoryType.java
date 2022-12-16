@@ -15,7 +15,7 @@ public class CategoryType implements Parcelable {
 
     @SerializedName("type")
     @Expose
-    private Integer type;
+    private String type;
 
     @SerializedName("displayName")
     @Expose
@@ -43,7 +43,7 @@ public class CategoryType implements Parcelable {
         if (in.readByte() == 0) {
             type = null;
         } else {
-            type = in.readInt();
+            type = in.readString();
         }
         displayName = in.readString();
         thumbnail = in.readString();
@@ -56,7 +56,7 @@ public class CategoryType implements Parcelable {
             dest.writeByte((byte) 0);
         } else {
             dest.writeByte((byte) 1);
-            dest.writeInt(type);
+            dest.writeString(type);
         }
         dest.writeString(displayName);
         dest.writeString(thumbnail);
@@ -80,11 +80,11 @@ public class CategoryType implements Parcelable {
         }
     };
 
-    public Integer getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(String type) {
         this.type = type;
     }
 

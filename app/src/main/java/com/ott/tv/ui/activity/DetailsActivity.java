@@ -38,6 +38,7 @@ import com.ott.tv.Constants;
 import com.ott.tv.R;
 import com.ott.tv.adapter.HomePageAdapter;
 
+import com.ott.tv.fragments.DetailsFragment;
 import com.ott.tv.model.CommonModels;
 import com.ott.tv.model.CustomAddsModel;
 import com.ott.tv.model.FavoriteModel;
@@ -45,6 +46,7 @@ import com.ott.tv.model.MovieSingleDetails;
 
 
 import com.ott.tv.model.Video;
+import com.ott.tv.model.phando.ShowWatchlist;
 import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.DetailsApi;
 import com.ott.tv.network.api.FavouriteApi;
@@ -107,6 +109,8 @@ public class DetailsActivity extends FragmentActivity {
     private RelativeLayout activity_rv;
     private ProgressBar progress_indicator;
 
+
+    private ShowWatchlist relatedlist ;
 
     public DetailsActivity() {
     }
@@ -372,6 +376,13 @@ public class DetailsActivity extends FragmentActivity {
                     rvRelated.setAdapter(relatedAdapter);
 */
                     setMovieData();
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelableArrayList("data", singleDetails.getRelatedMovie());
+// set Fragmentclass Arguments
+                    DetailsFragment fragobj = new DetailsFragment();
+                    fragobj.setArguments(bundle);
+
+
                 } else {
                     CMHelper.setSnackBar(DetailsActivity.this.getCurrentFocus(), "We are sorry, This video content not available, Please try another", 2);
 

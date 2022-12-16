@@ -55,7 +55,7 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
                 val activity = requireActivity() as NewMainActivity
                 activity.onMenuFocus(false)
                 Toast.makeText(requireActivity(), "closeactivity", Toast.LENGTH_SHORT).show()
-                binding.imgHome.requestFocus()
+              //  binding.imgHome.requestFocus()
 
             } else {
                 val activity = requireActivity() as NewMainActivity
@@ -75,32 +75,6 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
         }
 
 
-        binding.searchIcon.setOnFocusChangeListener { v, hasFocus ->
-            if (!hasFocus) {
-                val activity = requireActivity() as NewMainActivity
-                binding.imgHome.setColorFilter(ContextCompat.getColor(requireContext(), R.color.white))
-                activity.onMenuFocus(false)
-                Toast.makeText(requireActivity(), "closeactivity", Toast.LENGTH_SHORT).show()
-
-            } else {
-                val activity = requireActivity() as NewMainActivity
-                binding.imgHome.setColorFilter(ContextCompat.getColor(requireContext(), R.color.holo_red_dark));
-                activity.onMenuFocus(true)
-                Toast.makeText(requireActivity(), "openactivity", Toast.LENGTH_SHORT).show()
-
-            }
-            binding.menuRecycler.setOnClickListener {
-                Toast.makeText(
-                    requireActivity(),
-                    "click",
-                    Toast.LENGTH_SHORT
-                )
-            }
-        }
-        binding.searchIcon.setOnClickListener {
-            val activity = requireActivity() as NewMainActivity
-            activity.onMenuSelection("Search", "Search")
-        }
     }
     private fun fetchCategory() {
         val retrofit = RetrofitClient.getRetrofitInstance()
@@ -108,7 +82,7 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
         Constants.IS_FROM_HOME = false
         val accessToken =
             "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(context)
-        val call = api.getCategoryList(accessToken)
+        val call = api.menu(accessToken)
         call.enqueue(object : Callback<List<CategoryType>> {
             override fun onResponse(
                 call: Call<List<CategoryType>>,
@@ -117,8 +91,6 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
                 if (response.code() == 200) {
 
                     menu = response.body()
-
-
 
                     setAdapter()
                     /* binding.menuRecycler.apply {
