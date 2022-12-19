@@ -284,7 +284,8 @@ public class HomeFragment extends RowsSupportFragment {
             HeaderItem header;
             if (movieListContent.get(i).getDisplayType().equalsIgnoreCase("TOP_BANNER")) {
                 listRowAdapter = new ArrayObjectAdapter(cardPresenterBanner);
-                header = new HeaderItem(i, movieListContent.get(i).getTitle());
+                header = new HeaderItem(i, "");
+
 
             } else {
 

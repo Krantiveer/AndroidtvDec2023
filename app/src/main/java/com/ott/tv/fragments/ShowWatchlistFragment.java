@@ -22,6 +22,7 @@ import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.Dashboard;
 import com.ott.tv.ui.activity.DetailsActivityPhando;
 import com.ott.tv.ui.activity.LeanbackActivity;
+import com.ott.tv.ui.activity.NewMainActivity;
 import com.ott.tv.ui.presenter.CardPresenter;
 import com.ott.tv.ui.presenter.HorizontalCardPresenter;
 import com.ott.tv.utils.PreferenceUtils;
@@ -60,18 +61,17 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
         mContext = getContext();
         if (getActivity() != null) {
             id = getActivity().getIntent().getStringExtra("id");
-            activity = (LeanbackActivity) getActivity();
             title = getActivity().getIntent().getStringExtra("title");
             datatype = getArguments().getString("type");
         }
         Log.i(TAG, "onCreate: " + datatype + id + title);
 
         if(datatype.equalsIgnoreCase("Watchlist")){
-            //setTitle("Watchlist");
-
+           // setTitle("Watchlist");
         }else{
-
+      //      setTitle("Watchlist");
         }
+      //  showTitle(false);
         //bgHelper = new BackgroundHelper(getActivity());
         setOnItemViewClickedListener(getDefaultItemViewClickedListener());
         setOnItemViewSelectedListener(getDefaultItemSelectedListener());

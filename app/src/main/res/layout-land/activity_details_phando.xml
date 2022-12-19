@@ -302,6 +302,14 @@
                         tools:text="Watch Now"
                         tools:visibility="visible" />
 
+                    <androidx.fragment.app.FragmentContainerView
+                        android:id="@+id/detailsFragment"
+                        android:name="com.ott.tv.fragments.DetailsFragment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        tools:context="com.ott.tv.ui.activity.DetailsActivityPhando"
+                        tools:layout="@layout/banner_home_list_item_movies" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/tvWatchTrailer"
@@ -354,6 +362,8 @@
                         tools:text="@string/add_watchlist"
                         tools:visibility="visible" />
 
+
+
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/img_series"
                         android:layout_width="wrap_content"
@@ -404,17 +414,17 @@
                         tools:text="@string/add_favlist"
                         tools:visibility="gone" />
 
-                    <androidx.fragment.app.FragmentContainerView
-                        android:id="@+id/detailsFragment"
-                        android:name="com.ott.tv.fragments.DetailsFragment"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+<!--
+                        <androidx.fragment.app.FragmentContainerView
+                            android:id="@+id/detailsFragment"
+                            android:name="com.ott.tv.fragments.DetailsFragment"
+                            android:layout_width="match_parent"
+                            android:padding="-320dp"
+                            android:paddingTop="-300sp"
+                            android:layout_height="wrap_content"
 
-                        tools:context="com.ott.tv.ui.activity.DetailsActivityPhando" />
-
+                            tools:context="com.ott.tv.ui.activity.DetailsActivityPhando" />
+-->
                 </LinearLayout>
 
                 <RelativeLayout
@@ -445,24 +455,8 @@
                          tools:visibility="visible" />-->
                 </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/tv_related"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:text="@string/you_may_also_like"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_16sdp"
-                    android:textStyle="bold"
-                    android:visibility="gone" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_related"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_marginBottom="10dp"
-                    android:visibility="gone" />
+
 
             </LinearLayout>
 

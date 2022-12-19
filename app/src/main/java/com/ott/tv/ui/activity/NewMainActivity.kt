@@ -92,8 +92,9 @@ class NewMainActivity : FragmentActivity() {
         binding.tvTitle.text = title
         if (title.isEmpty()) {
             binding.tvTitle.isVisible = false
-        } else if (title.equals("Search")) {
+        } else if (type.equals("search")||type.equals("home")||type.equals("profile")) {
             // binding.tvTitle.isVisible = true
+            binding.tvTitle.isVisible = false
         } else {
             binding.tvTitle.isVisible = true
 

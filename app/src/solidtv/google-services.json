@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "358720655308",
-    "project_id": "solidtv-9f9e4",
-    "storage_bucket": "solidtv-9f9e4.appspot.com"
+    "project_number": "842648748767",
+    "project_id": "solid-tv-daa3e",
+    "storage_bucket": "solid-tv-daa3e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:358720655308:android:89437930a1c74e0fc55769",
+        "mobilesdk_app_id": "1:842648748767:android:fab586e84a7a2246b19f6a",
         "android_client_info": {
-          "package_name": "com.solidtv.ott"
+          "package_name": "com.solidtv"
         }
       },
       "oauth_client": [
         {
-          "client_id": "358720655308-4ir4l82oph4nb3mblnft4dmgeif7bqc6.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.solidtv.ott",
-            "certificate_hash": "686c90fc0ee61a0caab7d77b5693a391b5c69a60"
-          }
-        },
-        {
-          "client_id": "358720655308-tpf9jk4u31eqs2d3728nhb36n78cn9bi.apps.googleusercontent.com",
+          "client_id": "842648748767-nhpct8mdp8dak7fndmv46735mrhd6t2p.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB1ibqS_UATxpDXO9g914mK4XDn7Q6i0A8"
+          "current_key": "AIzaSyCNislCF0DzokkmEWrjGSSsTm4c5-2gHsg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "358720655308-tpf9jk4u31eqs2d3728nhb36n78cn9bi.apps.googleusercontent.com",
+              "client_id": "842648748767-nhpct8mdp8dak7fndmv46735mrhd6t2p.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -44,27 +36,35 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:358720655308:android:273cfb7eb9950e4ec55769",
+        "mobilesdk_app_id": "1:842648748767:android:56b80d86d680b9e3b19f6a",
         "android_client_info": {
-          "package_name": "com.solidtv.tv"
+          "package_name": "com.solidtvapp.ott"
         }
       },
       "oauth_client": [
         {
-          "client_id": "358720655308-tpf9jk4u31eqs2d3728nhb36n78cn9bi.apps.googleusercontent.com",
+          "client_id": "842648748767-s40opnjhdi72ai8ibjcgl5ngknaes8if.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.solidtvapp.ott",
+            "certificate_hash": "d6b90293416acd37cbb615de3980e1a7771bb6a8"
+          }
+        },
+        {
+          "client_id": "842648748767-nhpct8mdp8dak7fndmv46735mrhd6t2p.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB1ibqS_UATxpDXO9g914mK4XDn7Q6i0A8"
+          "current_key": "AIzaSyCNislCF0DzokkmEWrjGSSsTm4c5-2gHsg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "358720655308-tpf9jk4u31eqs2d3728nhb36n78cn9bi.apps.googleusercontent.com",
+              "client_id": "842648748767-nhpct8mdp8dak7fndmv46735mrhd6t2p.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

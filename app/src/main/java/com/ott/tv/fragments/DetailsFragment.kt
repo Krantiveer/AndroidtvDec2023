@@ -3,6 +3,7 @@ package com.ott.tv.fragments
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.annotation.ColorInt
@@ -36,9 +37,10 @@ class DetailsFragment : BrowseSupportFragment(){
 
         headersState = BrowseSupportFragment.HEADERS_DISABLED
         isHeadersTransitionOnBackEnabled = true
-        Log.i(TAG, "onCreate: "+        this.brandColor)
 
         setupEventListeners()
+        this.getView()?.setBackgroundColor(Color.TRANSPARENT);
+
     }
 
     fun setData() {

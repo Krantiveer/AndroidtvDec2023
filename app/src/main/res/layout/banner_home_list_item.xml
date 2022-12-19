@@ -93,7 +93,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_marginTop="2sp"
-                android:background="@drawable/bg_gradient_soft_new"
                 android:ellipsize="marquee"
                 android:maxLines="1"
                 android:paddingStart="4sp"

@@ -15,6 +15,6 @@
     <color name="black_color">#020610</color>
     <color name="colorPrimary">#020610</color>
     <color name="login_background">#020610</color>
-    <color name="background_home_page">#020610</color> <!--homefragment-->
+    <color name="background_home_page">@color/transparent</color> <!--homefragment-->
     <color name="colorGold">@color/main_color</color>  <!-- selected login-->
 </resources>

@@ -40,7 +40,7 @@ public class CardPresenter_ShowRelatedVideo_vertical extends Presenter {
             public void setSelected(boolean selected) {
                 if (onSelectionListener != null) {
                     onSelectionListener.onItemSelected(this, selected);
-                    Log.i(TAG, "onItemSelected:1 "+"clickevent haha");
+                    Log.i(TAG, "onItemSelected:1 " + "clickevent haha");
                 }
                 /*if (!selected) {
                     ((ImageCardView)this).decreaseSize(this);
@@ -86,11 +86,9 @@ public class CardPresenter_ShowRelatedVideo_vertical extends Presenter {
                 //if item free set image
                 ((ViewHolder) viewHolder).mCardView.getPrimeImageView().setVisibility(View.GONE);
 
-            }else{
+            } else {
                 ((ViewHolder) viewHolder).mCardView.getPrimeImageView().setVisibility(View.VISIBLE);
-
             }
-
         }
 
     }

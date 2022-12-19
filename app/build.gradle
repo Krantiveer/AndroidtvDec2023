@@ -38,8 +38,9 @@ android {
 
         }
         solidtv {
-            applicationId "com.solidtv.tv"
-
+            applicationId "com.solidtv"
+            versionCode 1
+            versionName "1"
         }
         kaafaltv {
             applicationId "com.kaafaltv.tv"

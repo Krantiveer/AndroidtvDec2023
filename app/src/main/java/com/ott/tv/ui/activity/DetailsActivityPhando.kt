@@ -34,6 +34,7 @@ import com.ott.tv.model.phando.Wishlist
 import com.ott.tv.utils.ToastMsg
 import com.ott.tv.network.api.FavouriteApi
 import android.widget.*
+import androidx.core.view.isVisible
 import com.google.android.exoplayer2.util.Util
 import com.ott.tv.Config
 import com.ott.tv.Constants
@@ -81,7 +82,8 @@ class DetailsActivityPhando : FragmentActivity() {
     private var premiumIconImage: ImageView? = null
     private val customAddsModelArrayList = ArrayList<CustomAddsModel>()
     private val mAdapter: ArrayObjectAdapter? = null
-    private var rvRelated: RecyclerView? = null
+
+    //    private var rvRelated: RecyclerView? = null
     private var relatedAdapter: HomePageAdapter? = null
     private var activity_rv: RelativeLayout? = null
     private var progress_indicator: ProgressBar? = null
@@ -107,7 +109,7 @@ class DetailsActivityPhando : FragmentActivity() {
     private var language_tv: TextView? = null
     private var maturity_rating_tv: TextView? = null
     private var genres_tv: TextView? = null
-    private var tv_related: TextView? = null
+ //   private var tv_related: TextView? = null
     var type: String? = null
     val seasonList: MutableList<String> = ArrayList()
     var epList: MutableList<EpiModel> = ArrayList()
@@ -165,7 +167,7 @@ class DetailsActivityPhando : FragmentActivity() {
         thumbnail_image = findViewById(R.id.thumbnail_image)
         premiumIconImage = findViewById(R.id.premiumIcon)
         tvWatchTrailer = findViewById(R.id.tvWatchTrailer)
-        tv_related = findViewById(R.id.tv_related)
+       // tv_related = findViewById(R.id.tv_related)
 
         detailsFragment = supportFragmentManager.findFragmentById(R.id.detailsFragment) as DetailsFragment
 
@@ -173,8 +175,7 @@ class DetailsActivityPhando : FragmentActivity() {
         contentFromPreviousScreen()
         if (tvispaid != null) {
             if (tvispaid.equals("0", ignoreCase = true) || tvispaid.equals(
-                    "2",
-                    ignoreCase = true
+                    "2", ignoreCase = true
                 )
             ) {
                 premiumIconImage!!.setVisibility(View.VISIBLE)
@@ -200,7 +201,9 @@ class DetailsActivityPhando : FragmentActivity() {
                 imgWatchList!!.setVisibility(View.VISIBLE)
             }
         }
+/*
         rvRelated = findViewById(R.id.rv_related)
+*/
         playerView = findViewById(R.id.video_view)
         activity_rv = findViewById(R.id.activity_rv)
         imgFavList = findViewById(R.id.imgFavList)
@@ -267,12 +270,10 @@ class DetailsActivityPhando : FragmentActivity() {
     private inner class EpisodeAdapter(private val listdata: List<EpisodeList?>?) :
         RecyclerView.Adapter<EpisodeAdapter.ViewHolder>() {
         override fun onCreateViewHolder(
-            parent: ViewGroup,
-            viewType: Int
+            parent: ViewGroup, viewType: Int
         ): ViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val listItem =
-                layoutInflater.inflate(R.layout.layout_episode, parent, false)
+            val listItem = layoutInflater.inflate(R.layout.layout_episode, parent, false)
             return ViewHolder(listItem)
         }
 
@@ -284,10 +285,8 @@ class DetailsActivityPhando : FragmentActivity() {
                     holder.episode_description.text = listdata[position]!!.detail
                     holder.episode_time.text = listdata[position]!!.duration_str
                     Glide.with(applicationContext).load(listdata[position]!!.thumbnail)
-                        .error(R.drawable.poster_placeholder_land)
-                        .fitCenter()
-                        .placeholder(R.drawable.poster_placeholder_land)
-                        .into(holder.episode_image)
+                        .error(R.drawable.poster_placeholder_land).fitCenter()
+                        .placeholder(R.drawable.poster_placeholder_land).into(holder.episode_image)
                     holder.episode_ll.setOnClickListener { view: View? ->
                         val categoryType: String
                         val pos = holder.absoluteAdapterPosition
@@ -302,8 +301,9 @@ class DetailsActivityPhando : FragmentActivity() {
 
 //todo:we need to add description in below
                         getDataEpisode(
-                            categoryType, listdata[holder.absoluteAdapterPosition]!!
-                                .id.toString(), listdata[holder.absoluteAdapterPosition]
+                            categoryType,
+                            listdata[holder.absoluteAdapterPosition]!!.id.toString(),
+                            listdata[holder.absoluteAdapterPosition]
                         )
                     }
                 }
@@ -343,8 +343,7 @@ class DetailsActivityPhando : FragmentActivity() {
         activityIndicator(true)
         call.enqueue(object : Callback<MediaplaybackData?> {
             override fun onResponse(
-                call: Call<MediaplaybackData?>,
-                response: Response<MediaplaybackData?>
+                call: Call<MediaplaybackData?>, response: Response<MediaplaybackData?>
             ) {
                 activityIndicator(false)
                 if (response.code() == 200 && response.body() != null) {
@@ -416,12 +415,10 @@ class DetailsActivityPhando : FragmentActivity() {
         (private val listdata: List<SeasonList>) :
         RecyclerView.Adapter<SeasonAdapter.ViewHolder>() {
         override fun onCreateViewHolder(
-            parent: ViewGroup,
-            viewType: Int
+            parent: ViewGroup, viewType: Int
         ): ViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val listItem =
-                layoutInflater.inflate(R.layout.layout_season, parent, false)
+            val listItem = layoutInflater.inflate(R.layout.layout_season, parent, false)
             return ViewHolder(listItem)
         }
 
@@ -582,15 +579,15 @@ class DetailsActivityPhando : FragmentActivity() {
     fun setBannerImage(url: String?) {
         Glide.with(this).load(url).placeholder(R.color.black_color)
             .error(R.drawable.poster_placeholder_land).into(
-            bannerImageView!!
-        )
+                bannerImageView!!
+            )
     }
 
     fun updateBackgroundThumnail(url: String?) {
         Glide.with(this).load(url).placeholder(R.color.black_color)
             .error(R.drawable.poster_placeholder_land).into(
-            thumbnail_image!!
-        )
+                thumbnail_image!!
+            )
     }
 
     private fun payAndWatchTV() {
@@ -624,12 +621,13 @@ class DetailsActivityPhando : FragmentActivity() {
             video.title = title
             video.description = description
             video.videoType = Config.VideoURLTypeHls
+           // video.subtitle = singleDetails?.subtitle
+
             if (type == "M") {
                 video.category = "movie"
             } else {
                 video.category = "movie"
             }
-            Log.i(PreferenceUtils.TAG, "payAndWatchTV: $is_live")
             if (is_live.equals("1", ignoreCase = true)) {
             }
 
@@ -695,14 +693,13 @@ class DetailsActivityPhando : FragmentActivity() {
         activityIndicator(true)
         call.enqueue(object : Callback<MediaplaybackData?> {
             override fun onResponse(
-                call: Call<MediaplaybackData?>,
-                response: Response<MediaplaybackData?>
+                call: Call<MediaplaybackData?>, response: Response<MediaplaybackData?>
             ) {
                 activityIndicator(false)
                 if (response.code() == 200 && response.body() != null) {
                     singleDetails = response.body()
-                    singleDetailsRelated=singleDetails
-               //     detailsData=singleDetails.list
+                    singleDetailsRelated = singleDetails
+                    //     detailsData=singleDetails.list
                     if (singleDetails!!.list != null) {
                         if (singleDetails!!.list.is_wishlist.equals("1", ignoreCase = true)) {
                             isWatchLater = true
@@ -724,15 +721,17 @@ class DetailsActivityPhando : FragmentActivity() {
                         //  singleDetails.setType("M");
 
                         if (singleDetails!!.list.related.size > 0) {
-                    //        detailsData=singleDetails
+                            //        detailsData=singleDetails
                             //----related post---------------
                             detailsFragment!!.requireView().visibility == View.VISIBLE
 
                             detailsFragment!!.setData()
 
                         } else {
-                            tv_related!!.visibility = View.GONE
-                            rvRelated!!.visibility = View.GONE
+                            detailsFragment!!.requireView().visibility == View.INVISIBLE
+
+                            //      tv_related!!.visibility = View.GONE
+                            // rvRelated!!.visibility = View.GONE
                         }
                         setMovieData()
 
@@ -772,8 +771,7 @@ class DetailsActivityPhando : FragmentActivity() {
         activityIndicator(true)
         call.enqueue(object : Callback<LatestMoviesTVSeriesList?> {
             override fun onResponse(
-                call: Call<LatestMoviesTVSeriesList?>,
-                response: Response<LatestMoviesTVSeriesList?>
+                call: Call<LatestMoviesTVSeriesList?>, response: Response<LatestMoviesTVSeriesList?>
             ) {
                 activityIndicator(false)
                 if (response.code() == 200 && response.body() != null) {
@@ -1015,8 +1013,7 @@ class DetailsActivityPhando : FragmentActivity() {
         val call = api.removeFromFavorite(Config.API_KEY, userid, videoId, type)
         call.enqueue(object : Callback<FavoriteModel?> {
             override fun onResponse(
-                call: Call<FavoriteModel?>,
-                response: Response<FavoriteModel?>
+                call: Call<FavoriteModel?>, response: Response<FavoriteModel?>
             ) {
                 if (response.code() == 200 && response.body() != null) {
                     if (response.body()!!.status.equals("success", ignoreCase = true)) {
@@ -1062,8 +1059,7 @@ class DetailsActivityPhando : FragmentActivity() {
         activityIndicator(true)
         call.enqueue(object : Callback<FavoriteModel?> {
             override fun onResponse(
-                call: Call<FavoriteModel?>,
-                response: Response<FavoriteModel?>
+                call: Call<FavoriteModel?>, response: Response<FavoriteModel?>
             ) {
                 if (response.code() == 200 && response.body() != null) {
                     activityIndicator(false)
