@@ -410,6 +410,12 @@ public class HomeFragmentNewUI extends Fragment {
         releasePlayer();
         super.onDetach();
     }
+
+    @Override
+    public void onPause() {
+        releasePlayer();
+        super.onPause();
+    }
 }
 
 

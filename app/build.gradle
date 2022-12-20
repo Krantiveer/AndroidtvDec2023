@@ -34,8 +34,6 @@ android {
 
         actionott {
             applicationId "com.uvtv.tv"
-
-
         }
         solidtv {
             applicationId "com.solidtv"
@@ -44,7 +42,7 @@ android {
         }
         kaafaltv {
             applicationId "com.kaafaltv.tv"
-            versionCode 2
+            versionCode 6
             versionName "1"
         }
 

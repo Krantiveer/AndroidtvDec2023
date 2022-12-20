@@ -923,6 +923,24 @@ public class DetailsActivityTvSeries extends FragmentActivity {
 
             }
         }
-        return super.onKeyDown(keyCode, event);
+
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_BACK: return false;
+                case KeyEvent.KEYCODE_DPAD_CENTER: return  false;
+                case KeyEvent.KEYCODE_DPAD_LEFT: return  false;
+                case KeyEvent.KEYCODE_DPAD_RIGHT: return  false;
+                case KeyEvent.KEYCODE_DPAD_UP:
+                    Log.e("SPLASH ACTIVITY", "movieIndex : " );
+
+                    return  false;
+
+                case KeyEvent.KEYCODE_DPAD_UP_LEFT: return  false;
+                case KeyEvent.KEYCODE_DPAD_UP_RIGHT: return  false;
+                case KeyEvent.KEYCODE_DPAD_DOWN: return  false;
+                case KeyEvent.KEYCODE_DPAD_DOWN_LEFT: return  false;
+                case KeyEvent.KEYCODE_DPAD_DOWN_RIGHT: return  false;
+            }
+            return super.onKeyDown(keyCode, event);
+        }
     }
-}
+

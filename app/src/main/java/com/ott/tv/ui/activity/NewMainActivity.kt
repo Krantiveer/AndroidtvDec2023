@@ -37,12 +37,10 @@ class NewMainActivity : FragmentActivity() {
 
     fun onMenuFocus(onFocus: Boolean) {
         if (onFocus) {
-            Toast.makeText(this, "closeactivity", Toast.LENGTH_SHORT).show()
-
+    //        Toast.makeText(this, "closeactivity", Toast.LENGTH_SHORT).show()
             binding.slidingPaneLayout.openPane()
         } else {
-            Toast.makeText(this, "closeactivity", Toast.LENGTH_SHORT).show()
-
+      //      Toast.makeText(this, "closeactivity", Toast.LENGTH_SHORT).show()
             binding.slidingPaneLayout.closePane()
             // Toast.makeText(this, "close", Toast.LENGTH_SHORT).show()
         }
@@ -97,7 +95,6 @@ class NewMainActivity : FragmentActivity() {
             binding.tvTitle.isVisible = false
         } else {
             binding.tvTitle.isVisible = true
-
         }
         val bundle = bundleOf(
             "menu" to 1,

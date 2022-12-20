@@ -10,7 +10,7 @@ import androidx.annotation.ColorInt
 import androidx.leanback.app.BrowseSupportFragment
 import androidx.leanback.widget.*
 import com.bumptech.glide.Glide
-import com.ott.tv.model.ContentList
+import com.ott.tv.model.phando.ContentList
 import com.ott.tv.ui.activity.DetailsActivityPhando
 import com.ott.tv.ui.activity.PlayerActivity
 import com.ott.tv.ui.presenter.CardPresenter_ShowRelatedVideo_vertical

@@ -2,6 +2,7 @@ package com.ott.tv.model
 
 
 import com.google.gson.annotations.SerializedName
+import com.ott.tv.model.phando.ContentList
 
 /**
  * Created by Vikas Kumar Singh on 22/04/20.

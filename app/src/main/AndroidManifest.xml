@@ -223,7 +223,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <data
                     android:host="app"
-                    android:scheme="action_tv" />
+                    android:scheme="solid_tv" />
             </intent-filter>
         </activity>
 

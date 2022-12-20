@@ -1,49 +1,40 @@
 package com.ott.tv.ui.activity
 
-import androidx.fragment.app.FragmentActivity
-import androidx.appcompat.widget.AppCompatButton
-import com.ott.tv.model.phando.MediaplaybackData
-import com.ott.tv.model.phando.LatestMoviesTVSeriesList
-import androidx.recyclerview.widget.RecyclerView
-import androidx.appcompat.widget.LinearLayoutCompat
-import com.google.android.exoplayer2.ui.PlayerView
-import com.google.android.exoplayer2.SimpleExoPlayer
-import androidx.leanback.widget.ArrayObjectAdapter
-import com.ott.tv.adapter.HomePageAdapter
 import android.annotation.SuppressLint
-import android.os.Bundle
-import com.ott.tv.R
-import com.ott.tv.model.phando.SeasonList
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.ott.tv.model.phando.EpisodeList
-import com.bumptech.glide.Glide
-import retrofit2.Retrofit
-import com.ott.tv.network.RetrofitClient
-import com.ott.tv.utils.PreferenceUtils
-import com.ott.tv.network.api.Dashboard
-import com.ott.tv.video_service.PlaybackModel
 import android.content.Intent
-import android.graphics.Color
+import android.os.Bundle
 import android.util.Log
 import android.view.*
-import com.ott.tv.model.phando.PlayerActivityNewCode
-import com.ott.tv.video_service.VideoPlaybackActivity
-import com.ott.tv.utils.CMHelper
-import com.ott.tv.model.phando.ShowWatchlist
-import com.ott.tv.model.phando.Wishlist
-import com.ott.tv.utils.ToastMsg
-import com.ott.tv.network.api.FavouriteApi
 import android.widget.*
-import androidx.core.view.isVisible
+import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.fragment.app.FragmentActivity
+import androidx.leanback.widget.ArrayObjectAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.util.Util
 import com.ott.tv.Config
 import com.ott.tv.Constants
+import com.ott.tv.R
+import com.ott.tv.adapter.HomePageAdapter
 import com.ott.tv.fragments.DetailsFragment
 import com.ott.tv.model.*
+import com.ott.tv.model.phando.*
+import com.ott.tv.network.RetrofitClient
+import com.ott.tv.network.api.Dashboard
+import com.ott.tv.network.api.FavouriteApi
+import com.ott.tv.utils.CMHelper
+import com.ott.tv.utils.PreferenceUtils
+import com.ott.tv.utils.ToastMsg
+import com.ott.tv.video_service.PlaybackModel
+import com.ott.tv.video_service.VideoPlaybackActivity
+import com.squareup.picasso.BuildConfig
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.ArrayList
 
 class DetailsActivityPhando : FragmentActivity() {
     private var videoId: String? = null
@@ -545,8 +536,13 @@ class DetailsActivityPhando : FragmentActivity() {
             genres_tv!!.setVisibility(View.GONE)
         }
         if (trailer_url != null && !trailer_url!!.isEmpty()) {
-            tvWatchTrailer!!.visibility = View.VISIBLE
-        } else {
+
+            if(BuildConfig.FLAVOR.equals("solidtv") && BuildConfig.FLAVOR.equals("kaafaltv")){
+                tvWatchTrailer!!.visibility = View.GONE
+
+            }else {
+                tvWatchTrailer!!.visibility = View.VISIBLE
+            }} else {
             tvWatchTrailer!!.visibility = View.GONE
         }
     }
@@ -723,9 +719,10 @@ class DetailsActivityPhando : FragmentActivity() {
                         if (singleDetails!!.list.related.size > 0) {
                             //        detailsData=singleDetails
                             //----related post---------------
+                            if(BuildConfig.FLAVOR.equals("solidtv")){}else{
                             detailsFragment!!.requireView().visibility == View.VISIBLE
 
-                            detailsFragment!!.setData()
+                            detailsFragment!!.setData()}
 
                         } else {
                             detailsFragment!!.requireView().visibility == View.INVISIBLE
@@ -959,13 +956,32 @@ class DetailsActivityPhando : FragmentActivity() {
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-        if (keyCode == 22) {
-            if (tvWatchNow!!.hasFocus()) {
-                tvWatchTrailer!!.requestFocus()
-                tvWatchTrailer!!.isFocusable = true
+       /* if (keyCode == 22) {
+            if (tvWatchNow!!.hasFocus()&&tvWatchNow) {
+             *//*   tvWatchTrailer!!.requestFocus()
+                tvWatchTrailer!!.isFocusable = true*//*
             }
+        }*/
+
+        when (keyCode) {
+            KeyEvent.KEYCODE_BACK -> onBackPressed()
+            KeyEvent.KEYCODE_DPAD_CENTER -> return false
+            KeyEvent.KEYCODE_DPAD_LEFT -> return false
+            KeyEvent.KEYCODE_DPAD_RIGHT -> return false
+            KeyEvent.KEYCODE_DPAD_UP -> {
+                Log.e("SPLASH ACTIVITY", "movieIndex : ")
+                return false
+            }
+            KeyEvent.KEYCODE_DPAD_UP_LEFT -> return false
+            KeyEvent.KEYCODE_DPAD_UP_RIGHT -> return false
+            KeyEvent.KEYCODE_DPAD_DOWN -> return false
+            KeyEvent.KEYCODE_DPAD_DOWN_LEFT -> return false
+            KeyEvent.KEYCODE_DPAD_DOWN_RIGHT -> return false
         }
         return super.onKeyDown(keyCode, event)
+
+
+
     }
 
     private fun addToFav(value: String) {
