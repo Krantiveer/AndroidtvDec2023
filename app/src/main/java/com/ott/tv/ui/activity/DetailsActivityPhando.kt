@@ -537,7 +537,7 @@ class DetailsActivityPhando : FragmentActivity() {
         }
         if (trailer_url != null && !trailer_url!!.isEmpty()) {
 
-            if(BuildConfig.FLAVOR.equals("solidtv") && BuildConfig.FLAVOR.equals("kaafaltv")){
+            if(BuildConfig.FLAVOR.equals("solidtv") || BuildConfig.FLAVOR.equals("kaafaltv")){
                 tvWatchTrailer!!.visibility = View.GONE
 
             }else {
@@ -719,14 +719,12 @@ class DetailsActivityPhando : FragmentActivity() {
                         if (singleDetails!!.list.related.size > 0) {
                             //        detailsData=singleDetails
                             //----related post---------------
-                            if(BuildConfig.FLAVOR.equals("solidtv")){}else{
+                            if(BuildConfig.FLAVOR.equals("solidtv") ||BuildConfig.FLAVOR.equals("kaafaltv")){}else{
                             detailsFragment!!.requireView().visibility == View.VISIBLE
-
                             detailsFragment!!.setData()}
 
                         } else {
                             detailsFragment!!.requireView().visibility == View.INVISIBLE
-
                             //      tv_related!!.visibility = View.GONE
                             // rvRelated!!.visibility = View.GONE
                         }

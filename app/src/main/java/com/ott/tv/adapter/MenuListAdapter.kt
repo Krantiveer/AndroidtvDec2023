@@ -76,7 +76,7 @@ class MenuListAdapter(
                     //  binding.icon.setBackgroundResource(R.drawable.play_circle)
                 //    Toast.makeText(context, "Focused", Toast.LENGTH_SHORT).show()
                     binding.icon.imageTintList =
-                        ColorStateList.valueOf(context.resources.getColor(android.R.color.holo_red_dark))
+                        ColorStateList.valueOf(context.getColor(R.color.main_color))
                 } else {
                     dataModel.isFocused = false
                     //   binding.icon.setBackgroundResource(R.drawable.ic_audiotrack_dark)

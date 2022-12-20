@@ -3,6 +3,7 @@
 
     <color name="textcolor">#FFFF</color>
     <color name="main_color">#EF3C23</color>
+    <color name="main_color_new">#EF3C23</color>
     <color name="focus">#ffffff</color>
     //this we using card selected and click card
     <color name="colorButtonFocusedTV">@color/main_color</color>
