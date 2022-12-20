@@ -54,13 +54,11 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
             if (!hasFocus) {
                 val activity = requireActivity() as NewMainActivity
                 activity.onMenuFocus(false)
-                Toast.makeText(requireActivity(), "closeactivity", Toast.LENGTH_SHORT).show()
               //  binding.imgHome.requestFocus()
 
             } else {
                 val activity = requireActivity() as NewMainActivity
                 activity.onMenuFocus(true)
-                Toast.makeText(requireActivity(), "openactivity", Toast.LENGTH_SHORT).show()
 
             }
 

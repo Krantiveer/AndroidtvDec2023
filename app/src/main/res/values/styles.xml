@@ -161,4 +161,16 @@
         <item name="horizontalMargin">5dp</item>
         <item name="rowHeaderStyle">@style/AppTheme.Leanback.Row</item>
     </style>
+
+    <style name="MaterialDialogSheet" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:gravity">bottom</item>
+        <item name="android:layout_gravity">bottom</item>
+    </style>
+
 </resources>
