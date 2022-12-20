@@ -18,6 +18,39 @@ public class UserProfile implements Parcelable {
     @Expose
     private UserProfileDetails user;
 
+
+    public CurrentSubscription getCurrent_subscription() {
+        return current_subscription;
+    }
+
+    public void setCurrent_subscription(CurrentSubscription current_subscription) {
+        this.current_subscription = current_subscription;
+    }
+
+    @SerializedName("current_subscription")
+    @Expose
+    private CurrentSubscription current_subscription;
+
+    @SerializedName("package_name")
+    @Expose
+    private String package_name;
+
+    public String getPackage_name() {
+        return package_name;
+    }
+
+    @SerializedName("subscription_end_date")
+    @Expose
+    private String subscription_end_date;
+
+    public String getsubscription_end_date() {
+        return subscription_end_date;
+    }
+
+    public void setPackage_name(String package_name) {
+        this.package_name = package_name;
+    }
+
     @SerializedName("is_subscribed")
     @Expose
     private Integer is_subscribed;
@@ -98,3 +131,4 @@ public class UserProfile implements Parcelable {
         }
     }
 }
+
