@@ -18,6 +18,19 @@ public class UserProfile implements Parcelable {
     @Expose
     private UserProfileDetails user;
 
+
+    public CurrentSubscription getCurrent_subscription() {
+        return current_subscription;
+    }
+
+    public void setCurrent_subscription(CurrentSubscription current_subscription) {
+        this.current_subscription = current_subscription;
+    }
+
+    @SerializedName("current_subscription")
+    @Expose
+    private CurrentSubscription current_subscription;
+
     @SerializedName("is_subscribed")
     @Expose
     private Integer is_subscribed;
@@ -98,3 +111,4 @@ public class UserProfile implements Parcelable {
         }
     }
 }
+

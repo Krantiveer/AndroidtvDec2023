@@ -389,6 +389,14 @@
                         android:background="@color/transparent"
                         tools:context="com.ott.tv.ui.activity.DetailsActivityPhando"
                         tools:layout="@layout/banner_home_list_item_movies" />
+                    <androidx.fragment.app.FragmentContainerView
+                        android:id="@+id/detailsFragment"
+                        android:name="com.ott.tv.fragments.DetailsFragment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        tools:context="com.ott.tv.ui.activity.DetailsActivityPhando"
+                        tools:layout="@layout/banner_home_list_item_movies" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/imgFavList"
@@ -414,17 +422,17 @@
                         tools:text="@string/add_favlist"
                         tools:visibility="gone" />
 
-<!--
-                        <androidx.fragment.app.FragmentContainerView
-                            android:id="@+id/detailsFragment"
-                            android:name="com.ott.tv.fragments.DetailsFragment"
-                            android:layout_width="match_parent"
-                            android:padding="-320dp"
-                            android:paddingTop="-300sp"
-                            android:layout_height="wrap_content"
+                    <!--
+                                            <androidx.fragment.app.FragmentContainerView
+                                                android:id="@+id/detailsFragment"
+                                                android:name="com.ott.tv.fragments.DetailsFragment"
+                                                android:layout_width="match_parent"
+                                                android:padding="-320dp"
+                                                android:paddingTop="-300sp"
+                                                android:layout_height="wrap_content"
 
-                            tools:context="com.ott.tv.ui.activity.DetailsActivityPhando" />
--->
+                                                tools:context="com.ott.tv.ui.activity.DetailsActivityPhando" />
+                    -->
                 </LinearLayout>
 
                 <RelativeLayout
@@ -457,6 +465,19 @@
 
 
 
+
+
+<!--
+                        <androidx.fragment.app.FragmentContainerView
+                            android:id="@+id/detailsFragment"
+                            android:name="com.ott.tv.fragments.DetailsFragment"
+                            android:layout_width="match_parent"
+                            android:padding="-320dp"
+                            android:paddingTop="-300sp"
+                            android:layout_height="wrap_content"
+
+                            tools:context="com.ott.tv.ui.activity.DetailsActivityPhando" />
+-->
 
             </LinearLayout>
 
