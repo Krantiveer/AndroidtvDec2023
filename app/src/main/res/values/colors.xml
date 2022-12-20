@@ -19,6 +19,7 @@
     <color name="paypalColorDark">#D39916</color>
     <color name="black_main">#112242</color>
     <color name="main_bg">#020610</color>
+    <color name="color_bg">#051029</color>
 
     <color name="white">#FFFFFF</color>
     <color name="white_bg">#14FFFFFF</color>
@@ -86,6 +87,7 @@
     <color name="colorGoldWhite">#FFFFFF</color>
     <color name="textcolor">#DCBC4F</color>
     <color name="colorGoldLight">#EAD384</color>
+    <color name="appmaincolor">#EF3C23</color>
 
     <color name="transparent">#00000000</color>
     <color name="red_highlight_color">#D50A10</color>

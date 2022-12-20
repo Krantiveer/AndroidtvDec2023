@@ -13,17 +13,7 @@ public class CurrentSubscription implements Parcelable {
     @Expose
     private String id;
 
-    @SerializedName("package_name")
-    @Expose
-    private String package_name;
 
-    public String getPackage_name() {
-        return package_name;
-    }
-
-    public void setPackage_name(String package_name) {
-        this.package_name = package_name;
-    }
 
     public Integer getPrice() {
         return price;

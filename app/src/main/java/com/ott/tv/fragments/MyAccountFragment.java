@@ -19,6 +19,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.ott.tv.Config;
@@ -39,6 +40,7 @@ import com.ott.tv.database.DatabaseHelper;
 import com.ott.tv.model.ActiveStatus;
 import com.ott.tv.ui.activity.LoginChooserActivity;
 import com.ott.tv.utils.ToastMsg;
+import com.squareup.picasso.Picasso;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -120,6 +122,13 @@ public class MyAccountFragment extends Fragment {
                         binding.lytTopCard.setVisibility(View.VISIBLE);
                         if (response.code() == 200 && response.body() != null) {
                             userProfile = response.body();
+
+                            Glide.with(requireActivity())
+                                    .load(userProfile.getUser().getImage())
+                                    .error(R.drawable.user_image)
+                                    .placeholder(R.drawable.user_image)
+                                    .into(binding.imguser);
+
                             binding.userName.setText(userProfile.getUser().getName());
                             if (userProfile.getUser().getEmail() != null) {
                                 binding.userEmailTv.setVisibility(View.VISIBLE);
@@ -135,16 +144,20 @@ public class MyAccountFragment extends Fragment {
                                 binding.myPackageName.setVisibility(View.GONE);
                                 binding.myPackagePrice.setVisibility(View.GONE);
                             }  else  {
+                                Log.e("@@packageName", userProfile.getPackage_name()+"sdsd");
                                 binding.userSubId.setVisibility(View.VISIBLE);
                                 binding.myPackageName.setVisibility(View.VISIBLE);
                                 binding.myPackagePrice.setVisibility(View.VISIBLE);
                                 binding.userSubId.setText("Subscriber ID : " +userProfile.getCurrent_subscription().getId());
-                                binding.myPackageName.setText(userProfile.getCurrent_subscription().getPackage_name());
+                                binding.myPackageName.setText(userProfile.getPackage_name());
                                 binding.myPackagePrice.setText("Rs. " +userProfile.getCurrent_subscription().getPrice().toString());
 
                                 binding.tvnoPlan.setVisibility(View.GONE);
                                 binding.lytPlan.setVisibility(View.VISIBLE);
                                 binding.lytPlan2.setVisibility(View.VISIBLE);
+                                if(userProfile.getsubscription_end_date() != null){
+                                    binding.myPackageDateTime.setText("Expires on " + userProfile.getsubscription_end_date());
+                                }
                             }
 
                             if (userProfile.getUser().getMobile() != null) {
