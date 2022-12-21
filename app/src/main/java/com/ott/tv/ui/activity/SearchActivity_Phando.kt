@@ -45,12 +45,6 @@ class SearchActivity_Phando : FragmentActivity() {
         searchFragment =
             supportFragmentManager.findFragmentById(R.id.searchFragment) as SearchFragmentPhando
         progressBar = findViewById(R.id.progress_search)
-
-
-
-
-
-
         sharedPreferences = getSharedPreferences("LoginData", Activity.MODE_PRIVATE);
         accestoken = sharedPreferences.getString("access_token", "")!!
 
@@ -77,8 +71,6 @@ class SearchActivity_Phando : FragmentActivity() {
                 false
             }
         }
-
-
         btnsearch.setOnClickListener {
             var searchText: String
             if (editText.text.toString().equals("")) {
@@ -87,11 +79,11 @@ class SearchActivity_Phando : FragmentActivity() {
                     "please type keyword for Search",
                     Toast.LENGTH_SHORT
                 ).show()
-            } else {
+            }
+            else {
                 searchText = editText.text.toString()
               //  searchFragment.loadData(searchText, accestoken)
                 searchFragment.getQueryData(searchText)
-
                 // firebaseAnalytics.logEvent("SEARCH_RESULT", Bundle.EMPTY)
             }
         }
@@ -116,8 +108,6 @@ class SearchActivity_Phando : FragmentActivity() {
                     super.onKeyDown(keyCode, event)
                 }
             }
-
-
             else -> super.onKeyUp(keyCode, event)
 
         }

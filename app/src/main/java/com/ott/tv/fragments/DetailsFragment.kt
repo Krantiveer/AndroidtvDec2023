@@ -100,53 +100,57 @@ class DetailsFragment : BrowseSupportFragment(){
         }
 
         setOnItemViewClickedListener { itemViewHolder, item, rowViewHolder, row ->
-
+            DetailsActivityPhando.contentList
             if (item is ContentList) {
-                if (row.headerItem.name.equals("trailers", true)) {
-                    var intent = Intent(this.activity, PlayerActivity::class.java)
-                    intent.putExtra("Id", DetailsActivityPhando.detailsData!!.documentMediaId.toString())
-                    intent.putExtra("VideoUrl", item.mediaUrl)
-                    //intent.putExtra("vast_url", DetailsActivity.detailsData!!.vastUrl)
+                if (item != null){
+                    if (row.headerItem.name.equals("trailers", true))
+                    {
+                        var intent = Intent(this.activity, PlayerActivity::class.java)
+                        intent.putExtra("Id", DetailsActivityPhando.detailsData!!.documentMediaId.toString())
+                        intent.putExtra("VideoUrl", item.mediaUrl)
+                        //intent.putExtra("vast_url", DetailsActivity.detailsData!!.vastUrl)
 
-                    Log.d("zzz", "mediaUrl" + item.mediaUrl);
-                    intent.putExtra("is_live", item.is_live)
+                        Log.d("zzz", "mediaUrl" + item.mediaUrl);
+                        intent.putExtra("is_live", item.is_live)
 
-                    intent.putExtra("Time", "0")
-                    /*if (DetailsActivity.detailsData!!.ccFiles?.size!! > 0) {
-                        intent.putExtra("vtt", DetailsActivity.detailsData!!.ccFiles?.get(0)?.url)
-                        Log.d("zzz", "vtt" + DetailsActivity.detailsData!!.ccFiles?.get(0)?.url)
-                    } else {*/
-                    intent.putExtra("vtt", "")
-                    //}
-                    intent.putExtra("Title", item.title)
-                    intent.putExtra("Ratings", item.rating)
-                    intent.putExtra("Details", item.detail)
-                    intent.putExtra("Description", item.description)
-                    startActivity(intent)
-                } else {
-                    DetailsActivityPhando.contentList = item
-                    rowAdapter!!.clear()
-                    Glide.with(requireActivity()!!)
-                        .load(item.poster)
-                        .into(DetailsActivityPhando.ivLogo)
-                    DetailsActivityPhando.tvTitle.text = item.title
-                    DetailsActivityPhando.tvDescription.text = item.description
+                        intent.putExtra("Time", "0")
+                        /*if (DetailsActivity.detailsData!!.ccFiles?.size!! > 0) {
+                            intent.putExtra("vtt", DetailsActivity.detailsData!!.ccFiles?.get(0)?.url)
+                            Log.d("zzz", "vtt" + DetailsActivity.detailsData!!.ccFiles?.get(0)?.url)
+                        } else {*/
+                        intent.putExtra("vtt", "")
+                        //}
+                        intent.putExtra("Title", item.title)
+                        intent.putExtra("Ratings", item.rating)
+                        intent.putExtra("Details", item.detail)
+                        intent.putExtra("Description", item.description)
+                        startActivity(intent)
+                    }
+                    else {
+                        DetailsActivityPhando.contentList = item
+                        rowAdapter!!.clear()
+                        Glide.with(requireActivity()!!)
+                            .load(item.poster)
+                            .into(DetailsActivityPhando.ivLogo)
+                        DetailsActivityPhando.tvTitle.text = item.title
+                        DetailsActivityPhando.tvDescription.text = item.description
 
-                    if (item.isFree == 1) {
-                        if (item.rating?.toString().isNullOrEmpty()) {
-                            DetailsActivityPhando.textView.text = "${item.maturityRating} | Free"
+                        if (item.isFree == 1) {
+                            if (item.rating?.toString().isNullOrEmpty()) {
+                                DetailsActivityPhando.textView.text = "${item.maturityRating} | Free"
+                            } else {
+                                DetailsActivityPhando.textView.text =
+                                    "${item.rating ?: ""} | ${item.maturityRating} | Free"
+                            }
                         } else {
-                            DetailsActivityPhando.textView.text =
-                                "${item.rating ?: ""} | ${item.maturityRating} | Free"
-                        }
-                    } else {
-                        if (item.rating?.toString().isNullOrEmpty()) {
-                            DetailsActivityPhando.textView.text = "${item.maturityRating} | Premium"
-                        } else {
-                            DetailsActivityPhando.textView.text =
-                                "${item.rating ?: ""} | ${item.maturityRating} | Premium"
-                        }
+                            if (item.rating?.toString().isNullOrEmpty()) {
+                                DetailsActivityPhando.textView.text = "${item.maturityRating} | Premium"
+                            } else {
+                                DetailsActivityPhando.textView.text =
+                                    "${item.rating ?: ""} | ${item.maturityRating} | Premium"
+                            }
 
+                        }
                     }
                 }
             }
