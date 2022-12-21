@@ -186,7 +186,6 @@
                 android:layout_marginVertical="28dp"
                 android:src="@drawable/or_login" />
 
-
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
