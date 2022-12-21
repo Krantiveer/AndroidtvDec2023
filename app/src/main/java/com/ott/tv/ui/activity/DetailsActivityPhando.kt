@@ -108,7 +108,7 @@ class DetailsActivityPhando : FragmentActivity() {
     private var detailsFragment: DetailsFragment? = null
 
     companion object {
-        var contentList: ContentList? = null
+        var contentList: ArrayList<ShowWatchlist>? = null
         var mediaplabackApiResponse: MediaplabackApiResponse? = null
         var detailsData: DetailsData? = null
         var singleDetailsRelated: MediaplaybackData? = null
