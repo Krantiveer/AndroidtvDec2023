@@ -85,7 +85,8 @@ dependencies {
     //firebase
     implementation 'com.firebaseui:firebase-ui-auth:6.4.0'
     // leanback
-    implementation 'androidx.leanback:leanback:1.0.0'
+
+    implementation 'androidx.leanback:leanback:1.1.0-rc02'
     implementation 'androidx.leanback:leanback-preference:1.0.0'
 
     // TV provider support library
