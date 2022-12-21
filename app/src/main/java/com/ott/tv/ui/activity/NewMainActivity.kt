@@ -1,7 +1,10 @@
 package com.ott.tv.ui.activity
 
 import android.app.AlertDialog
+import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -11,9 +14,19 @@ import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
+import com.ott.tv.Constants
+import com.ott.tv.R
 import com.ott.tv.databinding.ActivityNewMainBinding
 import com.ott.tv.databinding.LayoutMenuBinding
 import com.ott.tv.fragments.*
+import com.ott.tv.network.RetrofitClient
+import com.ott.tv.network.api.AppInfo
+import com.ott.tv.network.api.Dashboard
+import com.ott.tv.utils.PreferenceUtils
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.security.AccessController
 
 
 class NewMainActivity : FragmentActivity() {
@@ -25,6 +38,63 @@ class NewMainActivity : FragmentActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityNewMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val retrofit = RetrofitClient.getRetrofitInstance()
+        val api = retrofit.create(Dashboard::class.java)
+        val accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(
+            applicationContext
+        )
+
+        val call: Call<AppInfo> = api.getAppInfo( "Android",accessToken)
+        call.enqueue(object : Callback<AppInfo?> {
+            override fun onResponse(call: Call<AppInfo?>, response: Response<AppInfo?>) {
+                if (response.code() == 200) {
+
+                    onGetAppInfoSuccess(response.body()!!)
+
+                    //  homeContent.setHomeContentId(1);
+                    //   homeContent.getSlider();
+                    //  loadSliderRows(homeContent.getSlider().getSlideArrayList());
+
+                    //   loadRows();
+                    /*if (movieList.size() <= 0) {
+
+                    }
+
+                    for (BrowseData movie : movieList) {
+
+                    }
+                    //   movies.addAll(movieList);*/
+                } else if (response.code() == 401) {
+
+                    // signOut();
+                } else if (response.errorBody() != null) {
+                    if (AccessController.getContext() != null) {
+                        Toast.makeText(
+                            applicationContext,
+                            "sorry! Something went wrong. Please try again after some time" + response.errorBody(),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    //  CMHelper.setSnackBar(requireView(), response.errorBody().toString(), 2);
+                } else {
+                    if (AccessController.getContext() != null) {
+                        Toast.makeText(
+                            applicationContext,
+                            "sorry! Something went wrong. Please try again after some time",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<AppInfo?>, t: Throwable) {
+                //   CMHelper.setSnackBar(requireView(), t.getMessage(), 2);
+                if (AccessController.getContext() != null) {
+                    Toast.makeText(applicationContext, t.message, Toast.LENGTH_SHORT).show()
+                } else {
+                }
+            }
+        })
 
         supportFragmentManager.beginTransaction().replace(binding.menuSection.id, MenuFragment())
             .commit()
@@ -33,6 +103,48 @@ class NewMainActivity : FragmentActivity() {
             .replace(binding.browserSection.id, HomeFragmentNewUI())
             .commit()
 
+    }
+
+    private fun onGetAppInfoSuccess(appInfo: AppInfo) {
+        val storeVersion = appInfo.currentVersion
+        val forceUpdate = appInfo.isForceUpdate
+
+        var currentVersion = 0
+        try {
+            val pInfo = packageManager.getPackageInfo(packageName, 0)
+            currentVersion = pInfo.versionCode
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+        }
+
+        Log.e("Store app version: $storeVersion", "")
+        Log.e("Current app version: $currentVersion", "")
+
+        if (currentVersion < storeVersion) {
+            // Need to update application
+            val dialog = androidx.appcompat.app.AlertDialog.Builder(this, R.style.MaterialDialogSheet)
+            dialog.setTitle("Update Available")
+            dialog.setMessage("A new version of " + getString(R.string.app_name) + " is available on Play Store. Do you want to update?")
+            dialog.setCancelable(false)
+
+            dialog.setPositiveButton("Yes, update") { dialog, which ->
+                try {
+                    startActivity(Intent(Intent.ACTION_VIEW,
+                        Uri.parse("market://details?id=$packageName")))
+                } catch (ex: ActivityNotFoundException) {
+                    startActivity(Intent(Intent.ACTION_VIEW,
+                        Uri.parse("https://play.google.com/store/apps/details?id=$packageName")))
+                }
+
+                this@NewMainActivity.finish()
+            }
+
+            if (!forceUpdate) {
+                dialog.setNegativeButton("No, leave it!") { dialog, which -> }
+            }
+            dialog.setIcon(android.R.drawable.ic_dialog_alert)
+            dialog.show()
+        }
     }
 
     fun onMenuFocus(onFocus: Boolean) {

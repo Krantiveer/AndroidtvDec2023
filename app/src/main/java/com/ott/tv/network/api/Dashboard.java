@@ -1,5 +1,6 @@
 package com.ott.tv.network.api;
 
+import com.google.gson.annotations.SerializedName;
 import com.ott.tv.model.BrowseData;
 import com.ott.tv.model.Video;
 import com.ott.tv.model.phando.CategoryType;
@@ -39,6 +40,13 @@ public interface Dashboard {
             @Header("Authorization") String token
 
     );
+
+    @GET("userappversion")
+    Call<AppInfo> getAppInfo(
+           @Query("app_type") String appType, @Query("device_id") String device_id
+
+    );
+
 
     @GET("menu")
     Call<List<CategoryType>> menu(

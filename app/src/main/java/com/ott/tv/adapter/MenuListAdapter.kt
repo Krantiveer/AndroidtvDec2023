@@ -75,6 +75,8 @@ class MenuListAdapter(
                     binding.menuLayout.nextFocusRightId = R.id.list_items
                     //  binding.icon.setBackgroundResource(R.drawable.play_circle)
                 //    Toast.makeText(context, "Focused", Toast.LENGTH_SHORT).show()
+
+
                     binding.icon.imageTintList =
                         ColorStateList.valueOf(context.getColor(R.color.main_color))
                 } else {
