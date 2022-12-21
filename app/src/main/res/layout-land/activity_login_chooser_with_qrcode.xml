@@ -8,6 +8,7 @@
     android:keepScreenOn="true">
 
     <LinearLayout
+        android:background="@color/login_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
@@ -25,6 +26,7 @@
 
 
         <LinearLayout
+            android:background="@color/login_background"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -84,12 +86,21 @@
                             android:textColor="@color/blue_400"
                             android:textSize="15sp" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text=" or scan the "
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                            android:textColor="@color/white"
+                            android:textSize="15sp" />
+
                     </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="or scan the QR code from Camera App or any QR Reader and enter the following code to Activate TV"
+                        android:text="QR code from Camera App or any QR Reader and enter the following code to Activate TV"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                         android:textSize="16sp" />
 
@@ -168,14 +179,12 @@
 
             </LinearLayout>
 
-            <View
-
-                android:layout_width="@dimen/_35sdp"
-                android:layout_height="300dp"
-
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_26sdp"
                 android:layout_marginVertical="28dp"
-                android:background="@drawable/or_login" />
+                android:src="@drawable/or_login" />
 
 
             <LinearLayout
