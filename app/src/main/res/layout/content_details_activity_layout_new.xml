@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginStart="@dimen/_10sdp">
+
     <ImageView
         android:id="@+id/bg_imageview"
         android:layout_width="600dp"
@@ -14,6 +15,7 @@
         android:layout_alignParentEnd="true"
 
         android:scaleType="fitXY" />
+
     <com.google.android.exoplayer2.ui.PlayerView
         android:id="@+id/player_view_home"
         android:layout_width="600dp"
@@ -23,25 +25,24 @@
         android:background="@color/transparent"
         android:visibility="visible"
         app:auto_show="true"
-        app:resize_mode="fill"
         app:hide_on_touch="false"
+        app:resize_mode="fill"
         app:show_timeout="0"
-        app:use_controller="false"
-        />
+        app:use_controller="false" />
 
     <RelativeLayout
         android:id="@+id/bg_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <FrameLayout
             android:id="@+id/content_details_overview_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/bg_gradient"
+            android:background="@drawable/list_devider"
 
-           >
+
+            >
 
             <include
 
@@ -93,7 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/content_details_overview_container"
-            android:layout_marginTop="@dimen/margin_gap_5"/>
+            android:layout_marginTop="@dimen/margin_gap_5" />
 
         <LinearLayout
             android:id="@+id/fragmentContainer"

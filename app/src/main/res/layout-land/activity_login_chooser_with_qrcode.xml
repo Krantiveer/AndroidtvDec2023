@@ -8,10 +8,10 @@
     android:keepScreenOn="true">
 
     <LinearLayout
-        android:background="@color/login_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
+        android:background="@color/login_background"
         android:gravity="start"
         android:keepScreenOn="true"
         android:orientation="vertical">
@@ -26,10 +26,10 @@
 
 
         <LinearLayout
-            android:background="@color/login_background"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:background="@color/login_background"
             android:baselineAligned="false"
             android:orientation="horizontal"
             tools:ignore="UselessParent">
@@ -104,7 +104,6 @@
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                         android:textSize="16sp" />
 
-
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -130,16 +129,20 @@
                         </androidx.cardview.widget.CardView>
 
                         <TextView
+                            android:fontFamily="@font/roboto_medium"
                             android:id="@+id/tv_qrCode"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="@dimen/_27sdp"
                             android:background="@drawable/textview_border_dot"
-                            android:paddingHorizontal="@dimen/_10sdp"
+                            android:paddingStart="@dimen/_20sdp"
+                            android:paddingTop="@dimen/_8sdp"
+                            android:paddingEnd="@dimen/_20sdp"
+                            android:paddingBottom="@dimen/_8sdp"
                             android:singleLine="true"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/_36sdp"
+                            android:textSize="@dimen/_25sdp"
                             android:textStyle="bold"
                             android:visibility="gone"
                             tools:text="XYXABC"
@@ -217,13 +220,13 @@
                     android:layout_marginTop="@dimen/_20sp"
                     android:background="@drawable/button_focus"
                     android:drawableStart="@drawable/mobile_alt"
+                    android:focusedByDefault="true"
                     android:gravity="center"
                     android:onClick="mobileSignInBtn"
                     android:paddingStart="20dp"
                     android:paddingTop="@dimen/_10sdp"
                     android:paddingEnd="20dp"
                     android:paddingBottom="@dimen/_10sdp"
-                    android:focusedByDefault="true"
                     android:text="@string/fui_sign_in_with_phone"
                     android:textAllCaps="false"
                     android:textColor="@color/btn_txt_color"
