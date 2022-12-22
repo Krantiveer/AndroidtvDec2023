@@ -132,7 +132,8 @@
                     android:fontFamily="@font/roboto_regular"
                     android:id="@+id/editVerifiedOTP"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_50sdp"
+                    android:gravity="center|start"
                     android:layout_marginVertical="@dimen/_20sp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:autofillHints=""
@@ -148,12 +149,12 @@
                     android:textColor="@color/white"
                     android:textColorHint="@color/default_text"
                     tools:ignore="RtlSymmetry" />
-
                 <Button
+                    android:textStyle="bold"
                     android:fontFamily="@font/roboto_medium"
                     android:id="@+id/bt_verified_login"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_50sdp"
                     android:background="@drawable/button_focus"
                     android:gravity="center"
                     android:onClick="bt_verified_login"
@@ -253,10 +254,11 @@
                           android:hint="@string/email_address"
                           android:inputType="textEmailAddress" />-->
                 <TextView
+                    android:layout_height="@dimen/_50sdp"
+                    android:gravity="center|start"
                     android:fontFamily="@font/roboto_regular"
                     android:id="@+id/mobile_code_in"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_30sdp"
                     android:background="@drawable/edit_focus"
                     android:drawableEnd="@drawable/ic_drop_down"
@@ -274,7 +276,8 @@
                     android:textSize="@dimen/_16sdp"
                     android:id="@+id/editMobileNumber"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_50sdp"
+                    android:gravity="center|start"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:autofillHints=""
                     android:background="@drawable/edit_focus"
@@ -324,10 +327,11 @@
                         android:text="@string/login" />-->
 
                 <Button
+                    android:textStyle="bold"
                     android:fontFamily="@font/roboto_medium"
                     android:id="@+id/send_otp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_50sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/button_focus"
                     android:gravity="center"
@@ -339,10 +343,11 @@
                     android:textSize="@dimen/_16sdp" />
 
                 <Button
+                    android:textStyle="bold"
                     android:textSize="@dimen/_16sdp"
                     android:fontFamily="@font/roboto_medium"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_50sdp"
                     android:layout_marginTop="30dp"
                     android:background="@drawable/button_focus"
                     android:drawableStart="@drawable/fui_ic_mail_white_24dp"

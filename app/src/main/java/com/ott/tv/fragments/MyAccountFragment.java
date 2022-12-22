@@ -4,35 +4,21 @@ package com.ott.tv.fragments;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import com.bumptech.glide.Glide;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.ott.tv.Config;
 import com.ott.tv.Constants;
 import com.ott.tv.databinding.FragmentMyAccountBinding;
-import com.ott.tv.model.home_content.HomeContent;
-import com.ott.tv.model.home_content.Video;
-import com.ott.tv.model.phando.ShowWatchlist;
 import com.ott.tv.model.phando.UserProfile;
 import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.Dashboard;
-import com.ott.tv.network.api.HomeApi;
-import com.ott.tv.ui.activity.LoginActivity;
 import com.ott.tv.utils.CMHelper;
 import com.ott.tv.utils.PreferenceUtils;
 import com.ott.tv.R;
@@ -64,6 +50,7 @@ public class MyAccountFragment extends Fragment {
     public MyAccountFragment() {
 
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -132,26 +119,24 @@ public class MyAccountFragment extends Fragment {
                                 binding.userEmailTv.setText(userProfile.getUser().getEmail());
 
                             }
-                            if (userProfile.getIs_subscribed() ==0) {
+                            if (userProfile.getIs_subscribed() == 0) {
                                 binding.tvnoPlan.setVisibility(View.VISIBLE);
                                 binding.userSubId.setVisibility(View.INVISIBLE);
                                 binding.lytPlan.setVisibility(View.GONE);
                                 binding.lytPlan2.setVisibility(View.GONE);
                                 binding.myPackageName.setVisibility(View.GONE);
                                 binding.myPackagePrice.setVisibility(View.GONE);
-                            }
-                            else
-                            {
+                            } else {
                                 binding.userSubId.setVisibility(View.VISIBLE);
                                 binding.myPackageName.setVisibility(View.VISIBLE);
                                 binding.myPackagePrice.setVisibility(View.VISIBLE);
-                                binding.userSubId.setText("Subscriber ID : " +userProfile.getCurrent_subscription().getId());
+                                binding.userSubId.setText("Subscriber ID : " + userProfile.getCurrent_subscription().getId());
                                 binding.myPackageName.setText(userProfile.getPackage_name());
-                                binding.myPackagePrice.setText("Rs. " +userProfile.getCurrent_subscription().getPrice().toString());
+                                binding.myPackagePrice.setText("Rs. " + userProfile.getCurrent_subscription().getPrice().toString());
                                 binding.tvnoPlan.setVisibility(View.GONE);
                                 binding.lytPlan.setVisibility(View.VISIBLE);
                                 binding.lytPlan2.setVisibility(View.VISIBLE);
-                                if(userProfile.getsubscription_end_date() != null){
+                                if (userProfile.getsubscription_end_date() != null) {
                                     binding.myPackageDateTime.setText("Expires on " + userProfile.getsubscription_end_date());
                                 }
                             }
@@ -182,9 +167,8 @@ public class MyAccountFragment extends Fragment {
 
                         //CMHelper.setSnackBar(requireView(), "Sorry! Something went wrong. Please try again after some time", 2);
                     }
-
-
                 }
+
                 @Override
                 public void onFailure(@NonNull Call<UserProfile> call, @NonNull Throwable t) {
                     t.printStackTrace();
