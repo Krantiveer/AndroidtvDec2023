@@ -17,6 +17,7 @@ import com.ott.tv.network.api.Dashboard
 import com.ott.tv.ui.activity.DetailsActivityPhando
 import com.ott.tv.ui.activity.SearchActivity_Phando.Companion.indexOfRow
 import com.ott.tv.ui.activity.SearchActivity_Phando.Companion.progressBar
+import com.ott.tv.ui.presenter.CardPresenter
 import com.ott.tv.ui.presenter.CardPresenterSearch
 import com.ott.tv.utils.PreferenceUtils
 import retrofit2.Call

@@ -23,8 +23,7 @@ public class CardPresenterSearch extends Presenter {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent) {
         sDefaultBackgroundColor = parent.getResources().getColor(R.color.transparent);
-        sSelectedBackgroundColor = parent.getResources().getColor(R.color.transparent);
-
+        sSelectedBackgroundColor = parent.getResources().getColor(R.color.bcn_selected_color);
         cardView = new AppImageCardView(parent.getContext()) {
             @Override
             public void setSelected(boolean selected) {

@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/menuLayout"
+        android:background="@drawable/round_ll_sidenav"
         android:focusable="true"
         android:padding="10dp">
 

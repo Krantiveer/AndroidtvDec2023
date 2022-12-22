@@ -34,9 +34,22 @@ public class LatestMovieSingleDetailList implements Parcelable {
     @SerializedName("is_wishlist")
     @Expose
     private String is_wishlist;
+    @SerializedName("duration_str")
+    @Expose
+    private String duration_str;
+
     @SerializedName("related")
     @Expose
     private ArrayList<ShowWatchlist> related;
+
+
+    public String getDuration_str() {
+        return duration_str;
+    }
+
+    public void setDuration_str(String duration_str) {
+        this.duration_str = duration_str;
+    }
 
     protected LatestMovieSingleDetailList(Parcel in) {
         media_url = in.readString();

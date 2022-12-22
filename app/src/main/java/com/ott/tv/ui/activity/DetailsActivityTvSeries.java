@@ -925,7 +925,7 @@ public class DetailsActivityTvSeries extends FragmentActivity {
         }
 
             switch (keyCode) {
-                case KeyEvent.KEYCODE_BACK: return false;
+
                 case KeyEvent.KEYCODE_DPAD_CENTER: return  false;
                 case KeyEvent.KEYCODE_DPAD_LEFT: return  false;
                 case KeyEvent.KEYCODE_DPAD_RIGHT: return  false;

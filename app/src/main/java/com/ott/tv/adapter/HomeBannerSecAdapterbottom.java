@@ -214,11 +214,11 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
         {
             if (videoContent.getIsTvseries() != null) {
                 if (videoContent.getIsTvseries().equalsIgnoreCase("1")) {
-                    Intent intent = new Intent(context, DetailsActivityTvSeries.class);
+                    Intent intent = new Intent(context, DetailsActivityPhando.class);
                     intent.putExtra("id", videoContent.getVideosId());
                     intent.putExtra("video_id", videoContent.getId());
                     intent.putExtra("actions_type", "tvseries");
-                    intent.putExtra("type", videoContent.getType());
+                    intent.putExtra("type", "T");
                     intent.putExtra("thumbImage", videoContent.getThumbnailUrl());
                     intent.putExtra("poster_url", videoContent.getImageLink());
                     intent.putExtra("title", videoContent.getTitle());

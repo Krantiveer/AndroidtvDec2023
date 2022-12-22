@@ -381,22 +381,6 @@
                         android:visibility="gone"
                         tools:text="Browse all Seasons and Episodes"
                         tools:visibility="visible" />
-                    <androidx.fragment.app.FragmentContainerView
-                        android:id="@+id/detailsFragment"
-                        android:name="com.ott.tv.fragments.DetailsFragment"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/transparent"
-                        tools:context="com.ott.tv.ui.activity.DetailsActivityPhando"
-                        tools:layout="@layout/banner_home_list_item_movies" />
-                    <androidx.fragment.app.FragmentContainerView
-                        android:id="@+id/detailsFragment"
-                        android:name="com.ott.tv.fragments.DetailsFragment"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/transparent"
-                        tools:context="com.ott.tv.ui.activity.DetailsActivityPhando"
-                        tools:layout="@layout/banner_home_list_item_movies" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/imgFavList"
@@ -434,6 +418,14 @@
                                                 tools:context="com.ott.tv.ui.activity.DetailsActivityPhando" />
                     -->
                 </LinearLayout>
+              <androidx.fragment.app.FragmentContainerView
+                        android:id="@+id/detailsFragment"
+                        android:name="com.ott.tv.fragments.DetailsFragment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        tools:context="com.ott.tv.ui.activity.DetailsActivityPhando"
+                        tools:layout="@layout/banner_home_list_item_movies" />
 
                 <RelativeLayout
                     android:id="@+id/rlplayer"

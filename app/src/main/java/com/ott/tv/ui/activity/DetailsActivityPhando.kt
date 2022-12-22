@@ -100,7 +100,8 @@ class DetailsActivityPhando : FragmentActivity() {
     private var language_tv: TextView? = null
     private var maturity_rating_tv: TextView? = null
     private var genres_tv: TextView? = null
- //   private var tv_related: TextView? = null
+
+    //   private var tv_related: TextView? = null
     var type: String? = null
     val seasonList: MutableList<String> = ArrayList()
     var epList: MutableList<EpiModel> = ArrayList()
@@ -158,9 +159,10 @@ class DetailsActivityPhando : FragmentActivity() {
         thumbnail_image = findViewById(R.id.thumbnail_image)
         premiumIconImage = findViewById(R.id.premiumIcon)
         tvWatchTrailer = findViewById(R.id.tvWatchTrailer)
-       // tv_related = findViewById(R.id.tv_related)
+        // tv_related = findViewById(R.id.tv_related)
 
-        detailsFragment = supportFragmentManager.findFragmentById(R.id.detailsFragment) as DetailsFragment
+        detailsFragment =
+            supportFragmentManager.findFragmentById(R.id.detailsFragment) as DetailsFragment
 
 
         contentFromPreviousScreen()
@@ -537,12 +539,13 @@ class DetailsActivityPhando : FragmentActivity() {
         }
         if (trailer_url != null && !trailer_url!!.isEmpty()) {
 
-            if(BuildConfig.FLAVOR.equals("solidtv") || BuildConfig.FLAVOR.equals("kaafaltv")){
+            if (BuildConfig.FLAVOR.equals("solidtv") || BuildConfig.FLAVOR.equals("kaafaltv")) {
                 tvWatchTrailer!!.visibility = View.GONE
 
-            }else {
+            } else {
                 tvWatchTrailer!!.visibility = View.VISIBLE
-            }} else {
+            }
+        } else {
             tvWatchTrailer!!.visibility = View.GONE
         }
     }
@@ -617,7 +620,7 @@ class DetailsActivityPhando : FragmentActivity() {
             video.title = title
             video.description = description
             video.videoType = Config.VideoURLTypeHls
-           // video.subtitle = singleDetails?.subtitle
+            // video.subtitle = singleDetails?.subtitle
 
             if (type == "M") {
                 video.category = "movie"
@@ -719,9 +722,11 @@ class DetailsActivityPhando : FragmentActivity() {
                         if (singleDetails!!.list.related.size > 0) {
                             //        detailsData=singleDetails
                             //----related post---------------
-                            if(BuildConfig.FLAVOR.equals("solidtv") ||BuildConfig.FLAVOR.equals("kaafaltv")){}else{
-                            detailsFragment!!.requireView().visibility == View.VISIBLE
-                            detailsFragment!!.setData()}
+                            if (BuildConfig.FLAVOR.equals("solidtv") || BuildConfig.FLAVOR.equals("kaafaltv")) {
+                            } else {
+                                detailsFragment!!.requireView().visibility == View.VISIBLE
+                                detailsFragment!!.setData()
+                            }
 
                         } else {
                             detailsFragment!!.requireView().visibility == View.INVISIBLE
@@ -874,7 +879,14 @@ class DetailsActivityPhando : FragmentActivity() {
         if (singleDetails!!.list.media_url != null) {
             tvWatchNow!!.text = "Watch Now"
         }
-
+       /* if (singleDetails!!.list.duration_str.isNullOrEmpty()) {
+            duration_time!!.text = singleDetails!!.list.duration_str
+            duration_time!!.setVisibility(View.VISIBLE)
+            content_duration_image!!.setVisibility(View.VISIBLE)
+        } else {
+            duration_time!!.setVisibility(View.GONE)
+            content_duration_image!!.setVisibility(View.GONE)
+        }*/
         /*
         if (singleDetails.video_view_type != null && singleDetails.video_view_type.equalsIgnoreCase("Subscription Based")) {
             if (PreferenceUtils.isActivePlan(DetailsActivityPhando.this)) {
@@ -954,9 +966,9 @@ class DetailsActivityPhando : FragmentActivity() {
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-       /* if (keyCode == 22) {
-            if (tvWatchNow!!.hasFocus()&&tvWatchNow) {
-             *//*   tvWatchTrailer!!.requestFocus()
+        /* if (keyCode == 22) {
+             if (tvWatchNow!!.hasFocus()&&tvWatchNow) {
+              *//*   tvWatchTrailer!!.requestFocus()
                 tvWatchTrailer!!.isFocusable = true*//*
             }
         }*/
@@ -977,7 +989,6 @@ class DetailsActivityPhando : FragmentActivity() {
             KeyEvent.KEYCODE_DPAD_DOWN_RIGHT -> return false
         }
         return super.onKeyDown(keyCode, event)
-
 
 
     }

@@ -185,7 +185,7 @@ public class LoginActivity extends Activity {
                                 db.updateActiveStatus(activeStatus, 1);
                             }
                         }
-                        Intent intent = new Intent(LoginActivity.this, LeanbackActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, NewMainActivity.class);
                         startActivity(intent);
                         finishAffinity();
                         overridePendingTransition(R.anim.enter, R.anim.exit);

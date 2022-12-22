@@ -317,6 +317,7 @@ public class LoginMobileActivity extends Activity {
                         progressBar.setVisibility(View.GONE);
                         ll_send_otp.setVisibility(View.GONE);
                         ll_verify_otp.setVisibility(View.VISIBLE);
+                        editVerifiedOTP.requestFocus();
                         startTimer();
 
                     } else {

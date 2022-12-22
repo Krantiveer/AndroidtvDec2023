@@ -1,16 +1,12 @@
 package com.ott.tv.fragments
 
-import android.R
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ott.tv.Constants
@@ -30,7 +26,7 @@ import java.security.AccessController
 
 class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
     private lateinit var binding: FragmentMenuBinding
-    var isHome : Boolean = false
+    var isHome: Boolean = false
     //val activity = requireActivity() as NewMainActivity
     //   val activity = requireActivity() as NewMainActivity
 
@@ -54,7 +50,7 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
             if (!hasFocus) {
                 val activity = requireActivity() as NewMainActivity
                 activity.onMenuFocus(false)
-              //  binding.imgHome.requestFocus()
+                //  binding.imgHome.requestFocus()
 
             } else {
                 val activity = requireActivity() as NewMainActivity
@@ -74,6 +70,7 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
 
 
     }
+
     private fun fetchCategory() {
         val retrofit = RetrofitClient.getRetrofitInstance()
         val api = retrofit.create(Dashboard::class.java)
@@ -91,6 +88,7 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
                     menu = response.body()
 
                     setAdapter()
+                    // adapter.setEmployees(employees)
                     /* binding.menuRecycler.apply {
                          *//*adapter = MenuListAdapter(requireActivity(), menu!!, object : ICallback {
                                 override fun delegate(any: Any) {
@@ -152,6 +150,7 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
             }
         })
     }
+
     private fun setAdapter() {
 
         val mListAdapter = MenuListAdapter(requireContext(), menu!!, this, object : ICallback {
@@ -169,7 +168,10 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
             LinearLayoutManager(requireContext())
         binding.menuRecycler.adapter = mListAdapter
     }
+
     override fun onItemClick(data: CategoryType) {
+        Log.d("Clicking Event21", "binder: clicked"+data)
+
         Log.e("@@log", data.displayName + data.type + data.isFocused)
         val activity = requireActivity() as NewMainActivity
         activity.onMenuSelection(data.type.toString(), data.displayName)
