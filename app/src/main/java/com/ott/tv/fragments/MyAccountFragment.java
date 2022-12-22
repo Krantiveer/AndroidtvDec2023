@@ -109,8 +109,8 @@ public class MyAccountFragment extends Fragment {
 
                             Glide.with(requireActivity())
                                     .load(userProfile.getUser().getImage())
-                                    .error(R.drawable.user_image)
-                                    .placeholder(R.drawable.user_image)
+                                    .error(R.drawable.user_icon_demo)
+                                    .placeholder(R.drawable.user_icon_demo)
                                     .into(binding.imguser);
 
                             binding.userName.setText(userProfile.getUser().getName());

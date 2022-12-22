@@ -107,9 +107,6 @@ public class FavouriteFragment extends VerticalGridSupportFragment {
             fetch_FavouriteData();
             }
 
-
-
-
     }
 
     // click listener

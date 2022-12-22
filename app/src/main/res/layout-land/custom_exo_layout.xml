@@ -104,7 +104,6 @@
                 android:background="@drawable/round_ll_exoplayer"
                 android:contentDescription="TODO"
                 android:padding="@dimen/padding_of_controller_button" />
-
             <ImageButton
                 android:id="@+id/exo_ffwd"
                 style="@style/ExoMediaButton.FastForward"

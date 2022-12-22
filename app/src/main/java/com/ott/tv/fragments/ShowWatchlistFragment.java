@@ -53,6 +53,12 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
     private String datatype = "";
     private LeanbackActivity activity;
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        setupFragment("");
+       // fetchMovieData();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -111,6 +117,7 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
             @Override
             public void onResponse(@NonNull Call<List<ShowWatchlist>> call, @NonNull Response<List<ShowWatchlist>> response) {
                 if (response.code() == 200) {
+
                     List<ShowWatchlist> movieList = response.body();
                     assert movieList != null;
                     if (movieList.size() <= 0) {
@@ -135,6 +142,8 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
             }
         });
     }
+
+
 /*
     private void fetchMovieData(String id, int pageCount) {
 
@@ -276,7 +285,12 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
         movies = new ArrayList<>();
         pageCount = 1;
         dataAvailable = true;
+       // fetchMovieData();
 
     }
+
+
+
+
 
 }

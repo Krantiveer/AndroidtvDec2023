@@ -571,7 +571,6 @@
                 android:paddingStart="@dimen/_50sdp"
                 android:paddingTop="@dimen/_20sdp"
                 android:text="@string/movie_title"
-
                 android:textColor="@color/detailTitle"
                 android:textSize="32sp" />
 
@@ -614,7 +613,6 @@
                         android:id="@+id/rv_EpisodeList"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-
                         android:backgroundTint="@color/black_color"
                         android:focusable="true"
                         tools:itemCount="4"

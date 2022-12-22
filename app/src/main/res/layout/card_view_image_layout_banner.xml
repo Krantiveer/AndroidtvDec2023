@@ -56,13 +56,13 @@
 
             <ImageView
                 android:id="@+id/premiumIconImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="end"
                 android:layout_margin="6sp"
                 android:contentDescription="@string/contentDescription"
-                android:src="@drawable/prime_icon" />
+                android:src="@drawable/ic_premium" />
 
         </RelativeLayout>
         <ImageView
