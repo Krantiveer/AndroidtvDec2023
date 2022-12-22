@@ -46,7 +46,6 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
     private int pageCount = 1;
     private boolean dataAvailable = true;
     private CardPresenter cardPresenter;
-
     private Context mContext;
     private String title;
     private String id = "";
