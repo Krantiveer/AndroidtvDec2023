@@ -729,7 +729,7 @@ class DetailsActivityPhando : FragmentActivity() {
                             }
 
                         } else {
-                            detailsFragment!!.requireView().visibility == View.INVISIBLE
+                            detailsFragment!!.requireView().visibility == View.GONE
                             //      tv_related!!.visibility = View.GONE
                             // rvRelated!!.visibility = View.GONE
                         }
@@ -972,14 +972,22 @@ class DetailsActivityPhando : FragmentActivity() {
                 tvWatchTrailer!!.isFocusable = true*//*
             }
         }*/
+        if(KeyEvent.KEYCODE_DPAD_UP==keyCode){
+        tvWatchNow?.requestFocus()  /*if(detailsFragment?.isVisible==visible){
 
+
+
+            }*/
+        }
+        Log.e("DetailActivityPhando", "movieIndex : "+keyCode+detailsFragment?.isVisible)
         when (keyCode) {
+
             KeyEvent.KEYCODE_BACK -> onBackPressed()
             KeyEvent.KEYCODE_DPAD_CENTER -> return false
             KeyEvent.KEYCODE_DPAD_LEFT -> return false
             KeyEvent.KEYCODE_DPAD_RIGHT -> return false
             KeyEvent.KEYCODE_DPAD_UP -> {
-                Log.e("SPLASH ACTIVITY", "movieIndex : ")
+                Log.e("DetailActivityPhando", "movieIndex : ")
                 return false
             }
             KeyEvent.KEYCODE_DPAD_UP_LEFT -> return false

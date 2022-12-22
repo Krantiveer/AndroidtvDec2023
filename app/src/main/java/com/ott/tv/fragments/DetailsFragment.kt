@@ -43,7 +43,7 @@ class DetailsFragment : BrowseSupportFragment() {
     }
 
     fun setData() {
-        var listRowPresenter = ListRowPresenter(FocusHighlight.ZOOM_FACTOR_NONE, false)
+        var listRowPresenter = ListRowPresenter(FocusHighlight.ZOOM_FACTOR_NONE, true)
         listRowPresenter.selectEffectEnabled = false
         rowAdapter = ArrayObjectAdapter(listRowPresenter)
 

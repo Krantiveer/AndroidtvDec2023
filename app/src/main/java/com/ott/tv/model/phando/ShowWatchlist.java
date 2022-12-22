@@ -6,6 +6,7 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.ott.tv.model.home_content.GenreResource;
 import com.ott.tv.model.home_content.LatestMovieSingleDetailList;
 
 import java.util.List;
@@ -17,18 +18,42 @@ public class ShowWatchlist implements Parcelable{
     @SerializedName("title")
     @Expose
     private String title;
+    @SerializedName("description")
+    @Expose
+    private String description;
+
     @SerializedName("thumbnail")
     @Expose
     private String thumbnail;
+
+    @SerializedName("thumbnail_vertical")
+    @Expose
+    private String thumbnail_vertical;
+
+    @SerializedName("circular_thumbnail")
+    @Expose
+    private String circular_thumbnail;
+
     @SerializedName("poster")
     @Expose
     private String poster;
+
+    @SerializedName("poster_vertical")
+    @Expose
+    private String poster_vertical;
+
+    @SerializedName("created_at")
+    @Expose
+    private String created_at;
     @SerializedName("is_free")
     @Expose
     private Integer is_free;
     @SerializedName("is_live")
     @Expose
     private Integer is_live;
+    @SerializedName("phando_media_id")
+    @Expose
+    private String phando_media_id;
     @SerializedName("type")
     @Expose
     private String type;
@@ -52,21 +77,31 @@ public class ShowWatchlist implements Parcelable{
     @Expose
     private Integer duration;
 
+    @SerializedName("duration_str")
+    @Expose
+    private String duration_str;
+
     @SerializedName("release_date")
     @Expose
     private String release_date;
+    @SerializedName("language_str")
+    @Expose
+    private String language_str;
 
     @SerializedName("publish_year")
     @Expose
     private Integer publish_year;
 
-    @SerializedName("language_str")
+    @SerializedName("last_watch_time")
     @Expose
-    private String language_str;
-    @SerializedName("duration_str")
+    private Integer last_watch_time;
+    @SerializedName("is_active")
     @Expose
-    private String duration_str;
+    private Integer is_active;
 
+    @SerializedName("genres_resource")
+    @Expose
+    private List<GenreResource> list = null;
     @SerializedName("trailers")
     @Expose
     private List<LatestMovieSingleDetailList> trailers = null;
@@ -81,8 +116,13 @@ public class ShowWatchlist implements Parcelable{
             id = in.readInt();
         }
         title = in.readString();
+        description = in.readString();
         thumbnail = in.readString();
+        thumbnail_vertical = in.readString();
+        circular_thumbnail = in.readString();
         poster = in.readString();
+        poster_vertical = in.readString();
+        created_at = in.readString();
         if (in.readByte() == 0) {
             is_free = null;
         } else {
@@ -93,6 +133,7 @@ public class ShowWatchlist implements Parcelable{
         } else {
             is_live = in.readInt();
         }
+        phando_media_id = in.readString();
         type = in.readString();
         if (in.readByte() == 0) {
             price = null;
@@ -112,14 +153,24 @@ public class ShowWatchlist implements Parcelable{
         } else {
             duration = in.readInt();
         }
+        duration_str = in.readString();
         release_date = in.readString();
+        language_str = in.readString();
         if (in.readByte() == 0) {
             publish_year = null;
         } else {
             publish_year = in.readInt();
         }
-        language_str = in.readString();
-        duration_str = in.readString();
+        if (in.readByte() == 0) {
+            last_watch_time = null;
+        } else {
+            last_watch_time = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            is_active = null;
+        } else {
+            is_active = in.readInt();
+        }
         trailers = in.createTypedArrayList(LatestMovieSingleDetailList.CREATOR);
         genres = in.createStringArrayList();
     }
@@ -152,6 +203,14 @@ public class ShowWatchlist implements Parcelable{
         this.title = title;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getThumbnail() {
         return thumbnail;
     }
@@ -160,12 +219,44 @@ public class ShowWatchlist implements Parcelable{
         this.thumbnail = thumbnail;
     }
 
+    public String getThumbnail_vertical() {
+        return thumbnail_vertical;
+    }
+
+    public void setThumbnail_vertical(String thumbnail_vertical) {
+        this.thumbnail_vertical = thumbnail_vertical;
+    }
+
+    public String getCircular_thumbnail() {
+        return circular_thumbnail;
+    }
+
+    public void setCircular_thumbnail(String circular_thumbnail) {
+        this.circular_thumbnail = circular_thumbnail;
+    }
+
     public String getPoster() {
         return poster;
     }
 
     public void setPoster(String poster) {
         this.poster = poster;
+    }
+
+    public String getPoster_vertical() {
+        return poster_vertical;
+    }
+
+    public void setPoster_vertical(String poster_vertical) {
+        this.poster_vertical = poster_vertical;
+    }
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
     }
 
     public Integer getIs_free() {
@@ -182,6 +273,14 @@ public class ShowWatchlist implements Parcelable{
 
     public void setIs_live(Integer is_live) {
         this.is_live = is_live;
+    }
+
+    public String getPhando_media_id() {
+        return phando_media_id;
+    }
+
+    public void setPhando_media_id(String phando_media_id) {
+        this.phando_media_id = phando_media_id;
     }
 
     public String getType() {
@@ -240,20 +339,20 @@ public class ShowWatchlist implements Parcelable{
         this.duration = duration;
     }
 
+    public String getDuration_str() {
+        return duration_str;
+    }
+
+    public void setDuration_str(String duration_str) {
+        this.duration_str = duration_str;
+    }
+
     public String getRelease_date() {
         return release_date;
     }
 
     public void setRelease_date(String release_date) {
         this.release_date = release_date;
-    }
-
-    public Integer getPublish_year() {
-        return publish_year;
-    }
-
-    public void setPublish_year(Integer publish_year) {
-        this.publish_year = publish_year;
     }
 
     public String getLanguage_str() {
@@ -264,12 +363,36 @@ public class ShowWatchlist implements Parcelable{
         this.language_str = language_str;
     }
 
-    public String getDuration_str() {
-        return duration_str;
+    public Integer getPublish_year() {
+        return publish_year;
     }
 
-    public void setDuration_str(String duration_str) {
-        this.duration_str = duration_str;
+    public void setPublish_year(Integer publish_year) {
+        this.publish_year = publish_year;
+    }
+
+    public Integer getLast_watch_time() {
+        return last_watch_time;
+    }
+
+    public void setLast_watch_time(Integer last_watch_time) {
+        this.last_watch_time = last_watch_time;
+    }
+
+    public Integer getIs_active() {
+        return is_active;
+    }
+
+    public void setIs_active(Integer is_active) {
+        this.is_active = is_active;
+    }
+
+    public List<GenreResource> getList() {
+        return list;
+    }
+
+    public void setList(List<GenreResource> list) {
+        this.list = list;
     }
 
     public List<LatestMovieSingleDetailList> getTrailers() {
@@ -302,8 +425,13 @@ public class ShowWatchlist implements Parcelable{
             dest.writeInt(id);
         }
         dest.writeString(title);
+        dest.writeString(description);
         dest.writeString(thumbnail);
+        dest.writeString(thumbnail_vertical);
+        dest.writeString(circular_thumbnail);
         dest.writeString(poster);
+        dest.writeString(poster_vertical);
+        dest.writeString(created_at);
         if (is_free == null) {
             dest.writeByte((byte) 0);
         } else {
@@ -316,6 +444,7 @@ public class ShowWatchlist implements Parcelable{
             dest.writeByte((byte) 1);
             dest.writeInt(is_live);
         }
+        dest.writeString(phando_media_id);
         dest.writeString(type);
         if (price == null) {
             dest.writeByte((byte) 0);
@@ -338,15 +467,27 @@ public class ShowWatchlist implements Parcelable{
             dest.writeByte((byte) 1);
             dest.writeInt(duration);
         }
+        dest.writeString(duration_str);
         dest.writeString(release_date);
+        dest.writeString(language_str);
         if (publish_year == null) {
             dest.writeByte((byte) 0);
         } else {
             dest.writeByte((byte) 1);
             dest.writeInt(publish_year);
         }
-        dest.writeString(language_str);
-        dest.writeString(duration_str);
+        if (last_watch_time == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(last_watch_time);
+        }
+        if (is_active == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(is_active);
+        }
         dest.writeTypedList(trailers);
         dest.writeStringList(genres);
     }

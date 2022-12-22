@@ -244,6 +244,7 @@
                     android:paddingEnd="20dp"
                     android:text="Login with Email"
                     android:textAllCaps="false"
+                    android:defaultFocusHighlightEnabled="true"
                     android:textColor="@color/btn_txt_color"
                     android:textSize="@dimen/_16sdp" />
 
