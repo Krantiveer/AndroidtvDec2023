@@ -879,14 +879,14 @@ class DetailsActivityPhando : FragmentActivity() {
         if (singleDetails!!.list.media_url != null) {
             tvWatchNow!!.text = "Watch Now"
         }
-       /* if (singleDetails!!.list.duration_str.isNullOrEmpty()) {
-            duration_time!!.text = singleDetails!!.list.duration_str
-            duration_time!!.setVisibility(View.VISIBLE)
-            content_duration_image!!.setVisibility(View.VISIBLE)
-        } else {
-            duration_time!!.setVisibility(View.GONE)
-            content_duration_image!!.setVisibility(View.GONE)
-        }*/
+        /* if (singleDetails!!.list.duration_str.isNullOrEmpty()) {
+             duration_time!!.text = singleDetails!!.list.duration_str
+             duration_time!!.setVisibility(View.VISIBLE)
+             content_duration_image!!.setVisibility(View.VISIBLE)
+         } else {
+             duration_time!!.setVisibility(View.GONE)
+             content_duration_image!!.setVisibility(View.GONE)
+         }*/
         /*
         if (singleDetails.video_view_type != null && singleDetails.video_view_type.equalsIgnoreCase("Subscription Based")) {
             if (PreferenceUtils.isActivePlan(DetailsActivityPhando.this)) {
@@ -972,14 +972,14 @@ class DetailsActivityPhando : FragmentActivity() {
                 tvWatchTrailer!!.isFocusable = true*//*
             }
         }*/
-        if(KeyEvent.KEYCODE_DPAD_UP==keyCode){
-        tvWatchNow?.requestFocus()  /*if(detailsFragment?.isVisible==visible){
+        if (KeyEvent.KEYCODE_DPAD_UP == keyCode) {
+            tvWatchNow?.requestFocus()
+            /*if(detailsFragment?.isVisible==visible){
 
 
-
-            }*/
+                }*/
         }
-        Log.e("DetailActivityPhando", "movieIndex : "+keyCode+detailsFragment?.isVisible)
+        Log.e("DetailActivityPhando", "movieIndex : " + keyCode + detailsFragment?.isVisible)
         when (keyCode) {
 
             KeyEvent.KEYCODE_BACK -> onBackPressed()

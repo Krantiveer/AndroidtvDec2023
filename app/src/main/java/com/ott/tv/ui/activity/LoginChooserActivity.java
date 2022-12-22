@@ -21,6 +21,7 @@ import com.firebase.ui.auth.IdpResponse;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import com.ott.tv.BuildConfig;
 import com.ott.tv.Config;
 import com.ott.tv.Constants;
 import com.ott.tv.R;
@@ -520,8 +521,11 @@ public class LoginChooserActivity extends Activity {
 
         handlerqr.removeCallbacksAndMessages(null);
         handler.removeCallbacksAndMessages(null);
-        CallHandler();
-        CallHandlerQrCode();
+        if(BuildConfig.FLAVOR.equalsIgnoreCase("kaafaltv")||BuildConfig.FLAVOR.equalsIgnoreCase("solidtv")){
+        }else{
+            CallHandler();
+            CallHandlerQrCode();
+        }
 
 
     }

@@ -55,6 +55,7 @@
                     android:id="@+id/details_overview_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_30sdp"
                     android:layout_marginEnd="@dimen/lb_details_overview_description_margin_end"
                     android:clipChildren="false"
                     android:clipToPadding="false"

@@ -19,6 +19,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
+import com.ott.tv.BuildConfig;
 import com.ott.tv.Config;
 import com.ott.tv.Constants;
 import com.ott.tv.R;
@@ -78,13 +79,15 @@ public class LoginMobileActivity extends Activity {
         mobile_code_in = findViewById(R.id.mobile_code_in);
         tv_verify_otp_mobileNo = findViewById(R.id.tv_verify_otp_mobileNo);
         editVerifiedOTP = findViewById(R.id.editVerifiedOTP);
+        if(BuildConfig.FLAVOR.equalsIgnoreCase("kaafaltv")||BuildConfig.FLAVOR.equalsIgnoreCase("solidtv")){
+        }else{
         mobile_code_in.setOnClickListener(view -> {
 
             Intent i = new Intent(this, CountryCodeActivity.class);
             startActivity(i);
 
 
-        });
+        });}
         countryCode = PreferenceUtils.getInstance().getCountyCodePref(getApplicationContext());
         countryName = PreferenceUtils.getInstance().getCountyNamePref(getApplicationContext());
 

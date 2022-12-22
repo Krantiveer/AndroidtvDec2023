@@ -263,7 +263,7 @@
                     android:background="@drawable/edit_focus"
                     android:drawableEnd="@drawable/ic_drop_down"
                     android:drawablePadding="@dimen/_30sdp"
-                    android:focusable="true"
+
                     android:padding="10dp"
                     android:paddingEnd="@dimen/_17sdp"
                     android:text="@string/_91"
@@ -272,7 +272,7 @@
 
 
                 <EditText
-
+                    android:focusable="true"
                     android:textSize="@dimen/_16sdp"
                     android:id="@+id/editMobileNumber"
                     android:layout_width="match_parent"
