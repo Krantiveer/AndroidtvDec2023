@@ -173,7 +173,7 @@ class DetailsActivityPhando : FragmentActivity() {
             ) {
                 premiumIconImage!!.setVisibility(View.VISIBLE)
             } else {
-                premiumIconImage!!.setVisibility(View.GONE)
+                premiumIconImage!!.setVisibility(View.INVISIBLE)
             }
         }
         updateBackgroundThumnail(thumbUrl)

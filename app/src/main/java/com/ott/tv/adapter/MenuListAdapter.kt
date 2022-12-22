@@ -213,7 +213,7 @@ class MenuListAdapter(
                 Log.d("Clicking Event4", "binder: clicked"+dataList[position])
                 binding.icon.imageTintList =
                     ColorStateList.valueOf(context.getColor(R.color.main_color))
-                if (checkedPosition != adapterPosition) {
+                if (checkedPosition != absoluteAdapterPosition) {
                     notifyItemChanged(checkedPosition)
                     checkedPosition = adapterPosition
                 }
