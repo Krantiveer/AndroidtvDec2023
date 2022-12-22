@@ -109,7 +109,6 @@ public class HomeBannerAdapter extends RecyclerView.Adapter<HomeBannerAdapter.Vi
             });
         }
     }
-
     private void detailActivity(Video video) {
         Video videoContent = video;
         if (videoContent.getActionType() != null) {

@@ -477,13 +477,10 @@ public class DetailsActivity extends FragmentActivity {
         tvDurationTime.setText(tvDurationTime_value);
         if (tvVideoQuality != null && tvVideoQuality.equalsIgnoreCase("hd"))
             tvVideoQualityType.setVisibility(VISIBLE);
-        else
-            tvVideoQualityType.setVisibility(GONE);
+        else tvVideoQualityType.setVisibility(GONE);
     /*
             tvDurationTime.setText("tvDurationTime_value.toString()");
     */
-
-
         if (singleDetails.tv_banner_image != null && !singleDetails.tv_banner_image.isEmpty()) {
             setBannerImage(singleDetails.tv_banner_image);
         }
