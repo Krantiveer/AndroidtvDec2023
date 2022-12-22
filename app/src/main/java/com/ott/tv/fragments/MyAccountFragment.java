@@ -64,12 +64,9 @@ public class MyAccountFragment extends Fragment {
     public MyAccountFragment() {
 
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
         binding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_my_account, container, false);
         View view = binding.getRoot();
@@ -136,22 +133,21 @@ public class MyAccountFragment extends Fragment {
 
                             }
                             if (userProfile.getIs_subscribed() ==0) {
-
                                 binding.tvnoPlan.setVisibility(View.VISIBLE);
                                 binding.userSubId.setVisibility(View.INVISIBLE);
                                 binding.lytPlan.setVisibility(View.GONE);
                                 binding.lytPlan2.setVisibility(View.GONE);
                                 binding.myPackageName.setVisibility(View.GONE);
                                 binding.myPackagePrice.setVisibility(View.GONE);
-                            }  else  {
-                                Log.e("@@packageName", userProfile.getPackage_name()+"sdsd");
+                            }
+                            else
+                            {
                                 binding.userSubId.setVisibility(View.VISIBLE);
                                 binding.myPackageName.setVisibility(View.VISIBLE);
                                 binding.myPackagePrice.setVisibility(View.VISIBLE);
                                 binding.userSubId.setText("Subscriber ID : " +userProfile.getCurrent_subscription().getId());
                                 binding.myPackageName.setText(userProfile.getPackage_name());
                                 binding.myPackagePrice.setText("Rs. " +userProfile.getCurrent_subscription().getPrice().toString());
-
                                 binding.tvnoPlan.setVisibility(View.GONE);
                                 binding.lytPlan.setVisibility(View.VISIBLE);
                                 binding.lytPlan2.setVisibility(View.VISIBLE);
@@ -159,14 +155,9 @@ public class MyAccountFragment extends Fragment {
                                     binding.myPackageDateTime.setText("Expires on " + userProfile.getsubscription_end_date());
                                 }
                             }
-
                             if (userProfile.getUser().getMobile() != null) {
-
                                 binding.tvMobileNumber.setText(userProfile.getUser().getMobile());
                             }
-
-
-
                         } else if (response.errorBody() != null) {
                             Toast.makeText(getContext(), response.errorBody().toString(), Toast.LENGTH_SHORT).show();
 

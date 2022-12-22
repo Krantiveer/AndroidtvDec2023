@@ -92,7 +92,7 @@ public class LoginMobileActivity extends Activity {
 
         timer = findViewById(R.id.timer);
         timer_txt = findViewById(R.id.timer_txt);
-        timer_txt.setText("Didn't receive OTP? Resend in");
+        timer_txt.setText("Didn't receive OTP? Resend in ");
         //  tv_timer=findViewById(R.id.tv_timer);
         bt_resend = findViewById(R.id.bt_resend);
 
@@ -131,16 +131,13 @@ public class LoginMobileActivity extends Activity {
 
             }
         });
-
     }
-
     void startTimer() {
         cTimer = new CountDownTimer(59000, 1000) {
             public void onTick(long millisUntilFinished) {
                 timer_txt.setText("Didn't receive OTP? Resend in");
-                timer.setText("00:" + String.valueOf(millisUntilFinished / 1000));
+                timer.setText(" 00:" + String.valueOf(millisUntilFinished / 1000));
             }
-
             public void onFinish() {
                 timer_txt.setText("Didn't receive OTP?");
                 timer.setVisibility(View.GONE);

@@ -208,7 +208,7 @@
     <string name="country_name_default">India</string>
     <string name="uvtv_state_name_default">Select State</string>
     <string name="enter_otp">Enter OTP</string>
-    <string name="qrCodeUrl">https://uvplay.com/mytv</string>
+    <string name="qrCodeUrl">https://uvplay.com/mytv </string>
     <string name="browse_all_seasons_and_episodes">Browse all Seasons &amp; Episodes</string>
 
 

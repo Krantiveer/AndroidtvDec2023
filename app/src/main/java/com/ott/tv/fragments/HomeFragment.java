@@ -246,7 +246,6 @@ public class HomeFragment extends RowsSupportFragment {
             }
             //for (int j = 0; j < NUM_COLS; j++) {
             for (int j = 0; j < homeContents.size(); j++) {
-
                 LatestTvseries videoContent = homeContents.get(i);
                 videoContent.setType("tv");
                 listRowAdapter.add(videoContent);
@@ -338,9 +337,6 @@ public class HomeFragment extends RowsSupportFragment {
             getView().setPadding(20, 40, 10, -500);
         }
     }
-
-    // click listener
-
     private OnItemViewClickedListener getDefaultItemViewClickedListener() {
         return (viewHolder, o, viewHolder2, row) -> {
             if (getActivity() != null && getContext() != null) {
@@ -638,8 +634,6 @@ public class HomeFragment extends RowsSupportFragment {
 
         };
     }
-
-    //listener for setting blur background each time when the item will select.
     protected OnItemViewSelectedListener getDefaultItemSelectedListener() {
         return (itemViewHolder, item, rowViewHolder, row) -> {
             if (getActivity() != null) {

@@ -32,41 +32,40 @@
                 android:textSize="@dimen/_30sdp" />
 
 
-                <EditText
-                    android:id="@+id/edtsearch"
-                    android:layout_width="@dimen/_300sdp"
-                    android:layout_height="wrap_content"
-                    android:autofillHints=""
-                    android:layout_gravity="center"
-                    android:background="@drawable/edit_focus"
-                    android:contentDescription="@string/mr_button_content_description"
-                    android:inputType="text"
-                    android:hint="Type to Search..."
-                    android:maxLines="1"
-                    android:paddingStart="@dimen/_15sp"
-                    android:paddingTop="@dimen/_10sdp"
-                    android:paddingBottom="@dimen/_10sdp"
-                    android:layout_margin="@dimen/_30sdp"
-                    android:singleLine="true"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/default_text"
-                    tools:ignore="RtlSymmetry" />
+            <EditText
+                android:id="@+id/edtsearch"
+                android:layout_width="@dimen/_300sdp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_30sdp"
+                android:autofillHints=""
+                android:background="@drawable/edit_focus"
+                android:contentDescription="@string/mr_button_content_description"
+                android:hint="Type to Search..."
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingStart="@dimen/_15sp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/default_text"
+                tools:ignore="RtlSymmetry" />
 
-                <ImageButton
-                    android:id="@+id/btnsearch"
-                    android:layout_width="0dp"
-                    android:visibility="gone"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.15"
-                    android:background="@drawable/button_menu_normal"
-                    android:nextFocusLeft="@+id/edtsearch"
-                    android:src="@drawable/lb_ic_in_app_search" />
+            <ImageButton
+                android:id="@+id/btnsearch"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"
+                android:background="@drawable/button_menu_normal"
+                android:nextFocusLeft="@+id/edtsearch"
+                android:src="@drawable/lb_ic_in_app_search"
+                android:visibility="gone" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-             >
+                android:layout_height="wrap_content">
 
                 <fragment
                     android:id="@+id/searchFragment"

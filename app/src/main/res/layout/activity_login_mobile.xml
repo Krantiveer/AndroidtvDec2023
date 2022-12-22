@@ -109,11 +109,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
-                    android:fontFamily="@font/poppins_regular"
+                    android:fontFamily="@font/roboto_light"
                     android:gravity="center"
-                    android:text="Enter OTP sent to"
+                    android:text=" Enter OTP sent to"
                     android:textColor="@color/textcolor"
-
                     android:textSize="26sp" />
 
                 <TextView
@@ -121,15 +120,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
-                    android:fontFamily="@font/poppins_regular"
+                    android:fontFamily="@font/roboto_light"
                     android:gravity="center"
                     android:text="@string/mobile_number"
                     android:textColor="@color/textcolor"
-
                     android:textSize="26sp" />
 
 
                 <EditText
+                    android:textSize="@dimen/_16sdp"
+                    android:fontFamily="@font/roboto_regular"
                     android:id="@+id/editVerifiedOTP"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -150,6 +150,7 @@
                     tools:ignore="RtlSymmetry" />
 
                 <Button
+                    android:fontFamily="@font/roboto_medium"
                     android:id="@+id/bt_verified_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -161,44 +162,47 @@
                     android:text="@string/login"
                     android:textAllCaps="false"
                     android:textColor="@color/btn_txt_color"
-                    android:textSize="@dimen/_14sp" />
+                    android:textSize="@dimen/_16sdp" />
 
                 <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/_20sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_12sdp">
+                   >
 
                     <TextView
+
+                        android:fontFamily="@font/roboto_regular"
                         android:id="@+id/timer_txt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/_20sp"
-                        android:padding="@dimen/_10sdp"
                         android:text="Didn't receive OTP? Resend in"
-                        android:textSize="@dimen/_18sdp" />
+                        android:textSize="@dimen/_14sdp" />
 
                     <TextView
+                        android:fontFamily="@font/roboto_medium"
                         android:id="@+id/timer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/_20sp"
-                        android:padding="@dimen/_10sdp"
-                        android:text="00"
+                        android:text=""
                         android:textColor="@color/colorGold"
-                        android:textSize="@dimen/_18sdp" />
+                        android:textSize="@dimen/_14sdp" />
 
                     <Button
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/roboto_medium"
                         android:id="@+id/bt_resend"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/_35sdp"
                         android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/_20sdp"
                         android:background="@drawable/button_focus_resend"
                         android:text="Resend"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_18sdp"
+                        android:textSize="@dimen/_16sdp"
                         android:visibility="gone"
                         tools:visibility="visible" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -229,10 +233,11 @@
                 tools:visibility="visible">
 
                 <TextView
+                    android:textStyle="normal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:fontFamily="@font/poppins_regular"
+                    android:fontFamily="@font/roboto_light"
                     android:gravity="center"
                     android:text="@string/login_with_mobile_number"
                     android:textColor="@color/textcolor"
@@ -248,6 +253,7 @@
                           android:hint="@string/email_address"
                           android:inputType="textEmailAddress" />-->
                 <TextView
+                    android:fontFamily="@font/roboto_regular"
                     android:id="@+id/mobile_code_in"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -260,10 +266,12 @@
                     android:paddingEnd="@dimen/_17sdp"
                     android:text="@string/_91"
                     android:textColor="@color/white"
-                    android:textSize="22sp" />
+                    android:textSize="@dimen/_16sdp" />
 
 
                 <EditText
+
+                    android:textSize="@dimen/_16sdp"
                     android:id="@+id/editMobileNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -281,8 +289,7 @@
                     android:singleLine="true"
                     android:textColor="@color/white"
                     android:textColorHint="@color/default_text"
-
-
+                    android:fontFamily="@font/roboto_regular"
                     tools:ignore="RtlSymmetry" />
 
                 <!--
@@ -317,6 +324,7 @@
                         android:text="@string/login" />-->
 
                 <Button
+                    android:fontFamily="@font/roboto_medium"
                     android:id="@+id/send_otp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -328,9 +336,11 @@
                     android:text="@string/send_otp"
                     android:textAllCaps="false"
                     android:textColor="@color/btn_txt_color"
-                    android:textSize="@dimen/_14sp" />
+                    android:textSize="@dimen/_16sdp" />
 
                 <Button
+                    android:textSize="@dimen/_16sdp"
+                    android:fontFamily="@font/roboto_medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"

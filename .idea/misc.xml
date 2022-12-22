@@ -20,14 +20,23 @@
         <entry key="..\:/Indu_Projects/action-ott-tv-android/app/src/main/res/layout/fragment_menu_header.xml" value="0.24270833333333333" />
         <entry key="..\:/Indu_Projects/action-ott-tv-android/app/src/main/res/layout/icon_header_item.xml" value="0.24270833333333333" />
         <entry key="..\:/Indu_Projects/action-ott-tv-android/app/src/main/res/layout/lb_rows_fragment.xml" value="0.176" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/uvtv-androidtv-app/app/src/actionott/res/drawable/button_focus_resend.xml" value="0.1695" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/uvtv-androidtv-app/app/src/main/res/drawable/curved_gold_bg.xml" value="0.173" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/uvtv-androidtv-app/app/src/main/res/drawable/or_login.xml" value="0.1695" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/uvtv-androidtv-app/app/src/main/res/drawable/prime_icon.xml" value="0.1875" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/uvtv-androidtv-app/app/src/main/res/drawable/round_ll_detail_button.xml" value="0.173" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/uvtv-androidtv-app/app/src/main/res/font/roboto_medium.xml" value="0.26484375" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/uvtv-androidtv-app/app/src/main/res/layout-land/activity_details_phando.xml" value="0.2532299741602067" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/uvtv-androidtv-app/app/src/main/res/layout-land/activity_login.xml" value="0.2532299741602067" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/uvtv-androidtv-app/app/src/main/res/layout-land/activity_login_chooser_with_qrcode.xml" value="0.2532299741602067" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/uvtv-androidtv-app/app/src/main/res/layout-land/activity_search_phando.xml" value="0.2532299741602067" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/uvtv-androidtv-app/app/src/main/res/layout-land/fragment_my_account.xml" value="0.2532299741602067" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/uvtv-androidtv-app/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/uvtv-androidtv-app/app/src/main/res/layout/activity_login_mobile.xml" value="0.2532299741602067" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/uvtv-androidtv-app/app/src/main/res/layout/activity_new_main.xml" value="0.1" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/uvtv-androidtv-app/app/src/main/res/layout/card_view_image_genrelayout.xml" value="0.1" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/uvtv-androidtv-app/app/src/main/res/layout/content_details_description.xml" value="0.2532299741602067" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/uvtv-androidtv-app/app/src/main/res/layout/details_description_overview_new.xml" value="0.2532299741602067" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/uvtv-androidtv-app/app/src/main/res/layout/fragment_menu.xml" value="0.1" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/uvtv-androidtv-app/app/src/main/res/layout/fragment_my_account.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/uvtv-androidtv-app/app/src/main/res/layout/headers_fragment.xml" value="0.2532299741602067" />

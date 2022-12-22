@@ -59,14 +59,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
-
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/imguser"
                             android:layout_gravity="center"
                             android:layout_width="@dimen/_50sdp"
                             android:layout_height="@dimen/_50sdp"
                             android:src="@drawable/user_image" />
-
 
                         <LinearLayout
 
