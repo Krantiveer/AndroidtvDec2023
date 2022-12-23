@@ -19,6 +19,7 @@ import com.ott.tv.ui.activity.SearchActivity_Phando.Companion.indexOfRow
 import com.ott.tv.ui.activity.SearchActivity_Phando.Companion.progressBar
 import com.ott.tv.ui.presenter.CardPresenter
 import com.ott.tv.ui.presenter.CardPresenterSearch
+import com.ott.tv.ui.presenter.CardPresenter_ShowRelatedVideo_vertical
 import com.ott.tv.utils.PreferenceUtils
 import retrofit2.Call
 import retrofit2.Callback
@@ -63,12 +64,12 @@ class SearchFragmentPhando : BrowseSupportFragment() {
                 if (response.code() == 200) {
 
 
-                    var listRowPresenter = ListRowPresenter(FocusHighlight.ZOOM_FACTOR_NONE, false)
+                    var listRowPresenter = ListRowPresenter(FocusHighlight.ZOOM_FACTOR_NONE, true)
                     listRowPresenter.selectEffectEnabled = false
                     rowAdapter = ArrayObjectAdapter(listRowPresenter)
 
 
-                    var cardPresenter = CardPresenterSearch()
+                    var cardPresenter = CardPresenter_ShowRelatedVideo_vertical()
                     cardRowAdapter = ArrayObjectAdapter(cardPresenter)
                     for (j in 0 until searchContent!!.size) {
                         indexOfRow = j
