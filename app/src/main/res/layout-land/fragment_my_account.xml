@@ -155,7 +155,7 @@
                         android:layout_width="@dimen/_100sdp"
                         android:layout_height="@dimen/_40sdp"
                         android:layout_gravity="center"
-                        android:background="@drawable/round_ll"
+                        android:background="@drawable/round_ll_profile"
                         android:fontFamily="@font/roboto_medium"
                         android:gravity="center"
                         android:text="Log Out"
