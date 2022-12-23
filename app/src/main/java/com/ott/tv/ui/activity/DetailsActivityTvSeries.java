@@ -124,6 +124,7 @@ public class DetailsActivityTvSeries extends FragmentActivity {
         thumbUrl = this.getIntent().getStringExtra("thumbImage");
         poster_url = this.getIntent().getStringExtra("poster_url");
         String title = this.getIntent().getStringExtra("title");
+        Log.e("@@title", title+"Dd");
         String description = this.getIntent().getStringExtra("description");
         tvDurationTime_value = this.getIntent().getStringExtra("duration");
         tvVideoQuality = this.getIntent().getStringExtra("video_quality");
