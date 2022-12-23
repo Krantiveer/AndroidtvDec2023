@@ -1014,12 +1014,14 @@ class DetailsActivityPhando : FragmentActivity() {
                         if (response.body()!!.status_code != null) {
                             if (response.body()!!.status_code.equals("1", ignoreCase = true)) {
                                 isWatchLater = true
-                                imgWatchList!!.text = "Remove to Watchlist"
+                                imgWatchList!!.text = "Added to Watchlist"
+                                imgWatchList!!.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_right_tick, 0, 0, 0);
                                 //imgWatchList.setColorFilter(ContextCompat.getColor(DetailsActivity.this, R.color.colorGold), android.graphics.PorterDuff.Mode.SRC_IN);
                             } else {
+                                imgWatchList!!.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_add_24, 0, 0, 0);
+
                                 isWatchLater = false
                                 imgWatchList!!.text = "Add to Watchlist"
-
 
                                 /*    imgAddFav.setImageResource(R.drawable.ic_circle_fav);
                             favIv.setImageResource(R.drawable.ic_circle_fav);*/
