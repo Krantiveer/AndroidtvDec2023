@@ -120,7 +120,7 @@ public class HomeFragmentNewUI extends Fragment {
         }*/
         if(video.getIs_free()!=null){
             if(video.getIs_free().toString().equalsIgnoreCase("1")){
-                content_premiumIconImage.setVisibility(View.GONE);
+                content_premiumIconImage.setVisibility(View.INVISIBLE);
             }else{
                 content_premiumIconImage.setVisibility(View.VISIBLE);
 

@@ -1019,7 +1019,6 @@ class DetailsActivityPhando : FragmentActivity() {
                                 //imgWatchList.setColorFilter(ContextCompat.getColor(DetailsActivity.this, R.color.colorGold), android.graphics.PorterDuff.Mode.SRC_IN);
                             } else {
                                 imgWatchList!!.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_add_24, 0, 0, 0);
-
                                 isWatchLater = false
                                 imgWatchList!!.text = "Add to Watchlist"
 
