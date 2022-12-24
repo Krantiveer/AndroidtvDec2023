@@ -35,6 +35,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="18dp"
             tools:text="Home"
+            android:text="Home"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:textStyle="bold" />

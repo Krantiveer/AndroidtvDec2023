@@ -27,6 +27,7 @@ import java.security.AccessController
 class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
     private lateinit var binding: FragmentMenuBinding
     var isHome: Boolean = false
+
     //val activity = requireActivity() as NewMainActivity
     //   val activity = requireActivity() as NewMainActivity
 
@@ -171,9 +172,7 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
 
     override fun onItemClick(data: CategoryType) {
 
-/*
         Log.e("@@log", data.displayName + data.type + data.isFocused)
-*/
         val activity = requireActivity() as NewMainActivity
         activity.onMenuSelection(data.type.toString(), data.displayName)
 

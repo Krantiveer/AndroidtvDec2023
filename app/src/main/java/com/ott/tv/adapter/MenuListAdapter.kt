@@ -27,8 +27,10 @@ class MenuListAdapter(
     RecyclerView.Adapter<MenuListAdapter.ViewHolder>() {
     var hasFocusLocalVar: Boolean? = null
     var hasclicked: Boolean? = false
+    var oldclick: Boolean? = false
     private var checkedPosition = 0
     private var oldpostion: Int = 1
+    private var oldpostionSecond: Int = 1
 
 
     inner class ViewHolder(private val binding: LayoutMenuBinding) :
@@ -36,6 +38,8 @@ class MenuListAdapter(
 
         @SuppressLint("NotifyDataSetChanged")
         fun bindernew(dataModel: CategoryType) {
+            Log.d("Clicking Event", "binder: clicked2--" +dataModel.icon +dataModel.displayName)
+
             binding.titleMenu.setText(dataModel.displayName)
             Glide.with(context)
                 .load(dataModel.icon) /*.override(100,300)*/
@@ -44,7 +48,8 @@ class MenuListAdapter(
                 .into(binding.icon)
 
             binding.menuLayout.setOnClickListener {
-                Log.d("Clicking Event", "binder: clicked2--" + oldpostion + position)
+                oldclick=false
+                Log.d("Clicking Event", "binder: clicked2--" + oldpostionSecond+oldpostion + position+oldclick)
 
                 if (oldpostion == absoluteAdapterPosition) {
 
@@ -52,15 +57,12 @@ class MenuListAdapter(
                     if (absoluteAdapterPosition == 0) {
                         mClick.onItemClick(dataList[position])
                     } else {
-                        binding.icon.imageTintList =
-                            ColorStateList.valueOf(context.getColor(R.color.main_color))
-                        oldpostion = absoluteAdapterPosition
-                        mClick.onItemClick(dataList[position])
-                        Log.d(
-                            "Clicking Event",
-                            "binder: clicked" + absoluteAdapterPosition + position
-                        )
-                        // notifyItemChanged(position)
+                        oldclick = true
+                        oldpostionSecond=oldpostion
+                        Log.d("Clicking Event", "binder: clicked2--" +oldpostionSecond+ oldpostion + position+oldclick)
+
+                        notifyItemChanged(oldpostionSecond)
+                        redColor()
                     }
                 }
             }
@@ -90,10 +92,29 @@ class MenuListAdapter(
 
         @SuppressLint("NotifyDataSetChanged")
         fun colorwhite(dataModel: CategoryType) {
+            Glide.with(context)
+                .load(dataModel.icon) /*.override(100,300)*/
+                .error(R.drawable.commingsoon_sidenav)
+                .placeholder(R.drawable.commingsoon_sidenav)
+                .into(binding.icon)
+            Log.d("Clicking Event", "binder: clicked2--" +dataModel.icon +dataModel.displayName)
+            binding.titleMenu.setText(dataModel.displayName)
             binding.icon.imageTintList =
                 ColorStateList.valueOf(context.getColor(R.color.white))
+            oldpostionSecond=oldpostion
+
+
         }
 
+        fun redColor() {
+            Log.d("Clicking Event", "binder: clicked2 Redjum--" )
+
+            binding.icon.imageTintList =
+                ColorStateList.valueOf(context.getColor(R.color.main_color))
+            oldpostion = absoluteAdapterPosition
+            mClick.onItemClick(dataList[position])
+
+        }
 
     }
 
@@ -105,14 +126,22 @@ class MenuListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Log.d(
             "Clicking Event",
-            "binder: clicked new --" + position + "old-" + oldpostion + hasclicked
+            "binder: clicked new --"  + "old-" +oldpostionSecond+ oldpostion +position+ oldclick
         )
 
-        if (hasclicked == true) {
-            //  holder.colorwhite(dataList[oldpostion])
 
+        if (oldclick == true) {
+            oldclick = false
+          //  holder.colorwhite(dataList[position])
+          holder.bindernew(dataList[position])
+
+        } else {
+            Log.d(
+                "Clicking Event",
+                "binder: clicked new --else"  + "old-" +oldpostionSecond+ oldpostion +position+ oldclick
+            )
+            holder.bindernew(dataList[position])
         }
-        holder.bindernew(dataList[position])
 
 
     }
