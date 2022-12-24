@@ -132,7 +132,7 @@ class MenuListAdapter(
 
         if (oldclick == true) {
             oldclick = false
-          //  holder.colorwhite(dataList[position])
+            holder.colorwhite(dataList[position])
           holder.bindernew(dataList[position])
 
         } else {

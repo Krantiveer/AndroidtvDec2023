@@ -198,11 +198,15 @@ class NewMainActivity : FragmentActivity() {
         bundle!!.putInt("menu", 1)
         bundle!!.putString("type", type)
 */
-
+        if (type.equals("search") || type.equals("Search")) {
+            val intent = Intent(this, SearchActivity_Phando::class.java)
+            startActivity(intent)
+            return
+        }
         binding.tvTitle.text = title
         if (title.isEmpty()) {
             binding.tvTitle.isVisible = false
-        } else if (type.equals("search")||type.equals("home")||type.equals("profile")) {
+        } else if (type.equals("home")||type.equals("profile")) {
             // binding.tvTitle.isVisible = true
             binding.tvTitle.isVisible = false
         } else {
