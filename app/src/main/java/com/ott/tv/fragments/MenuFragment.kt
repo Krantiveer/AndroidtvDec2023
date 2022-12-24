@@ -170,16 +170,13 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
     }
 
     override fun onItemClick(data: CategoryType) {
-        Log.d("Clicking Event21", "binder: clicked"+data)
 
+/*
         Log.e("@@log", data.displayName + data.type + data.isFocused)
+*/
         val activity = requireActivity() as NewMainActivity
         activity.onMenuSelection(data.type.toString(), data.displayName)
 
-
-        /*  val ft: FragmentTransaction = requireFragmentManager().beginTransaction()
-          ft.replace(binding.browserSection.id, HomeFragmentNewUI(), "NewFragmentTag")
-          ft.commit()*/
     }
 
 

@@ -40,6 +40,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.Format;
+import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.ext.rtmp.RtmpDataSourceFactory;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
@@ -71,6 +72,7 @@ import com.ott.tv.model.Video;
 import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.APIResponse;
 import com.ott.tv.network.api.ContinueWatchApi;
+import com.ott.tv.ui.activity.PlayerActivity;
 import com.ott.tv.utils.PreferenceUtils;
 import com.ott.tv.utils.ToastMsg;
 import com.ott.tv.video_service.MediaSessionHelper;
@@ -79,6 +81,7 @@ import com.ott.tv.video_service.PlaybackModel;
 import com.ott.tv.video_service.Subscription;
 import com.ott.tv.video_service.TvUtil;
 import com.ott.tv.video_service.VideoPlaybackActivity;
+import com.ott.tv.video_service.WatchNextAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -94,8 +97,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class PlayerActivityNewCode extends Activity {
-    private static final String TAG = "PlayerActivity";
-    private static final String CLASS_NAME = "PlayerActivity";
+    private static final String TAG = "PlayerActivityNewCode";
+    private static final String CLASS_NAME = "PlayerActivityNewCode";
     private static final String YOUTUBE = "youtube";
     private static final String YOUTUBE_LIVE = "youtube_live";
     private PlayerView exoPlayerView;
@@ -643,7 +646,7 @@ public class PlayerActivityNewCode extends Activity {
                     Log.i(TAG, "onKeyDown: " + "here click");
                     updateContinueWatchingDataToServer();
                     releasePlayer();
-                    // mediaSessionHelper.stopMediaSession();
+                 //    mediaSessionHelper.stopMediaSession();
                     finish();
                     onBackPressed();
                    /* if (doubleBackToExitPressedOnce) {
