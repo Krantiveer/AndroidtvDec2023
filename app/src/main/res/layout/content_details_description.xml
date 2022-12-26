@@ -65,7 +65,6 @@
             android:id="@+id/contnet_general_info"
             android:layout_width="wrap_content"
             android:visibility="gone"
-
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 

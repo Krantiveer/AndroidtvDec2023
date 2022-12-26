@@ -27,6 +27,10 @@ public class LatestMovieSingleDetailList implements Parcelable {
     @Expose
     private Integer is_live;
 
+    @SerializedName("is_free")
+    @Expose
+    private Integer is_free;
+
 
     @SerializedName("is_watchlist")
     @Expose
@@ -42,6 +46,13 @@ public class LatestMovieSingleDetailList implements Parcelable {
     @Expose
     private ArrayList<ShowWatchlist> related;
 
+    public Integer getIs_free() {
+        return is_free;
+    }
+
+    public void setIs_free(Integer is_free) {
+        this.is_free = is_free;
+    }
 
     public String getDuration_str() {
         return duration_str;
@@ -63,6 +74,10 @@ public class LatestMovieSingleDetailList implements Parcelable {
             is_live = null;
         } else {
             is_live = in.readInt();
+        }if (in.readByte() == 0) {
+            is_free = null;
+        } else {
+            is_free = in.readInt();
         }
         is_watchlist = in.readString();
         is_wishlist = in.readString();
@@ -84,6 +99,11 @@ public class LatestMovieSingleDetailList implements Parcelable {
         } else {
             dest.writeByte((byte) 1);
             dest.writeInt(is_live);
+        }   if (is_free == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(is_free);
         }
         dest.writeString(is_watchlist);
         dest.writeString(is_wishlist);

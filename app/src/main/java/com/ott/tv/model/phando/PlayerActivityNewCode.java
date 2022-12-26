@@ -97,8 +97,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class PlayerActivityNewCode extends Activity {
-    private static final String TAG = "PlayerActivityNewCode";
-    private static final String CLASS_NAME = "PlayerActivityNewCode";
+    private static final String TAG = "PlayerActivity";
+    private static final String CLASS_NAME = "PlayerActivity";
     private static final String YOUTUBE = "youtube";
     private static final String YOUTUBE_LIVE = "youtube_live";
     private PlayerView exoPlayerView;
@@ -644,7 +644,9 @@ public class PlayerActivityNewCode extends Activity {
                     exoPlayerView.hideController();
                 } else {
                     Log.i(TAG, "onKeyDown: " + "here click");
-                    updateContinueWatchingDataToServer();
+                 //   updateContinueWatchingDataToServer();
+
+
                     releasePlayer();
                  //    mediaSessionHelper.stopMediaSession();
                     finish();

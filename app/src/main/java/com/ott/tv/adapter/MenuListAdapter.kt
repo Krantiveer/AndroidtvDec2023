@@ -60,7 +60,6 @@ class MenuListAdapter(
                         oldclick = true
                         oldpostionSecond=oldpostion
                         Log.d("Clicking Event", "binder: clicked2--" +oldpostionSecond+ oldpostion + position+oldclick)
-
                         notifyItemChanged(oldpostionSecond)
                         redColor()
                     }

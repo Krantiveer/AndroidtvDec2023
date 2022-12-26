@@ -85,9 +85,7 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
                 response: Response<List<CategoryType>>
             ) {
                 if (response.code() == 200) {
-
                     menu = response.body()
-
                     setAdapter()
                     // adapter.setEmployees(employees)
                     /* binding.menuRecycler.apply {

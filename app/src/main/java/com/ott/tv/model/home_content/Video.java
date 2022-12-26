@@ -138,12 +138,27 @@ public class Video implements Parcelable {
     @SerializedName("language")
     @Expose
     private String language;
+    @SerializedName("language_str")
+    @Expose
+    private String language_str;
     @SerializedName("genre_id")
     @Expose
     private String genre_id;
     private String genre;
     private String runtime_in_minutes;
     public ContinueWatchMinutes continue_watch_minutes;
+    @SerializedName("trailers")
+    @Expose
+    private List<LatestMovieSingleDetailList> trailers = null;
+
+    public List<LatestMovieSingleDetailList> getTrailers() {
+        return trailers;
+    }
+
+    public void setTrailers(List<LatestMovieSingleDetailList> trailers) {
+        this.trailers = trailers;
+    }
+
     public String getRuntime_in_minutes() {
         return runtime_in_minutes;
     }
@@ -154,6 +169,14 @@ public class Video implements Parcelable {
 
     public String getLanguage() {
         return language;
+    }
+
+    public String getLanguage_str() {
+        return language_str;
+    }
+
+    public void setLanguage_str(String language_str) {
+        this.language_str = language_str;
     }
 
     public void setLanguage(String language) {

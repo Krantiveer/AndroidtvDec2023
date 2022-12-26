@@ -1,14 +1,22 @@
 package com.ott.tv.ui.activity
 
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.StateListDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.util.StateSet
 import android.view.KeyEvent
+import android.view.View
+import android.view.Window
+import android.widget.Button
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
@@ -32,6 +40,7 @@ import java.security.AccessController
 class NewMainActivity : FragmentActivity() {
     private lateinit var binding: ActivityNewMainBinding
     private var itemBinding: LayoutMenuBinding? = null
+
 
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -164,16 +173,32 @@ class NewMainActivity : FragmentActivity() {
             binding.slidingPaneLayout.openPane();
 
         }
-        /*if (rowsContainerFocused) {
-            toggleHeadersFragment(true)
-            rowsContainerFocused = false
-            if (Constants.IS_FROM_HOME) {
-                focus = 1
-            }
-            headersFragment.getView().requestFocus()
+      else {
+           // binding.slidingPaneLayout.openPane();
+            val dialog: Dialog
+            dialog = Dialog(this)
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.setContentView(R.layout.layout_dialog_exit)
+            dialog.setCancelable(true)
+            val button_no = dialog.findViewById<View>(R.id.button_no) as Button
+            button_no.background = getSelectorDrawable()
+            button_no.setOnClickListener { dialog.dismiss() }
 
-        }*/ else {
-            val builder = AlertDialog.Builder(this)
+            val button_yes = dialog.findViewById<View>(R.id.button_yes) as Button
+            button_yes.background = getSelectorDrawable()
+            button_yes.setOnClickListener {
+                dialog.dismiss()
+                this.finishAffinity()
+            }
+            dialog.show()
+
+
+
+
+
+
+
+      /*      val builder = AlertDialog.Builder(this)
             builder.setMessage("Are you sure you want to exit?")
                 .setCancelable(false)
                 .setPositiveButton(
@@ -184,10 +209,33 @@ class NewMainActivity : FragmentActivity() {
                     "No"
                 ) { dialog, id -> dialog.cancel() }
             val alert = builder.create()
-            alert.show()
+            alert.show()*/
         }
     }
 
+    private fun getSelectorDrawable(): StateListDrawable? {
+        val out = StateListDrawable()
+        out.addState(
+            intArrayOf(android.R.attr.state_focused), createFocusedDrawable(
+                Color.parseColor("#00A7DB")
+            )
+        )
+        out.addState(
+            StateSet.WILD_CARD,
+            createNormalDrawable(Color.parseColor("#80858B"))
+        )
+        return out
+    }
+    private fun createFocusedDrawable(color: Int): GradientDrawable? {
+        val out = GradientDrawable()
+        out.setColor(color)
+        return out
+    }
+    private fun createNormalDrawable(color: Int): GradientDrawable? {
+        val out = GradientDrawable()
+        out.setColor(color)
+        return out
+    }
 
     fun onMenuSelection(type: String, title: String) {
         //   Toast.makeText(this, "closeactivity", Toast.LENGTH_SHORT).show()
@@ -251,7 +299,7 @@ class NewMainActivity : FragmentActivity() {
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-        Log.e("LoginActivity", "***** keyCode =" + keyCode + "event :" + event)
+        Log.e("NewMainActivity", "***** keyCode =" + keyCode + "event :" + event)
         when (keyCode) {
             KeyEvent.KEYCODE_BACK -> {
                 onBackPressed()
@@ -259,7 +307,7 @@ class NewMainActivity : FragmentActivity() {
             }
             KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_DPAD_UP_LEFT, KeyEvent.KEYCODE_DPAD_UP_RIGHT, KeyEvent.KEYCODE_DPAD_DOWN, KeyEvent.KEYCODE_DPAD_DOWN_LEFT, KeyEvent.KEYCODE_DPAD_DOWN_RIGHT -> return false
             KeyEvent.KEYCODE_DPAD_LEFT, KeyEvent.KEYCODE_DPAD_RIGHT, KeyEvent.KEYCODE_DPAD_UP -> {
-                Log.e("LoginActivity", "movieIndex : ")
+                Log.e("NewMainActivity", "movieIndex : ")
                 return false
             }
         }

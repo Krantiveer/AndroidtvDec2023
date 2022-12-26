@@ -127,29 +127,29 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
             } else {
                 holder.premiumIconImage.setVisibility(View.VISIBLE);
             }}*/
-            if(listdata.getVideos().get(position).getIs_free()!=null){
-                if(listdata.getVideos().get(position).getIs_free().toString().equalsIgnoreCase("1")){
+            if (listdata.getVideos().get(position).getIs_free() != null) {
+                if (listdata.getVideos().get(position).getIs_free().toString().equalsIgnoreCase("1")) {
                     holder.premiumIconImage.setVisibility(View.GONE);
-                }else{
+                } else {
                     holder.premiumIconImage.setVisibility(View.VISIBLE);
 
                 }
             }
 
-                holder.primary_text.setText(listdata.getVideos().get(position).getTitle());
-                if (!TextUtils.isEmpty(listdata.getVideos().get(position).getThumbnailUrl())) {
-                    Glide.with(context)
-                            .load(listdata.getVideos().get(position).getThumbnailUrl()).
-                            placeholder(R.drawable.poster_placeholder_land)
-                            .error(R.drawable.poster_placeholder_land)
-                            .into(holder.main_image);
-                } else {
-                    Glide.with(context)
-                            .load(listdata.getVideos().get(position).getPosterUrl()).
-                            placeholder(R.drawable.poster_placeholder_land)
-                            .error(R.drawable.poster_placeholder_land)
-                            .into(holder.main_image);
-                }
+            holder.primary_text.setText(listdata.getVideos().get(position).getTitle());
+            if (!TextUtils.isEmpty(listdata.getVideos().get(position).getThumbnailUrl())) {
+                Glide.with(context)
+                        .load(listdata.getVideos().get(position).getThumbnailUrl()).
+                        placeholder(R.drawable.poster_placeholder_land)
+                        .error(R.drawable.poster_placeholder_land)
+                        .into(holder.main_image);
+            } else {
+                Glide.with(context)
+                        .load(listdata.getVideos().get(position).getPosterUrl()).
+                        placeholder(R.drawable.poster_placeholder_land)
+                        .error(R.drawable.poster_placeholder_land)
+                        .into(holder.main_image);
+            }
 
             holder.relativeLayout_parent.setOnClickListener(view -> {
                 //   Toast.makeText(view.getContext(), "click on item: " + position, Toast.LENGTH_LONG).show();
@@ -211,103 +211,210 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
     private void detailActivity(Video video) {
         Video videoContent = video;
 
+        if (videoContent.getType() == null) {
+            videoContent.setType("M");
+        }
         {
-            if (videoContent.getIsTvseries() != null) {
-                if (videoContent.getIsTvseries().equalsIgnoreCase("1")) {
-                    Intent intent = new Intent(context, DetailsActivityPhando.class);
-                    intent.putExtra("id", videoContent.getVideosId());
-                    intent.putExtra("video_id", videoContent.getId());
-                    intent.putExtra("actions_type", "tvseries");
-                    intent.putExtra("type", "T");
-                    intent.putExtra("thumbImage", videoContent.getThumbnailUrl());
-                    intent.putExtra("poster_url", videoContent.getImageLink());
-                    intent.putExtra("title", videoContent.getTitle());
-                    intent.putExtra("description", videoContent.getDescription());
-                    intent.putExtra("release", videoContent.getRelease());
-                    intent.putExtra("video_quality", videoContent.getVideoQuality());
-                    intent.putExtra("duration", videoContent.getRuntime());
-                    intent.putExtra("ispaid", videoContent.getIsPaid());
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(intent);
-                } else {
-                    Intent intent = new Intent(context, DetailsActivityPhando.class);
-
-                    if (videoContent.getType() != null)
-                        intent.putExtra("type", videoContent.getType());
-                    if (videoContent.getThumbnailUrl() != null)
-                        intent.putExtra("thumbImage", videoContent.getThumbnailUrl());
-                    if (videoContent.getId() != null)
-                        intent.putExtra("video_id", videoContent.getVideosId());
-                    if (videoContent.getId() != null)
-                        intent.putExtra("id", videoContent.getId().toString());
-                    if (videoContent.getVideosId() != null)
-                        intent.putExtra("video_id", videoContent.getVideosId().toString());
-                    if (videoContent.getTitle() != null)
-                        intent.putExtra("title", videoContent.getTitle());
-                    if (videoContent.getDescription() != null)
-                        intent.putExtra("description", videoContent.getDescription());
-                    if (videoContent.getRelease() != null)
-                        intent.putExtra("release", videoContent.getRelease());
-                    if (videoContent.getRuntime() != null)
-                        intent.putExtra("duration", videoContent.getRuntime());
-                    if (videoContent.getMaturity_rating() != null)
-                        intent.putExtra("maturity_rating", videoContent.getMaturity_rating());
-                    if (videoContent.getIs_free() != null)
-                        intent.putExtra("ispaid", videoContent.getIs_free().toString());
-                    if (videoContent.getLanguage() != null)
-                        intent.putExtra("language_str", videoContent.getLanguage());
-                    if (videoContent.getIs_live() != null)
-                        intent.putExtra("is_live", videoContent.getIs_live().toString());
-                    if (videoContent.getRating() != null)
-                        intent.putExtra("rating", videoContent.getRating().toString());
-                    if (videoContent.getTrailer_aws_source() != null) {
-                        intent.putExtra("trailer", videoContent.getTrailer_aws_source());
-                    }
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(intent);
-                }
-            } else {
+            if (videoContent.getType().equals("M") && videoContent.getIs_live().toString().equalsIgnoreCase("0")) {
                 Intent intent = new Intent(context, DetailsActivityPhando.class);
-
                 if (videoContent.getType() != null)
                     intent.putExtra("type", videoContent.getType());
-                if (videoContent.getThumbnailUrl() != null)
-                    intent.putExtra("thumbImage", videoContent.getThumbnailUrl());
-                if (videoContent.getId() != null)
+                if (videoContent.getThumbnail() != null) {
+                    intent.putExtra("thumbImage", videoContent.getThumbnail());
+                }else {
+                    if (videoContent.getThumbnailUrl() != null)
+                        intent.putExtra("thumbImage", videoContent.getThumbnailUrl());
+                }if (videoContent.getId() != null) {
                     intent.putExtra("video_id", videoContent.getId().toString());
+                } else {
+                    if (videoContent.getVideosId() != null)
+                        intent.putExtra("video_id", videoContent.getVideosId().toString());
+                }
                 if (videoContent.getTitle() != null)
                     intent.putExtra("title", videoContent.getTitle());
-                if (videoContent.getDetail() != null)
+                if (videoContent.getDetail() != null) {
                     intent.putExtra("description", videoContent.getDetail());
-                if (videoContent.getRelease_date() != null)
+                } else {
+                    if (videoContent.getDescription() != null)
+                        intent.putExtra("description", videoContent.getDescription());
+                }
+                if (videoContent.getRelease_date() != null) {
                     intent.putExtra("release", videoContent.getRelease_date());
+                } else {
+                    if (videoContent.getRelease() != null) {
+                        intent.putExtra("release", videoContent.getRelease());
+                    }
+                }
                 if (videoContent.getRuntime() != null)
                     intent.putExtra("duration", videoContent.getRuntime());
                 if (videoContent.getMaturity_rating() != null)
                     intent.putExtra("maturity_rating", videoContent.getMaturity_rating());
                 if (videoContent.getIs_free() != null)
                     intent.putExtra("ispaid", videoContent.getIs_free().toString());
-                if (videoContent.getGenre() != null)
-                    intent.putExtra("language_str", videoContent.getGenre());
+                if (videoContent.getLanguage_str() != null)
+                    intent.putExtra("language_str", videoContent.getLanguage_str());
                 if (videoContent.getIs_live() != null)
                     intent.putExtra("is_live", videoContent.getIs_live().toString());
                 if (videoContent.getRating() != null)
                     intent.putExtra("rating", videoContent.getRating().toString());
+                if (videoContent.getTrailers() != null && videoContent.getTrailers().size() > 0 && videoContent.getTrailers().get(0) != null && videoContent.getTrailers().get(0).getMedia_url() != null) {
+                    intent.putExtra("trailer", videoContent.getThumbnailUrl());
+                }
                 if (videoContent.getTrailer_aws_source() != null) {
                     intent.putExtra("trailer", videoContent.getTrailer_aws_source());
+                }
+
+
+                if (videoContent.getGenres() != null) {
+                    if (videoContent.getGenres().size() > 0) {
+                        String genres;
+                        genres = videoContent.getGenres().get(0);
+                        for (int i = 1; i < videoContent.getGenres().size(); i++) {
+                            genres = genres.concat("," + videoContent.getGenres().get(i));
+                        }
+                        intent.putExtra("genres", genres);
+                    }
+                } else {
+                    if (videoContent.getGenre() != null) {
+                        intent.putExtra("genres", videoContent.getGenre());
+                    }
                 }
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
 
 
+            }
+            if (videoContent.getType().equals("T")) {
+                Intent intent = new Intent(context, DetailsActivityPhando.class);
+                if (videoContent.getType() != null)
+                    intent.putExtra("type", videoContent.getType());
+                if (videoContent.getThumbnail() != null)
+                    intent.putExtra("thumbImage", videoContent.getThumbnail());
+                if (videoContent.getId() != null) {
+                    intent.putExtra("video_id", videoContent.getId().toString());
+                } else {
+                    if (videoContent.getVideosId() != null)
+                        intent.putExtra("video_id", videoContent.getVideosId().toString());
+                }
+                if (videoContent.getTitle() != null)
+                    intent.putExtra("title", videoContent.getTitle());
+                if (videoContent.getDetail() != null) {
+                    intent.putExtra("description", videoContent.getDetail());
+                } else {
+                    if (videoContent.getDescription() != null)
+                        intent.putExtra("description", videoContent.getDescription());
+                }
+                if (videoContent.getRelease_date() != null) {
+                    intent.putExtra("release", videoContent.getRelease_date());
+                } else {
+                    if (videoContent.getRelease() != null) {
+                        intent.putExtra("release", videoContent.getRelease());
+                    }
+                }
+                if (videoContent.getRuntime() != null)
+                    intent.putExtra("duration", videoContent.getRuntime());
+                if (videoContent.getMaturity_rating() != null)
+                    intent.putExtra("maturity_rating", videoContent.getMaturity_rating());
+                if (videoContent.getIs_free() != null)
+                    intent.putExtra("ispaid", videoContent.getIs_free().toString());
+                if (videoContent.getLanguage_str() != null)
+                    intent.putExtra("language_str", videoContent.getLanguage_str());
+                if (videoContent.getIs_live() != null)
+                    intent.putExtra("is_live", videoContent.getIs_live().toString());
+                if (videoContent.getRating() != null)
+                    intent.putExtra("rating", videoContent.getRating().toString());
+                if (videoContent.getTrailers() != null && videoContent.getTrailers().size() > 0 && videoContent.getTrailers().get(0) != null && videoContent.getTrailers().get(0).getMedia_url() != null) {
+                    intent.putExtra("trailer", videoContent.getTrailers().get(0).getMedia_url());
+                }
+                if (videoContent.getTrailer_aws_source() != null) {
+                    intent.putExtra("trailer", videoContent.getTrailer_aws_source());
+                }
 
 
-         /*       intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);*/
+                if (videoContent.getGenres() != null) {
+                    String genres;
+                    genres = videoContent.getGenres().get(0);
+                    for (int i = 1; i < videoContent.getGenres().size(); i++) {
+                        genres = genres.concat("," + videoContent.getGenres().get(i));
+                    }
+                    intent.putExtra("genres", genres);
+                }else {
+                    if (videoContent.getGenre() != null) {
+                        intent.putExtra("genres", videoContent.getGenre());
+                    }
+                }
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                context.startActivity(intent);
+
 
             }
-        }
+            if (videoContent.getType().equals("M") && videoContent.getIs_live().toString().equalsIgnoreCase("1")) {
+                Intent intent = new Intent(context, DetailsActivityPhando.class);
+                if (videoContent.getType() != null)
+                    intent.putExtra("type", videoContent.getType());
+                if (videoContent.getThumbnail() != null)
+                    intent.putExtra("thumbImage", videoContent.getThumbnail());
+                if (videoContent.getId() != null) {
+                    intent.putExtra("video_id", videoContent.getId().toString());
+                } else {
+                    if (videoContent.getVideosId() != null)
+                        intent.putExtra("video_id", videoContent.getVideosId().toString());
+                }
+                if (videoContent.getTitle() != null)
+                    intent.putExtra("title", videoContent.getTitle());
+                if (videoContent.getDetail() != null) {
+                    intent.putExtra("description", videoContent.getDetail());
+                } else {
+                    if (videoContent.getDescription() != null)
+                        intent.putExtra("description", videoContent.getDescription());
+                }
+                if (videoContent.getRelease_date() != null) {
+                    intent.putExtra("release", videoContent.getRelease_date());
+                } else {
+                    if (videoContent.getRelease() != null) {
+                        intent.putExtra("release", videoContent.getRelease());
+                    }
+                }
+                if (videoContent.getRuntime() != null)
+                    intent.putExtra("duration", videoContent.getRuntime());
+                if (videoContent.getMaturity_rating() != null)
+                    intent.putExtra("maturity_rating", videoContent.getMaturity_rating());
+                if (videoContent.getIs_free() != null)
+                    intent.putExtra("ispaid", videoContent.getIs_free().toString());
+                if (videoContent.getLanguage_str() != null)
+                    intent.putExtra("language_str", videoContent.getLanguage_str());
+                if (videoContent.getIs_live() != null)
+                    intent.putExtra("is_live", videoContent.getIs_live().toString());
+                if (videoContent.getRating() != null)
+                    intent.putExtra("rating", videoContent.getRating().toString());
+                if (videoContent.getTrailers() != null && videoContent.getTrailers().size() > 0 && videoContent.getTrailers().get(0) != null && videoContent.getTrailers().get(0).getMedia_url() != null) {
+                    intent.putExtra("trailer", videoContent.getTrailers().get(0).getMedia_url());
+                }
+                if (videoContent.getTrailer_aws_source() != null) {
+                    intent.putExtra("trailer", videoContent.getTrailer_aws_source());
+                }
 
+                if (videoContent.getGenres() != null) {
+                    String genres;
+                    genres = videoContent.getGenres().get(0);
+                    for (int i = 1; i < videoContent.getGenres().size(); i++) {
+                        genres = genres.concat("," + videoContent.getGenres().get(i));
+                    }
+                    intent.putExtra("genres", genres);
+                }else {
+                    if (videoContent.getGenre() != null) {
+                        intent.putExtra("genres", videoContent.getGenre());
+                    }
+                }
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+
+            }
+
+
+        }
     }
 
 }
+
