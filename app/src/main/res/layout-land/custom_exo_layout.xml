@@ -65,7 +65,7 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-<!--            <ImageButton
+            <ImageButton
                 android:id="@id/exo_prev"
                 style="@style/ExoMediaButton.Previous"
                 android:layout_width="wrap_content"
@@ -75,7 +75,7 @@
                 android:visibility="gone"
                 android:padding="@dimen/padding_of_controller_button"
                 tools:visibility="visible"
-                tools:ignore="TouchTargetSizeCheck" />-->
+                tools:ignore="TouchTargetSizeCheck" />
             <ImageButton
                 android:id="@id/exo_rew"
                 style="@style/ExoMediaButton.Rewind"
@@ -84,6 +84,7 @@
                 android:background="@drawable/round_ll_exoplayer"
                 android:contentDescription="TODO"
                 android:padding="@dimen/padding_of_controller_button"
+                android:visibility="gone"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <ImageButton

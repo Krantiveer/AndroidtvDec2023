@@ -245,8 +245,12 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
                         intent.putExtra("release", videoContent.getRelease());
                     }
                 }
-                if (videoContent.getRuntime() != null)
-                    intent.putExtra("duration", videoContent.getRuntime());
+             /*   if (videoContent.getRuntime() != null)
+                    intent.putExtra("duration", videoContent.getRuntime());*/
+
+                if (videoContent.getDuration_str() != null)
+                    intent.putExtra("duration", videoContent.getDuration_str());
+
                 if (videoContent.getMaturity_rating() != null)
                     intent.putExtra("maturity_rating", videoContent.getMaturity_rating());
                 if (videoContent.getIs_free() != null)
@@ -311,8 +315,8 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
                         intent.putExtra("release", videoContent.getRelease());
                     }
                 }
-                if (videoContent.getRuntime() != null)
-                    intent.putExtra("duration", videoContent.getRuntime());
+                if (videoContent.getDuration_str() != null)
+                    intent.putExtra("duration", videoContent.getDuration_str());
                 if (videoContent.getMaturity_rating() != null)
                     intent.putExtra("maturity_rating", videoContent.getMaturity_rating());
                 if (videoContent.getIs_free() != null)
@@ -376,8 +380,8 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
                         intent.putExtra("release", videoContent.getRelease());
                     }
                 }
-                if (videoContent.getRuntime() != null)
-                    intent.putExtra("duration", videoContent.getRuntime());
+                if (videoContent.getDuration_str() != null)
+                    intent.putExtra("duration", videoContent.getDuration_str());
                 if (videoContent.getMaturity_rating() != null)
                     intent.putExtra("maturity_rating", videoContent.getMaturity_rating());
                 if (videoContent.getIs_free() != null)

@@ -356,7 +356,7 @@ class DetailsActivityPhando : FragmentActivity() {
                         ) {
                             Toast.makeText(
                                 applicationContext,
-                                "Enjoy Premium ContentWatch anything without ads Watch  Please Subscribe Or Rent  from MOBILE APP | WEBSITE - " + Config.DOMAIN,
+                                "Enjoy Premium Content Watch anything without ads Watch  Please Subscribe Or Rent  from MOBILE APP | WEBSITE - " + Config.DOMAIN,
                                 Toast.LENGTH_SHORT
                             ).show()
                             return
@@ -473,14 +473,17 @@ class DetailsActivityPhando : FragmentActivity() {
     fun SeasonListClick(isShow: Boolean) {
         if (singleDetailsTVseries != null) {
             if (isShow) {
-                episode_rv!!.visibility = View.GONE
-                movie_title!!.visibility = View.VISIBLE
                 details_fragment_root!!.visibility = View.VISIBLE
+                btn_seasonAndEpisode!!.requestFocus()
+                episode_rv!!.visibility = View.GONE
+
             } else {
-                episode_rv!!.visibility = View.VISIBLE
-                tvWatchTrailer!!.visibility = View.GONE
-                movie_title!!.visibility = View.GONE
+                /*       episode_rv!!.visibility = View.VISIBLE
+                       tvWatchTrailer!!.visibility = View.GONE
+                       movie_title!!.visibility = View.GONE*/
                 details_fragment_root!!.visibility = View.GONE
+                episode_rv!!.visibility = View.VISIBLE
+
             }
         }
     }
@@ -608,7 +611,7 @@ class DetailsActivityPhando : FragmentActivity() {
             ) {
                 CMHelper.setSnackBar(
                     this.currentFocus,
-                    "Enjoy Premium ContentWatch anything without ads Watch  Please Subscribe Or Rent  from MOBILE APP | WEBSITE -  " + Config.DOMAIN,
+                    "Enjoy Premium Content Watch anything without ads Watch  Please Subscribe Or Rent  from MOBILE APP | WEBSITE -  " + Config.DOMAIN,
                     1,
                     10000
                 )
@@ -634,8 +637,6 @@ class DetailsActivityPhando : FragmentActivity() {
             } else {
                 video.category = "movie"
             }
-            if (is_live.equals("1", ignoreCase = true)) {
-            }
 
 
             //  video.setCategory(type);
@@ -648,7 +649,7 @@ class DetailsActivityPhando : FragmentActivity() {
                 ) {
                     video.videoType = "youtube-live"
                     video.videoUrl = singleDetails!!.list.youtube_url
-                } */else {
+                } */ else {
                     video.videoType = "hls"
                     video.videoUrl = singleDetails!!.list.media_url
                 }
@@ -657,6 +658,12 @@ class DetailsActivityPhando : FragmentActivity() {
             video.istrailer = false
             video.bgImageUrl = thumbUrl
             video.isPaid = "free"
+            if (is_live.equals("1", ignoreCase = true)) {
+                video.islive = is_live;
+            } else {
+                video.islive = "0"
+            }
+
 
             //  video.setVideo(singleDetails.getVideos().get(0));
             val intent = Intent(this, PlayerActivityNewCode::class.java)
@@ -710,8 +717,20 @@ class DetailsActivityPhando : FragmentActivity() {
                         if (singleDetails!!.list.is_wishlist.equals("1", ignoreCase = true)) {
                             isWatchLater = true
                             imgWatchList!!.text = "Remove to Watchlist"
+                            imgWatchList!!.setCompoundDrawablesWithIntrinsicBounds(
+                                R.drawable.ic_right_tick,
+                                0,
+                                0,
+                                0
+                            );
                         } else {
                             imgWatchList!!.text = "Add to Watchlist"
+                            imgWatchList!!.setCompoundDrawablesWithIntrinsicBounds(
+                                R.drawable.ic_baseline_add_24,
+                                0,
+                                0,
+                                0
+                            );
                             isWatchLater = false
                         }
                         if (singleDetails!!.list.media_url == null) {
@@ -896,10 +915,10 @@ class DetailsActivityPhando : FragmentActivity() {
              content_duration_image!!.setVisibility(View.GONE)
          }
 */
-        if(singleDetails!!.list.is_live==0){
+        if (singleDetails!!.list.is_free == 0) {
             tvWatchNow!!.setText("Please Subscribe")
         }
-        if(singleDetails!!.list.is_live==2){
+        if (singleDetails!!.list.is_free == 2) {
             tvWatchNow!!.setText("Pay and Watch ")
         }
 
@@ -972,13 +991,26 @@ class DetailsActivityPhando : FragmentActivity() {
 */
     }
 
-    override fun onBackPressed() {
-        if (movie_title!!.visibility == View.GONE) {
-            SeasonListClick(true)
-            return
+
+    override fun onResume() {
+        if(episode_rv!!.isVisible){
+            episode_rv!!.requestFocus()
         }
-        super.onBackPressed()
-        overridePendingTransition(R.anim.pop_enter, R.anim.pop_exit)
+        super.onResume()
+    }
+
+    override fun onBackPressed() {
+        if (episode_rv!!.isVisible) {
+            Log.i("Backbutton", "onBackPressed:2 " + episode_rv!!.isVisible)
+            SeasonListClick(true)
+
+        } else {
+            super.onBackPressed()
+            Log.i("Backbutton", "onBackPressed:3 " + episode_rv!!.isVisible)
+        }
+
+        Log.i("Backbutton", "onBackPressed:1 " + episode_rv!!.isVisible)
+
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
@@ -989,190 +1021,196 @@ class DetailsActivityPhando : FragmentActivity() {
             }
         }*/
         if (KeyEvent.KEYCODE_DPAD_UP == keyCode) {
+
             if (episode_rv!!.isVisible) {
             } else {
                 tvWatchNow?.requestFocus()
             }
-                /*if(detailsFragment?.isVisible==visible){
-    }
-              }*/
-            }
-            Log.e("DetailActivityPhando", "movieIndex : " + keyCode + episode_rv?.isVisible)
-            when (keyCode) {
-
-                KeyEvent.KEYCODE_BACK -> onBackPressed()
-                KeyEvent.KEYCODE_DPAD_CENTER -> return false
-                KeyEvent.KEYCODE_DPAD_LEFT -> return false
-                KeyEvent.KEYCODE_DPAD_RIGHT -> return false
-                KeyEvent.KEYCODE_DPAD_UP -> {
-                    Log.e("DetailActivityPhando", "movieIndex : ")
-                    return false
-                }
-                KeyEvent.KEYCODE_DPAD_UP_LEFT -> return false
-                KeyEvent.KEYCODE_DPAD_UP_RIGHT -> return false
-                KeyEvent.KEYCODE_DPAD_DOWN -> return false
-                KeyEvent.KEYCODE_DPAD_DOWN_LEFT -> return false
-                KeyEvent.KEYCODE_DPAD_DOWN_RIGHT -> return false
-            }
-            return super.onKeyDown(keyCode, event)
-
-
+            /*if(detailsFragment?.isVisible==visible){
+}
+          }*/
         }
+        Log.e("DetailActivityPhando", "movieIndex : " + keyCode + episode_rv?.isVisible)
+        when (keyCode) {
 
-        private fun addToFav(value: String) {
-            val retrofit = RetrofitClient.getRetrofitInstance()
-            val api = retrofit.create(Dashboard::class.java)
-            val accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(this)
-            val call = api.updateWatchList(accessToken, videoId, type, Integer.valueOf(value))
-            call.enqueue(object : Callback<Wishlist?> {
-                override fun onResponse(call: Call<Wishlist?>, response: Response<Wishlist?>) {
-                    if (response.code() == 200 && response.body() != null) {
-                        if (response.body()!!.status.equals("success", ignoreCase = true)) {
-                            ToastMsg(this@DetailsActivityPhando).toastIconSuccess(response.body()!!.message)
-                            if (response.body()!!.status_code != null) {
-                                if (response.body()!!.status_code.equals("1", ignoreCase = true)) {
-                                    isWatchLater = true
-                                    imgWatchList!!.text = "Added to Watchlist"
-                                    imgWatchList!!.setCompoundDrawablesWithIntrinsicBounds(
-                                        R.drawable.ic_right_tick,
-                                        0,
-                                        0,
-                                        0
-                                    );
-                                    //imgWatchList.setColorFilter(ContextCompat.getColor(DetailsActivity.this, R.color.colorGold), android.graphics.PorterDuff.Mode.SRC_IN);
-                                } else {
-                                    imgWatchList!!.setCompoundDrawablesWithIntrinsicBounds(
-                                        R.drawable.ic_baseline_add_24,
-                                        0,
-                                        0,
-                                        0
-                                    );
-                                    isWatchLater = false
-                                    imgWatchList!!.text = "Add to Watchlist"
+        /*    KeyEvent.KEYCODE_BACK -> {
+                return false
+                Log.i("Backbutton", "onBackPressed:4 " + episode_rv!!.isVisible)
+            }*/
+            KeyEvent.KEYCODE_DPAD_CENTER -> return false
+            KeyEvent.KEYCODE_DPAD_LEFT -> return false
+            KeyEvent.KEYCODE_DPAD_RIGHT -> return false
+            KeyEvent.KEYCODE_DPAD_UP -> {
+                Log.e("DetailActivityPhando", "movieIndex : ")
+                return false
+            }
+            KeyEvent.KEYCODE_DPAD_UP_LEFT -> return false
+            KeyEvent.KEYCODE_DPAD_UP_RIGHT -> return false
+            KeyEvent.KEYCODE_DPAD_DOWN -> return false
+            KeyEvent.KEYCODE_DPAD_DOWN_LEFT -> return false
+            KeyEvent.KEYCODE_DPAD_DOWN_RIGHT -> return false
+        }
+        return super.onKeyDown(keyCode, event)
 
-                                    /*    imgAddFav.setImageResource(R.drawable.ic_circle_fav);
-                                favIv.setImageResource(R.drawable.ic_circle_fav);*/
-                                }
+
+    }
+
+    private fun addToFav(value: String) {
+        val retrofit = RetrofitClient.getRetrofitInstance()
+        val api = retrofit.create(Dashboard::class.java)
+        val accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(this)
+        val call = api.updateWatchList(accessToken, videoId, type, Integer.valueOf(value))
+        call.enqueue(object : Callback<Wishlist?> {
+            override fun onResponse(call: Call<Wishlist?>, response: Response<Wishlist?>) {
+                if (response.code() == 200 && response.body() != null) {
+                    if (response.body()!!.status.equals("success", ignoreCase = true)) {
+                        ToastMsg(this@DetailsActivityPhando).toastIconSuccess(response.body()!!.message)
+                        if (response.body()!!.status_code != null) {
+                            if (response.body()!!.status_code.equals("1", ignoreCase = true)) {
+                                isWatchLater = true
+                                imgWatchList!!.text = "Added to Watchlist"
+                                imgWatchList!!.setCompoundDrawablesWithIntrinsicBounds(
+                                    R.drawable.ic_right_tick,
+                                    0,
+                                    0,
+                                    0
+                                );
+                                //imgWatchList.setColorFilter(ContextCompat.getColor(DetailsActivity.this, R.color.colorGold), android.graphics.PorterDuff.Mode.SRC_IN);
+                            } else {
+                                imgWatchList!!.setCompoundDrawablesWithIntrinsicBounds(
+                                    R.drawable.ic_baseline_add_24,
+                                    0,
+                                    0,
+                                    0
+                                );
+                                isWatchLater = false
+                                imgWatchList!!.text = "Add to Watchlist"
+
+                                /*    imgAddFav.setImageResource(R.drawable.ic_circle_fav);
+                            favIv.setImageResource(R.drawable.ic_circle_fav);*/
                             }
-                        } else {
-                            ToastMsg(this@DetailsActivityPhando).toastIconError(response.body()!!.message)
                         }
                     } else {
-                        ToastMsg(this@DetailsActivityPhando).toastIconError(getString(R.string.error_toast))
+                        ToastMsg(this@DetailsActivityPhando).toastIconError(response.body()!!.message)
                     }
-                }
-
-                override fun onFailure(call: Call<Wishlist?>, t: Throwable) {
+                } else {
                     ToastMsg(this@DetailsActivityPhando).toastIconError(getString(R.string.error_toast))
-                    Log.e("DetailsActivityPhando", "onFailure: $t")
                 }
-            })
-        }
-
-        private fun removeFromFav(type: String) {
-            val retrofit = RetrofitClient.getRetrofitInstance()
-            val api = retrofit.create(FavouriteApi::class.java)
-            val call = api.removeFromFavorite(Config.API_KEY, userid, videoId, type)
-            call.enqueue(object : Callback<FavoriteModel?> {
-                override fun onResponse(
-                    call: Call<FavoriteModel?>, response: Response<FavoriteModel?>
-                ) {
-                    if (response.code() == 200 && response.body() != null) {
-                        if (response.body()!!.status.equals("success", ignoreCase = true)) {
-                            ToastMsg(this@DetailsActivityPhando).toastIconSuccess(response.body()!!.message)
-                            if (type == Constants.WishListType.fav) {
-                                isFav = false
-                                imgFavList!!.text = "Add to Favorite"
-                                /*      imgAddFav.setImageResource(R.drawable.ic_bottom_fav);
-                                favIv.setImageResource(R.drawable.ic_bottom_fav);*/
-                            } else {
-                                isWatchLater = false
-                                //kranti
-                                imgWatchList!!.text = "Add to Watchlist"
-                                // imgWatchList.setColorFilter(ContextCompat.getColor(DetailsActivity.this, R.color.colorHint), android.graphics.PorterDuff.Mode.SRC_IN);
-                            }
-                        } else {
-                            ToastMsg(this@DetailsActivityPhando).toastIconError(response.body()!!.message)
-                            if (type == Constants.WishListType.fav) {
-                                isFav = true
-                                imgFavList!!.text = "Remove to Favorite"
-                                /*        imgAddFav.setImageResource(R.drawable.ic_circle_fav);
-                                favIv.setImageResource(R.drawable.ic_circle_fav);*/
-                            } else {
-                                isWatchLater = true
-                                //kranti
-                                imgWatchList!!.text = "Remove to Watchlist"
-                                //     imgWatchList.setColorFilter(ContextCompat.getColor(DetailsActivity.this, R.color.colorGold), android.graphics.PorterDuff.Mode.SRC_IN);
-                            }
-                        }
-                    }
-                }
-
-                override fun onFailure(call: Call<FavoriteModel?>, t: Throwable) {
-                    ToastMsg(this@DetailsActivityPhando).toastIconError(getString(R.string.fetch_error))
-                }
-            })
-        }
-
-        private fun getFavStatus(type: String) {
-            val retrofit = RetrofitClient.getRetrofitInstance()
-            val api = retrofit.create(FavouriteApi::class.java)
-            val call = api.verifyFavoriteList(Config.API_KEY, userid, videoId, type)
-            activityIndicator(true)
-            call.enqueue(object : Callback<FavoriteModel?> {
-                override fun onResponse(
-                    call: Call<FavoriteModel?>, response: Response<FavoriteModel?>
-                ) {
-                    if (response.code() == 200 && response.body() != null) {
-                        activityIndicator(false)
-                        if (type == Constants.WishListType.fav) {
-                            if (response.body()!!.status.equals("success", ignoreCase = true)) {
-                                isFav = true
-                                imgFavList!!.text = "Remove to Favourite"
-                                /*         imgAddFav.setImageResource(R.drawable.ic_circle_fav);
-                                favIv.setImageResource(R.drawable.ic_circle_fav);*/
-                            } else {
-                                isFav = false
-                                imgFavList!!.text = "Add to Favourite"
-                                /*       imgAddFav.setImageResource(R.drawable.ic_bottom_fav);
-                                favIv.setImageResource(R.drawable.ic_bottom_fav);
-                        */
-                            }
-                            /*      imgAddFav.setVisibility(VISIBLE);
-                            favIv.setVisibility(VISIBLE);*/
-                        } else {
-                            if (response.body()!!.status.equals("success", ignoreCase = true)) {
-                                isWatchLater = true
-                                imgWatchList!!.text = "Remove to Watchlist"
-                                //   imgWatchList.setColorFilter(ContextCompat.getColor(DetailsActivity.this, R.color.colorGold), android.graphics.PorterDuff.Mode.SRC_IN);
-                            } else {
-                                isWatchLater = false
-                                imgWatchList!!.text = "Add to Watchlist"
-                                //     imgWatchList.setColorFilter(ContextCompat.getColor(DetailsActivity.this, R.color.colorHint), android.graphics.PorterDuff.Mode.SRC_IN);
-                            }
-                            /*   imgAddFav.setVisibility(VISIBLE);
-                            favIv.setVisibility(VISIBLE);*/
-                        }
-                    }
-                }
-
-                override fun onFailure(call: Call<FavoriteModel?>, t: Throwable) {
-                    activityIndicator(true)
-                    ToastMsg(this@DetailsActivityPhando).toastIconError(getString(R.string.fetch_error))
-                }
-            })
-        }
-
-        private fun activityIndicator(show: Boolean) {
-            if (show) {
-                window.setFlags(
-                    WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-                    WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-                )
-                progress_indicator!!.visibility = View.VISIBLE
-            } else {
-                progress_indicator!!.visibility = View.GONE
-                window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE)
             }
+
+            override fun onFailure(call: Call<Wishlist?>, t: Throwable) {
+                ToastMsg(this@DetailsActivityPhando).toastIconError(getString(R.string.error_toast))
+                Log.e("DetailsActivityPhando", "onFailure: $t")
+            }
+        })
+    }
+
+    private fun removeFromFav(type: String) {
+        val retrofit = RetrofitClient.getRetrofitInstance()
+        val api = retrofit.create(FavouriteApi::class.java)
+        val call = api.removeFromFavorite(Config.API_KEY, userid, videoId, type)
+        call.enqueue(object : Callback<FavoriteModel?> {
+            override fun onResponse(
+                call: Call<FavoriteModel?>, response: Response<FavoriteModel?>
+            ) {
+                if (response.code() == 200 && response.body() != null) {
+                    if (response.body()!!.status.equals("success", ignoreCase = true)) {
+                        ToastMsg(this@DetailsActivityPhando).toastIconSuccess(response.body()!!.message)
+                        if (type == Constants.WishListType.fav) {
+                            isFav = false
+                            imgFavList!!.text = "Add to Favorite"
+                            /*      imgAddFav.setImageResource(R.drawable.ic_bottom_fav);
+                            favIv.setImageResource(R.drawable.ic_bottom_fav);*/
+                        } else {
+                            isWatchLater = false
+                            //kranti
+                            imgWatchList!!.text = "Add to Watchlist"
+                            // imgWatchList.setColorFilter(ContextCompat.getColor(DetailsActivity.this, R.color.colorHint), android.graphics.PorterDuff.Mode.SRC_IN);
+                        }
+                    } else {
+                        ToastMsg(this@DetailsActivityPhando).toastIconError(response.body()!!.message)
+                        if (type == Constants.WishListType.fav) {
+                            isFav = true
+                            imgFavList!!.text = "Remove to Favorite"
+                            /*        imgAddFav.setImageResource(R.drawable.ic_circle_fav);
+                            favIv.setImageResource(R.drawable.ic_circle_fav);*/
+                        } else {
+                            isWatchLater = true
+                            //kranti
+                            imgWatchList!!.text = "Remove to Watchlist"
+                            //     imgWatchList.setColorFilter(ContextCompat.getColor(DetailsActivity.this, R.color.colorGold), android.graphics.PorterDuff.Mode.SRC_IN);
+                        }
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<FavoriteModel?>, t: Throwable) {
+                ToastMsg(this@DetailsActivityPhando).toastIconError(getString(R.string.fetch_error))
+            }
+        })
+    }
+
+    private fun getFavStatus(type: String) {
+        val retrofit = RetrofitClient.getRetrofitInstance()
+        val api = retrofit.create(FavouriteApi::class.java)
+        val call = api.verifyFavoriteList(Config.API_KEY, userid, videoId, type)
+        activityIndicator(true)
+        call.enqueue(object : Callback<FavoriteModel?> {
+            override fun onResponse(
+                call: Call<FavoriteModel?>, response: Response<FavoriteModel?>
+            ) {
+                if (response.code() == 200 && response.body() != null) {
+                    activityIndicator(false)
+                    if (type == Constants.WishListType.fav) {
+                        if (response.body()!!.status.equals("success", ignoreCase = true)) {
+                            isFav = true
+                            imgFavList!!.text = "Remove to Favourite"
+                            /*         imgAddFav.setImageResource(R.drawable.ic_circle_fav);
+                            favIv.setImageResource(R.drawable.ic_circle_fav);*/
+                        } else {
+                            isFav = false
+                            imgFavList!!.text = "Add to Favourite"
+                            /*       imgAddFav.setImageResource(R.drawable.ic_bottom_fav);
+                            favIv.setImageResource(R.drawable.ic_bottom_fav);
+                    */
+                        }
+                        /*      imgAddFav.setVisibility(VISIBLE);
+                        favIv.setVisibility(VISIBLE);*/
+                    } else {
+                        if (response.body()!!.status.equals("success", ignoreCase = true)) {
+                            isWatchLater = true
+                            imgWatchList!!.text = "Remove to Watchlist"
+                            //   imgWatchList.setColorFilter(ContextCompat.getColor(DetailsActivity.this, R.color.colorGold), android.graphics.PorterDuff.Mode.SRC_IN);
+                        } else {
+                            isWatchLater = false
+                            imgWatchList!!.text = "Add to Watchlist"
+                            //     imgWatchList.setColorFilter(ContextCompat.getColor(DetailsActivity.this, R.color.colorHint), android.graphics.PorterDuff.Mode.SRC_IN);
+                        }
+                        /*   imgAddFav.setVisibility(VISIBLE);
+                        favIv.setVisibility(VISIBLE);*/
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<FavoriteModel?>, t: Throwable) {
+                activityIndicator(true)
+                ToastMsg(this@DetailsActivityPhando).toastIconError(getString(R.string.fetch_error))
+            }
+        })
+    }
+
+    private fun activityIndicator(show: Boolean) {
+        if (show) {
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+            )
+            progress_indicator!!.visibility = View.VISIBLE
+        } else {
+            progress_indicator!!.visibility = View.GONE
+            window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE)
         }
     }
+
+
+}

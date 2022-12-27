@@ -146,6 +146,17 @@ public class Video implements Parcelable {
     private String genre_id;
     private String genre;
     private String runtime_in_minutes;
+
+    private String duration_str;
+
+    public String getDuration_str() {
+        return duration_str;
+    }
+
+    public void setDuration_str(String duration_str) {
+        this.duration_str = duration_str;
+    }
+
     public ContinueWatchMinutes continue_watch_minutes;
     @SerializedName("trailers")
     @Expose

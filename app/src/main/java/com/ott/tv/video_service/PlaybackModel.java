@@ -24,6 +24,7 @@ public class PlaybackModel implements Serializable {
     private long watchNextId;
 
 
+
     private Boolean istrailer;
     public String resolution_1;
     public String resolution_2;
@@ -34,6 +35,15 @@ public class PlaybackModel implements Serializable {
     public String resolution_7;
     public String resolution_8;
     public String stremURL;
+    public String islive;
+
+    public String getIslive() {
+        return islive;
+    }
+
+    public void setIslive(String islive) {
+        this.islive = islive;
+    }
 
     public Boolean getIstrailer() {
         return istrailer;

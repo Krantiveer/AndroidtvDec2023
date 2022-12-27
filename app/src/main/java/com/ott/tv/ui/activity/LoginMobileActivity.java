@@ -79,15 +79,16 @@ public class LoginMobileActivity extends Activity {
         mobile_code_in = findViewById(R.id.mobile_code_in);
         tv_verify_otp_mobileNo = findViewById(R.id.tv_verify_otp_mobileNo);
         editVerifiedOTP = findViewById(R.id.editVerifiedOTP);
-        if(BuildConfig.FLAVOR.equalsIgnoreCase("kaafaltv")||BuildConfig.FLAVOR.equalsIgnoreCase("solidtv")){
-        }else{
-        mobile_code_in.setOnClickListener(view -> {
+        if (BuildConfig.FLAVOR.equalsIgnoreCase("kaafaltv") || BuildConfig.FLAVOR.equalsIgnoreCase("solidtv")) {
+        } else {
+            mobile_code_in.setOnClickListener(view -> {
 
-            Intent i = new Intent(this, CountryCodeActivity.class);
-            startActivity(i);
+                Intent i = new Intent(this, CountryCodeActivity.class);
+                startActivity(i);
 
 
-        });}
+            });
+        }
         countryCode = PreferenceUtils.getInstance().getCountyCodePref(getApplicationContext());
         countryName = PreferenceUtils.getInstance().getCountyNamePref(getApplicationContext());
 
@@ -135,12 +136,14 @@ public class LoginMobileActivity extends Activity {
             }
         });
     }
+
     void startTimer() {
         cTimer = new CountDownTimer(59000, 1000) {
             public void onTick(long millisUntilFinished) {
                 timer_txt.setText("Didn't receive OTP? Resend in");
                 timer.setText(" 00:" + String.valueOf(millisUntilFinished / 1000));
             }
+
             public void onFinish() {
                 timer_txt.setText("Didn't receive OTP?");
                 timer.setVisibility(View.GONE);
@@ -154,7 +157,12 @@ public class LoginMobileActivity extends Activity {
 
     public void check_verified_OTP() {
         if (editVerifiedOTP.getText().toString().trim().equals("")) {
-            CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter OTP"), 2, 10000);
+            if (editVerifiedOTP.getText().length() < 6) {
+                CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("The OTP Must be 6 Digits."), 2, 10000);
+
+            } else {
+                CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter OTP"), 2, 10000);
+            }
         } else {
             getVerifyOTP(mob_number, editVerifiedOTP.getText().toString());
         }
@@ -163,10 +171,9 @@ public class LoginMobileActivity extends Activity {
     public void checkMobEdittxt() {
         if (editMobileNumber.getText().toString().trim().equals("") || editMobileNumber.getText().toString().trim().equals("")) {
             CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter Mobile Number"), 2, 10000);
-        }else if(editMobileNumber.getText().length()<=9){
+        } else if (editMobileNumber.getText().length() <= 9) {
             CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter Valid Mobile Number"), 2, 10000);
-        }
-        else {
+        } else {
             countryCode = countryCode.replace("+", "");
             // country_code
             mob_number = editMobileNumber.getText().toString();
@@ -270,7 +277,7 @@ public class LoginMobileActivity extends Activity {
                         //   CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter OTP"), 2, 10000);
                         new ToastMsg(getApplicationContext()).toastIconError(response.message());
                     } else {
-                        new ToastMsg(getApplicationContext()).toastIconError( response.message());
+                        new ToastMsg(getApplicationContext()).toastIconError(response.message());
                     }
                     progress_login_resend.setVisibility(View.GONE);
 
@@ -280,7 +287,7 @@ public class LoginMobileActivity extends Activity {
             @Override
             public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
                 progress_login_resend.setVisibility(View.GONE);
-                new ToastMsg(getApplicationContext()).toastIconError(getString(R.string.error_toast)+t);
+                new ToastMsg(getApplicationContext()).toastIconError(getString(R.string.error_toast) + t);
             }
         });
     }
@@ -343,7 +350,7 @@ public class LoginMobileActivity extends Activity {
             @Override
             public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
                 progressBar.setVisibility(View.GONE);
-                new ToastMsg(getApplicationContext()).toastIconError(getString(R.string.error_toast)+t);
+                new ToastMsg(getApplicationContext()).toastIconError(getString(R.string.error_toast) + t);
             }
         });
     }

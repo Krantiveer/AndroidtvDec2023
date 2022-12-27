@@ -71,7 +71,7 @@ class DetailsFragment : BrowseSupportFragment() {
 //        }
         if (DetailsActivityPhando.singleDetailsRelated!!.list.related.isNotEmpty()) {
 
-            cardPresenterHeader = HeaderItem(z.toLong(), "More like this")
+            cardPresenterHeader = HeaderItem(z.toLong(), "More Like This")
             var cardPresenter = CardPresenter_ShowRelatedVideo_vertical()
             cardRowAdapter = ArrayObjectAdapter(cardPresenter)
             for (element in DetailsActivityPhando.singleDetailsRelated!!.list!!.related!!) {

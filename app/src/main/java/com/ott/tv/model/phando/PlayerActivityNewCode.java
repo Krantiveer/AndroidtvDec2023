@@ -112,7 +112,7 @@ public class PlayerActivityNewCode extends Activity {
     private String videoType = "";
     private String category = "";
     private int visible;
-    private ImageButton serverButton, fastForwardButton, subtitleButton, imgVideoQuality;
+    private ImageButton serverButton, fastForwardButton, subtitleButton, imgVideoQuality,exo_prev,exo_rew;
     private TextView movieTitleTV, movieDescriptionTV;
     private ImageView posterImageView;
     private RelativeLayout seekBarLayout;
@@ -232,6 +232,8 @@ public class PlayerActivityNewCode extends Activity {
         subtitleButton = findViewById(R.id.img_subtitle);
         imgVideoQuality = findViewById(R.id.img_video_quality);
         fastForwardButton = findViewById(R.id.exo_ffwd);
+        exo_prev=findViewById(R.id.exo_prev);
+        exo_rew=findViewById(R.id.exo_rew);
         liveTvTextInController = findViewById(R.id.live_tv);
         seekBarLayout = findViewById(R.id.seekbar_layout);
         if (category.equalsIgnoreCase("t")) {
@@ -275,6 +277,17 @@ public class PlayerActivityNewCode extends Activity {
             } else {
                 //       setResolutionHashMaps(model.getVideo());
             }
+
+        }
+        if (model.islive != null&& model.islive.equalsIgnoreCase("1")) {
+            serverButton.setVisibility(View.GONE);
+            subtitleButton.setVisibility(View.GONE);
+            fastForwardButton.setVisibility(View.GONE);
+            exo_prev.setVisibility(GONE);
+            exo_rew.setVisibility(GONE);
+
+            liveTvTextInController.setVisibility(View.VISIBLE);
+            seekBarLayout.setVisibility(View.INVISIBLE);
 
         }
     }
@@ -644,11 +657,11 @@ public class PlayerActivityNewCode extends Activity {
                     exoPlayerView.hideController();
                 } else {
                     Log.i(TAG, "onKeyDown: " + "here click");
-                 //   updateContinueWatchingDataToServer();
+                    //   updateContinueWatchingDataToServer();
 
 
                     releasePlayer();
-                 //    mediaSessionHelper.stopMediaSession();
+                    //    mediaSessionHelper.stopMediaSession();
                     finish();
                     onBackPressed();
                    /* if (doubleBackToExitPressedOnce) {

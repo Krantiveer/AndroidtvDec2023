@@ -128,7 +128,7 @@ public class LoginChooserActivity extends Activity {
                 Log.i(TAG, "Handler run run: " + randomNumber);
                 tv_qrCode.setVisibility(View.VISIBLE);
                 tv_qrCode.setText(randomNumber);
-                handler.postDelayed(this, 80000);//80 sec
+                handler.postDelayed(this, 100000);//90 sec
                 // CheckAccessCode(randomNumber);
                 //Do something after 20 seconds
             }

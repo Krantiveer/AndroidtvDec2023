@@ -281,12 +281,12 @@ public class HomeFragment extends RowsSupportFragment {
         for (int i = 0; i < movieListContent.size(); i++) {
             ArrayObjectAdapter listRowAdapter;
             HeaderItem header;
-            if (movieListContent.get(i).getDisplayType().equalsIgnoreCase("TOP_BANNER")) {
-                listRowAdapter = new ArrayObjectAdapter(cardPresenterBanner);
+       /*     if (movieListContent.get(i).getDisplayType().equalsIgnoreCase("TOP_BANNER")) {
+                listRowAdapter = new ArrayObjectAdapter(cardPresenter);
                 header = new HeaderItem(i, "");
 
 
-            } else {
+            } else*/ {
 
          /*   else if (i == 5) {
                 //load tv layout

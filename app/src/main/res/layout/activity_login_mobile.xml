@@ -142,6 +142,7 @@
                     android:hint="@string/enter_otp"
                     android:inputType="numberDecimal"
                     android:maxLines="1"
+                    android:maxEms="6"
                     android:paddingStart="@dimen/_15sp"
                     android:paddingTop="@dimen/_10sdp"
                     android:paddingBottom="@dimen/_10sdp"
@@ -190,11 +191,11 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text=""
-                        android:textColor="@color/colorGold"
+                        android:textColor="@color/main_color"
                         android:textSize="@dimen/_14sdp" />
 
                     <Button
-                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginStart="@dimen/_2sdp"
                         android:fontFamily="@font/roboto_medium"
                         android:id="@+id/bt_resend"
                         android:layout_width="match_parent"

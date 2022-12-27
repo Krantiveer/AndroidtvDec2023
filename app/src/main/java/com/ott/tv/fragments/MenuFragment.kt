@@ -87,36 +87,7 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
                 if (response.code() == 200) {
                     menu = response.body()
                     setAdapter()
-                    // adapter.setEmployees(employees)
-                    /* binding.menuRecycler.apply {
-                         *//*adapter = MenuListAdapter(requireActivity(), menu!!, object : ICallback {
-                                override fun delegate(any: Any) {
-                                    val activity = requireActivity() as NewMainActivity
-                                    if (any != null && any is Boolean) {
-                                        activity.onMenuFocus(any)
-                                    } else {
-                                        activity.onMenuFocus(false)
-                                    }
-                                }
 
-                            })*//*
-
-                    }*/
-
-
-                    //  homeContent.setHomeContentId(1);
-                    //   homeContent.getSlider();
-                    //  loadSliderRows(homeContent.getSlider().getSlideArrayList());
-
-                    //   loadRows();
-                    /*if (movieList.size() <= 0) {
-
-                    }
-
-                    for (BrowseData movie : movieList) {
-
-                    }
-                    //   movies.addAll(movieList);*/
                 } else if (response.code() == 401) {
 
                     // signOut();
