@@ -1,6 +1,8 @@
 package com.ott.tv.ui.activity;
 
 
+import static com.ott.tv.utils.CMHelper.hideKeyboard;
+
 import androidx.annotation.NonNull;
 
 import android.annotation.SuppressLint;
@@ -42,7 +44,7 @@ import retrofit2.Retrofit;
 
 public class LoginMobileActivity extends Activity {
     private EditText editMobileNumber, editVerifiedOTP;
-    private ProgressBar progressBar,progress_login_resend;
+    private ProgressBar progressBar, progress_login_resend;
     private Button send_otp, bt_verified_login, bt_resend;
     private String mob_number, country_code;
 
@@ -76,9 +78,14 @@ public class LoginMobileActivity extends Activity {
         editMobileNumber = findViewById(R.id.editMobileNumber);
         send_otp.setOnClickListener(view -> checkMobEdittxt());
         bt_verified_login.setOnClickListener(view -> check_verified_OTP());
+        bt_verified_login.setOnFocusChangeListener((v, hasFocus) -> hideKeyboard(v));
+        send_otp.setOnFocusChangeListener((v, hasFocus) -> hideKeyboard(v));
+
+
         mobile_code_in = findViewById(R.id.mobile_code_in);
         tv_verify_otp_mobileNo = findViewById(R.id.tv_verify_otp_mobileNo);
         editVerifiedOTP = findViewById(R.id.editVerifiedOTP);
+        editMobileNumber.requestFocus();
         if (BuildConfig.FLAVOR.equalsIgnoreCase("kaafaltv") || BuildConfig.FLAVOR.equalsIgnoreCase("solidtv")) {
         } else {
             mobile_code_in.setOnClickListener(view -> {

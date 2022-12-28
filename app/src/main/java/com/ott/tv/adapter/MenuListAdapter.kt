@@ -71,13 +71,14 @@ class MenuListAdapter(
                 mCallback.delegate(hasFocus)
                 hasFocusLocalVar = hasFocus
 
+                Log.d("Clicking Event focus", "binder: clicked2--" + hasFocus+absoluteAdapterPosition+dataList.size)
 
                 //   Toast.makeText(context, "$hasFocus", Toast.LENGTH_SHORT).show()
 
                 if (hasFocus) {
-                    if (adapterPosition == dataList.size - 1) {
+                    if (absoluteAdapterPosition == dataList.size-1 ) {
                         binding.menuLayout.nextFocusDownId = R.id.menuRecycler
-                    } else if (adapterPosition == 0) {
+                    } else if (absoluteAdapterPosition == 0) {
                         binding.menuLayout.nextFocusUpId = R.id.menuRecycler
                     }
                     dataModel.isFocused = true

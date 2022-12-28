@@ -21,8 +21,8 @@
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_82sdp"
             android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_40sdp"
-            android:contentDescription="@string/contentDescription"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:contentDescription="TODO"
             android:src="@drawable/logo" />
 
         <!--

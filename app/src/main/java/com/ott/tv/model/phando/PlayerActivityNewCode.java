@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.PowerManager;
+import android.support.v4.media.session.MediaSessionCompat;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.KeyEvent;
@@ -62,6 +63,7 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import com.google.android.exoplayer2.util.MimeTypes;
 import com.google.android.exoplayer2.util.Util;
+/*import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;*/
 import com.ott.tv.Config;
 import com.ott.tv.Constants;
 import com.ott.tv.R;
@@ -130,6 +132,8 @@ public class PlayerActivityNewCode extends Activity {
     private long mediaDuration = 0L;
     HashMap<String, String> resolutionHashMap = null;
     private String categoryType = "", id = "";
+//    private MediaSessionCompat mediaSession;
+    /*private MediaSessionConnector mediaSessionConnector;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -889,7 +893,7 @@ public class PlayerActivityNewCode extends Activity {
                     progressBar.setVisibility(View.GONE);
                     createChannel();
                     //create media session
-                    mediaSessionHelper = new MediaSessionHelper(player, PlayerActivity.this, model, isPlaying);
+                    mediaSessionHelper = new MediaSessionHelper(player, PlayerActivityNewCode.this, model, isPlaying);
                     mediaSessionHelper.updateMetadata();
                     mediaSessionHelper.updatePlaybackState();
 
@@ -903,7 +907,7 @@ public class PlayerActivityNewCode extends Activity {
                     mediaSessionHelper.updatePlaybackState();
 
                     Log.e("123456", "id: " + model.getId());
-                    watchNextAdapter.updateProgress(PlayerActivity.this, 119, model, position, duration);
+       //             watchNextAdapter.updateProgress(PlayerActivityNewCode.this, 119, model, position, duration);
 
                 } else if (playbackState == Player.STATE_BUFFERING) {
                     isPlaying = false;
@@ -914,7 +918,7 @@ public class PlayerActivityNewCode extends Activity {
                     //remove now playing card
                     mediaSessionHelper.stopMediaSession();
                     //mediaSessionHelper.stopMediaSession();
-                    watchNextAdapter.removeFromWatchNext(PlayerActivity.this, 119, model.getId());
+   //                 watchNextAdapter.removeFromWatchNext(PlayerActivityNewCode.this, 119, model.getId());
                 } else {
                     // player paused in any state
                     isPlaying = false;
