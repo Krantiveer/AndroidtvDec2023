@@ -3,14 +3,12 @@
     <item android:state_pressed="true" >
         <shape android:shape="rectangle"  >
             <corners android:radius="@dimen/_4sdp" />
-            <stroke android:width="1dip" android:color="@color/side_nav_highlited" />
             <gradient android:angle="-180" android:startColor="@color/side_nav_highlited" android:endColor="@color/side_nav_highlited"  />
         </shape>
     </item>
     <item android:state_focused="true">
         <shape android:shape="rectangle"  >
             <corners android:radius="@dimen/_4sdp" />
-            <stroke android:width="1dip" android:color="@color/side_nav_highlited" />
             <solid android:color="@color/side_nav_highlited"/>
         </shape>
     </item>

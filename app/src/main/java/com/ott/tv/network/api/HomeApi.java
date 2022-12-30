@@ -12,6 +12,6 @@ public interface HomeApi {
     /*@GET("home_content")
     Call<List<HomeContent>> getHomeContent(@Header("API-KEY") String apiKey);*/
     @GET("v1/home_content_for_android")
-    Call<HomeContent> getHomeContent(@Header("API-KEY") String apiKey,
-                                     @Query("user_id") String userId);
+    Call<HomeContent> getHomeContent(
+            @Header("Authorization") String token);
 }

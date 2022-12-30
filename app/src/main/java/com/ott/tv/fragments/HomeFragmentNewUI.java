@@ -54,6 +54,7 @@ import com.ott.tv.model.home_content.Video;
 import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.HomeApi;
 import com.ott.tv.utils.CMHelper;
+import com.ott.tv.utils.PreferenceUtils;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -318,10 +319,11 @@ public class HomeFragmentNewUI extends Fragment {
             assert fm != null;
             fm.beginTransaction().add(R.id.browserSection, mSpinnerFragment).commit();
 
-            String userId = new DatabaseHelper(requireContext()).getUserData().getUserId();
+       //     String userId = new DatabaseHelper(requireContext()).getUserData().getUserId();
+            String accessToken = PreferenceUtils.getInstance().getAccessTokenPref(getContext());
             Retrofit retrofit = RetrofitClient.getRetrofitInstanceWithV1();
             HomeApi api = retrofit.create(HomeApi.class);
-            Call<HomeContent> call = api.getHomeContent(Config.API_KEY, userId);
+            Call<HomeContent> call = api.getHomeContent(accessToken);
             call.enqueue(new Callback<HomeContent>() {
                 @Override
                 public void onResponse(@NotNull Call<HomeContent> call, @NotNull retrofit2.Response<HomeContent> response) {
