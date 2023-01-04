@@ -50,7 +50,7 @@ class SearchFragmentPhando : BrowseSupportFragment() {
             context
         )
         //  Log.e(SearchFragment.TAG, "getQueryData: $query")
-        val call = searchApi.searchVideo(Config.API_KEY, searchtext, "", "", "50")
+        val call = searchApi.searchVideo(accessToken, searchtext, "", "", "50")
         call.enqueue(object : Callback<MutableList<ShowWatchlist>> {
             override fun onResponse(
                 call: Call<MutableList<ShowWatchlist>>,

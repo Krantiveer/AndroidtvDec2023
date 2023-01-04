@@ -112,7 +112,13 @@ class DetailsActivityPhando : FragmentActivity() {
     private var movie_titleTwo: TextView? = null
 
     private var detailsFragment: DetailsFragment? = null
+   /* private var videodetail: PlaybackModel? = null
 
+    private lateinit var mediaSession: MediaSessionCompat
+    private lateinit var mediaSessionConnector: MediaSessionConnector
+    private val MEDIA_SESSION_TAG = "ReferenceAppKotlin"
+    private val TAG = "SearchFragment"
+*/
     companion object {
         var contentList: ArrayList<ShowWatchlist>? = null
         var mediaplabackApiResponse: MediaplabackApiResponse? = null
@@ -563,9 +569,20 @@ class DetailsActivityPhando : FragmentActivity() {
     override fun onStop() {
         if (Util.SDK_INT >= 24) releasePlayer()
         super.onStop()
+        //destroyPlayer()
     }
 
     public override fun onDestroy() {
+
+        // Releasing the mediaSession due to inactive playback and setting token for cast to null.
+/*        if (mediaSession != null) {
+            mediaSession.release()
+            CastHelper.setMediaSessionTokenForCast(
+                *//* mediaSession =*//* null,
+                CastReceiverContext.getInstance().mediaManager
+            )
+        }*/
+
         if (Util.SDK_INT >= 24) releasePlayer()
         super.onDestroy()
     }
@@ -579,6 +596,38 @@ class DetailsActivityPhando : FragmentActivity() {
             player = null
         }
     }
+
+/*
+    private fun createMediaSession() {
+        mediaSession = MediaSessionCompat(this, MEDIA_SESSION_TAG)
+        Log.i(TAG, "createMediaSession: " + videodetail)
+        if (videodetail != null) {
+            mediaSessionConnector = MediaSessionConnector(mediaSession).apply {
+
+                setQueueNavigator(SingleVideoQueueNavigator(videodetail!!, mediaSession))
+                setControlDispatcher(object : DefaultControlDispatcher() {
+                    override fun dispatchStop(player: Player, reset: Boolean): Boolean {
+                        // Treat stop commands as pause, this keeps ExoPlayer, MediaSession, etc.
+                        // in memory to allow for quickly resuming. This also maintains the playback
+                        // position so that the user will resume from the current position when backing
+                        // out and returning to this video
+                        // Timber.v("Playback stopped at ${player.currentPosition}")
+                        Log.i(TAG, "Playback stopped at ${player.currentPosition} ")
+                        // This both prevents playback from starting automatically and pauses it if
+                        // it's already playing
+                        player.playWhenReady = false
+                        return true
+                    }
+                })
+            }
+        }
+
+        CastHelper.setMediaSessionTokenForCast(
+            mediaSession,
+            CastReceiverContext.getInstance().mediaManager
+        )
+    }
+*/
 
     override fun onPause() {
         if (Util.SDK_INT < 24) releasePlayer()
@@ -616,7 +665,7 @@ class DetailsActivityPhando : FragmentActivity() {
                     10000
                 )
                 return
-            } else if (singleDetails!!.list.media_url.isEmpty()) {
+            } else if (singleDetails!!.list.media_url.isEmpty() && singleDetails!!.list.youtube_url.isEmpty()) {
                 CMHelper.setSnackBar(
                     this.currentFocus,
                     "We are sorry, Video not available for your selected content",
@@ -644,12 +693,7 @@ class DetailsActivityPhando : FragmentActivity() {
                 if (singleDetails!!.list.is_youtube.toString().equals("1", ignoreCase = true)) {
                     video.videoType = "youtube"
                     video.videoUrl = singleDetails!!.list.youtube_url
-                } /*else if (singleDetails!!.list.is_youtube.toString()
-                        .equals("2", ignoreCase = true)
-                ) {
-                    video.videoType = "youtube-live"
-                    video.videoUrl = singleDetails!!.list.youtube_url
-                } */ else {
+                } else {
                     video.videoType = "hls"
                     video.videoUrl = singleDetails!!.list.media_url
                 }
@@ -993,7 +1037,7 @@ class DetailsActivityPhando : FragmentActivity() {
 
 
     override fun onResume() {
-        if(episode_rv!!.isVisible){
+        if (episode_rv!!.isVisible) {
             episode_rv!!.requestFocus()
         }
         super.onResume()
@@ -1033,10 +1077,10 @@ class DetailsActivityPhando : FragmentActivity() {
         Log.e("DetailActivityPhando", "movieIndex : " + keyCode + episode_rv?.isVisible)
         when (keyCode) {
 
-        /*    KeyEvent.KEYCODE_BACK -> {
-                return false
-                Log.i("Backbutton", "onBackPressed:4 " + episode_rv!!.isVisible)
-            }*/
+            /*    KeyEvent.KEYCODE_BACK -> {
+                    return false
+                    Log.i("Backbutton", "onBackPressed:4 " + episode_rv!!.isVisible)
+                }*/
             KeyEvent.KEYCODE_DPAD_CENTER -> return false
             KeyEvent.KEYCODE_DPAD_LEFT -> return false
             KeyEvent.KEYCODE_DPAD_RIGHT -> return false

@@ -114,7 +114,7 @@ public class PlayerActivityNewCode extends Activity {
     private String videoType = "";
     private String category = "";
     private int visible;
-    private ImageButton serverButton, fastForwardButton, subtitleButton, imgVideoQuality,exo_prev,exo_rew;
+    private ImageButton serverButton, fastForwardButton, subtitleButton, imgVideoQuality, exo_prev, exo_rew;
     private TextView movieTitleTV, movieDescriptionTV;
     private ImageView posterImageView;
     private RelativeLayout seekBarLayout;
@@ -236,8 +236,8 @@ public class PlayerActivityNewCode extends Activity {
         subtitleButton = findViewById(R.id.img_subtitle);
         imgVideoQuality = findViewById(R.id.img_video_quality);
         fastForwardButton = findViewById(R.id.exo_ffwd);
-        exo_prev=findViewById(R.id.exo_prev);
-        exo_rew=findViewById(R.id.exo_rew);
+        exo_prev = findViewById(R.id.exo_prev);
+        exo_rew = findViewById(R.id.exo_rew);
         liveTvTextInController = findViewById(R.id.live_tv);
         seekBarLayout = findViewById(R.id.seekbar_layout);
         if (category.equalsIgnoreCase("t")) {
@@ -283,7 +283,7 @@ public class PlayerActivityNewCode extends Activity {
             }
 
         }
-        if (model.islive != null&& model.islive.equalsIgnoreCase("1")) {
+        if (model.islive != null && model.islive.equalsIgnoreCase("1")) {
             serverButton.setVisibility(View.GONE);
             subtitleButton.setVisibility(View.GONE);
             fastForwardButton.setVisibility(View.GONE);
@@ -334,12 +334,9 @@ public class PlayerActivityNewCode extends Activity {
         PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
         wakeLock = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK | PowerManager.ON_AFTER_RELEASE, "My Tag:");
 
-        subtitleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //open subtitle dialog
-                openSubtitleDialog();
-            }
+        subtitleButton.setOnClickListener(v -> {
+            //open subtitle dialog
+            openSubtitleDialog();
         });
         imgVideoQuality.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -665,7 +662,7 @@ public class PlayerActivityNewCode extends Activity {
 
 
                     releasePlayer();
-                    //    mediaSessionHelper.stopMediaSession();
+                    //  mediaSessionHelper.stopMediaSession();
                     finish();
                     onBackPressed();
                    /* if (doubleBackToExitPressedOnce) {
@@ -837,6 +834,7 @@ public class PlayerActivityNewCode extends Activity {
             player.stop();
             player.release();
         }
+
         progressBar.setVisibility(VISIBLE);
         BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
         TrackSelection.Factory videoTrackSelectionFactory = new
@@ -888,15 +886,24 @@ public class PlayerActivityNewCode extends Activity {
 
             @Override
             public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-                if (playWhenReady && playbackState == Player.STATE_READY) {
-                    isPlaying = true;
-                    progressBar.setVisibility(View.GONE);
-                    createChannel();
-                    //create media session
-                    mediaSessionHelper = new MediaSessionHelper(player, PlayerActivityNewCode.this, model, isPlaying);
-                    mediaSessionHelper.updateMetadata();
-                    mediaSessionHelper.updatePlaybackState();
 
+                if (!type.contains("youtube")) {
+                    if (playWhenReady && playbackState == Player.STATE_READY) {
+                        isPlaying = true;
+                        progressBar.setVisibility(View.GONE);
+                        createChannel();
+                        //create media session
+
+                        mediaSessionHelper = new MediaSessionHelper(player, PlayerActivityNewCode.this, model, isPlaying);
+                        mediaSessionHelper.updateMetadata();
+                        mediaSessionHelper.updatePlaybackState();
+
+//                    session = new MediaSession(getApplicationContext(), "MusicService");
+ //                   session.setCallback(new MediaSessionCallback());
+ //                   session.setFlags(MediaSession.FLAG_HANDLES_MEDIA_BUTTONS |
+   //                         MediaSession.FLAG_HANDLES_TRANSPORT_CONTROLS);
+
+                    }
                 } else if (playbackState == Player.STATE_READY) {
                     isPlaying = false;
                     progressBar.setVisibility(View.GONE);
@@ -1022,6 +1029,7 @@ public class PlayerActivityNewCode extends Activity {
 
     @Override
     protected void onDestroy() {
+
         super.onDestroy();
         releasePlayer();
         if (wakeLock != null)
@@ -1030,9 +1038,18 @@ public class PlayerActivityNewCode extends Activity {
 
     @Override
     protected void onResume() {
+        Log.i(TAG, "playing ----onResume: ");
         super.onResume();
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         wakeLock.acquire(10 * 60 * 1000L /*10 minutes*/);
+    }
+
+    @Override
+    protected void onStop() {
+        Log.i(TAG, "playing ----onstop: ");
+        releasePlayer();
+        super.onStop();
+        finish();
     }
 
     private void releasePlayer() {

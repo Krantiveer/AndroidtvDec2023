@@ -70,8 +70,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/recyclerViewBanner"
                 android:layout_marginTop="6dp"
-                android:paddingStart="@dimen/_30sdp"
                 android:orientation="vertical"
+                android:paddingStart="@dimen/_30sdp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:itemCount="3"
                 tools:listitem="@layout/banner_home_list_item_movies" />

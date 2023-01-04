@@ -92,7 +92,6 @@ class DetailsFragment : BrowseSupportFragment() {
             DetailsActivityPhando.indexOfRow = rowsSupportFragment.selectedPosition
             DetailsActivityPhando.indexOfItem =
                 ((row as ListRow).adapter as ArrayObjectAdapter).indexOf(item)
-            Log.i(TAG, "setupEventListeners:don ")
             Log.e(
                 TAG,
                 "    ${DetailsActivityPhando.indexOfRow}         ${DetailsActivityPhando.indexOfItem}"

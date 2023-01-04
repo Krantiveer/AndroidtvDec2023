@@ -41,6 +41,7 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 
+import com.ott.tv.BuildConfig;
 import com.ott.tv.Config;
 import com.ott.tv.Constants;
 import com.ott.tv.R;
@@ -99,13 +100,15 @@ public class HomeFragmentNewUI extends Fragment {
     private void setTextViewBanner(Video video) {
         releasePlayer();
         //  String url = "https://action-ott-live.s3.ap-south-1.amazonaws.com/Sultan+Trailer/sultan+(1).mp4";
-        if (video.getTrailer_aws_source() != null) {
-            String url = video.getTrailer_aws_source();
-            initVideoPlayer(url, "movie");
-        } else {
-            if (video.getTrailler_youtube_source() != null) {
-                String url = video.getTrailler_youtube_source();
+        if (!BuildConfig.FLAVOR.equalsIgnoreCase("kaafaltv")) {
+            if (video.getTrailer_aws_source() != null) {
+                String url = video.getTrailer_aws_source();
                 initVideoPlayer(url, "movie");
+            } else {
+                if (video.getTrailler_youtube_source() != null) {
+                    String url = video.getTrailler_youtube_source();
+                    initVideoPlayer(url, "movie");
+                }
             }
         }
         textViewBanner.setText(video.getTitle());
@@ -119,10 +122,10 @@ public class HomeFragmentNewUI extends Fragment {
 
             }
         }*/
-        if(video.getIs_free()!=null){
-            if(video.getIs_free().toString().equalsIgnoreCase("1")){
+        if (video.getIs_free() != null) {
+            if (video.getIs_free().toString().equalsIgnoreCase("1")) {
                 content_premiumIconImage.setVisibility(View.INVISIBLE);
-            }else{
+            } else {
                 content_premiumIconImage.setVisibility(View.VISIBLE);
 
             }
@@ -204,7 +207,7 @@ public class HomeFragmentNewUI extends Fragment {
 
             player = ExoPlayerFactory.newSimpleInstance(getContext(), trackSelector);
 //to set volume
-            player.setVolume(.0f);
+            player.setVolume(.5f);
             exoPlayerView.setPlayer(player);
             // below 2 lines will make screen size to fit
             exoPlayerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_ZOOM);
@@ -318,9 +321,8 @@ public class HomeFragmentNewUI extends Fragment {
             final FragmentManager fm = getFragmentManager();
             assert fm != null;
             fm.beginTransaction().add(R.id.browserSection, mSpinnerFragment).commit();
-
-       //     String userId = new DatabaseHelper(requireContext()).getUserData().getUserId();
-            String accessToken = PreferenceUtils.getInstance().getAccessTokenPref(getContext());
+            //     String userId = new DatabaseHelper(requireContext()).getUserData().getUserId();
+            String accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(requireContext());
             Retrofit retrofit = RetrofitClient.getRetrofitInstanceWithV1();
             HomeApi api = retrofit.create(HomeApi.class);
             Call<HomeContent> call = api.getHomeContent(accessToken);
@@ -337,11 +339,8 @@ public class HomeFragmentNewUI extends Fragment {
                                 setTextViewBanner(homeContent.getSlider().getSlideArrayList().get(0));
                                 loadRows(homeContent.getFeaturesGenreAndMovie(), homeContent.getSlider().getSlideArrayList());
                             } else */
-                            if(homeContent.getFeaturesGenreAndMovie()!=null)
-                            {
-
+                            if (homeContent.getFeaturesGenreAndMovie() != null && !homeContent.getFeaturesGenreAndMovie().isEmpty()) {
                                 setTextViewBanner(homeContent.getFeaturesGenreAndMovie().get(0).getVideos().get(0));
-
                                 loadRows(homeContent.getFeaturesGenreAndMovie());
                             }
                             ArrayList<Video> slideArrayList = homeContent.getSlider().getSlideArrayList();
@@ -361,7 +360,7 @@ public class HomeFragmentNewUI extends Fragment {
                         //CMHelper.setSnackBar(requireView(), "Sorry! Something went wrong. Please try again after some time", 2);
                     }
                     /*recyclerViewBannerTop.scrollToPosition(1);*/
-                   fm.beginTransaction().remove(mSpinnerFragment).commitAllowingStateLoss();
+                    fm.beginTransaction().remove(mSpinnerFragment).commitAllowingStateLoss();
 
 
                 }

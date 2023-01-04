@@ -23,6 +23,7 @@ import com.bumptech.glide.request.target.CustomTarget;
 
 import com.bumptech.glide.request.transition.Transition;
 import com.google.android.exoplayer2.ExoPlayer;
+import com.ott.tv.model.phando.PlayerActivityNewCode;
 import com.ott.tv.ui.activity.PlayerActivity;
 
 public class MediaSessionHelper {
@@ -50,7 +51,7 @@ public class MediaSessionHelper {
             mSession.setFlags(MediaSession.FLAG_HANDLES_TRANSPORT_CONTROLS | MediaSession.FLAG_HANDLES_MEDIA_BUTTONS);
             mSession.setActive(true);
 
-            Intent intent = new Intent(mContext.getApplicationContext(), PlayerActivity.class);
+            Intent intent = new Intent(mContext.getApplicationContext(), PlayerActivityNewCode.class);
             intent.putExtra(VideoPlaybackActivity.EXTRA_VIDEO, movie);
             intent.putExtra(VideoPlaybackActivity.EXTRA_POSITION, position);
             PendingIntent pi = PendingIntent.getActivity(mContext.getApplicationContext(), 99, intent, PendingIntent.FLAG_UPDATE_CURRENT);
