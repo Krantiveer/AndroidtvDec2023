@@ -83,6 +83,10 @@ public interface Dashboard {
             @Header("Authorization") String token
     );
 
+    @GET("showwishlist")
+    Call<List<ShowWatchlist>> getRecommendedList(
+            @Header("Authorization") String token);
+
     @GET("userProfile")
     Call<UserProfile> getUserProfileAPI(
             @Header("Authorization") String token

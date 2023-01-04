@@ -53,7 +53,6 @@ public class TvSeriesFragment extends VerticalGridSupportFragment {
 
     private List<Movie> movies = new ArrayList<>();
     private ArrayObjectAdapter mAdapter;
-
     private LeanbackActivity activity;
 
 

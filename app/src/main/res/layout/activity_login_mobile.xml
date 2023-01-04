@@ -270,7 +270,6 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/_16sdp" />
 
-
                 <EditText
                     android:focusable="true"
                     android:textSize="@dimen/_16sdp"

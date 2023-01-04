@@ -110,7 +110,7 @@ public class DetailsActivity extends FragmentActivity {
     private ProgressBar progress_indicator;
 
 
-    private ShowWatchlist relatedlist ;
+    private ShowWatchlist relatedlist;
 
     public DetailsActivity() {
     }
@@ -183,8 +183,8 @@ public class DetailsActivity extends FragmentActivity {
                 addToFav(Constants.WishListType.fav);
             }
         });
-      //  getFavStatus(Constants.WishListType.watch_later);
-      //  getFavStatus(Constants.WishListType.fav);
+        //  getFavStatus(Constants.WishListType.watch_later);
+        //  getFavStatus(Constants.WishListType.fav);
         tvWatchNow.setOnClickListener(v -> payAndWatchTV());
         tvWatchTrailer.setOnClickListener(view -> watchNowClick());
         PreferenceUtils.updateSubscriptionStatus(DetailsActivity.this);
@@ -248,7 +248,7 @@ public class DetailsActivity extends FragmentActivity {
                 }
             }
             if (tvWatchNow.getText() == null || !tvWatchNow.getText().toString().equalsIgnoreCase("Watch Now")) {
-                CMHelper.setSnackBar(this.getCurrentFocus(), "Enjoy Premium Content Watch anything without ads Watch  Please Subscribe Or Rent  from MOBILE APP | WEBSITE -"+Config.WebsiteURL , 1, 10000);
+                CMHelper.setSnackBar(this.getCurrentFocus(), "Enjoy Premium Content Watch anything without ads Watch  Please Subscribe Or Rent  from MOBILE APP | WEBSITE -" + Config.WebsiteURL, 1, 10000);
                 return;
             } else if (videoList.isEmpty()) {
                 CMHelper.setSnackBar(this.getCurrentFocus(), "We are sorry, Video not available for your selected content", 2);
@@ -345,7 +345,7 @@ public class DetailsActivity extends FragmentActivity {
         } else {
             userid = " ";
         }
-      //  PreferenceUtils.getInstance().getUsersIdActionOTT(this);
+        //  PreferenceUtils.getInstance().getUsersIdActionOTT(this);
         DetailsApi api = retrofit.create(DetailsApi.class);
         Call<MovieSingleDetails> call = api.getSingleDetail(Config.API_KEY, videoType, videoId, userid);
         activityIndicator(true);
@@ -392,8 +392,8 @@ public class DetailsActivity extends FragmentActivity {
             @Override
             public void onFailure(@NonNull Call<MovieSingleDetails> call, @NonNull Throwable t) {
                 activityIndicator(false);
-                Log.e("DetailISSUE_kranti", "onResponse: "+t);
-                CMHelper.setSnackBar(DetailsActivity.this.getCurrentFocus(), "We are sorry, This video content not available, Please try another"+t, 2);
+                Log.e("DetailISSUE_kranti", "onResponse: " + t);
+                CMHelper.setSnackBar(DetailsActivity.this.getCurrentFocus(), "We are sorry, This video content not available, Please try another" + t, 2);
             }
         });
 
@@ -439,8 +439,8 @@ public class DetailsActivity extends FragmentActivity {
     @SuppressLint("SetTextI18n")
     private void setMovieData() {
         if (singleDetails.video_view_type != null && singleDetails.video_view_type.equalsIgnoreCase("Subscription Based")) {
-            if (PreferenceUtils.isActivePlan(DetailsActivity.this)||true) {
-                if (PreferenceUtils.isValid(DetailsActivity.this)||true) {
+            if (PreferenceUtils.isActivePlan(DetailsActivity.this) || true) {
+                if (PreferenceUtils.isValid(DetailsActivity.this) || true) {
                     tvWatchNow.setText("Watch Now");
                 } else {
                     tvWatchNow.setText("Please Subscribe");
@@ -507,13 +507,11 @@ public class DetailsActivity extends FragmentActivity {
     }
 
 
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.pop_enter, R.anim.pop_exit);
     }
-
 
 
     @Override
@@ -524,30 +522,38 @@ public class DetailsActivity extends FragmentActivity {
         // When using DPad, show all the OSD so that focus can move freely
         // from/to ActionBar to/from PlayerController
         if (keyCode == 22) {
-            if (tvWatchNow.hasFocus() && tvWatchTrailer.getVisibility()==VISIBLE) {
+            if (tvWatchNow.hasFocus() && tvWatchTrailer.getVisibility() == VISIBLE) {
                 tvWatchTrailer.requestFocus();
                 tvWatchTrailer.setFocusable(true);
             }
         }
         switch (keyCode) {
-            case KeyEvent.KEYCODE_BACK: return false;
-            case KeyEvent.KEYCODE_DPAD_CENTER: return  false;
-            case KeyEvent.KEYCODE_DPAD_LEFT: return  false;
-            case KeyEvent.KEYCODE_DPAD_RIGHT: return  false;
+            case KeyEvent.KEYCODE_BACK:
+                return false;
+            case KeyEvent.KEYCODE_DPAD_CENTER:
+                return false;
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+                return false;
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+                return false;
             case KeyEvent.KEYCODE_DPAD_UP:
-                Log.e("SPLASH ACTIVITY", "movieIndex : " );
+                Log.e("SPLASH ACTIVITY", "movieIndex : ");
 
-                return  false;
+                return false;
 
-            case KeyEvent.KEYCODE_DPAD_UP_LEFT: return  false;
-            case KeyEvent.KEYCODE_DPAD_UP_RIGHT: return  false;
-            case KeyEvent.KEYCODE_DPAD_DOWN: return  false;
-            case KeyEvent.KEYCODE_DPAD_DOWN_LEFT: return  false;
-            case KeyEvent.KEYCODE_DPAD_DOWN_RIGHT: return  false;
+            case KeyEvent.KEYCODE_DPAD_UP_LEFT:
+                return false;
+            case KeyEvent.KEYCODE_DPAD_UP_RIGHT:
+                return false;
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+                return false;
+            case KeyEvent.KEYCODE_DPAD_DOWN_LEFT:
+                return false;
+            case KeyEvent.KEYCODE_DPAD_DOWN_RIGHT:
+                return false;
         }
         return super.onKeyDown(keyCode, event);
     }
-
 
 
     private void addToFav(String type) {

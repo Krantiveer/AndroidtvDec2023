@@ -64,8 +64,22 @@
 
 
             <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvRecommended"
+                    app:spanCount="4"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/divider"
+                    android:layout_marginTop="5dp"
+                    tools:listitem="@layout/layout_server_tv_item"/>
+
 
                 <fragment
                     android:id="@+id/searchFragment"

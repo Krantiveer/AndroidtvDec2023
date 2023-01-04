@@ -136,6 +136,7 @@ public class ItemGenreFragment extends VerticalGridSupportFragment {
                 intent.putExtra("thumbImage", movie.getThumbnailUrl());
                 intent.putExtra("poster_url", movie.getPosterUrl());
                 intent.putExtra("title", movie.getTitle());
+                Log.e("@@title", movie.getTitle()+"Dd");
                 intent.putExtra("description", movie.getDescription());
                 intent.putExtra("release", movie.getRelease());
                 intent.putExtra("video_quality", movie.getVideoQuality());

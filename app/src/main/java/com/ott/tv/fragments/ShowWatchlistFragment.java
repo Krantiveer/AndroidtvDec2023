@@ -81,15 +81,16 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
         setOnItemViewClickedListener(getDefaultItemViewClickedListener());
         setOnItemViewSelectedListener(getDefaultItemSelectedListener());
 
-        setupFragment(datatype);
-    }
-
-    private void setupFragment(String datatype) {
-        //  setCustomPadding();
         Constants.IS_FROM_HOME = false;
         VerticalGridPresenter gridPresenter = new VerticalGridPresenter();
         gridPresenter.setNumberOfColumns(NUM_COLUMNS);
         setGridPresenter(gridPresenter);
+       // setupFragment(datatype);
+    }
+
+    private void setupFragment(String datatype) {
+        //  setCustomPadding();
+
         //  mAdapter = new ArrayObjectAdapter(cardPresenter);
         mAdapter = new ArrayObjectAdapter(new HorizontalCardPresenter(datatype));
         setAdapter(mAdapter);
