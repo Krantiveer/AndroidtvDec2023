@@ -212,14 +212,21 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
         if (videoContent.getType() == null) {
             videoContent.setType("M");
         }
-
-
         {
 
             if (videoContent.getType().equalsIgnoreCase("VM")) {
                 Intent intent = new Intent(context, ItemCountryActivity.class);
                 intent.putExtra("id", video.getVideosId());
-                intent.putExtra("title", video.getTitle());
+                if (videoContent.getGenres() != null) {
+                    if (videoContent.getGenres().size() > 0) {
+                        String genres;
+                        genres = videoContent.getGenres().get(0);
+                        for (int i = 1; i < videoContent.getGenres().size(); i++) {
+                            genres = genres.concat("," + videoContent.getGenres().get(i));
+                        }
+                        intent.putExtra("title", genres);
+                    }
+                }
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
 

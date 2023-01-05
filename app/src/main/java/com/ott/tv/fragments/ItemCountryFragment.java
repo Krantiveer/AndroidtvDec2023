@@ -92,8 +92,8 @@ public class ItemCountryFragment extends VerticalGridSupportFragment {
         Dashboard api = retrofit.create(Dashboard.class);
         Constants.IS_FROM_HOME = false;
         String accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(getContext());
-        Log.i(TAG, id+"Access Token --->" + PreferenceUtils.getInstance().getAccessTokenPref(getContext()));
-        Call<List<ShowWatchlist>> call = api.getViewAllListAPI(accessToken,32);
+        Log.i(TAG, id + "Access Token --->" + PreferenceUtils.getInstance().getAccessTokenPref(getContext()));
+        Call<List<ShowWatchlist>> call = api.getViewAllListAPI(accessToken, 32);
         call.enqueue(new Callback<List<ShowWatchlist>>() {
             @Override
             public void onResponse(@NonNull Call<List<ShowWatchlist>> call, @NonNull Response<List<ShowWatchlist>> response) {
@@ -175,7 +175,16 @@ public class ItemCountryFragment extends VerticalGridSupportFragment {
             if (videoContent.getType().equalsIgnoreCase("VM")) {
                 Intent intent = new Intent(getContext(), ItemCountryActivity.class);
                 intent.putExtra("id", videoContent.getId());
-                intent.putExtra("title", videoContent.getTitle());
+                if (videoContent.getGenres() != null) {
+                    if (videoContent.getGenres().size() > 0) {
+                        String genres;
+                        genres = videoContent.getGenres().get(0);
+                        for (int i = 1; i < videoContent.getGenres().size(); i++) {
+                            genres = genres.concat("," + videoContent.getGenres().get(i));
+                        }
+                        intent.putExtra("title", genres);
+                    }
+                }
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 getContext().startActivity(intent);
 
