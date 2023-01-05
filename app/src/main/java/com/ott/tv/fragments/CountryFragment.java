@@ -133,17 +133,13 @@ public class CountryFragment extends VerticalGridSupportFragment {
 
     // click listener
     private OnItemViewClickedListener getDefaultItemViewClickedListener() {
-        return new OnItemViewClickedListener() {
-            @Override
-            public void onItemClicked(Presenter.ViewHolder viewHolder, Object o,
-                                      RowPresenter.ViewHolder viewHolder2, Row row) {
-                CountryModel countryModel = (CountryModel) o;
-                Intent intent = new Intent(getActivity(), ItemCountryActivity.class);
-                intent.putExtra("id", countryModel.getCountryId());
-                intent.putExtra("title", countryModel.getName());
-                startActivity(intent);
+        return (viewHolder, o, viewHolder2, row) -> {
+            CountryModel countryModel = (CountryModel) o;
+            Intent intent = new Intent(getActivity(), ItemCountryActivity.class);
+            intent.putExtra("id", countryModel.getCountryId());
+            intent.putExtra("title", countryModel.getName());
+            startActivity(intent);
 
-            }
         };
     }
 

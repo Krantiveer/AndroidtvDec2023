@@ -23,10 +23,12 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            debuggable false
             proguardFiles file("proguard-android.txt"), 'proguard-rules.pro'
         }
         debug {
             minifyEnabled false
+            debuggable false
             proguardFiles file("proguard-android.txt"), 'proguard-rules.pro'
         }
     }

@@ -21,11 +21,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.ott.tv.R;
+import com.ott.tv.model.CountryModel;
 import com.ott.tv.model.home_content.FeaturesGenreAndMovie;
 import com.ott.tv.model.home_content.Video;
 import com.ott.tv.ui.activity.DetailsActivity;
 import com.ott.tv.ui.activity.DetailsActivityPhando;
 import com.ott.tv.ui.activity.DetailsActivityTvSeries;
+import com.ott.tv.ui.activity.ItemCountryActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -154,20 +156,16 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
             holder.relativeLayout_parent.setOnClickListener(view -> {
                 //   Toast.makeText(view.getContext(), "click on item: " + position, Toast.LENGTH_LONG).show();
                 detailActivity(listdata.getVideos().get(position));
-
                 if (sendInterfaceClickSec != null) {
                     sendInterfaceClickSec.sendclickSec();
                 }
             });
-            holder.relativeLayout_parent.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View view, boolean b) {
-                    if (listdata.getVideos().get(position).getTitle() != null) {
-                        //setTextViewBanner(myListData.getDescription());
-                        Log.i(TAG, "onFocusChange: " + listdata.getVideos().get(position).getTitle());
-                        if (SendInterfaceDataBottom != null) {
-                            SendInterfaceDataBottom.sendDescriptionBottom(listdata.getVideos().get(position));
-                        }
+            holder.relativeLayout_parent.setOnFocusChangeListener((view, b) -> {
+                if (listdata.getVideos().get(position).getTitle() != null) {
+                    //setTextViewBanner(myListData.getDescription());
+                    Log.i(TAG, "onFocusChange: " + listdata.getVideos().get(position).getTitle());
+                    if (SendInterfaceDataBottom != null) {
+                        SendInterfaceDataBottom.sendDescriptionBottom(listdata.getVideos().get(position));
                     }
                 }
             });
@@ -214,17 +212,30 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
         if (videoContent.getType() == null) {
             videoContent.setType("M");
         }
+
+
         {
+
+            if (videoContent.getType().equalsIgnoreCase("VM")) {
+                Intent intent = new Intent(context, ItemCountryActivity.class);
+                intent.putExtra("id", video.getVideosId());
+                intent.putExtra("title", video.getTitle());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+
+            }
+
             if (videoContent.getType().equals("M") && videoContent.getIs_live().toString().equalsIgnoreCase("0")) {
                 Intent intent = new Intent(context, DetailsActivityPhando.class);
                 if (videoContent.getType() != null)
                     intent.putExtra("type", videoContent.getType());
                 if (videoContent.getThumbnail() != null) {
                     intent.putExtra("thumbImage", videoContent.getThumbnail());
-                }else {
+                } else {
                     if (videoContent.getThumbnailUrl() != null)
                         intent.putExtra("thumbImage", videoContent.getThumbnailUrl());
-                }if (videoContent.getId() != null) {
+                }
+                if (videoContent.getId() != null) {
                     intent.putExtra("video_id", videoContent.getId().toString());
                 } else {
                     if (videoContent.getVideosId() != null)
@@ -342,7 +353,7 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
                         genres = genres.concat("," + videoContent.getGenres().get(i));
                     }
                     intent.putExtra("genres", genres);
-                }else {
+                } else {
                     if (videoContent.getGenre() != null) {
                         intent.putExtra("genres", videoContent.getGenre());
                     }
@@ -406,7 +417,7 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
                         genres = genres.concat("," + videoContent.getGenres().get(i));
                     }
                     intent.putExtra("genres", genres);
-                }else {
+                } else {
                     if (videoContent.getGenre() != null) {
                         intent.putExtra("genres", videoContent.getGenre());
                     }

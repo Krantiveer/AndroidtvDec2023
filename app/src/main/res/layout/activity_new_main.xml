@@ -39,6 +39,7 @@
                 style="@style/Theme.MediaRouter.Light"
                 android:text=""
                 android:layout_marginBottom="@dimen/_15sdp"
+                android:paddingStart="@dimen/_70sdp"
                 tools:text="Home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

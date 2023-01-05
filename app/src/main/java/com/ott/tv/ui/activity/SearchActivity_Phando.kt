@@ -52,7 +52,7 @@ class SearchActivity_Phando : FragmentActivity() {
         btnsearch = findViewById(R.id.btnsearch)
         rvRecommended = findViewById(R.id.rvRecommended)
 
-        fetchMovieData()
+     //   fetchMovieData()
 
       /*  FirebaseApp.initializeApp(this);
         firebaseAnalytics = Firebase.analytics
@@ -100,7 +100,7 @@ class SearchActivity_Phando : FragmentActivity() {
                                        before: Int, count: Int) {
                 var searchText: String
                 if (editText.text.toString().equals("")) {
-                    rvRecommended.visibility = View.VISIBLE
+                 //   rvRecommended.visibility = View.VISIBLE
                     Toast.makeText(
                         applicationContext,
                         "please type keyword for Search",
@@ -108,7 +108,7 @@ class SearchActivity_Phando : FragmentActivity() {
                     ).show()
                 }
                 else {
-                    rvRecommended.visibility = View.GONE
+                  //  rvRecommended.visibility = View.GONE
                     searchText = editText.text.toString()
                     //  searchFragment.loadData(searchText, accestoken)
                     searchFragment.getQueryData(searchText)

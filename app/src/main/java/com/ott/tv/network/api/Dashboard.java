@@ -43,7 +43,7 @@ public interface Dashboard {
 
     @GET("userappversion")
     Call<AppInfo> getAppInfo(
-           @Query("app_type") String appType, @Query("device_id") String device_id
+            @Query("app_type") String appType, @Query("device_id") String device_id
 
     );
 
@@ -81,6 +81,13 @@ public interface Dashboard {
     @GET("showwishlist")
     Call<List<ShowWatchlist>> getShowWishListAPI(
             @Header("Authorization") String token
+    );
+
+    @GET("mediabygenresid")
+    Call<List<ShowWatchlist>> getViewAllListAPI(
+            @Header("Authorization") String token,
+            @Query("genres_id") Integer id
+
     );
 
     @GET("showwishlist")
