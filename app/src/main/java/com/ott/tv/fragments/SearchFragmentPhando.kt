@@ -58,17 +58,14 @@ class SearchFragmentPhando : BrowseSupportFragment() {
             ) {
                 Log.e(TAG, "response: " + response.code())
                 var searchContent = ArrayList<ShowWatchlist>()
-                searchContent = response.body() as ArrayList<ShowWatchlist>
+
                 var movieResult: MutableList<ShowWatchlist> = ArrayList()
 
                 if (response.code() == 200) {
-
-
+                    searchContent = response.body() as ArrayList<ShowWatchlist>
                     var listRowPresenter = ListRowPresenter(FocusHighlight.ZOOM_FACTOR_NONE, true)
                     listRowPresenter.selectEffectEnabled = false
                     rowAdapter = ArrayObjectAdapter(listRowPresenter)
-
-
                     var cardPresenter = CardPresenter_ShowRelatedVideo_vertical()
                     cardRowAdapter = ArrayObjectAdapter(cardPresenter)
                     for (j in 0 until searchContent!!.size) {

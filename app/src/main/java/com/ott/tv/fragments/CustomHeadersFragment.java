@@ -111,17 +111,17 @@ public class CustomHeadersFragment extends HeadersSupportFragment {
     private void setHeaderAdapter() {
         String[] headerItem;
         int[] headerIcon;
-        if (BuildConfig.FLAVOR.equalsIgnoreCase("solidtv")||BuildConfig.FLAVOR.equalsIgnoreCase("kaafaltv")) {
-            headerItem = new String[]{"Home", "Movie", "Series", "Live Channels"/*, "Coming Soon"*/, "Watchlist", "Profile"};
+   /*     if (BuildConfig.FLAVOR.equalsIgnoreCase("solidtv")||BuildConfig.FLAVOR.equalsIgnoreCase("kaafaltv")) {
+            headerItem = new String[]{"Home", "Movie", "Series", "Live Channels"*//*, "Coming Soon"*//*, "Watchlist", "Profile"};
 
             headerIcon = new int[]{R.drawable.homeslidernavnew, R.drawable.moviessidenav,
                     R.drawable.seriessidenav,
 
                     R.drawable.live_sidenav,
-                /*    R.drawable.commingsoon_sidenav,*/
+                *//*    R.drawable.commingsoon_sidenav,*//*
                     R.drawable.ic_baseline_flag_24,
                     R.drawable.ic_baseline_exit_to_app_24};
-        } else {
+        } else */{
             headerItem = new String[]{"Home", "Movie", "Series", "UVTV Bharat", "Live Channels", "Watchlist", "Profile"};
             headerIcon = new int[]{R.drawable.homeslidernavnew, R.drawable.moviessidenav,
                     R.drawable.seriessidenav,

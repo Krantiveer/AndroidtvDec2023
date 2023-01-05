@@ -86,14 +86,11 @@ public class LoginMobileActivity extends Activity {
         tv_verify_otp_mobileNo = findViewById(R.id.tv_verify_otp_mobileNo);
         editVerifiedOTP = findViewById(R.id.editVerifiedOTP);
         editMobileNumber.requestFocus();
-        if (BuildConfig.FLAVOR.equalsIgnoreCase("kaafaltv") || BuildConfig.FLAVOR.equalsIgnoreCase("solidtv")) {
-        } else {
+      /*  if (BuildConfig.FLAVOR.equalsIgnoreCase("kaafaltv") || BuildConfig.FLAVOR.equalsIgnoreCase("solidtv")) {
+        } else */{
             mobile_code_in.setOnClickListener(view -> {
-
                 Intent i = new Intent(this, CountryCodeActivity.class);
                 startActivity(i);
-
-
             });
         }
         countryCode = PreferenceUtils.getInstance().getCountyCodePref(getApplicationContext());

@@ -1,5 +1,7 @@
 package com.ott.tv.fragments
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,10 +13,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ott.tv.Constants
 import com.ott.tv.adapter.MenuListAdapter
+import com.ott.tv.database.DatabaseHelper
 import com.ott.tv.databinding.FragmentMenuBinding
 import com.ott.tv.model.phando.CategoryType
 import com.ott.tv.network.RetrofitClient
 import com.ott.tv.network.api.Dashboard
+import com.ott.tv.ui.activity.LoginChooserActivity
 import com.ott.tv.ui.activity.NewMainActivity
 import com.ott.tv.utils.ICallback
 import com.ott.tv.utils.PreferenceUtils
@@ -90,7 +94,7 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
 
                 } else if (response.code() == 401) {
 
-                    // signOut();
+                    signOut();
                 } else if (response.errorBody() != null) {
                     if (AccessController.getContext() != null) {
                         Toast.makeText(
@@ -119,6 +123,29 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
                 }
             }
         })
+    }
+
+    private fun signOut() {
+        if (context != null && activity != null) {
+            val databaseHelper = DatabaseHelper(context)
+            /*    String userId = databaseHelper.getUserData().getUserId();
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if (user != null) {
+                FirebaseAuth.getInstance().signOut();
+            }*/if (PreferenceUtils.getInstance().getAccessTokenPref(context) !== "") {
+                val editor = requireContext().getSharedPreferences(
+                    Constants.USER_LOGIN_STATUS,
+                    Context.MODE_PRIVATE
+                ).edit()
+                editor.putBoolean(Constants.USER_LOGIN_STATUS, false)
+                editor.apply()
+                databaseHelper.deleteUserData()
+                PreferenceUtils.clearSubscriptionSavedData(context)
+                PreferenceUtils.getInstance().setAccessTokenNPref(context, "")
+                startActivity(Intent(context, LoginChooserActivity::class.java))
+                requireActivity().finish()
+            }
+        }
     }
 
     private fun setAdapter() {

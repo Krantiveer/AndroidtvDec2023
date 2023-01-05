@@ -521,14 +521,14 @@ public class LoginChooserActivity extends Activity {
 
         handlerqr.removeCallbacksAndMessages(null);
         handler.removeCallbacksAndMessages(null);
-        if(BuildConfig.FLAVOR.equalsIgnoreCase("kaafaltv")||BuildConfig.FLAVOR.equalsIgnoreCase("solidtv")){
-        }else{
+   /*     if(BuildConfig.FLAVOR.equalsIgnoreCase("kaafaltv")||BuildConfig.FLAVOR.equalsIgnoreCase("solidtv")){
+        }else{*/
             CallHandler();
             CallHandlerQrCode();
         }
 
 
-    }
+
 
     @Override
     public void onBackPressed() {
