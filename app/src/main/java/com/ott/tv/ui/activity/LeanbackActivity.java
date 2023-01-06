@@ -443,11 +443,9 @@ public class LeanbackActivity extends FragmentActivity {
                     Log.d(TAG, "keyCode backbutton focus row" + rowsContainerFocused + focus);
                     Log.d(TAG, "keyCode backbutton focus row" + rowsContainerFocused);
 //here we are focuse in tv row  contenter only not header
-                    if (BuildConfig.FLAVOR.equalsIgnoreCase("kaafaltv")) {
-                        logoIv.setVisibility(View.INVISIBLE);
-                    } else {
+
                         logoIv.setVisibility(View.VISIBLE);
-                    }
+
 
                     /*logoIvNew.setVisibility(View.VISIBLE);*/
 

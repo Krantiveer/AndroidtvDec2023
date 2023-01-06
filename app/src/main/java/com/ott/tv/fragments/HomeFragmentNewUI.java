@@ -100,7 +100,7 @@ public class HomeFragmentNewUI extends Fragment {
     private void setTextViewBanner(Video video) {
         releasePlayer();
         //  String url = "https://action-ott-live.s3.ap-south-1.amazonaws.com/Sultan+Trailer/sultan+(1).mp4";
-        if (!BuildConfig.FLAVOR.equalsIgnoreCase("kaafaltv")) {
+
             if (video.getTrailer_aws_source() != null) {
                 String url = video.getTrailer_aws_source();
                 initVideoPlayer(url, "movie");
@@ -110,7 +110,7 @@ public class HomeFragmentNewUI extends Fragment {
                     initVideoPlayer(url, "movie");
                 }
             }
-        }
+
         textViewBanner.setText(video.getTitle());
 
 
