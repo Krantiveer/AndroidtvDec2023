@@ -2,6 +2,7 @@ package com.ott.tv.ui.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -17,10 +18,12 @@ import com.bumptech.glide.Glide
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.util.Util
+import com.google.android.material.internal.ContextUtils.getActivity
 import com.ott.tv.Config
 import com.ott.tv.Constants
 import com.ott.tv.R
 import com.ott.tv.adapter.HomePageAdapter
+import com.ott.tv.database.DatabaseHelper
 import com.ott.tv.fragments.DetailsFragment
 import com.ott.tv.model.*
 import com.ott.tv.model.phando.*
@@ -36,6 +39,7 @@ import com.squareup.picasso.BuildConfig
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.security.AccessController.getContext
 
 class DetailsActivityPhando : FragmentActivity() {
     private var videoId: String? = null
@@ -396,7 +400,9 @@ class DetailsActivityPhando : FragmentActivity() {
                     } else {
                         episode_url = ""
                     }
-                } else {
+                } else if(response.code()==401){
+                    signOut()
+                }else {
                     CMHelper.setSnackBar(
                         this@DetailsActivityPhando.currentFocus,
                         "We are sorry, This video content not available, Please try another",
@@ -806,6 +812,8 @@ class DetailsActivityPhando : FragmentActivity() {
                         setMovieData()
 
                     }
+                }else if(response.code()==401){
+                    signOut()
                 } else {
                     CMHelper.setSnackBar(
                         this@DetailsActivityPhando.currentFocus,
@@ -817,7 +825,6 @@ class DetailsActivityPhando : FragmentActivity() {
 
             override fun onFailure(call: Call<MediaplaybackData?>, t: Throwable) {
                 activityIndicator(false)
-                Log.i("DetailISSUE_kranti", "onResponse: $t")
                 CMHelper.setSnackBar(
                     this@DetailsActivityPhando.currentFocus,
                     "We are sorry, This video content not available, Please try another$t",
@@ -825,6 +832,24 @@ class DetailsActivityPhando : FragmentActivity() {
                 )
             }
         })
+    }
+    private fun signOut() {
+        if (getContext() != null && this != null) {
+            val databaseHelper = DatabaseHelper(this)
+            if (PreferenceUtils.getInstance().getAccessTokenPref(this) !== "") {
+                val editor: SharedPreferences.Editor =
+                    getSharedPreferences(Constants.USER_LOGIN_STATUS, MODE_PRIVATE)
+                        .edit()
+                editor.putBoolean(Constants.USER_LOGIN_STATUS, false)
+                editor.apply()
+                databaseHelper.deleteUserData()
+                PreferenceUtils.clearSubscriptionSavedData(this)
+                PreferenceUtils.getInstance().setAccessTokenNPref(this, "")
+                Toast.makeText(this,"You've been logged out because we have detected another login from your ID on a different device. You are not allowed to login on more than one device at a time.",Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, LoginChooserActivity::class.java))
+                finish()
+            }
+        }
     }
 
     private fun getDataTvseries(videoType: String, videoId: String?) {

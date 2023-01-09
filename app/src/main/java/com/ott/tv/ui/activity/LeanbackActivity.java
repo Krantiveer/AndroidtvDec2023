@@ -89,7 +89,8 @@ public class LeanbackActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leanback);
-     /*   if (!BuildConfig.FLAVOR.equalsIgnoreCase("kaafaltv")) */{
+        /*   if (!BuildConfig.FLAVOR.equalsIgnoreCase("kaafaltv")) */
+        {
             Intent intent = new Intent(this, NewMainActivity.class);
             startActivity(intent);
         }  /*{
@@ -444,7 +445,7 @@ public class LeanbackActivity extends FragmentActivity {
                     Log.d(TAG, "keyCode backbutton focus row" + rowsContainerFocused);
 //here we are focuse in tv row  contenter only not header
 
-                        logoIv.setVisibility(View.VISIBLE);
+                    logoIv.setVisibility(View.VISIBLE);
 
 
                     /*logoIvNew.setVisibility(View.VISIBLE);*/

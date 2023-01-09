@@ -178,6 +178,8 @@ public class HomeFragment extends RowsSupportFragment {
                 PreferenceUtils.clearSubscriptionSavedData(getContext());
                 PreferenceUtils.getInstance().setAccessTokenNPref(getContext(), "");
                 startActivity(new Intent(getContext(), LoginChooserActivity.class));
+                Toast.makeText(getContext(),"You've been logged out because we have detected another login from your ID on a different device. You are not allowed to login on more than one device at a time.",Toast.LENGTH_SHORT).show();
+
                 getActivity().finish();
             }
         }
