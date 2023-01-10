@@ -26,6 +26,7 @@
             android:orientation="horizontal"
             android:padding="10dp">
 
+<!--
             <ImageView
                 android:id="@+id/icon"
                 android:layout_width="45dp"
@@ -34,6 +35,14 @@
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/logo"
                 tools:ignore="UseAppTint" />
+-->
+            <ImageView
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginLeft="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:contentDescription="TODO"
+                android:src="@drawable/logo" />
 
             <TextView
                 android:id="@+id/titleMenu"
