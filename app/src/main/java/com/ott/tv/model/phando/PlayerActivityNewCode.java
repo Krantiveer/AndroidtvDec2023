@@ -116,7 +116,7 @@ public class PlayerActivityNewCode extends Activity {
     private int visible;
     private ImageButton serverButton, fastForwardButton, subtitleButton, imgVideoQuality, exo_prev, exo_rew;
     private TextView movieTitleTV, movieDescriptionTV;
-    private ImageView posterImageView;
+    private ImageView posterImageView,watermark,watermark_live;
     private RelativeLayout seekBarLayout;
     private TextView liveTvTextInController;
     private ProgressBar progressBar;
@@ -240,6 +240,8 @@ public class PlayerActivityNewCode extends Activity {
         exo_rew = findViewById(R.id.exo_rew);
         liveTvTextInController = findViewById(R.id.live_tv);
         seekBarLayout = findViewById(R.id.seekbar_layout);
+        watermark = findViewById(R.id.watermark);
+        watermark_live = findViewById(R.id.watermark_live);
         if (category.equalsIgnoreCase("t")) {
             serverButton.setVisibility(View.GONE);
             subtitleButton.setVisibility(View.GONE);
@@ -290,9 +292,15 @@ public class PlayerActivityNewCode extends Activity {
             exo_prev.setVisibility(GONE);
             exo_rew.setVisibility(GONE);
 
+            watermark.setVisibility(GONE);
+            watermark_live.setVisibility(VISIBLE);
+
             liveTvTextInController.setVisibility(View.VISIBLE);
             seekBarLayout.setVisibility(View.INVISIBLE);
 
+        }else{
+            watermark.setVisibility(VISIBLE);
+            watermark_live.setVisibility(GONE);
         }
     }
 

@@ -36,12 +36,23 @@
 
         <ImageView
             android:id="@+id/watermark"
-            android:layout_width="@dimen/_36sdp"
-            android:layout_height="@dimen/_36sdp"
+            android:layout_width="@dimen/_46sdp"
+            android:layout_height="@dimen/_46sdp"
             android:layout_alignEnd="@id/player_view"
             android:layout_centerHorizontal="false"
-            android:padding="@dimen/_35sdp"
+            android:layout_margin="@dimen/_20sp"
             android:src="@drawable/logo" />
+        <ImageView
+            android:id="@+id/watermark_live"
+            android:layout_width="@dimen/_46sdp"
+            android:layout_height="@dimen/_46sdp"
+            android:layout_alignEnd="@id/player_view"
+            android:layout_margin="@dimen/_32sdp"
+            android:layout_alignParentBottom="true"
+            android:visibility="invisible"
+            android:layout_marginBottom="@dimen/_130sdp"
+            android:src="@drawable/logo" />
+
 
     </RelativeLayout>
 
