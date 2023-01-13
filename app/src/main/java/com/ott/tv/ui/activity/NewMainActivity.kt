@@ -23,6 +23,7 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
 import com.ott.tv.Constants
+import com.ott.tv.MapFragmentUVTV
 import com.ott.tv.R
 import com.ott.tv.databinding.ActivityNewMainBinding
 import com.ott.tv.databinding.LayoutMenuBinding
@@ -275,8 +276,17 @@ class NewMainActivity : FragmentActivity() {
             supportFragmentManager.beginTransaction()
                 .replace(binding.browserSection.id, newFragment)
                 .commit()
-        }else if(type.equals("profile")){
+        }
+        else if(type.equals("profile")){
             val newFragment = MyAccountFragment()
+            newFragment.setArguments(bundle)
+            supportFragmentManager.beginTransaction()
+                .replace(binding.browserSection.id, newFragment)
+                .commit()
+        }
+
+        else if(type.equals("uvtv-bharat")){
+            val newFragment = MapFragmentUVTV()
             newFragment.setArguments(bundle)
             supportFragmentManager.beginTransaction()
                 .replace(binding.browserSection.id, newFragment)

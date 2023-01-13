@@ -310,8 +310,14 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
                 Intent intent = new Intent(context, DetailsActivityPhando.class);
                 if (videoContent.getType() != null)
                     intent.putExtra("type", videoContent.getType());
-                if (videoContent.getThumbnail() != null)
+                if (videoContent.getThumbnail() != null) {
                     intent.putExtra("thumbImage", videoContent.getThumbnail());
+                }else{
+                    if(videoContent.getThumbnailUrl()!=null){
+                        intent.putExtra("thumbImage", videoContent.getThumbnailUrl());
+                    }
+                }
+
                 if (videoContent.getId() != null) {
                     intent.putExtra("video_id", videoContent.getId().toString());
                 } else {
@@ -375,8 +381,12 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
                 Intent intent = new Intent(context, DetailsActivityPhando.class);
                 if (videoContent.getType() != null)
                     intent.putExtra("type", videoContent.getType());
-                if (videoContent.getThumbnail() != null)
-                    intent.putExtra("thumbImage", videoContent.getThumbnail());
+                if (videoContent.getThumbnail() != null){
+                    intent.putExtra("thumbImage", videoContent.getThumbnail());}else{
+                    if(videoContent.getThumbnailUrl()!=null){
+                        intent.putExtra("thumbImage", videoContent.getThumbnailUrl());
+                    }
+                }
                 if (videoContent.getId() != null) {
                     intent.putExtra("video_id", videoContent.getId().toString());
                 } else {

@@ -18,19 +18,19 @@ android {
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
-        android.applicationVariants.all { variant ->
+       /* android.applicationVariants.all { variant ->
             variant.outputs.all {
                 def date = new Date()
                 def formattedDate = date.format('dd_MMM_yyyy')
                 outputFileName = "${variant.name + "-- \t"}v${variant.versionName}${" " + formattedDate}.apk"
             }
-        }
+        }*/
     }
 
     buildTypes {
         release {
             minifyEnabled false
-            debuggable false
+            debuggable true
             proguardFiles file("proguard-android.txt"), 'proguard-rules.pro'
         }
         debug {
@@ -171,5 +171,8 @@ dependencies {
     //kotlin dependency
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.7.10"
+
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0'
+
 
 }

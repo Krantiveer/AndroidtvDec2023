@@ -22,6 +22,7 @@ class StateListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val mData = mList[position]
         holder.title.text = mData
+
         holder.itemView.setOnClickListener {
             mClickListener.onItemClick(mData)
         }
@@ -38,5 +39,5 @@ class StateListAdapter(
 
 
 interface ClickListener {
-    fun onItemClick(data: Any)
+    fun onItemClick(data: String)
 }

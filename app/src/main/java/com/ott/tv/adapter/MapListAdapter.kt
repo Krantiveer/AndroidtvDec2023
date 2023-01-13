@@ -9,10 +9,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ott.tv.R
+import com.ott.tv.model.CountryModel
 import com.ott.tv.model.phando.LatestMovieList
+import com.ott.tv.network.api.StateChannelResponse
+import com.ott.tv.video_service.PlaybackModel
 
 class MapListAdapter(
-    private val mList: List<LatestMovieList>,
+    private val mList: List<PlaybackModel?>?,
     private val mContext: Context,
     private val mClickListener: AdapterClickListener
 ) :
@@ -25,9 +28,9 @@ class MapListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val mData = mList[position]
+        val mData = mList!![position]
         Glide.with(mContext)
-            .load(mData.thumbnail)
+            .load(mData!!.thumbnail)
             .placeholder(R.drawable.poster_placeholder_land)
             .error(R.drawable.poster_placeholder_land)
             .into(holder.imageView)
@@ -41,7 +44,7 @@ class MapListAdapter(
     }
 
     override fun getItemCount(): Int {
-        return mList.size
+        return mList!!.size
     }
 
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
@@ -51,5 +54,5 @@ class MapListAdapter(
 }
 
 interface AdapterClickListener {
-    fun onItemClick(data: LatestMovieList)
+    fun onItemClick(data: PlaybackModel)
 }

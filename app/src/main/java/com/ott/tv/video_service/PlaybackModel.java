@@ -11,10 +11,47 @@ public class PlaybackModel implements Serializable {
     private long id;
     private String movieId;
     private String title;
+     String type;
+     String url;
+     String thumbnail;
     private String description;
+    private String states;
     private String bgImageUrl;
     private String cardImageUrl;
     private String videoUrl;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
+    public String getStates() {
+        return states;
+    }
+
+    public void setStates(String states) {
+        this.states = states;
+    }
+
     private String videoType;
     private String category;
     private List<Video> videoList;
@@ -22,7 +59,6 @@ public class PlaybackModel implements Serializable {
     private Video video;
     private long programId;
     private long watchNextId;
-
 
 
     private Boolean istrailer;

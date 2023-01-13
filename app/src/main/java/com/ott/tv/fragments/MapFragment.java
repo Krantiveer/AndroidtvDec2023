@@ -28,13 +28,16 @@ import com.ott.tv.countrycodepicker.CountryCodeActivity;
 import com.ott.tv.countrycodepicker.StateCodeActivity;
 import com.ott.tv.database.DatabaseHelper;
 import com.ott.tv.model.BrowseData;
+import com.ott.tv.model.CountryModel;
 import com.ott.tv.model.phando.LatestMovieList;
 import com.ott.tv.model.phando.MapList;
 import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.Dashboard;
+import com.ott.tv.network.api.StateChannelResponse;
 import com.ott.tv.ui.activity.LoginChooserActivity;
 import com.ott.tv.ui.activity.StateListActivity;
 import com.ott.tv.utils.PreferenceUtils;
+import com.ott.tv.video_service.PlaybackModel;
 import com.richpath.RichPathView;
 
 import java.util.ArrayList;
@@ -125,15 +128,10 @@ public class MapFragment extends Fragment implements AdapterClickListener {
     void setAdapter() {
         GridLayoutManager manager = new GridLayoutManager(requireContext(), 2);
         rvList.setLayoutManager(manager);
-        mAdapter = new MapListAdapter(mMoviesList, requireContext(), this);
+      //  mAdapter = new MapListAdapter(mMoviesList, requireContext(), this);
         rvList.setAdapter(mAdapter);
     }
 
-
-    @Override
-    public void onItemClick(@NonNull LatestMovieList data) {
-//        open details activity
-    }
 
     private void fetchStateApi( String state_name) {
         if (getActivity() != null) {
@@ -205,4 +203,8 @@ public class MapFragment extends Fragment implements AdapterClickListener {
     }
 
 
+    @Override
+    public void onItemClick(@NonNull PlaybackModel data) {
+
+    }
 }

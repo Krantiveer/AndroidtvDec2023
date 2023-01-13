@@ -7,18 +7,18 @@ public class CountryModel {
     @SerializedName("country_id")
     @Expose
     private String countryId;
-    @SerializedName("name")
+    @SerializedName("title")
     @Expose
-    private String name;
+    private String title;
     @SerializedName("description")
     @Expose
     private String description;
     @SerializedName("slug")
     @Expose
     private String slug;
-    @SerializedName("url")
+    @SerializedName("thumbnail")
     @Expose
-    private String url;
+    private String thumbnail;
     @SerializedName("image_url")
     @Expose
     private String imageUrl;
@@ -32,11 +32,27 @@ public class CountryModel {
     }
 
     public String getName() {
-        return name;
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
+    public void setName(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -56,11 +72,11 @@ public class CountryModel {
     }
 
     public String getUrl() {
-        return url;
+        return thumbnail;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setUrl(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
     public String getImageUrl() {

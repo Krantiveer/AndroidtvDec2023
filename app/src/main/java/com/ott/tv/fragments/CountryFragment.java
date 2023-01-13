@@ -99,7 +99,7 @@ public class CountryFragment extends VerticalGridSupportFragment {
 
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
         CountryApi api = retrofit.create(CountryApi.class);
-        Call<List<CountryModel>> call = api.getAllCountry(Config.API_KEY);
+      /*  Call<List<CountryModel>> call = api.getAllCountry(Config.API_KEY);
         call.enqueue(new Callback<List<CountryModel>>() {
             @Override
             public void onResponse(@NonNull Call<List<CountryModel>> call, @NonNull Response<List<CountryModel>> response) {
@@ -127,7 +127,7 @@ public class CountryFragment extends VerticalGridSupportFragment {
                 Log.e(TAG, "error: " + t.getLocalizedMessage());
 
             }
-        });
+        });*/
 
     }
 

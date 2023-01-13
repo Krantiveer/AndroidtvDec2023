@@ -95,7 +95,7 @@ public class CountryMovieFragment extends VerticalGridSupportFragment {
         CountryApi api = retrofit.create(CountryApi.class);
         datatype = "movie";
         
-        
+       /*
         Call<List<CountryModel>> call = api.getAllCountry(Config.API_KEY);
 
         call.enqueue(new Callback<List<CountryModel>>() {
@@ -122,7 +122,7 @@ public class CountryMovieFragment extends VerticalGridSupportFragment {
             public void onFailure(@NonNull Call<List<CountryModel>> call, @NonNull Throwable t) {
                 Log.e("Genre Item", "code: " + t.getLocalizedMessage());
             }
-        });
+        });*/
 
 
     }

@@ -84,11 +84,16 @@ import com.ott.tv.video_service.Subscription;
 import com.ott.tv.video_service.TvUtil;
 import com.ott.tv.video_service.VideoPlaybackActivity;
 import com.ott.tv.video_service.WatchNextAdapter;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import at.huber.youtubeExtractor.VideoMeta;
 import at.huber.youtubeExtractor.YouTubeExtractor;
@@ -104,6 +109,7 @@ public class PlayerActivityNewCode extends Activity {
     private static final String YOUTUBE = "youtube";
     private static final String YOUTUBE_LIVE = "youtube_live";
     private PlayerView exoPlayerView;
+    private YouTubePlayerView youTubePlayerView;
     private SimpleExoPlayer player;
     private LinearLayout rootLayout;
     private MediaSource mediaSource;
@@ -132,6 +138,8 @@ public class PlayerActivityNewCode extends Activity {
     private long mediaDuration = 0L;
     HashMap<String, String> resolutionHashMap = null;
     private String categoryType = "", id = "";
+
+    private YouTubePlayer youTubePlayer;
 //    private MediaSessionCompat mediaSession;
     /*private MediaSessionConnector mediaSessionConnector;*/
 
@@ -179,7 +187,7 @@ public class PlayerActivityNewCode extends Activity {
             }
         }*/
         intiViews();
-        initVideoPlayer(url, videoType);
+       initVideoPlayer(url, videoType);
 
     }
 
@@ -228,6 +236,7 @@ public class PlayerActivityNewCode extends Activity {
     private void intiViews() {
         progressBar = findViewById(R.id.progress_bar);
         exoPlayerView = findViewById(R.id.player_view);
+        youTubePlayerView = findViewById(R.id.youtube_player_view);
         rootLayout = findViewById(R.id.root_layout);
         movieTitleTV = findViewById(R.id.movie_title);
         movieDescriptionTV = findViewById(R.id.movie_description);
@@ -865,7 +874,7 @@ public class PlayerActivityNewCode extends Activity {
                 mediaSource = hlsMediaSource(uri, PlayerActivityNewCode.this);
                 break;
             case "youtube":
-                extractYoutubeUrl(url, PlayerActivityNewCode.this, 18);
+                initYoutubeVideo(url, PlayerActivityNewCode.this, 18);
                 break;
             case "youtube-live":
                 extractYoutubeUrl(url, PlayerActivityNewCode.this, 133);
@@ -946,6 +955,39 @@ public class PlayerActivityNewCode extends Activity {
     /*    exoPlayerView.setControllerVisibilityListener(visibility -> visible = visibility);
 
         exoPlayerView.setControllerShowTimeoutMs(5 * 1000);*/
+    }
+
+    private void initYoutubeVideo(String url, final Context context, final int tag) {
+        exoPlayerView.setVisibility(GONE);
+        youTubePlayerView.setVisibility(VISIBLE);
+
+        YouTubePlayerView youTubePlayerView = findViewById(R.id.youtube_player_view);
+        youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+            @Override
+            public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                youTubePlayer.loadVideo(getYouTubeId(url), 0);
+            }
+        });
+
+       /* youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+            @Override
+            public void onReady(@NonNull YouTubePlayer youTubePlayer1) {
+                super.onReady(youTubePlayer1);
+                String videoId = url;
+                youTubePlayer.loadVideo(getYouTubeId(videoId), 0f);
+            }
+        });*/
+    }
+
+    private String getYouTubeId (String youTubeUrl) {
+        String pattern = "(?<=youtu.be/|watch\\?v=|/videos/|embed\\/)[^#\\&\\?]*";
+        Pattern compiledPattern = Pattern.compile(pattern);
+        Matcher matcher = compiledPattern.matcher(youTubeUrl);
+        if(matcher.find()){
+            return matcher.group();
+        } else {
+            return "error";
+        }
     }
 
     private void seekToStartPosition() {
@@ -1057,6 +1099,7 @@ public class PlayerActivityNewCode extends Activity {
         Log.i(TAG, "playing ----onstop: ");
         releasePlayer();
         super.onStop();
+        youTubePlayerView.release();
         finish();
     }
 

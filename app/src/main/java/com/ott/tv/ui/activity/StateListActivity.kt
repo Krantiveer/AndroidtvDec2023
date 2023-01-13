@@ -120,14 +120,14 @@ class StateListActivity : AppCompatActivity(), ClickListener {
         rvList.adapter = adapter
     }
 
-    override fun onItemClick(data: Any) {
+/*    override fun onItemClick(data: Any) {
         when (data) {
             is String -> {
                 PreferenceUtils.getInstance().setStateNamePref(applicationContext, data)
                 finish()
             }
         }
-    }
+    }*/
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
         Log.e("LoginActivity", "***** keyCode =" + keyCode + "event :" + event)
@@ -143,6 +143,10 @@ class StateListActivity : AppCompatActivity(), ClickListener {
             }
         }
         return super.onKeyDown(keyCode, event)
+    }
+
+    override fun onItemClick(data: String) {
+
     }
 
 }
