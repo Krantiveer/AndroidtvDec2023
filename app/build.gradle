@@ -30,7 +30,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            debuggable true
+            debuggable false
             proguardFiles file("proguard-android.txt"), 'proguard-rules.pro'
         }
         debug {
@@ -52,6 +52,11 @@ android {
         kaafaltv {
             applicationId "com.kaafaltv.tv"
             versionCode 9
+            versionName "1"
+        }
+        phando {
+            applicationId "com.phandotv.tv"
+            versionCode 1
             versionName "1"
         }
 

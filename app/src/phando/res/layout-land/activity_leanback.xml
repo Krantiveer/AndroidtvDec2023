@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ott.tv.ui.CustomFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/custom_frame_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_home_page"
+    android:clipChildren="false">
+
+    <androidx.leanback.widget.SearchOrbView
+        android:id="@+id/custom_search_orb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="27dp"
+        android:visibility="gone" />
+    <!--    <ImageView
+            android:id="@+id/logo"
+            android:layout_width="@dimen/_153sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_gravity="top|start"
+            android:visibility="visible"
+            android:contentDescription="@string/image_description"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="27dp"
+            android:src="@drawable/logo"
+             />-->
+
+
+    <FrameLayout
+        android:id="@+id/header_container"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="top|start"
+        android:keepScreenOn="true"
+         />
+
+    <FrameLayout
+        android:id="@+id/rows_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="top|start"
+        android:background="@color/black_color"
+        android:keepScreenOn="true" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="@dimen/_103sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_gravity="start"
+        android:layout_marginTop="37dp"
+
+        android:layout_marginStart="@dimen/_5sdp"
+
+        android:contentDescription="@string/image_description"
+        android:src="@drawable/logo" />
+    <!--    <ImageView
+            android:id="@+id/logonew"
+
+            android:layout_marginTop="37dp"
+            android:padding="@dimen/_10sdp"
+            android:layout_width="@dimen/_113sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_gravity="start"
+            tools:visibility="gone"
+            android:layout_marginStart="5sp"
+            android:contentDescription="@string/image_description"
+            android:src="@drawable/logo" />-->
+</com.ott.tv.ui.CustomFrameLayout>
