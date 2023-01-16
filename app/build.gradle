@@ -10,7 +10,7 @@ android {
     buildToolsVersion "30.0.2"
     flavorDimensions "default"
     defaultConfig {
-        applicationId "com.actionott.tv"
+        applicationId "com.uvtv.tv"
         minSdkVersion 24
         targetSdkVersion 31
         versionCode 1
@@ -18,13 +18,13 @@ android {
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
-       /* android.applicationVariants.all { variant ->
+        android.applicationVariants.all { variant ->
             variant.outputs.all {
                 def date = new Date()
                 def formattedDate = date.format('dd_MMM_yyyy')
                 outputFileName = "${variant.name + "-- \t"}v${variant.versionName}${" " + formattedDate}.apk"
             }
-        }*/
+        }
     }
 
     buildTypes {
@@ -41,7 +41,7 @@ android {
     }
     productFlavors {
 
-        actionott {
+        uvtv {
             applicationId "com.uvtv.tv"
         }
         solidtv {
@@ -60,9 +60,6 @@ android {
             versionName "1"
         }
 
-        /* nammestarott {
-             applicationId "com.nammestar.android"
-         }*/
 
     }
 

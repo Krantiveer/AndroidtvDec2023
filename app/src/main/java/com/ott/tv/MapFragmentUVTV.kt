@@ -130,7 +130,14 @@ class MapFragmentUVTV : Fragment(),  ClickListener, AdapterClickListener {
             )!!.fillColor = resources.getColor(R.color.white)
             getState(binding!!.txtSelectedState.text.toString())*/
     }
-
+    fun visibilityShowHide(view: View){
+        view.visibility=if (view.visibility==View.VISIBLE)
+        {
+            View.INVISIBLE
+        }else{
+            View.VISIBLE
+        }
+    }
     fun getState(name: String) {
         val retrofit = RetrofitClient.getRetrofitInstance()
         val api = retrofit.create(CountryApi::class.java)
@@ -142,7 +149,16 @@ class MapFragmentUVTV : Fragment(),  ClickListener, AdapterClickListener {
             ) {
                 if (response.code() == 200) {
                     val countryList = response.body()
-                    setAdapter(countryList)
+                    if (countryList != null) {
+                        if(countryList.isEmpty()){
+
+                        }
+                    }
+                    if(countryList.isNullOrEmpty()){
+                        binding!!.rvList.visibility
+                        visibilityShowHide(binding!!.rvList)
+                        setAdapter(countryList)
+                    }
 
                 }
             }
