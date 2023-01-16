@@ -29,6 +29,8 @@ import java.security.AccessController
 
 
 class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
+    val TAG = "MenuFragment"
+
     private lateinit var binding: FragmentMenuBinding
     var isHome: Boolean = false
 
@@ -153,7 +155,8 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
         val mListAdapter = MenuListAdapter(requireContext(), menu!!, this, object : ICallback {
             override fun delegate(any: Any) {
                 val activity = requireActivity() as NewMainActivity
-                if (any != null && any is Boolean) {
+                Log.i(TAG, "delegate: menu1")
+                if (any is Boolean) {
                     activity.onMenuFocus(any)
                 } else {
                     activity.onMenuFocus(false)

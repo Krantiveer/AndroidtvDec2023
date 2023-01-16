@@ -14,6 +14,7 @@ public class Constants {
     public static final String POSITION = "position";
     public static List<VideoContent> movieList = new ArrayList<>();
     public static boolean IS_FROM_HOME=false;
+    public static boolean IS_UVTV_STATE_OPEN=false;
 
     public interface WishListType {
         String fav = "fav";

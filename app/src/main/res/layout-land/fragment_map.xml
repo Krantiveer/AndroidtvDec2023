@@ -90,7 +90,11 @@
                             android:textColor="@color/white"
                             android:textSize="@dimen/_14sp"
                             app:drawableEndCompat="@drawable/ic_drop_down"
-                            app:drawableTint="@color/white" />
+                            app:drawableTint="@color/white"
+                            android:drawableEnd="@drawable/ic_drop_down"
+                            android:drawableTint="@color/white"
+
+                            />
 
                     </LinearLayout>
 
@@ -99,7 +103,7 @@
                         android:orientation="horizontal"
                         android:id="@+id/rvList"
                         android:focusable="true"
-                        android:background="@color/red_400"
+                        android:background="@drawable/round_ll"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         tools:listitem="@layout/item_my_map_list"
@@ -109,18 +113,22 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:id="@+id/nodata_found"
-                        android:textSize="@dimen/_230sdp"
-                        android:text="@string/no_data_found"/>
+                        android:layout_marginTop="@dimen/_30sdp"
+
+                        android:textSize="@dimen/_16sdp"
+                        android:text="No Data Available "/>
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_alignParentEnd="true"
                     android:visibility="gone"
                     android:id="@+id/slidingPaneLayout"
                     android:layout_width="@dimen/_200sdp"
+                    android:layout_marginLeft="@dimen/_30sdp"
+
                     android:layout_height="match_parent">
 
 
@@ -130,11 +138,14 @@
                             android:id="@+id/tv"
                             android:textColor="@color/white"
                             android:text="@string/select_state"
+                            android:textSize="@dimen/_16sdp"
                             android:layout_width="match_parent"
+
                             android:layout_height="wrap_content" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rvItemsStateList"
+                            android:layout_marginTop="@dimen/_10sdp"
                             android:orientation="vertical"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             android:layout_width="match_parent"

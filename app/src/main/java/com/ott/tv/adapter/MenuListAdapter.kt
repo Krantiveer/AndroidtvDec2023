@@ -11,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.tabs.TabLayout.TabGravity
+import com.ott.tv.Constants
 import com.ott.tv.R
 import com.ott.tv.databinding.LayoutMenuBinding
 import com.ott.tv.model.phando.CategoryType
@@ -31,6 +33,7 @@ class MenuListAdapter(
     private var checkedPosition = 0
     private var oldpostion: Int = 1
     private var oldpostionSecond: Int = 1
+    val TAG = "MenuListAdapter"
 
 
     inner class ViewHolder(private val binding: LayoutMenuBinding) :
@@ -68,6 +71,8 @@ class MenuListAdapter(
 
 
             binding.menuLayout.setOnFocusChangeListener { v, hasFocus ->
+                Log.i(TAG, "delegate: menu2")
+
                 mCallback.delegate(hasFocus)
                 hasFocusLocalVar = hasFocus
 

@@ -3,6 +3,7 @@ package com.ott.tv
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +19,6 @@ import com.ott.tv.databinding.FragmentMapBinding
 import com.ott.tv.network.RetrofitClient
 import com.ott.tv.network.api.CountryApi
 import com.ott.tv.ui.activity.DetailsActivityPhando
-import com.ott.tv.utils.PreferenceUtils
 import com.ott.tv.video_service.PlaybackModel
 import com.richpath.RichPath
 import retrofit2.Call
@@ -102,6 +102,7 @@ class MapFragmentUVTV : Fragment(),  ClickListener, AdapterClickListener {
         binding!!.llSelectedState.setOnClickListener(View.OnClickListener {
 
             binding!!.slidingPaneLayout.visibility = View.VISIBLE
+            binding!!.slidingPaneLayout.requestFocus()
             binding!!.lytTop!!.visibility = View.GONE
         })
 
@@ -149,15 +150,18 @@ class MapFragmentUVTV : Fragment(),  ClickListener, AdapterClickListener {
             ) {
                 if (response.code() == 200) {
                     val countryList = response.body()
-                    if (countryList != null) {
-                        if(countryList.isEmpty()){
 
-                        }
-                    }
                     if(countryList.isNullOrEmpty()){
-                        binding!!.rvList.visibility
-                        visibilityShowHide(binding!!.rvList)
+                     //   visibilityShowHide(binding!!.rvList)
+                        binding?.rvList?.visibility=View.GONE
+                        binding?.nodataFound?.visibility=View.VISIBLE
+
+                    }else{
+                        binding?.rvList?.visibility=View.VISIBLE
+                        binding?.nodataFound?.visibility=View.INVISIBLE
+
                         setAdapter(countryList)
+
                     }
 
                 }
@@ -172,6 +176,7 @@ class MapFragmentUVTV : Fragment(),  ClickListener, AdapterClickListener {
         getState(data)
         binding!!.slidingPaneLayout.visibility = View.GONE
         binding!!.lytTop!!.visibility = View.VISIBLE
+        binding!!.lytTop.requestFocus()
         binding!!.txtSelectedState.text = data
         for (models in binding!!.richPathView.findAllRichPaths()) {
             models.fillColor = resources.getColor(R.color.mapColo)
