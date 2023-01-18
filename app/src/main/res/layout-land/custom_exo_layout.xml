@@ -137,6 +137,30 @@
                 android:src="@drawable/ic_settings_white"
                 android:visibility="gone"
                 />
+            <ImageButton
+                android:id="@+id/select_tracks_button"
+                style="@style/ExoMediaButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/round_ll_exoplayer"
+                android:contentDescription="@string/hint_image"
+                android:padding="@dimen/padding_of_controller_button"
+                android:src="@drawable/ic_settings_white"
+                android:visibility="visible"
+                />
+<!--<ImageButton
+                android:id="@+id/img_server"
+                style="@style/ExoMediaButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/round_ll_exoplayer"
+                android:contentDescription="@string/hint_image"
+                android:padding="@dimen/padding_of_controller_button"
+                android:src="@drawable/ic_settings_white"
+                android:visibility="invisible"
+                />-->
 
             <ImageButton
                 android:id="@+id/img_video_quality"

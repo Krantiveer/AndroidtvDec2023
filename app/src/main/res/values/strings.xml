@@ -214,4 +214,7 @@
     <string name="no_data_available">No Data Available</string>
 
 
+    <string name="track_selection_title">Select tracks</string>
+
+
 </resources>

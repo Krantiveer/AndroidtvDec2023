@@ -91,8 +91,8 @@ public class HomeFragmentNewUI extends Fragment {
     private MediaSource mediaSource;
     int maxVolume = 50;
     private boolean startAutoPlay = true;
+    private static final String TAG = "HomeFragmentNewUI";
 
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         getHomeContentDataFromServer();
@@ -102,30 +102,20 @@ public class HomeFragmentNewUI extends Fragment {
     }
 
     private void setTextViewBanner(Video video) {
-        releasePlayer();
+        //  releasePlayer();
         //  String url = "https://action-ott-live.s3.ap-south-1.amazonaws.com/Sultan+Trailer/sultan+(1).mp4";
-
-            if (video.getTrailer_aws_source() != null) {
-                String url = video.getTrailer_aws_source();
+        if (video.getTrailer_aws_source() != null) {
+            String url = video.getTrailer_aws_source();
+            initVideoPlayer(url, "movie");
+        } else {
+            if (video.getTrailler_youtube_source() != null) {
+                String url = video.getTrailler_youtube_source();
                 initVideoPlayer(url, "movie");
-            } else {
-                if (video.getTrailler_youtube_source() != null) {
-                    String url = video.getTrailler_youtube_source();
-                    initVideoPlayer(url, "movie");
-                }
             }
+        }
 
         textViewBanner.setText(video.getTitle());
 
-
-   /*     if(video.getIsPaid()!=null) {
-            if (video.getIsPaid().equalsIgnoreCase("1")) {
-                content_premiumIconImage.setVisibility(View.INVISIBLE);
-            } else {
-                content_premiumIconImage.setVisibility(View.VISIBLE);
-
-            }
-        }*/
         if (video.getIs_free() != null) {
             if (video.getIs_free().toString().equalsIgnoreCase("1")) {
                 content_premiumIconImage.setVisibility(View.INVISIBLE);
@@ -198,27 +188,28 @@ public class HomeFragmentNewUI extends Fragment {
     }
 
     public void initVideoPlayer(String url, String type) {
-        if (player != null) {
-            player.stop();
-            player.release();
-        }
-      /*  if (type == "youtube") {
-            initYoutubeVideo(url, PlayerActivityNewCode.this, 18);
-        } else*/ {
-            DataSource.Factory dataSourceFactory = new DefaultHttpDataSource.Factory();
+        Log.i(TAG, "setTextViewBanner: "+url);
+
+        if (url != null && !url.isEmpty()) {
+            if (player != null) {
+                player.stop();
+                player.release();
+            }
+            {
+                DataSource.Factory dataSourceFactory = new DefaultHttpDataSource.Factory();
 // Create a HLS media source pointing to a playlist uri.
-            HlsMediaSource hlsMediaSource =
-                    new HlsMediaSource.Factory(dataSourceFactory)
-                            .createMediaSource(MediaItem.fromUri(url));
+                HlsMediaSource hlsMediaSource =
+                        new HlsMediaSource.Factory(dataSourceFactory)
+                                .createMediaSource(MediaItem.fromUri(url));
 // Create a player instance.
-            player = new ExoPlayer.Builder(getContext()).build();
-            player.setMediaSource(hlsMediaSource);
+                player = new ExoPlayer.Builder(getContext()).build();
+                player.setMediaSource(hlsMediaSource);
 
-            player.prepare();
-            player.setPlayWhenReady(startAutoPlay);
+                player.prepare();
+                player.setPlayWhenReady(startAutoPlay);
 
-            exoPlayerView.setPlayer(player);
-        }
+                exoPlayerView.setPlayer(player);
+            }
      /*   Uri uri = Uri.parse(url);
 
         switch (type) {
@@ -241,13 +232,14 @@ public class HomeFragmentNewUI extends Fragment {
                 mediaSource = mediaSource(uri, PlayerActivityNewCode.this);
                 break;
         }*/
-        // seekTocurrentPosition();
-        //  seekToStartPosition();
+            // seekTocurrentPosition();
+            //  seekToStartPosition();
 
 
     /*    exoPlayerView.setControllerVisibilityListener(visibility -> visible = visibility);
 
         exoPlayerView.setControllerShowTimeoutMs(5 * 1000);*/
+        }
     }
 
 

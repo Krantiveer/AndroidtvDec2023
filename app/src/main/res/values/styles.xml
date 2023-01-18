@@ -172,5 +172,9 @@
         <item name="android:gravity">bottom</item>
         <item name="android:layout_gravity">bottom</item>
     </style>
+    <style name="TrackSelectionDialogThemeOverlay" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="windowNoTitle">false</item>
+    </style>
+
 
 </resources>

@@ -33,6 +33,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.tvprovider.media.tv.TvContractCompat;
@@ -105,7 +106,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class PlayerActivityNewCode extends Activity implements StyledPlayerView.ControllerVisibilityListener {
+public class PlayerActivityNewCode extends AppCompatActivity implements StyledPlayerView.ControllerVisibilityListener {
     private static final String TAG = "PlayerActivity";
     private static final String CLASS_NAME = "PlayerActivity";
     private static final String YOUTUBE = "youtube";
@@ -127,7 +128,7 @@ public class PlayerActivityNewCode extends Activity implements StyledPlayerView.
     private String videoType = "";
     private String category = "";
     private int visible;
-    private ImageButton serverButton, fastForwardButton, subtitleButton, imgVideoQuality, exo_prev, exo_rew;
+    private ImageButton serverButton,selectTracksButton, fastForwardButton, subtitleButton, imgVideoQuality, exo_prev, exo_rew;
     private TextView movieTitleTV, movieDescriptionTV;
     private ImageView posterImageView, watermark, watermark_live;
     private RelativeLayout seekBarLayout;
@@ -148,6 +149,7 @@ public class PlayerActivityNewCode extends Activity implements StyledPlayerView.
 
     private YouTubePlayer youTubePlayer;
     private boolean startAutoPlay = true;
+    private boolean isShowingTrackSelectionDialog;
 
 //    private MediaSessionCompat mediaSession;
     /*private MediaSessionConnector mediaSessionConnector;*/
@@ -253,6 +255,7 @@ public class PlayerActivityNewCode extends Activity implements StyledPlayerView.
         movieDescriptionTV = findViewById(R.id.movie_description);
         posterImageView = findViewById(R.id.poster_image_view);
         serverButton = findViewById(R.id.img_server);
+        selectTracksButton = findViewById(R.id.select_tracks_button);
         subtitleButton = findViewById(R.id.img_subtitle);
         imgVideoQuality = findViewById(R.id.img_video_quality);
         fastForwardButton = findViewById(R.id.exo_ffwd);
@@ -305,6 +308,17 @@ public class PlayerActivityNewCode extends Activity implements StyledPlayerView.
             }
 
         }
+        selectTracksButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                isShowingTrackSelectionDialog = true;
+                TrackSelectionDialog trackSelectionDialog =
+                        TrackSelectionDialog.createForPlayer(
+                                player,
+                                /* onDismissListener= */ dismissedDialog -> isShowingTrackSelectionDialog = false);
+                trackSelectionDialog.show(getSupportFragmentManager(), /* tag= */ null);
+            }
+        });
         if (model.islive != null && model.islive.equalsIgnoreCase("1")) {
             serverButton.setVisibility(View.GONE);
             subtitleButton.setVisibility(View.GONE);
@@ -366,13 +380,15 @@ public class PlayerActivityNewCode extends Activity implements StyledPlayerView.
             //open subtitle dialog
             openSubtitleDialog();
         });
-/*
         imgVideoQuality.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setVideoQuality();
             }
         });
+
+/*
+
 
         serverButton.setOnClickListener(v -> {
             //open server dialog
@@ -889,11 +905,15 @@ public class PlayerActivityNewCode extends Activity implements StyledPlayerView.
 // Create a player instance.
             player = new ExoPlayer.Builder(this).build();
             player.setMediaSource(hlsMediaSource);
+            player.getTrackSelector();
+
 
             player.prepare();
             player.setPlayWhenReady(startAutoPlay);
 
             exoPlayerView.setPlayer(player);
+
+
         }
         player.prepare();
 
