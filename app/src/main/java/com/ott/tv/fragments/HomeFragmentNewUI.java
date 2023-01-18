@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -23,10 +24,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.google.android.exoplayer2.ExoPlayerFactory;
+import com.google.android.exoplayer2.ExoPlayer;
+import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
@@ -38,7 +39,7 @@ import com.google.android.exoplayer2.upstream.BandwidthMeter;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
 import com.google.android.exoplayer2.util.Util;
 
 import com.ott.tv.BuildConfig;
@@ -52,6 +53,7 @@ import com.ott.tv.database.DatabaseHelper;
 import com.ott.tv.model.home_content.FeaturesGenreAndMovie;
 import com.ott.tv.model.home_content.HomeContent;
 import com.ott.tv.model.home_content.Video;
+import com.ott.tv.model.phando.PlayerActivityNewCode;
 import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.HomeApi;
 import com.ott.tv.utils.CMHelper;
@@ -83,10 +85,12 @@ public class HomeFragmentNewUI extends Fragment {
 
     private HomeContent homeContent = null;
     private PlayerView exoPlayerView;
-    private SimpleExoPlayer player;
+    protected @Nullable
+    ExoPlayer player;
     private DefaultTrackSelector trackSelector;
     private MediaSource mediaSource;
     int maxVolume = 50;
+    private boolean startAutoPlay = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -198,85 +202,57 @@ public class HomeFragmentNewUI extends Fragment {
             player.stop();
             player.release();
         }
-        if (getContext() != null) {
-            BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
-            TrackSelection.Factory videoTrackSelectionFactory = new
-                    AdaptiveTrackSelection.Factory(bandwidthMeter);
-            trackSelector = new
-                    DefaultTrackSelector(videoTrackSelectionFactory);
+      /*  if (type == "youtube") {
+            initYoutubeVideo(url, PlayerActivityNewCode.this, 18);
+        } else*/ {
+            DataSource.Factory dataSourceFactory = new DefaultHttpDataSource.Factory();
+// Create a HLS media source pointing to a playlist uri.
+            HlsMediaSource hlsMediaSource =
+                    new HlsMediaSource.Factory(dataSourceFactory)
+                            .createMediaSource(MediaItem.fromUri(url));
+// Create a player instance.
+            player = new ExoPlayer.Builder(getContext()).build();
+            player.setMediaSource(hlsMediaSource);
 
-            player = ExoPlayerFactory.newSimpleInstance(getContext(), trackSelector);
-//to set volume
-            player.setVolume(.5f);
+            player.prepare();
+            player.setPlayWhenReady(startAutoPlay);
+
             exoPlayerView.setPlayer(player);
-            // below 2 lines will make screen size to fit
-            exoPlayerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_ZOOM);
-
-            player.setPlayWhenReady(true);
-
-
-            player.addListener(new Player.EventListener() {
-                @Override
-                public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-                    switch (playbackState) {
-                        case 1:
-                            Log.d("krantiv", "Ideal state");
-                            exoPlayerView.setVisibility(View.INVISIBLE);
-                            break;
-                        case 2:
-                            // exoPlayerView.setVisibility(View.INVISIBLE);
-                            Log.d("krantiv", "STATE_BUFFERING state");
-
-                            break;
-                        case 3:
-                            Log.d("krantiv", "STATE_READY state");
-                            if (exoPlayerView.getVisibility() == View.INVISIBLE)
-                                exoPlayerView.setVisibility(View.VISIBLE);
-                            break;
-                        case 4:
-                            exoPlayerView.setVisibility(View.INVISIBLE);
-                            Log.d("krantiv", "STATE_ENDED state");
-                            break;
-                    }
-                }
-            });
-            Uri uri = Uri.parse(url);
-            type = Config.VideoURLTypeHls;
-            switch (type) {
-                case "hls":
-                    mediaSource = hlsMediaSource(uri, getContext());
-                    break;
-                case "youtube":
-                    extractYoutubeUrl(url, getContext(), 18);
-                    break;
-                case "youtube-live":
-                    extractYoutubeUrl(url, getContext(), 133);
-                    break;
-          /*  case "rtmp":
-                mediaSource = rtmpMediaSource(uri);
-                break;
-           */
-                case "mp4":
-                    mediaSource = mediaSource(uri, HomeFragmentNewUI.this);
-                    break;
-                default:
-                    mediaSource = mediaSource(uri, HomeFragmentNewUI.this);
-                    break;
-            }
-            if (!type.contains("youtube")) {
-                player.prepare(mediaSource, true, false);
-                exoPlayerView.setPlayer(player);
-                player.setPlayWhenReady(true);
-            }
-
-      /*  seekTocurrentPosition();
-        seekToStartPosition();
-*/
-
         }
+     /*   Uri uri = Uri.parse(url);
+
+        switch (type) {
+            case "hls":
+             //   mediaSource = hlsMediaSource(uri, PlayerActivityNewCode.this);
+                break;
+            case "youtube":
+                initYoutubeVideo(url, PlayerActivityNewCode.this, 18);
+                break;
+            case "youtube-live":
+           //     extractYoutubeUrl(url, PlayerActivityNewCode.this, 133);
+                break;
+            case "rtmp":
+               // mediaSource = rtmpMediaSource(uri);
+                break;
+            case "mp4":
+                mediaSource = mediaSource(uri, PlayerActivityNewCode.this);
+                break;
+            default:
+                mediaSource = mediaSource(uri, PlayerActivityNewCode.this);
+                break;
+        }*/
+        // seekTocurrentPosition();
+        //  seekToStartPosition();
+
+
+    /*    exoPlayerView.setControllerVisibilityListener(visibility -> visible = visibility);
+
+        exoPlayerView.setControllerShowTimeoutMs(5 * 1000);*/
     }
 
-    @SuppressLint("StaticFieldLeak")
+
+/*    @SuppressLint("StaticFieldLeak")
+
     private void extractYoutubeUrl(String url, final Context context, final int tag) {
 
         new YouTubeExtractor(context) {
@@ -299,13 +275,15 @@ public class HomeFragmentNewUI extends Fragment {
         }.extract(url, true, true);
 
     }
-
+*/
+/*
     private MediaSource mediaSource(Uri uri, HomeFragmentNewUI homeFragmentNewUI) {
         return new ExtractorMediaSource.Factory(
                 new DefaultHttpDataSourceFactory("exoplayer")).
                 createMediaSource(uri);
-    }
+    }*/
 
+/*
     private MediaSource hlsMediaSource(Uri uri, Context context) {
         DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
         DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(context,
@@ -314,6 +292,7 @@ public class HomeFragmentNewUI extends Fragment {
                 .createMediaSource(uri);
         return videoSource;
     }
+*/
 
     private void getHomeContentDataFromServer() {
         if (getActivity() != null) {

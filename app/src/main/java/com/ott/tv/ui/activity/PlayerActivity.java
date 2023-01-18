@@ -5,96 +5,9 @@ import static android.view.View.VISIBLE;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlertDialog;
 
-import android.content.Context;
-import android.content.Intent;
-import android.icu.util.LocaleData;
-import android.media.AudioManager;
-import android.media.session.MediaSession;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.PowerManager;
-import android.util.Log;
-import android.util.SparseArray;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.tvprovider.media.tv.TvContractCompat;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
-import com.google.android.exoplayer2.C;
-import com.google.android.exoplayer2.ExoPlayerFactory;
-import com.google.android.exoplayer2.Format;
-import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.ext.rtmp.RtmpDataSourceFactory;
-import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
-import com.google.android.exoplayer2.extractor.ExtractorsFactory;
-import com.google.android.exoplayer2.source.ExtractorMediaSource;
-import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.source.MergingMediaSource;
-import com.google.android.exoplayer2.source.SingleSampleMediaSource;
-import com.google.android.exoplayer2.source.hls.HlsMediaSource;
-import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
-import com.google.android.exoplayer2.trackselection.TrackSelection;
-import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
-import com.google.android.exoplayer2.ui.PlayerView;
-import com.google.android.exoplayer2.upstream.BandwidthMeter;
-import com.google.android.exoplayer2.upstream.DataSource;
-import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
-import com.google.android.exoplayer2.util.MimeTypes;
-import com.google.android.exoplayer2.util.Util;
-import com.ott.tv.Config;
-import com.ott.tv.Constants;
-import com.ott.tv.R;
-import com.ott.tv.adapter.ServerAdapter;
-import com.ott.tv.adapter.SubtitleListAdapter;
-import com.ott.tv.model.Subtitle;
-import com.ott.tv.model.Video;
-import com.ott.tv.network.RetrofitClient;
-import com.ott.tv.network.api.APIResponse;
-import com.ott.tv.network.api.ContinueWatchApi;
-import com.ott.tv.utils.PreferenceUtils;
-import com.ott.tv.utils.ToastMsg;
-import com.ott.tv.video_service.MediaSessionHelper;
-import com.ott.tv.video_service.MockDatabase;
-import com.ott.tv.video_service.PlaybackModel;
-import com.ott.tv.video_service.Subscription;
-import com.ott.tv.video_service.TvUtil;
-import com.ott.tv.video_service.VideoPlaybackActivity;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-
-import at.huber.youtubeExtractor.VideoMeta;
-import at.huber.youtubeExtractor.YouTubeExtractor;
-import at.huber.youtubeExtractor.YtFile;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-
-public class PlayerActivity extends Activity {
+public class PlayerActivity extends Activity {}/*{
     private static final String TAG = "PlayerActivity";
     private static final String CLASS_NAME = "PlayerActivity";
     private static final String YOUTUBE = "youtube";
@@ -148,7 +61,7 @@ public class PlayerActivity extends Activity {
         if(model.getCategory()!=null){
         categoryType=model.getCategory();}
         id= String.valueOf(model.getId());
-      /*  if (model.getCategory().equals("movie") && mChannelId > -1L && model.getIsPaid().equals("1")) {
+      *//*  if (model.getCategory().equals("movie") && mChannelId > -1L && model.getIsPaid().equals("1")) {
             //Paid Content from Channel
             //check user has subscription or not
             //if not, send user to VideoPlayerActivity
@@ -162,7 +75,7 @@ public class PlayerActivity extends Activity {
                 startActivity(intent, null);
                 finish();
             }
-        }*/
+        }*//*
         intiViews();
         initVideoPlayer(url, Config.VideoURLTypeHls);
 
@@ -267,7 +180,7 @@ public class PlayerActivity extends Activity {
         }
     }
 
-    /*
+    *//*
         private class PlayerEventListener implements Player.EventListener {
             @Override
             public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
@@ -298,7 +211,7 @@ public class PlayerActivity extends Activity {
             @Override
             public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) { }
         }
-    */
+    *//*
     @Override
     protected void onStart() {
         super.onStart();
@@ -328,14 +241,14 @@ public class PlayerActivity extends Activity {
         //set title, description and poster in controller layout
         movieTitleTV.setText(model.getTitle());
         movieDescriptionTV.setText(model.getDescription());
-        /*movieDescriptionTV.setVisibility(View.GONE);*/
-/*        Picasso.get()
+        *//*movieDescriptionTV.setVisibility(View.GONE);*//*
+*//*        Picasso.get()
                 .load(model.getCardImageUrl())
                 .placeholder(R.drawable.poster_placeholder_land)
                 .centerCrop()
                 .resize(120, 200)
                 .error(R.drawable.poster_placeholder_land)
-                .into(posterImageView);*/
+                .into(posterImageView);*//*
         Glide.with(this)
                 .load(model.getCardImageUrl())
                 .placeholder(R.drawable.poster_placeholder_land)
@@ -348,7 +261,7 @@ public class PlayerActivity extends Activity {
     @Override
     protected void onUserLeaveHint() {
         Log.e("RemoteKey", "DPAD_HOME");
-        /** Use pressed home button **/
+        *//** Use pressed home button **//*
         //time to set media session active
         super.onUserLeaveHint();
     }
@@ -365,13 +278,13 @@ public class PlayerActivity extends Activity {
         AlertDialog.Builder builder = new AlertDialog.Builder(PlayerActivity.this);
         View view = LayoutInflater.from(PlayerActivity.this).inflate(R.layout.videoquality_rv_tv, null);
         view.requestFocus();
-           /*     RecyclerView serverRv = view.findViewById(R.id.serverRv);
+           *//*     RecyclerView serverRv = view.findViewById(R.id.serverRv);
                 SubtitleListAdapter adapter = new SubtitleListAdapter(PlayerActivity.this, video.getSubtitle());
                 serverRv.setLayoutManager(new LinearLayoutManager(PlayerActivity.this));
                 serverRv.setHasFixedSize(true);
-                serverRv.setAdapter(adapter);*/
+                serverRv.setAdapter(adapter);*//*
 
-        /*View view = getLayoutInflater().inflate(R.layout.videoquality_rv_tv, null);*/
+        *//*View view = getLayoutInflater().inflate(R.layout.videoquality_rv_tv, null);*//*
 
         Button tvAuto = view.findViewById(R.id.tvAuto);
         Button tvResolutionOne = view.findViewById(R.id.tvResolutionOne);
@@ -413,10 +326,10 @@ public class PlayerActivity extends Activity {
         if (resolutionHashMap.containsKey(getString(R.string._2160p))) {
             tvResolutionEight.setVisibility(VISIBLE);
         }
-         /*   Dialog dialog = new Dialog(this);
+         *//*   Dialog dialog = new Dialog(this);
             dialog.setContentView(view);
          //   setupFullHeight(dialog);
-            dialog.show();*/
+            dialog.show();*//*
 
         builder.setView(view);
         final AlertDialog dialog = builder.create();
@@ -536,7 +449,7 @@ public class PlayerActivity extends Activity {
             playerCurrentPosition = player.getCurrentPosition();
             Log.d("VideoFragment3", "Is prepped, seeking to " + player.getCurrentPosition());
         }
-        /*releasePlayer();*/
+        *//*releasePlayer();*//*
         //  setPlayerFullScreen();
         progressBar.setVisibility(VISIBLE);
         // swipeRefreshLayout.setVisibility(GONE);
@@ -581,9 +494,9 @@ public class PlayerActivity extends Activity {
         }
         if (resolutionHashMap.size() > 1) {
             resolutionHashMap.put(getString(R.string.hint_auto), "");
-        /*    if (model.getStremURL() != null && !model.getStremURL().isEmpty()) {
+        *//*    if (model.getStremURL() != null && !model.getStremURL().isEmpty()) {
                 resolutionHashMap.put(getString(R.string.hint_default), model.getStremURL());
-            }*/
+            }*//*
             imgVideoQuality.setVisibility(VISIBLE);
         } else {
             imgVideoQuality.setVisibility(GONE);
@@ -637,22 +550,22 @@ public class PlayerActivity extends Activity {
                     // mediaSessionHelper.stopMediaSession();
                     finish();
                     onBackPressed();
-                   /* if (doubleBackToExitPressedOnce) {
+                   *//* if (doubleBackToExitPressedOnce) {
 
                     } else {
                         handleBackPress();
-                    }*/
+                    }*//*
                 }
 
                 break;
             case KeyEvent.KEYCODE_ESCAPE:
                 Log.e("RemoteKey", "DPAD_ESCAPE");
-               /* if (!exoPlayerView.isControllerVisible()){
+               *//* if (!exoPlayerView.isControllerVisible()){
                     exoPlayerView.showController();
                 }else {
                     releasePlayer();
                     finish();
-                }*/
+                }*//*
                 break;
         }
         return false;
@@ -771,7 +684,7 @@ public class PlayerActivity extends Activity {
         }
     }
 
-    private void setSelectedSubtitle(MediaSource mediaSource, String url) {
+ *//*   private void setSelectedSubtitle(MediaSource mediaSource, String url) {
         MergingMediaSource mergedSource;
         if (url != null) {
             Uri subtitleUri = Uri.parse(url);
@@ -801,7 +714,7 @@ public class PlayerActivity extends Activity {
         }
     }
 
-    public void initVideoPlayer(String url, String type) {
+ *//*   public void initVideoPlayer(String url, String type) {
         if (player != null) {
             player.stop();
             player.release();
@@ -851,7 +764,7 @@ public class PlayerActivity extends Activity {
         seekTocurrentPosition();
         seekToStartPosition();
 
-/*
+*//*
         player.addListener(new Player.DefaultEventListener() {
             WatchNextAdapter watchNextAdapter = new WatchNextAdapter();
 
@@ -895,11 +808,11 @@ public class PlayerActivity extends Activity {
                 }
             }
         });
-*/
+*//*
 
-    /*    exoPlayerView.setControllerVisibilityListener(visibility -> visible = visibility);
+    *//*    exoPlayerView.setControllerVisibilityListener(visibility -> visible = visibility);
 
-        exoPlayerView.setControllerShowTimeoutMs(5 * 1000);*/
+        exoPlayerView.setControllerShowTimeoutMs(5 * 1000);*//*
     }
 
     private void seekToStartPosition() {
@@ -1001,7 +914,7 @@ public class PlayerActivity extends Activity {
     protected void onResume() {
         super.onResume();
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
-        wakeLock.acquire(10 * 60 * 1000L /*10 minutes*/);
+        wakeLock.acquire(10 * 60 * 1000L *//*10 minutes*//*);
     }
 
     private void releasePlayer() {
@@ -1064,13 +977,13 @@ public class PlayerActivity extends Activity {
     private void promptUserToDisplayChannel(long channelId) {
         // TODO: step 17 prompt user.
         TvContractCompat.requestChannelBrowsable(this, channelId);
-        /*Intent intent = new Intent(TvContractCompat.ACTION_REQUEST_CHANNEL_BROWSABLE);
+        *//*Intent intent = new Intent(TvContractCompat.ACTION_REQUEST_CHANNEL_BROWSABLE);
         intent.putExtra(TvContractCompat.EXTRA_CHANNEL_ID, channelId);
         try {
             this.startActivityForResult(intent, MAKE_BROWSABLE_REQUEST_CODE);
         } catch (ActivityNotFoundException e) {
             Log.e(TAG, "Could not start activity: " + intent.getAction(), e);
-        }*/
+        }*//*
     }
 
     @Override
@@ -1083,6 +996,6 @@ public class PlayerActivity extends Activity {
             Toast.makeText(this, "Channel not added", Toast.LENGTH_LONG).show();
         }
     }
-}
+}*/
 
 

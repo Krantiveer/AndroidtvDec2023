@@ -32,6 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.tvprovider.media.tv.TvContractCompat;
@@ -39,28 +40,30 @@ import androidx.tvprovider.media.tv.TvContractCompat;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.exoplayer2.C;
-import com.google.android.exoplayer2.ExoPlayerFactory;
+import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.Format;
+import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.ext.rtmp.RtmpDataSourceFactory;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
 import com.google.android.exoplayer2.extractor.ExtractorsFactory;
-import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MergingMediaSource;
 import com.google.android.exoplayer2.source.SingleSampleMediaSource;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
+import com.google.android.exoplayer2.source.rtsp.RtspMediaSource;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.PlayerView;
+import com.google.android.exoplayer2.ui.StyledPlayerView;
 import com.google.android.exoplayer2.upstream.BandwidthMeter;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
 import com.google.android.exoplayer2.util.MimeTypes;
 import com.google.android.exoplayer2.util.Util;
 /*import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;*/
@@ -74,7 +77,6 @@ import com.ott.tv.model.Video;
 import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.APIResponse;
 import com.ott.tv.network.api.ContinueWatchApi;
-import com.ott.tv.ui.activity.PlayerActivity;
 import com.ott.tv.utils.PreferenceUtils;
 import com.ott.tv.utils.ToastMsg;
 import com.ott.tv.video_service.MediaSessionHelper;
@@ -103,14 +105,19 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class PlayerActivityNewCode extends Activity {
+public class PlayerActivityNewCode extends Activity implements StyledPlayerView.ControllerVisibilityListener {
     private static final String TAG = "PlayerActivity";
     private static final String CLASS_NAME = "PlayerActivity";
     private static final String YOUTUBE = "youtube";
     private static final String YOUTUBE_LIVE = "youtube_live";
-    private PlayerView exoPlayerView;
+    // private PlayerView exoPlayerView;
     private YouTubePlayerView youTubePlayerView;
-    private SimpleExoPlayer player;
+    // private SimpleExoPlayer player;
+
+    protected @Nullable
+    ExoPlayer player;
+    protected PlayerView exoPlayerView;//playerView;
+
     private LinearLayout rootLayout;
     private MediaSource mediaSource;
     private boolean isPlaying;
@@ -122,7 +129,7 @@ public class PlayerActivityNewCode extends Activity {
     private int visible;
     private ImageButton serverButton, fastForwardButton, subtitleButton, imgVideoQuality, exo_prev, exo_rew;
     private TextView movieTitleTV, movieDescriptionTV;
-    private ImageView posterImageView,watermark,watermark_live;
+    private ImageView posterImageView, watermark, watermark_live;
     private RelativeLayout seekBarLayout;
     private TextView liveTvTextInController;
     private ProgressBar progressBar;
@@ -140,6 +147,8 @@ public class PlayerActivityNewCode extends Activity {
     private String categoryType = "", id = "";
 
     private YouTubePlayer youTubePlayer;
+    private boolean startAutoPlay = true;
+
 //    private MediaSessionCompat mediaSession;
     /*private MediaSessionConnector mediaSessionConnector;*/
 
@@ -187,10 +196,11 @@ public class PlayerActivityNewCode extends Activity {
             }
         }*/
         intiViews();
-       initVideoPlayer(url, videoType);
+        initVideoPlayer(url, videoType);
 
     }
 
+/*
     private void updateContinueWatchingDataToServer() {
         if (player != null) {
             playerCurrentPosition = player.getCurrentPosition();
@@ -230,6 +240,7 @@ public class PlayerActivityNewCode extends Activity {
 
         }
     }
+*/
 
 
     @SuppressLint("WrongViewCast")
@@ -307,7 +318,7 @@ public class PlayerActivityNewCode extends Activity {
             liveTvTextInController.setVisibility(View.VISIBLE);
             seekBarLayout.setVisibility(View.INVISIBLE);
 
-        }else{
+        } else {
             watermark.setVisibility(VISIBLE);
             watermark_live.setVisibility(GONE);
         }
@@ -355,6 +366,7 @@ public class PlayerActivityNewCode extends Activity {
             //open subtitle dialog
             openSubtitleDialog();
         });
+/*
         imgVideoQuality.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -368,6 +380,7 @@ public class PlayerActivityNewCode extends Activity {
         });
 
 
+*/
         //set title, description and poster in controller layout
         movieTitleTV.setText(model.getTitle());
         movieDescriptionTV.setText(model.getDescription());
@@ -803,7 +816,7 @@ public class PlayerActivityNewCode extends Activity {
                 adapter.setListener(new SubtitleListAdapter.OnSubtitleItemClickListener() {
                     @Override
                     public void onSubtitleItemClick(View view, Subtitle subtitle, int position, SubtitleListAdapter.SubtitleViewHolder holder) {
-                        setSelectedSubtitle(mediaSource, subtitle.getUrl());
+                        //    setSelectedSubtitle(mediaSource, subtitle.getUrl());
                         dialog.dismiss();
                     }
                 });
@@ -816,6 +829,7 @@ public class PlayerActivityNewCode extends Activity {
         }
     }
 
+/*
     private void setSelectedSubtitle(MediaSource mediaSource, String url) {
         MergingMediaSource mergedSource;
         if (url != null) {
@@ -845,6 +859,7 @@ public class PlayerActivityNewCode extends Activity {
             Toast.makeText(PlayerActivityNewCode.this, "there is no subtitle", Toast.LENGTH_SHORT).show();
         }
     }
+*/
 
     public void initVideoPlayer(String url, String type) {
         if (player != null) {
@@ -852,35 +867,54 @@ public class PlayerActivityNewCode extends Activity {
             player.release();
         }
 
-        progressBar.setVisibility(VISIBLE);
-        BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
-        TrackSelection.Factory videoTrackSelectionFactory = new
-                AdaptiveTrackSelection.Factory(bandwidthMeter);
-        trackSelector = new
-                DefaultTrackSelector(videoTrackSelectionFactory);
+/*
+        val streamUrl = "rtsp://192.168.1.11:554/user=admin&password=&channel=1&stream=0.sdp"
+        val mediaSource = RtspMediaSource.Factory().createMediaSource(MediaItem.fromUri(streamUrl))
 
-        player = ExoPlayerFactory.newSimpleInstance((Context) PlayerActivityNewCode.this, trackSelector);
+        val player = SimpleExoPlayer.Builder(context).build()
+        player.repeatMode = Player.REPEAT_MODE_OFF
+        player.setVideoTextureView(ipcamVideoView)
+        player.setMediaSource(mediaSource)
+        player.prepare()
+        player.play()
+                */
+        if (type == "youtube") {
+            initYoutubeVideo(url, PlayerActivityNewCode.this, 18);
+        } else {
+            DataSource.Factory dataSourceFactory = new DefaultHttpDataSource.Factory();
+// Create a HLS media source pointing to a playlist uri.
+            HlsMediaSource hlsMediaSource =
+                    new HlsMediaSource.Factory(dataSourceFactory)
+                            .createMediaSource(MediaItem.fromUri(url));
+// Create a player instance.
+            player = new ExoPlayer.Builder(this).build();
+            player.setMediaSource(hlsMediaSource);
+
+            player.prepare();
+            player.setPlayWhenReady(startAutoPlay);
+
+            exoPlayerView.setPlayer(player);
+        }
+        player.prepare();
+
+     //   player.setPlayWhenReady(startAutoPlay);
+
         exoPlayerView.setPlayer(player);
-        // below 2 lines will make screen size to fit
-        exoPlayerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FILL);
-        player.setVideoScalingMode(C.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
 
-        player.setPlayWhenReady(true);
-
-        Uri uri = Uri.parse(url);
+     /*   Uri uri = Uri.parse(url);
 
         switch (type) {
             case "hls":
-                mediaSource = hlsMediaSource(uri, PlayerActivityNewCode.this);
+             //   mediaSource = hlsMediaSource(uri, PlayerActivityNewCode.this);
                 break;
             case "youtube":
                 initYoutubeVideo(url, PlayerActivityNewCode.this, 18);
                 break;
             case "youtube-live":
-                extractYoutubeUrl(url, PlayerActivityNewCode.this, 133);
+           //     extractYoutubeUrl(url, PlayerActivityNewCode.this, 133);
                 break;
             case "rtmp":
-                mediaSource = rtmpMediaSource(uri);
+               // mediaSource = rtmpMediaSource(uri);
                 break;
             case "mp4":
                 mediaSource = mediaSource(uri, PlayerActivityNewCode.this);
@@ -888,69 +922,15 @@ public class PlayerActivityNewCode extends Activity {
             default:
                 mediaSource = mediaSource(uri, PlayerActivityNewCode.this);
                 break;
-        }
-        if (!type.contains("youtube")) {
+        }*/
+        /*if (!type.contains("youtube")) {
             player.prepare(mediaSource, true, false);
             exoPlayerView.setPlayer(player);
             player.setPlayWhenReady(true);
-        }
-        seekTocurrentPosition();
-        seekToStartPosition();
+        }*/
+        // seekTocurrentPosition();
+        //  seekToStartPosition();
 
-/*
-        player.addListener(new Player.DefaultEventListener() {
-            WatchNextAdapter watchNextAdapter = new WatchNextAdapter();
-
-            @Override
-            public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-
-                if (!type.contains("youtube")) {
-                    if (playWhenReady && playbackState == Player.STATE_READY) {
-                        isPlaying = true;
-                        progressBar.setVisibility(View.GONE);
-                        createChannel();
-                        //create media session
-
-                        mediaSessionHelper = new MediaSessionHelper(player, PlayerActivityNewCode.this, model, isPlaying);
-                        mediaSessionHelper.updateMetadata();
-                        mediaSessionHelper.updatePlaybackState();
-
-//                    session = new MediaSession(getApplicationContext(), "MusicService");
- //                   session.setCallback(new MediaSessionCallback());
- //                   session.setFlags(MediaSession.FLAG_HANDLES_MEDIA_BUTTONS |
-   //                         MediaSession.FLAG_HANDLES_TRANSPORT_CONTROLS);
-
-                    }
-                } else if (playbackState == Player.STATE_READY) {
-                    isPlaying = false;
-                    progressBar.setVisibility(View.GONE);
-                    //add watch next card
-                    long position = player.getCurrentPosition();
-                    long duration = player.getDuration();
-                    mediaSessionHelper.updateMetadata();
-                    mediaSessionHelper.updatePlaybackState();
-
-                    Log.e("123456", "id: " + model.getId());
-       //             watchNextAdapter.updateProgress(PlayerActivityNewCode.this, 119, model, position, duration);
-
-                } else if (playbackState == Player.STATE_BUFFERING) {
-                    isPlaying = false;
-                    progressBar.setVisibility(VISIBLE);
-                    player.setPlayWhenReady(true);
-
-                } else if (playbackState == Player.STATE_ENDED) {
-                    //remove now playing card
-                    mediaSessionHelper.stopMediaSession();
-                    //mediaSessionHelper.stopMediaSession();
-   //                 watchNextAdapter.removeFromWatchNext(PlayerActivityNewCode.this, 119, model.getId());
-                } else {
-                    // player paused in any state
-                    isPlaying = false;
-                    progressBar.setVisibility(View.GONE);
-                }
-            }
-        });
-*/
 
     /*    exoPlayerView.setControllerVisibilityListener(visibility -> visible = visibility);
 
@@ -979,11 +959,11 @@ public class PlayerActivityNewCode extends Activity {
         });*/
     }
 
-    private String getYouTubeId (String youTubeUrl) {
+    private String getYouTubeId(String youTubeUrl) {
         String pattern = "(?<=youtu.be/|watch\\?v=|/videos/|embed\\/)[^#\\&\\?]*";
         Pattern compiledPattern = Pattern.compile(pattern);
         Matcher matcher = compiledPattern.matcher(youTubeUrl);
-        if(matcher.find()){
+        if (matcher.find()) {
             return matcher.group();
         } else {
             return "error";
@@ -1010,19 +990,22 @@ public class PlayerActivityNewCode extends Activity {
         }
     }
 
+/*
     private MediaSource mp3MediaSource(Uri uri) {
         DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(getApplicationContext(), "ExoplayerDemo");
         ExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
         Handler mainHandler = new Handler();
         return new ExtractorMediaSource(uri, dataSourceFactory, extractorsFactory, mainHandler, null);
     }
+*/
 
-    private MediaSource mediaSource(Uri uri, Context context) {
+    /*private MediaSource mediaSource(Uri uri, Context context) {
         return new ExtractorMediaSource.Factory(
                 new DefaultHttpDataSourceFactory("exoplayer")).
                 createMediaSource(uri);
-    }
+    }*/
 
+/*
     private MediaSource rtmpMediaSource(Uri uri) {
         MediaSource videoSource = null;
 
@@ -1032,8 +1015,9 @@ public class PlayerActivityNewCode extends Activity {
 
         return videoSource;
     }
+*/
 
-    @SuppressLint("StaticFieldLeak")
+  /*  @SuppressLint("StaticFieldLeak")
     private void extractYoutubeUrl(String url, final Context context, final int tag) {
 
         new YouTubeExtractor(context) {
@@ -1056,7 +1040,8 @@ public class PlayerActivityNewCode extends Activity {
         }.extract(url, true, true);
 
     }
-
+*/
+/*
     private MediaSource hlsMediaSource(Uri uri, Context context) {
         DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
         DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(context,
@@ -1065,6 +1050,7 @@ public class PlayerActivityNewCode extends Activity {
                 .createMediaSource(uri);
         return videoSource;
     }
+*/
 
     @Override
     public void onBackPressed() {
@@ -1125,6 +1111,11 @@ public class PlayerActivityNewCode extends Activity {
                 MockDatabase.getVideoSubscription(this);
         channelExists = movieSubscription.getChannelId() > 0L;
         new AddChannelTask(this).execute(movieSubscription);
+    }
+
+    @Override
+    public void onVisibilityChanged(int visibility) {
+
     }
 
     @SuppressLint("StaticFieldLeak")

@@ -43,11 +43,9 @@ import androidx.leanback.widget.Row;
 import androidx.leanback.widget.RowPresenter;
 
 
-import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.ext.leanback.LeanbackPlayerAdapter;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
-import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
@@ -56,7 +54,6 @@ import com.google.android.exoplayer2.trackselection.TrackSelector;
 import com.google.android.exoplayer2.upstream.BandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 import com.ott.tv.database.VideoContract;
 import com.ott.tv.model.Playlist;
@@ -95,7 +92,7 @@ public class PlaybackFragmentNew extends VideoSupportFragment {
             mVideo = getActivity().getIntent().getParcelableExtra(VideoDetailsActivity.VIDEO);
             mPlaylist = new Playlist();
             if ((Util.SDK_INT <= 23 || mPlayer == null)) {
-                initializePlayer();
+               // initializePlayer();
             }
         }
     }
@@ -123,7 +120,7 @@ public class PlaybackFragmentNew extends VideoSupportFragment {
         }
     }
 
-    private void initializePlayer() {
+  /*  private void initializePlayer() {
         if (getActivity() != null) {
             BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
             TrackSelection.Factory videoTrackSelectionFactory =
@@ -139,11 +136,11 @@ public class PlaybackFragmentNew extends VideoSupportFragment {
 
             play(mVideo);
 
-          /*  ArrayObjectAdapter mRowsAdapter = initializeRelatedVideosRow();
-            setAdapter(mRowsAdapter);*/
+          *//*  ArrayObjectAdapter mRowsAdapter = initializeRelatedVideosRow();
+            setAdapter(mRowsAdapter);*//*
         }
     }
-
+*/
     private void releasePlayer() {
         if (mPlayer != null) {
             mPlayer.release();
@@ -173,7 +170,7 @@ public class PlaybackFragmentNew extends VideoSupportFragment {
             if (video.getCategory() != null && video.getCategory().contains("youtube") && video.videoUrl != null) {
                 extractYoutubeUrl(Uri.parse(video.videoUrl), 18);
             } else {
-                prepareMediaForPlaying(Uri.parse(video.videoUrl));
+                //prepareMediaForPlaying(Uri.parse(video.videoUrl));
             }
             mPlayerGlue.play();
         }
@@ -188,12 +185,12 @@ public class PlaybackFragmentNew extends VideoSupportFragment {
                     if (ytFiles != null) {
                         int itag = tag;
                         String dashUrl = ytFiles.get(itag).getUrl();
-                        try {
+                        try {/*
                             MediaSource source = mediaSource(Uri.parse(dashUrl), getContext());
                             mPlayer.prepare(source, true, false);
                             //player.setPlayWhenReady(false);
-                            /*exoPlayerView.setPlayer(mPlayer);*/
-                            mPlayer.setPlayWhenReady(true);
+                            *//*exoPlayerView.setPlayer(mPlayer);*//*
+                            mPlayer.setPlayWhenReady(true);*/
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -204,7 +201,7 @@ public class PlaybackFragmentNew extends VideoSupportFragment {
         }
     }
 
-    private MediaSource mediaSource(Uri uri, Context context) {
+  /*  private MediaSource mediaSource(Uri uri, Context context) {
         return new ExtractorMediaSource.Factory(
                 new DefaultHttpDataSourceFactory("exoplayer")).
                 createMediaSource(uri);
@@ -223,7 +220,7 @@ public class PlaybackFragmentNew extends VideoSupportFragment {
 
             mPlayer.prepare(mediaSource);
         }
-    }
+    }*/
 
     private ArrayObjectAdapter initializeRelatedVideosRow() {
         /*

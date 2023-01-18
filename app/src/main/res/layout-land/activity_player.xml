@@ -36,13 +36,23 @@
             android:id="@+id/player_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/black"
-            android:keepScreenOn="true"
-            app:auto_show="true"
             app:controller_layout_id="@layout/custom_exo_layout"
-            app:hide_on_touch="false"
-            app:show_timeout="15000"
-            app:use_controller="true" />
+            app:auto_show="true"
+            app:show_subtitle_button="false"
+            app:show_vr_button="false"
+            app:show_shuffle_button="false"
+            app:show_buffering="when_playing"
+
+            app:scrubber_color="@color/main_color"
+            app:scrubber_dragged_size="@dimen/_20sp"
+            app:scrubber_disabled_size="@dimen/_15sp"
+            app:scrubber_enabled_size="@dimen/_20sp"
+            app:buffered_color="@color/player_progress_color"
+            app:played_color="@color/main_color"
+            android:outlineAmbientShadowColor="@color/color_dark_yellow_high"
+            android:outlineSpotShadowColor="@color/green_500"
+
+           />
 
         <ImageView
             android:id="@+id/watermark"
