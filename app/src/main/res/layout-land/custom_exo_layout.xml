@@ -66,7 +66,7 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@id/exo_prev"
+                android:id="@id/prevButton"
                 style="@style/ExoMediaButton.Previous"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -77,14 +77,14 @@
                 tools:visibility="visible"
                 tools:ignore="TouchTargetSizeCheck" />
             <ImageButton
-                android:id="@id/exo_rew"
+                android:id="@id/rewineButton"
                 style="@style/ExoMediaButton.Rewind"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/round_ll_exoplayer"
                 android:contentDescription="TODO"
                 android:padding="@dimen/padding_of_controller_button"
-                android:visibility="gone"
+                android:visibility="visible"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <ImageButton
@@ -106,7 +106,7 @@
                 android:contentDescription="TODO"
                 android:padding="@dimen/padding_of_controller_button" />
             <ImageButton
-                android:id="@+id/exo_ffwd"
+                android:id="@+id/fastForwardButton"
                 style="@style/ExoMediaButton.FastForward"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -63,6 +63,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import at.huber.youtubeExtractor.VideoMeta;
 import at.huber.youtubeExtractor.YouTubeExtractor;
@@ -188,7 +189,7 @@ public class HomeFragmentNewUI extends Fragment {
     }
 
     public void initVideoPlayer(String url, String type) {
-        Log.i(TAG, "setTextViewBanner: "+url);
+        Log.i(TAG, "setTextViewBanner: " + url);
 
         if (url != null && !url.isEmpty()) {
             if (player != null) {
@@ -202,7 +203,7 @@ public class HomeFragmentNewUI extends Fragment {
                         new HlsMediaSource.Factory(dataSourceFactory)
                                 .createMediaSource(MediaItem.fromUri(url));
 // Create a player instance.
-                player = new ExoPlayer.Builder(getContext()).build();
+                player = new ExoPlayer.Builder(requireContext()).build();
                 player.setMediaSource(hlsMediaSource);
 
                 player.prepare();

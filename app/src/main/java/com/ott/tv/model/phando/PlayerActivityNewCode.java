@@ -258,9 +258,9 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
         selectTracksButton = findViewById(R.id.select_tracks_button);
         subtitleButton = findViewById(R.id.img_subtitle);
         imgVideoQuality = findViewById(R.id.img_video_quality);
-        fastForwardButton = findViewById(R.id.exo_ffwd);
-        exo_prev = findViewById(R.id.exo_prev);
-        exo_rew = findViewById(R.id.exo_rew);
+        fastForwardButton = findViewById(R.id.fastForwardButton);
+        exo_rew = findViewById(R.id.rewineButton);
+        exo_prev = findViewById(R.id.prevButton);
         liveTvTextInController = findViewById(R.id.live_tv);
         seekBarLayout = findViewById(R.id.seekbar_layout);
         watermark = findViewById(R.id.watermark);
@@ -318,6 +318,17 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
                                 /* onDismissListener= */ dismissedDialog -> isShowingTrackSelectionDialog = false);
                 trackSelectionDialog.show(getSupportFragmentManager(), /* tag= */ null);
             }
+        });
+        fastForwardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                player.seekTo(player.getCurrentPosition() + 30000); // 10000 = 10 Seconds
+
+            }
+        });
+        exo_rew.setOnClickListener(v -> {
+            player.seekTo(player.getCurrentPosition() - 30000); // 10000 = 10 Seconds
+
         });
         if (model.islive != null && model.islive.equalsIgnoreCase("1")) {
             serverButton.setVisibility(View.GONE);
@@ -878,6 +889,7 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
 */
 
     public void initVideoPlayer(String url, String type) {
+        Log.i(TAG, "initVideoPlayer: "+type);
         if (player != null) {
             player.stop();
             player.release();
@@ -894,7 +906,8 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
         player.prepare()
         player.play()
                 */
-        if (type == "youtube") {
+        if (type.equalsIgnoreCase( "youtube")) {
+            Log.i(TAG, "initVideoPlayer: "+type);
             initYoutubeVideo(url, PlayerActivityNewCode.this, 18);
         } else {
             DataSource.Factory dataSourceFactory = new DefaultHttpDataSource.Factory();
@@ -912,14 +925,14 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
             player.setPlayWhenReady(startAutoPlay);
 
             exoPlayerView.setPlayer(player);
-
-
+            player.prepare();
+            exoPlayerView.setPlayer(player);
         }
-        player.prepare();
+
 
      //   player.setPlayWhenReady(startAutoPlay);
 
-        exoPlayerView.setPlayer(player);
+
 
      /*   Uri uri = Uri.parse(url);
 
