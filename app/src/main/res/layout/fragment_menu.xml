@@ -21,10 +21,9 @@
             android:id="@+id/menuLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:focusable="true"
             android:orientation="horizontal"
-            android:padding="10dp">
+            >
 
 <!--
             <ImageView
@@ -39,8 +38,8 @@
             <ImageView
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:layout_marginLeft="@dimen/_9sdp"
-                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:contentDescription="TODO"
                 android:src="@drawable/logo" />
 
