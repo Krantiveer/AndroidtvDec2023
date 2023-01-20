@@ -41,9 +41,11 @@ import androidx.tvprovider.media.tv.TvContractCompat;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.Format;
 import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.ext.rtmp.RtmpDataSourceFactory;
@@ -52,11 +54,13 @@ import com.google.android.exoplayer2.extractor.ExtractorsFactory;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MergingMediaSource;
 import com.google.android.exoplayer2.source.SingleSampleMediaSource;
+import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
 import com.google.android.exoplayer2.source.rtsp.RtspMediaSource;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
+import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.ui.StyledPlayerView;
@@ -128,7 +132,7 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
     private String videoType = "";
     private String category = "";
     private int visible;
-    private ImageButton exo_pause,selectTracksButton, fastForwardButton, subtitleButton, imgVideoQuality, exo_prev, exo_rew;
+    private ImageButton exo_pause, selectTracksButton, fastForwardButton, subtitleButton, imgVideoQuality, exo_prev, exo_rew;
     private Button bt_golive;
     private TextView movieTitleTV, movieDescriptionTV;
     private ImageView posterImageView, watermark, watermark_live;
@@ -267,11 +271,18 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
         seekBarLayout = findViewById(R.id.seekbar_layout);
         watermark = findViewById(R.id.watermark);
         watermark_live = findViewById(R.id.watermark_live);
-        exo_pause=findViewById(R.id.exo_pause);
+        exo_pause = findViewById(R.id.exo_pause);
         exo_pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "click: "+"--->");
+                if (model.islive != null && model.islive.equalsIgnoreCase("1")) {
+                    if (player.isPlaying()) {
+                        bt_golive.setVisibility(VISIBLE);
+                        liveTvTextInController.setVisibility(GONE);
+                    }
+                }
+                player.pause();
+
             }
         });
 
@@ -308,6 +319,8 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
             if (videos != null) {
                 if (videos.size() < 1)
                     bt_golive.setVisibility(View.GONE);
+                Log.i(TAG, "clickpausebutton: " + "--->"+"gone22");
+
             }
             Log.i(TAG, "intiViews: " + model.getIstrailer());
             if (model.getIstrailer()) {
@@ -337,13 +350,13 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
 
         });
         if (model.islive != null && model.islive.equalsIgnoreCase("1")) {
-            bt_golive.setVisibility(VISIBLE);
+            bt_golive.setVisibility(GONE);
             subtitleButton.setVisibility(View.GONE);
             fastForwardButton.setVisibility(GONE);
             exo_prev.setVisibility(GONE);
             exo_rew.setVisibility(GONE);
             liveTvTextInController.setVisibility(View.VISIBLE);
-            seekBarLayout.setVisibility(VISIBLE);
+            seekBarLayout.setVisibility(View.INVISIBLE);
             watermark.setVisibility(GONE);
             watermark_live.setVisibility(VISIBLE);
         } else {
@@ -352,38 +365,39 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
         }
     }
 
-    /*
-        private class PlayerEventListener implements Player.EventListener {
-            @Override
-            public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-                if (playbackState == Player.STATE_IDLE || playbackState == Player.STATE_ENDED ||
-                        !playWhenReady) {
+/*
+    private class PlayerEventListener implements Player.Listener {
+        @Override
+        public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
+            if (playbackState == Player.STATE_IDLE || playbackState == Player.STATE_ENDED ||
+                    !playWhenReady) {
 
-                    exoPlayerView.setKeepScreenOn(false);
-                } else { // STATE_IDLE, STATE_ENDED
-                    // This prevents the screen from getting dim/lock
-                    exoPlayerView.setKeepScreenOn(true);
-                }
+                exoPlayerView.setKeepScreenOn(false);
+            } else { // STATE_IDLE, STATE_ENDED
+                // This prevents the screen from getting dim/lock
+                exoPlayerView.setKeepScreenOn(true);
             }
-
-
-            @Override
-            public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {}
-
-            @Override
-            public void onLoadingChanged(boolean isLoading) {}
-
-            @Override
-            public void onRepeatModeChanged(int repeatMode) { }
-
-            @Override
-            public void onPlayerError(ExoPlaybackException error) { }
-
-
-            @Override
-            public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) { }
         }
-    */
+
+
+        public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
+        }
+
+        @Override
+        public void onLoadingChanged(boolean isLoading) {
+        }
+
+        @Override
+        public void onRepeatModeChanged(int repeatMode) {
+        }
+
+
+        @Override
+        public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
+        }
+    }
+*/
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -402,16 +416,18 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
         });
 
 
-
         bt_golive.setOnClickListener(v -> {
             player.seekToDefaultPosition();
             player.seekToDefaultPosition();
+            player.play();
             bt_golive.setVisibility(GONE);
+            Log.i(TAG, "clickpausebutton: " + "--->"+"gone2");
+
             liveTvTextInController.setVisibility(VISIBLE);
             //open server dialog
-         //   openServerDialog(videos);
-       //     player.seekTo(0);
-      //      player.setPlayWhenReady(false);
+            //   openServerDialog(videos);
+            //     player.seekTo(0);
+            //      player.setPlayWhenReady(false);
         });
 
 
@@ -885,7 +901,7 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
 */
 
     public void initVideoPlayer(String url, String type) {
-        Log.i(TAG, "initVideoPlayer: "+type);
+        Log.i(TAG, "initVideoPlayer: " + type);
 
         if (player != null) {
             player.stop();
@@ -903,8 +919,8 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
         player.prepare()
         player.play()
                 */
-        if (type.equalsIgnoreCase( "youtube")) {
-            Log.i(TAG, "initVideoPlayer: "+type);
+        if (type.equalsIgnoreCase("youtube")) {
+            Log.i(TAG, "initVideoPlayer: " + type);
             initYoutubeVideo(url, PlayerActivityNewCode.this, 18);
         } else {
             DataSource.Factory dataSourceFactory = new DefaultHttpDataSource.Factory();
@@ -924,7 +940,7 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
         }
 
 
-     //   player.setPlayWhenReady(startAutoPlay);
+        //   player.setPlayWhenReady(startAutoPlay);
 
 
 

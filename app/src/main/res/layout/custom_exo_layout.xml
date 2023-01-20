@@ -47,13 +47,13 @@
                 android:layout_below="@id/movie_title"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/amazon"
                 android:layout_toEndOf="@id/poster_image_view"
+                android:fontFamily="@font/amazon"
+                android:maxLines="2"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:visibility="visible"
-                android:maxLines="2"
-                tools:text="Description"/>
+                tools:text="Description" />
         </RelativeLayout>
 
         <LinearLayout
@@ -66,16 +66,17 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@id/exo_prev"
+                android:id="@id/prevButton"
                 style="@style/ExoMediaButton.Previous"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/round_ll_exoplayer"
                 android:contentDescription="TODO"
-                android:visibility="gone"
                 android:padding="@dimen/padding_of_controller_button"
-                tools:visibility="visible"
-                tools:ignore="TouchTargetSizeCheck" />
+                android:visibility="gone"
+                tools:ignore="TouchTargetSizeCheck"
+                tools:visibility="visible" />
+
             <ImageButton
                 android:id="@id/rewineButton"
                 style="@style/ExoMediaButton.Rewind"
@@ -84,7 +85,7 @@
                 android:background="@drawable/round_ll_exoplayer"
                 android:contentDescription="TODO"
                 android:padding="@dimen/padding_of_controller_button"
-                android:visibility="gone"
+                android:visibility="visible"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <ImageButton
@@ -105,6 +106,7 @@
                 android:background="@drawable/round_ll_exoplayer"
                 android:contentDescription="TODO"
                 android:padding="@dimen/padding_of_controller_button" />
+
             <ImageButton
                 android:id="@+id/fastForwardButton"
                 style="@style/ExoMediaButton.FastForward"
@@ -125,7 +127,7 @@
                     android:padding="@dimen/padding_of_controller_button" />-->
 
 
-            <ImageButton
+            <!--<ImageButton
                 android:id="@+id/img_server"
                 style="@style/ExoMediaButton"
                 android:layout_width="wrap_content"
@@ -136,7 +138,7 @@
                 android:padding="@dimen/padding_of_controller_button"
                 android:src="@drawable/ic_settings_white"
                 android:visibility="gone"
-                />
+                />-->
             <ImageButton
                 android:id="@+id/select_tracks_button"
                 style="@style/ExoMediaButton"
@@ -147,8 +149,7 @@
                 android:contentDescription="@string/hint_image"
                 android:padding="@dimen/padding_of_controller_button"
                 android:src="@drawable/ic_settings_white"
-                android:visibility="visible"
-                />
+                android:visibility="visible" />
             <!--<ImageButton
                             android:id="@+id/img_server"
                             style="@style/ExoMediaButton"
@@ -184,9 +185,30 @@
                 android:background="@drawable/round_ll_exoplayer"
                 android:contentDescription="TODO"
                 android:padding="@dimen/padding_of_controller_button"
+                android:src="@drawable/ic_subtitles_white_24dp"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <Button
+                android:id="@+id/bt_golive"
+                style="@style/ExoMediaButton.Play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/round_ll_exoplayer"
+                android:contentDescription="TODO"
+                android:drawableStart="@drawable/ic_fiber_manual_record_white"
+
+                android:drawablePadding="5dp"
+                android:padding="@dimen/padding_of_controller_button"
+                android:src="@drawable/ic_subtitles_white_24dp"
+                android:text="Go live"
+                android:textColor="@color/white"
+                android:textSize="25sp"
                 android:visibility="gone"
                 tools:visibility="visible"
-                android:src="@drawable/ic_subtitles_white_24dp" />
+
+                />
 
             <TextView
                 android:id="@+id/live_tv"
