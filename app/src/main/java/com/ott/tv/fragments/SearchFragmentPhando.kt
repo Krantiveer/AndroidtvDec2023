@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.leanback.app.BrowseSupportFragment
+import androidx.leanback.app.RowsSupportFragment
+import androidx.leanback.app.VerticalGridSupportFragment
 import androidx.leanback.widget.*
 import com.google.gson.Gson
 import com.ott.tv.Config
@@ -25,7 +27,7 @@ import retrofit2.Call
 import retrofit2.Callback
 
 
-class SearchFragmentPhando : BrowseSupportFragment() {
+class SearchFragmentPhando : VerticalGridSupportFragment() {
     private val TAG = SearchFragmentPhando::class.java.simpleName
     private var rowAdapter: ArrayObjectAdapter? = null
     private var cardPresenterHeader: HeaderItem? = null
@@ -36,8 +38,8 @@ class SearchFragmentPhando : BrowseSupportFragment() {
     }
 
     private fun setupUIElements() {
-        headersState = HEADERS_DISABLED
-        isHeadersTransitionOnBackEnabled = true
+        /*headersState = HEADERS_DISABLED
+        isHeadersTransitionOnBackEnabled = true*/
         setUpEvents()
     }
 
@@ -58,9 +60,7 @@ class SearchFragmentPhando : BrowseSupportFragment() {
             ) {
                 Log.e(TAG, "response: " + response.code())
                 var searchContent = ArrayList<ShowWatchlist>()
-
                 var movieResult: MutableList<ShowWatchlist> = ArrayList()
-
                 if (response.code() == 200) {
                     searchContent = response.body() as ArrayList<ShowWatchlist>
                     var listRowPresenter = ListRowPresenter(FocusHighlight.ZOOM_FACTOR_NONE, true)
@@ -72,7 +72,6 @@ class SearchFragmentPhando : BrowseSupportFragment() {
                         indexOfRow = j
                         cardRowAdapter!!.add(searchContent!![j])
                     }
-
                     if (searchContent!!.size == 0) {
                         cardPresenterHeader =
                             HeaderItem(
@@ -100,7 +99,7 @@ class SearchFragmentPhando : BrowseSupportFragment() {
 
 
     fun setUpEvents() {
-        onItemViewSelectedListener = OnItemViewSelectedListener { viewHolder, o, viewHolder1, row ->
+       /* onItemViewSelectedListener = OnItemViewSelectedListener { viewHolder, o, viewHolder1, row ->
 //            if (o is HomeModel) {
 //                val content = o
 //                textTitle.text = "Title: " + content.title
@@ -109,7 +108,7 @@ class SearchFragmentPhando : BrowseSupportFragment() {
 //                Glide.with(activity).load(content.backgroundposter).into(KidsActivity.backgroundImageposter)
 
 //            }
-        }
+        }*/
         onItemViewClickedListener =
             OnItemViewClickedListener { viewHolder, item, viewHolder1, row ->
                 if (item is ShowWatchlist) {

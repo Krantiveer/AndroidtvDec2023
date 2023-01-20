@@ -235,8 +235,10 @@ class DetailsActivityPhando : FragmentActivity() {
         imgWatchList!!.setOnClickListener(View.OnClickListener { v: View? ->
             if (isWatchLater) {
                 addToFav("0")
+                setResult(0)
             } else {
                 addToFav("1")
+
             }
         })
 
@@ -634,7 +636,6 @@ class DetailsActivityPhando : FragmentActivity() {
         )
     }
 */
-
     override fun onPause() {
         if (Util.SDK_INT < 24) releasePlayer()
         super.onPause()

@@ -1,6 +1,5 @@
 package com.ott.tv.fragments;
 
-
 import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Intent;
@@ -49,9 +48,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class MapFragment extends Fragment implements AdapterClickListener {
     LinearLayout llSelectedState;
     RichPathView richPathView;
@@ -59,10 +55,8 @@ public class MapFragment extends Fragment implements AdapterClickListener {
     RecyclerView rvList;
 
     public MapFragment() {
-        // Required empty public constructor
+
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -88,13 +82,11 @@ public class MapFragment extends Fragment implements AdapterClickListener {
         });
 
     }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
         PreferenceUtils.getInstance().setStateNamePref(requireContext(), "");
     }
-
     @Override
     public void onResume() {
         super.onResume();
@@ -108,31 +100,18 @@ public class MapFragment extends Fragment implements AdapterClickListener {
             hitStateDateAPI(PreferenceUtils.getInstance().getStateNamePref(requireContext()));
         }
     }
-
     void hitStateDateAPI(String name) {
         mMoviesList.clear();
-
-//        get data from
-      //  fetchStateApi(name);
-
-
-//        then add data to array list
-
         setAdapter();
     }
-
     ArrayList<LatestMovieList> mMoviesList = new ArrayList<>();
-
     MapListAdapter mAdapter;
-
     void setAdapter() {
         GridLayoutManager manager = new GridLayoutManager(requireContext(), 2);
         rvList.setLayoutManager(manager);
       //  mAdapter = new MapListAdapter(mMoviesList, requireContext(), this);
         rvList.setAdapter(mAdapter);
     }
-
-
     private void fetchStateApi( String state_name) {
         if (getActivity() != null) {
             Retrofit retrofit = RetrofitClient.getRetrofitInstance();
@@ -179,8 +158,6 @@ public class MapFragment extends Fragment implements AdapterClickListener {
             });
         }
     }
-
-
     private void signOut() {
         if (getContext() != null && getActivity() != null) {
             DatabaseHelper databaseHelper = new DatabaseHelper(getContext());
@@ -201,8 +178,6 @@ public class MapFragment extends Fragment implements AdapterClickListener {
             }
         }
     }
-
-
     @Override
     public void onItemClick(@NonNull PlaybackModel data) {
 

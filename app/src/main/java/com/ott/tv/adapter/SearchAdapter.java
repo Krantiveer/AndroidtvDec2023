@@ -13,21 +13,20 @@ import com.bumptech.glide.Glide;
 import com.ott.tv.R;
 import com.ott.tv.model.phando.ShowWatchlist;
 import com.ott.tv.network.api.ListRecommend;
-import com.ott.tv.network.api.RecommendedModel;
 
 import java.util.List;
 
-public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHolder> {
+public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
 
-    public interface OnItemClickListener {
-        void onItemClick(ListRecommend item);
+    public interface OnItemClickListenerSearch {
+        void onItemClick(ShowWatchlist item);
     }
 
-    private final List<ListRecommend> items;
-    private final OnItemClickListener listener;
+    private final List<ShowWatchlist> items;
+    private final OnItemClickListenerSearch listener;
     private final Context context ;
 
-    public ContentAdapter(List<ListRecommend> items, Context context, OnItemClickListener listener ) {
+    public SearchAdapter(List<ShowWatchlist> items, Context context, OnItemClickListenerSearch listener ) {
         this.items = items;
         this.context = context;
         this.listener = listener;
@@ -57,7 +56,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
             image = (ImageView) itemView.findViewById(R.id.main_image);
         }
 
-        public void bind(final ListRecommend item, final OnItemClickListener listener) {
+        public void bind(final ShowWatchlist item, final OnItemClickListenerSearch listener) {
             name.setText(item.getTitle());
 
             Glide.with(context)

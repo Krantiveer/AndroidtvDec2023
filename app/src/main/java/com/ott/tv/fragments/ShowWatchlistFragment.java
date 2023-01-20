@@ -99,7 +99,6 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
         //fetchMovieData(id, type, limit, offset);
         fetchMovieData();
     }
-
     private void setCustomPadding() {
         if (getView() != null) {
             getView().setPadding(920, 0, 10, -500);
@@ -121,11 +120,9 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
                     assert movieList != null;
                     if (movieList.size() <= 0) {
                         dataAvailable = false;
-                        if (getContext() != null) {
-                            Toast.makeText(getContext(), getResources().getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                    Log.i(TAG, "onResponse: " + movieList.size());
+                        if(getContext()!=null){
+                        Toast.makeText(getContext(), getResources().getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
+                    }}
                     mAdapter.clear();
                     for (ShowWatchlist movie : movieList) {
                         mAdapter.add(movie);
@@ -286,9 +283,12 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
         movies = new ArrayList<>();
         pageCount = 1;
         dataAvailable = true;
-        // fetchMovieData();
+       // fetchMovieData();
 
     }
+
+
+
 
 
 }

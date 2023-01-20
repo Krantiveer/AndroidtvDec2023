@@ -90,8 +90,8 @@ public interface Dashboard {
 
     );
 
-    @GET("showwishlist")
-    Call<List<ShowWatchlist>> getRecommendedList(
+    @GET("search-suggestions")
+    Call<List<RecommendedModel>> getRecommendedList(
             @Header("Authorization") String token);
 
     @GET("userProfile")

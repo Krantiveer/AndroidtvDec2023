@@ -215,11 +215,8 @@ public class SearchFragment extends androidx.leanback.app.SearchFragment impleme
             Log.e(TAG,  "Handler started");
         }
     }
-
       private void getQueryData() {
         final String query = mQuery;
-
-
 
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
         Dashboard searchApi = retrofit.create(Dashboard.class);
@@ -267,9 +264,6 @@ public class SearchFragment extends androidx.leanback.app.SearchFragment impleme
         });
 
     }
-
-
-
     @SuppressLint("StaticFieldLeak")
     private void loadRows(final List<ShowWatchlist> movieResult, final List<Movie> tvSeriesResult, final List<TvModel> tvResult) {
         // offload processing from the UI thread
@@ -326,8 +320,6 @@ public class SearchFragment extends androidx.leanback.app.SearchFragment impleme
             }
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
-
-
     private void loadChannelRows(List<Movie> movieResult, List<Movie> tvSeriesResult, List<TvModel> tvResult) {
 
         ArrayObjectAdapter rowsAdapter = new ArrayObjectAdapter(new ListRowPresenter());

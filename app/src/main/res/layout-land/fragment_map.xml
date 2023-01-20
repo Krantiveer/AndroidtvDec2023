@@ -103,6 +103,7 @@
                         android:orientation="horizontal"
                         android:id="@+id/rvList"
                         android:focusable="true"
+                        android:focusableInTouchMode="true"
                         android:background="@drawable/round_ll"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

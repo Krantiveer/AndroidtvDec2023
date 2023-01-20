@@ -1,6 +1,7 @@
 package com.ott.tv.ui.activity
 
 import android.app.Activity
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
@@ -9,86 +10,46 @@ import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.view.WindowManager
-import android.view.inputmethod.EditorInfo
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.ProgressBar
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.FragmentActivity
-import androidx.leanback.widget.ArrayObjectAdapter
-import androidx.recyclerview.widget.RecyclerView
+import androidx.leanback.widget.*
+import com.ott.tv.Constants
 import com.ott.tv.R
 import com.ott.tv.adapter.ContentAdapter
-import com.ott.tv.fragments.SearchFragmentPhando
+import com.ott.tv.adapter.SearchAdapter
+import com.ott.tv.database.DatabaseHelper
+import com.ott.tv.databinding.ActivitySearchPhandoBinding
 import com.ott.tv.model.phando.ShowWatchlist
 import com.ott.tv.network.RetrofitClient
 import com.ott.tv.network.api.Dashboard
+import com.ott.tv.network.api.ListRecommend
+import com.ott.tv.network.api.RecommendedModel
 import com.ott.tv.utils.PreferenceUtils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-class SearchActivity_Phando : FragmentActivity() {
+class SearchActivity_Phando : FragmentActivity(), SearchAdapter.OnItemClickListenerSearch, ContentAdapter.OnItemClickListener {
     companion object {
         lateinit var progressBar: ProgressBar
         lateinit var accestoken: String
         var indexOfRow: Int = 0
     }
-
-    lateinit var searchFragment: SearchFragmentPhando
-    lateinit var rvRecommended: RecyclerView
     lateinit var sharedPreferences: SharedPreferences
-    lateinit var btnsearch: ImageButton
-    lateinit var editText: EditText
-    private val mAdapter: ArrayObjectAdapter? = null
-  //  lateinit var firebaseAnalytics: FirebaseAnalytics
-
+    private lateinit var binding: ActivitySearchPhandoBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search_phando)
+
+        binding = ActivitySearchPhandoBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        editText = findViewById(R.id.edtsearch)
-        btnsearch = findViewById(R.id.btnsearch)
-        rvRecommended = findViewById(R.id.rvRecommended)
-
-     //   fetchMovieData()
-
-      /*  FirebaseApp.initializeApp(this);
-        firebaseAnalytics = Firebase.analytics
-        firebaseAnalytics.logEvent("SEARCH_SCREEN", Bundle.EMPTY)
-*/
-        searchFragment =
-            supportFragmentManager.findFragmentById(R.id.searchFragment) as SearchFragmentPhando
-        progressBar = findViewById(R.id.progress_search)
+        fetchMovieData()
+//        progressBar = findViewById(R.id.progress_search)
         sharedPreferences = getSharedPreferences("LoginData", Activity.MODE_PRIVATE);
         accestoken = sharedPreferences.getString("access_token", "")!!
 
-
-
-        editText.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_NEXT) {
-
-                if (editText.text.toString().equals("")) {
-                    Toast.makeText(
-                        applicationContext,
-                        "please type keyword for Search",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    var searchText: String
-                    searchText = editText.text.toString()
-                //    searchFragment.loadData(searchText, accestoken)
-                    searchFragment.getQueryData(searchText)
-                    btnsearch.requestFocus()
-                }
-                true
-            } else {
-                false
-            }
-        }
-
-        editText.addTextChangedListener(object : TextWatcher {
+        binding.edtsearch.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable) {}
 
@@ -99,7 +60,9 @@ class SearchActivity_Phando : FragmentActivity() {
             override fun onTextChanged(s: CharSequence, start: Int,
                                        before: Int, count: Int) {
                 var searchText: String
-                if (editText.text.toString().equals("")) {
+                if ( binding.edtsearch.text.toString().equals("")) {
+                    binding.rvRecommended.visibility = View.VISIBLE
+                    binding.lytFragment.visibility = View.GONE
                  //   rvRecommended.visibility = View.VISIBLE
                     Toast.makeText(
                         applicationContext,
@@ -108,32 +71,30 @@ class SearchActivity_Phando : FragmentActivity() {
                     ).show()
                 }
                 else {
-                  //  rvRecommended.visibility = View.GONE
-                    searchText = editText.text.toString()
-                    //  searchFragment.loadData(searchText, accestoken)
-                    searchFragment.getQueryData(searchText)
-                    // firebaseAnalytics.logEvent("SEARCH_RESULT", Bundle.EMPTY)
+                    binding.rvRecommended.visibility = View.GONE
+                    binding.lytFragment.visibility = View.VISIBLE
+                    searchText = binding.edtsearch.text.toString()
+                   getQueryData(searchText)
+
                 }
 
             }
         })
 
     }
-
     override fun onResume() {
         super.onResume()
-        editText.requestFocus()
+        binding.edtsearch.requestFocus()
     }
-
-    override fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
+/*    override fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
         return when (keyCode) {
             KeyEvent.KEYCODE_DPAD_UP -> {
-                if (searchFragment!!.requireView().hasFocus())
+                if (binding.rvSearch!!.hasFocus())
                 {
-                    searchFragment!!.requireView().clearFocus()
+                    binding.rvSearch!!.clearFocus()
                   //  edtsearch.requestFocus()
-                    editText.requestFocus()
-                    editText.setText("")
+                    binding.edtsearch.requestFocus()
+                    binding.edtsearch.setText("")
                     true
                 } else {
                     super.onKeyDown(keyCode, event)
@@ -142,43 +103,183 @@ class SearchActivity_Phando : FragmentActivity() {
             else -> super.onKeyUp(keyCode, event)
 
         }
-    }
-
-
+    }*/
     private fun fetchMovieData() {
+    binding.progressBarSearch.visibility = View.VISIBLE
         val retrofit = RetrofitClient.getRetrofitInstance()
         val api = retrofit.create(Dashboard::class.java)
         val accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(this)
 
         val call = api.getRecommendedList(accessToken)
-        call.enqueue(object : Callback<List<ShowWatchlist?>?> {
+        call.enqueue(object : Callback<List<RecommendedModel?>?> {
             override fun onResponse(
-                call: Call<List<ShowWatchlist?>?>,
-                response: Response<List<ShowWatchlist?>?>
+                call: Call<List<RecommendedModel?>?>,
+                response: Response<List<RecommendedModel?>?>
             ) {
                 if (response.code() == 200) {
                     if (response.code() == 200) {
-                        Log.e("@@response", response.body().toString())
-                        val movieList: List<ShowWatchlist?>? = response.body()
 
-                        rvRecommended.setAdapter(
-                            ContentAdapter(movieList, applicationContext,
-                                ContentAdapter.OnItemClickListener {
+                        binding.progressBarSearch.visibility = View.GONE
+                        var movieList: List<RecommendedModel?>? = response.body()
+                        var movieListFinal: List<ListRecommend?>? =null
 
 
-
-
-                                }),
+                        movieListFinal = movieList!!.get(0)!!.list
+                        binding.rvRecommended.setAdapter(
+                            ContentAdapter(
+                                movieListFinal,
+                                applicationContext,this@SearchActivity_Phando),
                         )
 
                     }
                 }
             }
 
-            override fun onFailure(call: Call<List<ShowWatchlist?>?>, t: Throwable) {
+            override fun onFailure(call: Call<List<RecommendedModel?>?>, t: Throwable) {
+                binding.progressBarSearch.visibility = View.GONE
                 Log.e("Genre Item", "code: " + t.localizedMessage)
             }
         })
+    }
+    fun getQueryData(mQuery: String) {
+        binding.progressBarSearch.visibility = View.VISIBLE
+        val searchtext: String = mQuery
+        val retrofit = RetrofitClient.getRetrofitInstance()
+        val searchApi = retrofit.create(Dashboard::class.java)
+        Constants.IS_FROM_HOME = false
+        val accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(
+            this
+        )
+        val call = searchApi.searchVideo(accessToken, searchtext, "", "", "50")
+        call.enqueue(object : Callback<MutableList<ShowWatchlist>> {
+            override fun onResponse(
+                call: Call<MutableList<ShowWatchlist>>,
+                response: retrofit2.Response<MutableList<ShowWatchlist>>
+            ) {
+                Log.e("@@res", "response: " + response.code())
+                var searchContent = ArrayList<ShowWatchlist>()
+                if (response.code() == 200) {
+                    searchContent = response.body() as ArrayList<ShowWatchlist>
+                    binding.rvSearch.setAdapter(
+                        SearchAdapter(searchContent, applicationContext, this@SearchActivity_Phando),
+                    )
+                    binding.progressBarSearch.visibility = View.GONE
+                }
+            }
+
+            override fun onFailure(call: Call<MutableList<ShowWatchlist>>, t: Throwable) {
+
+            }
+        })
+    }
+    override fun onItemClick(item: ShowWatchlist?) {
+        val videoContent = item as ShowWatchlist
+
+        val status = DatabaseHelper(this).activeStatusData.status
+        if (true) {
+            val intent = Intent(this, DetailsActivityPhando::class.java)
+            if (videoContent.type != null) intent.putExtra("type", videoContent.type)
+            if (videoContent.thumbnail != null) intent.putExtra(
+                "thumbImage",
+                videoContent.thumbnail
+            )
+            if (videoContent.id != null) intent.putExtra("video_id", videoContent.id.toString())
+            if (videoContent.title != null) intent.putExtra("title", videoContent.title)
+            if (videoContent.detail != null) intent.putExtra("description", videoContent.detail)
+            if (videoContent.release_date != null) intent.putExtra(
+                "release",
+                videoContent.release_date
+            )
+            if (videoContent.duration_str != null) intent.putExtra(
+                "duration",
+                videoContent.duration_str
+            )
+            if (videoContent.maturity_rating != null) intent.putExtra(
+                "maturity_rating",
+                videoContent.maturity_rating
+            )
+            if (videoContent.is_free != null) intent.putExtra(
+                "ispaid",
+                videoContent.is_free.toString()
+            )
+            if (videoContent.language_str != null) intent.putExtra(
+                "language_str",
+                videoContent.language_str
+            )
+            if (videoContent.is_live != null) intent.putExtra("is_live", videoContent.is_live)
+            if (videoContent.rating != null) intent.putExtra(
+                "rating",
+                videoContent.rating.toString()
+            )
+            if (videoContent.trailers != null && videoContent.trailers.size > 0 && videoContent.trailers[0] != null && videoContent.trailers[0].media_url != null) {
+                intent.putExtra("trailer", videoContent.trailers[0].media_url)
+            }
+            if (videoContent.genres != null) {
+                var genres: String
+                genres = videoContent.genres[0]
+                for (i in 1 until videoContent.genres.size) {
+                    genres = genres + "," + videoContent.genres[i]
+                }
+                intent.putExtra("genres", genres)
+            }
+            startActivityForResult(intent, 0)
+           this.overridePendingTransition(R.anim.enter, R.anim.exit)
+        }
+    }
+    override fun onItemClick(item: ListRecommend?) {
+        val videoContent = item as ShowWatchlist
+
+        val status = DatabaseHelper(this).activeStatusData.status
+        if (true) {
+            val intent = Intent(this, DetailsActivityPhando::class.java)
+            if (videoContent.type != null) intent.putExtra("type", videoContent.type)
+            if (videoContent.thumbnail != null) intent.putExtra(
+                "thumbImage",
+                videoContent.thumbnail
+            )
+            if (videoContent.id != null) intent.putExtra("video_id", videoContent.id.toString())
+            if (videoContent.title != null) intent.putExtra("title", videoContent.title)
+            if (videoContent.detail != null) intent.putExtra("description", videoContent.detail)
+            if (videoContent.release_date != null) intent.putExtra(
+                "release",
+                videoContent.release_date
+            )
+            if (videoContent.duration_str != null) intent.putExtra(
+                "duration",
+                videoContent.duration_str
+            )
+            if (videoContent.maturity_rating != null) intent.putExtra(
+                "maturity_rating",
+                videoContent.maturity_rating
+            )
+            if (videoContent.is_free != null) intent.putExtra(
+                "ispaid",
+                videoContent.is_free.toString()
+            )
+            if (videoContent.language_str != null) intent.putExtra(
+                "language_str",
+                videoContent.language_str
+            )
+            if (videoContent.is_live != null) intent.putExtra("is_live", videoContent.is_live)
+            if (videoContent.rating != null) intent.putExtra(
+                "rating",
+                videoContent.rating.toString()
+            )
+            if (videoContent.trailers != null && videoContent.trailers.size > 0 && videoContent.trailers[0] != null && videoContent.trailers[0].media_url != null) {
+                intent.putExtra("trailer", videoContent.trailers[0].media_url)
+            }
+            if (videoContent.genres != null) {
+                var genres: String
+                genres = videoContent.genres[0]
+                for (i in 1 until videoContent.genres.size) {
+                    genres = genres + "," + videoContent.genres[i]
+                }
+                intent.putExtra("genres", genres)
+            }
+            startActivityForResult(intent, 0)
+            this.overridePendingTransition(R.anim.enter, R.anim.exit)
+        }
+
     }
 
 }

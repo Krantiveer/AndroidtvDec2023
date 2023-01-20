@@ -53,7 +53,6 @@ class NewMainActivity : FragmentActivity() {
         val accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(
             applicationContext
         )
-
         val call: Call<AppInfo> = api.getAppInfo( "Android",accessToken)
         call.enqueue(object : Callback<AppInfo?> {
             override fun onResponse(call: Call<AppInfo?>, response: Response<AppInfo?>) {
@@ -114,7 +113,6 @@ class NewMainActivity : FragmentActivity() {
             .commit()
 
     }
-
     private fun onGetAppInfoSuccess(appInfo: AppInfo) {
         val storeVersion = appInfo.currentVersion
         val forceUpdate = appInfo.isForceUpdate
@@ -156,7 +154,6 @@ class NewMainActivity : FragmentActivity() {
             dialog.show()
         }
     }
-
     fun onMenuFocus(onFocus: Boolean) {
         if (onFocus) {
     //        Toast.makeText(this, "closeactivity", Toast.LENGTH_SHORT).show()
@@ -168,7 +165,6 @@ class NewMainActivity : FragmentActivity() {
         }
 
     }
-
     override fun onBackPressed() {
         if (!binding.slidingPaneLayout.closePane()) {
             binding.slidingPaneLayout.openPane();
@@ -213,7 +209,6 @@ class NewMainActivity : FragmentActivity() {
             alert.show()*/
         }
     }
-
     private fun getSelectorDrawable(): StateListDrawable? {
         val out = StateListDrawable()
         out.addState(
