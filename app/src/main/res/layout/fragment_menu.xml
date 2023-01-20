@@ -41,6 +41,7 @@
                 android:layout_marginLeft="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:contentDescription="TODO"
+                android:layout_marginBottom="@dimen/_30sdp"
                 android:src="@drawable/logo" />
 
             <TextView
@@ -62,7 +63,6 @@
             android:id="@+id/menuRecycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbarDefaultDelayBeforeFade="@integer/material_motion_duration_long_1"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/layout_menu" />
 

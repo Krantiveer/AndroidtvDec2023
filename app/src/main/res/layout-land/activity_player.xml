@@ -26,33 +26,32 @@
             android:id="@+id/youtube_player_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:videoId="sLmwxN_Hzr"
-            android:visibility="gone"
             android:background="#000000"
+            android:visibility="gone"
             app:autoPlay="true"
-            />
+            app:videoId="sLmwxN_Hzr" />
 
         <com.google.android.exoplayer2.ui.PlayerView
             android:id="@+id/player_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:controller_layout_id="@layout/custom_exo_layout"
-            app:auto_show="true"
-            app:show_subtitle_button="false"
-            app:show_vr_button="false"
-            app:show_shuffle_button="false"
-            app:show_buffering="when_playing"
-
-            app:scrubber_color="@color/main_color"
-            app:scrubber_dragged_size="@dimen/_20sp"
-            app:scrubber_disabled_size="@dimen/_15sp"
-            app:scrubber_enabled_size="@dimen/_20sp"
-            app:buffered_color="@color/player_progress_color"
-            app:played_color="@color/main_color"
             android:outlineAmbientShadowColor="@color/color_dark_yellow_high"
             android:outlineSpotShadowColor="@color/green_500"
+            app:auto_show="true"
+            app:buffered_color="@color/player_progress_color"
+            app:controller_layout_id="@layout/custom_exo_layout"
+            app:played_color="@color/main_color"
 
-           />
+            app:scrubber_color="@color/main_color"
+            app:scrubber_disabled_size="@dimen/_15sp"
+            app:scrubber_dragged_size="@dimen/_20sp"
+            app:scrubber_enabled_size="@dimen/_20sp"
+            app:show_buffering="when_playing"
+            app:show_shuffle_button="false"
+            app:show_subtitle_button="false"
+            app:show_vr_button="false"
+
+            />
 
         <ImageView
             android:id="@+id/watermark"
@@ -62,16 +61,36 @@
             android:layout_centerHorizontal="false"
             android:layout_margin="@dimen/_20sp"
             android:src="@drawable/logo" />
-        <ImageView
-            android:id="@+id/watermark_live"
-            android:layout_width="@dimen/_46sdp"
-            android:layout_height="@dimen/_46sdp"
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignEnd="@id/player_view"
-            android:layout_margin="@dimen/_32sdp"
+            android:layout_margin="@dimen/_20sp"
+
             android:layout_alignParentBottom="true"
-            android:visibility="invisible"
-            android:layout_marginBottom="@dimen/_130sdp"
-            android:src="@drawable/logo" />
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/watermark_live"
+                android:layout_width="@dimen/_46sdp"
+                android:layout_height="@dimen/_46sdp"
+                android:layout_alignEnd="@id/player_view"
+                android:layout_centerHorizontal="false"
+                android:src="@drawable/logo" />
+            <ImageView
+                android:id="@+id/watermark_live2"
+                android:layout_width="@dimen/_46sdp"
+                android:visibility="invisible"
+                android:layout_height="@dimen/_46sdp"
+                android:layout_alignEnd="@id/player_view"
+                android:layout_centerHorizontal="false"
+                android:layout_margin="@dimen/_20sp"
+                android:src="@drawable/logo" />
+
+
+            >
+        </LinearLayout>
 
 
     </RelativeLayout>

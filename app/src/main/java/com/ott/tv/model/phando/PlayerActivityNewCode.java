@@ -128,7 +128,8 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
     private String videoType = "";
     private String category = "";
     private int visible;
-    private ImageButton serverButton,selectTracksButton, fastForwardButton, subtitleButton, imgVideoQuality, exo_prev, exo_rew;
+    private ImageButton exo_pause,selectTracksButton, fastForwardButton, subtitleButton, imgVideoQuality, exo_prev, exo_rew;
+    private Button bt_golive;
     private TextView movieTitleTV, movieDescriptionTV;
     private ImageView posterImageView, watermark, watermark_live;
     private RelativeLayout seekBarLayout;
@@ -200,6 +201,7 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
         intiViews();
         initVideoPlayer(url, videoType);
 
+
     }
 
 /*
@@ -254,7 +256,7 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
         movieTitleTV = findViewById(R.id.movie_title);
         movieDescriptionTV = findViewById(R.id.movie_description);
         posterImageView = findViewById(R.id.poster_image_view);
-        serverButton = findViewById(R.id.img_server);
+        bt_golive = findViewById(R.id.bt_golive);
         selectTracksButton = findViewById(R.id.select_tracks_button);
         subtitleButton = findViewById(R.id.img_subtitle);
         imgVideoQuality = findViewById(R.id.img_video_quality);
@@ -265,16 +267,23 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
         seekBarLayout = findViewById(R.id.seekbar_layout);
         watermark = findViewById(R.id.watermark);
         watermark_live = findViewById(R.id.watermark_live);
+        exo_pause=findViewById(R.id.exo_pause);
+        exo_pause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "click: "+"--->");
+            }
+        });
+
         if (category.equalsIgnoreCase("t")) {
-            serverButton.setVisibility(View.GONE);
+            bt_golive.setVisibility(View.GONE);
             subtitleButton.setVisibility(View.GONE);
-            //seekBarLayout.setVisibility(View.GONE);
             fastForwardButton.setVisibility(View.GONE);
             liveTvTextInController.setVisibility(View.VISIBLE);
             seekBarLayout.setVisibility(GONE);
         }
         if (category.equalsIgnoreCase("tvseries")) {
-            serverButton.setVisibility(View.GONE);
+            bt_golive.setVisibility(View.GONE);
             //hide subtitle button if there is no subtitle
             if (video != null) {
                 if (video.getSubtitle().isEmpty()) {
@@ -298,7 +307,7 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
             }
             if (videos != null) {
                 if (videos.size() < 1)
-                    serverButton.setVisibility(View.GONE);
+                    bt_golive.setVisibility(View.GONE);
             }
             Log.i(TAG, "intiViews: " + model.getIstrailer());
             if (model.getIstrailer()) {
@@ -308,16 +317,13 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
             }
 
         }
-        selectTracksButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                isShowingTrackSelectionDialog = true;
-                TrackSelectionDialog trackSelectionDialog =
-                        TrackSelectionDialog.createForPlayer(
-                                player,
-                                /* onDismissListener= */ dismissedDialog -> isShowingTrackSelectionDialog = false);
-                trackSelectionDialog.show(getSupportFragmentManager(), /* tag= */ null);
-            }
+        selectTracksButton.setOnClickListener(view -> {
+            isShowingTrackSelectionDialog = true;
+            TrackSelectionDialog trackSelectionDialog =
+                    TrackSelectionDialog.createForPlayer(
+                            player,
+                            /* onDismissListener= */ dismissedDialog -> isShowingTrackSelectionDialog = false);
+            trackSelectionDialog.show(getSupportFragmentManager(), /* tag= */ null);
         });
         fastForwardButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -331,18 +337,15 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
 
         });
         if (model.islive != null && model.islive.equalsIgnoreCase("1")) {
-            serverButton.setVisibility(View.GONE);
+            bt_golive.setVisibility(VISIBLE);
             subtitleButton.setVisibility(View.GONE);
-            fastForwardButton.setVisibility(View.GONE);
+            fastForwardButton.setVisibility(GONE);
             exo_prev.setVisibility(GONE);
             exo_rew.setVisibility(GONE);
-
+            liveTvTextInController.setVisibility(View.VISIBLE);
+            seekBarLayout.setVisibility(VISIBLE);
             watermark.setVisibility(GONE);
             watermark_live.setVisibility(VISIBLE);
-
-            liveTvTextInController.setVisibility(View.VISIBLE);
-            seekBarLayout.setVisibility(View.INVISIBLE);
-
         } else {
             watermark.setVisibility(VISIBLE);
             watermark_live.setVisibility(GONE);
@@ -398,16 +401,20 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
             }
         });
 
-/*
 
 
-        serverButton.setOnClickListener(v -> {
+        bt_golive.setOnClickListener(v -> {
+            player.seekToDefaultPosition();
+            player.seekToDefaultPosition();
+            bt_golive.setVisibility(GONE);
+            liveTvTextInController.setVisibility(VISIBLE);
             //open server dialog
-            openServerDialog(videos);
+         //   openServerDialog(videos);
+       //     player.seekTo(0);
+      //      player.setPlayWhenReady(false);
         });
 
 
-*/
         //set title, description and poster in controller layout
         movieTitleTV.setText(model.getTitle());
         movieDescriptionTV.setText(model.getDescription());
@@ -781,38 +788,27 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
             final AlertDialog dialog = builder.create();
             dialog.show();
 
-            closeBt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog.dismiss();
-                }
-            });
+            closeBt.setOnClickListener(v -> dialog.dismiss());
 
             final ServerAdapter.OriginalViewHolder[] viewHolder = {null};
-            serverAdapter.setOnItemClickListener(new ServerAdapter.OnItemClickListener() {
-
-                @Override
-                public void onItemClick(View view, Video obj, int position, ServerAdapter.OriginalViewHolder holder) {
-                    Intent playerIntent = new Intent(PlayerActivityNewCode.this, PlayerActivityNewCode.class);
-                    PlaybackModel video = new PlaybackModel();
-                    video.setId(model.getId());
-                    video.setTitle(model.getTitle());
-                    video.setDescription(model.getDescription());
-                    video.setCategory("movie");
-                    video.setVideo(obj);
-                    video.setVideoList(model.getVideoList());
-                    video.setVideoUrl(obj.getFileUrl());
-                    video.setVideoType(obj.getFileType());
-                    video.setBgImageUrl(model.getBgImageUrl());
-                    video.setCardImageUrl(model.getCardImageUrl());
-                    video.setIsPaid(model.getIsPaid());
-
-                    playerIntent.putExtra(VideoPlaybackActivity.EXTRA_VIDEO, video);
-
-                    startActivity(playerIntent);
-                    dialog.dismiss();
-                    finish();
-                }
+            serverAdapter.setOnItemClickListener((view1, obj, position, holder) -> {
+                Intent playerIntent = new Intent(PlayerActivityNewCode.this, PlayerActivityNewCode.class);
+                PlaybackModel video = new PlaybackModel();
+                video.setId(model.getId());
+                video.setTitle(model.getTitle());
+                video.setDescription(model.getDescription());
+                video.setCategory("movie");
+                video.setVideo(obj);
+                video.setVideoList(model.getVideoList());
+                video.setVideoUrl(obj.getFileUrl());
+                video.setVideoType(obj.getFileType());
+                video.setBgImageUrl(model.getBgImageUrl());
+                video.setCardImageUrl(model.getCardImageUrl());
+                video.setIsPaid(model.getIsPaid());
+                playerIntent.putExtra(VideoPlaybackActivity.EXTRA_VIDEO, video);
+                startActivity(playerIntent);
+                dialog.dismiss();
+                finish();
             });
         } else {
             new ToastMsg(this).toastIconError(getString(R.string.no_other_server_found));
@@ -890,6 +886,7 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
 
     public void initVideoPlayer(String url, String type) {
         Log.i(TAG, "initVideoPlayer: "+type);
+
         if (player != null) {
             player.stop();
             player.release();
@@ -919,11 +916,8 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
             player = new ExoPlayer.Builder(this).build();
             player.setMediaSource(hlsMediaSource);
             player.getTrackSelector();
-
-
             player.prepare();
             player.setPlayWhenReady(startAutoPlay);
-
             exoPlayerView.setPlayer(player);
             player.prepare();
             exoPlayerView.setPlayer(player);
