@@ -2,7 +2,6 @@ package com.ott.tv.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -37,6 +36,7 @@ public class PreferenceUtils {
     public static final String uvtv_state_name = "uvtv_state_name";
     public static final String access_token = "access_token";
     public static final String state_name = "state_name";
+    public static final Integer watch_list = 0;
 
 
     public static PreferenceUtils getInstance() {
@@ -249,5 +249,16 @@ public class PreferenceUtils {
     public String getStateNamePref(Context context) {
         return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
                 .getString(state_name, "");
+    }
+    public void setWatchListPref(Context context, Integer name) {
+        SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt(String.valueOf(watch_list), name);
+        editor.apply();
+    }
+
+    public Integer getWatchListPref(Context context) {
+        return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
+                .getInt(String.valueOf(watch_list), 0);
     }
 }

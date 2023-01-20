@@ -55,7 +55,7 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
     public void onResume() {
         super.onResume();
         // setupFragment("");
-        // fetchMovieData();
+         fetchMovieData();
     }
 
     @Override
@@ -97,7 +97,7 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
         int limit = 10;
         int offset = 0;
         //fetchMovieData(id, type, limit, offset);
-        fetchMovieData();
+      //  fetchMovieData();
     }
     private void setCustomPadding() {
         if (getView() != null) {
@@ -106,6 +106,7 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
     }
 
     private void fetchMovieData() {
+        Log.i(TAG, "onResponse: sec--->");
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
         Dashboard api = retrofit.create(Dashboard.class);
         Constants.IS_FROM_HOME = false;
@@ -115,12 +116,19 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
             @Override
             public void onResponse(@NonNull Call<List<ShowWatchlist>> call, @NonNull Response<List<ShowWatchlist>> response) {
                 if (response.code() == 200) {
-
                     List<ShowWatchlist> movieList = response.body();
                     assert movieList != null;
+                    Log.i(TAG, "onResponse: c--->"+movieList.size());
+                    Log.i(TAG, "onResponse: thres--->"+PreferenceUtils.getInstance().getWatchListPref(mContext));
+                    if(movieList.size()==PreferenceUtils.getInstance().getWatchListPref(mContext) || movieList.size()<=0){
+                        return;
+                    }else{
+                    PreferenceUtils.getInstance().setWatchListPref(mContext,movieList.size());
+                    }
                     if (movieList.size() <= 0) {
                         dataAvailable = false;
                         if(getContext()!=null){
+
                         Toast.makeText(getContext(), getResources().getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
                     }}
                     mAdapter.clear();
@@ -283,12 +291,9 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
         movies = new ArrayList<>();
         pageCount = 1;
         dataAvailable = true;
-       // fetchMovieData();
+        // fetchMovieData();
 
     }
-
-
-
 
 
 }

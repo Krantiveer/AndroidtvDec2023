@@ -476,77 +476,7 @@ public class HomeFragment extends RowsSupportFragment {
                     getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
 
                 }
-/*
-                    intent.putExtra("poster_url", videoContent.getImageLink());
 
-
-                    intent.putExtra("video_quality", videoContent.getVideoQuality());
-
-                    intent.putExtra("ispaid", videoContent.getIsPaid());*//*
-
-                    getContext().startActivity(intent);
-                    getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
-
-
-                }
-*/
-/*
-                if (videoContent.getType().equals("tv")) {
-                } *//*
-     //todo:kranti_uvtv 1
-
-                    else {
-                        if (videoContent.getIsTvseries() != null) {
-                            if (videoContent.getIsTvseries().equalsIgnoreCase("1")) {
-                                Intent intent = new Intent(getActivity(), DetailsActivityTvSeries.class);
-                                intent.putExtra("id", videoContent.getVideosId());
-                                intent.putExtra("video_id", videoContent.getId());
-                                intent.putExtra("actions_type", "tvseries");
-                                intent.putExtra("type", videoContent.getType());
-                                intent.putExtra("thumbImage", videoContent.getThumbnailUrl());
-                                intent.putExtra("poster_url", videoContent.getImageLink());
-                                intent.putExtra("title", videoContent.getTitle());
-                                intent.putExtra("description", videoContent.getDescription());
-                                intent.putExtra("release", videoContent.getRelease());
-                                intent.putExtra("video_quality", videoContent.getVideoQuality());
-                                intent.putExtra("duration", videoContent.getRuntime());
-                                intent.putExtra("ispaid", videoContent.getIsPaid());
-                                getContext().startActivity(intent);
-                                getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
-                            } else {
-                                Intent intent = new Intent(getActivity(), DetailsActivity.class);
-                                intent.putExtra("video_id", videoContent.getVideosId());
-                                intent.putExtra("type", videoContent.getType());
-                                intent.putExtra("thumbImage", videoContent.getThumbnailUrl());
-                                intent.putExtra("poster_url", videoContent.getPosterUrl());
-                                intent.putExtra("title", videoContent.getTitle());
-                                intent.putExtra("description", videoContent.getDescription());
-                                intent.putExtra("release", videoContent.getRelease());
-                                intent.putExtra("video_quality", videoContent.getVideoQuality());
-                                intent.putExtra("duration", videoContent.getRuntime());
-                                intent.putExtra("ispaid", videoContent.getIsPaid());
-                                getContext().startActivity(intent);
-                                getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
-                            }
-
-                        }*//* else {
-                            Intent intent = new Intent(getActivity(), DetailsActivity.class);
-                            intent.putExtra("video_id", videoContent.getVideosId());
-                            intent.putExtra("type", videoContent.getType());
-                            intent.putExtra("thumbImage", videoContent.getThumbnailUrl());
-                            intent.putExtra("poster_url", videoContent.getPosterUrl());
-                            intent.putExtra("title", videoContent.getTitle());
-                            intent.putExtra("description", videoContent.getDescription());
-                            intent.putExtra("release", videoContent.getRelease());
-                            intent.putExtra("video_quality", videoContent.getVideoQuality());
-                            intent.putExtra("duration", videoContent.getRuntime());
-                            intent.putExtra("ispaid", videoContent.getIsPaid());
-                            getContext().startActivity(intent);
-                            getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
-                        }
-
-
-                    }*/
 
             }
 

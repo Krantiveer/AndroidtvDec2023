@@ -15,10 +15,11 @@ public class Config {
   /*  public static final String DOMAIN = "https://kaafaltv.com/";
     public static final String Publisher_id = "5";
     public static final String WebsiteURL = "https://kaafaltv.com";
-*//*
+*/
+    /*
     public static final String DOMAIN = "https://www.solidtvbox.com/";
     public static final String Publisher_id = "6";
-    public static final String WebsiteURL = "https://www.solidtvbox.com/";*/
+    public static final String WebsiteURL = "https://www.solidtvbox.com/";
 
 /*
     public static final String DOMAIN = "https://saas-sandbox.phando.com/";

@@ -78,6 +78,7 @@
                     android:focusable="true"
                     android:background="@drawable/round_ll"
                     android:focusableInTouchMode="true"
+                    tools:listitem="@layout/banner_home_list_item"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:spanCount="5" />
 

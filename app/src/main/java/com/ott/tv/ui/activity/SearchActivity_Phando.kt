@@ -7,18 +7,17 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.KeyEvent
 import android.view.View
 import android.view.WindowManager
 import android.widget.*
 import androidx.fragment.app.FragmentActivity
-import androidx.leanback.widget.*
 import com.ott.tv.Constants
 import com.ott.tv.R
 import com.ott.tv.adapter.ContentAdapter
 import com.ott.tv.adapter.SearchAdapter
 import com.ott.tv.database.DatabaseHelper
 import com.ott.tv.databinding.ActivitySearchPhandoBinding
+import com.ott.tv.model.home_content.Video
 import com.ott.tv.model.phando.ShowWatchlist
 import com.ott.tv.network.RetrofitClient
 import com.ott.tv.network.api.Dashboard
@@ -174,6 +173,7 @@ class SearchActivity_Phando : FragmentActivity(), SearchAdapter.OnItemClickListe
     }
     override fun onItemClick(item: ShowWatchlist?) {
         val videoContent = item as ShowWatchlist
+        val video = item as ShowWatchlist
 
         val status = DatabaseHelper(this).activeStatusData.status
         if (true) {
@@ -225,6 +225,245 @@ class SearchActivity_Phando : FragmentActivity(), SearchAdapter.OnItemClickListe
             startActivityForResult(intent, 0)
            this.overridePendingTransition(R.anim.enter, R.anim.exit)
         }
+
+
+
+            if (video.type == null) {
+                video.type = "M"
+            }
+            run {
+                if (video.type.equals("VM", ignoreCase = true)) {
+                    val intent = Intent(this, ItemCountryActivity::class.java)
+                    intent.putExtra("id", video.id)
+                    if (video.genres != null) {
+                        if (video.genres.size > 0) {
+                            var genres: String
+                            genres = video.genres[0]
+                            for (i in 1 until video.genres.size) {
+                                genres = genres + "," + video.genres[i]
+                            }
+                            intent.putExtra("title", genres)
+                        }
+                    }
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    this.startActivity(intent)
+                }
+                if (video.type == "M" && video.is_live.toString()
+                        .equals("0", ignoreCase = true)
+                ) {
+                    val intent = Intent(this, DetailsActivityPhando::class.java)
+                    if (video.type != null) intent.putExtra("type", video.type)
+                    if (video.thumbnail != null) {
+                        intent.putExtra("thumbImage", video.thumbnail)
+                    } else {
+                        if (video.thumbnail != null) intent.putExtra(
+                            "thumbImage",
+                            video.thumbnail
+                        )
+                    }
+                    if (video.id != null) {
+                        intent.putExtra("video_id", video.id.toString())
+                    } else {
+                        if (video.id != null) intent.putExtra(
+                            "video_id",
+                            video.id.toString()
+                        )
+                    }
+                    if (video.title != null) intent.putExtra("title", video.title)
+                    if (video.detail != null) {
+                        intent.putExtra("description", video.detail)
+                    } else {
+                        if (video.description != null) intent.putExtra(
+                            "description",
+                            video.description
+                        )
+                    }
+                    if (video.release_date != null) {
+                        intent.putExtra("release", video.release_date)
+                    } else {
+                        if (video.release_date != null) {
+                            intent.putExtra("release", video.release_date)
+                        }
+                    }
+                    /*   if (videoContent.getRuntime() != null)
+           intent.putExtra("duration", videoContent.getRuntime());*/if (video.duration_str != null) intent.putExtra(
+                        "duration",
+                        video.duration_str
+                    )
+                    if (video.maturity_rating != null) intent.putExtra(
+                        "maturity_rating",
+                        video.maturity_rating
+                    )
+                    if (video.is_free != null) intent.putExtra(
+                        "ispaid",
+                        video.is_free.toString()
+                    )
+                    if (video.language_str != null) intent.putExtra(
+                        "language_str",
+                        video.language_str
+                    )
+                    if (video.is_live != null) intent.putExtra(
+                        "is_live",
+                        video.is_live.toString()
+                    )
+                    if (video.rating != null) intent.putExtra(
+                        "rating",
+                        video.rating.toString()
+                    )
+                    if (video.trailers != null && video.trailers.size > 0 && video.trailers[0] != null && video.trailers[0].media_url != null
+                    ) {
+                        intent.putExtra("trailer", video.thumbnail)
+                    }
+
+                    if (video.genres != null) {
+                        if (video.genres.size > 0) {
+                            var genres: String
+                            genres = video.genres[0]
+                            for (i in 1 until video.genres.size) {
+                                genres = genres + "," + video.genres[i]
+                            }
+                            intent.putExtra("genres", genres)
+                        }
+                    }
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    this.startActivity(intent)
+                }
+                if (video.type == "T") {
+                    val intent = Intent(this, DetailsActivityPhando::class.java)
+                    if (video.type != null) intent.putExtra("type", video.type)
+                    if (video.thumbnail != null) {
+                        intent.putExtra("thumbImage", video.thumbnail)
+                    }
+                    if (video.id != null) {
+                        intent.putExtra("video_id", video.id.toString())
+                    }
+                    if (video.title != null) intent.putExtra("title", video.title)
+                    if (video.detail != null) {
+                        intent.putExtra("description", video.detail)
+                    } else {
+                        if (video.description != null) intent.putExtra(
+                            "description",
+                            video.description
+                        )
+                    }
+                    if (video.release_date != null) {
+                        intent.putExtra("release", video.release_date)
+                    }
+                    if (video.duration_str != null) intent.putExtra(
+                        "duration",
+                        video.duration_str
+                    )
+                    if (video.maturity_rating != null) intent.putExtra(
+                        "maturity_rating",
+                        video.maturity_rating
+                    )
+                    if (video.is_free != null) intent.putExtra(
+                        "ispaid",
+                        video.is_free.toString()
+                    )
+                    if (video.language_str != null) intent.putExtra(
+                        "language_str",
+                        video.language_str
+                    )
+                    if (video.is_live != null) intent.putExtra(
+                        "is_live",
+                        video.is_live.toString()
+                    )
+                    if (video.rating != null) intent.putExtra(
+                        "rating",
+                        video.rating.toString()
+                    )
+                    if (video.trailers != null && video.trailers.size > 0 && video.trailers[0] != null && video.trailers[0].media_url != null
+                    ) {
+                        intent.putExtra("trailer", video.trailers[0].media_url)
+                    }
+
+                    if (video.genres != null) {
+                        var genres: String
+                        genres = video.genres[0]
+                        for (i in 1 until video.genres.size) {
+                            genres = genres + "," + video.genres[i]
+                        }
+                        intent.putExtra("genres", genres)
+                    }
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    this.startActivity(intent)
+                }
+                if (video.type == "M" && video.is_live.toString()
+                        .equals("1", ignoreCase = true)
+                ) {
+                    val intent = Intent(this, DetailsActivityPhando::class.java)
+                    if (video.type != null) intent.putExtra("type", video.type)
+                    if (video.thumbnail != null) {
+                        intent.putExtra("thumbImage", video.thumbnail)
+                    }
+                    if (video.id != null) {
+                        intent.putExtra("video_id", video.id.toString())
+                    } else {
+                        if (video.id != null) intent.putExtra(
+                            "video_id",
+                            video.id.toString()
+                        )
+                    }
+                    if (video.title != null) intent.putExtra("title", video.title)
+                    if (video.detail != null) {
+                        intent.putExtra("description", video.detail)
+                    } else {
+                        if (video.description != null) intent.putExtra(
+                            "description",
+                            video.description
+                        )
+                    }
+                    if (video.release_date != null) {
+                        intent.putExtra("release", video.release_date)
+                    } else {
+                        if (video.release_date != null) {
+                            intent.putExtra("release", video.release_date)
+                        }
+                    }
+                    if (video.duration_str != null) intent.putExtra(
+                        "duration",
+                        video.duration_str
+                    )
+                    if (video.maturity_rating != null) intent.putExtra(
+                        "maturity_rating",
+                        video.maturity_rating
+                    )
+                    if (video.is_free != null) intent.putExtra(
+                        "ispaid",
+                        video.is_free.toString()
+                    )
+                    if (video.language_str != null) intent.putExtra(
+                        "language_str",
+                        video.language_str
+                    )
+                    if (video.is_live != null) intent.putExtra(
+                        "is_live",
+                        video.is_live.toString()
+                    )
+                    if (video.rating != null) intent.putExtra(
+                        "rating",
+                        video.rating.toString()
+                    )
+                    if (video.trailers != null && video.trailers.size > 0 && video.trailers[0] != null && video.trailers[0].media_url != null
+                    ) {
+                        intent.putExtra("trailer", video.trailers[0].media_url)
+                    }
+
+                    if (video.genres != null) {
+                        var genres: String
+                        genres = video.genres[0]
+                        for (i in 1 until video.genres.size) {
+                            genres = genres + "," + video.genres[i]
+                        }
+                        intent.putExtra("genres", genres)
+                    }
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    this.startActivity(intent)
+                }
+            }
+
+
     }
     override fun onItemClick(item: ListRecommend?) {
         val videoContent = item as ShowWatchlist
