@@ -22,7 +22,6 @@ import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.Dashboard;
 import com.ott.tv.ui.activity.DetailsActivityPhando;
 import com.ott.tv.ui.activity.LeanbackActivity;
-import com.ott.tv.ui.activity.NewMainActivity;
 import com.ott.tv.ui.presenter.CardPresenter;
 import com.ott.tv.ui.presenter.HorizontalCardPresenter;
 import com.ott.tv.utils.PreferenceUtils;
@@ -55,8 +54,8 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
     @Override
     public void onResume() {
         super.onResume();
-        setupFragment("");
-       // fetchMovieData();
+        // setupFragment("");
+        // fetchMovieData();
     }
 
     @Override
@@ -71,24 +70,24 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
         }
         Log.i(TAG, "onCreate: " + datatype + id + title);
 
-        if(datatype.equalsIgnoreCase("Watchlist")){
-           // setTitle("Watchlist");
-        }else{
-      //      setTitle("Watchlist");
+        if (datatype.equalsIgnoreCase("Watchlist")) {
+            // setTitle("Watchlist");
+        } else {
+            //      setTitle("Watchlist");
         }
-      //  showTitle(false);
+        //  showTitle(false);
         //bgHelper = new BackgroundHelper(getActivity());
         setOnItemViewClickedListener(getDefaultItemViewClickedListener());
         setOnItemViewSelectedListener(getDefaultItemSelectedListener());
-
         Constants.IS_FROM_HOME = false;
-        VerticalGridPresenter gridPresenter = new VerticalGridPresenter();
-        gridPresenter.setNumberOfColumns(NUM_COLUMNS);
-        setGridPresenter(gridPresenter);
-       // setupFragment(datatype);
+        setupFragment(datatype);
     }
 
     private void setupFragment(String datatype) {
+        VerticalGridPresenter gridPresenter = new VerticalGridPresenter();
+        gridPresenter.setNumberOfColumns(NUM_COLUMNS);
+        setGridPresenter(gridPresenter);
+
         //  setCustomPadding();
 
         //  mAdapter = new ArrayObjectAdapter(cardPresenter);
@@ -100,6 +99,7 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
         //fetchMovieData(id, type, limit, offset);
         fetchMovieData();
     }
+
     private void setCustomPadding() {
         if (getView() != null) {
             getView().setPadding(920, 0, 10, -500);
@@ -110,8 +110,7 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
         Dashboard api = retrofit.create(Dashboard.class);
         Constants.IS_FROM_HOME = false;
-        String accessToken="Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(getContext());
-        Log.i(TAG, "Access Token --->"+PreferenceUtils.getInstance().getAccessTokenPref(getContext()));
+        String accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(mContext);
         Call<List<ShowWatchlist>> call = api.getShowWishListAPI(accessToken);
         call.enqueue(new Callback<List<ShowWatchlist>>() {
             @Override
@@ -122,9 +121,11 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
                     assert movieList != null;
                     if (movieList.size() <= 0) {
                         dataAvailable = false;
-                        if(getContext()!=null){
-                        Toast.makeText(getContext(), getResources().getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
-                    }}
+                        if (getContext() != null) {
+                            Toast.makeText(getContext(), getResources().getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    Log.i(TAG, "onResponse: " + movieList.size());
                     mAdapter.clear();
                     for (ShowWatchlist movie : movieList) {
                         mAdapter.add(movie);
@@ -285,12 +286,9 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
         movies = new ArrayList<>();
         pageCount = 1;
         dataAvailable = true;
-       // fetchMovieData();
+        // fetchMovieData();
 
     }
-
-
-
 
 
 }

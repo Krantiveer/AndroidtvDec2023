@@ -108,7 +108,7 @@
     //background color
     <color name="background_home_page">#000000</color> <!--homefragment-->
     <color name="player_background_color_black">#000</color>
-    <color name="mmtv_selectecd_color">#00BCD4</color>
+    <color name="mmtv_selectecd_color">#9900BCD4</color>
     //browfragment top
     <color name="lb_browse_title_color">#fff</color>
 
