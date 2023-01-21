@@ -55,9 +55,8 @@
 
                     <LinearLayout
                         android:id="@+id/llSelectedState"
-                        android:layout_width="match_parent"
+                        android:layout_width="@dimen/_340sdp"
                         android:layout_height="wrap_content"
-
                         android:background="@drawable/button_focus_state"
                         android:focusable="true"
                         android:gravity="center"
@@ -105,7 +104,8 @@
                         android:focusable="true"
                         android:focusableInTouchMode="true"
                         android:background="@drawable/round_ll"
-                        android:layout_width="match_parent"
+                        android:layout_width="@dimen/_340sdp"
+
                         android:layout_height="match_parent"
                         tools:listitem="@layout/item_my_map_list"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
@@ -119,7 +119,7 @@
                         android:layout_marginTop="@dimen/_30sdp"
 
                         android:textSize="@dimen/_16sdp"
-                        android:text="No Data Available "/>
+                        android:text="@string/no_data_available"/>
 
                 </LinearLayout>
 
