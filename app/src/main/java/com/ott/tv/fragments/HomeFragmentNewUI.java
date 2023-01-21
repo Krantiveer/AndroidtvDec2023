@@ -108,12 +108,12 @@ public class HomeFragmentNewUI extends Fragment {
         if (video.getTrailer_aws_source() != null) {
             String url = video.getTrailer_aws_source();
             initVideoPlayer(url, "movie");
-        } else {
+        } /*else {
             if (video.getTrailler_youtube_source() != null) {
                 String url = video.getTrailler_youtube_source();
                 initVideoPlayer(url, "movie");
             }
-        }
+        }*/
 
         textViewBanner.setText(video.getTitle());
 
@@ -145,7 +145,6 @@ public class HomeFragmentNewUI extends Fragment {
         } else {
             textViewBannerLanguage.setVisibility(View.GONE);
         }
-        Log.i("release", "setTextViewBanner: " + video.getRelease() + video.getId());
         textViewBannerReleaseYear.setText(video.getRelease());
         if (video.getGenre() != null) {
             textViewBannerGenre.setText(video.getGenre());
@@ -189,14 +188,14 @@ public class HomeFragmentNewUI extends Fragment {
     }
 
     public void initVideoPlayer(String url, String type) {
-        Log.i(TAG, "setTextViewBanner: " + url);
+        Log.i(TAG, "setTextViewBanner:1 " + url);
 
         if (url != null && !url.isEmpty()) {
             if (player != null) {
                 player.stop();
                 player.release();
             }
-            {
+
                 DataSource.Factory dataSourceFactory = new DefaultHttpDataSource.Factory();
 // Create a HLS media source pointing to a playlist uri.
                 HlsMediaSource hlsMediaSource =
@@ -210,7 +209,39 @@ public class HomeFragmentNewUI extends Fragment {
                 player.setPlayWhenReady(startAutoPlay);
 
                 exoPlayerView.setPlayer(player);
-            }
+
+                  player.setPlayWhenReady(true);
+                       player.addListener(new Player.Listener() {
+                @Override
+                public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
+                    switch (playbackState) {
+                        case 1:
+                            Log.d("krantiv", "Ideal state");
+                            exoPlayerView.setVisibility(View.INVISIBLE);
+                            break;
+                        case 2:
+                            // exoPlayerView.setVisibility(View.INVISIBLE);
+                            Log.d("krantiv", "STATE_BUFFERING state");
+
+                            break;
+                        case 3:
+                            Log.d("krantiv", "STATE_READY state");
+                            if (exoPlayerView.getVisibility() == View.INVISIBLE)
+                                exoPlayerView.setVisibility(View.VISIBLE);
+                            break;
+                        case 4:
+                            exoPlayerView.setVisibility(View.INVISIBLE);
+                            Log.d("krantiv", "STATE_ENDED state");
+                            break;
+                    }
+                }
+            });
+
+
+
+
+
+
      /*   Uri uri = Uri.parse(url);
 
         switch (type) {
@@ -244,31 +275,6 @@ public class HomeFragmentNewUI extends Fragment {
     }
 
 
-/*    @SuppressLint("StaticFieldLeak")
-
-    private void extractYoutubeUrl(String url, final Context context, final int tag) {
-
-        new YouTubeExtractor(context) {
-            @Override
-            public void onExtractionComplete(SparseArray<YtFile> ytFiles, VideoMeta vMeta) {
-                if (ytFiles != null) {
-                    String dashUrl = ytFiles.get(tag).getUrl();
-
-                    try {
-                        MediaSource source = mediaSource(Uri.parse(dashUrl), HomeFragmentNewUI.this);
-                        player.prepare(source, true, false);
-                        //player.setPlayWhenReady(false);
-                        exoPlayerView.setPlayer(player);
-                        player.setPlayWhenReady(true);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }.extract(url, true, true);
-
-    }
-*/
 /*
     private MediaSource mediaSource(Uri uri, HomeFragmentNewUI homeFragmentNewUI) {
         return new ExtractorMediaSource.Factory(
