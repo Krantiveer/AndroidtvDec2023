@@ -18,7 +18,6 @@ android {
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
-/*
         android.applicationVariants.all { variant ->
             variant.outputs.all {
                 def date = new Date()
@@ -26,18 +25,17 @@ android {
                 outputFileName = "${variant.name + "-- \t"}v${variant.versionName}${" " + formattedDate}.apk"
             }
         }
-*/
     }
 
     buildTypes {
         release {
             minifyEnabled false
-            debuggable true
+            debuggable false
             proguardFiles file("proguard-android.txt"), 'proguard-rules.pro'
         }
         debug {
             minifyEnabled false
-            debuggable true
+            debuggable false
             proguardFiles file("proguard-android.txt"), 'proguard-rules.pro'
         }
     }
