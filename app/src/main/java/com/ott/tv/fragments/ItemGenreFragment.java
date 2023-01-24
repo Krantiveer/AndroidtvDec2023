@@ -25,7 +25,7 @@ import com.ott.tv.ui.activity.DetailsActivity;
 import com.ott.tv.ui.activity.DetailsActivityTvSeries;
 import com.ott.tv.ui.activity.ErrorActivity;
 import com.ott.tv.ui.activity.ItemGenreActivity;
-import com.ott.tv.ui.activity.VideoDetailsActivity;
+
 import com.ott.tv.ui.presenter.CardPresenter;
 import com.ott.tv.ui.presenter.HorizontalCardPresenter;
 import com.ott.tv.ui.presenter.VerticalCardPresenter;

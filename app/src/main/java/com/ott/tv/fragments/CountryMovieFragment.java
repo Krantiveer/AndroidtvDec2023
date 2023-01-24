@@ -22,7 +22,7 @@ import com.ott.tv.network.api.CountryApi;
 import com.ott.tv.network.api.GenreApi;
 import com.ott.tv.ui.activity.ItemCountryActivity;
 import com.ott.tv.ui.activity.ItemGenreActivity;
-import com.ott.tv.ui.activity.LeanbackActivity;
+
 import com.ott.tv.ui.presenter.CardPresenter;
 import com.ott.tv.ui.presenter.HorizontalCardCountryPresenter;
 import com.ott.tv.ui.presenter.HorizontalCardGenrePresenter;
@@ -51,7 +51,6 @@ public class CountryMovieFragment extends VerticalGridSupportFragment {
     private String title;
     private String id = "";
     private String datatype = "";
-    private LeanbackActivity activity;
     private List<CountryModel> genres = new ArrayList<>();
 
     @Override
@@ -61,7 +60,6 @@ public class CountryMovieFragment extends VerticalGridSupportFragment {
         mContext = getContext();
         if (getActivity() != null) {
             id = getActivity().getIntent().getStringExtra("id");
-            activity = (LeanbackActivity) getActivity();
             title = getActivity().getIntent().getStringExtra("title");
             datatype = getArguments().getString("type");
         }

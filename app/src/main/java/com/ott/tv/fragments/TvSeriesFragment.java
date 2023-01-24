@@ -28,8 +28,7 @@ import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.TvSeriesApi;
 import com.ott.tv.ui.BackgroundHelper;
 import com.ott.tv.ui.activity.ErrorActivity;
-import com.ott.tv.ui.activity.LeanbackActivity;
-import com.ott.tv.ui.activity.VideoDetailsActivity;
+
 import com.ott.tv.ui.presenter.VerticalCardPresenter;
 
 import java.util.ArrayList;
@@ -53,7 +52,6 @@ public class TvSeriesFragment extends VerticalGridSupportFragment {
 
     private List<Movie> movies = new ArrayList<>();
     private ArrayObjectAdapter mAdapter;
-    private LeanbackActivity activity;
 
 
     @Override
@@ -61,9 +59,6 @@ public class TvSeriesFragment extends VerticalGridSupportFragment {
         Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
 
-        activity = (LeanbackActivity) getActivity();
-
-        activity.showLogo();;
 
         setTitle(getResources().getString(R.string.tv_series));
 
@@ -95,7 +90,7 @@ public class TvSeriesFragment extends VerticalGridSupportFragment {
 
                 Movie movie = (Movie) o;
 
-                Intent intent = new Intent(getActivity(), VideoDetailsActivity.class);
+                Intent intent = new Intent(getActivity(), VideoDetailsFragment.class);
                 intent.putExtra("id", movie.getVideosId());
                 intent.putExtra("type", "tvseries");
                 intent.putExtra("thumbImage", movie.getThumbnailUrl());
@@ -141,12 +136,7 @@ public class TvSeriesFragment extends VerticalGridSupportFragment {
 
     public void fetchTvSereisData(int pageCount) {
 
-        if (!new NetworkInst(activity).isNetworkAvailable()) {
-            Intent intent = new Intent(activity, ErrorActivity.class);
-            startActivity(intent);
-            activity.finish();
-            return;
-        }
+
 
         final SpinnerFragment mSpinnerFragment = new SpinnerFragment();
         final FragmentManager fm = getFragmentManager();

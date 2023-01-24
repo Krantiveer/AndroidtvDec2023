@@ -49,7 +49,7 @@ public class ActivationActivity extends Activity {
 
         if (PreferenceUtils.isLoggedIn(this)) {
             PreferenceUtils.updateSubscriptionStatus(ActivationActivity.this);
-            startActivity(new Intent(this, LeanbackActivity.class));
+            startActivity(new Intent(this, NewMainActivity.class));
             finish();
         }
 
@@ -115,7 +115,7 @@ public class ActivationActivity extends Activity {
                                 //save user login time, expire time
                                 updateSubscriptionStatus(db.getUserData().getUserId());
 
-                                startActivity(new Intent(ActivationActivity.this, LeanbackActivity.class));
+                                startActivity(new Intent(ActivationActivity.this, NewMainActivity.class));
                                 finish();
 
                             } else {

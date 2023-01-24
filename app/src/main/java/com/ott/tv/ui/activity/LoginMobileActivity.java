@@ -86,13 +86,12 @@ public class LoginMobileActivity extends Activity {
         tv_verify_otp_mobileNo = findViewById(R.id.tv_verify_otp_mobileNo);
         editVerifiedOTP = findViewById(R.id.editVerifiedOTP);
         editMobileNumber.requestFocus();
-      /*  if (BuildConfig.FLAVOR.equalsIgnoreCase("kaafaltv") || BuildConfig.FLAVOR.equalsIgnoreCase("solidtv")) {
-        } else */{
+
             mobile_code_in.setOnClickListener(view -> {
                 Intent i = new Intent(this, CountryCodeActivity.class);
                 startActivity(i);
             });
-        }
+
         countryCode = PreferenceUtils.getInstance().getCountyCodePref(getApplicationContext());
         countryName = PreferenceUtils.getInstance().getCountyNamePref(getApplicationContext());
 
@@ -265,7 +264,7 @@ public class LoginMobileActivity extends Activity {
                         //save user login time, expire time
                         // updateSubscriptionStatus(user.getUserId());
 
-                        Intent intent = new Intent(getApplicationContext(), LeanbackActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), NewMainActivity.class);
                         startActivity(intent);
                         finishAffinity();
                         overridePendingTransition(R.anim.enter, R.anim.exit);
@@ -399,7 +398,7 @@ public class LoginMobileActivity extends Activity {
                                 db.updateActiveStatus(activeStatus, 1);
                             }
                         }
-                        Intent intent = new Intent(getApplicationContext(), LeanbackActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), NewMainActivity.class);
                         startActivity(intent);
                         finishAffinity();
                         overridePendingTransition(R.anim.enter, R.anim.exit);

@@ -44,7 +44,6 @@ import com.ott.tv.database.DatabaseHelper;
 import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.ui.BackgroundHelper;
 import com.ott.tv.ui.activity.ErrorActivity;
-import com.ott.tv.ui.activity.LeanbackActivity;
 
 import java.util.List;
 import java.util.Objects;

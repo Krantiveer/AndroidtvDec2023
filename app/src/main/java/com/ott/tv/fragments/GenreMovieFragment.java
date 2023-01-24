@@ -25,7 +25,6 @@ import com.ott.tv.network.api.MovieApi;
 import com.ott.tv.ui.activity.DetailsActivity;
 import com.ott.tv.ui.activity.ErrorActivity;
 import com.ott.tv.ui.activity.ItemGenreActivity;
-import com.ott.tv.ui.activity.LeanbackActivity;
 import com.ott.tv.ui.presenter.CardPresenter;
 import com.ott.tv.ui.presenter.HorizontalCardGenrePresenter;
 import com.ott.tv.ui.presenter.HorizontalCardPresenter;
@@ -54,7 +53,7 @@ public class GenreMovieFragment extends VerticalGridSupportFragment {
     private String title;
     private String id = "";
     private String datatype = "";
-    private LeanbackActivity activity;
+
     private List<Genre> genres = new ArrayList<>();
 
     @Override
@@ -62,12 +61,7 @@ public class GenreMovieFragment extends VerticalGridSupportFragment {
         super.onCreate(savedInstanceState);
         cardPresenter = new CardPresenter();
         mContext = getContext();
-        if (getActivity() != null) {
-            id = getActivity().getIntent().getStringExtra("id");
-            activity = (LeanbackActivity) getActivity();
-            title = getActivity().getIntent().getStringExtra("title");
-            datatype = getArguments().getString("type");
-        }
+
         Log.i(TAG, "onCreate: " + datatype + id + title);
 /*
         showTitle(false);

@@ -123,7 +123,7 @@ public class LoginActivity extends Activity {
 
                      /*   //save user login time, expire time
                         updateSubscriptionStatus(user.getUserId());*/
-                        Intent intent = new Intent(getApplicationContext(), LeanbackActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), NewMainActivity.class);
                         startActivity(intent);
                         finishAffinity();
                         overridePendingTransition(R.anim.enter, R.anim.exit);

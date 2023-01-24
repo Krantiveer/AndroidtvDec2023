@@ -35,7 +35,7 @@ android {
         }
         debug {
             minifyEnabled false
-            debuggable false
+            debuggable true
             proguardFiles file("proguard-android.txt"), 'proguard-rules.pro'
         }
     }
@@ -43,6 +43,13 @@ android {
 
         uvtv {
             applicationId "com.uvtv.tv"
+            versionCode 1
+            versionName "1"
+        }
+        scifiworld {
+            applicationId "com.scifiworld.tv"
+            versionCode 1
+            versionName "1"
         }
         solidtv {
             applicationId "com.solidtv"
@@ -179,6 +186,11 @@ dependencies {
 
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0'
     implementation 'com.google.android.exoplayer:exoplayer-rtsp:2.18.2'
+
+    //gifimage
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.22'
+
+
 
 
 

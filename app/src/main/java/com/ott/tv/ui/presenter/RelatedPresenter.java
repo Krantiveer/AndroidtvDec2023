@@ -17,7 +17,6 @@ import androidx.leanback.widget.Presenter;
 import com.ott.tv.R;
 import com.ott.tv.fragments.VideoDetailsFragment;
 import com.ott.tv.model.RelatedMovie;
-import com.ott.tv.ui.activity.VideoDetailsActivity;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -51,7 +50,7 @@ public class RelatedPresenter extends Presenter {
 
         ((ViewHolder) viewHolder).mCardView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view){} /*{
                 Intent intent = new Intent(mContext, VideoDetailsActivity.class);
                 intent.putExtra("id", video.getVideosId());
                 intent.putExtra("type", video.getVideo_view_type());
@@ -64,7 +63,7 @@ public class RelatedPresenter extends Presenter {
                 mContext.startActivity(intent, bundle);
 
                 ((VideoDetailsActivity) mContext).finish();
-            }
+            }*/
         });
 
     }

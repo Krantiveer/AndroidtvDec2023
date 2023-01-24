@@ -53,7 +53,7 @@ class NewMainActivity : FragmentActivity() {
         val accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(
             applicationContext
         )
-        val call: Call<AppInfo> = api.getAppInfo( "Android",accessToken)
+        val call: Call<AppInfo> = api.getAppInfo( "AndroidTV",accessToken)
         call.enqueue(object : Callback<AppInfo?> {
             override fun onResponse(call: Call<AppInfo?>, response: Response<AppInfo?>) {
                 if (response.code() == 200) {
@@ -65,14 +65,6 @@ class NewMainActivity : FragmentActivity() {
                     //  loadSliderRows(homeContent.getSlider().getSlideArrayList());
 
                     //   loadRows();
-                    /*if (movieList.size() <= 0) {
-
-                    }
-
-                    for (BrowseData movie : movieList) {
-
-                    }
-                    //   movies.addAll(movieList);*/
                 } else if (response.code() == 401) {
 
                     // signOut();
@@ -234,14 +226,6 @@ class NewMainActivity : FragmentActivity() {
     }
 
     fun onMenuSelection(type: String, title: String) {
-        //   Toast.makeText(this, "closeactivity", Toast.LENGTH_SHORT).show()
-
-
-/*
-        var bundle : Bundle?=null
-        bundle!!.putInt("menu", 1)
-        bundle!!.putString("type", type)
-*/
         if (type.equals("search") || type.equals("Search")) {
             val intent = Intent(this, SearchActivity_Phando::class.java)
             startActivity(intent)

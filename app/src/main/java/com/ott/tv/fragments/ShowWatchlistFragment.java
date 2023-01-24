@@ -21,7 +21,6 @@ import com.ott.tv.model.phando.ShowWatchlist;
 import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.Dashboard;
 import com.ott.tv.ui.activity.DetailsActivityPhando;
-import com.ott.tv.ui.activity.LeanbackActivity;
 import com.ott.tv.ui.presenter.CardPresenter;
 import com.ott.tv.ui.presenter.HorizontalCardPresenter;
 import com.ott.tv.utils.PreferenceUtils;
@@ -49,7 +48,6 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
     private String title;
     private String id = "";
     private String datatype = "";
-    private LeanbackActivity activity;
 
     @Override
     public void onResume() {

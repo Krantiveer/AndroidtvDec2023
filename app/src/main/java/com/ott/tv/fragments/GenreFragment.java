@@ -32,7 +32,6 @@ import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.GenreApi;
 import com.ott.tv.ui.activity.ErrorActivity;
 import com.ott.tv.ui.activity.ItemGenreActivity;
-import com.ott.tv.ui.activity.LeanbackActivity;
 import com.ott.tv.ui.presenter.GenreCardPresenter;
 import com.ott.tv.ui.presenter.GenrePresenter;
 import com.ott.tv.ui.presenter.GenrePresenterWithIcon;
@@ -57,15 +56,12 @@ public class GenreFragment extends VerticalGridSupportFragment {
     //private BackgroundHelper bgHelper;
     private List<Genre> genres = new ArrayList<>();
     private ArrayObjectAdapter mAdapter;
-    private LeanbackActivity activity;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
 
-        activity = (LeanbackActivity) getActivity();
-        activity.showLogo();
         setTitle(getResources().getString(R.string.genre));
        // setBadgeDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ul_genre));
 
@@ -122,12 +118,7 @@ public class GenreFragment extends VerticalGridSupportFragment {
     public void fetchGenreData(int pageCount) {
 
 
-        if (!new NetworkInst(activity).isNetworkAvailable()) {
-            Intent intent = new Intent(activity, ErrorActivity.class);
-            startActivity(intent);
-            activity.finish();
-            return;
-        }
+
 
         final SpinnerFragment mSpinnerFragment = new SpinnerFragment();
         final FragmentManager fm = getFragmentManager();
@@ -145,7 +136,6 @@ public class GenreFragment extends VerticalGridSupportFragment {
                     List<Genre> genreList = response.body();
                     if (genreList.size() <= 0) {
                         dataAvailable = false;
-                        Toast.makeText(activity, getResources().getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
                     }
 
                     for (Genre genre : genreList) {

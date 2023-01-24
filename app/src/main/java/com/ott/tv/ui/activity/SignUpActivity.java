@@ -140,7 +140,7 @@ public class SignUpActivity extends Activity {
                                 db.updateActiveStatus(activeStatus, 1);
                             }
                         }
-                        Intent intent = new Intent(SignUpActivity.this, LeanbackActivity.class);
+                        Intent intent = new Intent(SignUpActivity.this, NewMainActivity.class);
                         startActivity(intent);
                         finishAffinity();
                         overridePendingTransition(R.anim.enter, R.anim.exit);

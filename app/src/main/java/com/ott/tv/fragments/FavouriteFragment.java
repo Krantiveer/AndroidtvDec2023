@@ -26,7 +26,7 @@ import com.ott.tv.ui.BackgroundHelper;
 import com.ott.tv.ui.activity.DetailsActivity;
 import com.ott.tv.ui.activity.DetailsActivityTvSeries;
 import com.ott.tv.ui.activity.ErrorActivity;
-import com.ott.tv.ui.activity.LeanbackActivity;
+
 import com.ott.tv.ui.presenter.HorizontalCardPresenter;
 import com.ott.tv.utils.PreferenceUtils;
 
@@ -50,7 +50,6 @@ public class FavouriteFragment extends VerticalGridSupportFragment {
     private LinkedHashMap<String, List<VideoContent>> mVideoLists = null;
     private ArrayObjectAdapter mAdapter;
 
-    private LeanbackActivity activity;
     private List<Movie> movies = new ArrayList<>();
     private boolean dataAvailable;
     private int pageCount = 1;
@@ -64,14 +63,6 @@ public class FavouriteFragment extends VerticalGridSupportFragment {
         Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
 
-        activity = (LeanbackActivity) getActivity();
-
-        if (getActivity() != null) {
-            id = getActivity().getIntent().getStringExtra("id");
-            activity = (LeanbackActivity) getActivity();
-            title = getActivity().getIntent().getStringExtra("title");
-            datatype = getArguments().getString("type");
-        }
         Log.i(TAG, "onCreate:data " + datatype + id + title);
         if (datatype.equalsIgnoreCase("Watch Later")) {
             setTitle("Watch Later");
@@ -81,7 +72,7 @@ public class FavouriteFragment extends VerticalGridSupportFragment {
             //setBadgeDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ul_fav));
         }
         // activity.showLogo();;
-        activity.showLogo();
+
         //  setTitle(getResources().getString(R.string.favorite));
 
         bgHelper = new BackgroundHelper(getActivity());
@@ -179,12 +170,7 @@ public class FavouriteFragment extends VerticalGridSupportFragment {
 //Todo : when network/ net not there it goinging to erroractivity and finish activity.
 //Todo 1 : rewrite code
 
-        if (!new NetworkInst(activity).isNetworkAvailable()) {
-            Intent intent = new Intent(activity, ErrorActivity.class);
-            startActivity(intent);
-            activity.finish();
-            return;
-        }
+
 
         final SpinnerFragment mSpinnerFragment = new SpinnerFragment();
         final FragmentManager fm = getFragmentManager();
@@ -220,7 +206,7 @@ public class FavouriteFragment extends VerticalGridSupportFragment {
             public void onFailure(@NonNull Call<List<Movie>> call, @NonNull Throwable t) {
                 t.printStackTrace();
                 // hide the spinner
-                Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
                 fm.beginTransaction().remove(mSpinnerFragment).commitAllowingStateLoss();
             }
         });
@@ -230,12 +216,6 @@ public class FavouriteFragment extends VerticalGridSupportFragment {
 //Todo : when network/ net not there it goinging to erroractivity and finish activity.
 //Todo 1 : rewrite code
 
-        if (!new NetworkInst(activity).isNetworkAvailable()) {
-            Intent intent = new Intent(activity, ErrorActivity.class);
-            startActivity(intent);
-            activity.finish();
-            return;
-        }
 
         final SpinnerFragment mSpinnerFragment = new SpinnerFragment();
         final FragmentManager fm = getFragmentManager();
@@ -271,7 +251,6 @@ public class FavouriteFragment extends VerticalGridSupportFragment {
             public void onFailure(@NonNull Call<List<Movie>> call, @NonNull Throwable t) {
                 t.printStackTrace();
                 // hide the spinner
-                Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
                 fm.beginTransaction().remove(mSpinnerFragment).commitAllowingStateLoss();
             }
         });

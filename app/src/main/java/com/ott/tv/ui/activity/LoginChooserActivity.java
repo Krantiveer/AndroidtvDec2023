@@ -182,7 +182,7 @@ public class LoginChooserActivity extends Activity {
 
                             PreferenceUtils.getInstance().setAccessTokenNPref(getApplicationContext(), response.body().getAccess_token());
 
-                            Intent intent = new Intent(getApplicationContext(), LeanbackActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), NewMainActivity.class);
                             startActivity(intent);
                             finishAffinity();
                             overridePendingTransition(R.anim.enter, R.anim.exit);
@@ -458,7 +458,7 @@ public class LoginChooserActivity extends Activity {
                                 db.updateActiveStatus(activeStatus, 1);
                             }
                         }
-                        Intent intent = new Intent(LoginChooserActivity.this, LeanbackActivity.class);
+                        Intent intent = new Intent(LoginChooserActivity.this, NewMainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);

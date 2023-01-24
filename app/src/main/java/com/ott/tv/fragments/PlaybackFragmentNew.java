@@ -61,7 +61,7 @@ import com.ott.tv.model.VideoCursorMapper;
 import com.ott.tv.model.VideoNew;
 
 import com.ott.tv.player.VideoPlayerGlue;
-import com.ott.tv.ui.activity.VideoDetailsActivity;
+
 import com.ott.tv.ui.presenter.CardPresenter;
 
 import at.huber.youtubeExtractor.VideoMeta;
@@ -89,7 +89,7 @@ public class PlaybackFragmentNew extends VideoSupportFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getActivity() != null) {
-            mVideo = getActivity().getIntent().getParcelableExtra(VideoDetailsActivity.VIDEO);
+         //   mVideo = getActivity().getIntent().getParcelableExtra(VideoDetailsActivity.VIDEO);
             mPlaylist = new Playlist();
             if ((Util.SDK_INT <= 23 || mPlayer == null)) {
                // initializePlayer();
@@ -243,7 +243,7 @@ public class PlaybackFragmentNew extends VideoSupportFragment {
         ListRow row = new ListRow(header, mVideoCursorAdapter);
         rowsAdapter.add(row);*/
 
-        setOnItemViewClickedListener(new ItemViewClickedListener());
+
 
         return rowsAdapter;
     }
@@ -276,30 +276,6 @@ public class PlaybackFragmentNew extends VideoSupportFragment {
     /**
      * Opens the video details page when a related video has been clicked.
      */
-    private final class ItemViewClickedListener implements OnItemViewClickedListener {
-        @Override
-        public void onItemClicked(
-                Presenter.ViewHolder itemViewHolder,
-                Object item,
-                RowPresenter.ViewHolder rowViewHolder,
-                Row row) {
-
-            if (item instanceof VideoNew && getActivity() != null) {
-                VideoNew video = (VideoNew) item;
-
-                Intent intent = new Intent(getActivity(), VideoDetailsActivity.class);
-                intent.putExtra(VideoDetailsActivity.VIDEO, video);
-
-                Bundle bundle =
-                        ActivityOptionsCompat.makeSceneTransitionAnimation(
-                                getActivity(),
-                                ((ImageCardView) itemViewHolder.view).getMainImageView(),
-                                VideoDetailsActivity.SHARED_ELEMENT_NAME)
-                                .toBundle();
-                getActivity().startActivity(intent, bundle);
-            }
-        }
-    }
 
     /**
      * Loads a playlist with videos from a cursor and also updates the related videos cursor.

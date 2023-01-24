@@ -41,7 +41,6 @@ import com.ott.tv.network.api.SearchApi;
 import com.ott.tv.ui.Utils;
 import com.ott.tv.ui.activity.DetailsActivity;
 import com.ott.tv.ui.activity.PlayerActivity;
-import com.ott.tv.ui.activity.VideoDetailsActivity;
 import com.ott.tv.ui.presenter.SearchCardPresenter;
 import com.ott.tv.ui.presenter.TvSearchPresenter;
 import com.ott.tv.utils.CMHelper;
@@ -129,7 +128,7 @@ public class SearchFragment extends androidx.leanback.app.SearchFragment impleme
                         break;
                     }
                     case "tvseries": {
-                        Intent intent = new Intent(getActivity(), VideoDetailsActivity.class);
+                        Intent intent = new Intent(getActivity(), VideoDetailsFragment.class);
                         intent.putExtra("id", searchContent.getId());
                         intent.putExtra("type", "tvseries");
                         intent.putExtra("thumbImage", searchContent.getThumbnailUrl());

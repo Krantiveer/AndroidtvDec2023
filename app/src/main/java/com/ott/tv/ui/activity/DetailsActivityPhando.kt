@@ -75,7 +75,7 @@ class DetailsActivityPhando : FragmentActivity() {
     var current_Window = 0
     var playbackPosition: Long = 0
 
-    //    private ShimmerTextView premiumIconImage;
+    //    private ShimmerTextVifew premiumIconImage;
     private var premiumIconImage: ImageView? = null
     private val customAddsModelArrayList = ArrayList<CustomAddsModel>()
     private val mAdapter: ArrayObjectAdapter? = null
@@ -799,11 +799,10 @@ class DetailsActivityPhando : FragmentActivity() {
                         if (singleDetails!!.list.related.size > 0) {
                             //        detailsData=singleDetails
                             //----related post---------------
-                            if (BuildConfig.FLAVOR.equals("solidtv") || BuildConfig.FLAVOR.equals("kaafaltv")) {
-                            } else {
+
                                 detailsFragment!!.requireView().visibility == View.VISIBLE
                                 detailsFragment!!.setData()
-                            }
+
 
                         } else {
                             detailsFragment!!.requireView().visibility == View.GONE

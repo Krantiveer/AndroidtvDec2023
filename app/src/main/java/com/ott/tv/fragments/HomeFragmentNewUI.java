@@ -297,6 +297,7 @@ public class HomeFragmentNewUI extends Fragment {
         if (getActivity() != null) {
             final SpinnerFragment mSpinnerFragment = new SpinnerFragment();
             final FragmentManager fm = getFragmentManager();
+
             assert fm != null;
             fm.beginTransaction().add(R.id.browserSection, mSpinnerFragment).commit();
             //     String userId = new DatabaseHelper(requireContext()).getUserData().getUserId();

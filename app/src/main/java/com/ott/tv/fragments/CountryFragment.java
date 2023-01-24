@@ -27,7 +27,7 @@ import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.CountryApi;
 import com.ott.tv.ui.activity.ErrorActivity;
 import com.ott.tv.ui.activity.ItemCountryActivity;
-import com.ott.tv.ui.activity.LeanbackActivity;
+import com.ott.tv.ui.activity.NewMainActivity;
 import com.ott.tv.ui.presenter.CountryPresenter;
 
 import java.util.ArrayList;
@@ -51,16 +51,16 @@ public class CountryFragment extends VerticalGridSupportFragment {
     private List<CountryModel> countries = new ArrayList<>();
     private ArrayObjectAdapter mAdapter;
 
-    private LeanbackActivity activity;
+    private NewMainActivity activity;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        activity = (LeanbackActivity) getActivity();
+        activity = (NewMainActivity) getActivity();
 
-        activity.showLogo();
+      //  activity.showLogo();
 
           setTitle(getResources().getString(R.string.country));
         //setBadgeDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ul_country));

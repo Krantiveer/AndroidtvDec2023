@@ -19,4 +19,8 @@
     <color name="login_background">#020610</color>
     <color name="background_home_page">@color/transparent</color> <!--homefragment-->
     <color name="colorGold">@color/main_color</color>  <!-- selected login-->
+
+    //primeicon nav
+    <color name="premium_icon_color">#ffc43a</color>
+
 </resources>

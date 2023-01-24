@@ -183,11 +183,9 @@ public class DetailsActivityTvSeries extends FragmentActivity {
             }
         });
         getFavStatus(Constants.WishListType.watch_later);
-        tvWatchNow.setOnClickListener(v -> payAndWatchTV());
         btn_seasonAndEpisode.setOnClickListener(v -> {
             EpisodeAndSeason();
         });
-        tvWatchTrailer.setOnClickListener(view -> watchNowClick());
         PreferenceUtils.updateSubscriptionStatus(DetailsActivityTvSeries.this);
 
 
@@ -399,7 +397,7 @@ public class DetailsActivityTvSeries extends FragmentActivity {
                             listdata.get(pos).getImageUrl());
 
                     Intent intent = new Intent(getApplicationContext(), PlaybackActivityNew.class);
-                    intent.putExtra(VideoDetailsActivity.VIDEO, mSelectedVideo);
+                 //   intent.putExtra(NewMainActivity.VIDEO, mSelectedVideo);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     getApplicationContext().startActivity(intent);
 
@@ -716,70 +714,8 @@ public class DetailsActivityTvSeries extends FragmentActivity {
                 .into(thumbnail_image);
     }
 
-    private void payAndWatchTV() {
-        if (singleDetails != null) {
-            List<Video> videoList = new ArrayList<>();
-            epList.size();
-            if (epList.isEmpty() || epList.get(0).getStreamURL().isEmpty()) {
-                CMHelper.setSnackBar(this.getCurrentFocus(), "We are sorry, Video not available for your selected content", 2);
-                return;
-            }
-            PlaybackModel video = new PlaybackModel();
-            ArrayList<Video> videoListForIntent = new ArrayList<>(videoList);
-            video.setVideoList(videoListForIntent);
-            VideoNew mSelectedVideo = new VideoNew(
-                    Long.parseLong(singleDetails.getVideosId()),
-                    "tvseries",
-                    singleDetails.getTitle(),
-                    singleDetails.getDescription(),
-                    epList.get(0).getStreamURL(),
-                    poster_url,
-                    thumbUrl,
-                    poster_url);
-
-            Intent intent = new Intent(this, PlaybackActivityNew.class);
-            intent.putExtra(VideoDetailsActivity.VIDEO, mSelectedVideo);
-            startActivity(intent);
-        }
-    }
 
 
-    public void watchNowClick() {
-        if (singleDetails != null) {
-            String categoryType;
-            String trailerURL;
-            String youtubeSource = singleDetails.getTrailler_youtube_source();
-            String trailerAwsSource = singleDetails.trailer_aws_source;
-
-
-            if (trailerAwsSource != null && !trailerAwsSource.isEmpty()) {
-                categoryType = "movie";
-                trailerURL = trailerAwsSource;
-            } else if (youtubeSource != null && !youtubeSource.isEmpty()) {
-                categoryType = "youtube";
-                trailerURL = youtubeSource;
-            } else {
-                CMHelper.setSnackBar(this.getCurrentFocus(), "We are sorry, Trailer is not available for this video", 2);
-                return;
-            }
-            if (id == null) {
-                id = videoid;
-            }
-            VideoNew mSelectedVideo = new VideoNew(
-                    Long.parseLong(id),
-                    categoryType,
-                    singleDetails.getTitle(),
-                    singleDetails.getDescription(),
-                    trailerURL,
-                    poster_url,
-                    thumbUrl,
-                    poster_url);
-            Intent intent = new Intent(this, PlaybackActivityNew.class);
-            intent.putExtra(VideoDetailsActivity.VIDEO, mSelectedVideo);
-            startActivity(intent);
-
-        }
-    }
 
 
     private void getData(String videoType, final String videoId) {

@@ -22,8 +22,8 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.ott.tv.BuildConfig;
 import com.ott.tv.R;
-import com.ott.tv.ui.activity.LeanbackActivity;
 import com.ott.tv.ui.activity.LoginChooserActivity;
+import com.ott.tv.ui.activity.NewMainActivity;
 import com.ott.tv.utils.PreferenceUtils;
 
 public class TvSplashFragment extends Fragment {
@@ -61,7 +61,7 @@ public class TvSplashFragment extends Fragment {
         new Handler().postDelayed(() -> {
             if (getContext() != null && getActivity() != null) {
                 if (PreferenceUtils.isLoggedIn(getContext())) {
-                    Intent intent = new Intent(getContext(), LeanbackActivity.class);
+                    Intent intent = new Intent(getContext(), NewMainActivity.class);
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(getContext(), LoginChooserActivity.class);
