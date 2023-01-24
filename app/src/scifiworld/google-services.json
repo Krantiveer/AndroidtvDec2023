@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "614784564817",
+    "project_id": "scifiworld-faa7d",
+    "storage_bucket": "scifiworld-faa7d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:614784564817:android:bc61ce9ddcb317e9120270",
+        "android_client_info": {
+          "package_name": "com.scifiworld.tv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "614784564817-sfdpla2t5rdk07oqtce6hckvt8t9t288.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCN-Xv3roe88yOBjoil0WYFytg-zG9k-hw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "614784564817-sfdpla2t5rdk07oqtce6hckvt8t9t288.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

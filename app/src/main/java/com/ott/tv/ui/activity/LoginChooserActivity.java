@@ -54,7 +54,7 @@ public class LoginChooserActivity extends Activity {
     final Handler handler = new Handler();
     final Handler handlerqr = new Handler();
     String randomNumber;
-    private TextView tv_qrCode;
+    private TextView tv_qrCode,qrcode_url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +65,8 @@ public class LoginChooserActivity extends Activity {
         phoneSignInButton = findViewById(R.id.phone_signIn_button);
         firebaseAuth = FirebaseAuth.getInstance();
         tv_qrCode = findViewById(R.id.tv_qrCode);
+        qrcode_url=findViewById(R.id.qrcodebaseurl);
+        qrcode_url.setText(Config.WebsiteURL+"mytv");
         DatabaseHelper db = new DatabaseHelper(LoginChooserActivity.this);
         User user = db.getUserData();
         if (user.getUserId() != null) {

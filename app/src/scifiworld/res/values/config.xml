@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">UVTV </string>
+    <string name="api_server_url">https://www.actionott.com/rest_api/</string>
+    <string name="qrCodeUrl">https://uvplay.com/mytv </string>
+
+    <string name="api_extension">/v130/</string>
+</resources>

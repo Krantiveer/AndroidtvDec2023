@@ -81,7 +81,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:text="@string/qrCodeUrl"
+                            android:id="@+id/qrcodebaseurl"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                             android:textColor="@color/blue_400"
                             android:textSize="15sp" />
