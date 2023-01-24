@@ -103,6 +103,8 @@ public class HomeFragmentNewUI extends Fragment {
     }
 
     private void setTextViewBanner(Video video) {
+    if(video.getType()!=null){
+        if(!video.getType().equalsIgnoreCase("VM")){
         //  releasePlayer();
         //  String url = "https://action-ott-live.s3.ap-south-1.amazonaws.com/Sultan+Trailer/sultan+(1).mp4";
         if (video.getTrailer_aws_source() != null) {
@@ -160,7 +162,7 @@ public class HomeFragmentNewUI extends Fragment {
             textViewBannerDescription.setText(video.getDescription());
         } else {
             textViewBannerDescription.setVisibility(View.GONE);
-        }
+        }}}
     }
 
     private void initViews(View view) {
