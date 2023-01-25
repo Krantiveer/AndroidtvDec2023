@@ -18,7 +18,6 @@ import com.bumptech.glide.Glide
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.util.Util
-import com.google.android.material.internal.ContextUtils.getActivity
 import com.ott.tv.Config
 import com.ott.tv.Constants
 import com.ott.tv.R
@@ -123,6 +122,8 @@ class DetailsActivityPhando : FragmentActivity() {
     private val MEDIA_SESSION_TAG = "ReferenceAppKotlin"
     private val TAG = "SearchFragment"
 */
+   val TAG: String = "DetailsAcitivityPhando"
+
     companion object {
         var contentList: ArrayList<ShowWatchlist>? = null
         var mediaplabackApiResponse: MediaplabackApiResponse? = null
@@ -637,7 +638,9 @@ class DetailsActivityPhando : FragmentActivity() {
     }
 */
     override fun onPause() {
-        if (Util.SDK_INT < 24) releasePlayer()
+    Log.i(TAG, "onPause: ")
+    if (Util.SDK_INT < 24)
+            releasePlayer()
         super.onPause()
     }
 

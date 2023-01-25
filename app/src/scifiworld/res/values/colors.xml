@@ -4,7 +4,7 @@
     <color name="textcolor">#fff</color>
     <color name="btn_txt_color">#fff</color>
 
-    <color name="main_color">#87CEEB</color>
+    <color name="main_color">#31C5F4</color>
     <color name="focus">#ffffff</color>
     //this we using card selected and click card
     <color name="colorButtonFocusedTV">@color/main_color</color>

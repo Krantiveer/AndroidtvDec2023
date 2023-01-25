@@ -9,6 +9,7 @@
         android:layout_width="@dimen/_320sdp"
         android:layout_height="@dimen/_180sdp"
         android:layout_gravity="center"
+        android:layout_marginRight="@dimen/_20sdp"
         android:src="@drawable/uvtv_loading_icon" />
     <!--<ImageView
         android:layout_width="match_parent"

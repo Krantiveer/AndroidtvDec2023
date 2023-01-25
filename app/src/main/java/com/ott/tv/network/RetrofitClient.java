@@ -39,15 +39,15 @@ public class RetrofitClient {
 
 
              Request request = chain.request().newBuilder()
-                     .addHeader("Accept", "application/json")/*.addHeader("Authorization", "Bearer " + token)*/
-                     .addHeader("publisherid", Config.Publisher_id)/*.addHeader("Authorization", "Bearer " + token)*/
+                     .addHeader("Accept", "application/json")
+                     .addHeader("publisherid", Config.Publisher_id)
                      .addHeader("API-KEY",Config.API_KEY).build();
              return chain.proceed(request);
          });
          client.addInterceptor(new BasicAuthInterceptor(API_USER_NAME,API_PASSWORD));
 
        //to enable logs
- //        client.addInterceptor(interceptor).build();
+         client.addInterceptor(interceptor).build();
           /*      .addInterceptor(new BasicAuthInterceptor(API_USER_NAME, API_PASSWORD))
                 .addInterceptor(interceptor).build();*/
 
