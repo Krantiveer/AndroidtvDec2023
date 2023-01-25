@@ -58,7 +58,6 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
                 val activity = requireActivity() as NewMainActivity
                 activity.onMenuFocus(false)
                 //  binding.imgHome.requestFocus()
-
             } else {
                 val activity = requireActivity() as NewMainActivity
                 activity.onMenuFocus(true)

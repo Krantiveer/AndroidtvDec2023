@@ -6,8 +6,8 @@
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/uvtv_loading_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_320sdp"
+        android:layout_height="@dimen/_180sdp"
         android:layout_gravity="center"
         android:src="@drawable/uvtv_loading_icon" />
     <!--<ImageView

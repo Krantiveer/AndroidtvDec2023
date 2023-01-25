@@ -12,17 +12,16 @@ import android.view.WindowManager
 import android.widget.*
 import androidx.fragment.app.FragmentActivity
 import com.ott.tv.Constants
-import com.ott.tv.R
 import com.ott.tv.adapter.ContentAdapter
 import com.ott.tv.adapter.SearchAdapter
 import com.ott.tv.database.DatabaseHelper
 import com.ott.tv.databinding.ActivitySearchPhandoBinding
-import com.ott.tv.model.home_content.Video
 import com.ott.tv.model.phando.ShowWatchlist
 import com.ott.tv.network.RetrofitClient
 import com.ott.tv.network.api.Dashboard
 import com.ott.tv.network.api.ListRecommend
 import com.ott.tv.network.api.RecommendedModel
+import com.ott.tv.utils.CMHelper
 import com.ott.tv.utils.PreferenceUtils
 import retrofit2.Call
 import retrofit2.Callback
@@ -178,6 +177,11 @@ class SearchActivity_Phando : FragmentActivity(), SearchAdapter.OnItemClickListe
                             this@SearchActivity_Phando
                         ),
                     )
+                    if (searchContent!!.size == 0) {
+
+                        Toast.makeText(this@SearchActivity_Phando, "Try searching for another movies", Toast.LENGTH_LONG).show()
+                    //    CMHelper.setSnackBar(requireView(), , 2);
+                    }
                     binding.progressBarSearch.visibility = View.GONE
                 }
             }
