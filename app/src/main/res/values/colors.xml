@@ -131,7 +131,8 @@
     <color name="side_nav_highlited">#66EF3C23</color>
 //primeicon nav
     <color name="premium_icon_color">#ffc43a</color>
-
+//Side nav selected color
+    <color name="side_nav_selected">#EF3C23</color>
 
 
 </resources>

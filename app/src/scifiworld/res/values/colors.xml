@@ -22,5 +22,8 @@
 
     //primeicon nav
     <color name="premium_icon_color">#ffc43a</color>
+    //color sidenav
+
+    <color name="side_nav_selected">#EF3C23</color>
 
 </resources>

@@ -115,7 +115,7 @@ class MenuListAdapter(
             Log.d("Clicking Event", "binder: clicked2 Redjum--" )
 
             binding.icon.imageTintList =
-                ColorStateList.valueOf(context.getColor(R.color.main_color))
+                ColorStateList.valueOf(context.getColor(R.color.side_nav_selected))
             oldpostion = absoluteAdapterPosition
             mClick.onItemClick(dataList[position])
 
