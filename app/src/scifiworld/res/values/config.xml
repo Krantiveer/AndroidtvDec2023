@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">UVTV </string>
-    <string name="qrCodeUrl">https://uvplay.com/mytv </string>
+    <string name="app_name">ScifiWorld </string>
+    <string name="qrCodeUrl">https://watch.scifiworld.tv/mytv </string>
     <string name="api_extension">/v130/</string>
 </resources>

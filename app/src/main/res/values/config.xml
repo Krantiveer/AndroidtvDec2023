@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">UVTV OTT</string>
-    <string name="api_server_url">www.actionott.com/rest_api/</string>
+    <string name="app_name">UVTV </string>
     <string name="api_extension">/v130/</string>
 
 

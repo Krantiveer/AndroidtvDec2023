@@ -11,14 +11,14 @@ android {
     flavorDimensions "default"
     defaultConfig {
         applicationId "com.uvtv.tv"
-        minSdkVersion 24
+        minSdkVersion 23
         targetSdkVersion 33
         versionCode 1
         versionName "1"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
-/*
+
         android.applicationVariants.all { variant ->
             variant.outputs.all {
                 def date = new Date()
@@ -26,7 +26,6 @@ android {
                 outputFileName = "${variant.name + "-- \t"}v${variant.versionName}${" " + formattedDate}.apk"
             }
         }
-*/
     }
 
     buildTypes {

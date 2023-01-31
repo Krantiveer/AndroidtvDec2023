@@ -53,7 +53,7 @@ class NewMainActivity : FragmentActivity() {
         val accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(
             applicationContext
         )
-        val call: Call<AppInfo> = api.getAppInfo( "AndroidTV",accessToken)
+        val call: Call<AppInfo> = api.getAppInfo( "androidtv",accessToken)
         call.enqueue(object : Callback<AppInfo?> {
             override fun onResponse(call: Call<AppInfo?>, response: Response<AppInfo?>) {
                 if (response.code() == 200) {
