@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "647217376807",
+    "project_id": "xploreindiastream-19e61",
+    "storage_bucket": "xploreindiastream-19e61.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647217376807:android:bc2bd12da46dbb82e16802",
+        "android_client_info": {
+          "package_name": "com.xploreindia.tv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "647217376807-4qd9rk7am324b52ratv89r848ngefoj2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWhKRfTEvoI-adY8rm92uHSmrJ2jliS-c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "647217376807-4qd9rk7am324b52ratv89r848ngefoj2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

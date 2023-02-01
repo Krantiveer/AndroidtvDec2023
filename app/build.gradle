@@ -49,6 +49,13 @@ android {
         }
         scifiworld {
             applicationId "com.scifiworld.tv"
+            versionCode 2
+            versionName "1"
+        }
+
+
+        xploreindia {
+            applicationId "com.xploreindia.tv"
             versionCode 1
             versionName "1"
         }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="textcolor">#fff</color>
+    <color name="btn_txt_color">#fff</color>
+
+    <color name="main_color">#31C5F4</color>
+    <color name="focus">#ffffff</color>
+    //this we using card selected and click card
+    <color name="colorButtonFocusedTV">@color/main_color</color>
+    <color name="colorButtonPressedTV">@color/main_color</color>
+    <color name="colorButtonFocusedTVHome">@color/main_color</color>
+    <color name="colorButtonPressedTVHome">@color/main_color</color>
+    <color name="bcn_selected_color">@color/main_color</color>
+    <color name="progressbar">@color/main_color</color>
+
+    <color name="black_color">#020610</color>
+    <color name="colorPrimary">#020610</color>
+    <color name="login_background">#020610</color>
+    <color name="background_home_page">@color/transparent</color> <!--homefragment-->
+    <color name="colorGold">@color/main_color</color>  <!-- selected login-->
+
+    //primeicon nav
+    <color name="premium_icon_color">#ffc43a</color>
+    //color sidenav
+
+    <color name="side_nav_selected">#EF3C23</color>
+
+</resources>

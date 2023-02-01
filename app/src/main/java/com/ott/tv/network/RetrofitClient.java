@@ -47,7 +47,7 @@ public class RetrofitClient {
          client.addInterceptor(new BasicAuthInterceptor(API_USER_NAME,API_PASSWORD));
 
        //to enable logs
-         client.addInterceptor(interceptor).build();
+     //    client.addInterceptor(interceptor).build();
           /*      .addInterceptor(new BasicAuthInterceptor(API_USER_NAME, API_PASSWORD))
                 .addInterceptor(interceptor).build();*/
 
