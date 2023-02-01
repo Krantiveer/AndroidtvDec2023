@@ -166,7 +166,7 @@
     <!--Notification Channel-->
     <string name="now_playing_channel_description">Shows what music is currently playing</string>
     <string name="now_playing_channel_name">Now Playing</string>
-    <string name="recommended_for_you">Movies For You</string>
+    <string name="recommended_for_you">Recommended For You</string>
     <string name="image_description">Image Description</string>
     <string name="close">Close</string>
     <string name="movie_title">The Falcon And The Winter Soldier</string>

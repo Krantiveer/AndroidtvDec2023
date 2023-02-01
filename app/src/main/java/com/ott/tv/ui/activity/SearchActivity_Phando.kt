@@ -69,8 +69,9 @@ class SearchActivity_Phando : FragmentActivity(), SearchAdapter.OnItemClickListe
                 var searchText: String
                 if (binding.edtsearch.text.toString().equals("")) {
                     binding.rvRecommended.visibility = View.VISIBLE
+                    binding.recommendedforyou.visibility=View.VISIBLE
+
                     binding.lytFragment.visibility = View.GONE
-                    //   rvRecommended.visibility = View.VISIBLE
                     Toast.makeText(
                         applicationContext,
                         "please type keyword for Search",
@@ -78,7 +79,10 @@ class SearchActivity_Phando : FragmentActivity(), SearchAdapter.OnItemClickListe
                     ).show()
                 } else {
                     binding.rvRecommended.visibility = View.GONE
+                    binding.recommendedforyou.visibility=View.GONE
+
                     binding.lytFragment.visibility = View.VISIBLE
+
                     searchText = binding.edtsearch.text.toString()
                     getQueryData(searchText)
 

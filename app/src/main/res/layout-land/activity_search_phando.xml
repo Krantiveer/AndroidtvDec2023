@@ -68,25 +68,39 @@
                     android:src="@drawable/lb_ic_in_app_search"
                     android:visibility="gone" />
 
-                <androidx.recyclerview.widget.RecyclerView
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
 
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/recommended_for_you"
+                    android:id="@+id/recommendedforyou"
+                    android:layout_marginHorizontal="@dimen/_22sdp"
+                    android:layout_marginVertical="@dimen/_12sdp"
+                    android:textColor="@color/textcolor"
+                    android:textSize="@dimen/_22sdp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginHorizontal="@dimen/_22sdp"
                     android:id="@+id/rvRecommended"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/divider"
                     android:layout_marginTop="5dp"
-                    android:focusable="true"
                     android:background="@drawable/round_ll"
+                    android:focusable="true"
                     android:focusableInTouchMode="true"
-                    tools:listitem="@layout/banner_home_list_item"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    app:spanCount="5" />
+                    app:spanCount="5"
+                    tools:listitem="@layout/banner_home_list_item" />
 
                 <LinearLayout
                     android:id="@+id/lytFragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:layout_marginHorizontal="@dimen/_22sdp"
+
                     android:visibility="gone">
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -96,21 +110,20 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/divider"
                         android:layout_marginTop="5dp"
-                        android:focusable="true"
                         android:background="@drawable/round_ll"
+                        android:focusable="true"
                         android:focusableInTouchMode="true"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:spanCount="5" />
 
 
-
-                   <!-- <FrameLayout
-                        android:visibility="gone"
-                        android:id="@+id/searchFragment"
-                        android:name="com.ott.tv.fragments.SearchFragmentPhando"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="2sp" />-->
+                    <!-- <FrameLayout
+                         android:visibility="gone"
+                         android:id="@+id/searchFragment"
+                         android:name="com.ott.tv.fragments.SearchFragmentPhando"
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:layout_marginTop="2sp" />-->
                 </LinearLayout>
             </LinearLayout>
 
@@ -126,7 +139,7 @@
         </RelativeLayout>
 
         <ProgressBar
-                android:id="@+id/progressBarSearch"
+            android:id="@+id/progressBarSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
