@@ -86,9 +86,9 @@ public interface Dashboard {
     @GET("mediabygenresid")
     Call<List<ShowWatchlist>> getViewAllListAPI(
             @Header("Authorization") String token,
-            @Query("genres_id") Integer id
+            @Query("genres_id") String categoryId,
+            @Query("limit") String limit, @Query("content_type") String type);
 
-    );
 
     @GET("search-suggestions")
     Call<List<RecommendedModel>> getRecommendedList(

@@ -93,7 +93,7 @@ public class ItemCountryFragment extends VerticalGridSupportFragment {
         Constants.IS_FROM_HOME = false;
         String accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(getContext());
         Log.i(TAG, id + "Access Token --->" + PreferenceUtils.getInstance().getAccessTokenPref(getContext()));
-        Call<List<ShowWatchlist>> call = api.getViewAllListAPI(accessToken, 32);
+        Call<List<ShowWatchlist>> call = api.getViewAllListAPI(accessToken, id,"0,100","");
         call.enqueue(new Callback<List<ShowWatchlist>>() {
             @Override
             public void onResponse(@NonNull Call<List<ShowWatchlist>> call, @NonNull Response<List<ShowWatchlist>> response) {
@@ -125,6 +125,7 @@ public class ItemCountryFragment extends VerticalGridSupportFragment {
         });
     }
 
+/*
     private void fetchMovieData(String id, String pageCount) {
 
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
@@ -133,7 +134,7 @@ public class ItemCountryFragment extends VerticalGridSupportFragment {
         Dashboard api = retrofit.create(Dashboard.class);
         String accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(mContext);
         Log.i(TAG, "Access Token --->" + PreferenceUtils.getInstance().getAccessTokenPref(mContext));
-        Call<List<ShowWatchlist>> call = api.getViewAllListAPI(accessToken, 32);
+        Call<List<ShowWatchlist>> call = api.getViewAllListAPI(accessToken, "43","100","");
         call.enqueue(new Callback<List<ShowWatchlist>>() {
             @Override
             public void onResponse(@NonNull Call<List<ShowWatchlist>> call, @NonNull Response<List<ShowWatchlist>> response) {
@@ -161,6 +162,7 @@ public class ItemCountryFragment extends VerticalGridSupportFragment {
             }
         });
     }
+*/
 
     // click listener
     private OnItemViewClickedListener getDefaultItemViewClickedListener() {
