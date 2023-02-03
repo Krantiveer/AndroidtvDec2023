@@ -35,7 +35,7 @@ import retrofit2.Retrofit;
 
 public class ShowWatchlistFragment extends VerticalGridSupportFragment {
 
-    private static final String TAG = ItemCountryFragment.class.getSimpleName();
+    private static final String TAG = ShowWatchlistFragment.class.getSimpleName();
     private static final int NUM_COLUMNS = 4;
     private List<ShowWatchlist> movies = new ArrayList<>();
     private ArrayObjectAdapter mAdapter;
@@ -95,7 +95,7 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
         int limit = 10;
         int offset = 0;
         //fetchMovieData(id, type, limit, offset);
-      //  fetchMovieData();
+        fetchMovieData();
     }
     private void setCustomPadding() {
         if (getView() != null) {

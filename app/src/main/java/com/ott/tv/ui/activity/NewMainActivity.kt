@@ -244,6 +244,8 @@ class NewMainActivity : FragmentActivity() {
 
         )
         if (type.equals("search") || type.equals("Search")) {
+            PreferenceUtils.getInstance().setWatchListPref(this, 0)
+
             val intent = Intent(this, SearchActivity_Phando::class.java)
             startActivity(intent)
         }
@@ -255,6 +257,8 @@ class NewMainActivity : FragmentActivity() {
                 .commit()
         }
         else if(type.equals("profile")){
+            PreferenceUtils.getInstance().setWatchListPref(this, 0)
+
             val newFragment = MyAccountFragment()
             newFragment.setArguments(bundle)
             supportFragmentManager.beginTransaction()
@@ -263,12 +267,16 @@ class NewMainActivity : FragmentActivity() {
         }
 
         else if(type.equals("uvtv-bharat")){
+            PreferenceUtils.getInstance().setWatchListPref(this, 0)
+
             val newFragment = MapFragmentUVTV()
             newFragment.setArguments(bundle)
             supportFragmentManager.beginTransaction()
                 .replace(binding.browserSection.id, newFragment)
                 .commit()
         }else if(type.equals("home")){
+            PreferenceUtils.getInstance().setWatchListPref(this, 0)
+
             val newFragment = HomeFragmentNewUI()
             newFragment.setArguments(bundle)
             supportFragmentManager.beginTransaction()
@@ -277,6 +285,8 @@ class NewMainActivity : FragmentActivity() {
         }
 
         else {
+            PreferenceUtils.getInstance().setWatchListPref(this, 0)
+
             val newFragment = HomeFragment()
             newFragment.setArguments(bundle)
             supportFragmentManager.beginTransaction()
