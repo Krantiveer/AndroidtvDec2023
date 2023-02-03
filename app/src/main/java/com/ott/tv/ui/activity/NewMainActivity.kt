@@ -1,6 +1,5 @@
 package com.ott.tv.ui.activity
 
-import android.app.AlertDialog
 import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
@@ -22,7 +21,6 @@ import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
-import com.ott.tv.Constants
 import com.ott.tv.MapFragmentUVTV
 import com.ott.tv.R
 import com.ott.tv.databinding.ActivityNewMainBinding

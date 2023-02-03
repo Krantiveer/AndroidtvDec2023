@@ -69,7 +69,7 @@ class SearchActivity_Phando : FragmentActivity(), SearchAdapter.OnItemClickListe
                 var searchText: String
                 if (binding.edtsearch.text.toString().equals("")) {
                     binding.rvRecommended.visibility = View.VISIBLE
-                    binding.recommendedforyou.visibility=View.VISIBLE
+                    binding.recommendedforyou.visibility = View.VISIBLE
 
                     binding.lytFragment.visibility = View.GONE
                     Toast.makeText(
@@ -79,7 +79,7 @@ class SearchActivity_Phando : FragmentActivity(), SearchAdapter.OnItemClickListe
                     ).show()
                 } else {
                     binding.rvRecommended.visibility = View.GONE
-                    binding.recommendedforyou.visibility=View.GONE
+                    binding.recommendedforyou.visibility = View.GONE
 
                     binding.lytFragment.visibility = View.VISIBLE
 
@@ -135,15 +135,19 @@ class SearchActivity_Phando : FragmentActivity(), SearchAdapter.OnItemClickListe
                         var movieList: List<RecommendedModel?>? = response.body()
                         var movieListFinal: List<ListRecommend?>? = null
 
+                        if (movieList!!.size > 0) {
+                            movieListFinal = movieList!!.get(0)!!.list
+                            binding.rvRecommended.setAdapter(
+                                ContentAdapter(
+                                    movieListFinal,
+                                    applicationContext, this@SearchActivity_Phando
+                                ),
+                            )
 
-                        movieListFinal = movieList!!.get(0)!!.list
-                        binding.rvRecommended.setAdapter(
-                            ContentAdapter(
-                                movieListFinal,
-                                applicationContext, this@SearchActivity_Phando
-                            ),
-                        )
+                        }else{
+                            binding.recommendedforyou.visibility =View.GONE
 
+                        }
                     }
                 }
             }
@@ -183,8 +187,12 @@ class SearchActivity_Phando : FragmentActivity(), SearchAdapter.OnItemClickListe
                     )
                     if (searchContent!!.size == 0) {
 
-                        Toast.makeText(this@SearchActivity_Phando, "Try searching for another movies", Toast.LENGTH_LONG).show()
-                    //    CMHelper.setSnackBar(requireView(), , 2);
+                        Toast.makeText(
+                            this@SearchActivity_Phando,
+                            "Try searching for another movies",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        //    CMHelper.setSnackBar(requireView(), , 2);
                     }
                     binding.progressBarSearch.visibility = View.GONE
                 }
