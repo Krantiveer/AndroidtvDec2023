@@ -68,23 +68,6 @@
 
         </FrameLayout>
 
-        <!--<FrameLayout
-            android:id="@+id/loadingProgress"
-            android:background="@drawable/main_loading_progress_bar_background_gradient"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ProgressBar
-                android:id="@+id/progress_bar"
-                android:progressDrawable="@drawable/custom_progress_horizontal"
-                style="@android:style/Widget.ProgressBar.Horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:indeterminate="false"
-                android:progress="0"
-                android:max="100" />
-
-        </FrameLayout>-->
 
         <FrameLayout
             android:id="@+id/content_details_fragment"

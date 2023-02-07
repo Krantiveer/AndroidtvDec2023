@@ -116,7 +116,6 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
                 if (response.code() == 200) {
                     List<ShowWatchlist> movieList = response.body();
                     assert movieList != null;
-                    Log.i(TAG, "onResponse: c--->"+movieList.size());
                     Log.i(TAG, "onResponse: thres--->"+PreferenceUtils.getInstance().getWatchListPref(mContext));
                     if(movieList.size()==PreferenceUtils.getInstance().getWatchListPref(mContext) || movieList.size()<=0){
                         return;

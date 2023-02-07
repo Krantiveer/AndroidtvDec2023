@@ -53,16 +53,6 @@ public class LoginMobileActivity extends Activity {
     private LinearLayout ll_send_otp, ll_verify_otp;
     private CountDownTimer cTimer;
 
-    /*@Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Log.i("krantiveer", "onActivityResult: GETDATA");
-        if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == 1000) {
-            }
-            Log.i("krantiveer", "onActivityResult: NO   GETDATA");
-        }
-    }*/
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -80,8 +70,6 @@ public class LoginMobileActivity extends Activity {
         bt_verified_login.setOnClickListener(view -> check_verified_OTP());
         bt_verified_login.setOnFocusChangeListener((v, hasFocus) -> hideKeyboard(v));
         send_otp.setOnFocusChangeListener((v, hasFocus) -> hideKeyboard(v));
-
-
         mobile_code_in = findViewById(R.id.mobile_code_in);
         tv_verify_otp_mobileNo = findViewById(R.id.tv_verify_otp_mobileNo);
         editVerifiedOTP = findViewById(R.id.editVerifiedOTP);
@@ -100,7 +88,6 @@ public class LoginMobileActivity extends Activity {
         timer = findViewById(R.id.timer);
         timer_txt = findViewById(R.id.timer_txt);
         timer_txt.setText("Didn't receive OTP? Resend in ");
-        //  tv_timer=findViewById(R.id.tv_timer);
         bt_resend = findViewById(R.id.bt_resend);
 
 // in onCreate method
@@ -160,14 +147,13 @@ public class LoginMobileActivity extends Activity {
 
     public void check_verified_OTP() {
         if (editVerifiedOTP.getText().toString().trim().equals("")) {
-            if (editVerifiedOTP.getText().length() < 6) {
-                CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("The OTP Must be 6 Digits."), 2, 10000);
-
-            } else {
-                CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter OTP"), 2, 10000);
-            }
+            CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter OTP"), 2, 7000);
         } else {
-            getVerifyOTP(mob_number, editVerifiedOTP.getText().toString());
+            if (editVerifiedOTP.getText().length() < 6) {
+                CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("The OTP Must be 6 Digits."), 2, 7000);
+            } else {
+                getVerifyOTP(mob_number, editVerifiedOTP.getText().toString());
+            }
         }
     }
 

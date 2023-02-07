@@ -268,7 +268,6 @@ class NewMainActivity : FragmentActivity() {
 
         else if(type.equals("uvtv-bharat")){
             PreferenceUtils.getInstance().setWatchListPref(this, 0)
-
             val newFragment = MapFragmentUVTV()
             newFragment.setArguments(bundle)
             supportFragmentManager.beginTransaction()
@@ -286,7 +285,6 @@ class NewMainActivity : FragmentActivity() {
 
         else {
             PreferenceUtils.getInstance().setWatchListPref(this, 0)
-
             val newFragment = HomeFragment()
             newFragment.setArguments(bundle)
             supportFragmentManager.beginTransaction()
