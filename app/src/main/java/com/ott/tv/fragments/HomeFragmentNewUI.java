@@ -65,9 +65,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import at.huber.youtubeExtractor.VideoMeta;
-import at.huber.youtubeExtractor.YouTubeExtractor;
-import at.huber.youtubeExtractor.YtFile;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
@@ -103,66 +100,68 @@ public class HomeFragmentNewUI extends Fragment {
     }
 
     private void setTextViewBanner(Video video) {
-    if(video.getType()!=null){
-        if(!video.getType().equalsIgnoreCase("VM")){
-        //  releasePlayer();
-        //  String url = "https://action-ott-live.s3.ap-south-1.amazonaws.com/Sultan+Trailer/sultan+(1).mp4";
-        if (video.getTrailer_aws_source() != null) {
-            String url = video.getTrailer_aws_source();
-            initVideoPlayer(url, "movie");
-        } /*else {
+        if (video.getType() != null) {
+            if (!video.getType().equalsIgnoreCase("VM")) {
+                //  releasePlayer();
+                //  String url = "https://action-ott-live.s3.ap-south-1.amazonaws.com/Sultan+Trailer/sultan+(1).mp4";
+                if (video.getTrailer_aws_source() != null) {
+                    String url = video.getTrailer_aws_source();
+                    initVideoPlayer(url, "movie");
+                } /*else {
             if (video.getTrailler_youtube_source() != null) {
                 String url = video.getTrailler_youtube_source();
                 initVideoPlayer(url, "movie");
             }
         }*/
 
-        textViewBanner.setText(video.getTitle());
+                textViewBanner.setText(video.getTitle());
 
-        if (video.getIs_free() != null) {
-            if (video.getIs_free().toString().equalsIgnoreCase("1")) {
-                content_premiumIconImage.setVisibility(View.INVISIBLE);
-            } else {
-                content_premiumIconImage.setVisibility(View.VISIBLE);
+                if (video.getIs_free() != null) {
+                    if (video.getIs_free().toString().equalsIgnoreCase("1")) {
+                        content_premiumIconImage.setVisibility(View.INVISIBLE);
+                    } else {
+                        content_premiumIconImage.setVisibility(View.VISIBLE);
 
+                    }
+                }
+
+
+                /*Glide.with(getContext()).load(video.getImageLink()).into(imageViewBGBanner);*/
+                if (video.getImageLink() == null) {
+                    video.setImageLink(video.getThumbnailUrl());
+                }
+                if (getActivity() == null) {
+                    return;
+                }
+                Glide.with(HomeFragmentNewUI.this)
+                        .load(video.getImageLink())
+
+                        .error(R.drawable.logo)
+                        .into(imageViewBGBanner);
+
+                if (video.getLanguage() != null) {
+                    textViewBannerLanguage.setText(video.getLanguage());
+                } else {
+                    textViewBannerLanguage.setVisibility(View.GONE);
+                }
+                textViewBannerReleaseYear.setText(video.getRelease());
+                if (video.getGenre() != null) {
+                    textViewBannerGenre.setText(video.getGenre());
+                } else {
+                    textViewBannerGenre.setVisibility(View.GONE);
+                }
+                if (video.getRuntime() != null) {
+                    textViewDuration.setText(video.getRuntime());
+                } else {
+                    textViewDuration.setVisibility(View.GONE);
+                }
+                if (video.getDescription() != null) {
+                    textViewBannerDescription.setText(video.getDescription());
+                } else {
+                    textViewBannerDescription.setVisibility(View.GONE);
+                }
             }
         }
-
-
-        /*Glide.with(getContext()).load(video.getImageLink()).into(imageViewBGBanner);*/
-        if (video.getImageLink() == null) {
-            video.setImageLink(video.getThumbnailUrl());
-        }
-        if (getActivity() == null) {
-            return;
-        }
-        Glide.with(HomeFragmentNewUI.this)
-                .load(video.getImageLink())
-
-                .error(R.drawable.logo)
-                .into(imageViewBGBanner);
-
-        if (video.getLanguage() != null) {
-            textViewBannerLanguage.setText(video.getLanguage());
-        } else {
-            textViewBannerLanguage.setVisibility(View.GONE);
-        }
-        textViewBannerReleaseYear.setText(video.getRelease());
-        if (video.getGenre() != null) {
-            textViewBannerGenre.setText(video.getGenre());
-        } else {
-            textViewBannerGenre.setVisibility(View.GONE);
-        }
-        if (video.getRuntime() != null) {
-            textViewDuration.setText(video.getRuntime());
-        } else {
-            textViewDuration.setVisibility(View.GONE);
-        }
-        if (video.getDescription() != null) {
-            textViewBannerDescription.setText(video.getDescription());
-        } else {
-            textViewBannerDescription.setVisibility(View.GONE);
-        }}}
     }
 
     private void initViews(View view) {
@@ -198,22 +197,22 @@ public class HomeFragmentNewUI extends Fragment {
                 player.release();
             }
 
-                DataSource.Factory dataSourceFactory = new DefaultHttpDataSource.Factory();
+            DataSource.Factory dataSourceFactory = new DefaultHttpDataSource.Factory();
 // Create a HLS media source pointing to a playlist uri.
-                HlsMediaSource hlsMediaSource =
-                        new HlsMediaSource.Factory(dataSourceFactory)
-                                .createMediaSource(MediaItem.fromUri(url));
+            HlsMediaSource hlsMediaSource =
+                    new HlsMediaSource.Factory(dataSourceFactory)
+                            .createMediaSource(MediaItem.fromUri(url));
 // Create a player instance.
-                player = new ExoPlayer.Builder(requireContext()).build();
-                player.setMediaSource(hlsMediaSource);
+            player = new ExoPlayer.Builder(requireContext()).build();
+            player.setMediaSource(hlsMediaSource);
 
-                player.prepare();
-                player.setPlayWhenReady(startAutoPlay);
+            player.prepare();
+            player.setPlayWhenReady(startAutoPlay);
 
-                exoPlayerView.setPlayer(player);
+            exoPlayerView.setPlayer(player);
 
-                  player.setPlayWhenReady(true);
-                       player.addListener(new Player.Listener() {
+            player.setPlayWhenReady(true);
+            player.addListener(new Player.Listener() {
                 @Override
                 public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
                     switch (playbackState) {
@@ -239,40 +238,12 @@ public class HomeFragmentNewUI extends Fragment {
                 }
             });
 
+        } else {
+          //  if (!player.isPlaying()) {
+            {    exoPlayerView.setVisibility(View.INVISIBLE);
 
+            }
 
-
-
-
-     /*   Uri uri = Uri.parse(url);
-
-        switch (type) {
-            case "hls":
-             //   mediaSource = hlsMediaSource(uri, PlayerActivityNewCode.this);
-                break;
-            case "youtube":
-                initYoutubeVideo(url, PlayerActivityNewCode.this, 18);
-                break;
-            case "youtube-live":
-           //     extractYoutubeUrl(url, PlayerActivityNewCode.this, 133);
-                break;
-            case "rtmp":
-               // mediaSource = rtmpMediaSource(uri);
-                break;
-            case "mp4":
-                mediaSource = mediaSource(uri, PlayerActivityNewCode.this);
-                break;
-            default:
-                mediaSource = mediaSource(uri, PlayerActivityNewCode.this);
-                break;
-        }*/
-            // seekTocurrentPosition();
-            //  seekToStartPosition();
-
-
-    /*    exoPlayerView.setControllerVisibilityListener(visibility -> visible = visibility);
-
-        exoPlayerView.setControllerShowTimeoutMs(5 * 1000);*/
         }
     }
 

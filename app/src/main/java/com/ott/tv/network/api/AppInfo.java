@@ -9,10 +9,8 @@ import com.google.gson.annotations.SerializedName;
 public class AppInfo {
     @SerializedName("app_type")
     private String appType;
-
     @SerializedName("app_version")
     private String currentVersion;
-
     @SerializedName("force_update")
     private String forceUpdate;
 
