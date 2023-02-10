@@ -240,7 +240,8 @@ public class HomeFragmentNewUI extends Fragment {
 
         } else {
           //  if (!player.isPlaying()) {
-            {    exoPlayerView.setVisibility(View.INVISIBLE);
+            {   releasePlayer();
+                exoPlayerView.setVisibility(View.INVISIBLE);
 
             }
 

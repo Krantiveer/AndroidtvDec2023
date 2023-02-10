@@ -121,7 +121,7 @@ public class MyAccountFragment extends Fragment {
                             }
                             if (userProfile.getIs_subscribed() == 0) {
                                 binding.tvnoPlan.setVisibility(View.VISIBLE);
-                                binding.userSubId.setVisibility(View.INVISIBLE);
+                                binding.userSubId.setVisibility(View.VISIBLE);
                                 binding.lytPlan.setVisibility(View.GONE);
                                 binding.lytPlan2.setVisibility(View.GONE);
                                 binding.myPackageName.setVisibility(View.GONE);

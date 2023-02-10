@@ -203,7 +203,7 @@ class NewMainActivity : FragmentActivity() {
         val out = StateListDrawable()
         out.addState(
             intArrayOf(android.R.attr.state_focused), createFocusedDrawable(
-                Color.parseColor("#00A7DB")
+                Color.parseColor("#EF3C23")
             )
         )
         out.addState(
