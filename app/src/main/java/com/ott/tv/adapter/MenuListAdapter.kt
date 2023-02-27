@@ -3,16 +3,12 @@ package com.ott.tv.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.Color
-import android.graphics.PorterDuff
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.android.material.tabs.TabLayout.TabGravity
-import com.ott.tv.Constants
+import com.ott.tv.BuildConfig
 import com.ott.tv.R
 import com.ott.tv.databinding.LayoutMenuBinding
 import com.ott.tv.model.phando.CategoryType
@@ -41,7 +37,7 @@ class MenuListAdapter(
 
         @SuppressLint("NotifyDataSetChanged")
         fun bindernew(dataModel: CategoryType) {
-            Log.d("Clicking Event", "binder: clicked2--" +dataModel.icon +dataModel.displayName)
+            Log.d("Clicking Event", "binder: clicked2--" + dataModel.icon + dataModel.displayName)
 
             binding.titleMenu.setText(dataModel.displayName)
             Glide.with(context)
@@ -51,8 +47,11 @@ class MenuListAdapter(
                 .into(binding.icon)
 
             binding.menuLayout.setOnClickListener {
-                oldclick=false
-                Log.d("Clicking Event", "binder: clicked2--" + oldpostionSecond+oldpostion + position+oldclick)
+                oldclick = false
+                Log.d(
+                    "Clicking Event",
+                    "binder: clicked2--" + oldpostionSecond + oldpostion + position + oldclick
+                )
 
                 if (oldpostion == absoluteAdapterPosition) {
 
@@ -61,8 +60,11 @@ class MenuListAdapter(
                         mClick.onItemClick(dataList[position])
                     } else {
                         oldclick = true
-                        oldpostionSecond=oldpostion
-                        Log.d("Clicking Event", "binder: clicked2--" +oldpostionSecond+ oldpostion + position+oldclick)
+                        oldpostionSecond = oldpostion
+                        Log.d(
+                            "Clicking Event",
+                            "binder: clicked2--" + oldpostionSecond + oldpostion + position + oldclick
+                        )
                         notifyItemChanged(oldpostionSecond)
                         redColor()
                     }
@@ -76,12 +78,15 @@ class MenuListAdapter(
                 mCallback.delegate(hasFocus)
                 hasFocusLocalVar = hasFocus
 
-                Log.d("Clicking Event focus", "binder: clicked2--" + hasFocus+absoluteAdapterPosition+dataList.size)
+                Log.d(
+                    "Clicking Event focus",
+                    "binder: clicked2--" + hasFocus + absoluteAdapterPosition + dataList.size
+                )
 
                 //   Toast.makeText(context, "$hasFocus", Toast.LENGTH_SHORT).show()
 
                 if (hasFocus) {
-                    if (absoluteAdapterPosition == dataList.size-1 ) {
+                    if (absoluteAdapterPosition == dataList.size - 1) {
                         binding.menuLayout.nextFocusDownId = R.id.menuRecycler
                     } else if (absoluteAdapterPosition == 0) {
                         binding.menuLayout.nextFocusUpId = R.id.menuRecycler
@@ -102,21 +107,29 @@ class MenuListAdapter(
                 .error(R.drawable.commingsoon_sidenav)
                 .placeholder(R.drawable.commingsoon_sidenav)
                 .into(binding.icon)
-            Log.d("Clicking Event", "binder: clicked2--" +dataModel.icon +dataModel.displayName)
+            Log.d("Clicking Event", "binder: clicked2--" + dataModel.icon + dataModel.displayName)
             binding.titleMenu.setText(dataModel.displayName)
             binding.icon.imageTintList =
                 ColorStateList.valueOf(context.getColor(R.color.white))
-            oldpostionSecond=oldpostion
+            oldpostionSecond = oldpostion
 
 
         }
 
         fun redColor() {
-            Log.d("Clicking Event", "binder: clicked2 Redjum--" )
+            Log.d("Clicking Event", "binder: clicked2 Redjum--")
 
-            binding.icon.imageTintList =
-                ColorStateList.valueOf(context.getColor(R.color.side_nav_selected))
-            oldpostion = absoluteAdapterPosition
+            if (BuildConfig.FLAVOR.equals("uvtv", ignoreCase = true)) {
+                binding.icon.imageTintList =
+                    ColorStateList.valueOf(context.getColor(R.color.red_highlight_color))
+                oldpostion = absoluteAdapterPosition
+            } else {
+                binding.icon.imageTintList =
+                    ColorStateList.valueOf(context.getColor(R.color.side_nav_selected))
+                oldpostion = absoluteAdapterPosition
+            }
+
+
             mClick.onItemClick(dataList[position])
 
         }
@@ -131,19 +144,19 @@ class MenuListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Log.d(
             "Clicking Event",
-            "binder: clicked new --"  + "old-" +oldpostionSecond+ oldpostion +position+ oldclick
+            "binder: clicked new --" + "old-" + oldpostionSecond + oldpostion + position + oldclick
         )
 
 
         if (oldclick == true) {
             oldclick = false
             holder.colorwhite(dataList[position])
-          holder.bindernew(dataList[position])
+            holder.bindernew(dataList[position])
 
         } else {
             Log.d(
                 "Clicking Event",
-                "binder: clicked new --else"  + "old-" +oldpostionSecond+ oldpostion +position+ oldclick
+                "binder: clicked new --else" + "old-" + oldpostionSecond + oldpostion + position + oldclick
             )
             holder.bindernew(dataList[position])
         }

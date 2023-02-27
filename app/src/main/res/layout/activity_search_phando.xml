@@ -47,7 +47,7 @@
                     android:autofillHints=""
                     android:background="@drawable/edit_focus"
                     android:contentDescription="@string/mr_button_content_description"
-                    android:hint="Type to Search..."
+                    android:hint="@string/searchhint"
                     android:inputType="text"
                     android:maxLines="1"
                     android:paddingStart="@dimen/_15sp"

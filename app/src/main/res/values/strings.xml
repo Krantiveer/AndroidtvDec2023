@@ -215,6 +215,8 @@
 
 
     <string name="track_selection_title">Select tracks</string>
+    <string name="searchhint">Type to Search...</string>
+
 
 
 </resources>

@@ -273,7 +273,10 @@ public class HomeFragmentNewUI extends Fragment {
             final FragmentManager fm = getFragmentManager();
 
             assert fm != null;
-            fm.beginTransaction().add(R.id.browserSection, mSpinnerFragment).commit();
+            if(!BuildConfig.FLAVOR.equalsIgnoreCase("uvtv"))
+            {
+                   fm.beginTransaction().add(R.id.browserSection, mSpinnerFragment).commit();
+            }
             //     String userId = new DatabaseHelper(requireContext()).getUserData().getUserId();
             String accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(requireContext());
             Retrofit retrofit = RetrofitClient.getRetrofitInstanceWithV1();
