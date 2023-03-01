@@ -11,9 +11,6 @@
     <color name="colorButtonUnselectedTV">@color/transparent</color>
     <color name="detailTitle">@color/white</color>
 
-
-
-
     <color name="paypalColor">#ffc43a</color>
     <color name="progressbar">#ffc43a</color>
     <color name="paypalColorDark">#D39916</color>
