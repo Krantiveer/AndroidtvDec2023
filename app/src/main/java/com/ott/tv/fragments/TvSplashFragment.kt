@@ -40,11 +40,9 @@ class TvSplashFragment : Fragment() {
             Log.v(TAG, "No, this is not a Fire TV device.")
         }*/
 
-/*
         val path = "android.resource://" + requireContext().packageName + "/" + R.raw.splashvideio
         view.findViewById<VideoView>(R.id.videoView).setVideoURI(Uri.parse(path))
         view.findViewById<VideoView>(R.id.videoView).start()
-*/
 
         checkUserData()
 
@@ -65,8 +63,8 @@ class TvSplashFragment : Fragment() {
                     startActivity(intent);
                     */
                 }
-                activity!!.finishAffinity()
-                activity!!.overridePendingTransition(R.anim.enter, R.anim.exit)
+                requireActivity().finishAffinity()
+                requireActivity().overridePendingTransition(R.anim.enter, R.anim.exit)
             }
         }, SPLASH_DURATION_MS)
     } // ------------------ checking storage permission ------------
@@ -106,6 +104,6 @@ class TvSplashFragment : Fragment() {
         private const val TAG = "TvSplashScreen"
         @JvmField
         var COMPLETED_SPLASH = false
-        private const val SPLASH_DURATION_MS: Long = 1000
+        private const val SPLASH_DURATION_MS: Long = 11000
     }
 }

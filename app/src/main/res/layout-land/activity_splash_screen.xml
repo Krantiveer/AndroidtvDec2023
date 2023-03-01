@@ -8,13 +8,11 @@
     android:keepScreenOn="true"
     android:orientation="vertical">
 
-<!--
     <VideoView
         android:id="@+id/videoView"
         android:layout_width="match_parent"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_height="match_parent" />
--->
 
     <ImageView
         android:layout_width="wrap_content"

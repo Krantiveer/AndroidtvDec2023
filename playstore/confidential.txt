@@ -27,3 +27,16 @@ Phone number(optional)
 Website (optional)
  Is Application is Contains News channel . ( Provide information to help us verify your credentials as a news publisher.
  Explain how you source the news content that is shown in your app. ) or hide form screen
+
+
+
+ Firebase icon required FOR FIRETV
+
+ 1.114X144 PNG
+ 2.512X512 PNG
+ 3,1280 x 720 PNG (4 to 10 images)
+ 4.1280 x 720px PNG (no transparency)
+ 5.Between 3 and 10 JPG or PNG (no transparency)
+ 6. 1920 x 1080px (landscape)
+ 7.1920 x 1080px JPG or PNG (no transparency)
+  (landscape)
