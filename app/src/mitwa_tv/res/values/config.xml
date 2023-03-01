@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Mitwa Tv</string>
+    <string name="qrCodeUrl">https://www.mitwatv.in/mytv </string>
+    <string name="api_extension">/v130/</string>
+</resources>

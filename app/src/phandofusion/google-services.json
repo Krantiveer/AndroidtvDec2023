@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "443514986544",
+    "project_id": "phando-30f9b",
+    "storage_bucket": "phando-30f9b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:443514986544:android:bbf1b21f793b32a3d28df5",
+        "android_client_info": {
+          "package_name": "com.phandotv.tv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "443514986544-3d9i1bpv5g6cf0q36aegpar3d9ab0p01.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5nNceIzIQfIair41dkuha08DELPQZ7Q8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "443514986544-3d9i1bpv5g6cf0q36aegpar3d9ab0p01.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

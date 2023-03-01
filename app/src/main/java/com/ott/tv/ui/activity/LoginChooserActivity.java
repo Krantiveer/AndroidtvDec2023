@@ -66,8 +66,15 @@ public class LoginChooserActivity extends Activity {
         firebaseAuth = FirebaseAuth.getInstance();
         tv_qrCode = findViewById(R.id.tv_qrCode);
         qrcode_url=findViewById(R.id.qrcodebaseurl);
-        qrcode_url.setText(Config.WebsiteURL+"mytv");
+
+        if(BuildConfig.FLAVOR.equalsIgnoreCase("phando")){
+            qrcode_url.setText("www.fusiontv.com/"+"mytv");
+        }else {
+            qrcode_url.setText(Config.WebsiteURL + "mytv");
+        }
         DatabaseHelper db = new DatabaseHelper(LoginChooserActivity.this);
+
+
         User user = db.getUserData();
         if (user.getUserId() != null) {
             updateSubscriptionStatus(user.getUserId());

@@ -1,0 +1,108 @@
+{
+  "project_info": {
+    "project_number": "1085769694752",
+    "project_id": "mitwa-tv-1648110277579",
+    "storage_bucket": "mitwa-tv-1648110277579.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085769694752:android:6426b9c476091dab6c4645",
+        "android_client_info": {
+          "package_name": "com.release.mitwatv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1085769694752-3srfmaro2i5s4bftrsgsrlqjeecakl51.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.release.mitwatv",
+            "certificate_hash": "f15790778a699e0eaa428b4f0d4e69f5f9c26f91"
+          }
+        },
+        {
+          "client_id": "1085769694752-8rjg1g3a4i7ipmjrkg96bltguepr3h2s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.release.mitwatv",
+            "certificate_hash": "d40dc8c805603a0f8c6fb42b7e7b5d77f0d90841"
+          }
+        },
+        {
+          "client_id": "1085769694752-dpmeeifqjf769gteuooo9gpr7it27nrc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.release.mitwatv",
+            "certificate_hash": "8a5f6af3e3d69a9a904b2ad792acb54fb8b78317"
+          }
+        },
+        {
+          "client_id": "1085769694752-cmrj7b8rb3svb0f00e3as93602pcftr3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaXMM6mgK3vz5nAbw-C1iq37yaOU3TUGM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1085769694752-9l1u0kfpf3cp5le3ii5n81eqfcnvdh7r.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1085769694752-dsfgr4b11qlepktk42iqqg4e1cch34lc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ott.mitwaapp",
+                "app_store_id": "1610971429"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085769694752:android:0500108c8173283d6c4645",
+        "android_client_info": {
+          "package_name": "com.tv.mitwa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1085769694752-cmrj7b8rb3svb0f00e3as93602pcftr3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaXMM6mgK3vz5nAbw-C1iq37yaOU3TUGM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1085769694752-9l1u0kfpf3cp5le3ii5n81eqfcnvdh7r.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1085769694752-dsfgr4b11qlepktk42iqqg4e1cch34lc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ott.mitwaapp",
+                "app_store_id": "1610971429"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

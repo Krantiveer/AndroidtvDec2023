@@ -59,6 +59,11 @@ android {
             versionCode 1
             versionName "1"
         }
+        mitwa_tv {
+            applicationId "com.tv.mitwa"
+            versionCode 10
+            versionName "2.0"
+        }
         solidtv {
             applicationId "com.solidtv"
             versionCode 1

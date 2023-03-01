@@ -12,11 +12,10 @@ public class Config {
     public static final String Publisher_id = "5";
     public static final String WebsiteURL = "https://kaafaltv.com";
 */
-
-    /*public static final String DOMAIN = "https://mitwatv.vdoapi.com/";
+/*
+    public static final String DOMAIN = "https://www.mitwatv.in/";
     public static final String Publisher_id = "40";
-    public static final String WebsiteURL = "https://mitwatv.vdoapi.com/";
-*/
+    public static final String WebsiteURL = "https://www.mitwatv.in/";*/
   /*  public static final String DOMAIN = "https://xploreindia.phando.com/";
     public static final String Publisher_id = "8";
     public static final String WebsiteURL = "https://xploreindia.phando.com";

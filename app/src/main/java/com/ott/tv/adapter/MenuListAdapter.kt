@@ -37,9 +37,16 @@ class MenuListAdapter(
 
         @SuppressLint("NotifyDataSetChanged")
         fun bindernew(dataModel: CategoryType) {
-            Log.d("Clicking Event", "binder: clicked2--" + dataModel.icon + dataModel.displayName)
-
-            binding.titleMenu.setText(dataModel.displayName)
+            Log.d("Clicking Eventnew2", "binder: clicked2--" + dataModel.icon + dataModel.displayName)
+            if (BuildConfig.FLAVOR.equals("phando", ignoreCase = true)) {
+                if(dataModel.displayName.equals("UV Live", ignoreCase = true)){
+                    binding.titleMenu.setText("Live")
+                }else{
+                    binding.titleMenu.setText(dataModel.displayName)
+                }
+            }else {
+                binding.titleMenu.setText(dataModel.displayName)
+            }
             Glide.with(context)
                 .load(dataModel.icon) /*.override(100,300)*/
                 .error(R.drawable.commingsoon_sidenav)
@@ -107,8 +114,19 @@ class MenuListAdapter(
                 .error(R.drawable.commingsoon_sidenav)
                 .placeholder(R.drawable.commingsoon_sidenav)
                 .into(binding.icon)
-            Log.d("Clicking Event", "binder: clicked2--" + dataModel.icon + dataModel.displayName)
-            binding.titleMenu.setText(dataModel.displayName)
+            Log.d("Clicking Eventnew", "binder: clicked2--"  + dataModel.displayName)
+            if (BuildConfig.FLAVOR.equals("phando", ignoreCase = true)) {
+                if(dataModel.displayName.contentEquals("UV Live", ignoreCase = true)){
+                    binding.titleMenu.setText("Live")
+
+                }else{
+                    binding.titleMenu.setText(dataModel.displayName)
+
+                }
+            }else {
+                binding.titleMenu.setText(dataModel.displayName)
+            }
+
             binding.icon.imageTintList =
                 ColorStateList.valueOf(context.getColor(R.color.white))
             oldpostionSecond = oldpostion
@@ -118,7 +136,6 @@ class MenuListAdapter(
 
         fun redColor() {
             Log.d("Clicking Event", "binder: clicked2 Redjum--")
-
             if (BuildConfig.FLAVOR.equals("uvtv", ignoreCase = true)) {
                 binding.icon.imageTintList =
                     ColorStateList.valueOf(context.getColor(R.color.red_highlight_color))
