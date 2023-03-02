@@ -1,0 +1,108 @@
+{
+  "project_info": {
+    "project_number": "706340838066",
+    "project_id": "digiana-c5c72",
+    "storage_bucket": "digiana-c5c72.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706340838066:android:8e1a5315da2ee9608787ab",
+        "android_client_info": {
+          "package_name": "com.digiana.ott"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "706340838066-5b34i7ervo2ck67n8nls0kubm5pe25m2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.digiana.ott",
+            "certificate_hash": "f15790778a699e0eaa428b4f0d4e69f5f9c26f91"
+          }
+        },
+        {
+          "client_id": "706340838066-daoi0q46vdm3p0cfrl2cdo3qkg4aigs5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.digiana.ott",
+            "certificate_hash": "53479d2c9f3c1cd7455897795036706b31d7436e"
+          }
+        },
+        {
+          "client_id": "706340838066-iaobr2b6gvg9d54o1btspn1o0g3v1ldd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.digiana.ott",
+            "certificate_hash": "7ee4a7f5d9e929e160e6253c4f4a1b8b60891cc6"
+          }
+        },
+        {
+          "client_id": "706340838066-imis6afjfj469bb0uucflpvqniliss71.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.digiana.ott",
+            "certificate_hash": "27f7d19410fd72a9fa7c4b65c1a3b0e88c922bc3"
+          }
+        },
+        {
+          "client_id": "706340838066-jl5f8681r5fo2pugrbvtdda2vv6fom54.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.digiana.ott",
+            "certificate_hash": "2c006f409c2722a620538572fa3e074653ed2c56"
+          }
+        },
+        {
+          "client_id": "706340838066-hrub97tq7q7useps4h4fg9r0o6g5nra4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhZEpeBo1vjfnqfQkwemscN3UXjMgRTMU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "706340838066-hrub97tq7q7useps4h4fg9r0o6g5nra4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706340838066:android:81ee4b51506e90f88787ab",
+        "android_client_info": {
+          "package_name": "com.digiana.tv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "706340838066-hrub97tq7q7useps4h4fg9r0o6g5nra4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhZEpeBo1vjfnqfQkwemscN3UXjMgRTMU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "706340838066-hrub97tq7q7useps4h4fg9r0o6g5nra4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

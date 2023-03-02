@@ -64,6 +64,11 @@ android {
             versionCode 10
             versionName "2.0"
         }
+        digiana {
+            applicationId "com.digiana.tv"
+            versionCode 2
+            versionName "1.2"
+        }
         solidtv {
             applicationId "com.solidtv"
             versionCode 1

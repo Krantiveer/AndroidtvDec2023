@@ -37,7 +37,6 @@ class SplashScreenActivityTv : Activity() {
         val path = "android.resource://" + packageName + "/" + R.raw.splashvideio
         findViewById<VideoView>(R.id.imageView).setVideoURI(Uri.parse(path))
         findViewById<VideoView>(R.id.imageView).start()
-
         findViewById<VideoView>(R.id.imageView).setOnCompletionListener { openHome() }
 
 
