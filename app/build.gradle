@@ -61,13 +61,13 @@ android {
         }
         mitwa_tv {
             applicationId "com.tv.mitwa"
-            versionCode 10
-            versionName "2.0"
+            versionCode 11
+            versionName "1.11"
         }
         digiana {
             applicationId "com.digiana.tv"
-            versionCode 2
-            versionName "1.2"
+            versionCode 6
+            versionName "1.6"
         }
         solidtv {
             applicationId "com.solidtv"

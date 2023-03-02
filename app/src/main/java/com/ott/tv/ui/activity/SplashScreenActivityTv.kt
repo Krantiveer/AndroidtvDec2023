@@ -5,17 +5,16 @@ import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
-import androidx.fragment.app.FragmentActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.KeyEvent
+import android.view.View
+import android.widget.LinearLayout
 import android.widget.VideoView
-import com.google.firebase.FirebaseApp
-import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.firebase.ktx.Firebase
+import com.ott.tv.BuildConfig
+import com.ott.tv.Config
 import com.ott.tv.R
-import com.ott.tv.fragments.TvSplashFragment
 import com.ott.tv.utils.PreferenceUtils
 
 @SuppressLint("CustomSplashScreen")
@@ -31,13 +30,23 @@ class SplashScreenActivityTv : Activity() {
         setContentView(R.layout.activity_onboarding)
 
 
-        Log.e(TAG, "Screen : ${SplashScreenActivityTv::class.java.simpleName}")
+        if (BuildConfig.FLAVOR.equals("mitwa_tv", ignoreCase = true)||BuildConfig.FLAVOR.equals("uvtv", ignoreCase = true)) {
+            findViewById<LinearLayout>(R.id.splash_screen_ll).visibility==View.INVISIBLE
+
+            val path = "android.resource://" + packageName + "/" + R.raw.splashvideio
+            findViewById<VideoView>(R.id.imageView).setVideoURI(Uri.parse(path))
+            findViewById<VideoView>(R.id.imageView).start()
+            findViewById<VideoView>(R.id.imageView).setOnCompletionListener { openHome()
+
+            }
+
+        }else {
+            findViewById<LinearLayout>(R.id.splash_screen_ll).visibility=View.VISIBLE
+            openHomeFun()
+            Log.e(TAG, "Screen : ${SplashScreenActivityTv::class.java.simpleName}")
+}
 
 
-        val path = "android.resource://" + packageName + "/" + R.raw.splashvideio
-        findViewById<VideoView>(R.id.imageView).setVideoURI(Uri.parse(path))
-        findViewById<VideoView>(R.id.imageView).start()
-        findViewById<VideoView>(R.id.imageView).setOnCompletionListener { openHome() }
 
 
     }
@@ -53,8 +62,28 @@ class SplashScreenActivityTv : Activity() {
         }
             this.finishAffinity()
 
+    }
+    private fun openHomeFun(){
+        Handler().postDelayed({
+            if (this != null ) {
+                if (PreferenceUtils.isLoggedIn(this)) {
+                    val intent = Intent(this, NewMainActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    val intent = Intent(this, LoginChooserActivity::class.java)
+                    startActivity(intent)
+                    /*Intent intent = new Intent(getContext(), LeanbackActivity.class);
+                    startActivity(intent);
+                    */
+                }
+                this.finishAffinity()
+                this.overridePendingTransition(R.anim.enter, R.anim.exit)
+            }
+        }, 1000)
 
     }
+
+
 
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
