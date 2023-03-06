@@ -73,8 +73,6 @@ public class HomeFragment extends RowsSupportFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getActivity() != null) {
-          /*  id = getActivity().getIntent().getStringExtra("id");
-            activity = (LeanbackActivity) getActivity();*/
             title = getActivity().getIntent().getStringExtra("title");
         }
         if (getActivity() != null) {

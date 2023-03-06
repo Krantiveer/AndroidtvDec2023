@@ -153,10 +153,7 @@
             android:name=".ui.activity.ErrorActivity"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme" />
-        <activity
-            android:name=".ui.activity.VideoDetailsActivity"
-            android:screenOrientation="landscape"
-            android:theme="@style/AppTheme" />
+
         <activity
             android:name=".ui.activity.SignUpActivity"
             android:screenOrientation="landscape"
