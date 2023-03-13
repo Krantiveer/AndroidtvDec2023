@@ -10,6 +10,7 @@ import android.os.Handler
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.VideoView
 import com.ott.tv.BuildConfig
@@ -42,6 +43,10 @@ class SplashScreenActivityTv : Activity() {
 
         }else {
             findViewById<LinearLayout>(R.id.splash_screen_ll).visibility=View.VISIBLE
+            if(BuildConfig.FLAVOR.equals("candor",ignoreCase = true)){
+                findViewById<ImageView>(R.id.splash_img_view).visibility=View.INVISIBLE
+
+            }
             openHomeFun()
             Log.e(TAG, "Screen : ${SplashScreenActivityTv::class.java.simpleName}")
 }

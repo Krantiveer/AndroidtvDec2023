@@ -69,6 +69,12 @@ android {
             versionCode 6
             versionName "1.6"
         }
+
+        candor {
+            applicationId "com.tv.candor"
+            versionCode 4
+            versionName "1.4"
+        }
         solidtv {
             applicationId "com.solidtv"
             versionCode 1
@@ -83,6 +89,11 @@ android {
             applicationId "com.phandotv.tv"
             versionCode 1
             versionName "1"
+        }
+        toonstaan {
+            applicationId "com.toonstaan.tv"
+            versionCode 1
+            versionName "1.0"
         }
 
 

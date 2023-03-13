@@ -40,7 +40,12 @@ Website (optional)
  6. 1920 x 1080px (landscape)
  7.1920 x 1080px JPG or PNG (no transparency)
   (landscape)
-  
+
+  Playstore icon requrired
+  1.App icon [512X512]
+  2.App icon  [ 1,024 X 500 ]
+  3. Screen short [Upload 2–8 phone screenshots. Screenshots must be PNG or JPEG, up to 8 MB each, 16:9 or 9:16 aspect ratio, with each side between 320 px and 3,840 px]
+  4.Screen short [Upload up to eight 10-inch tablet screenshots. Screenshots must be PNG or JPEG, up to 8 MB each, 16:9 or 9:16 aspect ratio, with each side between 1,080 px and 7,680 px ]
 
 
  APPNAME--Digiana
@@ -51,3 +56,22 @@ Website (optional)
  storePassword= mitwatv
  keyAlias= mitwatv
  keyPassword= mitwatv
+
+ storeFile=uvtvott.jks
+ storePassword= uvtvott
+ keyAlias= key0
+ keyPassword= uvtvott
+
+1. firebase
+2.512X512 png
+
+
+Check list
+1. privacy policy should update
+2. Every contain should play.
+3. No paid contain
+4. Testing email/password provide
+
+
+
+
