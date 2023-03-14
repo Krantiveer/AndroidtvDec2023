@@ -1,7 +1,10 @@
 package com.ott.tv.fragments;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -21,6 +24,7 @@ import com.ott.tv.model.phando.ShowWatchlist;
 import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.Dashboard;
 import com.ott.tv.ui.activity.DetailsActivityPhando;
+import com.ott.tv.ui.activity.LoginChooserActivity;
 import com.ott.tv.ui.presenter.CardPresenter;
 import com.ott.tv.ui.presenter.HorizontalCardPresenter;
 import com.ott.tv.utils.PreferenceUtils;
@@ -53,7 +57,7 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
     public void onResume() {
         super.onResume();
         // setupFragment("");
-         fetchMovieData();
+        fetchMovieData();
     }
 
     @Override
@@ -97,6 +101,7 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
         //fetchMovieData(id, type, limit, offset);
         fetchMovieData();
     }
+
     private void setCustomPadding() {
         if (getView() != null) {
             getView().setPadding(920, 0, 10, -500);
@@ -116,18 +121,19 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
                 if (response.code() == 200) {
                     List<ShowWatchlist> movieList = response.body();
                     assert movieList != null;
-                    Log.i(TAG, "onResponse: thres--->"+PreferenceUtils.getInstance().getWatchListPref(mContext));
-                    if(movieList.size()==PreferenceUtils.getInstance().getWatchListPref(mContext) || movieList.size()<=0){
+                    Log.i(TAG, "onResponse: thres--->" + PreferenceUtils.getInstance().getWatchListPref(mContext));
+                    if (movieList.size() == PreferenceUtils.getInstance().getWatchListPref(mContext) || movieList.size() <= 0) {
                         return;
-                    }else{
-                    PreferenceUtils.getInstance().setWatchListPref(mContext,movieList.size());
+                    } else {
+                        PreferenceUtils.getInstance().setWatchListPref(mContext, movieList.size());
                     }
                     if (movieList.size() <= 0) {
                         dataAvailable = false;
-                        if(getContext()!=null){
+                        if (getContext() != null) {
 
-                        Toast.makeText(getContext(), getResources().getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
-                    }}
+                            Toast.makeText(getContext(), getResources().getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
+                        }
+                    }
                     mAdapter.clear();
                     for (ShowWatchlist movie : movieList) {
                         mAdapter.add(movie);
@@ -135,6 +141,10 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
 
                     mAdapter.notifyArrayItemRangeChanged(movieList.size() - 1, movieList.size() + movies.size());
                     //   movies.addAll(movieList);
+
+                } else if (response.code() == 401) {
+
+                    signOut();
 
                 }
             }
@@ -146,6 +156,27 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
         });
     }
 
+    private void signOut() {
+        if (getContext() != null && getActivity() != null) {
+            DatabaseHelper databaseHelper = new DatabaseHelper(getContext());
+
+            if (PreferenceUtils.getInstance().getAccessTokenPref(getContext()) != "") {
+                SharedPreferences.Editor editor = getContext().getSharedPreferences(Constants.USER_LOGIN_STATUS, MODE_PRIVATE).edit();
+                editor.putBoolean(Constants.USER_LOGIN_STATUS, false);
+                editor.apply();
+                databaseHelper.deleteUserData();
+                PreferenceUtils.clearSubscriptionSavedData(getContext());
+                PreferenceUtils.getInstance().setAccessTokenNPref(getContext(), "");
+                Toast.makeText(
+                        getContext(),
+                        "Please login",
+                        Toast.LENGTH_SHORT
+                ).show();
+                startActivity(new Intent(getContext(), LoginChooserActivity.class));
+                getActivity().finish();
+            }
+        }
+    }
 
 /*
     private void fetchMovieData(String id, int pageCount) {
