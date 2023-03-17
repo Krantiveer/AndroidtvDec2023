@@ -61,6 +61,7 @@ public class HomeBannerSecAdapter extends RecyclerView.Adapter<HomeBannerSecAdap
         if (listdata != null) {
 
             holder.title_name.setText(listdata.get(position).getName());
+            listdata.get(position).setViewallName(listdata.get(position).getName());
             HomeBannerSecAdapterbottom homeBannerSecAdapterbottom = new HomeBannerSecAdapterbottom(listdata.get(position), context.getApplicationContext());
             holder.rVBannerBottom.setAdapter(homeBannerSecAdapterbottom);
             // Here we have assigned the layout

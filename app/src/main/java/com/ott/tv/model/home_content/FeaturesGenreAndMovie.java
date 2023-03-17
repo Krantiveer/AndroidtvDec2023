@@ -32,6 +32,17 @@ public class FeaturesGenreAndMovie {
     @SerializedName("videos")
     @Expose
     private List<Video> videos = null;
+    @SerializedName("viewallName")
+    @Expose
+    private String viewallName;
+
+    public String getViewallName() {
+        return viewallName;
+    }
+
+    public void setViewallName(String viewallName) {
+        this.viewallName = viewallName;
+    }
 
     public String getGenreId() {
         return genreId;

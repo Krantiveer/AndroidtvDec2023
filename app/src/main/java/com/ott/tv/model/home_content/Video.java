@@ -148,6 +148,17 @@ public class Video implements Parcelable {
     private String runtime_in_minutes;
 
     private String duration_str;
+    @SerializedName("viewallName")
+    @Expose
+    private String viewallName;
+
+    public String getViewallName() {
+        return viewallName;
+    }
+
+    public void setViewallName(String viewallName) {
+        this.viewallName = viewallName;
+    }
 
     public String getDuration_str() {
         return duration_str;

@@ -21,6 +21,10 @@ public class LatestMovieList implements Parcelable {
     @Expose
     private String title;
 
+    @SerializedName("viewallTitle")
+    @Expose
+    private String viewallTitle;
+
     @SerializedName("description")
     @Expose
     private String description;
@@ -495,5 +499,13 @@ public class LatestMovieList implements Parcelable {
         }
         dest.writeStringList(genres);
         dest.writeTypedList(trailers);
+    }
+
+    public String getViewallTitle() {
+        return viewallTitle;
+    }
+
+    public void setViewallTitle(String viewallTitle) {
+        this.viewallTitle = viewallTitle;
     }
 }

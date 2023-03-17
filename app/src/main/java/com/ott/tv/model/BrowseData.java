@@ -38,6 +38,10 @@ public class BrowseData implements Parcelable {
     @Expose
     private String title;
 
+    @SerializedName("viewallTitle")
+    @Expose
+    private String viewallTitle;
+
     @SerializedName("displayType")
     @Expose
     private String displayType;
@@ -79,6 +83,14 @@ public class BrowseData implements Parcelable {
             image_orientation = in.readInt();
         }
         list = in.createTypedArrayList(LatestMovieList.CREATOR);
+    }
+
+    public String getViewallTitle() {
+        return viewallTitle;
+    }
+
+    public void setViewallTitle(String viewallTitle) {
+        this.viewallTitle = viewallTitle;
     }
 
     public static final Creator<BrowseData> CREATOR = new Creator<BrowseData>() {

@@ -155,6 +155,7 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
 
             holder.relativeLayout_parent.setOnClickListener(view -> {
                 //   Toast.makeText(view.getContext(), "click on item: " + position, Toast.LENGTH_LONG).show();
+                listdata.getVideos().get(position).setViewallName(listdata.getName());
                 detailActivity(listdata.getVideos().get(position));
                 if (sendInterfaceClickSec != null) {
                     sendInterfaceClickSec.sendclickSec();
@@ -216,16 +217,9 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
             if (videoContent.getType().equalsIgnoreCase("VM")) {
                 Intent intent = new Intent(context, ItemCountryActivity.class);
                 intent.putExtra("id", video.getVideosId());
-                if (videoContent.getGenres() != null) {
-                    if (videoContent.getGenres().size() > 0) {
-                        String genres;
-                        genres = videoContent.getGenres().get(0);
-                        for (int i = 1; i < videoContent.getGenres().size(); i++) {
-                            genres = genres.concat("," + videoContent.getGenres().get(i));
-                        }
-                        intent.putExtra("title", genres);
-                    }
-                }
+
+                intent.putExtra("title", videoContent.getViewallName());
+
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
 
