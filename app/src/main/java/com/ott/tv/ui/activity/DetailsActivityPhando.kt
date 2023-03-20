@@ -115,14 +115,15 @@ class DetailsActivityPhando : FragmentActivity() {
     private var movie_titleTwo: TextView? = null
 
     private var detailsFragment: DetailsFragment? = null
-   /* private var videodetail: PlaybackModel? = null
 
-    private lateinit var mediaSession: MediaSessionCompat
-    private lateinit var mediaSessionConnector: MediaSessionConnector
-    private val MEDIA_SESSION_TAG = "ReferenceAppKotlin"
-    private val TAG = "SearchFragment"
-*/
-   val TAG: String = "DetailsAcitivityPhando"
+    /* private var videodetail: PlaybackModel? = null
+
+     private lateinit var mediaSession: MediaSessionCompat
+     private lateinit var mediaSessionConnector: MediaSessionConnector
+     private val MEDIA_SESSION_TAG = "ReferenceAppKotlin"
+     private val TAG = "SearchFragment"
+ */
+    val TAG: String = "DetailsAcitivityPhando"
 
     companion object {
         var contentList: ArrayList<ShowWatchlist>? = null
@@ -403,9 +404,9 @@ class DetailsActivityPhando : FragmentActivity() {
                     } else {
                         episode_url = ""
                     }
-                } else if(response.code()==401){
+                } else if (response.code() == 401) {
                     signOut()
-                }else {
+                } else {
                     CMHelper.setSnackBar(
                         this@DetailsActivityPhando.currentFocus,
                         "We are sorry, This video content not available, Please try another",
@@ -606,40 +607,40 @@ class DetailsActivityPhando : FragmentActivity() {
         }
     }
 
-/*
-    private fun createMediaSession() {
-        mediaSession = MediaSessionCompat(this, MEDIA_SESSION_TAG)
-        Log.i(TAG, "createMediaSession: " + videodetail)
-        if (videodetail != null) {
-            mediaSessionConnector = MediaSessionConnector(mediaSession).apply {
+    /*
+        private fun createMediaSession() {
+            mediaSession = MediaSessionCompat(this, MEDIA_SESSION_TAG)
+            Log.i(TAG, "createMediaSession: " + videodetail)
+            if (videodetail != null) {
+                mediaSessionConnector = MediaSessionConnector(mediaSession).apply {
 
-                setQueueNavigator(SingleVideoQueueNavigator(videodetail!!, mediaSession))
-                setControlDispatcher(object : DefaultControlDispatcher() {
-                    override fun dispatchStop(player: Player, reset: Boolean): Boolean {
-                        // Treat stop commands as pause, this keeps ExoPlayer, MediaSession, etc.
-                        // in memory to allow for quickly resuming. This also maintains the playback
-                        // position so that the user will resume from the current position when backing
-                        // out and returning to this video
-                        // Timber.v("Playback stopped at ${player.currentPosition}")
-                        Log.i(TAG, "Playback stopped at ${player.currentPosition} ")
-                        // This both prevents playback from starting automatically and pauses it if
-                        // it's already playing
-                        player.playWhenReady = false
-                        return true
-                    }
-                })
+                    setQueueNavigator(SingleVideoQueueNavigator(videodetail!!, mediaSession))
+                    setControlDispatcher(object : DefaultControlDispatcher() {
+                        override fun dispatchStop(player: Player, reset: Boolean): Boolean {
+                            // Treat stop commands as pause, this keeps ExoPlayer, MediaSession, etc.
+                            // in memory to allow for quickly resuming. This also maintains the playback
+                            // position so that the user will resume from the current position when backing
+                            // out and returning to this video
+                            // Timber.v("Playback stopped at ${player.currentPosition}")
+                            Log.i(TAG, "Playback stopped at ${player.currentPosition} ")
+                            // This both prevents playback from starting automatically and pauses it if
+                            // it's already playing
+                            player.playWhenReady = false
+                            return true
+                        }
+                    })
+                }
             }
-        }
 
-        CastHelper.setMediaSessionTokenForCast(
-            mediaSession,
-            CastReceiverContext.getInstance().mediaManager
-        )
-    }
-*/
+            CastHelper.setMediaSessionTokenForCast(
+                mediaSession,
+                CastReceiverContext.getInstance().mediaManager
+            )
+        }
+    */
     override fun onPause() {
-    Log.i(TAG, "onPause: ")
-    if (Util.SDK_INT < 24)
+        Log.i(TAG, "onPause: ")
+        if (Util.SDK_INT <= 24)
             releasePlayer()
         super.onPause()
     }
@@ -803,8 +804,8 @@ class DetailsActivityPhando : FragmentActivity() {
                             //        detailsData=singleDetails
                             //----related post---------------
 
-                                detailsFragment!!.requireView().visibility == View.VISIBLE
-                                detailsFragment!!.setData()
+                            detailsFragment!!.requireView().visibility == View.VISIBLE
+                            detailsFragment!!.setData()
 
 
                         } else {
@@ -815,7 +816,7 @@ class DetailsActivityPhando : FragmentActivity() {
                         setMovieData()
 
                     }
-                }else if(response.code()==401){
+                } else if (response.code() == 401) {
                     signOut()
                 } else {
                     CMHelper.setSnackBar(
@@ -836,6 +837,7 @@ class DetailsActivityPhando : FragmentActivity() {
             }
         })
     }
+
     private fun signOut() {
         if (getContext() != null && this != null) {
             val databaseHelper = DatabaseHelper(this)
@@ -848,7 +850,11 @@ class DetailsActivityPhando : FragmentActivity() {
                 databaseHelper.deleteUserData()
                 PreferenceUtils.clearSubscriptionSavedData(this)
                 PreferenceUtils.getInstance().setAccessTokenNPref(this, "")
-                Toast.makeText(this,"You've been logged out because we have detected another login from your ID on a different device. You are not allowed to login on more than one device at a time.",Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    "You've been logged out because we have detected another login from your ID on a different device. You are not allowed to login on more than one device at a time.",
+                    Toast.LENGTH_SHORT
+                ).show()
                 startActivity(Intent(this, LoginChooserActivity::class.java))
                 finish()
             }
@@ -1165,6 +1171,8 @@ class DetailsActivityPhando : FragmentActivity() {
                     } else {
                         ToastMsg(this@DetailsActivityPhando).toastIconError(response.body()!!.message)
                     }
+                } else if (response.code() == 401) {
+                    signOut()
                 } else {
                     ToastMsg(this@DetailsActivityPhando).toastIconError(getString(R.string.error_toast))
                 }
