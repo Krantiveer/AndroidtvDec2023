@@ -22,6 +22,7 @@ import android.util.SparseArray;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.PluginStub;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -72,6 +73,10 @@ import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
 import com.google.android.exoplayer2.util.MimeTypes;
 import com.google.android.exoplayer2.util.Util;
 /*import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;*/
+import com.npaw.youbora.lib6.exoplayer2.Exoplayer2Adapter;
+import com.npaw.youbora.lib6.plugin.Options;
+import com.npaw.youbora.lib6.plugin.Plugin;
+import com.ott.tv.BuildConfig;
 import com.ott.tv.Config;
 import com.ott.tv.Constants;
 import com.ott.tv.R;
@@ -99,6 +104,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -122,7 +128,7 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
     protected @Nullable
     ExoPlayer player;
     protected PlayerView exoPlayerView;//playerView;
-
+    private Options youboraOptions;
     private LinearLayout rootLayout;
     private MediaSource mediaSource;
     private boolean isPlaying;
@@ -319,7 +325,7 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
             if (videos != null) {
                 if (videos.size() < 1)
                     bt_golive.setVisibility(View.GONE);
-                Log.i(TAG, "clickpausebutton: " + "--->"+"gone22");
+                Log.i(TAG, "clickpausebutton: " + "--->" + "gone22");
 
             }
             Log.i(TAG, "intiViews: " + model.getIstrailer());
@@ -421,7 +427,7 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
             player.seekToDefaultPosition();
             player.play();
             bt_golive.setVisibility(GONE);
-            Log.i(TAG, "clickpausebutton: " + "--->"+"gone2");
+            Log.i(TAG, "clickpausebutton: " + "--->" + "gone2");
 
             liveTvTextInController.setVisibility(VISIBLE);
             //open server dialog
@@ -930,6 +936,18 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
                             .createMediaSource(MediaItem.fromUri(url));
 // Create a player instance.
             player = new ExoPlayer.Builder(this).build();
+            if (Config.NPAW) {
+                youboraOptions = new Options();
+                youboraOptions.setAccountCode("phandodev");
+                youboraOptions.setUsername("phandodevadmin");
+                youboraOptions.setContentTitle(model.getTitle());
+                youboraOptions.setContentId(model.getMovieId());
+
+                Plugin youboraPlugin = new Plugin(youboraOptions, this);
+                youboraPlugin.setActivity(this);
+                Exoplayer2Adapter adapter = new Exoplayer2Adapter(player);
+                youboraPlugin.setAdapter(adapter);
+            }
             player.setMediaSource(hlsMediaSource);
             player.getTrackSelector();
             player.prepare();
