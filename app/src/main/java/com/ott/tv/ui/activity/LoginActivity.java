@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
@@ -19,9 +21,11 @@ import com.ott.tv.Constants;
 import com.ott.tv.R;
 import com.ott.tv.database.DatabaseHelper;
 import com.ott.tv.model.ActiveStatus;
+import com.ott.tv.model.CouponModel;
 import com.ott.tv.model.User;
 import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.LoginApi;
+import com.ott.tv.network.api.SendOTPApi;
 import com.ott.tv.network.api.SubscriptionApi;
 import com.ott.tv.utils.PreferenceUtils;
 import com.ott.tv.utils.ToastMsg;
@@ -32,8 +36,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class LoginActivity extends Activity {
-    private EditText etEmail = null, etPass = null;
+    private EditText etEmail = null, etPass = null,editCouponCode;
     private ProgressBar progressBar;
+    private LinearLayout ll_emailLogin,ll_coupon_code;
+    private Button bt_skip,bt_coupon;
 
 
     @Override
@@ -43,7 +49,24 @@ public class LoginActivity extends Activity {
         etEmail = findViewById(R.id.email_edit_text);
         etPass = findViewById(R.id.password_edit_text);
         progressBar = findViewById(R.id.progress_login);
+        ll_emailLogin=findViewById(R.id.ll_emailLogin);
+        editCouponCode=findViewById(R.id.editCouponCodeEmail);
+        ll_coupon_code=findViewById(R.id.ll_coupon_code);
+        bt_skip=findViewById(R.id.bt_skip);
+        bt_coupon=findViewById(R.id.bt_coupon);
 
+        bt_skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoMainScreen();
+            }
+        });
+        bt_coupon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoCouponScreen();
+            }
+        });
 // in onCreate method
 /*
         etEmail.addTextChangedListener(new TextWatcher() {
@@ -69,6 +92,68 @@ public class LoginActivity extends Activity {
         });
 */
 
+    }
+    private void gotoMainScreen(){
+
+
+        Intent intent = new Intent(getApplicationContext(), NewMainActivity.class);
+        startActivity(intent);
+        finishAffinity();
+        overridePendingTransition(R.anim.enter, R.anim.exit);
+
+
+    }
+    private void gotoCouponScreen(){
+
+        String couponCode=editCouponCode.getText().toString();
+        if(couponCode.isEmpty()||couponCode.trim().isEmpty()){
+            new ToastMsg(getApplicationContext()).toastIconError("Please Enter CouponCode" );
+
+        }else {
+            getVerifiedCoupon(couponCode);
+        }
+
+
+
+    }
+    private void getVerifiedCoupon(String couponCode) {
+        progressBar.setVisibility(View.VISIBLE);
+        Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+
+        SendOTPApi api = retrofit.create(SendOTPApi.class);
+        Call<CouponModel> call = api.assignCoupon(Config.API_KEY, couponCode);
+
+        call.enqueue(new Callback<CouponModel>() {
+            @Override
+            public void onResponse(@NonNull Call<CouponModel> call, @NonNull Response<CouponModel> response) {
+                if (response.code() == 200) {
+                    assert response.body() != null;
+                    if (response.body().getStatus().equalsIgnoreCase("success")) {
+
+                        gotoMainScreen();
+                        progressBar.setVisibility(View.GONE);
+
+                    } else {
+                        progressBar.setVisibility(View.GONE);
+                    }
+                } else {
+                    if (response.code() == 401) {
+                        new ToastMsg(getApplicationContext()).toastIconError(response.message());
+                    } else {
+
+                        new ToastMsg(getApplicationContext()).toastIconError(response.message() );
+                    }
+                    progressBar.setVisibility(View.GONE);
+
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CouponModel> call, @NonNull Throwable t) {
+                progressBar.setVisibility(View.GONE);
+                new ToastMsg(getApplicationContext()).toastIconError(getString(R.string.error_toast) + t);
+            }
+        });
     }
 
     public void loginBtn(View view) {
@@ -123,10 +208,13 @@ public class LoginActivity extends Activity {
 
                      /*   //save user login time, expire time
                         updateSubscriptionStatus(user.getUserId());*/
-                        Intent intent = new Intent(getApplicationContext(), NewMainActivity.class);
+
+                        ll_emailLogin.setVisibility(View.GONE);
+                        ll_coupon_code.setVisibility(View.VISIBLE);
+                        /*    Intent intent = new Intent(getApplicationContext(), NewMainActivity.class);
                         startActivity(intent);
                         finishAffinity();
-                        overridePendingTransition(R.anim.enter, R.anim.exit);
+                        overridePendingTransition(R.anim.enter, R.anim.exit);*/
 
                     } else {
                         new ToastMsg(LoginActivity.this).toastIconError(response.body().getData());

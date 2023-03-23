@@ -93,6 +93,100 @@
             android:gravity="center">
 
             <LinearLayout
+                android:id="@+id/ll_coupon_code"
+                android:layout_width="@dimen/_400sdp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:keepScreenOn="true"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:fontFamily="@font/roboto_light"
+                    android:gravity="center"
+                    android:text=" Please Enter "
+                    android:textColor="@color/textcolor"
+                    android:textSize="26sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:fontFamily="@font/roboto_light"
+                    android:gravity="center"
+                    android:text="Coupon Code"
+                    android:textColor="@color/textcolor"
+                    android:textSize="26sp" />
+
+
+                <EditText
+                    android:id="@+id/editCouponCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginVertical="@dimen/_20sp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:autofillHints=""
+                    android:background="@drawable/edit_focus"
+                    android:contentDescription="@string/mr_button_content_description"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center|start"
+                    android:hint="Enter Coupon Code"
+                    android:maxLines="1"
+                    android:paddingStart="@dimen/_15sp"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/default_text"
+                    android:textSize="@dimen/_16sdp"
+                    tools:ignore="RtlSymmetry" />
+
+                <Button
+                    android:id="@+id/bt_coupon"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:background="@drawable/button_focus"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:onClick="bt_ok_coupon"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:text="OK"
+                    android:textAllCaps="false"
+                    android:textColor="@color/btn_txt_color"
+                    android:textSize="@dimen/_16sdp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/bt_skip"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/button_focus"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:onClick="bt_verified_login"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:text="Skip"
+                    android:textAllCaps="false"
+                    android:textColor="@color/btn_txt_color"
+                    android:textSize="@dimen/_16sdp"
+                    android:textStyle="bold" />
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/ll_verify_otp"
                 android:layout_width="@dimen/_400sdp"
                 android:layout_height="match_parent"
@@ -128,35 +222,35 @@
 
 
                 <EditText
-                    android:textSize="@dimen/_16sdp"
-                    android:fontFamily="@font/roboto_regular"
                     android:id="@+id/editVerifiedOTP"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
-                    android:gravity="center|start"
                     android:layout_marginVertical="@dimen/_20sp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:autofillHints=""
                     android:background="@drawable/edit_focus"
                     android:contentDescription="@string/mr_button_content_description"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center|start"
                     android:hint="@string/enter_otp"
                     android:inputType="numberDecimal"
-                    android:maxLines="1"
                     android:maxEms="6"
+                    android:maxLines="1"
                     android:paddingStart="@dimen/_15sp"
                     android:paddingTop="@dimen/_10sdp"
                     android:paddingBottom="@dimen/_10sdp"
                     android:singleLine="true"
                     android:textColor="@color/white"
                     android:textColorHint="@color/default_text"
+                    android:textSize="@dimen/_16sdp"
                     tools:ignore="RtlSymmetry" />
+
                 <Button
-                    android:textStyle="bold"
-                    android:fontFamily="@font/roboto_medium"
                     android:id="@+id/bt_verified_login"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
                     android:background="@drawable/button_focus"
+                    android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:onClick="bt_verified_login"
                     android:paddingTop="@dimen/_10sdp"
@@ -164,44 +258,44 @@
                     android:text="@string/login"
                     android:textAllCaps="false"
                     android:textColor="@color/btn_txt_color"
-                    android:textSize="@dimen/_16sdp" />
+                    android:textSize="@dimen/_16sdp"
+                    android:textStyle="bold" />
 
                 <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_marginTop="@dimen/_20sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                   >
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_20sp"
+                    android:gravity="center">
 
                     <TextView
 
-                        android:fontFamily="@font/roboto_regular"
                         android:id="@+id/timer_txt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_regular"
                         android:text="Didn't receive OTP? Resend in"
                         android:textSize="@dimen/_14sdp" />
 
                     <TextView
-                        android:fontFamily="@font/roboto_medium"
                         android:id="@+id/timer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_medium"
                         android:text=""
                         android:textColor="@color/main_color"
                         android:textSize="@dimen/_14sdp" />
 
                     <Button
-                        android:layout_marginStart="@dimen/_2sdp"
-                        android:fontFamily="@font/roboto_medium"
                         android:id="@+id/bt_resend"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_35sdp"
                         android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_2sdp"
                         android:background="@drawable/button_focus_resend"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="Resend"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_16sdp"
@@ -232,10 +326,9 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:visibility="visible"
-                tools:visibility="visible">
+                tools:visibility="gone">
 
                 <TextView
-                    android:textStyle="normal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -243,7 +336,8 @@
                     android:gravity="center"
                     android:text="@string/login_with_mobile_number"
                     android:textColor="@color/textcolor"
-                    android:textSize="26sp" />
+                    android:textSize="26sp"
+                    android:textStyle="normal" />
 
                 <!--      <EditText
                           android:id="@+id/email_edit_text"
@@ -255,15 +349,15 @@
                           android:hint="@string/email_address"
                           android:inputType="textEmailAddress" />-->
                 <TextView
-                    android:layout_height="@dimen/_50sdp"
-                    android:gravity="center|start"
-                    android:fontFamily="@font/roboto_regular"
                     android:id="@+id/mobile_code_in"
                     android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
                     android:layout_marginTop="@dimen/_30sdp"
                     android:background="@drawable/edit_focus"
                     android:drawableEnd="@drawable/ic_drop_down"
                     android:drawablePadding="@dimen/_30sdp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center|start"
                     android:padding="10dp"
                     android:paddingEnd="@dimen/_17sdp"
                     android:text="@string/_91"
@@ -271,27 +365,27 @@
                     android:textSize="@dimen/_16sdp" />
 
                 <EditText
-                    android:focusable="true"
-                    android:textSize="@dimen/_16sdp"
                     android:id="@+id/editMobileNumber"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
-                    android:gravity="center|start"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:autofillHints=""
                     android:background="@drawable/edit_focus"
                     android:contentDescription="@string/mr_button_content_description"
+                    android:focusable="true"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center|start"
                     android:hint="@string/mobile_number"
                     android:inputType="numberDecimal"
-                    android:maxLines="1"
                     android:maxLength="10"
+                    android:maxLines="1"
                     android:paddingStart="@dimen/_10sdp"
                     android:paddingTop="@dimen/_10sdp"
                     android:paddingBottom="@dimen/_10sdp"
                     android:singleLine="true"
                     android:textColor="@color/white"
                     android:textColorHint="@color/default_text"
-                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="@dimen/_16sdp"
                     tools:ignore="RtlSymmetry" />
 
                 <!--
@@ -326,36 +420,36 @@
                         android:text="@string/login" />-->
 
                 <Button
-                    android:textStyle="bold"
-                    android:fontFamily="@font/roboto_medium"
                     android:id="@+id/send_otp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/button_focus"
+                    android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:paddingTop="@dimen/_10sdp"
                     android:paddingBottom="@dimen/_10sdp"
                     android:text="@string/send_otp"
                     android:textAllCaps="false"
                     android:textColor="@color/btn_txt_color"
-                    android:textSize="@dimen/_16sdp" />
+                    android:textSize="@dimen/_16sdp"
+                    android:textStyle="bold" />
 
                 <Button
-                    android:textStyle="bold"
-                    android:textSize="@dimen/_16sdp"
-                    android:fontFamily="@font/roboto_medium"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
                     android:layout_marginTop="30dp"
                     android:background="@drawable/button_focus"
                     android:drawableStart="@drawable/fui_ic_mail_white_24dp"
+                    android:fontFamily="@font/roboto_medium"
                     android:onClick="emailSignInBtnPhone"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
                     android:text="@string/login_with_email"
                     android:textAllCaps="false"
-                    android:textColor="@color/btn_txt_color" />
+                    android:textColor="@color/btn_txt_color"
+                    android:textSize="@dimen/_16sdp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
         </androidx.appcompat.widget.LinearLayoutCompat>

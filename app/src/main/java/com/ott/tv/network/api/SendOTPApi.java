@@ -1,6 +1,7 @@
 package com.ott.tv.network.api;
 
 
+import com.ott.tv.model.CouponModel;
 import com.ott.tv.model.Genre;
 import com.ott.tv.model.User;
 
@@ -26,6 +27,10 @@ public interface SendOTPApi {
     Call<User> postVerifyOTP(@Header("API-KEY") String apiKey,
                                @Field("mobile") String mobile,
                                @Field("otp") String otp);
+    @FormUrlEncoded
+    @POST("assignCoupon")
+    Call<CouponModel> assignCoupon(@Header("API-KEY") String apiKey,
+                                   @Field("coupon_code") String coupon_code);
 
 
 

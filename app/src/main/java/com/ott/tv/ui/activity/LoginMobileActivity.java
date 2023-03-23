@@ -28,6 +28,7 @@ import com.ott.tv.R;
 import com.ott.tv.countrycodepicker.CountryCodeActivity;
 import com.ott.tv.database.DatabaseHelper;
 import com.ott.tv.model.ActiveStatus;
+import com.ott.tv.model.CouponModel;
 import com.ott.tv.model.User;
 import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.SendOTPApi;
@@ -43,14 +44,14 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class LoginMobileActivity extends Activity {
-    private EditText editMobileNumber, editVerifiedOTP;
+    private EditText editMobileNumber, editVerifiedOTP,editCouponCode;
     private ProgressBar progressBar, progress_login_resend;
-    private Button send_otp, bt_verified_login, bt_resend;
+    private Button send_otp, bt_verified_login, bt_resend,bt_skip,bt_coupon;
     private String mob_number, country_code;
 
     private String countryCode, countryName;
     private TextView mobile_code_in, tv_verify_otp_mobileNo, timer_txt, timer, tv_timer;
-    private LinearLayout ll_send_otp, ll_verify_otp;
+    private LinearLayout ll_send_otp, ll_verify_otp,ll_coupon_code;
     private CountDownTimer cTimer;
 
 
@@ -73,6 +74,9 @@ public class LoginMobileActivity extends Activity {
         mobile_code_in = findViewById(R.id.mobile_code_in);
         tv_verify_otp_mobileNo = findViewById(R.id.tv_verify_otp_mobileNo);
         editVerifiedOTP = findViewById(R.id.editVerifiedOTP);
+        editCouponCode=findViewById(R.id.editCouponCode);
+        ll_coupon_code=findViewById(R.id.ll_coupon_code);
+
         editMobileNumber.requestFocus();
 
             mobile_code_in.setOnClickListener(view -> {
@@ -89,6 +93,8 @@ public class LoginMobileActivity extends Activity {
         timer_txt = findViewById(R.id.timer_txt);
         timer_txt.setText("Didn't receive OTP? Resend in ");
         bt_resend = findViewById(R.id.bt_resend);
+        bt_skip=findViewById(R.id.bt_skip);
+        bt_coupon=findViewById(R.id.bt_coupon);
 
 // in onCreate method
 /*
@@ -123,6 +129,19 @@ public class LoginMobileActivity extends Activity {
                 //   startTimer();
                 getSendOTP(mob_number, countryCode);
 
+            }
+        });
+
+        bt_skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoMainScreen();
+            }
+        });
+        bt_coupon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoCouponScreen();
             }
         });
     }
@@ -220,6 +239,68 @@ public class LoginMobileActivity extends Activity {
         requestQueue.add(stringRequest)
     }
 */
+    private void gotoMainScreen(){
+
+
+        Intent intent = new Intent(getApplicationContext(), NewMainActivity.class);
+        startActivity(intent);
+        finishAffinity();
+        overridePendingTransition(R.anim.enter, R.anim.exit);
+
+
+    }private void gotoCouponScreen(){
+
+        String couponCode=editCouponCode.getText().toString();
+        if(couponCode.isEmpty()||couponCode.trim().isEmpty()){
+            new ToastMsg(getApplicationContext()).toastIconError("Please Enter CouponCode" );
+
+        }else {
+            getVerifiedCoupon(couponCode);
+        }
+
+
+
+    }
+    private void getVerifiedCoupon(String couponCode) {
+        progressBar.setVisibility(View.VISIBLE);
+        Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+
+        SendOTPApi api = retrofit.create(SendOTPApi.class);
+        Call<CouponModel> call = api.assignCoupon(Config.API_KEY, couponCode);
+
+        call.enqueue(new Callback<CouponModel>() {
+            @Override
+            public void onResponse(@NonNull Call<CouponModel> call, @NonNull Response<CouponModel> response) {
+                if (response.code() == 200) {
+                    assert response.body() != null;
+                    if (response.body().getStatus().equalsIgnoreCase("success")) {
+
+                        gotoMainScreen();
+                        progressBar.setVisibility(View.GONE);
+
+                    } else {
+                        progressBar.setVisibility(View.GONE);
+                    }
+                } else {
+                    if (response.code() == 401) {
+                        new ToastMsg(getApplicationContext()).toastIconError(response.message());
+                    } else {
+
+                        new ToastMsg(getApplicationContext()).toastIconError(response.message() );
+                    }
+                    progressBar.setVisibility(View.GONE);
+
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CouponModel> call, @NonNull Throwable t) {
+                progressBar.setVisibility(View.GONE);
+                new ToastMsg(getApplicationContext()).toastIconError(getString(R.string.error_toast) + t);
+            }
+        });
+    }
+
     private void getVerifyOTP(String mob_number, String otp) {
         progress_login_resend.setVisibility(View.VISIBLE);
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
@@ -232,16 +313,6 @@ public class LoginMobileActivity extends Activity {
                     assert response.body() != null;
                     if (response.body().getStatus().equalsIgnoreCase("success")) {
                         User user = response.body();
-                       /* DatabaseHelper db = new DatabaseHelper(getApplicationContext());
-                        if (db.getUserDataCount() > 1) {
-                            db.deleteUserData();
-                        } else {
-                            if (db.getUserDataCount() == 0) {
-                                db.insertUserData(user);
-                            } else {
-                                db.updateUserData(user, 1);
-                            }
-                        }*/
                         PreferenceUtils.getInstance().setAccessTokenNPref(getApplicationContext(), response.body().getAccess_token());
                         SharedPreferences.Editor preferences = getSharedPreferences(Constants.USER_LOGIN_STATUS, MODE_PRIVATE).edit();
                         preferences.putBoolean(Constants.USER_LOGIN_STATUS, true);
@@ -249,11 +320,9 @@ public class LoginMobileActivity extends Activity {
 
                         //save user login time, expire time
                         // updateSubscriptionStatus(user.getUserId());
+                        ll_coupon_code.setVisibility(View.VISIBLE);
+                        ll_verify_otp.setVisibility(View.GONE);
 
-                        Intent intent = new Intent(getApplicationContext(), NewMainActivity.class);
-                        startActivity(intent);
-                        finishAffinity();
-                        overridePendingTransition(R.anim.enter, R.anim.exit);
 
                         progress_login_resend.setVisibility(View.GONE);
 
@@ -358,6 +427,7 @@ public class LoginMobileActivity extends Activity {
     }
 
 
+/*
     public void updateSubscriptionStatus(String userId) {
         //get saved user id
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
@@ -398,6 +468,7 @@ public class LoginMobileActivity extends Activity {
             }
         });
     }
+*/
 
     @Override
     public void onBackPressed() {
