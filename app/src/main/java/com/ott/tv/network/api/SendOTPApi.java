@@ -30,6 +30,7 @@ public interface SendOTPApi {
     @FormUrlEncoded
     @POST("assignCoupon")
     Call<CouponModel> assignCoupon(@Header("API-KEY") String apiKey,
+                                   @Header("Authorization") String token,
                                    @Field("coupon_code") String coupon_code);
 
 

@@ -266,9 +266,10 @@ public class LoginMobileActivity extends Activity {
     private void getVerifiedCoupon(String couponCode) {
         progressBar.setVisibility(View.VISIBLE);
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+        String accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(this);
 
         SendOTPApi api = retrofit.create(SendOTPApi.class);
-        Call<CouponModel> call = api.assignCoupon(Config.API_KEY, couponCode);
+        Call<CouponModel> call = api.assignCoupon(Config.API_KEY,accessToken, couponCode);
 
         call.enqueue(new Callback<CouponModel>() {
             @Override
