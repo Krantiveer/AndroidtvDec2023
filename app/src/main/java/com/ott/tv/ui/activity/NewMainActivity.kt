@@ -178,26 +178,7 @@ class NewMainActivity : FragmentActivity() {
                 this.finishAffinity()
             }
             dialog.show()
-
-
-
-
-
-
-
-      /*      val builder = AlertDialog.Builder(this)
-            builder.setMessage("Are you sure you want to exit?")
-                .setCancelable(false)
-                .setPositiveButton(
-                    "Yes"
-                ) { dialog, id -> finishAffinity() }
-                .setNegativeButton(
-
-                    "No"
-                ) { dialog, id -> dialog.cancel() }
-            val alert = builder.create()
-            alert.show()*/
-        }
+      }
     }
     private fun getSelectorDrawable(): StateListDrawable? {
         val out = StateListDrawable()

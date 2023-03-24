@@ -1,7 +1,11 @@
 package com.ott.tv.fragments;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -56,6 +60,7 @@ import com.ott.tv.model.home_content.Video;
 import com.ott.tv.model.phando.PlayerActivityNewCode;
 import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.HomeApi;
+import com.ott.tv.ui.activity.LoginChooserActivity;
 import com.ott.tv.utils.CMHelper;
 import com.ott.tv.utils.PreferenceUtils;
 
@@ -301,10 +306,17 @@ public class HomeFragmentNewUI extends Fragment {
                             }
                             ArrayList<Video> slideArrayList = homeContent.getSlider().getSlideArrayList();
 
-                        } else if (response.errorBody() != null) {
+                        }else if (response.code() == 401) {
+
+                            signOut();
+
+                        }
+                        else if (response.errorBody() != null) {
                             Toast.makeText(getContext(), response.errorBody().toString(), Toast.LENGTH_SHORT).show();
                             /*      CMHelper.setSnackBar(, response.errorBody().toString(), 2);*/
-                        } else {
+                        }
+
+                        else {
                             Toast.makeText(getContext(), "Sorry! Something went wrong. Please try again after some time", Toast.LENGTH_SHORT).show();
 
                             //          CMHelper.setSnackBar(requireView(), "Sorry! Something went wrong. Please try again after some time", 2);
@@ -328,6 +340,28 @@ public class HomeFragmentNewUI extends Fragment {
                     fm.beginTransaction().remove(mSpinnerFragment).commitAllowingStateLoss();
                 }
             });
+        }
+    }
+    private void signOut() {
+        if (getContext() != null && getActivity() != null) {
+            DatabaseHelper databaseHelper = new DatabaseHelper(getContext());
+        /*    String userId = databaseHelper.getUserData().getUserId();
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if (user != null) {
+                FirebaseAuth.getInstance().signOut();
+            }*/
+            if (PreferenceUtils.getInstance().getAccessTokenPref(getContext()) != "") {
+                SharedPreferences.Editor editor = getContext().getSharedPreferences(Constants.USER_LOGIN_STATUS, MODE_PRIVATE).edit();
+                editor.putBoolean(Constants.USER_LOGIN_STATUS, false);
+                editor.apply();
+                databaseHelper.deleteUserData();
+                PreferenceUtils.clearSubscriptionSavedData(getContext());
+                PreferenceUtils.getInstance().setAccessTokenNPref(getContext(), "");
+                startActivity(new Intent(getContext(), LoginChooserActivity.class));
+                Toast.makeText(getContext(),"You've been logged out because we have detected another login from your ID on a different device. You are not allowed to login on more than one device at a time.",Toast.LENGTH_SHORT).show();
+
+                getActivity().finish();
+            }
         }
     }
 

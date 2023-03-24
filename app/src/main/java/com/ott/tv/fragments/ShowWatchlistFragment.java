@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.leanback.app.VerticalGridSupportFragment;
 import androidx.leanback.widget.ArrayObjectAdapter;
 import androidx.leanback.widget.OnItemViewClickedListener;
@@ -109,6 +110,7 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
     }
 
     private void fetchMovieData() {
+
         Log.i(TAG, "onResponse: sec--->");
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
         Dashboard api = retrofit.create(Dashboard.class);
@@ -122,19 +124,25 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
                     List<ShowWatchlist> movieList = response.body();
                     assert movieList != null;
                     Log.i(TAG, "onResponse: thres--->" + PreferenceUtils.getInstance().getWatchListPref(mContext));
+
+
                     if (movieList.size() == PreferenceUtils.getInstance().getWatchListPref(mContext) || movieList.size() <= 0) {
+
+                        if (movieList.size() <= 0) {
+                            dataAvailable = false;
+                            if (getContext() != null) {
+                                final NoDataFragmant noDataFragmant = new NoDataFragmant();
+                                final FragmentManager fm = getFragmentManager();
+                                fm.beginTransaction().add(R.id.browserSection, noDataFragmant).commit();
+
+                             //   Toast.makeText(getContext(), getResources().getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
+                            }
+                        }
                         return;
                     } else {
                         PreferenceUtils.getInstance().setWatchListPref(mContext, movieList.size());
                     }
-                    if (movieList.size() <= 0) {
-                        dataAvailable = false;
-                        if (getContext() != null) {
-
-                            Toast.makeText(getContext(), getResources().getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                    mAdapter.clear();
+                                      mAdapter.clear();
                     for (ShowWatchlist movie : movieList) {
                         mAdapter.add(movie);
                     }
