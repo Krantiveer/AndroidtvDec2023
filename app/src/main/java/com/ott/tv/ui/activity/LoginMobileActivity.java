@@ -44,14 +44,14 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class LoginMobileActivity extends Activity {
-    private EditText editMobileNumber, editVerifiedOTP,editCouponCode;
+    private EditText editMobileNumber, editVerifiedOTP, editCouponCode;
     private ProgressBar progressBar, progress_login_resend;
-    private Button send_otp, bt_verified_login, bt_resend,bt_skip,bt_coupon;
+    private Button send_otp, bt_verified_login, bt_resend, bt_skip, bt_coupon;
     private String mob_number, country_code;
 
     private String countryCode, countryName;
     private TextView mobile_code_in, tv_verify_otp_mobileNo, timer_txt, timer, tv_timer;
-    private LinearLayout ll_send_otp, ll_verify_otp,ll_coupon_code;
+    private LinearLayout ll_send_otp, ll_verify_otp, ll_coupon_code;
     private CountDownTimer cTimer;
 
 
@@ -74,15 +74,15 @@ public class LoginMobileActivity extends Activity {
         mobile_code_in = findViewById(R.id.mobile_code_in);
         tv_verify_otp_mobileNo = findViewById(R.id.tv_verify_otp_mobileNo);
         editVerifiedOTP = findViewById(R.id.editVerifiedOTP);
-        editCouponCode=findViewById(R.id.editCouponCode);
-        ll_coupon_code=findViewById(R.id.ll_coupon_code);
+        editCouponCode = findViewById(R.id.editCouponCode);
+        ll_coupon_code = findViewById(R.id.ll_coupon_code);
 
         editMobileNumber.requestFocus();
 
-            mobile_code_in.setOnClickListener(view -> {
-                Intent i = new Intent(this, CountryCodeActivity.class);
-                startActivity(i);
-            });
+        mobile_code_in.setOnClickListener(view -> {
+            Intent i = new Intent(this, CountryCodeActivity.class);
+            startActivity(i);
+        });
 
         countryCode = PreferenceUtils.getInstance().getCountyCodePref(getApplicationContext());
         countryName = PreferenceUtils.getInstance().getCountyNamePref(getApplicationContext());
@@ -93,8 +93,8 @@ public class LoginMobileActivity extends Activity {
         timer_txt = findViewById(R.id.timer_txt);
         timer_txt.setText("Didn't receive OTP? Resend in ");
         bt_resend = findViewById(R.id.bt_resend);
-        bt_skip=findViewById(R.id.bt_skip);
-        bt_coupon=findViewById(R.id.bt_coupon);
+        bt_skip = findViewById(R.id.bt_skip);
+        bt_coupon = findViewById(R.id.bt_coupon);
 
 // in onCreate method
 /*
@@ -239,7 +239,7 @@ public class LoginMobileActivity extends Activity {
         requestQueue.add(stringRequest)
     }
 */
-    private void gotoMainScreen(){
+    private void gotoMainScreen() {
 
 
         Intent intent = new Intent(getApplicationContext(), NewMainActivity.class);
@@ -248,19 +248,21 @@ public class LoginMobileActivity extends Activity {
         overridePendingTransition(R.anim.enter, R.anim.exit);
 
 
-    }private void gotoCouponScreen(){
+    }
 
-        String couponCode=editCouponCode.getText().toString();
-        if(couponCode.isEmpty()||couponCode.trim().isEmpty()){
-            new ToastMsg(getApplicationContext()).toastIconError("Please Enter CouponCode" );
+    private void gotoCouponScreen() {
 
-        }else {
+        String couponCode = editCouponCode.getText().toString();
+        if (couponCode.isEmpty() || couponCode.trim().isEmpty()) {
+            new ToastMsg(getApplicationContext()).toastIconError("Please Enter CouponCode");
+
+        } else {
             getVerifiedCoupon(couponCode);
         }
 
 
-
     }
+
     private void getVerifiedCoupon(String couponCode) {
         progressBar.setVisibility(View.VISIBLE);
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
@@ -286,7 +288,7 @@ public class LoginMobileActivity extends Activity {
                         new ToastMsg(getApplicationContext()).toastIconError(response.message());
                     } else {
 
-                        new ToastMsg(getApplicationContext()).toastIconError(response.message() );
+                        new ToastMsg(getApplicationContext()).toastIconError(response.message());
                     }
                     progressBar.setVisibility(View.GONE);
 
@@ -320,9 +322,13 @@ public class LoginMobileActivity extends Activity {
 
                         //save user login time, expire time
                         // updateSubscriptionStatus(user.getUserId());
-                        ll_coupon_code.setVisibility(View.VISIBLE);
-                        ll_verify_otp.setVisibility(View.GONE);
 
+                        if (Config.CouponCodeEnable) {
+                            gotoMainScreen();
+                        } else {
+                            ll_coupon_code.setVisibility(View.VISIBLE);
+                            ll_verify_otp.setVisibility(View.GONE);
+                        }
 
                         progress_login_resend.setVisibility(View.GONE);
 

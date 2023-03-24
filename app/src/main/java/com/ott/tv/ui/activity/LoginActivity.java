@@ -36,10 +36,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class LoginActivity extends Activity {
-    private EditText etEmail = null, etPass = null,editCouponCode;
+    private EditText etEmail = null, etPass = null, editCouponCode;
     private ProgressBar progressBar;
-    private LinearLayout ll_emailLogin,ll_coupon_code;
-    private Button bt_skip,bt_coupon;
+    private LinearLayout ll_emailLogin, ll_coupon_code;
+    private Button bt_skip, bt_coupon;
 
 
     @Override
@@ -49,11 +49,11 @@ public class LoginActivity extends Activity {
         etEmail = findViewById(R.id.email_edit_text);
         etPass = findViewById(R.id.password_edit_text);
         progressBar = findViewById(R.id.progress_login);
-        ll_emailLogin=findViewById(R.id.ll_emailLogin);
-        editCouponCode=findViewById(R.id.editCouponCodeEmail);
-        ll_coupon_code=findViewById(R.id.ll_coupon_code);
-        bt_skip=findViewById(R.id.bt_skip);
-        bt_coupon=findViewById(R.id.bt_coupon);
+        ll_emailLogin = findViewById(R.id.ll_emailLogin);
+        editCouponCode = findViewById(R.id.editCouponCodeEmail);
+        ll_coupon_code = findViewById(R.id.ll_coupon_code);
+        bt_skip = findViewById(R.id.bt_skip);
+        bt_coupon = findViewById(R.id.bt_coupon);
 
         bt_skip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +93,8 @@ public class LoginActivity extends Activity {
 */
 
     }
-    private void gotoMainScreen(){
+
+    private void gotoMainScreen() {
 
 
         Intent intent = new Intent(getApplicationContext(), NewMainActivity.class);
@@ -103,19 +104,20 @@ public class LoginActivity extends Activity {
 
 
     }
-    private void gotoCouponScreen(){
 
-        String couponCode=editCouponCode.getText().toString();
-        if(couponCode.isEmpty()||couponCode.trim().isEmpty()){
-            new ToastMsg(getApplicationContext()).toastIconError("Please Enter CouponCode" );
+    private void gotoCouponScreen() {
 
-        }else {
+        String couponCode = editCouponCode.getText().toString();
+        if (couponCode.isEmpty() || couponCode.trim().isEmpty()) {
+            new ToastMsg(getApplicationContext()).toastIconError("Please Enter CouponCode");
+
+        } else {
             getVerifiedCoupon(couponCode);
         }
 
 
-
     }
+
     private void getVerifiedCoupon(String couponCode) {
         progressBar.setVisibility(View.VISIBLE);
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
@@ -141,7 +143,7 @@ public class LoginActivity extends Activity {
                         new ToastMsg(getApplicationContext()).toastIconError(response.message());
                     } else {
 
-                        new ToastMsg(getApplicationContext()).toastIconError(response.message() );
+                        new ToastMsg(getApplicationContext()).toastIconError(response.message());
                     }
                     progressBar.setVisibility(View.GONE);
 
@@ -208,9 +210,13 @@ public class LoginActivity extends Activity {
 
                      /*   //save user login time, expire time
                         updateSubscriptionStatus(user.getUserId());*/
+                        if (Config.CouponCodeEnable) {
+                            ll_emailLogin.setVisibility(View.GONE);
+                            ll_coupon_code.setVisibility(View.VISIBLE);
 
-                        ll_emailLogin.setVisibility(View.GONE);
-                        ll_coupon_code.setVisibility(View.VISIBLE);
+                        } else {
+                            gotoMainScreen();
+                        }
                         /*    Intent intent = new Intent(getApplicationContext(), NewMainActivity.class);
                         startActivity(intent);
                         finishAffinity();
