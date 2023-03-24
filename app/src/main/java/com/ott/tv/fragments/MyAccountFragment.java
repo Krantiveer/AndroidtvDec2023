@@ -124,6 +124,7 @@ public class MyAccountFragment extends Fragment {
                                 binding.userSubId.setVisibility(View.VISIBLE);
                                 binding.lytPlan.setVisibility(View.GONE);
                                 binding.lytPlan2.setVisibility(View.GONE);
+                                binding.expireDateTv.setVisibility(View.GONE);
                                 binding.myPackageName.setVisibility(View.GONE);
                                 binding.myPackagePrice.setVisibility(View.GONE);
                             } else {
@@ -134,6 +135,7 @@ public class MyAccountFragment extends Fragment {
                                 binding.myPackageName.setText(userProfile.getPackage_name());
                                 binding.myPackagePrice.setText("Rs. " + userProfile.getCurrent_subscription().getPrice().toString());
                                 binding.tvnoPlan.setVisibility(View.GONE);
+                                binding.expireDateTv.setVisibility(View.VISIBLE);
                                 binding.lytPlan.setVisibility(View.VISIBLE);
                                 binding.lytPlan2.setVisibility(View.VISIBLE);
                                 if (userProfile.getsubscription_end_date() != null) {
