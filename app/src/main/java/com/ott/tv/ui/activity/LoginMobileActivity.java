@@ -325,10 +325,11 @@ public class LoginMobileActivity extends Activity {
                         // updateSubscriptionStatus(user.getUserId());
 
                         if (Config.CouponCodeEnable) {
-                            gotoMainScreen();
-                        } else {
                             ll_coupon_code.setVisibility(View.VISIBLE);
                             ll_verify_otp.setVisibility(View.GONE);
+
+                        } else {
+                            gotoMainScreen();
                         }
 
                         progress_login_resend.setVisibility(View.GONE);
