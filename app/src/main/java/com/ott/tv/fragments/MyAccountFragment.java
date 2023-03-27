@@ -152,7 +152,12 @@ public class MyAccountFragment extends Fragment {
                             progressBar.setVisibility(View.GONE);
                             Toast.makeText(getContext(), "Sorry! Something went wrong. Please try again after some time", Toast.LENGTH_SHORT).show();
 
-                            //          CMHelper.setSnackBar(requireView(), "Sorry! Something went wrong. Please try again after some time", 2);
+
+                        }
+                        if (userProfile.getIs_review() == 1) {
+                            binding.userSubId.setVisibility(View.INVISIBLE);
+                        } else if (userProfile.getIs_review() == 0) {
+                            binding.userSubId.setVisibility(View.VISIBLE);
                         }
 
                     } else {
@@ -165,7 +170,7 @@ public class MyAccountFragment extends Fragment {
                         }
 
 
-                      //  Toast.makeText(getContext(), "Sorry! Something went wrong. Please try again after some time", Toast.LENGTH_SHORT).show();
+                        //  Toast.makeText(getContext(), "Sorry! Something went wrong. Please try again after some time", Toast.LENGTH_SHORT).show();
 
                         //CMHelper.setSnackBar(requireView(), "Sorry! Something went wrong. Please try again after some time", 2);
                     }

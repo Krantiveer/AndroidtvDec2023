@@ -59,6 +59,17 @@ public class UserProfile implements Parcelable {
     @Expose
     private Integer active;
 
+    @SerializedName("is_review")
+    @Expose
+    private Integer is_review;
+
+    public Integer getIs_review() {
+        return is_review;
+    }
+
+    public void setIs_review(Integer is_review) {
+        this.is_review = is_review;
+    }
     protected UserProfile(Parcel in) {
         user = in.readParcelable(UserProfileDetails.class.getClassLoader());
         if (in.readByte() == 0) {
