@@ -86,9 +86,9 @@ android {
             versionName "1"
         }
         phando {
-            applicationId "com.phandotv.tv"
-            versionCode 1
-            versionName "1"
+            applicationId "com.kranti.tv"
+            versionCode 2
+            versionName "2"
         }
         toonstaan {
             applicationId "com.toonstaan.tv"
