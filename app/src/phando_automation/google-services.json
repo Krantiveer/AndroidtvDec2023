@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "706116003629",
+    "project_id": "krantiott",
+    "storage_bucket": "krantiott.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706116003629:android:bad0918fd46b53cd4ad5a4",
+        "android_client_info": {
+          "package_name": "com.kranti.tv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "706116003629-8c5pv4cru7vbols1k5cuubcql2lkqdpe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxedAsjfMcWdNnxT0Kmzlr96BGwXsbsoc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "706116003629-8c5pv4cru7vbols1k5cuubcql2lkqdpe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

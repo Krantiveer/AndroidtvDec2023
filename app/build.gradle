@@ -90,6 +90,11 @@ android {
             versionCode 2
             versionName "2"
         }
+        phando_automation {
+            applicationId "com.kranti.tv"
+            versionCode 2
+            versionName "2"
+        }
         toonstaan {
             applicationId "com.toonstaan.tv"
             versionCode 2
