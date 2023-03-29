@@ -195,57 +195,59 @@ public class HomeFragmentNewUI extends Fragment {
 
     public void initVideoPlayer(String url, String type) {
         Log.i(TAG, "setTextViewBanner:1 " + url);
-
-        if (url != null && !url.isEmpty()) {
-            if (player != null) {
-                player.stop();
-                player.release();
-            }
-
-            DataSource.Factory dataSourceFactory = new DefaultHttpDataSource.Factory();
-// Create a HLS media source pointing to a playlist uri.
-            HlsMediaSource hlsMediaSource =
-                    new HlsMediaSource.Factory(dataSourceFactory)
-                            .createMediaSource(MediaItem.fromUri(url));
-// Create a player instance.
-            player = new ExoPlayer.Builder(requireContext()).build();
-            player.setMediaSource(hlsMediaSource);
-
-            player.prepare();
-            player.setPlayWhenReady(startAutoPlay);
-
-            exoPlayerView.setPlayer(player);
-
-            player.setPlayWhenReady(true);
-            player.addListener(new Player.Listener() {
-                @Override
-                public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-                    switch (playbackState) {
-                        case 1:
-                            Log.d("krantiv", "Ideal state");
-                            exoPlayerView.setVisibility(View.INVISIBLE);
-                            break;
-                        case 2:
-                            // exoPlayerView.setVisibility(View.INVISIBLE);
-                            Log.d("krantiv", "STATE_BUFFERING state");
-
-                            break;
-                        case 3:
-                            Log.d("krantiv", "STATE_READY state");
-                            if (exoPlayerView.getVisibility() == View.INVISIBLE)
-                                exoPlayerView.setVisibility(View.VISIBLE);
-                            break;
-                        case 4:
-                            exoPlayerView.setVisibility(View.INVISIBLE);
-                            Log.d("krantiv", "STATE_ENDED state");
-                            break;
-                    }
+        if (getContext() != null) {
+            if (url != null && !url.isEmpty()) {
+                if (player != null) {
+                    player.stop();
+                    player.release();
                 }
-            });
 
+                DataSource.Factory dataSourceFactory = new DefaultHttpDataSource.Factory();
+// Create a HLS media source pointing to a playlist uri.
+                HlsMediaSource hlsMediaSource =
+                        new HlsMediaSource.Factory(dataSourceFactory)
+                                .createMediaSource(MediaItem.fromUri(url));
+// Create a player instance.
+                player = new ExoPlayer.Builder(getContext()).build();
+                player.setMediaSource(hlsMediaSource);
+
+                player.prepare();
+                player.setPlayWhenReady(startAutoPlay);
+
+                exoPlayerView.setPlayer(player);
+
+                player.setPlayWhenReady(true);
+                player.addListener(new Player.Listener() {
+                    @Override
+                    public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
+                        switch (playbackState) {
+                            case 1:
+                                Log.d("krantiv", "Ideal state");
+                                exoPlayerView.setVisibility(View.INVISIBLE);
+                                break;
+                            case 2:
+                                // exoPlayerView.setVisibility(View.INVISIBLE);
+                                Log.d("krantiv", "STATE_BUFFERING state");
+
+                                break;
+                            case 3:
+                                Log.d("krantiv", "STATE_READY state");
+                                if (exoPlayerView.getVisibility() == View.INVISIBLE)
+                                    exoPlayerView.setVisibility(View.VISIBLE);
+                                break;
+                            case 4:
+                                exoPlayerView.setVisibility(View.INVISIBLE);
+                                Log.d("krantiv", "STATE_ENDED state");
+                                break;
+                        }
+                    }
+                });
+
+            }
         } else {
-          //  if (!player.isPlaying()) {
-            {   releasePlayer();
+            //  if (!player.isPlaying()) {
+            {
+                releasePlayer();
                 exoPlayerView.setVisibility(View.INVISIBLE);
 
             }
@@ -278,9 +280,8 @@ public class HomeFragmentNewUI extends Fragment {
             final FragmentManager fm = getFragmentManager();
 
             assert fm != null;
-            if(!BuildConfig.FLAVOR.equalsIgnoreCase("uvtv"))
-            {
-                   fm.beginTransaction().add(R.id.browserSection, mSpinnerFragment).commit();
+            if (!BuildConfig.FLAVOR.equalsIgnoreCase("uvtv")) {
+                fm.beginTransaction().add(R.id.browserSection, mSpinnerFragment).commit();
             }
             //     String userId = new DatabaseHelper(requireContext()).getUserData().getUserId();
             String accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(requireContext());
@@ -306,17 +307,14 @@ public class HomeFragmentNewUI extends Fragment {
                             }
                             ArrayList<Video> slideArrayList = homeContent.getSlider().getSlideArrayList();
 
-                        }else if (response.code() == 401) {
+                        } else if (response.code() == 401) {
 
                             signOut();
 
-                        }
-                        else if (response.errorBody() != null) {
+                        } else if (response.errorBody() != null) {
                             Toast.makeText(getContext(), response.errorBody().toString(), Toast.LENGTH_SHORT).show();
                             /*      CMHelper.setSnackBar(, response.errorBody().toString(), 2);*/
-                        }
-
-                        else {
+                        } else {
                             Toast.makeText(getContext(), "Sorry! Something went wrong. Please try again after some time", Toast.LENGTH_SHORT).show();
 
                             //          CMHelper.setSnackBar(requireView(), "Sorry! Something went wrong. Please try again after some time", 2);
@@ -342,6 +340,7 @@ public class HomeFragmentNewUI extends Fragment {
             });
         }
     }
+
     private void signOut() {
         if (getContext() != null && getActivity() != null) {
             DatabaseHelper databaseHelper = new DatabaseHelper(getContext());
@@ -358,7 +357,7 @@ public class HomeFragmentNewUI extends Fragment {
                 PreferenceUtils.clearSubscriptionSavedData(getContext());
                 PreferenceUtils.getInstance().setAccessTokenNPref(getContext(), "");
                 startActivity(new Intent(getContext(), LoginChooserActivity.class));
-                Toast.makeText(getContext(),"You've been logged out because we have detected another login from your ID on a different device. You are not allowed to login on more than one device at a time.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "You've been logged out because we have detected another login from your ID on a different device. You are not allowed to login on more than one device at a time.", Toast.LENGTH_SHORT).show();
 
                 getActivity().finish();
             }

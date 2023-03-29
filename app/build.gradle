@@ -23,7 +23,7 @@ android {
             variant.outputs.all {
                 def date = new Date()
                 def formattedDate = date.format('dd_MMM_yyyy')
-                outputFileName = "${variant.name + "v \t"}v${variant.versionName}${"_" + formattedDate}.apk"
+                outputFileName = "${variant.name +"_"}v${variant.versionName}${"_" + formattedDate}.apk"
             }
         }
     }
@@ -49,7 +49,7 @@ android {
         }
         scifiworld {
             applicationId "com.scifiworld.tv"
-            versionCode 2
+            versionCode 3
             versionName "1"
         }
 
@@ -92,8 +92,8 @@ android {
         }
         toonstaan {
             applicationId "com.toonstaan.tv"
-            versionCode 1
-            versionName "1.0"
+            versionCode 2
+            versionName "2.0"
         }
 
 
@@ -220,6 +220,8 @@ dependencies {
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.22'
 
     implementation 'com.nicepeopleatwork:exoplayer2-18-adapter:6.8.+'
+    // required to avoid crash on Android 12 API 31
+   // implementation 'androidx.work:work-runtime-ktx:2.7.1'
 
 
 

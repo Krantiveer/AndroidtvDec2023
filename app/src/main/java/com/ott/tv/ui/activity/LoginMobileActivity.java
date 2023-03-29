@@ -282,6 +282,9 @@ public class LoginMobileActivity extends Activity {
                         progressBar.setVisibility(View.GONE);
 
                     } else {
+
+                        new ToastMsg(getApplicationContext()).toastIconError(response.body().getMessage());
+
                         progressBar.setVisibility(View.GONE);
                     }
                 } else {
@@ -324,10 +327,9 @@ public class LoginMobileActivity extends Activity {
                         //save user login time, expire time
                         // updateSubscriptionStatus(user.getUserId());
 
-                        if (Config.CouponCodeEnable) {
+                        if (Config.CouponCodeEnable||user.getIs_subscribed()=="0") {
                             ll_coupon_code.setVisibility(View.VISIBLE);
                             ll_verify_otp.setVisibility(View.GONE);
-
                         } else {
                             gotoMainScreen();
                         }

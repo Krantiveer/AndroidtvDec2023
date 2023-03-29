@@ -137,6 +137,7 @@ public class LoginActivity extends Activity {
                         progressBar.setVisibility(View.GONE);
 
                     } else {
+                        new ToastMsg(getApplicationContext()).toastIconError(response.body().getMessage());
                         progressBar.setVisibility(View.GONE);
                     }
                 } else {

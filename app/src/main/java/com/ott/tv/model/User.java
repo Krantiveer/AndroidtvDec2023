@@ -1,9 +1,14 @@
 package com.ott.tv.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class User {
+public class User implements Parcelable {
 
     @SerializedName("status")
     @Expose
@@ -43,9 +48,50 @@ public class User {
     @SerializedName("error")
     @Expose
     private String error;
+    private String is_subscribed;
 
 
     public User() {
+    }
+
+    protected User(Parcel in) {
+        status = in.readString();
+        userId = in.readString();
+        name = in.readString();
+        email = in.readString();
+        gender = in.readString();
+        joinDate = in.readString();
+        lastLogin = in.readString();
+        data = in.readString();
+        imageUrl = in.readString();
+        message = in.readString();
+        access_token = in.readString();
+        error = in.readString();
+        is_subscribed = in.readString();
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
+
+    public void setAccess_token(String access_token) {
+        this.access_token = access_token;
+    }
+
+    public String getIs_subscribed() {
+        return is_subscribed;
+    }
+
+    public void setIs_subscribed(String is_subscribed) {
+        this.is_subscribed = is_subscribed;
     }
 
     public String getData() {
@@ -161,5 +207,27 @@ public class User {
                 ", access_token='" + access_token + '\'' +
                 ", error='" + error + '\'' +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(status);
+        dest.writeString(userId);
+        dest.writeString(name);
+        dest.writeString(email);
+        dest.writeString(gender);
+        dest.writeString(joinDate);
+        dest.writeString(lastLogin);
+        dest.writeString(data);
+        dest.writeString(imageUrl);
+        dest.writeString(message);
+        dest.writeString(access_token);
+        dest.writeString(error);
+        dest.writeString(is_subscribed);
     }
 }

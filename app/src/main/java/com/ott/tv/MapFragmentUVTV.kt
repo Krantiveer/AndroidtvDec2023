@@ -53,17 +53,15 @@ class MapFragmentUVTV : Fragment(),  ClickListener, AdapterClickListener {
 
 
         val stateList: MutableList<String> = ArrayList()
-        stateList.add("Uttar Pradesh")
+        stateList.add("Bharat")
         stateList.add("Andaman and Nicobar Islands")
         stateList.add("Andhra Pradesh")
         stateList.add("Arunachal Pradesh")
         stateList.add("Assam")
         stateList.add("Bihar")
-        stateList.add("Chandigarh")
         stateList.add("Chhattisgarh")
-        stateList.add("Dadra and Nagar Haveli")
         stateList.add("Daman and Diu")
-        stateList.add("New Delhi")
+        stateList.add("Delhi")
         stateList.add("Goa")
         stateList.add("Gujarat")
         stateList.add("Haryana")
@@ -79,21 +77,22 @@ class MapFragmentUVTV : Fragment(),  ClickListener, AdapterClickListener {
         stateList.add("Meghalaya")
         stateList.add("Mizoram")
         stateList.add("Nagaland")
-        stateList.add("Orissa")
-        stateList.add("Pondicherry")
+        stateList.add("Odisha")
+        stateList.add("Puducherry")
         stateList.add("Punjab")
         stateList.add("Rajasthan")
         stateList.add("Sikkim")
         stateList.add("Tamil Nadu")
         stateList.add("Telangana")
         stateList.add("Tripura")
+        stateList.add("Uttar Pradesh")
         stateList.add("Uttarakhand")
         stateList.add("West Bengal")
 
         binding!!.rvItemsStateList.setHasFixedSize(true)
         stateAdapter = StateListAdapter(stateList, this)
         binding!!.rvItemsStateList.adapter = stateAdapter
-        binding!!.txtSelectedState.text = "Uttar Pradesh"
+        binding!!.txtSelectedState.text = "Bharat"
         getState(binding!!.txtSelectedState.text.toString())
         val richPath =  binding!!.richPathView.findRichPathByName(binding!!.txtSelectedState.text.toString())
         if (richPath!= null){
@@ -140,9 +139,18 @@ class MapFragmentUVTV : Fragment(),  ClickListener, AdapterClickListener {
         }
     }
     fun getState(name: String) {
+        var nameState=name;
+        if (name=="Bharat"){
+         nameState=""
+        }
+
+
+
         val retrofit = RetrofitClient.getRetrofitInstance()
         val api = retrofit.create(CountryApi::class.java)
-        val call = api.getAllCountry(name)
+
+        val call = api.getAllCountry(nameState)
+
         call.enqueue(object : Callback<List<PlaybackModel?>> {
             override fun onResponse(
                 call: Call<List<PlaybackModel?>>,
