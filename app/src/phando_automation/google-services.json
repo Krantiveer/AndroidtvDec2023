@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "706116003629",
-    "project_id": "krantiott",
-    "storage_bucket": "krantiott.appspot.com"
+    "project_number": "590962327002",
+    "project_id": "phandoott",
+    "storage_bucket": "phandoott.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:706116003629:android:bad0918fd46b53cd4ad5a4",
+        "mobilesdk_app_id": "1:590962327002:android:3fb3f35f43ceb0b2c4d4e3",
         "android_client_info": {
-          "package_name": "com.kranti.tv"
+          "package_name": "com.phandodemo.tv"
         }
       },
       "oauth_client": [
         {
-          "client_id": "706116003629-8c5pv4cru7vbols1k5cuubcql2lkqdpe.apps.googleusercontent.com",
+          "client_id": "590962327002-o9fe9cqt7js1k6q32a0h0is4a23a3pdl.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAxedAsjfMcWdNnxT0Kmzlr96BGwXsbsoc"
+          "current_key": "AIzaSyC76fHS67HXNGBCCPb-TKeFmXAo0Odak34"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "706116003629-8c5pv4cru7vbols1k5cuubcql2lkqdpe.apps.googleusercontent.com",
+              "client_id": "590962327002-o9fe9cqt7js1k6q32a0h0is4a23a3pdl.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

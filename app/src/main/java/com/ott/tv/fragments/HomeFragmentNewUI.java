@@ -195,7 +195,7 @@ public class HomeFragmentNewUI extends Fragment {
 
     public void initVideoPlayer(String url, String type) {
         Log.i(TAG, "setTextViewBanner:1 " + url);
-        if (getContext() != null) {
+        if (requireContext() != null) {
             if (url != null && !url.isEmpty()) {
                 if (player != null) {
                     player.stop();
@@ -208,7 +208,7 @@ public class HomeFragmentNewUI extends Fragment {
                         new HlsMediaSource.Factory(dataSourceFactory)
                                 .createMediaSource(MediaItem.fromUri(url));
 // Create a player instance.
-                player = new ExoPlayer.Builder(getContext()).build();
+                player = new ExoPlayer.Builder(requireContext()).build();
                 player.setMediaSource(hlsMediaSource);
 
                 player.prepare();
@@ -243,15 +243,15 @@ public class HomeFragmentNewUI extends Fragment {
                     }
                 });
 
-            }
-        } else {
-            //  if (!player.isPlaying()) {
-            {
-                releasePlayer();
-                exoPlayerView.setVisibility(View.INVISIBLE);
+            }else {
+                //  if (!player.isPlaying()) {
+                {
+                    releasePlayer();
+                    exoPlayerView.setVisibility(View.INVISIBLE);
+
+                }
 
             }
-
         }
     }
 
