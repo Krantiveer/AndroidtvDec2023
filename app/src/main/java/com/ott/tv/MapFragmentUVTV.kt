@@ -140,9 +140,9 @@ class MapFragmentUVTV : Fragment(),  ClickListener, AdapterClickListener {
     }
     fun getState(name: String) {
         var nameState=name;
-        if (name=="Bharat"){
+        /*if (name=="Bharat"){
          nameState=""
-        }
+        }*/
 
 
 
