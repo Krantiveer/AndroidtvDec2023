@@ -195,7 +195,7 @@ public class HomeFragmentNewUI extends Fragment {
 
     public void initVideoPlayer(String url, String type) {
         Log.i(TAG, "setTextViewBanner:1 " + url);
-        if (requireContext() != null) {
+        if (getContext() != null) {
             if (url != null && !url.isEmpty()) {
                 if (player != null) {
                     player.stop();
@@ -208,7 +208,7 @@ public class HomeFragmentNewUI extends Fragment {
                         new HlsMediaSource.Factory(dataSourceFactory)
                                 .createMediaSource(MediaItem.fromUri(url));
 // Create a player instance.
-                player = new ExoPlayer.Builder(requireContext()).build();
+                player = new ExoPlayer.Builder(getContext()).build();
                 player.setMediaSource(hlsMediaSource);
 
                 player.prepare();
@@ -283,7 +283,6 @@ public class HomeFragmentNewUI extends Fragment {
             if (!BuildConfig.FLAVOR.equalsIgnoreCase("uvtv")) {
                 fm.beginTransaction().add(R.id.browserSection, mSpinnerFragment).commit();
             }
-            //     String userId = new DatabaseHelper(requireContext()).getUserData().getUserId();
             String accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(requireContext());
             Retrofit retrofit = RetrofitClient.getRetrofitInstanceWithV1();
             HomeApi api = retrofit.create(HomeApi.class);
@@ -296,11 +295,6 @@ public class HomeFragmentNewUI extends Fragment {
                             homeContent = response.body();
                             homeContent.setHomeContentId(1);
                             Constants.IS_FROM_HOME = true;
-                          /*  if (homeContent.getSlider().getSlideArrayList() != null&&homeContent.getSlider().getSlideArrayList().size()>0) {
-
-                                setTextViewBanner(homeContent.getSlider().getSlideArrayList().get(0));
-                                loadRows(homeContent.getFeaturesGenreAndMovie(), homeContent.getSlider().getSlideArrayList());
-                            } else */
                             if (homeContent.getFeaturesGenreAndMovie() != null && !homeContent.getFeaturesGenreAndMovie().isEmpty()) {
                                 setTextViewBanner(homeContent.getFeaturesGenreAndMovie().get(0).getVideos().get(0));
                                 loadRows(homeContent.getFeaturesGenreAndMovie());
@@ -308,22 +302,17 @@ public class HomeFragmentNewUI extends Fragment {
                             ArrayList<Video> slideArrayList = homeContent.getSlider().getSlideArrayList();
 
                         } else if (response.code() == 401) {
-
                             signOut();
-
                         } else if (response.errorBody() != null) {
                             Toast.makeText(getContext(), response.errorBody().toString(), Toast.LENGTH_SHORT).show();
-                            /*      CMHelper.setSnackBar(, response.errorBody().toString(), 2);*/
                         } else {
                             Toast.makeText(getContext(), "Sorry! Something went wrong. Please try again after some time", Toast.LENGTH_SHORT).show();
 
-                            //          CMHelper.setSnackBar(requireView(), "Sorry! Something went wrong. Please try again after some time", 2);
                         }
 
                     } else {
                         Toast.makeText(getContext(), "Sorry! Something went wrong. Please try again after some time", Toast.LENGTH_SHORT).show();
 
-                        //CMHelper.setSnackBar(requireView(), "Sorry! Something went wrong. Please try again after some time", 2);
                     }
                     /*recyclerViewBannerTop.scrollToPosition(1);*/
                     fm.beginTransaction().remove(mSpinnerFragment).commitAllowingStateLoss();

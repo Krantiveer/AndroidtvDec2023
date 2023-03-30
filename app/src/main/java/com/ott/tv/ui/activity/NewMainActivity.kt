@@ -21,6 +21,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
+import com.ott.tv.BuildConfig
 import com.ott.tv.MapFragmentUVTV
 import com.ott.tv.R
 import com.ott.tv.databinding.ActivityNewMainBinding
@@ -122,7 +123,7 @@ class NewMainActivity : FragmentActivity() {
             // Need to update application
             val dialog = androidx.appcompat.app.AlertDialog.Builder(this, R.style.MaterialDialogSheet)
             dialog.setTitle("Update Available")
-            dialog.setMessage("A new version of " + getString(R.string.app_name) + " is available on Play Store. Do you want to update?")
+            dialog.setMessage("A new version of " + getString(R.string.app_name) + " is available on App Store. Do you want to update?")
             dialog.setCancelable(false)
 
             dialog.setPositiveButton("Yes, update") { dialog, which ->
@@ -206,9 +207,18 @@ class NewMainActivity : FragmentActivity() {
 
     fun onMenuSelection(type: String, title: String) {
         if (type.equals("search") || type.equals("Search")) {
-            val intent = Intent(this, SearchActivity_Phando::class.java)
+
+            if (BuildConfig.FLAVOR.equals("uvtv", ignoreCase = true)) {
+
+            }else{
+
+                val intent = Intent(this, SearchActivity_Phando::class.java)
+                startActivity(intent)
+                return
+            }
+     /*       val intent = Intent(this, SearchActivity_Phando::class.java)
             startActivity(intent)
-            return
+            return*/
         }
         binding.tvTitle.text = title
         if (title.isEmpty()) {
@@ -225,10 +235,24 @@ class NewMainActivity : FragmentActivity() {
 
         )
         if (type.equals("search") || type.equals("Search")) {
-            PreferenceUtils.getInstance().setWatchListPref(this, 0)
 
-            val intent = Intent(this, SearchActivity_Phando::class.java)
-            startActivity(intent)
+            if (BuildConfig.FLAVOR.equals("uvtv", ignoreCase = true)) {
+
+                val newFragment = SearchPhandoUVTVFragment()
+                newFragment.setArguments(bundle)
+                supportFragmentManager.beginTransaction()
+                    .replace(binding.browserSection.id, newFragment)
+                    .commit()
+            }else{
+                PreferenceUtils.getInstance().setWatchListPref(this, 0)
+                val intent = Intent(this, SearchActivity_Phando::class.java)
+                startActivity(intent)
+                return
+            }
+/*
+
+
+*/
         }
         else if (type.equals("watchlist") || type.equals("Watchlist")) {
             val newFragment = ShowWatchlistFragment()

@@ -11,7 +11,7 @@ android {
     flavorDimensions "default"
     defaultConfig {
         applicationId "com.uvtv.tv"
-        minSdkVersion 23
+        minSdkVersion 22
         targetSdkVersion 33
         versionCode 1
         versionName "1"
@@ -49,7 +49,7 @@ android {
         }
         scifiworld {
             applicationId "com.scifiworld.tv"
-            versionCode 3
+            versionCode 4
             versionName "1"
         }
 
@@ -86,14 +86,14 @@ android {
             versionName "1"
         }
         phando {
-            applicationId "com.kranti.tv"
+            applicationId "com.phando.tv"
             versionCode 2
             versionName "2"
         }
         phando_automation {
-            applicationId "com.kranti.tv"
-            versionCode 2
-            versionName "2"
+            applicationId "com.phandodemo.tv"
+            versionCode 1
+            versionName "1"
         }
         toonstaan {
             applicationId "com.toonstaan.tv"
@@ -151,7 +151,7 @@ dependencies {
     implementation 'androidx.vectordrawable:vectordrawable:1.2.0-alpha02'
     implementation 'androidx.browser:browser:1.3.0'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.recyclerview:recyclerview:1.3.0'
     implementation 'com.github.tarek360.RichPath:animator:0.1.1'
 
     // For control over item selection of both touch and mouse driven selection

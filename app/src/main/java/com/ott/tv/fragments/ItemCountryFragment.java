@@ -66,7 +66,7 @@ public class ItemCountryFragment extends VerticalGridSupportFragment {
         id = getActivity().getIntent().getStringExtra("id");
         activity = (ItemCountryActivity) getActivity();
 
-        setTitle(title);
+        setTitle("\t\t                                     "+title);
         //bgHelper = new BackgroundHelper(getActivity());
 
         setOnItemViewClickedListener(getDefaultItemViewClickedListener());
