@@ -60,6 +60,7 @@ class MapFragmentUVTV : Fragment(),  ClickListener, AdapterClickListener {
         stateList.add("Assam")
         stateList.add("Bihar")
         stateList.add("Chhattisgarh")
+        stateList.add("Chandigrah")
         stateList.add("Daman and Diu")
         stateList.add("Delhi")
         stateList.add("Goa")
@@ -77,8 +78,8 @@ class MapFragmentUVTV : Fragment(),  ClickListener, AdapterClickListener {
         stateList.add("Meghalaya")
         stateList.add("Mizoram")
         stateList.add("Nagaland")
-        stateList.add("Odisha")
-        stateList.add("Puducherry")
+        stateList.add("Orissa")
+        stateList.add("Poducherry")
         stateList.add("Punjab")
         stateList.add("Rajasthan")
         stateList.add("Sikkim")
@@ -113,9 +114,10 @@ class MapFragmentUVTV : Fragment(),  ClickListener, AdapterClickListener {
         val manager = LinearLayoutManager(activity)
         binding!!.rvList.layoutManager = manager
         binding!!.rvList.setHasFixedSize(true)
-        adapter = MapListAdapter(data,requireContext(), this)
+        if(context!=null){
+        adapter = context?.let { MapListAdapter(data, it.applicationContext, this) }
         binding!!.rvList.adapter = adapter
-    }
+    }}
 
     override fun onDestroy() {
         super.onDestroy()

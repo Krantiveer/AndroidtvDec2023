@@ -106,8 +106,8 @@ public class MyAccountFragment extends Fragment {
                         binding.lytTopCard.setVisibility(View.VISIBLE);
                         if (response.code() == 200 && response.body() != null) {
                             userProfile = response.body();
-                        if(requireActivity()!=null) {
-                            Glide.with(requireActivity())
+                        if(getActivity()!=null) {
+                            Glide.with(getActivity())
                                     .load(userProfile.getUser().getImage())
                                     .error(R.drawable.user_icon_demo)
                                     .placeholder(R.drawable.user_icon_demo)

@@ -44,8 +44,8 @@ android {
 
         uvtv {
             applicationId "com.uvtv.tv"
-            versionCode 8
-            versionName "1.8"
+            versionCode 9
+            versionName "1.9"
         }
         scifiworld {
             applicationId "com.scifiworld.tv"
