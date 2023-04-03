@@ -188,6 +188,7 @@
                     android:background="@color/login_background"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal"
+                    android:id="@+id/ll_media_plan"
                     tools:visibility="visible"
                     android:padding="@dimen/_10sdp">
 

@@ -42,6 +42,11 @@ android {
     }
     productFlavors {
 
+        phando_automation {
+            applicationId "com.phandodemo.tv"
+            versionCode 2
+            versionName "1"
+        }
         uvtv {
             applicationId "com.uvtv.tv"
             versionCode 9
@@ -90,11 +95,7 @@ android {
             versionCode 2
             versionName "2"
         }*/
-        phando_automation {
-            applicationId "com.phandodemo.tv"
-            versionCode 1
-            versionName "1"
-        }
+
         toonstaan {
             applicationId "com.toonstaan.tv"
             versionCode 3
