@@ -85,11 +85,11 @@ android {
             versionCode 9
             versionName "1"
         }
-        phando {
+        /*phando {
             applicationId "com.phando.tv"
             versionCode 2
             versionName "2"
-        }
+        }*/
         phando_automation {
             applicationId "com.phandodemo.tv"
             versionCode 1
@@ -97,9 +97,10 @@ android {
         }
         toonstaan {
             applicationId "com.toonstaan.tv"
-            versionCode 2
-            versionName "2.0"
+            versionCode 3
+            versionName "1.0"
         }
+
 
 
     }

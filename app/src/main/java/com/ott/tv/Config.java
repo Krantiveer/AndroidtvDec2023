@@ -6,7 +6,6 @@ public class Config {
     //public static final String DOMAIN = "https://lifeott.com/";
 //    public static final String DOMAIN = "https://uvtvstage.phando.com/";
 
-
     public static final String DOMAIN = "https://www.uvtv.in/";
     public static final String Publisher_id = "4";
     public static final String WebsiteURL = "https://www.uvtv.in/";
@@ -33,7 +32,8 @@ public class Config {
 */
 
 
-    /*public static final String DOMAIN = "https:/www.toonstaan.tv/";
+/*
+    public static final String DOMAIN = "https:/www.toonstaan.tv/";
     public static final String Publisher_id = "53";
     public static final String WebsiteURL = "https:/www.toonstaan.tv/";
 */
