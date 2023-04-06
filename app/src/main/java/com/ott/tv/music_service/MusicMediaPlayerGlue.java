@@ -52,8 +52,7 @@ import java.util.List;
  * notify listeners passed from the fragment.
  * <p/>
  */
-public class MusicMediaPlayerGlue extends MediaPlayerGlue implements
-        MusicPlaybackService.ServiceCallback {
+public class MusicMediaPlayerGlue {
 
     private static final String TAG = "MusicMediaPlayerGlue";
     private final Context mContext;
@@ -68,21 +67,7 @@ public class MusicMediaPlayerGlue extends MediaPlayerGlue implements
 
     private ServiceConnection mPlaybackServiceConnection = new ServiceConnection() {
         @Override
-        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            MusicPlaybackService.LocalBinder binder = (MusicPlaybackService.LocalBinder) iBinder;
-            mPlaybackService = binder.getService();
-
-            if (mPlaybackService.getCurrentMediaItem() == null) {
-                if (mStartPlayingAfterConnect && mMediaMetaData != null) {
-                    prepareAndPlay(mMediaMetaData);
-                }
-            }
-
-            mPlaybackService.registerServiceCallback(MusicMediaPlayerGlue.this);
-            mServiceCallbackRegistered = true;
-
-            Log.d("MusicPlaybackService", "mPlaybackServiceConnection connected!");
-        }
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {}
 
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
@@ -99,7 +84,6 @@ public class MusicMediaPlayerGlue extends MediaPlayerGlue implements
     };
 
     public MusicMediaPlayerGlue(Context context) {
-        super(context);
         mContext = context;
 
         startAndBindToServiceIfNeeded();
@@ -123,45 +107,18 @@ public class MusicMediaPlayerGlue extends MediaPlayerGlue implements
         mOnBindServiceHasBeenCalled = true;
     }
 
-    @Override
-    public void onCurrentItemChanged(MediaMetaData currentMediaItem) {
-        if (mPlaybackService == null) {
-            // onMetadataChanged updates both the metadata info on the player as well as the progress bar
-            onMetadataChanged();
-            return;
-        }
-        setMediaMetaData(currentMediaItem);
-        if (mPlaybackService != null) {
-            int repeatState = mPlaybackService.getRepeatState();
-            int mappedActionIndex = mapServiceRepeatStateToActionIndex(repeatState);
-            // if the activity's current repeat state differs from the service's, update it with the
-            // repeatState of the service
-            if (mRepeatAction.getIndex() != mappedActionIndex) {
-                mRepeatAction.setIndex(mappedActionIndex);
-                notifyItemChanged((ArrayObjectAdapter)
-                        getControlsRow().getSecondaryActionsAdapter(), mRepeatAction);
-            }
-        }
-    }
 
-    @Override
+
     public void onMediaStateChanged(int currentMediaState) {
-        onStateChanged();
+
     }
 
     public void openServiceCallback() {
-        if (mPlaybackService != null && !mServiceCallbackRegistered) {
-            mPlaybackService.registerServiceCallback(this);
-            mServiceCallbackRegistered = true;
-        }
+
     }
 
     public void releaseServiceCallback() {
-        if (mPlaybackService != null && mServiceCallbackRegistered) {
-            mPlaybackService.unregisterAll();
-            mServiceCallbackRegistered = false;
-        }
-    }
+         }
     /**
      * Unbinds glue from the playback service. Called when the fragment is destroyed (pressing back)
      */
@@ -170,77 +127,37 @@ public class MusicMediaPlayerGlue extends MediaPlayerGlue implements
         mContext.unbindService(mPlaybackServiceConnection);
     }
 
-    @Override
     public void onActionClicked(Action action) {
         // If either 'Shuffle' or 'Repeat' has been clicked we need to make sure the acitons index
         // is incremented and the UI updated such that we can display the new state.
-        super.onActionClicked(action);
         if (action instanceof PlaybackControlsRow.RepeatAction) {
             int index = ((PlaybackControlsRow.RepeatAction) action).getIndex();
             if (mPlaybackService != null) {
-                mPlaybackService.setRepeatState(mapActionIndexToServiceRepeatState(index));
             }
         }
     }
 
-    @Override
     public boolean isMediaPlaying() {
-        return (mPlaybackService != null) && mPlaybackService.isPlaying();
+return true;
     }
 
-    @Override
-    public int getMediaDuration() {
-        return (mPlaybackService != null) ? mPlaybackService.getDuration() : 0;
-    }
 
-    @Override
-    public int getCurrentPosition() {
-        return (mPlaybackService != null) ? mPlaybackService.getCurrentPosition() : 0;
-    }
 
-    @Override
+
     public void play(int speed) {
-        prepareAndPlay(mMediaMetaData);
+
     }
 
-    @Override
-    public void pause() {
-        if (mPlaybackService != null) {
-            mPlaybackService.pause();
-        }
-    }
 
-    public static int mapActionIndexToServiceRepeatState(int index) {
-        if (index == PlaybackControlsRow.RepeatAction.ONE) {
-            return MusicPlaybackService.MEDIA_ACTION_REPEAT_ONE;
-        } else if (index == PlaybackControlsRow.RepeatAction.ALL) {
-            return MusicPlaybackService.MEDIA_ACTION_REPEAT_ALL;
-        } else {
-            return MusicPlaybackService.MEDIA_ACTION_NO_REPEAT;
-        }
-    }
 
-    public static int mapServiceRepeatStateToActionIndex(int serviceRepeatState) {
-        if (serviceRepeatState == MusicPlaybackService.MEDIA_ACTION_REPEAT_ONE) {
-            return PlaybackControlsRow.RepeatAction.ONE;
-        } else if (serviceRepeatState == MusicPlaybackService.MEDIA_ACTION_REPEAT_ALL) {
-            return PlaybackControlsRow.RepeatAction.ALL;
-        } else {
-            return PlaybackControlsRow.RepeatAction.NONE;
-        }
-    }
-
-    @Override
     public void next() {
         if (mPlaybackService != null) {
-            mPlaybackService.next();
         }
     }
 
-    @Override
     public void previous() {
         if (mPlaybackService != null) {
-            mPlaybackService.previous();
+         //   mPlaybackService.previous();
         }
     }
 
@@ -249,7 +166,7 @@ public class MusicMediaPlayerGlue extends MediaPlayerGlue implements
         mMediaMetaDataList.addAll(mediaMetaDataList);
         mPendingServiceListUpdate = true;
         if (mPlaybackService != null) {
-            mPlaybackService.setMediaItemList(mMediaMetaDataList, false);
+          //  mPlaybackService.setMediaItemList(mMediaMetaDataList, false);
             mPendingServiceListUpdate = false;
         }
     }
@@ -269,7 +186,7 @@ public class MusicMediaPlayerGlue extends MediaPlayerGlue implements
             throw new RuntimeException("Provided uri is null!");
         }
         startAndBindToServiceIfNeeded();
-        mMediaMetaData = mediaMetaData;
+       // mMediaMetaData = mediaMetaData;
         if (mPlaybackService == null) {
             // This media item is saved (mMediaMetaData) and later played when the
             // connection channel is established.
@@ -277,10 +194,10 @@ public class MusicMediaPlayerGlue extends MediaPlayerGlue implements
             return;
         }
         if (mPendingServiceListUpdate) {
-            mPlaybackService.setMediaItemList(mMediaMetaDataList, false);
+         //   mPlaybackService.setMediaItemList(mMediaMetaDataList, false);
             mPendingServiceListUpdate = false;
         }
-        mPlaybackService.playMediaItem(mediaMetaData);
+       // mPlaybackService.playMediaItem(mediaMetaData);
     }
 
 }

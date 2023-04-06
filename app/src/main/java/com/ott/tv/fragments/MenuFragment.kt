@@ -65,11 +65,11 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
             }
 
             binding.menuRecycler.setOnClickListener {
-               /* Toast.makeText(
-                    requireActivity(),
-                    "click",
-                    Toast.LENGTH_SHORT
-                )*/
+                /* Toast.makeText(
+                     requireActivity(),
+                     "click",
+                     Toast.LENGTH_SHORT
+                 )*/
             }
 
         }

@@ -1,15 +1,19 @@
 package com.ott.tv;
 
 public class Config {
-    //  pu      blic static final String DOMAIN = "https://actionott.com/";
+
+   public static final String Device_Type = "androidtv";
+//    public static final String Device_Type = "firetv";
+    //  pu blic static final String DOMAIN = "https://actionott.com/";
     // public static final String DOMAIN = "https://dev.actionott.com/";
     //public static final String DOMAIN = "https://lifeott.com/";
 //    public static final String DOMAIN = "https://uvtvstage.phando.com/";
 
+/*
     public static final String DOMAIN = "https://www.uvtv.in/";
     public static final String Publisher_id = "4";
     public static final String WebsiteURL = "https://www.uvtv.in/";
-
+*/
 
 
     /*  public static final String DOMAIN = "https://kaafaltv.com/";
@@ -20,11 +24,9 @@ public class Config {
     public static final String Publisher_id = "63";
     public static final String WebsiteURL = "https://ott.digiana.com/";*/
 
-    /*  public static final String DOMAIN = "https://www.mitwatv.in/";
+    public static final String DOMAIN = "https://www.mitwatv.in/";
     public static final String Publisher_id = "40";
-    public static final String WebsiteURL = "https://www.mitwatv.in/";*/
-
-
+    public static final String WebsiteURL = "https://www.mitwatv.in/";
 /*
     public static final String DOMAIN = "https://ott.candorsolution.com/";
     public static final String Publisher_id = "61";
@@ -50,7 +52,8 @@ public class Config {
 /*
     public static final String DOMAIN = "https://watch.scifiworld.tv/";
     public static final String Publisher_id = "10";
-    public static final String WebsiteURL = "https://watch.scifiworld.tv/";*/
+    public static final String WebsiteURL = "https://watch.scifiworld.tv/";
+*/
 
 /*
         public static final String DOMAIN = "https://saas-sandbox.phando.com/";
@@ -68,7 +71,7 @@ public class Config {
     public static final String API_SERVER_URL = DOMAIN + "api/";
     //copy your api key from php admin dashboard & paste below
     public static final String API_KEY = "75xi3uer76tb7krer3mjgqei";
-    public static final String Device_Type = "androidtv";
+
     //Phone authentication
     public static final boolean ENABLE_PHONE_LOGIN = true;
     //Google authentication

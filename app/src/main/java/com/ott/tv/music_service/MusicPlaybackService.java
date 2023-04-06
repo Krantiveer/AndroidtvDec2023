@@ -55,7 +55,9 @@ import java.util.List;
  * interact with the service for specific operations such as playing or pausing or getting different
  * info about the current media item.
  */
-public class MusicPlaybackService extends Service {
+public class MusicPlaybackService {
+
+} /*{
 
     // The ID used for for the notification. This is purely for making the service run as a
     // foreground service
@@ -369,11 +371,11 @@ public class MusicPlaybackService extends Service {
         mMediaSession.setPlaybackState(playbackStateBuilder.build());
     }
 
-    /**
+    *//**
      * Sets the media session's activity launched when clicking on NowPlayingCard. This returns to
      * the media screen that is playing or paused; the launched activity corresponds to the
      * currently shown media session in the NowPlayingCard on TV launcher.
-     */
+     *//*
     private void updateMediaSessionIntent() {
         if (mMediaSession == null) {
             return;
@@ -384,12 +386,12 @@ public class MusicPlaybackService extends Service {
         mMediaSession.setSessionActivity(pi);
     }
 
-    /**
+    *//**
      * @return The available set of actions for the media session. These actions should be provided
      * for the MediaSession PlaybackState in order for
      * {@link MediaSessionCompat.Callback#onMediaButtonEvent} to call relevant methods of onPause() or
      * onPlay().
-     */
+     *//*
     private long getPlaybackStateActions() {
         return PlaybackStateCompat.ACTION_PLAY | PlaybackStateCompat.ACTION_PAUSE |
                 PlaybackStateCompat.ACTION_SKIP_TO_NEXT | PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS;
@@ -402,9 +404,9 @@ public class MusicPlaybackService extends Service {
         }
     }
 
-    /**
+    *//**
      * starts playback of the previously opened media file
-     */
+     *//*
     public void play() {
         if (mPlayer != null && mInitialized && !isPlaying()) {
             mPlayer.start();
@@ -413,9 +415,9 @@ public class MusicPlaybackService extends Service {
         }
     }
 
-    /**
+    *//**
      * pauses playback (call play() to resume)
-     */
+     *//*
     public void pause() {
         if (mPlayer != null && mPlayer.isPlaying()){
             mPlayer.pause();
@@ -424,9 +426,9 @@ public class MusicPlaybackService extends Service {
         }
     }
 
-    /**
+    *//**
      * skip to next item
-     */
+     *//*
     public void next() {
         if (mMediaItemList.size() == 0) {
             return;
@@ -443,9 +445,9 @@ public class MusicPlaybackService extends Service {
         prepareNewMedia();
     }
 
-    /**
+    *//**
      * skip to previous item
-     */
+     *//*
     public void previous() {
         if (mMediaItemList.size() == 0) {
             return;
@@ -466,9 +468,9 @@ public class MusicPlaybackService extends Service {
         return mPlayer != null && mPlayer.isPlaying();
     }
 
-    /**
+    *//**
      * @return The current playback position in milliseconds.
-     */
+     *//*
     public int getCurrentPosition() {
         if (mInitialized && mPlayer != null) {
             return mPlayer.getCurrentPosition();
@@ -476,9 +478,9 @@ public class MusicPlaybackService extends Service {
         return 0;
     }
 
-    /**
+    *//**
      * @return The duration of the current media item in milliseconds
-     */
+     *//*
     public int getDuration() {
         return (mInitialized && mPlayer != null) ? mPlayer.getDuration() : 0;
     }
@@ -487,19 +489,19 @@ public class MusicPlaybackService extends Service {
         return mInitialized ? mCurrentMediaItem : null;
     }
 
-    /**
+    *//**
      * Seeks to the given new position in milliseconds of the current media item
      * @param newPosition The new position of the current media item in milliseconds
-     */
+     *//*
     public void seekTo(int newPosition) {
         if (mPlayer != null) {
             mPlayer.seekTo(newPosition);
         }
     }
 
-    /**
+    *//**
      * Configures service as a foreground service.
-     */
+     *//*
     void setUpAsForeground(String text) {
         Intent notificationIntent = new Intent(this, MusicPlayerActivity.class);
         PendingIntent pi = PendingIntent.getActivity(getApplicationContext(), 0,
@@ -613,4 +615,4 @@ public class MusicPlaybackService extends Service {
             seekTo((int)pos);
         }
     }
-}
+}*/

@@ -49,12 +49,17 @@ android {
         }
         uvtv {
             applicationId "com.uvtv.tv"
-            versionCode 9
-            versionName "1.9"
+            versionCode 10
+            versionName "1.1.0"
+        }
+        uvtvfiretv {
+            applicationId "com.uvtv.firetv"
+            versionCode 10
+            versionName "1.1.0"
         }
         scifiworld {
             applicationId "com.scifiworld.tv"
-            versionCode 4
+            versionCode 6
             versionName "1"
         }
 
@@ -77,8 +82,8 @@ android {
 
         candor {
             applicationId "com.tv.candor"
-            versionCode 5
-            versionName "1.5"
+            versionCode 6
+            versionName "1.6"
         }
         solidtv {
             applicationId "com.solidtv"
@@ -98,7 +103,7 @@ android {
 
         toonstaan {
             applicationId "com.toonstaan.tv"
-            versionCode 3
+            versionCode 4
             versionName "1.0"
         }
 
@@ -225,8 +230,8 @@ dependencies {
 
     //gifimage
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.22'
-
-    implementation 'com.nicepeopleatwork:exoplayer2-18-adapter:6.8.+'
+//nPaw integration
+  //  implementation 'com.nicepeopleatwork:exoplayer2-18-adapter:6.8.+'
     // required to avoid crash on Android 12 API 31
    // implementation 'androidx.work:work-runtime-ktx:2.7.1'
 

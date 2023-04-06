@@ -1,6 +1,6 @@
 package com.ott.tv.video_service;
 
-import android.app.PendingIntent;
+/*
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -25,8 +25,11 @@ import com.bumptech.glide.request.transition.Transition;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.ott.tv.model.phando.PlayerActivityNewCode;
 import com.ott.tv.ui.activity.PlayerActivity;
+*/
 
 public class MediaSessionHelper {
+
+}/*{
     MediaSession mSession;
     private ExoPlayer player;
     private Context mContext;
@@ -54,7 +57,6 @@ public class MediaSessionHelper {
             Intent intent = new Intent(mContext.getApplicationContext(), PlayerActivityNewCode.class);
             intent.putExtra(VideoPlaybackActivity.EXTRA_VIDEO, movie);
             intent.putExtra(VideoPlaybackActivity.EXTRA_POSITION, position);
-            PendingIntent pi = PendingIntent.getActivity(mContext.getApplicationContext(), 99, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             mSession.setSessionActivity(pi);
 
         }
@@ -79,14 +81,14 @@ public class MediaSessionHelper {
         stateBuilder.setState(mState, position, 1.0f);
         mSession.setPlaybackState(stateBuilder.build());
 
-       /* PlaybackState.Builder stateBuilder = new PlaybackState.Builder()
+       *//* PlaybackState.Builder stateBuilder = new PlaybackState.Builder()
                 .setActions(PlaybackState.ACTION_PLAY | PlaybackState.ACTION_PAUSE);
         int state = PlaybackState.STATE_PLAYING;
         if (playing){
             state = PlaybackState.STATE_PAUSED;
         }
         stateBuilder.setState(state, player.getCurrentPosition(), 1.0f);
-        mSession.setPlaybackState(stateBuilder.build());*/
+        mSession.setPlaybackState(stateBuilder.build());*//*
 
     }
     private long getAvailableActions(){
@@ -205,4 +207,4 @@ public class MediaSessionHelper {
             }
         }
     }
-}
+}*/

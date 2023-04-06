@@ -201,9 +201,6 @@
             android:label="@string/app_name"
             android:screenOrientation="landscape" />
 
-        <service
-            android:name=".music_service.MusicPlaybackService"
-            android:exported="false" />
 
         <activity
             android:name=".video_service.AppLinkActivity"

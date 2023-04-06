@@ -170,8 +170,11 @@ public class LoginMobileActivity extends Activity {
         } else {
             if (editVerifiedOTP.getText().length() < 6) {
                 CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("The OTP Must be 6 Digits."), 2, 7000);
-            } else {
+            } else if(editVerifiedOTP.getText().length()==6){
                 getVerifyOTP(mob_number, editVerifiedOTP.getText().toString());
+            }else {
+                 CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("The OTP Must be 6 Digits."), 2, 7000);
+
             }
         }
     }

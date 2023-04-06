@@ -59,7 +59,7 @@ public class MusicConsumptionExampleFragment extends PlaybackFragment implements
 
 
         mGlue = new MusicMediaPlayerGlue(getActivity());
-        mGlue.setHost(new PlaybackFragmentGlueHost(this));
+       // mGlue.setHost(new PlaybackFragmentGlueHost(this));
 
         String json = Utils.inputStreamToString(
                 getResources().openRawResource(R.raw.music_consumption_example));
@@ -129,7 +129,7 @@ public class MusicConsumptionExampleFragment extends PlaybackFragment implements
     public void onStop() {
         Log.d("MusicService", "onStop called.");
         super.onStop();
-        mGlue.enableProgressUpdating(false);
+      //  mGlue.enableProgressUpdating(false);
         mGlue.releaseServiceCallback();
     }
 

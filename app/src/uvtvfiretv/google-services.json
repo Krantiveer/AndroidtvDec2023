@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "219569720453",
+    "project_id": "uvtv-51d04",
+    "storage_bucket": "uvtv-51d04.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:219569720453:android:062acfb091af5b3fbb6dec",
+        "android_client_info": {
+          "package_name": "com.uvtv.firetv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "219569720453-hu7f60p5njtqoosuq3e7cfl3t0avi9rl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEgWUA1_BiS5asviZU_Xx6UNPnYrFVOxw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "219569720453-hu7f60p5njtqoosuq3e7cfl3t0avi9rl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
