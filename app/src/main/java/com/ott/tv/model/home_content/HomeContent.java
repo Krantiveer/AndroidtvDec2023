@@ -4,10 +4,6 @@ package com.ott.tv.model.home_content;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
 
 import com.ott.tv.database.homeContent.converters.CountryConverter;
 import com.ott.tv.database.homeContent.converters.FeaturedTvConverter;
@@ -22,58 +18,39 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-@Entity(tableName = "home_content_table")
 public class HomeContent implements Parcelable {
-    @PrimaryKey()
-    @ColumnInfo(name = "home_content_id")
     private int homeContentId;
 
-    @ColumnInfo(name = "slider")
-    @TypeConverters(SliderTypeConverter.class)
     @SerializedName("slider")
     @Expose
     private Slider slider;
 
-    @ColumnInfo(name = "all_country")
-    @TypeConverters(CountryConverter.class)
     @SerializedName("all_country")
     @Expose
     private List<AllCountry> allCountry = null;
 
-    @ColumnInfo(name = "all_genre")
-    @TypeConverters(GenreConverter.class)
     @SerializedName("all_genre")
     @Expose
     private List<AllGenre> allGenre = null;
 
-    @ColumnInfo(name = "featured_tv_channel")
-    @TypeConverters(FeaturedTvConverter.class)
     @SerializedName("featured_tv_channel")
     @Expose
     private List<FeaturedTvChannel> featuredTvChannel = null;
 
-    @ColumnInfo(name = "latest_movies")
-    @TypeConverters(LatestMovieConverter.class)
     @SerializedName("latest_movies")
     @Expose
     private List<LatestMovie> latestMovies = null;
 
-    @ColumnInfo(name = "latest_tvseries")
-    @TypeConverters(TvSeriesConverter.class)
     @SerializedName("latest_tvseries")
     @Expose
     private List<LatestTvseries> latestTvseries = null;
 
-    @ColumnInfo(name = "features_genre_and_movie")
-    @TypeConverters(FeaturesGenreConverter.class)
     @SerializedName("features_genre_and_movie")
     @Expose
     private List<FeaturesGenreAndMovie> featuresGenreAndMovie = null;
 
     private List<FeaturesGenreAndMovie> featuresGenreAndMovieSlider = null;
 
-    @ColumnInfo(name = "popular_stars")
-    @TypeConverters(PopularStarsConverter.class)
     @SerializedName("popular_stars")
     @Expose
     private List<PopularStars> popularStarsList = null;

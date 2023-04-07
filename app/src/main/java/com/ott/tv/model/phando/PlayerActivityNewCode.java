@@ -938,10 +938,13 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
             player = new ExoPlayer.Builder(this).build();
             if (Config.NPAW) {
                 youboraOptions = new Options();
-                youboraOptions.setAccountCode("phandodev");
-                youboraOptions.setUsername("phandodevadmin");
+                youboraOptions.setAccountCode("mitwatv");
                 youboraOptions.setContentTitle(model.getTitle());
                 youboraOptions.setContentId(model.getMovieId());
+                youboraOptions.setDeviceType(Config.Device_Type);
+                youboraOptions.setContentType(type);
+                youboraOptions.setAppName(Config.NPAW_APPNAME);
+
 
                 Plugin youboraPlugin = new Plugin(youboraOptions, this);
                 youboraPlugin.setActivity(this);

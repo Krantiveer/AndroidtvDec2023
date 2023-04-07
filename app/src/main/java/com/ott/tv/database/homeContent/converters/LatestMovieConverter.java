@@ -1,6 +1,5 @@
 package com.ott.tv.database.homeContent.converters;
 
-import androidx.room.TypeConverter;
 
 import com.ott.tv.model.home_content.LatestMovie;
 import com.google.gson.Gson;
@@ -10,13 +9,12 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 public class LatestMovieConverter {
-    @TypeConverter
     public static String fromList(List<LatestMovie> list){
         Gson gson = new Gson();
         return gson.toJson(list);
     }
 
-    @TypeConverter
+
     public static List<LatestMovie> jsonToList(String value){
         Type listType = new TypeToken<List<LatestMovie>>() {}.getType();
         Gson gson = new Gson();
