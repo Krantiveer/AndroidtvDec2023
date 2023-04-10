@@ -108,7 +108,7 @@
                     android:paddingTop="@dimen/_2sdp"
                     android:paddingBottom="@dimen/_4sdp"
                     android:src="@drawable/prime_icon"
-                    android:textSize="@dimen/_10ssp" />
+                    />
 
 
                 <TextView
@@ -154,6 +154,7 @@
                         android:id="@+id/content_rating_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/contentDescription"
                         android:src="@drawable/content_rating_image" />
 
                     <TextView
@@ -161,13 +162,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:text="9.0" />
+                        android:text="@string/contain_rating" />
 
                     <ImageView
                         android:id="@+id/content_duration_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_10sdp"
+                        android:contentDescription="@string/contentDescription"
                         android:src="@drawable/clock" />
 
                     <TextView
@@ -181,6 +183,7 @@
                         android:id="@+id/releasedate_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/contentDescription"
                         android:layout_marginStart="@dimen/_10sdp"
                         android:src="@drawable/calendar_day" />
 
@@ -194,6 +197,7 @@
                     <ImageView
                         android:id="@+id/language_image"
                         android:layout_width="wrap_content"
+                        android:contentDescription="@string/contentDescription"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_10sdp"
                         android:src="@drawable/language_image" />
@@ -203,12 +207,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:text="English" />
+                        android:text="@string/english" />
 
                     <ImageView
                         android:id="@+id/maturity_rating_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/contentDescription"
                         android:layout_marginStart="@dimen/_10sdp"
                         android:src="@drawable/user_image" />
 
@@ -217,13 +222,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:text="All Age" />
+                        android:text="@string/all_age" />
 
                     <ImageView
                         android:id="@+id/genres_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_10sdp"
+                        android:contentDescription="@string/contentDescription"
                         android:src="@drawable/genes_image" />
 
                     <TextView
@@ -231,7 +237,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:text="Drama" />
+                        android:text="@string/drama" />
 
 
                     <!--  <TextView
@@ -246,6 +252,7 @@
                         android:id="@+id/tvVideoQualityType"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/contentDescription"
                         android:layout_marginStart="@dimen/_10sdp"
                         android:src="@drawable/ic_baseline_hd_24"
                         android:visibility="gone" />
@@ -545,7 +552,8 @@
                 android:layout_marginTop="@dimen/_30sdp"
                 android:orientation="horizontal"
                 android:weightSum="1"
-                tools:visibility="visible">
+                tools:visibility="visible"
+                android:baselineAligned="false">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -557,7 +565,6 @@
                         android:id="@+id/rv_SeasonList"
                         android:layout_width="@dimen/_200sdp"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/movie_title_two"
                         android:layout_marginStart="@dimen/_50sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginEnd="@dimen/_50sdp"

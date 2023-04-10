@@ -216,6 +216,10 @@
 
     <string name="track_selection_title">Select tracks</string>
     <string name="searchhint">Type to Search...</string>
+    <string name="contain_rating">9.0</string>
+    <string name="drama">Drama</string>
+    <string name="all_age">All Age</string>
+    <string name="english">English</string>
 
 
 </resources>

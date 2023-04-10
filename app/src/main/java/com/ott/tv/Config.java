@@ -28,16 +28,16 @@ public class Config {
     public static final String Publisher_id = "40";
     public static final String WebsiteURL = "https://www.mitwatv.in/";*/
 
+/*
     public static final String DOMAIN = "https://ott.candorsolution.com/";
     public static final String Publisher_id = "61";
     public static final String WebsiteURL = "https://ott.candorsolution.com/";
+*/
 
 
-/*
     public static final String DOMAIN = "https:/www.toonstaan.tv/";
     public static final String Publisher_id = "53";
     public static final String WebsiteURL = "https:/www.toonstaan.tv/";
-*/
 
 
 /*
