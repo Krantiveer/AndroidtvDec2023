@@ -944,12 +944,14 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
                 youboraOptions.setDeviceType(Config.Device_Type);
                 youboraOptions.setContentType(type);
                 youboraOptions.setAppName(Config.NPAW_APPNAME);
+                Log.i(TAG, "initVideoPlayer: "+youboraOptions);
 
 
                 Plugin youboraPlugin = new Plugin(youboraOptions, this);
                 youboraPlugin.setActivity(this);
                 Exoplayer2Adapter adapter = new Exoplayer2Adapter(player);
                 youboraPlugin.setAdapter(adapter);
+                Log.i(TAG, "initVideoPlayer: "+youboraOptions);
             }
             player.setMediaSource(hlsMediaSource);
             player.getTrackSelector();

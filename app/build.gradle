@@ -103,8 +103,8 @@ android {
 
         toonstaan {
             applicationId "com.toonstaan.tv"
-            versionCode 6
-            versionName "6.0"
+            versionCode 7
+            versionName "7.0"
         }
 
 
