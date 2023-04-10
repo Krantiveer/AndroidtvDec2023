@@ -21,7 +21,7 @@ public class Config {
     /*public static final String DOMAIN = "https://ott.digiana.com/";
     public static final String Publisher_id = "63";
     public static final String WebsiteURL = "https://ott.digiana.com/";*/
-    /*public static final String DOMAIN = "https://www.mitwatv.com/";
+   /* public static final String DOMAIN = "https://www.mitwatv.com/";
     public static final String Publisher_id = "40";
     public static final String WebsiteURL = "https://www.mitwatv.com/";*/
 
@@ -32,15 +32,16 @@ public class Config {
 */
 
 
-    public static final String DOMAIN = "https:/www.toonstaan.tv/";
-    public static final String Publisher_id = "53";
-    public static final String WebsiteURL = "https:/www.toonstaan.tv/";
-
-
 /*
+    public static final String DOMAIN = "https://www.toonstaan.tv/";
+    public static final String Publisher_id = "53";
+    public static final String WebsiteURL = "https://www.toonstaan.tv/";
+*/
+
+
     public static final String DOMAIN = "https://xploreindia.phando.com/";
     public static final String Publisher_id = "8";
-    public static final String WebsiteURL = "https://xploreindia.phando.com";*/
+    public static final String WebsiteURL = "https://xploreindia.phando.com/";
 
 /*    public static final String DOMAIN = "https://www.solidtvbox.com/";
     public static final String Publisher_id = "6";
