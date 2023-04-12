@@ -49,8 +49,8 @@ android {
         }
         uvtv {
             applicationId "com.uvtv.tv"
-            versionCode 10
-            versionName "1.1.0"
+            versionCode 12
+            versionName "1.1.12"
         }
         uvtvfiretv {
             applicationId "com.uvtv.firetv"
