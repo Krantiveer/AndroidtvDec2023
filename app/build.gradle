@@ -47,6 +47,11 @@ android {
             versionCode 2
             versionName "1"
         }
+        nano_media {
+            applicationId "com.phandodemo.tv"
+            versionCode 13
+            versionName "13"
+        }
         uvtv {
             applicationId "com.uvtv.tv"
             versionCode 12
@@ -59,7 +64,7 @@ android {
         }
         scifiworld {
             applicationId "com.scifiworld.tv"
-            versionCode 6
+            versionCode 8
             versionName "1"
         }
 
@@ -95,11 +100,6 @@ android {
             versionCode 9
             versionName "1"
         }
-        /*phando {
-            applicationId "com.phando.tv"
-            versionCode 2
-            versionName "2"
-        }*/
 
         toonstaan {
             applicationId "com.toonstaan.tv"

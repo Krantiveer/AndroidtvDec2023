@@ -22,7 +22,7 @@ import com.ott.tv.model.phando.CategoryType
 import com.ott.tv.utils.ICallback
 
 @Suppress("DEPRECATION")
-class MenuListAdapter (
+class MenuListAdapter(
     val context: Context,
     val dataList: List<CategoryType> = ArrayList<CategoryType>(),
 
@@ -42,7 +42,6 @@ class MenuListAdapter (
     var row_index = -1
 
 
-
     inner class ViewHolder(private val binding: LayoutMenuBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -50,52 +49,73 @@ class MenuListAdapter (
         @SuppressLint("NotifyDataSetChanged")
         fun bindernew(dataModel: CategoryType) {
             Log.d("Clicking Event", "binder: clicked2--" + dataModel.icon + dataModel.displayName)
-
             binding.titleMenu.setText(dataModel.displayName)
+
+            if (BuildConfig.FLAVOR.equals("nano_media", ignoreCase = true)) {
+
+                if (dataModel.displayName.contentEquals("UV Bharat", ignoreCase = true)) {
+                    binding.titleMenu.setText("News Channel")
+
+                }
+                if (dataModel.displayName.contentEquals("UV Live", ignoreCase = true)) {
+                    binding.titleMenu.setText("Live")
+
+                }
+
+
+            } else {
+                binding.titleMenu.setText(dataModel.displayName)
+
+            }
+
             Glide.with(context)
                 .load(dataModel.icon) /*.override(100,300)*/
                 .error(R.drawable.commingsoon_sidenav)
                 .placeholder(R.drawable.commingsoon_sidenav)
                 .into(binding.icon)
 
-            binding.menuLayout.setOnClickListener {
-                mCallback.delegate(hasFocusLocalVar?:false)
-                mClick.onItemClick(dataList[position])
-              /*  row_index=position
-                if (row_index==position) {
-                    binding.icon.imageTintList =
-                        ColorStateList.valueOf(context.getColor(R.color.red_highlight_color))
-                } else {
-                    binding.icon.imageTintList =
-                        ColorStateList.valueOf(context.getColor(R.color.lb_browse_title_color))
-                }*/
 
-               // notifyItemChanged(oldpostionSecond)
-              //  redColor()
+
+
+            binding.menuLayout.setOnClickListener {
+                mCallback.delegate(hasFocusLocalVar ?: false)
+                mClick.onItemClick(dataList[position])
+
+                /*  row_index=position
+                  if (row_index==position) {
+                      binding.icon.imageTintList =
+                          ColorStateList.valueOf(context.getColor(R.color.red_highlight_color))
+                  } else {
+                      binding.icon.imageTintList =
+                          ColorStateList.valueOf(context.getColor(R.color.lb_browse_title_color))
+                  }*/
+
+                // notifyItemChanged(oldpostionSecond)
+                //  redColor()
             }
 
-           /* binding.menuLayout.setOnClickListener {
-                oldclick = false
-                Log.e("@@", oldpostion.toString())
-                Log.e("@@", oldpostion.toString())
+            /* binding.menuLayout.setOnClickListener {
+                 oldclick = false
+                 Log.e("@@", oldpostion.toString())
+                 Log.e("@@", oldpostion.toString())
 
-                if (oldpostion == absoluteAdapterPosition) {
+                 if (oldpostion == absoluteAdapterPosition) {
 
-                } else {
-                    if (absoluteAdapterPosition == 0) {
-                        mClick.onItemClick(dataList[position])
-                    } else {
-                        oldclick = true
-                        oldpostionSecond = oldpostion
-                        Log.d(
-                            "Clicking Event",
-                            "binder: clicked2--" + oldpostionSecond + oldpostion + position + oldclick
-                        )
-                        notifyItemChanged(oldpostionSecond)
-                        redColor()
-                    }
-                }
-            }*/
+                 } else {
+                     if (absoluteAdapterPosition == 0) {
+                         mClick.onItemClick(dataList[position])
+                     } else {
+                         oldclick = true
+                         oldpostionSecond = oldpostion
+                         Log.d(
+                             "Clicking Event",
+                             "binder: clicked2--" + oldpostionSecond + oldpostion + position + oldclick
+                         )
+                         notifyItemChanged(oldpostionSecond)
+                         redColor()
+                     }
+                 }
+             }*/
 
 
             binding.menuLayout.setOnFocusChangeListener { v, hasFocus ->
@@ -130,7 +150,6 @@ class MenuListAdapter (
         }
 
 
-        @RequiresApi(Build.VERSION_CODES.M)
         @SuppressLint("NotifyDataSetChanged")
         fun colorwhite(dataModel: CategoryType) {
             Glide.with(context)
@@ -138,8 +157,13 @@ class MenuListAdapter (
                 .error(R.drawable.commingsoon_sidenav)
                 .placeholder(R.drawable.commingsoon_sidenav)
                 .into(binding.icon)
-            Log.d("Clicking Event", "binder: clicked2--" + dataModel.icon + dataModel.displayName)
+            Log.d(
+                "Clicking Eventkranti",
+                "binder: clicked2--" + dataModel.icon + dataModel.displayName + BuildConfig.FLAVOR
+            )
             binding.titleMenu.setText(dataModel.displayName)
+
+
             binding.icon.imageTintList =
                 ColorStateList.valueOf(context.getColor(R.color.white))
             oldpostionSecond = oldpostion
@@ -191,16 +215,16 @@ class MenuListAdapter (
             )
             holder.bindernew(dataList[position])
         }
-     /*   if(row_index==position){
-           // holder.itemView.findViewById<ImageView>(R.id.icon).setBackgroundColor((Color.parseColor("#00ff00")))
-            holder.colorwhite(dataList[position])
+        /*   if(row_index==position){
+              // holder.itemView.findViewById<ImageView>(R.id.icon).setBackgroundColor((Color.parseColor("#00ff00")))
+               holder.colorwhite(dataList[position])
 
 
-        }
-        else
-        {
-            holder.itemView.findViewById<ImageView>(R.id.icon).setBackgroundColor((Color.parseColor("#ff00ff")))
-   *//*         holder.row_linearlayout.setBackgroundColor(Color.parseColor("#ffffff"));
+           }
+           else
+           {
+               holder.itemView.findViewById<ImageView>(R.id.icon).setBackgroundColor((Color.parseColor("#ff00ff")))
+      *//*         holder.row_linearlayout.setBackgroundColor(Color.parseColor("#ffffff"));
             holder.tv1.setTextColor(Color.parseColor("#000000"));
    *//*     }
 */

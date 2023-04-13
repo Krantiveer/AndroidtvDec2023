@@ -33,6 +33,7 @@ import com.ott.tv.model.home_content.LatestTvseries;
 import com.ott.tv.network.api.Dashboard;
 import com.ott.tv.ui.activity.DetailsActivityPhando;
 import com.ott.tv.ui.activity.DetailsActivityTvSeries;
+import com.ott.tv.ui.activity.ItemCountryActivity;
 import com.ott.tv.ui.activity.LoginChooserActivity;
 import com.ott.tv.ui.activity.NewMainActivity;
 import com.ott.tv.ui.presenter.CardPresenterBanner;
@@ -342,6 +343,8 @@ public class HomeFragment extends RowsSupportFragment {
                 LatestMovieList videoContent = (LatestMovieList) o;
 
                 String status = new DatabaseHelper(getContext()).getActiveStatusData().getStatus();
+
+
                 if (videoContent.getType().equals("M") && videoContent.getIs_live().toString().equalsIgnoreCase("0")) {
                     Intent intent = new Intent(getActivity(), DetailsActivityPhando.class);
                     if (videoContent.getType() != null)
@@ -473,7 +476,16 @@ public class HomeFragment extends RowsSupportFragment {
                     getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
 
                 }
+                if (videoContent.getType().equalsIgnoreCase("VM")) {
+                    Intent intent = new Intent(getActivity(), ItemCountryActivity.class);
+                    intent.putExtra("id", videoContent.getId());
 
+                    intent.putExtra("title", videoContent.getViewallTitle());
+
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    this.startActivity(intent);
+
+                }
 
             }
 
