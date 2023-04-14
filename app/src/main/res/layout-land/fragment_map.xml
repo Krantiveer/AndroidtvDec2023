@@ -45,6 +45,7 @@
 
             <RelativeLayout
                 android:layout_width="@dimen/_100sdp"
+                android:layout_marginStart="@dimen/_100sdp"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
