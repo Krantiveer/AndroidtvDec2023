@@ -304,6 +304,7 @@ public class HomeFragmentNewUI extends Fragment {
                         } else if (response.code() == 401) {
                             signOut();
                         } else if (response.errorBody() != null) {
+                            Log.e("@@", response.errorBody().toString());
                             Toast.makeText(getContext(), response.errorBody().toString(), Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(getContext(), "Sorry! Something went wrong. Please try again after some time", Toast.LENGTH_SHORT).show();
@@ -323,7 +324,8 @@ public class HomeFragmentNewUI extends Fragment {
                 @Override
                 public void onFailure(@NonNull Call<HomeContent> call, @NonNull Throwable t) {
                     t.printStackTrace();
-                    CMHelper.setSnackBar(requireView(), t.getMessage(), 2);
+                    Log.e("@@error", t.getMessage()+ t.getLocalizedMessage()+t.toString());
+                    CMHelper.setSnackBar(requireView(), t.getMessage().toString(), 2);
                     fm.beginTransaction().remove(mSpinnerFragment).commitAllowingStateLoss();
                 }
             });

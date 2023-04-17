@@ -552,6 +552,14 @@ public class Video implements Parcelable {
         this.is_live = is_live;
     }
 
+    public ContinueWatchMinutes getContinue_watch_minutes() {
+        return continue_watch_minutes;
+    }
+
+    public void setContinue_watch_minutes(ContinueWatchMinutes continue_watch_minutes) {
+        this.continue_watch_minutes = continue_watch_minutes;
+    }
+
     public String getPhando_media_id() {
         return phando_media_id;
     }

@@ -36,6 +36,7 @@ public class ImageCardView extends BaseCardView {
     private static final int ITEM_TYPE_HORIZONTAL_LIST_BIG_ITEM = 1;
     private static final int ITEM_TYPE_BANNER = 2;
     private static final int ITEM_TYPE_SMALLVERTICAL = 3;
+    private static final int ITEM_VIEWALL = 4;
     private boolean showProgressBar;
     private String imageType = Constants.IMAGE_TYPE_COVERPOSTER;
 
@@ -61,8 +62,10 @@ public class ImageCardView extends BaseCardView {
 
     public ImageCardView(Context context, int itemViewType) {
         super(context, null, R.style.MyHeaderStyle);
-      //   LayoutInflater.from(getContext()).inflate(R.layout.card_view_image_layout, this);
+        Log.i("krantiveer singh", "ImageCardView: " + itemViewType);
+        //   LayoutInflater.from(getContext()).inflate(R.layout.card_view_image_layout, this);
         switch (itemViewType) {
+
             case ITEM_TYPE_HORIZONTAL_LIST_BIG_ITEM:
                 showProgressBar = false;
                 imageType = Constants.IMAGE_TYPE_COVERPOSTER;
@@ -79,6 +82,12 @@ public class ImageCardView extends BaseCardView {
                 imageType = Constants.IMAGE_TYPE_COVERPOSTER;
                 LayoutInflater.from(getContext()).inflate(R.layout.card_view_image_genrelayout, this);
                 break;
+
+            case ITEM_VIEWALL:
+                showProgressBar = false;
+                imageType = Constants.IMAGE_TYPE_COVERPOSTER;
+                LayoutInflater.from(getContext()).inflate(R.layout.card_view_image_genrelayout, this);
+                break;
             default:
                 showProgressBar = false;
                 imageType = Constants.IMAGE_TYPE_COVERPOSTER;
@@ -89,7 +98,7 @@ public class ImageCardView extends BaseCardView {
 
         //todo: this code use in future used
         setFocusable(true);
-     //   setPadding(12,111,12,-10);
+        //   setPadding(12,111,12,-10);
 
     }
 

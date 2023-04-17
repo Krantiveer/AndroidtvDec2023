@@ -1,12 +1,17 @@
 
 package com.ott.tv.model.home_content;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class FeaturesGenreAndMovie {
+public class FeaturesGenreAndMovie implements Parcelable {
     @SerializedName("genre_id")
     @Expose
     private String genreId;
@@ -35,6 +40,29 @@ public class FeaturesGenreAndMovie {
     @SerializedName("viewallName")
     @Expose
     private String viewallName;
+
+    protected FeaturesGenreAndMovie(Parcel in) {
+        genreId = in.readString();
+        name = in.readString();
+        description = in.readString();
+        slug = in.readString();
+        url = in.readString();
+        viewType = in.readString();
+        videos = in.createTypedArrayList(Video.CREATOR);
+        viewallName = in.readString();
+    }
+
+    public static final Creator<FeaturesGenreAndMovie> CREATOR = new Creator<FeaturesGenreAndMovie>() {
+        @Override
+        public FeaturesGenreAndMovie createFromParcel(Parcel in) {
+            return new FeaturesGenreAndMovie(in);
+        }
+
+        @Override
+        public FeaturesGenreAndMovie[] newArray(int size) {
+            return new FeaturesGenreAndMovie[size];
+        }
+    };
 
     public String getViewallName() {
         return viewallName;
@@ -97,5 +125,22 @@ public class FeaturesGenreAndMovie {
     }
     public void setViewType(String viewType) {
         this.viewType = viewType;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(genreId);
+        dest.writeString(name);
+        dest.writeString(description);
+        dest.writeString(slug);
+        dest.writeString(url);
+        dest.writeString(viewType);
+        dest.writeTypedList(videos);
+        dest.writeString(viewallName);
     }
 }

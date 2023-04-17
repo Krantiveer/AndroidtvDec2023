@@ -87,7 +87,8 @@ public interface Dashboard {
     Call<List<ShowWatchlist>> getViewAllListAPI(
             @Header("Authorization") String token,
             @Query("genres_id") String categoryId,
-            @Query("limit") String limit, @Query("content_type") String type);
+            @Query("limit") String limit,
+            @Query("content_type") String type);
 
 
     @GET("search-suggestions")

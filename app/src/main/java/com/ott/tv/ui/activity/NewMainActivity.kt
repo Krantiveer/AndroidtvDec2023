@@ -52,7 +52,7 @@ class NewMainActivity : FragmentActivity() {
         val accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(
             applicationContext
         )
-        val call: Call<AppInfo> = api.getAppInfo( "androidtv",accessToken)
+        val call: Call<AppInfo> = api.getAppInfo("androidtv", accessToken)
         call.enqueue(object : Callback<AppInfo?> {
             override fun onResponse(call: Call<AppInfo?>, response: Response<AppInfo?>) {
                 if (response.code() == 200) {
@@ -104,6 +104,7 @@ class NewMainActivity : FragmentActivity() {
             .commit()
 
     }
+
     private fun onGetAppInfoSuccess(appInfo: AppInfo) {
         val storeVersion = appInfo.currentVersion
         val forceUpdate = appInfo.isForceUpdate
@@ -121,18 +122,27 @@ class NewMainActivity : FragmentActivity() {
 
         if (currentVersion < storeVersion) {
             // Need to update application
-            val dialog = androidx.appcompat.app.AlertDialog.Builder(this, R.style.MaterialDialogSheet)
+            val dialog =
+                androidx.appcompat.app.AlertDialog.Builder(this, R.style.MaterialDialogSheet)
             dialog.setTitle("Update Available")
             dialog.setMessage("A new version of " + getString(R.string.app_name) + " is available on App Store. Do you want to update?")
             dialog.setCancelable(false)
 
             dialog.setPositiveButton("Yes, update") { dialog, which ->
                 try {
-                    startActivity(Intent(Intent.ACTION_VIEW,
-                        Uri.parse("market://details?id=$packageName")))
+                    startActivity(
+                        Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("market://details?id=$packageName")
+                        )
+                    )
                 } catch (ex: ActivityNotFoundException) {
-                    startActivity(Intent(Intent.ACTION_VIEW,
-                        Uri.parse("https://play.google.com/store/apps/details?id=$packageName")))
+                    startActivity(
+                        Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("https://play.google.com/store/apps/details?id=$packageName")
+                        )
+                    )
                 }
 
                 this@NewMainActivity.finish()
@@ -145,24 +155,25 @@ class NewMainActivity : FragmentActivity() {
             dialog.show()
         }
     }
+
     fun onMenuFocus(onFocus: Boolean) {
         if (onFocus) {
-    //        Toast.makeText(this, "closeactivity", Toast.LENGTH_SHORT).show()
+            //        Toast.makeText(this, "closeactivity", Toast.LENGTH_SHORT).show()
             binding.slidingPaneLayout.openPane()
         } else {
-      //      Toast.makeText(this, "closeactivity", Toast.LENGTH_SHORT).show()
+            //      Toast.makeText(this, "closeactivity", Toast.LENGTH_SHORT).show()
             binding.slidingPaneLayout.closePane()
             // Toast.makeText(this, "close", Toast.LENGTH_SHORT).show()
         }
 
     }
+
     override fun onBackPressed() {
         if (!binding.slidingPaneLayout.closePane()) {
             binding.slidingPaneLayout.openPane();
 
-        }
-      else {
-           // binding.slidingPaneLayout.openPane();
+        } else {
+            // binding.slidingPaneLayout.openPane();
             val dialog: Dialog
             dialog = Dialog(this)
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -179,8 +190,9 @@ class NewMainActivity : FragmentActivity() {
                 this.finishAffinity()
             }
             dialog.show()
-      }
+        }
     }
+
     private fun getSelectorDrawable(): StateListDrawable? {
         val out = StateListDrawable()
         out.addState(
@@ -194,43 +206,47 @@ class NewMainActivity : FragmentActivity() {
         )
         return out
     }
+
     private fun createFocusedDrawable(color: Int): GradientDrawable? {
         val out = GradientDrawable()
         out.setColor(color)
         return out
     }
+
     private fun createNormalDrawable(color: Int): GradientDrawable? {
         val out = GradientDrawable()
         out.setColor(color)
         return out
     }
 
-    fun onMenuSelection(type: String, title: String) {
+    fun onMenuSelection(type: String, title: String, gener_id: String) {
         if (type.equals("search") || type.equals("Search")) {
 
             if (BuildConfig.FLAVOR.equals("uvtv", ignoreCase = true)) {
 
-            }else{
+            } else {
 
                 val intent = Intent(this, SearchActivity_Phando::class.java)
                 startActivity(intent)
                 return
             }
-     /*       val intent = Intent(this, SearchActivity_Phando::class.java)
-            startActivity(intent)
-            return*/
+            /*       val intent = Intent(this, SearchActivity_Phando::class.java)
+                   startActivity(intent)
+                   return*/
         }
         binding.tvTitle.text = title
         if (title.isEmpty()) {
             binding.tvTitle.isVisible = false
-        } else if (type.equals("home")||type.equals("profile")) {
+        } else if (type.equals("home") || type.equals("profile")) {
             // binding.tvTitle.isVisible = true
             binding.tvTitle.isVisible = false
         } else {
             binding.tvTitle.isVisible = true
         }
         val bundle = bundleOf(
+
             "menu" to 1,
+            "gener_id" to gener_id,
             "type" to type
 
         )
@@ -243,7 +259,7 @@ class NewMainActivity : FragmentActivity() {
                 supportFragmentManager.beginTransaction()
                     .replace(binding.browserSection.id, newFragment)
                     .commit()
-            }else{
+            } else {
                 PreferenceUtils.getInstance().setWatchListPref(this, 0)
                 val intent = Intent(this, SearchActivity_Phando::class.java)
                 startActivity(intent)
@@ -253,15 +269,20 @@ class NewMainActivity : FragmentActivity() {
 
 
 */
-        }
-        else if (type.equals("watchlist") || type.equals("Watchlist")) {
+        } else if (type.equals("viewall")) {
+            val newFragment = GenreMovieFragment()
+            newFragment.setArguments(bundle)
+            supportFragmentManager.beginTransaction()
+                .replace(binding.browserSection.id, newFragment)
+                .commit()
+
+        } else if (type.equals("watchlist") || type.equals("Watchlist")) {
             val newFragment = ShowWatchlistFragment()
             newFragment.setArguments(bundle)
             supportFragmentManager.beginTransaction()
                 .replace(binding.browserSection.id, newFragment)
                 .commit()
-        }
-        else if(type.equals("profile")){
+        } else if (type.equals("profile")) {
             PreferenceUtils.getInstance().setWatchListPref(this, 0)
 
             val newFragment = MyAccountFragment()
@@ -269,26 +290,21 @@ class NewMainActivity : FragmentActivity() {
             supportFragmentManager.beginTransaction()
                 .replace(binding.browserSection.id, newFragment)
                 .commit()
-        }
-
-        else if(type.equals("uvtv-bharat")){
+        } else if (type.equals("uvtv-bharat")) {
             PreferenceUtils.getInstance().setWatchListPref(this, 0)
             val newFragment = MapFragmentUVTV()
             newFragment.setArguments(bundle)
             supportFragmentManager.beginTransaction()
                 .replace(binding.browserSection.id, newFragment)
                 .commit()
-        }else if(type.equals("home")){
+        } else if (type.equals("home")) {
             PreferenceUtils.getInstance().setWatchListPref(this, 0)
-
             val newFragment = HomeFragmentNewUI()
             newFragment.setArguments(bundle)
             supportFragmentManager.beginTransaction()
                 .replace(binding.browserSection.id, newFragment)
                 .commit()
-        }
-
-        else {
+        } else {
             PreferenceUtils.getInstance().setWatchListPref(this, 0)
             val newFragment = HomeFragment()
             newFragment.setArguments(bundle)

@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.ott.tv.R;
 import com.ott.tv.model.Genre;
 import com.ott.tv.model.Movie;
+import com.ott.tv.model.phando.ShowWatchlist;
 import com.ott.tv.ui.views.ImageCardView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -61,15 +62,16 @@ public class HorizontalCardGenrePresenter extends Presenter {
     @Override
     public void onBindViewHolder(Presenter.ViewHolder viewHolder, Object item) {
 
-        Genre movie = (Genre) item;
+        ShowWatchlist movie = (ShowWatchlist) item;
 
       //  ((ViewHolder) viewHolder).mCardView.setMainImageDimensions(CARD_WIDTH, CARD_HEIGHT);
        // ((ViewHolder) viewHolder).updateCardViewImage(movie.getPosterUrl());
-        int[] colorList2 = {R.drawable.movie_1, R.drawable.movie2, R.drawable.movie_3, R.drawable.movie_4, R.drawable.movie_5, R.drawable.movie_6};
+       /* int[] colorList2 = {R.drawable.movie_1, R.drawable.movie2, R.drawable.movie_3, R.drawable.movie_4, R.drawable.movie_5, R.drawable.movie_6};
         Random r = new Random();
-        int index = r.nextInt(colorList2.length -1);
-        ((ViewHolder) viewHolder).mCardView.getImageView().setImageResource(colorList2[index]);
-        ((ViewHolder) viewHolder).mCardView.getTextPrimeView().setText(movie.getName());
+        int index = r.nextInt(colorList2.length -1);*/
+        ((ViewHolder) viewHolder).mCardView.getImageView().setImageResource(R.drawable.movie2);
+        ((ViewHolder) viewHolder).mCardView.getTextPrimeView().setText(movie.getTitle());
+
 
 
     }

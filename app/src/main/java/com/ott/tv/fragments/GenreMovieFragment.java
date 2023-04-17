@@ -12,22 +12,29 @@ import androidx.leanback.app.VerticalGridSupportFragment;
 import androidx.leanback.widget.ArrayObjectAdapter;
 import androidx.leanback.widget.OnItemViewClickedListener;
 import androidx.leanback.widget.OnItemViewSelectedListener;
+import androidx.leanback.widget.TitleViewAdapter;
 import androidx.leanback.widget.VerticalGridPresenter;
 
 import com.ott.tv.Config;
 import com.ott.tv.NetworkInst;
 import com.ott.tv.R;
+import com.ott.tv.database.DatabaseHelper;
 import com.ott.tv.model.Genre;
 import com.ott.tv.model.Movie;
+import com.ott.tv.model.phando.LatestMovieList;
+import com.ott.tv.model.phando.ShowWatchlist;
 import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.GenreApi;
 import com.ott.tv.network.api.MovieApi;
 import com.ott.tv.ui.activity.DetailsActivity;
+import com.ott.tv.ui.activity.DetailsActivityPhando;
 import com.ott.tv.ui.activity.ErrorActivity;
+import com.ott.tv.ui.activity.ItemCountryActivity;
 import com.ott.tv.ui.activity.ItemGenreActivity;
 import com.ott.tv.ui.presenter.CardPresenter;
 import com.ott.tv.ui.presenter.HorizontalCardGenrePresenter;
 import com.ott.tv.ui.presenter.HorizontalCardPresenter;
+import com.ott.tv.utils.PreferenceUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +47,7 @@ import retrofit2.Retrofit;
 public class GenreMovieFragment extends VerticalGridSupportFragment {
 
     private static final String TAG = ItemCountryFragment.class.getSimpleName();
-    private static final int NUM_COLUMNS = 5;
+    private static final int NUM_COLUMNS = 4;
     private List<Movie> movies = new ArrayList<>();
     private ArrayObjectAdapter mAdapter;
     //private BackgroundHelper bgHelper;
@@ -53,21 +60,26 @@ public class GenreMovieFragment extends VerticalGridSupportFragment {
     private String title;
     private String id = "";
     private String datatype = "";
-
-    private List<Genre> genres = new ArrayList<>();
+    private String gener_id = "";
+    private String typeCategory;
+    private List<ShowWatchlist> genres = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         cardPresenter = new CardPresenter();
         mContext = getContext();
+        datatype = getArguments().getString("type");
+        gener_id = getArguments().getString("gener_id");
 
         Log.i(TAG, "onCreate: " + datatype + id + title);
-/*
         showTitle(false);
+        //  setTitle("Genre");
+        assert getArguments() != null;
+        typeCategory = getArguments().getString("type");
+/*
+                     getArguments().getString("gener_id");
 */
-        setTitle("Genre");
-
         setOnItemViewClickedListener(getDefaultItemViewClickedListener());
         setOnItemViewSelectedListener(getDefaultItemSelectedListener());
 
@@ -79,31 +91,33 @@ public class GenreMovieFragment extends VerticalGridSupportFragment {
         gridPresenter.setNumberOfColumns(NUM_COLUMNS);
         setGridPresenter(gridPresenter);
         //  mAdapter = new ArrayObjectAdapter(cardPresenter);
-        mAdapter = new ArrayObjectAdapter(new HorizontalCardGenrePresenter("movies"));
+        mAdapter = new ArrayObjectAdapter(new HorizontalCardPresenter(datatype));
         setAdapter(mAdapter);
-        fetchMovieData( pageCount);
+
+        fetchMovieData(pageCount);
 
     }
 
 
-    private void fetchMovieData( int pageCount) {
+    private void fetchMovieData(int pageCount) {
 
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
         GenreApi api = retrofit.create(GenreApi.class);
         datatype = "movie";
-        Call<List<Genre>> call = api.getGenres(Config.API_KEY, pageCount);
+        String accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(getContext());
+        Call<List<ShowWatchlist>> call = api.getGenresViewall(accessToken, gener_id, "0,100", "");
 
-        call.enqueue(new Callback<List<Genre>>() {
+        call.enqueue(new Callback<List<ShowWatchlist>>() {
             @Override
-            public void onResponse(@NonNull Call<List<Genre>> call, @NonNull Response<List<Genre>> response) {
+            public void onResponse(@NonNull Call<List<ShowWatchlist>> call, @NonNull Response<List<ShowWatchlist>> response) {
                 if (response.code() == 200) {
-                    List<Genre> movieList = response.body();
+                    List<ShowWatchlist> movieList = response.body();
                     if (movieList.size() <= 0) {
                         dataAvailable = false;
                         //Toast.makeText(activity, getResources().getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
                     }
 
-                    for (Genre movie : movieList) {
+                    for (ShowWatchlist movie : movieList) {
                         mAdapter.add(movie);
                     }
 
@@ -114,7 +128,7 @@ public class GenreMovieFragment extends VerticalGridSupportFragment {
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<Genre>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<List<ShowWatchlist>> call, @NonNull Throwable t) {
                 Log.e("Genre Item", "code: " + t.getLocalizedMessage());
             }
         });
@@ -125,11 +139,157 @@ public class GenreMovieFragment extends VerticalGridSupportFragment {
     // click listener
     private OnItemViewClickedListener getDefaultItemViewClickedListener() {
         return (viewHolder, o, viewHolder2, row) -> {
-            Genre genre = (Genre) o;
-            Intent intent = new Intent(getActivity(), ItemGenreActivity.class);
-            intent.putExtra("id", genre.getGenreId());
-            intent.putExtra("title", genre.getName());
-            startActivity(intent);
+
+
+            if (getActivity() != null && getContext() != null) {
+                ShowWatchlist videoContent = (ShowWatchlist) o;
+
+                String status = new DatabaseHelper(getContext()).getActiveStatusData().getStatus();
+
+                if (videoContent.getType().equals("M") && videoContent.getIs_live().toString().equalsIgnoreCase("0")) {
+                    Intent intent = new Intent(getActivity(), DetailsActivityPhando.class);
+                    if (videoContent.getType() != null)
+                        intent.putExtra("type", videoContent.getType());
+                    if (videoContent.getThumbnail() != null)
+                        intent.putExtra("thumbImage", videoContent.getThumbnail());
+                    if (videoContent.getId() != null)
+                        intent.putExtra("video_id", videoContent.getId().toString());
+                    if (videoContent.getTitle() != null)
+                        intent.putExtra("title", videoContent.getTitle());
+                    if (videoContent.getDetail() != null)
+                        intent.putExtra("description", videoContent.getDetail());
+                    if (videoContent.getRelease_date() != null)
+                        intent.putExtra("release", videoContent.getRelease_date());
+                    if (videoContent.getDuration_str() != null)
+                        intent.putExtra("duration", videoContent.getDuration_str());
+                    if (videoContent.getMaturity_rating() != null)
+                        intent.putExtra("maturity_rating", videoContent.getMaturity_rating());
+                    if (videoContent.getIs_free() != null)
+                        intent.putExtra("ispaid", videoContent.getIs_free().toString());
+                    if (videoContent.getLanguage_str() != null)
+                        intent.putExtra("language_str", videoContent.getLanguage_str());
+                    if (videoContent.getIs_live() != null)
+                        intent.putExtra("is_live", videoContent.getIs_live().toString());
+                    if (videoContent.getRating() != null)
+                        intent.putExtra("rating", videoContent.getRating().toString());
+                    if (videoContent.getTrailers() != null && videoContent.getTrailers().size() > 0 && videoContent.getTrailers().get(0) != null && videoContent.getTrailers().get(0).getMedia_url() != null) {
+                        intent.putExtra("trailer", videoContent.getTrailers().get(0).getMedia_url());
+                    }
+
+//kranti
+                    if (videoContent.getGenres() != null) {
+                        if (videoContent.getGenres().size() > 0) {
+                            String genres;
+                            genres = videoContent.getGenres().get(0);
+                            for (int i = 1; i < videoContent.getGenres().size(); i++) {
+                                genres = genres.concat("," + videoContent.getGenres().get(i));
+                            }
+                            intent.putExtra("genres", genres);
+                        }
+                    }
+                    getContext().startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
+
+                }
+                if (videoContent.getType().equals("T")) {
+                    Intent intent = new Intent(getActivity(), DetailsActivityPhando.class);
+                    if (videoContent.getType() != null)
+                        intent.putExtra("type", videoContent.getType());
+                    if (videoContent.getThumbnail() != null)
+                        intent.putExtra("thumbImage", videoContent.getThumbnail());
+                    if (videoContent.getId() != null)
+                        intent.putExtra("video_id", videoContent.getId().toString());
+                    if (videoContent.getTitle() != null)
+                        intent.putExtra("title", videoContent.getTitle());
+                    if (videoContent.getDetail() != null)
+                        intent.putExtra("description", videoContent.getDetail());
+                    if (videoContent.getRelease_date() != null)
+                        intent.putExtra("release", videoContent.getRelease_date());
+                    if (videoContent.getDuration_str() != null)
+                        intent.putExtra("duration", videoContent.getDuration_str());
+                    if (videoContent.getMaturity_rating() != null)
+                        intent.putExtra("maturity_rating", videoContent.getMaturity_rating());
+                    if (videoContent.getIs_free() != null)
+                        intent.putExtra("ispaid", videoContent.getIs_free().toString());
+                    if (videoContent.getLanguage_str() != null)
+                        intent.putExtra("language_str", videoContent.getLanguage_str());
+                    if (videoContent.getIs_live() != null)
+                        intent.putExtra("is_live", videoContent.getIs_live().toString());
+                    if (videoContent.getRating() != null)
+                        intent.putExtra("rating", videoContent.getRating().toString());
+                    if (videoContent.getTrailers() != null && videoContent.getTrailers().size() > 0 && videoContent.getTrailers().get(0) != null && videoContent.getTrailers().get(0).getMedia_url() != null) {
+                        intent.putExtra("trailer", videoContent.getTrailers().get(0).getMedia_url());
+                    }
+
+
+                    if (videoContent.getGenres() != null) {
+                        String genres;
+                        genres = videoContent.getGenres().get(0);
+                        for (int i = 1; i < videoContent.getGenres().size(); i++) {
+                            genres = genres.concat("," + videoContent.getGenres().get(i));
+                        }
+                        intent.putExtra("genres", genres);
+                    }
+                    getContext().startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
+
+                }
+                if (videoContent.getType().equals("M") && videoContent.getIs_live().toString().equalsIgnoreCase("1")) {
+                    Intent intent = new Intent(getActivity(), DetailsActivityPhando.class);
+                    if (videoContent.getType() != null)
+                        intent.putExtra("type", videoContent.getType());
+                    if (videoContent.getThumbnail() != null)
+                        intent.putExtra("thumbImage", videoContent.getThumbnail());
+                    if (videoContent.getId() != null)
+                        intent.putExtra("video_id", videoContent.getId().toString());
+                    if (videoContent.getTitle() != null)
+                        intent.putExtra("title", videoContent.getTitle());
+                    if (videoContent.getDetail() != null)
+                        intent.putExtra("description", videoContent.getDetail());
+                    if (videoContent.getRelease_date() != null)
+                        intent.putExtra("release", videoContent.getRelease_date());
+                    if (videoContent.getDuration_str() != null)
+                        intent.putExtra("duration", videoContent.getDuration_str());
+                    if (videoContent.getMaturity_rating() != null)
+                        intent.putExtra("maturity_rating", videoContent.getMaturity_rating());
+                    if (videoContent.getIs_free() != null)
+                        intent.putExtra("ispaid", videoContent.getIs_free().toString());
+                    if (videoContent.getLanguage_str() != null)
+                        intent.putExtra("language_str", videoContent.getLanguage_str());
+                    if (videoContent.getIs_live() != null)
+                        intent.putExtra("is_live", videoContent.getIs_live().toString());
+                    if (videoContent.getRating() != null)
+                        intent.putExtra("rating", videoContent.getRating().toString());
+                    if (videoContent.getTrailers() != null && videoContent.getTrailers().size() > 0 && videoContent.getTrailers().get(0) != null && videoContent.getTrailers().get(0).getMedia_url() != null) {
+                        intent.putExtra("trailer", videoContent.getTrailers().get(0).getMedia_url());
+                    }
+
+//kranti
+                    if (videoContent.getGenres() != null) {
+                        String genres;
+                        genres = videoContent.getGenres().get(0);
+                        for (int i = 1; i < videoContent.getGenres().size(); i++) {
+                            genres = genres.concat("," + videoContent.getGenres().get(i));
+                        }
+                        intent.putExtra("genres", genres);
+                    }
+                    getContext().startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
+
+                }
+                if (videoContent.getType().equalsIgnoreCase("VM")) {
+                    Intent intent = new Intent(getActivity(), ItemCountryActivity.class);
+                    intent.putExtra("id", videoContent.getId());
+
+                    intent.putExtra("title", videoContent.getTitle());
+
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    this.startActivity(intent);
+
+                }
+
+            }
+
 
         };
     }
@@ -144,7 +304,7 @@ public class GenreMovieFragment extends VerticalGridSupportFragment {
                 int itemPos = mAdapter.indexOf(item);
                 if (itemPos == movies.size() - 1) {
                     pageCount++;
-                    fetchMovieData( pageCount);
+                    fetchMovieData(pageCount);
                 }
             }
 

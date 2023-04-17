@@ -19,20 +19,21 @@
     <ImageView
         android:id="@+id/title_badge"
         android:layout_width="wrap_content"
-        android:maxWidth="@dimen/lb_browse_title_icon_max_width"
+        android:maxWidth="0dp"
         android:adjustViewBounds="true"
         android:layout_height="@dimen/lb_browse_title_icon_height"
         android:layout_gravity="start"
         android:src="@null"
-        android:visibility="visible"
+        android:visibility="gone"
         style="?attr/browseTitleIconStyle"/>
 
     <TextView
         android:id="@+id/title_text"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/lb_browse_title_height"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
         android:inputType="textCapSentences"
         android:text="Movie"
+        android:visibility="gone"
         android:layout_marginStart="@dimen/_50sdp"
         android:layout_gravity="center_vertical|start"
         style="?attr/browseTitleTextStyle"/>
@@ -42,7 +43,8 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:transitionGroup="true"
+
         android:layout_gravity="center_vertical|end"
-        android:visibility="invisible" />
+        android:visibility="gone" />
 
 </merge>
