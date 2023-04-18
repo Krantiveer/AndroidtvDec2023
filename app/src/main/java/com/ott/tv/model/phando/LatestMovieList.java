@@ -117,7 +117,17 @@ public class LatestMovieList implements Parcelable {
     @SerializedName("trailers")
     @Expose
     private List<LatestMovieSingleDetailList> trailers = null;
+    @SerializedName("android_link")
+    @Expose
+    private String android_link;
 
+    public String getAndroid_link() {
+        return android_link;
+    }
+
+    public void setAndroid_link(String android_link) {
+        this.android_link = android_link;
+    }
     protected LatestMovieList(Parcel in) {
         if (in.readByte() == 0) {
             id = null;

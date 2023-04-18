@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -222,6 +223,23 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
 
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
+
+            }
+            if (videoContent.getType().equalsIgnoreCase("OTT")) {
+             //   Intent intent = new Intent(context, ItemCountryActivity.class);
+
+                Intent intent = context.getPackageManager().getLaunchIntentForPackage(
+                        video.getAndroid_link().substring(video.getAndroid_link().lastIndexOf("=") + 1)
+                );
+
+                if (intent == null) {
+                    intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(video.getAndroid_link()));
+                }
+
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+
 
             }
 

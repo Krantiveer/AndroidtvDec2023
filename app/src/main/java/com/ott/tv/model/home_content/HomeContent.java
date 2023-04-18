@@ -49,6 +49,10 @@ public class HomeContent implements Parcelable {
     @Expose
     private List<FeaturesGenreAndMovie> featuresGenreAndMovie = null;
 
+    @SerializedName("ott_service_list")
+    @Expose
+    private List<OttServiceListModel> ottServiceList = null;
+
     private List<FeaturesGenreAndMovie> featuresGenreAndMovieSlider = null;
 
     @SerializedName("popular_stars")
@@ -57,6 +61,14 @@ public class HomeContent implements Parcelable {
 
     protected HomeContent(Parcel in) {
         homeContentId = in.readInt();
+    }
+
+    public List<OttServiceListModel> getOttServiceList() {
+        return ottServiceList;
+    }
+
+    public void setOttServiceList(List<OttServiceListModel> ottServiceList) {
+        this.ottServiceList = ottServiceList;
     }
 
     public static final Creator<HomeContent> CREATOR = new Creator<HomeContent>() {

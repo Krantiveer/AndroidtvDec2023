@@ -108,7 +108,17 @@ public class ShowWatchlist implements Parcelable{
     @SerializedName("genres")
     @Expose
     private List<String> genres = null;
+    @SerializedName("android_link")
+    @Expose
+    private String android_link;
 
+    public String getAndroid_link() {
+        return android_link;
+    }
+
+    public void setAndroid_link(String android_link) {
+        this.android_link = android_link;
+    }
     protected ShowWatchlist(Parcel in) {
         if (in.readByte() == 0) {
             id = null;

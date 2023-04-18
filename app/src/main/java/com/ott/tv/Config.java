@@ -25,11 +25,9 @@ public class Config {
     public static final String WebsiteURL = "https://www.mitwatv.com/";
 */
 
-/*
     public static final String DOMAIN = "https://ott.candorsolution.com/";
     public static final String Publisher_id = "61";
     public static final String WebsiteURL = "https://ott.candorsolution.com/";
-*/
 
 
 /*
@@ -60,9 +58,9 @@ public class Config {
     public static final String Publisher_id = "28";
     public static final String WebsiteURL = "https://saasuat.vdoapi.com/";
 */
-    public static final String DOMAIN = "https://tvcafeonline.com/";
+/*    public static final String DOMAIN = "https://tvcafeonline.com/";
     public static final String Publisher_id = "7";
-    public static final String WebsiteURL = "https://tvcafeonline.com/";
+    public static final String WebsiteURL = "https://tvcafeonline.com/";*/
 
 
 

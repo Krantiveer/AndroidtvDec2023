@@ -370,6 +370,21 @@ public class HomeFragmentNewUI extends Fragment {
         recyclerViewBannerBottom.setAdapter(homeBannerSecAdapter);
     }
 
+    private void loadRowsnew(List<FeaturesGenreAndMovie> homeContents, ArrayList<Video> slideArrayList) {
+
+        HomeBannerAdapter adapter = new HomeBannerAdapter(slideArrayList, getContext());
+        adapter.setSendInterfacedata(description -> setTextViewBanner(description));
+        adapter.setSendInterfaceClick(() -> releasePlayer());
+        recyclerViewBannerTop.setAdapter(adapter);
+/*
+        HomeBannerSecAdapter homeBannerSecAdapter = new HomeBannerSecAdapter(homeContents, getContext());
+
+        homeBannerSecAdapter.setSendInterfacedata(description -> setTextViewBanner(description));
+        homeBannerSecAdapter.setSendInterfaceClick(() -> releasePlayer());
+
+        recyclerViewBannerBottom.setAdapter(homeBannerSecAdapter);*/
+    }
+
     private void loadRows(List<FeaturesGenreAndMovie> homeContents) {
 
         HomeBannerSecAdapter homeBannerSecAdapter = new HomeBannerSecAdapter(homeContents, getContext());

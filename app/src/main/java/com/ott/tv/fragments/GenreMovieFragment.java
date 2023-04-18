@@ -2,6 +2,7 @@ package com.ott.tv.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -287,6 +288,24 @@ public class GenreMovieFragment extends VerticalGridSupportFragment {
                     this.startActivity(intent);
 
                 }
+                if (videoContent.getType().equalsIgnoreCase("OTT")) {
+                    //   Intent intent = new Intent(context, ItemCountryActivity.class);
+
+                    Intent intent = getActivity().getPackageManager().getLaunchIntentForPackage(
+                            videoContent.getAndroid_link().substring(videoContent.getAndroid_link().lastIndexOf("=") + 1)
+                    );
+
+                    if (intent == null) {
+                        intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(videoContent.getAndroid_link()));
+                    }
+
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    getActivity().startActivity(intent);
+
+
+                }
+
 
             }
 
