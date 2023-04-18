@@ -13,16 +13,15 @@ For fire tv I created amazon developer account plz check with that
 
 
 
-
 APP NAME (in playstore)
 short description
 full description
 Firebase Email id
-base url in live.
-Publisher id.
-Privacy policy.
- Email address*( Playtore)
-. Testing email id (playstore tester)
+base url in live-->
+Publisher id-->
+Privacy policy.(link )
+Email address*( Playtore)
+Testing email id (playstore tester)
 Phone number(optional)
 Website (optional)
  Is Application is Contains News channel . ( Provide information to help us verify your credentials as a news publisher.

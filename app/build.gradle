@@ -87,8 +87,8 @@ android {
 
         candor {
             applicationId "com.tv.candor"
-            versionCode 6
-            versionName "1.6"
+            versionCode 7
+            versionName "1.7"
         }
         solidtv {
             applicationId "com.solidtv"
