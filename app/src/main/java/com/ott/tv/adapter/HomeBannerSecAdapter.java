@@ -84,12 +84,9 @@ public class HomeBannerSecAdapter extends RecyclerView.Adapter<HomeBannerSecAdap
                     }
                 }
             });
-            adapter.setSendInterfaceClick(new HomeBannerSecAdapterbottom.SendInterfaceClickSec() {
-                @Override
-                public void sendclickSec() {
-                    if(sendInterfaceclick!=null){
-                        sendInterfaceclick.sendclick();
-                    }
+            adapter.setSendInterfaceClick(() -> {
+                if(sendInterfaceclick!=null){
+                    sendInterfaceclick.sendclick();
                 }
             });
             holder.rVBannerBottom.setAdapter(adapter);

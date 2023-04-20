@@ -115,7 +115,13 @@ public class GenreMovieFragment extends VerticalGridSupportFragment {
                     List<ShowWatchlist> movieList = response.body();
                     if (movieList.size() <= 0) {
                         dataAvailable = false;
-                        //Toast.makeText(activity, getResources().getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
+                        if (getContext() != null) {
+                            final NoDataFragmant noDataFragmant = new NoDataFragmant();
+                            final FragmentManager fm = getFragmentManager();
+                            fm.beginTransaction().add(R.id.browserSection, noDataFragmant).commit();
+
+                            //   Toast.makeText(getContext(), getResources().getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                     for (ShowWatchlist movie : movieList) {
