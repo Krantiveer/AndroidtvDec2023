@@ -1,5 +1,5 @@
 <resources>
-    <dimen name="android_Tv_card_size_width">180sp</dimen>
+    <dimen name="android_Tv_card_size_width">200sp</dimen>
     <dimen name="android_Tv_card_size_height">102sp</dimen>
     <dimen name="corner_radius_series">3sp</dimen>
 

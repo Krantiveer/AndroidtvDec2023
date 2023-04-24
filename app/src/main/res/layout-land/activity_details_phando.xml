@@ -396,6 +396,16 @@
                         android:visibility="gone"
                         tools:text="@string/add_favlist"
                         tools:visibility="gone" />
+                    <androidx.fragment.app.FragmentContainerView
+                        android:id="@+id/detailsFragment"
+                        android:name="com.ott.tv.fragments.DetailsFragment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:background="@color/transparent"
+                        tools:context="com.ott.tv.ui.activity.DetailsActivityPhando"
+                        tools:layout="@layout/banner_home_list_item_movies" />
+
 
                     <!--
                                             <androidx.fragment.app.FragmentContainerView
@@ -410,15 +420,6 @@
                     -->
                 </LinearLayout>
 
-                <androidx.fragment.app.FragmentContainerView
-                    android:id="@+id/detailsFragment"
-                    android:name="com.ott.tv.fragments.DetailsFragment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="-100dp"
-                    android:background="@color/transparent"
-                    tools:context="com.ott.tv.ui.activity.DetailsActivityPhando"
-                    tools:layout="@layout/banner_home_list_item_movies" />
 
                 <RelativeLayout
                     android:id="@+id/rlplayer"
