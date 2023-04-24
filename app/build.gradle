@@ -106,7 +106,11 @@ android {
             versionCode 7
             versionName "7.0"
         }
-
+        pink_papaya {
+            applicationId "com.pinkpapaya.tv"
+            versionCode 1
+            versionName "1.0"
+        }
 
 
     }

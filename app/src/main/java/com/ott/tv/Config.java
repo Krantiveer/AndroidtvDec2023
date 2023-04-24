@@ -25,10 +25,13 @@ public class Config {
     public static final String WebsiteURL = "https://www.mitwatv.com/";
 */
 
-    public static final String DOMAIN = "https://ott.candorsolution.com/";
+   /* public static final String DOMAIN = "https://ott.candorsolution.com/";
     public static final String Publisher_id = "61";
     public static final String WebsiteURL = "https://ott.candorsolution.com/";
-
+*/
+ public static final String DOMAIN = "https://pinkpapaya.in/";
+ public static final String Publisher_id = "69";
+ public static final String WebsiteURL = "https://pinkpapaya.in/";
 
 /*
     public static final String DOMAIN = "https://www.toonstaan.tv/";

@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "880049866055",
+    "project_id": "pinkpapaya-a4ea0",
+    "storage_bucket": "pinkpapaya-a4ea0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880049866055:android:2b72eb5624986addf4f862",
+        "android_client_info": {
+          "package_name": "com.pinkpapaya.tv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "880049866055-qh4ast7evu8b4psa0tu2240bh0l75vpp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlrc8yPQQ66VgibCgzgO7BjcQcFD8Mr1E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "880049866055-qh4ast7evu8b4psa0tu2240bh0l75vpp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880049866055:android:a6ac89177e20c751f4f862",
+        "android_client_info": {
+          "package_name": "com.release.pinkpapaya"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "880049866055-qh4ast7evu8b4psa0tu2240bh0l75vpp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlrc8yPQQ66VgibCgzgO7BjcQcFD8Mr1E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "880049866055-qh4ast7evu8b4psa0tu2240bh0l75vpp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
