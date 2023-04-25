@@ -24,6 +24,27 @@ public class AppInfo implements Parcelable {
     private Boolean isnpawEnable;
 
 
+    protected AppInfo(Parcel in) {
+        appType = in.readString();
+        currentVersion = in.readString();
+        forceUpdate = in.readString();
+        npawAccountKey = in.readString();
+        byte tmpIsnpawEnable = in.readByte();
+        isnpawEnable = tmpIsnpawEnable == 0 ? null : tmpIsnpawEnable == 1;
+    }
+
+    public static final Creator<AppInfo> CREATOR = new Creator<AppInfo>() {
+        @Override
+        public AppInfo createFromParcel(Parcel in) {
+            return new AppInfo(in);
+        }
+
+        @Override
+        public AppInfo[] newArray(int size) {
+            return new AppInfo[size];
+        }
+    };
+
     @Override
     public String toString() {
         return "AppInfo{" +
@@ -69,7 +90,11 @@ public class AppInfo implements Parcelable {
 
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
-
+        dest.writeString(appType);
+        dest.writeString(currentVersion);
+        dest.writeString(forceUpdate);
+        dest.writeString(npawAccountKey);
+        dest.writeByte((byte) (isnpawEnable == null ? 0 : isnpawEnable ? 1 : 2));
     }
 
     public String getForceUpdate() {

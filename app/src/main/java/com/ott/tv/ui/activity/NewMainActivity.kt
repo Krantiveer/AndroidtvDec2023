@@ -21,6 +21,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
+import com.google.gson.annotations.SerializedName
 import com.ott.tv.BuildConfig
 import com.ott.tv.MapFragmentUVTV
 import com.ott.tv.R
@@ -45,6 +46,17 @@ class NewMainActivity : FragmentActivity() {
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Creating an extended library configuration.
+      /*  // Creating an extended library configuration.
+        val config = YandexMetricaConfig.newConfigBuilder("45c548e2-21f1-4386-934b-3059b7d28b56").build()
+        // Initializing the AppMetrica SDK.
+        // Initializing the AppMetrica SDK.
+        YandexMetrica.activate(applicationContext, config)
+        // Automatic tracking of user activity.
+        // Automatic tracking of user activity.
+        YandexMetrica.enableActivityAutoTracking(application)
+*/
+
         binding = ActivityNewMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val retrofit = RetrofitClient.getRetrofitInstance()
@@ -108,6 +120,8 @@ class NewMainActivity : FragmentActivity() {
     private fun onGetAppInfoSuccess(appInfo: AppInfo) {
         val storeVersion = appInfo.currentVersion
         val forceUpdate = appInfo.isForceUpdate
+        PreferenceUtils.getInstance().setNpawEnablePref(this, appInfo.isnpawEnable)
+        PreferenceUtils.getInstance().setNpawAccountKeyPref(this,appInfo.npawAccountKey)
 
         var currentVersion = 0
         try {

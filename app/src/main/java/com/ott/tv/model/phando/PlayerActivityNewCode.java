@@ -936,9 +936,9 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
                             .createMediaSource(MediaItem.fromUri(url));
 // Create a player instance.
             player = new ExoPlayer.Builder(this).build();
-            if (Config.NPAW) {
+            if (PreferenceUtils.getInstance().getNpawEnablePref(this)) {
                 youboraOptions = new Options();
-                youboraOptions.setAccountCode("mitwatv");
+                youboraOptions.setAccountCode(PreferenceUtils.getInstance().getNpawAccountKeyPref(this));
                 youboraOptions.setContentTitle(model.getTitle());
                 youboraOptions.setContentId(model.getMovieId());
                 youboraOptions.setDeviceType(Config.Device_Type);

@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.annotations.SerializedName;
 import com.ott.tv.Config;
 import com.ott.tv.Constants;
 import com.ott.tv.R;
@@ -37,7 +38,7 @@ public class PreferenceUtils {
     public static final String access_token = "access_token";
     public static final String state_name = "state_name";
     public static final Integer watch_list = 0;
-
+    public static final String npawAccountKey = "";
 
     public static PreferenceUtils getInstance() {
         return INSTANCE;
@@ -204,6 +205,7 @@ public class PreferenceUtils {
         return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
                 .getString(country_code, context.getString(R.string.country_code_default));
     }
+
     public void setCountyNamePref(Context context, String countryName) {
         SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -215,6 +217,7 @@ public class PreferenceUtils {
         return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
                 .getString(country_name, context.getString(R.string.country_name_default));
     }
+
     public void setUvtv_state_namePref(Context context, String stateName) {
         SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -250,6 +253,7 @@ public class PreferenceUtils {
         return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
                 .getString(state_name, "");
     }
+
     public void setWatchListPref(Context context, Integer name) {
         SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -260,5 +264,30 @@ public class PreferenceUtils {
     public Integer getWatchListPref(Context context) {
         return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
                 .getInt(String.valueOf(watch_list), 0);
+    }
+
+    public void setNpawAccountKeyPref(Context context, String accessToken) {
+        SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(npawAccountKey, accessToken);
+        editor.apply();
+    }
+
+    public String getNpawAccountKeyPref(Context context) {
+        return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
+                .getString(npawAccountKey, "");
+    }
+
+
+    public void setNpawEnablePref(Context context, Boolean name) {
+        SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("isnpawEnable", name);
+        editor.apply();
+    }
+
+    public Boolean getNpawEnablePref(Context context) {
+        return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
+                .getBoolean("isnpawEnable", false);
     }
 }
