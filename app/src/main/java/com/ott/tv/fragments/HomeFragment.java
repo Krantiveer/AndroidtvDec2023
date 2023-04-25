@@ -479,9 +479,8 @@ public class HomeFragment extends RowsSupportFragment {
                 }
                 if (videoContent.getType().equalsIgnoreCase("VM")) {
                     Intent intent = new Intent(getActivity(), ItemCountryActivity.class);
-                    intent.putExtra("id", videoContent.getId());
-
-                    intent.putExtra("title", videoContent.getViewallTitle());
+                    intent.putExtra("id", videoContent.getId().toString());
+                    intent.putExtra("title", videoContent.getTitle());
 
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     this.startActivity(intent);

@@ -29,11 +29,10 @@
 
     <TextView
         android:id="@+id/title_text"
-        android:layout_width="1dp"
-        android:layout_height="1dp"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/lb_browse_title_height"
         android:inputType="textCapSentences"
         android:text="Movie"
-        android:visibility="gone"
         android:layout_marginStart="@dimen/_50sdp"
         android:layout_gravity="center_vertical|start"
         style="?attr/browseTitleTextStyle"/>

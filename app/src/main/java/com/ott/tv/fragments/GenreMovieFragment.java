@@ -48,7 +48,7 @@ import retrofit2.Retrofit;
 public class GenreMovieFragment extends VerticalGridSupportFragment {
 
     private static final String TAG = ItemCountryFragment.class.getSimpleName();
-    private static final int NUM_COLUMNS = 4;
+    private static final int NUM_COLUMNS = 5;
     private List<Movie> movies = new ArrayList<>();
     private ArrayObjectAdapter mAdapter;
     //private BackgroundHelper bgHelper;
@@ -286,7 +286,7 @@ public class GenreMovieFragment extends VerticalGridSupportFragment {
                 }
                 if (videoContent.getType().equalsIgnoreCase("VM")) {
                     Intent intent = new Intent(getActivity(), ItemCountryActivity.class);
-                    intent.putExtra("id", videoContent.getId());
+                    intent.putExtra("id", videoContent.getId().toString());
 
                     intent.putExtra("title", videoContent.getTitle());
 

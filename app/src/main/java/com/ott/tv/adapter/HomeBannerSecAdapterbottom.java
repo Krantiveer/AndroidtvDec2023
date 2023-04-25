@@ -217,7 +217,7 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
         {
             if (videoContent.getType().equalsIgnoreCase("VM")) {
                 Intent intent = new Intent(context, ItemCountryActivity.class);
-                intent.putExtra("id", video.getVideosId());
+                intent.putExtra("id", video.getVideosId().toString());
 
                 intent.putExtra("title", videoContent.getViewallName());
 

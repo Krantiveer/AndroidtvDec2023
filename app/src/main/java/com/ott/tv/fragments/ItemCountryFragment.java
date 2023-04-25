@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,7 @@ import androidx.leanback.widget.Presenter;
 import androidx.leanback.widget.Row;
 import androidx.leanback.widget.RowPresenter;
 import androidx.leanback.widget.VerticalGridPresenter;
+import androidx.leanback.widget.VerticalGridView;
 
 
 import com.ott.tv.Constants;
@@ -94,7 +96,7 @@ public class ItemCountryFragment extends VerticalGridSupportFragment {
         Constants.IS_FROM_HOME = false;
         String accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(getContext());
         Log.i(TAG, id + "Access Token --->" + PreferenceUtils.getInstance().getAccessTokenPref(getContext()));
-        Call<List<ShowWatchlist>> call = api.getViewAllListAPI(accessToken, id,"0,100","");
+        Call<List<ShowWatchlist>> call = api.getViewAllListAPI(accessToken, id,"0,400","");
         call.enqueue(new Callback<List<ShowWatchlist>>() {
             @Override
             public void onResponse(@NonNull Call<List<ShowWatchlist>> call, @NonNull Response<List<ShowWatchlist>> response) {
@@ -177,7 +179,7 @@ public class ItemCountryFragment extends VerticalGridSupportFragment {
 
             if (videoContent.getType().equalsIgnoreCase("VM")) {
                 Intent intent = new Intent(getContext(), ItemCountryActivity.class);
-                intent.putExtra("id", videoContent.getId());
+                intent.putExtra("id", videoContent.getId().toString());
                 if (videoContent.getGenres() != null) {
                     if (videoContent.getGenres().size() > 0) {
                         String genres;
@@ -384,5 +386,6 @@ public class ItemCountryFragment extends VerticalGridSupportFragment {
         dataAvailable = true;
 
     }
+
 
 }
