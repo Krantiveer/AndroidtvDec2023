@@ -107,6 +107,8 @@
                     android:gravity="center"
                     android:paddingTop="@dimen/_2sdp"
                     android:paddingBottom="@dimen/_4sdp"
+                    tools:visibility="visible"
+                    android:visibility="invisible"
                     android:src="@drawable/prime_icon"
                     />
 
