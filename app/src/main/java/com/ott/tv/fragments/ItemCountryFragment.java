@@ -45,7 +45,7 @@ import retrofit2.Retrofit;
 public class ItemCountryFragment extends VerticalGridSupportFragment {
 
     private static final String TAG = ItemCountryFragment.class.getSimpleName();
-    private static final int NUM_COLUMNS = 5;
+    private static final int NUM_COLUMNS = 4;
     private List<ShowWatchlist> movies = new ArrayList<>();
     private ArrayObjectAdapter mAdapter;
     //private BackgroundHelper bgHelper;

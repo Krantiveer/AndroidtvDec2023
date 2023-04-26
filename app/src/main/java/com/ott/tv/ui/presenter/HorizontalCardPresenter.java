@@ -34,7 +34,7 @@ public class HorizontalCardPresenter extends Presenter {
         this.type = type;
     }
 
-    private int itemViewType;
+    private int itemViewType=4;
     private CardPresenter.OnSelectionListener onSelectionListener;
 
     @Override

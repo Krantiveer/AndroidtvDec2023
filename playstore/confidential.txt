@@ -77,5 +77,9 @@ Check list
 4. Testing email/password provide
 
 
+yandex implitation
+https://appmetrica.yandex.com/docs/mobile-sdk-dg/android/about/android-initialize.html
 
+
+API Key - 45c548e2-21f1-4386-934b-3059b7d28b56
 

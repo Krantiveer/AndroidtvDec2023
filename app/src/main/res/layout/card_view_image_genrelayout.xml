@@ -1,115 +1,156 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-     Copyright (C) 2015 The Android Open Source Project
-
-     Licensed under the Apache License, Version 2.0 (the "License");
-     you may not use this file except in compliance with the License.
-     You may obtain a copy of the License at
-
-          http://www.apache.org/licenses/LICENSE-2.0
-
-     Unless required by applicable law or agreed to in writing, software
-     distributed under the License is distributed on an "AS IS" BASIS,
-     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     See the License for the specific language governing permissions and
-     limitations under the License.
--->
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/round_ll"
+    android:gravity="start"
+    android:orientation="horizontal">
+
 
     <RelativeLayout
-        android:layout_width="@dimen/_170sdp"
-        android:layout_height="@dimen/_170sdp"
-        android:layout_margin="5dp"
-        android:background="@drawable/round_ll_home"
-        android:gravity="start"
-        android:orientation="horizontal">
+        android:id="@+id/main_image_container"
+        android:layout_width="@dimen/_218sdp"
+        android:layout_height="@dimen/_123sdp"
+        android:layout_margin="3dp"
+        android:backgroundTint="@color/black_color">
 
-
-        <RelativeLayout
-            android:id="@+id/main_image_container"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="3dp">
+            android:backgroundTint="@color/black_color"
+            android:elevation="10dp"
+            app:cardCornerRadius="4dp">
 
-            <androidx.cardview.widget.CardView
+            <ImageView
+                android:id="@+id/main_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:elevation="10dp"
-                app:cardCornerRadius="4dp">
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="0dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/hint_image"
+                android:scaleType="fitXY"
+                android:src="@drawable/poster_placeholder_land" />
 
-                <ImageView
-                    android:id="@+id/main_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="0dp"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="@string/hint_image"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/movie2" />
-
-
-                <TextView
-                    android:id="@+id/premiumIcon"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="0dp"
-                    android:fontFamily="@font/amazon"
-                    android:paddingStart="@dimen/_5sdp"
-                    android:paddingTop="@dimen/_2sdp"
-                    android:paddingEnd="@dimen/_8sdp"
-                    android:layout_marginTop="@dimen/_115sdp"
-                    android:maxLines="2"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="21sp"
-                    tools:ignore="RelativeOverlap" />
-            </androidx.cardview.widget.CardView>
-
-            <ProgressBar
-                android:id="@+id/progress_indicator"
+            <TextView
+                android:id="@+id/premiumIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerInParent="true"
-                android:indeterminate="true"
-                android:indeterminateTint="@color/red_highlight_color"
-                android:indeterminateTintMode="src_atop"
-                android:padding="36dp"
-                android:visibility="gone" />
-        </RelativeLayout>
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="end"
+                android:layout_marginEnd="0dp"
+                android:background="@drawable/prime_icon"
+                android:fontFamily="@font/amazon"
+                android:paddingStart="@dimen/_5sdp"
+                android:paddingTop="@dimen/_2sdp"
+                android:paddingEnd="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_4sdp"
+                android:text="@string/premium"
 
-        <TextView
-            android:id="@+id/primary_text"
+                android:textColor="@color/cardTextColor"
+                android:textSize="@dimen/_9sdp"
+                android:visibility="gone"
+                tools:ignore="RelativeOverlap,SpUsage" />
+
+            <ImageView
+                android:id="@+id/premiumIconImage"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_gravity="end"
+                android:layout_margin="5sp"
+                android:contentDescription="@string/contentDescription"
+                android:src="@drawable/ic_premium" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar_movie"
+                style="@style/yellowProgressBar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_8sdp"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="100dp"
+                android:max="100"
+                android:progress="45"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="2sp"
+                android:background="@drawable/bg_gradient_soft_new"
+                android:contentDescription="@string/contentDescription"
+                android:ellipsize="end"
+                android:paddingStart="4sp"
+                android:paddingEnd="4sp"
+                android:paddingBottom="5sp"
+                android:textColor="@color/white"
+
+                />
+
+            <TextView
+                android:id="@+id/title_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="2sp"
+                android:background="@drawable/bg_gradient_soft_new"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto"
+                android:maxLines="1"
+                android:paddingStart="4sp"
+                android:paddingEnd="4sp"
+                android:paddingBottom="5sp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/card_Text_Size"
+                tools:text="title movie" />
+        </androidx.cardview.widget.CardView>
+
+
+        <ProgressBar
+            android:id="@+id/progress_indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/main_image_container"
-            android:layout_gravity="start"
-            android:layout_marginStart="4sp"
-            android:layout_marginTop="2sp"
-            android:layout_marginEnd="4sp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textColor="@color/white"
-            android:textSize="11sp" />
-
-        <TextView
-            android:id="@+id/extra_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/primary_text"
-            android:layout_gravity="start"
-            android:layout_marginStart="4sp"
-            android:layout_marginTop="2sp"
-            android:layout_marginEnd="4sp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textColor="@color/color_989898"
-            android:textSize="8sp"
-            tools:ignore="SmallSp" />
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/red_highlight_color"
+            android:indeterminateTintMode="src_atop"
+            android:padding="36dp"
+            android:visibility="gone" />
     </RelativeLayout>
-</merge>
+
+    <TextView
+        android:id="@+id/primary_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/main_image_container"
+        android:layout_gravity="start"
+        android:layout_marginStart="4sp"
+        android:layout_marginTop="2sp"
+        android:layout_marginEnd="4sp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/extra_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/primary_text"
+        android:layout_gravity="start"
+        android:layout_marginStart="4sp"
+        android:layout_marginTop="2sp"
+        android:layout_marginEnd="4sp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/color_989898"
+        android:textSize="8sp"
+        android:visibility="gone"
+        tools:ignore="SmallSp" />
+</RelativeLayout>
