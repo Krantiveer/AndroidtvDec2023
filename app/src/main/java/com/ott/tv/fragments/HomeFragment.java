@@ -303,6 +303,7 @@ public class HomeFragment extends RowsSupportFragment {
             //for (int j = 0; j < NUM_COLS; j++) {
             for (int j = 0; j < movieListContent.get(i).getList().size(); j++) {
                 LatestMovieList videoContent = movieListContent.get(i).getList().get(j);
+                videoContent.setViewallTitle(movieListContent.get(i).getTitle());
 
               /*  if (movieListContent.get(i).getViewType().equalsIgnoreCase("tv")) {
                     videoContent.setType("tv");
@@ -480,7 +481,7 @@ public class HomeFragment extends RowsSupportFragment {
                 if (videoContent.getType().equalsIgnoreCase("VM")) {
                     Intent intent = new Intent(getActivity(), ItemCountryActivity.class);
                     intent.putExtra("id", videoContent.getId().toString());
-                    intent.putExtra("title", videoContent.getTitle());
+                    intent.putExtra("title", videoContent.getViewallTitle());
 
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     this.startActivity(intent);
