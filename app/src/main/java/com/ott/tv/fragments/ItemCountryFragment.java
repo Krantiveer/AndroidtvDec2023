@@ -118,6 +118,9 @@ public class ItemCountryFragment extends VerticalGridSupportFragment {
                     mAdapter.notifyArrayItemRangeChanged(movieList.size() - 1, movieList.size() + movies.size());
                     //   movies.addAll(movieList);
 
+                }else {
+                    Toast.makeText(getContext(), getResources().getString(R.string.something_went_text), Toast.LENGTH_SHORT).show();
+
                 }
             }
 
