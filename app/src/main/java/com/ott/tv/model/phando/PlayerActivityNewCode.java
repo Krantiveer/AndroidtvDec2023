@@ -943,7 +943,7 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
                 youboraOptions.setContentId(model.getMovieId());
                 youboraOptions.setDeviceType(Config.Device_Type);
                 youboraOptions.setContentType(type);
-                youboraOptions.setAppName(Config.NPAW_APPNAME);
+             //   youboraOptions.setAppName();
                 Log.i(TAG, "initVideoPlayer: "+youboraOptions);
 
 
