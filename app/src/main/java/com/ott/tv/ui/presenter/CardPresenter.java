@@ -122,7 +122,8 @@ public class CardPresenter extends Presenter {
             mImageCardViewTarget = new PicassoImageCardViewTarget(mCardView);
             mDefaultCardImage = mContext
                     .getResources()
-                    .getDrawable(R.drawable.logo);
+                    .getDrawable(R.drawable.poster_placeholder_land);
+
         }
 
         public ImageCardView getCardView() {

@@ -64,10 +64,9 @@ android {
         }
         scifiworld {
             applicationId "com.scifiworld.tv"
-            versionCode 8
+            versionCode 10
             versionName "1"
         }
-
 
         xploreindia {
             applicationId "com.xploreindia.tv"
@@ -235,13 +234,24 @@ dependencies {
     //gifimage
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.22'
 //nPaw integration
-    implementation 'com.nicepeopleatwork:exoplayer2-18-adapter:6.8.+'
+   // implementation 'com.nicepeopleatwork:exoplayer2-18-adapter:6.8.+'
     // required to avoid crash on Android 12 API 31
    // implementation 'androidx.work:work-runtime-ktx:2.7.1'
     implementation 'androidx.work:work-runtime-ktx:2.8.1'
+
     // AppMetrica SDK.
 
   //  implementation 'com.yandex.android:mobmetricalib:5.3.0'
+/*
+//singular
+    implementation 'com.singular.sdk:singular_sdk:12.1.1'
+    implementation 'com.google.android.gms:play-services:6.5.87'
+
+    implementation 'com.android.installreferrer:installreferrer:2.2'
+
+    implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1'
+*/
+
 
 
 

@@ -73,9 +73,11 @@ import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
 import com.google.android.exoplayer2.util.MimeTypes;
 import com.google.android.exoplayer2.util.Util;
 /*import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;*/
+/*
 import com.npaw.youbora.lib6.exoplayer2.Exoplayer2Adapter;
 import com.npaw.youbora.lib6.plugin.Options;
 import com.npaw.youbora.lib6.plugin.Plugin;
+*/
 import com.ott.tv.BuildConfig;
 import com.ott.tv.Config;
 import com.ott.tv.Constants;
@@ -128,7 +130,7 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
     protected @Nullable
     ExoPlayer player;
     protected PlayerView exoPlayerView;//playerView;
-    private Options youboraOptions;
+//    private Options youboraOptions;
     private LinearLayout rootLayout;
     private MediaSource mediaSource;
     private boolean isPlaying;
@@ -936,6 +938,7 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
                             .createMediaSource(MediaItem.fromUri(url));
 // Create a player instance.
             player = new ExoPlayer.Builder(this).build();
+/*
             if (PreferenceUtils.getInstance().getNpawEnablePref(this)) {
                 youboraOptions = new Options();
                 youboraOptions.setAccountCode(PreferenceUtils.getInstance().getNpawAccountKeyPref(this));
@@ -953,6 +956,7 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
                 youboraPlugin.setAdapter(adapter);
                 Log.i(TAG, "initVideoPlayer: "+youboraOptions);
             }
+*/
             player.setMediaSource(hlsMediaSource);
             player.getTrackSelector();
             player.prepare();
