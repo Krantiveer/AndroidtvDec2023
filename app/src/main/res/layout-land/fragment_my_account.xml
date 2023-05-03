@@ -269,6 +269,16 @@
 
                     </LinearLayout>
                 </LinearLayout>
+                <TextView
+                    android:id="@+id/builVersion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lytTopCard"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="App Version :14"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

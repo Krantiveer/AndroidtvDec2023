@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.ott.tv.BuildConfig;
 import com.ott.tv.Constants;
 import com.ott.tv.databinding.FragmentMyAccountBinding;
 import com.ott.tv.model.phando.UserProfile;
@@ -67,6 +68,7 @@ public class MyAccountFragment extends Fragment {
             }
         });
         getUserProfileDataFromServer();
+        binding.builVersion.setText("App Version:" + BuildConfig.VERSION_CODE);
         return view;
 
     }
@@ -106,13 +108,13 @@ public class MyAccountFragment extends Fragment {
                         binding.lytTopCard.setVisibility(View.VISIBLE);
                         if (response.code() == 200 && response.body() != null) {
                             userProfile = response.body();
-                        if(getActivity()!=null) {
-                            Glide.with(getActivity())
-                                    .load(userProfile.getUser().getImage())
-                                    .error(R.drawable.user_icon_demo)
-                                    .placeholder(R.drawable.user_icon_demo)
-                                    .into(binding.imguser);
-                        }
+                            if (getActivity() != null) {
+                                Glide.with(getActivity())
+                                        .load(userProfile.getUser().getImage())
+                                        .error(R.drawable.user_icon_demo)
+                                        .placeholder(R.drawable.user_icon_demo)
+                                        .into(binding.imguser);
+                            }
                             binding.userName.setText(userProfile.getUser().getName());
                             if (userProfile.getUser().getEmail() != null) {
                                 binding.userEmailTv.setVisibility(View.VISIBLE);

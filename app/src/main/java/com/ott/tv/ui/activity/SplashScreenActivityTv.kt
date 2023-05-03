@@ -47,6 +47,8 @@ class SplashScreenActivityTv : Activity() {
                 findViewById<ImageView>(R.id.splash_img_view).visibility=View.INVISIBLE
 
             }
+          //  findViewById<TextView>(R.id.builVersion).setText("App Version:" + BuildConfig.VERSION_CODE)
+
             openHomeFun()
             Log.e(TAG, "Screen : ${SplashScreenActivityTv::class.java.simpleName}")
 }

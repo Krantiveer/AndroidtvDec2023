@@ -33,6 +33,7 @@
         android:gravity="center"
         android:keepScreenOn="true"
         android:visibility="gone"
+        tools:visibility="visible"
         android:background="@drawable/splash_screen_bg"
         android:orientation="vertical">
 
@@ -46,7 +47,23 @@
             android:padding="30sp"
             android:src="@drawable/logo_splash"
             android:visibility="visible" />
-    </LinearLayout>
 
+<!--
+        <TextView
+            android:id="@+id/builVersion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-50dp"
+            android:layout_below="@+id/splash_img_view"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:fontFamily="@font/roboto_medium"
+            android:text="App Version :14"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp" />
+-->
+
+    </LinearLayout>
 
 </LinearLayout>
