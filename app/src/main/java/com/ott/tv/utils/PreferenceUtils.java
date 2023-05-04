@@ -39,7 +39,7 @@ public class PreferenceUtils {
     public static final String state_name = "state_name";
     public static final Integer watch_list = 0;
     public static final String npawAccountKey = "";
-   // public static final Boolean focusFromWatchNow = "";
+    // public static final Boolean focusFromWatchNow = "";
 
     public static PreferenceUtils getInstance() {
         return INSTANCE;
