@@ -3,16 +3,16 @@ package com.ott.tv;
 public class Config {
 
     public static final String Device_Type = "androidtv";
-    //  public static final String Device_Type = "firetv";
+   //   public static final String Device_Type = "firetv";
     //  pu blic static final String DOMAIN = "https://actionott.com/";
     // public static final String DOMAIN = "https://dev.actionott.com/";
     //public static final String DOMAIN = "https://lifeott.com/";
 //    public static final String DOMAIN = "https://uvtvstage.phando.com/";
     //saasuat.vdoapi.com
 
- /*   public static final String DOMAIN = "https://www.uvtv.in/";
+    public static final String DOMAIN = "https://www.uvtv.in/";
     public static final String Publisher_id = "4";
-    public static final String WebsiteURL = "https://www.uvtv.in/";*/
+    public static final String WebsiteURL = "https://www.uvtv.in/";
 
   /*  public static final String DOMAIN = "https://kaafaltv.com/";
     public static final String Publisher_id = "5";
@@ -50,10 +50,9 @@ public class Config {
 /*    public static final String DOMAIN = "https://www.solidtvbox.com/";
     public static final String Publisher_id = "6";
     public static final String WebsiteURL = "https://www.solidtvbox.com/";*/
-
-    public static final String DOMAIN = "https://watch.scifiworld.tv/";
+/*    public static final String DOMAIN = "https://watch.scifiworld.tv/";
     public static final String Publisher_id = "10";
-    public static final String WebsiteURL = "https://watch.scifiworld.tv/";
+    public static final String WebsiteURL = "https://watch.scifiworld.tv/";*/
 
  /*  public static final String DOMAIN = "https://saas-sandbox.phando.com/";
      public static final String Publisher_id = "28";

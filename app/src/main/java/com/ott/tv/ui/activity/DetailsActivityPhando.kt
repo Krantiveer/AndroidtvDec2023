@@ -661,6 +661,7 @@ class DetailsActivityPhando : FragmentActivity() {
 
     private fun payAndWatchTV() {
         if (singleDetails != null) {
+        //    Constants.IS_FROM_WATCH_NOW=true
             val videoList: List<Video> = ArrayList()
             /*         for (Video video : singleDetails.getVideos()) {
                 if (video.getFileType() != null && !video.getFileType().equalsIgnoreCase("embed")) {
@@ -1071,9 +1072,23 @@ class DetailsActivityPhando : FragmentActivity() {
 
 
     override fun onResume() {
+        Log.i("onresume call", "onResume: "+Constants.IS_FROM_HOME)
+
         if (episode_rv!!.isVisible) {
             episode_rv!!.requestFocus()
         }
+/*
+        if (Constants.IS_FROM_WATCH_NOW) {
+            tvWatchNow?.requestFocus()
+            Constants.IS_FROM_WATCH_NOW=false
+
+        }else{
+            Constants.IS_FROM_WATCH_NOW=false
+        }
+*/
+        Log.i("onresume call", "onResume: "+Constants.IS_FROM_HOME)
+
+        // tvWatchNow!!.requestFocus()
         super.onResume()
     }
 

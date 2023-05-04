@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.tv.mitwa",
+  "variantName": "mitwa_tvRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 13,
+      "versionName": "1.13",
+      "outputFile": "mitwa_tvRelease_v1.13_27_Apr_2023.apk"
+    }
+  ],
+  "elementType": "File"
+}

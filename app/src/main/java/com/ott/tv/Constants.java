@@ -15,6 +15,7 @@ public class Constants {
     public static List<VideoContent> movieList = new ArrayList<>();
     public static boolean IS_FROM_HOME=false;
     public static boolean IS_UVTV_STATE_OPEN=false;
+    public static boolean IS_FROM_WATCH_NOW=false;
 
     public interface WishListType {
         String fav = "fav";

@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.scifiworld.tv",
+  "variantName": "scifiworldRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 10,
+      "versionName": "1",
+      "outputFile": "scifiworldRelease_v1_01_May_2023.apk"
+    }
+  ],
+  "elementType": "File"
+}
