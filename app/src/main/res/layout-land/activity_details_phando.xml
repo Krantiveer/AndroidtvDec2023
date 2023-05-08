@@ -122,7 +122,7 @@
                     android:maxLines="1"
                     android:text="@string/movie_title"
                     android:textColor="@color/detailTitle"
-                    android:textSize="@dimen/_28sdp"
+                    android:textSize="@dimen/_25sdp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -138,7 +138,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:hint=""
                     android:lineSpacingExtra="@dimen/margin_gap_4"
-                    android:textSize="@dimen/_16sdp"
+                    android:textSize="@dimen/textsize_12"
                     android:visibility="visible"
                     tools:text="Kanthan – The Lover of Colour is a 2018 Indian Malayalamlanguage drama film written by Pramod Kooveri and directed by Shareef Eesa. It is produced by Shareef Easa under the banner of Rolling Pix" />
 
@@ -164,7 +164,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:textSize="@dimen/_16sdp"
                         android:text="@string/contain_rating" />
 
                     <ImageView
@@ -418,7 +417,6 @@
                     android:name="com.ott.tv.fragments.DetailsFragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:layout_marginTop="-100dp"
                     android:background="@color/transparent"
                     tools:context="com.ott.tv.ui.activity.DetailsActivityPhando"

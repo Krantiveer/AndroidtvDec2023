@@ -257,6 +257,8 @@ class DetailsActivityPhando : FragmentActivity() {
         tvWatchNow!!.setOnClickListener(View.OnClickListener { v: View? -> payAndWatchTV() })
         tvWatchTrailer!!.setOnClickListener(View.OnClickListener { view: View? -> trailerClick() })
         btn_seasonAndEpisode!!.setOnClickListener(View.OnClickListener { v: View? -> EpisodeAndSeason() })
+        PreferenceUtils.getInstance().setFocusFromWatchNowPref(this,false)
+
         //    PreferenceUtils.updateSubscriptionStatus(DetailsActivityPhando.this);
     }
 
@@ -662,6 +664,7 @@ class DetailsActivityPhando : FragmentActivity() {
     private fun payAndWatchTV() {
         if (singleDetails != null) {
         //    Constants.IS_FROM_WATCH_NOW=true
+            PreferenceUtils.getInstance().setFocusFromWatchNowPref(this,true);
             val videoList: List<Video> = ArrayList()
             /*         for (Video video : singleDetails.getVideos()) {
                 if (video.getFileType() != null && !video.getFileType().equalsIgnoreCase("embed")) {
@@ -1076,6 +1079,14 @@ class DetailsActivityPhando : FragmentActivity() {
 
         if (episode_rv!!.isVisible) {
             episode_rv!!.requestFocus()
+        }
+        if(PreferenceUtils.getInstance().getFocusFromWatchNowPref(this).equals(true))
+
+        {
+            tvWatchNow?.requestFocus()
+            PreferenceUtils.getInstance().setFocusFromWatchNowPref(this,false)
+
+
         }
 /*
         if (Constants.IS_FROM_WATCH_NOW) {

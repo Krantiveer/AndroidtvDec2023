@@ -39,6 +39,7 @@ public class PreferenceUtils {
     public static final String state_name = "state_name";
     public static final Integer watch_list = 0;
     public static final String npawAccountKey = "";
+    public static final Boolean focusFromWatchNow=false;
     // public static final Boolean focusFromWatchNow = "";
 
     public static PreferenceUtils getInstance() {
@@ -290,5 +291,17 @@ public class PreferenceUtils {
     public Boolean getNpawEnablePref(Context context) {
         return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
                 .getBoolean("isnpawEnable", false);
+    }
+
+    public void setFocusFromWatchNowPref(Context context, Boolean name) {
+        SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean(String.valueOf(focusFromWatchNow), name);
+        editor.apply();
+    }
+
+    public Boolean getFocusFromWatchNowPref(Context context) {
+        return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
+                .getBoolean(String.valueOf(focusFromWatchNow), false);
     }
 }

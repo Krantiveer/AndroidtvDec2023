@@ -20,8 +20,8 @@
 
         <ImageView
             android:id="@+id/icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:padding="5sp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/home_side_nav"
@@ -37,8 +37,8 @@
             tools:text="Home"
             android:text="Home"
             android:textColor="@android:color/white"
-            android:textSize="23sp"
-             />
+            android:textSize="18sp"
+            />
 
 
     </LinearLayout>

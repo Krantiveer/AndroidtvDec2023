@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/bg_imageview"
-        android:layout_width="900dp"
+        android:layout_width="600dp"
         android:layout_height="match_parent"
 
         android:layout_alignParentTop="true"
@@ -18,15 +18,13 @@
 
     <com.google.android.exoplayer2.ui.PlayerView
         android:id="@+id/player_view_home"
-        android:layout_width="900dp"
-
+        android:layout_width="600dp"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:background="@color/transparent"
         android:visibility="gone"
         app:auto_show="true"
-
         app:hide_on_touch="false"
         app:resize_mode="fill"
         app:show_timeout="0"
