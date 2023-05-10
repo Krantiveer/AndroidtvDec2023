@@ -2,8 +2,8 @@ package com.ott.tv;
 
 public class Config {
 
-  //  public static final String Device_Type = "androidtv";
-      public static final String Device_Type = "firetv";
+    public static final String Device_Type = "androidtv";
+    //   public static final String Device_Type = "firetv";
     //  pu blic static final String DOMAIN = "https://actionott.com/";
     // public static final String DOMAIN = "https://dev.actionott.com/";
     //public static final String DOMAIN = "https://lifeott.com/";
@@ -23,9 +23,11 @@ public class Config {
     public static final String Publisher_id = "63";
     public static final String WebsiteURL = "https://ott.digiana.com/";*/
 //mitwatvuat.vdoapi.com
+/*
     public static final String DOMAIN = "https://www.mitwatv.in/";
     public static final String Publisher_id = "40";
     public static final String WebsiteURL = "https://www.mitwatv.com/";
+*/
 
 
    /* public static final String DOMAIN = "https://ott.candorsolution.com/";
@@ -64,6 +66,10 @@ public class Config {
     public static final String Publisher_id = "7";
     public static final String WebsiteURL = "https://tvcafeonline.com/";*/
 
+    public static final String DOMAIN = "https://fast1.vdoapi.com/";
+    public static final String Publisher_id = "66";
+    public static final String WebsiteURL = "https://fast1.vdoapi.com/";
+
 
     public static final String API_SERVER_URL = DOMAIN + "api/";
     //copy your api key from php admin dashboard & paste below
@@ -81,8 +87,7 @@ public class Config {
     public static final boolean CouponCodeEnable = false;
 
 
-    /*String API_KEY = "se_team_9b3431b0";*/
-    String SECRET = "bcdee06e8490949422c071437da5c5ed";
+    /*String API_KEY = "se_team_9b3431b0";*/ String SECRET = "bcdee06e8490949422c071437da5c5ed";
 
     String DEEPLINK_KEY = "deeplink";
     String PASSTHROUGH_KEY = "passthrough";

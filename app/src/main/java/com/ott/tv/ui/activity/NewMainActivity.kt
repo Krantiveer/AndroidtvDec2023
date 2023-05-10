@@ -47,15 +47,15 @@ class NewMainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Creating an extended library configuration.
-      /*  // Creating an extended library configuration.
-        val config = YandexMetricaConfig.newConfigBuilder("45c548e2-21f1-4386-934b-3059b7d28b56").build()
-        // Initializing the AppMetrica SDK.
-        // Initializing the AppMetrica SDK.
-        YandexMetrica.activate(applicationContext, config)
-        // Automatic tracking of user activity.
-        // Automatic tracking of user activity.
-        YandexMetrica.enableActivityAutoTracking(application)
-*/
+        /*  // Creating an extended library configuration.
+          val config = YandexMetricaConfig.newConfigBuilder("45c548e2-21f1-4386-934b-3059b7d28b56").build()
+          // Initializing the AppMetrica SDK.
+          // Initializing the AppMetrica SDK.
+          YandexMetrica.activate(applicationContext, config)
+          // Automatic tracking of user activity.
+          // Automatic tracking of user activity.
+          YandexMetrica.enableActivityAutoTracking(application)
+  */
 
         binding = ActivityNewMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -176,7 +176,7 @@ class NewMainActivity : FragmentActivity() {
             binding.slidingPaneLayout.openPane()
         } else {
             //      Toast.makeText(this, "closeactivity", Toast.LENGTH_SHORT).show()
-        //    binding.slidingPaneLayout.closePane()
+            binding.slidingPaneLayout.closePane()
             // Toast.makeText(this, "close", Toast.LENGTH_SHORT).show()
         }
 

@@ -110,6 +110,11 @@ android {
             versionCode 1
             versionName "1.0"
         }
+        fastone {
+            applicationId "com.perseverance.fast1"
+            versionCode 3
+            versionName "3.0"
+        }
 
 
     }

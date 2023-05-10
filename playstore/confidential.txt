@@ -66,6 +66,22 @@ Website (optional)
  keyAlias= candor
  keyPassword= candor
 
+ storeFile=fasetone.jks
+ storePassword= candor
+ keyAlias= candor
+ keyPassword= candor
+
+
+
+fast1
+ password: android
+key name: upload
+-->new.jks or fastonejsk.jks
+
+
+
+
+
 1. firebase
 2.512X512 png
 
@@ -83,3 +99,9 @@ https://appmetrica.yandex.com/docs/mobile-sdk-dg/android/about/android-initializ
 
 API Key - 45c548e2-21f1-4386-934b-3059b7d28b56
 
+//after clone need to clean
+2. Import the project into Android Studio or build on the command line:
+
+  ```shell
+  ./gradlew clean app:assembleSystemDebug
+  ```

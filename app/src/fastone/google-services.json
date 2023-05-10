@@ -1,0 +1,78 @@
+{
+  "project_info": {
+    "project_number": "433230322548",
+    "project_id": "fast1-ae248",
+    "storage_bucket": "fast1-ae248.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:433230322548:android:9504d2a54803ac0d4cea21",
+        "android_client_info": {
+          "package_name": "com.perseverance.fast1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "433230322548-0h06rlatosdtvn5du70p0id95os44m9p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.perseverance.fast1",
+            "certificate_hash": "95930a9a4ad9cb3860d618a8e1b75acd0c58b069"
+          }
+        },
+        {
+          "client_id": "433230322548-acqhki2acrejepk75n7kg9nusetin9av.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.perseverance.fast1",
+            "certificate_hash": "8a5f6af3e3d69a9a904b2ad792acb54fb8b78317"
+          }
+        },
+        {
+          "client_id": "433230322548-fp077o8fi1ub6q9q60hhq4amvtkpgip7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.perseverance.fast1",
+            "certificate_hash": "022302e6ad269185eb4281cc85ea531d67be8e39"
+          }
+        },
+        {
+          "client_id": "433230322548-ncjlg1t78a5slkh2u7ct3uoudb4n56tt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.perseverance.fast1",
+            "certificate_hash": "c76a82a1d1c5882bff75ec4430c821caea189f64"
+          }
+        },
+        {
+          "client_id": "433230322548-5i8f3do6naml23lf63qluotbju3vnlb7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbtXM_DpPV5REs0DPu0Z2hvyhnJyE4u9U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "433230322548-5i8f3do6naml23lf63qluotbju3vnlb7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "433230322548-297c56e4u6leb7lmjj6e0sd2dp5pt5ea.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.phandoLatest"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

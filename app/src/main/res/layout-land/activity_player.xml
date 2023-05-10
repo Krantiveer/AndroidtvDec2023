@@ -79,7 +79,6 @@
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
             android:layout_alignParentBottom="true"
-
             android:layout_marginRight="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_30sdp"
             android:contentDescription="TODO"
