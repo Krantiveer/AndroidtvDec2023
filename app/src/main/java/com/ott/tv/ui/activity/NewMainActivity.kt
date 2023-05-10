@@ -176,7 +176,7 @@ class NewMainActivity : FragmentActivity() {
             binding.slidingPaneLayout.openPane()
         } else {
             //      Toast.makeText(this, "closeactivity", Toast.LENGTH_SHORT).show()
-            binding.slidingPaneLayout.closePane()
+        //    binding.slidingPaneLayout.closePane()
             // Toast.makeText(this, "close", Toast.LENGTH_SHORT).show()
         }
 

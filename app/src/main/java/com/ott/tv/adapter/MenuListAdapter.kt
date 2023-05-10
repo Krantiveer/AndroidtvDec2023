@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ott.tv.BuildConfig
@@ -80,9 +81,11 @@ class MenuListAdapter(
             binding.menuLayout.setOnClickListener {
                 mCallback.delegate(hasFocusLocalVar ?: false)
                 mClick.onItemClick(dataList[position])
+                Log.d("Clickingkranti", "binder: clicked2--" + dataModel.icon + dataModel.displayName)
 
-                /*  row_index=position
-                  if (row_index==position) {
+                  row_index=position
+
+        /*          if (row_index==position) {
                       binding.icon.imageTintList =
                           ColorStateList.valueOf(context.getColor(R.color.red_highlight_color))
                   } else {
@@ -90,9 +93,15 @@ class MenuListAdapter(
                           ColorStateList.valueOf(context.getColor(R.color.lb_browse_title_color))
                   }*/
 
-                // notifyItemChanged(oldpostionSecond)
-                //  redColor()
+              //   notifyItemChanged(oldpostionSecond)
+                binding.icon.imageTintList =
+                    ColorStateList.valueOf(context.getColor(R.color.red_highlight_color))
+                //notifyDataSetChanged();
+
+
+                //   redColor()
             }
+
 
             /* binding.menuLayout.setOnClickListener {
                  oldclick = false
@@ -138,14 +147,14 @@ class MenuListAdapter(
                     }
                     dataModel.isFocused = true
                     binding.menuLayout.nextFocusRightId = R.id.list_items
-                    binding.icon.imageTintList =
+  /*                  binding.icon.imageTintList =
                         ColorStateList.valueOf(context.getColor(R.color.red_highlight_color))
-                } else {
+  */              } else {
 
                     dataModel.isFocused = false
-                    binding.icon.imageTintList =
+    /*                binding.icon.imageTintList =
                         ColorStateList.valueOf(context.getColor(R.color.white))
-                }
+    */            }
             }
         }
 
@@ -201,9 +210,11 @@ class MenuListAdapter(
             "Clicking Event",
             "binder: clicked new --" + "old-" + oldpostionSecond + oldpostion + position + oldclick
         )
+        val icon = ContextCompat.getDrawable(holder.itemView.context, R.drawable.default_video)
+     //   holder.iconView.setImageDrawable(icon)
+        holder.bindernew(dataList[position])
 
-
-        if (oldclick == true) {
+        /*if (oldclick == true) {
             oldclick = false
             holder.colorwhite(dataList[position])
             holder.bindernew(dataList[position])
@@ -214,7 +225,8 @@ class MenuListAdapter(
                 "binder: clicked new --else" + "old-" + oldpostionSecond + oldpostion + position + oldclick
             )
             holder.bindernew(dataList[position])
-        }
+        }*/
+
         /*   if(row_index==position){
               // holder.itemView.findViewById<ImageView>(R.id.icon).setBackgroundColor((Color.parseColor("#00ff00")))
                holder.colorwhite(dataList[position])
@@ -230,6 +242,7 @@ class MenuListAdapter(
 */
 
     }
+
 
     override fun getItemCount(): Int {
         return dataList.size
