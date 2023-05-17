@@ -211,9 +211,7 @@
     <string name="qrCodeUrl">https://uvplay.com/mytv </string>
     <string name="browse_all_seasons_and_episodes">Browse all Seasons &amp; Episodes</string>
     <string name="select_state">Select State</string>
-    <string name="no_data_available">No Content Available</string>
-
-
+    <string name="no_data_available">No Media Item Available</string>
     <string name="track_selection_title">Select tracks</string>
     <string name="searchhint">Type to Search...</string>
     <string name="contain_rating">9.0</string>

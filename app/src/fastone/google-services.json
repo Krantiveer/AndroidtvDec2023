@@ -7,6 +7,42 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:433230322548:android:b32da47b1a4edff04cea21",
+        "android_client_info": {
+          "package_name": "com.fast1.tv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "433230322548-5i8f3do6naml23lf63qluotbju3vnlb7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbtXM_DpPV5REs0DPu0Z2hvyhnJyE4u9U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "433230322548-5i8f3do6naml23lf63qluotbju3vnlb7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "433230322548-297c56e4u6leb7lmjj6e0sd2dp5pt5ea.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.phandoLatest"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:433230322548:android:9504d2a54803ac0d4cea21",
         "android_client_info": {
           "package_name": "com.perseverance.fast1"

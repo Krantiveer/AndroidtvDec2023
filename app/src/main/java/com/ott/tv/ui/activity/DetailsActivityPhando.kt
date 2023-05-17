@@ -3,12 +3,15 @@ package com.ott.tv.ui.activity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.webkit.WebView
 import android.widget.*
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
 import androidx.leanback.widget.ArrayObjectAdapter
@@ -257,7 +260,7 @@ class DetailsActivityPhando : FragmentActivity() {
         tvWatchNow!!.setOnClickListener(View.OnClickListener { v: View? -> payAndWatchTV() })
         tvWatchTrailer!!.setOnClickListener(View.OnClickListener { view: View? -> trailerClick() })
         btn_seasonAndEpisode!!.setOnClickListener(View.OnClickListener { v: View? -> EpisodeAndSeason() })
-        PreferenceUtils.getInstance().setFocusFromWatchNowPref(this,false)
+        PreferenceUtils.getInstance().setFocusFromWatchNowPref(this, false)
 
         //    PreferenceUtils.updateSubscriptionStatus(DetailsActivityPhando.this);
     }
@@ -663,8 +666,8 @@ class DetailsActivityPhando : FragmentActivity() {
 
     private fun payAndWatchTV() {
         if (singleDetails != null) {
-        //    Constants.IS_FROM_WATCH_NOW=true
-            PreferenceUtils.getInstance().setFocusFromWatchNowPref(this,true);
+            //    Constants.IS_FROM_WATCH_NOW=true
+            PreferenceUtils.getInstance().setFocusFromWatchNowPref(this, true);
             val videoList: List<Video> = ArrayList()
             /*         for (Video video : singleDetails.getVideos()) {
                 if (video.getFileType() != null && !video.getFileType().equalsIgnoreCase("embed")) {
@@ -709,6 +712,7 @@ class DetailsActivityPhando : FragmentActivity() {
                     video.videoType = "youtube"
                     video.videoUrl = singleDetails!!.list.youtube_url
                 } else {
+
                     video.videoType = "hls"
                     video.videoUrl = singleDetails!!.list.media_url
                 }
@@ -723,11 +727,24 @@ class DetailsActivityPhando : FragmentActivity() {
                 video.islive = "0"
             }
 
+         /*   if (singleDetails!!.list.is_youtube.toString().equals("0", ignoreCase = true)) {
+                findViewById<WebView>(R.id.Webview).visibility = View.VISIBLE
+                findViewById<FrameLayout>(R.id.contentView).visibility = View.GONE
+                val mywebview = findViewById<View>(R.id.Webview) as WebView
 
-            //  video.setVideo(singleDetails.getVideos().get(0));
-            val intent = Intent(this, PlayerActivityNewCode::class.java)
-            intent.putExtra(VideoPlaybackActivity.EXTRA_VIDEO, video)
-            startActivity(intent)
+                    val urlIntent = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://www.uvtv.in/watch/tvshow/episode/962")
+                    )
+                    startActivity(urlIntent)
+              //  mywebview.loadUrl("https://www.uvtv.in/watch/tvshow/episode/962")
+
+            } else {*/
+                //  video.setVideo(singleDetails.getVideos().get(0));
+                val intent = Intent(this, PlayerActivityNewCode::class.java)
+                intent.putExtra(VideoPlaybackActivity.EXTRA_VIDEO, video)
+                startActivity(intent)
+
         }
     }
 
@@ -1075,16 +1092,14 @@ class DetailsActivityPhando : FragmentActivity() {
 
 
     override fun onResume() {
-        Log.i("onresume call", "onResume: "+Constants.IS_FROM_HOME)
+        Log.i("onresume call", "onResume: " + Constants.IS_FROM_HOME)
 
         if (episode_rv!!.isVisible) {
             episode_rv!!.requestFocus()
         }
-        if(PreferenceUtils.getInstance().getFocusFromWatchNowPref(this).equals(true))
-
-        {
+        if (PreferenceUtils.getInstance().getFocusFromWatchNowPref(this).equals(true)) {
             tvWatchNow?.requestFocus()
-            PreferenceUtils.getInstance().setFocusFromWatchNowPref(this,false)
+            PreferenceUtils.getInstance().setFocusFromWatchNowPref(this, false)
 
 
         }
@@ -1097,7 +1112,7 @@ class DetailsActivityPhando : FragmentActivity() {
             Constants.IS_FROM_WATCH_NOW=false
         }
 */
-        Log.i("onresume call", "onResume: "+Constants.IS_FROM_HOME)
+        Log.i("onresume call", "onResume: " + Constants.IS_FROM_HOME)
 
         // tvWatchNow!!.requestFocus()
         super.onResume()

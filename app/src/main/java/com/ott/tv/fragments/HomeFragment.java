@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.leanback.app.RowsSupportFragment;
 import androidx.leanback.widget.ArrayObjectAdapter;
 import androidx.leanback.widget.HeaderItem;
@@ -115,6 +116,17 @@ public class HomeFragment extends RowsSupportFragment {
                     if (response.code() == 200) {
                         movieListContent = response.body();
 
+                        if(movieListContent.size()<=0)
+                        {
+                            if (getContext() != null) {
+                                final NoDataFragmant noDataFragmant = new NoDataFragmant();
+                                final FragmentManager fm = getFragmentManager();
+                                fm.beginTransaction().add(R.id.browserSection, noDataFragmant).commit();
+                                return;
+
+                                //   Toast.makeText(getContext(), getResources().getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
+                            }
+                        }
                         //  homeContent.setHomeContentId(1);
                         //   homeContent.getSlider();
                         //  loadSliderRows(homeContent.getSlider().getSlideArrayList());
@@ -140,6 +152,7 @@ public class HomeFragment extends RowsSupportFragment {
                         //  CMHelper.setSnackBar(requireView(), response.errorBody().toString(), 2);
                     } else {
                         if (getContext() != null) {
+
                             Toast.makeText(getContext(), "sorry! Something went wrong. Please try again after some time", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -151,7 +164,11 @@ public class HomeFragment extends RowsSupportFragment {
                 public void onFailure(@NonNull Call<List<BrowseData>> call, @NonNull Throwable t) {
                     //   CMHelper.setSnackBar(requireView(), t.getMessage(), 2);
                     if (getContext() != null) {
-                        Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                        final NoDataFragmant noDataFragmant = new NoDataFragmant();
+                        final FragmentManager fm = getFragmentManager();
+                        fm.beginTransaction().add(R.id.browserSection, noDataFragmant).commit();
+                        return;
+                      //  Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                     } else {
 
                     }
@@ -278,6 +295,8 @@ public class HomeFragment extends RowsSupportFragment {
             rowsAdapter.add(new ListRow(header, listRowAdapter));
 
         }*/
+
+
 //todo: Here we need to create vertical thumnail for according to orientation of ui
         for (int i = 0; i < movieListContent.size(); i++) {
             ArrayObjectAdapter listRowAdapter;
