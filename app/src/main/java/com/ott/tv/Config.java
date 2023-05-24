@@ -2,8 +2,8 @@ package com.ott.tv;
 
 public class Config {
 
-       public static final String Device_Type = "androidtv";
-   // public static final String Device_Type = "firetv";
+    public static final String Device_Type = "androidtv";
+    // public static final String Device_Type = "firetv";
     //  pu blic static final String DOMAIN = "https://actionott.com/";
     // public static final String DOMAIN = "https://dev.actionott.com/";
     //public static final String DOMAIN = "https://lifeott.com/";
@@ -56,18 +56,23 @@ public class Config {
  /*  public static final String DOMAIN = "https://saas-sandbox.phando.com/";
      public static final String Publisher_id = "28";
      public static final String WebsiteURL = "https://saas-sandbox.phando.com/";*/
- /*   public static final String DOMAIN = "https://saasuat.vdoapi.com/";
+/*
+    public static final String DOMAIN = "https://saasuat.vdoapi.com/";
     public static final String Publisher_id = "28";
-    public static final String WebsiteURL = "https://saasuat.vdoapi.com/";*/
+    public static final String WebsiteURL = "https://saasuat.vdoapi.com/";
+*/
 /*    public static final String DOMAIN = "https://tvcafeonline.com/";
     public static final String Publisher_id = "7";
     public static final String WebsiteURL = "https://tvcafeonline.com/";*/
 
-  /*  public static final String DOMAIN = "https://fast1.vdoapi.com/";
-    public static final String Publisher_id = "66";
-    public static final String WebsiteURL = "https://fast1.vdoapi.com/";
+    /*  public static final String DOMAIN = "https://fast1.vdoapi.com/";
+      public static final String Publisher_id = "66";
+      public static final String WebsiteURL = "https://fast1.vdoapi.com/";
+  */
+  /*  public static final String DOMAIN = "https://vtv-uat.vdoapi.com/";
+    public static final String Publisher_id = "64";
+    public static final String WebsiteURL = "https://vtv-uat.vdoapi.com/";
 */
-
     public static final String API_SERVER_URL = DOMAIN + "api/";
     //copy your api key from php admin dashboard & paste below
     public static final String API_KEY = "75xi3uer76tb7krer3mjgqei";

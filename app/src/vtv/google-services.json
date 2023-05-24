@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "366973735170",
+    "project_id": "vtvott",
+    "storage_bucket": "vtvott.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:366973735170:android:2611f25b26858a05dbb21b",
+        "android_client_info": {
+          "package_name": "com.vtvott"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "366973735170-8e142ooadr1re89j2l6o1dopkba2re2h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3kDGiTHSJBbJMY8rU3tWvBSn_Jb_54Ck"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "366973735170-8e142ooadr1re89j2l6o1dopkba2re2h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -73,10 +73,10 @@ Website (optional)
 
 
 
-fast1
- password: android
-key name: upload
--->new.jks or fastonejsk.jks
+fastone
+ password: fastone
+key name: key0
+-->fastone.jks
 
 
 

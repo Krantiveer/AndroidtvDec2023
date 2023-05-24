@@ -23,7 +23,7 @@ android {
             variant.outputs.all {
                 def date = new Date()
                 def formattedDate = date.format('dd_MMM_yyyy')
-                outputFileName = "${variant.name +"_"}v${variant.versionName}${"_" + formattedDate}.apk"
+                outputFileName = "${variant.name + "_"}v${variant.versionName}${"_" + formattedDate}.apk"
             }
         }
     }
@@ -115,6 +115,12 @@ android {
             versionCode 2
             versionName "2.0"
         }
+        vtv
+                {
+                    applicationId "com.vtvott"
+                    versionCode 2
+                    versionName "2.0"
+                }
 
 
     }
@@ -239,14 +245,14 @@ dependencies {
     //gifimage
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.22'
 //nPaw integration
-   // implementation 'com.nicepeopleatwork:exoplayer2-18-adapter:6.8.+'
+    // implementation 'com.nicepeopleatwork:exoplayer2-18-adapter:6.8.+'
     // required to avoid crash on Android 12 API 31
-   // implementation 'androidx.work:work-runtime-ktx:2.7.1'
+    // implementation 'androidx.work:work-runtime-ktx:2.7.1'
     implementation 'androidx.work:work-runtime-ktx:2.8.1'
 
     // AppMetrica SDK.
 
-  //  implementation 'com.yandex.android:mobmetricalib:5.3.0'
+    //  implementation 'com.yandex.android:mobmetricalib:5.3.0'
 /*
 //singular
     implementation 'com.singular.sdk:singular_sdk:12.1.1'
@@ -256,9 +262,6 @@ dependencies {
 
     implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1'
 */
-
-
-
 
 
 }
