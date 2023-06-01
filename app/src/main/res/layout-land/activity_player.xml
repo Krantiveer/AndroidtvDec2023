@@ -63,7 +63,7 @@
             android:layout_marginTop="@dimen/_30sdp"
             android:contentDescription="TODO"
             android:layout_marginBottom="@dimen/_30sdp"
-            android:src="@drawable/logo" />
+            android:src="@drawable/watermark" />
 
 <!--
 
@@ -83,7 +83,7 @@
             android:layout_marginTop="@dimen/_30sdp"
             android:contentDescription="TODO"
             android:layout_marginBottom="@dimen/_30sdp"
-            android:src="@drawable/logo" />
+            android:src="@drawable/watermark" />
 
 
 

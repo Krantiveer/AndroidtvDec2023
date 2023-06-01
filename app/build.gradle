@@ -115,12 +115,16 @@ android {
             versionCode 2
             versionName "2.0"
         }
-        vtv
-                {
-                    applicationId "com.vtvott"
-                    versionCode 2
-                    versionName "2.0"
-                }
+        vtv {
+            applicationId "com.vtvott"
+            versionCode 2
+            versionName "2.0"
+        }
+        darshott {
+            applicationId "com.darshott"
+            versionCode 1
+            versionName "1.0"
+        }
 
 
     }
