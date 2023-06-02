@@ -105,3 +105,12 @@ API Key - 45c548e2-21f1-4386-934b-3059b7d28b56
   ```shell
   ./gradlew clean app:assembleSystemDebug
   ```
+
+
+
+ 1.114X144 PNG
+ 2.512X512 PNG & JPG
+ 3.320X180 PNG & JPG
+ 4.1024X500 JPG
+ 5.1280X720 JPG
+ 6.640X360 JPG
