@@ -125,6 +125,11 @@ android {
             versionCode 1
             versionName "1.0"
         }
+        amuzi {
+            applicationId "com.amuzi"
+            versionCode 1
+            versionName "1.0"
+        }
 
 
     }
