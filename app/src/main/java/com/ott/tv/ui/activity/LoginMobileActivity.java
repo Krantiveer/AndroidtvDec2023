@@ -38,6 +38,8 @@ import com.ott.tv.utils.CMHelper;
 import com.ott.tv.utils.PreferenceUtils;
 import com.ott.tv.utils.ToastMsg;
 
+import java.util.Objects;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -330,7 +332,7 @@ public class LoginMobileActivity extends Activity {
                         //save user login time, expire time
                         // updateSubscriptionStatus(user.getUserId());
 
-                        if (Config.CouponCodeEnable||user.getIs_subscribed()=="0") {
+                        if (Config.CouponCodeEnable) {
                             ll_coupon_code.setVisibility(View.VISIBLE);
                             ll_verify_otp.setVisibility(View.GONE);
                         } else {

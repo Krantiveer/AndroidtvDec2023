@@ -111,7 +111,7 @@
                             android:layout_gravity="center"
                             android:layout_marginStart="@dimen/_20sdp"
                             android:layout_marginEnd="@dimen/_20sdp"
-                            android:background="@color/appmaincolor" />
+                            android:background="@color/profilelinesepratater" />
 
                         <TextView
                             android:id="@+id/tvMobileNumber"
@@ -132,7 +132,7 @@
                             android:layout_gravity="center"
                             android:layout_marginStart="@dimen/_20sdp"
                             android:layout_marginEnd="@dimen/_20sdp"
-                            android:background="@color/appmaincolor" />
+                            android:background="@color/profilelinesepratater" />
 
                         <TextView
                             android:id="@+id/userEmailTv"

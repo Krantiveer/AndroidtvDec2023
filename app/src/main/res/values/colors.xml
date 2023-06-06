@@ -131,5 +131,8 @@
 //Side nav selected color
     <color name="side_nav_selected">#EF3C23</color>
 
+    //profile
+    <color name="profilelinesepratater">#EF3C23</color>
+
 
 </resources>

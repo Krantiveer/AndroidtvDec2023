@@ -111,7 +111,7 @@
                             android:layout_gravity="center"
                             android:layout_marginStart="@dimen/_20sdp"
                             android:layout_marginEnd="@dimen/_20sdp"
-                            android:background="@color/appmaincolor" />
+                            android:background="@color/profilelinesepratater" />
 
                         <TextView
                             android:id="@+id/tvMobileNumber"
@@ -132,7 +132,7 @@
                             android:layout_gravity="center"
                             android:layout_marginStart="@dimen/_20sdp"
                             android:layout_marginEnd="@dimen/_20sdp"
-                            android:background="@color/appmaincolor" />
+                            android:background="@color/profilelinesepratater" />
 
                         <TextView
                             android:id="@+id/userEmailTv"
@@ -275,9 +275,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/lytTopCard"
                     android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_20sdp"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="App Version :"
+                    android:text="App Version :14"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_14sdp" />
             </LinearLayout>

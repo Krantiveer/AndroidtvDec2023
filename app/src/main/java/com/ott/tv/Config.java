@@ -57,7 +57,7 @@ public class Config {
  /*  public static final String DOMAIN = "https://saas-sandbox.phando.com/";
      public static final String Publisher_id = "28";
      public static final String WebsiteURL = "https://saas-sandbox.phando.com/";*/
-   /* public static final String DOMAIN = "https://saasuat.vdoapi.com/";
+  /*  public static final String DOMAIN = "https://saasuat.vdoapi.com/";
     public static final String Publisher_id = "28";
     public static final String WebsiteURL = "https://saasuat.vdoapi.com/";*/
 /*    public static final String DOMAIN = "https://tvcafeonline.com/";
@@ -75,7 +75,6 @@ public class Config {
    /* public static final String DOMAIN = "https://darshott.vdoapi.com/";
     public static final String Publisher_id = "82";
     public static final String WebsiteURL = "https://darshott.vdoapi.com/";*/
-
     public static final String DOMAIN = "https://amuzi.in/";
     public static final String Publisher_id = "80";
     public static final String WebsiteURL = "https://amuzi.in/";

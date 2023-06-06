@@ -24,6 +24,13 @@
     <color name="premium_icon_color">#ffc43a</color>
     //color sidenav
 
-    <color name="side_nav_selected">#EF3C23</color>
+    <color name="side_nav_selected">@color/main_color</color>
+
+
+    <color name="side_nav_highlited">#6694DD26</color>
+    <color name="red_highlight_color">#6694DD26</color>
+    //primeicon nav
+    //Side nav selected color
+    <color name="profilelinesepratater">@color/main_color</color>
 
 </resources>

@@ -30,6 +30,8 @@ import com.ott.tv.network.api.SubscriptionApi;
 import com.ott.tv.utils.PreferenceUtils;
 import com.ott.tv.utils.ToastMsg;
 
+import java.util.Objects;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -74,12 +76,10 @@ public class LoginActivity extends Activity {
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
-
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
-
             @Override
             public void afterTextChanged(Editable editable) {
                 // if edittext has 10chars & this is not called yet, add new line
@@ -95,8 +95,6 @@ public class LoginActivity extends Activity {
     }
 
     private void gotoMainScreen() {
-
-
         Intent intent = new Intent(getApplicationContext(), NewMainActivity.class);
         startActivity(intent);
         finishAffinity();
@@ -212,6 +210,7 @@ public class LoginActivity extends Activity {
 
                      /*   //save user login time, expire time
                         updateSubscriptionStatus(user.getUserId());*/
+
                         if (Config.CouponCodeEnable) {
                             ll_emailLogin.setVisibility(View.GONE);
                             ll_coupon_code.setVisibility(View.VISIBLE);
