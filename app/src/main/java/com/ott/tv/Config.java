@@ -23,12 +23,10 @@ public class Config {
     public static final String Publisher_id = "63";
     public static final String WebsiteURL = "https://ott.digiana.com/";*/
 //mitwatvuat.vdoapi.com
-/*
-    public static final String DOMAIN = "https://www.mitwatv.in/";
+   /* public static final String DOMAIN = "https://www.mitwatv.in/";
     public static final String Publisher_id = "40";
     public static final String WebsiteURL = "https://www.mitwatv.com/";
 */
-
 
    /* public static final String DOMAIN = "https://ott.candorsolution.com/";
     public static final String Publisher_id = "61";
@@ -42,8 +40,7 @@ public class Config {
     public static final String DOMAIN = "https://www.toonstaan.tv/";
     public static final String Publisher_id = "53";
     public static final String WebsiteURL = "https://www.toonstaan.tv/";
-*/
-    /*
+*//*
     public static final String DOMAIN = "https://www.xploreindiastream.com/";
     public static final String Publisher_id = "8";
     public static final String WebsiteURL = "https://www.xploreindiastream.com/";*/
@@ -57,17 +54,16 @@ public class Config {
  /*  public static final String DOMAIN = "https://saas-sandbox.phando.com/";
      public static final String Publisher_id = "28";
      public static final String WebsiteURL = "https://saas-sandbox.phando.com/";*/
-  /*  public static final String DOMAIN = "https://saasuat.vdoapi.com/";
+   /* public static final String DOMAIN = "https://saasuat.vdoapi.com/";
     public static final String Publisher_id = "28";
     public static final String WebsiteURL = "https://saasuat.vdoapi.com/";*/
 /*    public static final String DOMAIN = "https://tvcafeonline.com/";
     public static final String Publisher_id = "7";
     public static final String WebsiteURL = "https://tvcafeonline.com/";*/
-
-    /*  public static final String DOMAIN = "https://fast1.vdoapi.com/";
+/*
+      public static final String DOMAIN = "https://fast1.vdoapi.com/";
       public static final String Publisher_id = "66";
-      public static final String WebsiteURL = "https://fast1.vdoapi.com/";
-  */
+      public static final String WebsiteURL = "https://fast1.vdoapi.com/";*/
   /*  public static final String DOMAIN = "https://vtv-uat.vdoapi.com/";
     public static final String Publisher_id = "64";
     public static final String WebsiteURL = "https://vtv-uat.vdoapi.com/";

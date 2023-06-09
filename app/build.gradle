@@ -70,8 +70,8 @@ android {
 
         xploreindia {
             applicationId "com.xploreindia.tv"
-            versionCode 2
-            versionName "2"
+            versionCode 3
+            versionName "3"
         }
         mitwa_tv {
             applicationId "com.tv.mitwa"
@@ -112,8 +112,8 @@ android {
         }
         fastone {
             applicationId "com.fast1.tv"
-            versionCode 2
-            versionName "2.0"
+            versionCode 3
+            versionName "3.0"
         }
         vtv {
             applicationId "com.vtvott"

@@ -47,8 +47,8 @@ public interface Dashboard {
 
     );
 
-
-    @GET("menu")
+//menu_v1
+    @GET("menu_v1")
     Call<List<CategoryType>> menu(
             @Header("Authorization") String token
 

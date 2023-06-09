@@ -196,6 +196,7 @@
 
         <activity
             android:name=".video_service.AppLinkActivity"
+            android:screenOrientation="landscape"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
