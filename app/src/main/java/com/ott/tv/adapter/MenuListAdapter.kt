@@ -62,18 +62,24 @@ class MenuListAdapter(
 
                 }
 
-
             } else {
                 binding.titleMenu.setText(dataModel.displayName)
 
             }
+            if (dataModel.displayName.contentEquals("Home")) {
+                Glide.with(context)
+                    .load(dataModel.icon) /*.override(100,300)*/
+                    .error(R.drawable.home_side_nav)
+                    .placeholder(R.drawable.home_side_nav)
+                    .into(binding.icon)
 
-            Glide.with(context)
-                .load(dataModel.icon) /*.override(100,300)*/
-                .error(R.drawable.commingsoon_sidenav)
-                .placeholder(R.drawable.commingsoon_sidenav)
-                .into(binding.icon)
-
+            } else {
+                Glide.with(context)
+                    .load(dataModel.icon) /*.override(100,300)*/
+                    .error(R.drawable.commingsoon_sidenav)
+                    .placeholder(R.drawable.commingsoon_sidenav)
+                    .into(binding.icon)
+            }
 
 
 

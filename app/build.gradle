@@ -23,7 +23,7 @@ android {
             variant.outputs.all {
                 def date = new Date()
                 def formattedDate = date.format('dd_MMM_yyyy')
-                outputFileName = "${variant.name + "_"}v${variant.versionName}${"_" + formattedDate}.apk"
+                outputFileName = "${variant.name +"_TV_"}v${variant.versionName}${"_" + formattedDate}.apk"
             }
         }
     }
@@ -70,8 +70,8 @@ android {
 
         xploreindia {
             applicationId "com.xploreindia.tv"
-            versionCode 3
-            versionName "3"
+            versionCode 4
+            versionName "4"
         }
         mitwa_tv {
             applicationId "com.tv.mitwa"
@@ -112,8 +112,8 @@ android {
         }
         fastone {
             applicationId "com.fast1.tv"
-            versionCode 3
-            versionName "3.0"
+            versionCode 1
+            versionName "1.0"
         }
         vtv {
             applicationId "com.vtvott"
@@ -253,7 +253,7 @@ dependencies {
     //gifimage
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.22'
 //nPaw integration
-    // implementation 'com.nicepeopleatwork:exoplayer2-18-adapter:6.8.+'
+     implementation 'com.nicepeopleatwork:exoplayer2-18-adapter:6.8.+'
     // required to avoid crash on Android 12 API 31
     // implementation 'androidx.work:work-runtime-ktx:2.7.1'
     implementation 'androidx.work:work-runtime-ktx:2.8.1'

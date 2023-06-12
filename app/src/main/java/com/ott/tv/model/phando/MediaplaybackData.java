@@ -5,7 +5,10 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.ott.tv.model.PurchaseOption;
 import com.ott.tv.model.home_content.LatestMovieSingleDetailList;
+
+import java.util.List;
 
 
 public class MediaplaybackData implements Parcelable{
@@ -22,6 +25,8 @@ public class MediaplaybackData implements Parcelable{
     @SerializedName("status")
     @Expose
     private String status;
+    private List<PurchaseOption> purchase_option;
+
     @SerializedName("mediaCode")
     @Expose
     private String mediaCode;

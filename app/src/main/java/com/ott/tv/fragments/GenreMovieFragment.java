@@ -16,6 +16,7 @@ import androidx.leanback.widget.OnItemViewSelectedListener;
 import androidx.leanback.widget.TitleViewAdapter;
 import androidx.leanback.widget.VerticalGridPresenter;
 
+import com.ott.tv.BuildConfig;
 import com.ott.tv.Config;
 import com.ott.tv.NetworkInst;
 import com.ott.tv.R;
@@ -48,7 +49,7 @@ import retrofit2.Retrofit;
 public class GenreMovieFragment extends VerticalGridSupportFragment {
 
     private static final String TAG = ItemCountryFragment.class.getSimpleName();
-    private static final int NUM_COLUMNS = 5;
+    private static final int NUM_COLUMNS = 4;
     private List<Movie> movies = new ArrayList<>();
     private ArrayObjectAdapter mAdapter;
     //private BackgroundHelper bgHelper;
@@ -101,7 +102,10 @@ public class GenreMovieFragment extends VerticalGridSupportFragment {
 
 
     private void fetchMovieData(int pageCount) {
+        final SpinnerFragment mSpinnerFragment = new SpinnerFragment();
+        final FragmentManager fm = getFragmentManager();
 
+        assert fm != null;
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
         GenreApi api = retrofit.create(GenreApi.class);
         datatype = "movie";
@@ -111,6 +115,8 @@ public class GenreMovieFragment extends VerticalGridSupportFragment {
         call.enqueue(new Callback<List<ShowWatchlist>>() {
             @Override
             public void onResponse(@NonNull Call<List<ShowWatchlist>> call, @NonNull Response<List<ShowWatchlist>> response) {
+                fm.beginTransaction().remove(mSpinnerFragment).commitAllowingStateLoss();
+
                 if (response.code() == 200) {
                     List<ShowWatchlist> movieList = response.body();
                     if (movieList.size() <= 0) {
@@ -137,6 +143,8 @@ public class GenreMovieFragment extends VerticalGridSupportFragment {
             @Override
             public void onFailure(@NonNull Call<List<ShowWatchlist>> call, @NonNull Throwable t) {
                 Log.e("Genre Item", "code: " + t.getLocalizedMessage());
+                fm.beginTransaction().remove(mSpinnerFragment).commitAllowingStateLoss();
+
             }
         });
 

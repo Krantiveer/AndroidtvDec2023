@@ -218,6 +218,8 @@
     <string name="drama">Drama</string>
     <string name="all_age">All Age</string>
     <string name="english">English</string>
+    <string name="resend">Resend</string>
+    <string name="didn_t_receive_otp_resend_in">Didn\'t receive OTP? Resend in</string>
 
 
 </resources>

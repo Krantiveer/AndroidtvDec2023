@@ -112,6 +112,7 @@
             android:exported="true"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme" />
+
         <activity
             android:name=".ui.activity.NewMainActivity"
             android:exported="false">
@@ -135,7 +136,9 @@
             android:resizeableActivity="true"
             android:screenOrientation="landscape"
             android:supportsPictureInPicture="true" />
+<!--
         <activity android:name=".music_service.MusicPlayerActivity" />
+-->
         <activity
             android:name=".ui.activity.PlaybackActivityNew"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|layoutDirection"
@@ -146,6 +149,7 @@
             android:name=".ui.activity.ErrorActivity"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme" />
+
         <activity
             android:name=".ui.activity.SignUpActivity"
             android:screenOrientation="landscape"
@@ -196,7 +200,6 @@
 
         <activity
             android:name=".video_service.AppLinkActivity"
-            android:screenOrientation="landscape"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

@@ -27,7 +27,7 @@ public class ErrorActivity extends FragmentActivity {
         mErrorFragment = new ErrorFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.custom_frame_layout, mErrorFragment).commit();
     }
-    @Override
+       @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         Log.e("LoginActivity", "***** keyCode =" + keyCode + "event :" + event);
         /*   return super.onKeyDown(keyCode, event);*/
@@ -55,10 +55,11 @@ public class ErrorActivity extends FragmentActivity {
             case KeyEvent.KEYCODE_DPAD_RIGHT:
 
             case KeyEvent.KEYCODE_DPAD_UP:
-                Log.e("LoginActivity", "movieIndex : ");
+                Log.e("Error", "movieIndex : ");
                 return false;
         }
         return super.onKeyDown(keyCode, event);
     }
+
 
 }

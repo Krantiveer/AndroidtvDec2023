@@ -3,17 +3,15 @@ package com.ott.tv;
 public class Config {
 
     public static final String Device_Type = "androidtv";
-    // public static final String Device_Type = "firetv";
-    //  pu blic static final String DOMAIN = "https://actionott.com/";
+ //    public static final String Device_Type = "firetv";
+    //  public static final String DOMAIN = "https://actionott.com/";
     // public static final String DOMAIN = "https://dev.actionott.com/";
     //public static final String DOMAIN = "https://lifeott.com/";
 //    public static final String DOMAIN = "https://uvtvstage.phando.com/";
     //saasuat.vdoapi.com
-/*
-    public static final String DOMAIN = "https://www.uvtv.in/";
+/*    public static final String DOMAIN = "https://www.uvtv.in/";
     public static final String Publisher_id = "4";
-    public static final String WebsiteURL = "https://www.uvtv.in/";
-*/
+    public static final String WebsiteURL = "https://www.uvtv.in/";*/
 
   /*  public static final String DOMAIN = "https://kaafaltv.com/";
     public static final String Publisher_id = "5";
@@ -23,12 +21,10 @@ public class Config {
     public static final String Publisher_id = "63";
     public static final String WebsiteURL = "https://ott.digiana.com/";*/
 //mitwatvuat.vdoapi.com
-   /* public static final String DOMAIN = "https://www.mitwatv.in/";
+    public static final String DOMAIN = "https://www.mitwatv.in/";
     public static final String Publisher_id = "40";
     public static final String WebsiteURL = "https://www.mitwatv.com/";
-*/
-
-   /* public static final String DOMAIN = "https://ott.candorsolution.com/";
+    /* public static final String DOMAIN = "https://ott.candorsolution.com/";
     public static final String Publisher_id = "61";
     public static final String WebsiteURL = "https://ott.candorsolution.com/";
 *//*
@@ -60,20 +56,21 @@ public class Config {
 /*    public static final String DOMAIN = "https://tvcafeonline.com/";
     public static final String Publisher_id = "7";
     public static final String WebsiteURL = "https://tvcafeonline.com/";*/
-/*
-      public static final String DOMAIN = "https://fast1.vdoapi.com/";
+/*      public static final String DOMAIN = "https://fast1.vdoapi.com/";
       public static final String Publisher_id = "66";
-      public static final String WebsiteURL = "https://fast1.vdoapi.com/";*/
-  /*  public static final String DOMAIN = "https://vtv-uat.vdoapi.com/";
+      public static final String WebsiteURL = "https://fast1.vdoapi.com/"*/;
+  /*  public static final String DOMAIN = "https://www.vtv.co.tz/";
     public static final String Publisher_id = "64";
-    public static final String WebsiteURL = "https://vtv-uat.vdoapi.com/";
-*/
+    public static final String WebsiteURL = "https://www.vtv.co.tz/";*/
+
    /* public static final String DOMAIN = "https://darshott.vdoapi.com/";
     public static final String Publisher_id = "82";
     public static final String WebsiteURL = "https://darshott.vdoapi.com/";*/
+/*
     public static final String DOMAIN = "https://amuzi.in/";
     public static final String Publisher_id = "80";
     public static final String WebsiteURL = "https://amuzi.in/";
+*/
 
     public static final String API_SERVER_URL = DOMAIN + "api/";
     //copy your api key from php admin dashboard & paste below

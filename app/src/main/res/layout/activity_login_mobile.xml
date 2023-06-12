@@ -134,7 +134,6 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:autofillHints=""
                     android:background="@drawable/edit_focus"
-                    android:contentDescription="@string/mr_button_content_description"
                     android:fontFamily="@font/roboto_regular"
                     android:gravity="center|start"
                     android:hint="Enter Coupon Code"
@@ -229,7 +228,6 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:autofillHints=""
                     android:background="@drawable/edit_focus"
-                    android:contentDescription="@string/mr_button_content_description"
                     android:fontFamily="@font/roboto_regular"
                     android:gravity="center|start"
                     android:hint="@string/enter_otp"
@@ -275,7 +273,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/roboto_regular"
-                        android:text="Didn't receive OTP? Resend in"
+                        android:text="@string/didn_t_receive_otp_resend_in"
                         android:textSize="@dimen/_14sdp" />
 
                     <TextView
@@ -296,7 +294,7 @@
                         android:layout_marginStart="@dimen/_2sdp"
                         android:background="@drawable/button_focus_resend"
                         android:fontFamily="@font/roboto_medium"
-                        android:text="Resend"
+                        android:text="@string/resend"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_16sdp"
                         android:visibility="gone"
@@ -371,7 +369,6 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:autofillHints=""
                     android:background="@drawable/edit_focus"
-                    android:contentDescription="@string/mr_button_content_description"
                     android:focusable="true"
                     android:fontFamily="@font/roboto_regular"
                     android:gravity="center|start"
