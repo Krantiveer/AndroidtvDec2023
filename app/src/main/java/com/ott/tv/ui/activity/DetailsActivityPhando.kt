@@ -216,9 +216,9 @@ class DetailsActivityPhando : FragmentActivity() {
                 imgWatchList!!.setVisibility(View.VISIBLE)
             }
         }
-/*
-        rvRelated = findViewById(R.id.rv_related)
-*/
+        /*
+                rvRelated = findViewById(R.id.rv_related)
+        */
         playerView = findViewById(R.id.video_view)
         activity_rv = findViewById(R.id.activity_rv)
         imgFavList = findViewById(R.id.imgFavList)
@@ -590,10 +590,10 @@ class DetailsActivityPhando : FragmentActivity() {
     public override fun onDestroy() {
 
         // Releasing the mediaSession due to inactive playback and setting token for cast to null.
-/*        if (mediaSession != null) {
-            mediaSession.release()
-            CastHelper.setMediaSessionTokenForCast(
-                *//* mediaSession =*//* null,
+        /*        if (mediaSession != null) {
+                    mediaSession.release()
+                    CastHelper.setMediaSessionTokenForCast(
+                        *//* mediaSession =*//* null,
                 CastReceiverContext.getInstance().mediaManager
             )
         }*/
@@ -651,7 +651,7 @@ class DetailsActivityPhando : FragmentActivity() {
     }
 
     fun setBannerImage(url: String?) {
-        Glide.with(this).load(url).placeholder(R.color.black_color)
+        Glide.with(this).load(url).placeholder(R.drawable.poster_placeholder_land)
             .error(R.drawable.poster_placeholder_land).into(
                 bannerImageView!!
             )
@@ -727,23 +727,23 @@ class DetailsActivityPhando : FragmentActivity() {
                 video.islive = "0"
             }
 
-         /*   if (singleDetails!!.list.is_youtube.toString().equals("0", ignoreCase = true)) {
-                findViewById<WebView>(R.id.Webview).visibility = View.VISIBLE
-                findViewById<FrameLayout>(R.id.contentView).visibility = View.GONE
-                val mywebview = findViewById<View>(R.id.Webview) as WebView
+            /*   if (singleDetails!!.list.is_youtube.toString().equals("0", ignoreCase = true)) {
+                   findViewById<WebView>(R.id.Webview).visibility = View.VISIBLE
+                   findViewById<FrameLayout>(R.id.contentView).visibility = View.GONE
+                   val mywebview = findViewById<View>(R.id.Webview) as WebView
 
-                    val urlIntent = Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("https://www.uvtv.in/watch/tvshow/episode/962")
-                    )
-                    startActivity(urlIntent)
-              //  mywebview.loadUrl("https://www.uvtv.in/watch/tvshow/episode/962")
+                       val urlIntent = Intent(
+                           Intent.ACTION_VIEW,
+                           Uri.parse("https://www.uvtv.in/watch/tvshow/episode/962")
+                       )
+                       startActivity(urlIntent)
+                 //  mywebview.loadUrl("https://www.uvtv.in/watch/tvshow/episode/962")
 
-            } else {*/
-                //  video.setVideo(singleDetails.getVideos().get(0));
-                val intent = Intent(this, PlayerActivityNewCode::class.java)
-                intent.putExtra(VideoPlaybackActivity.EXTRA_VIDEO, video)
-                startActivity(intent)
+               } else {*/
+            //  video.setVideo(singleDetails.getVideos().get(0));
+            val intent = Intent(this, PlayerActivityNewCode::class.java)
+            intent.putExtra(VideoPlaybackActivity.EXTRA_VIDEO, video)
+            startActivity(intent)
 
         }
     }
@@ -1004,16 +1004,16 @@ class DetailsActivityPhando : FragmentActivity() {
         if (singleDetails!!.list.media_url != null) {
             tvWatchNow!!.text = "Watch Now"
         }
-/*
-         if (singleDetails!!.list.duration_str.isNullOrEmpty()) {
-             duration_time!!.text = singleDetails!!.list.duration_str
-             duration_time!!.setVisibility(View.VISIBLE)
-             content_duration_image!!.setVisibility(View.VISIBLE)
-         } else {
-             duration_time!!.setVisibility(View.GONE)
-             content_duration_image!!.setVisibility(View.GONE)
-         }
-*/
+        /*
+                 if (singleDetails!!.list.duration_str.isNullOrEmpty()) {
+                     duration_time!!.text = singleDetails!!.list.duration_str
+                     duration_time!!.setVisibility(View.VISIBLE)
+                     content_duration_image!!.setVisibility(View.VISIBLE)
+                 } else {
+                     duration_time!!.setVisibility(View.GONE)
+                     content_duration_image!!.setVisibility(View.GONE)
+                 }
+        */
         if (singleDetails!!.list.is_free == 0) {
             tvWatchNow!!.setText("Please Subscribe")
         }
@@ -1103,15 +1103,15 @@ class DetailsActivityPhando : FragmentActivity() {
 
 
         }
-/*
-        if (Constants.IS_FROM_WATCH_NOW) {
-            tvWatchNow?.requestFocus()
-            Constants.IS_FROM_WATCH_NOW=false
+        /*
+                if (Constants.IS_FROM_WATCH_NOW) {
+                    tvWatchNow?.requestFocus()
+                    Constants.IS_FROM_WATCH_NOW=false
 
-        }else{
-            Constants.IS_FROM_WATCH_NOW=false
-        }
-*/
+                }else{
+                    Constants.IS_FROM_WATCH_NOW=false
+                }
+        */
         Log.i("onresume call", "onResume: " + Constants.IS_FROM_HOME)
 
         // tvWatchNow!!.requestFocus()
@@ -1163,6 +1163,7 @@ class DetailsActivityPhando : FragmentActivity() {
                 Log.e("DetailActivityPhando", "movieIndex : ")
                 return false
             }
+
             KeyEvent.KEYCODE_DPAD_UP_LEFT -> return false
             KeyEvent.KEYCODE_DPAD_UP_RIGHT -> return false
             KeyEvent.KEYCODE_DPAD_DOWN -> return false

@@ -57,11 +57,12 @@
             android:id="@+id/watermark"
             android:layout_alignEnd="@id/player_view"
             android:layout_centerHorizontal="false"
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_width="@dimen/_140sdp"
+            android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_30sdp"
             android:contentDescription="TODO"
+
             android:layout_marginBottom="@dimen/_30sdp"
             android:src="@drawable/watermark" />
 
@@ -76,12 +77,13 @@
         <ImageView
             android:id="@+id/watermark_live"
             android:layout_alignEnd="@id/player_view"
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_width="@dimen/_140sdp"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginRight="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_30sdp"
             android:contentDescription="TODO"
+
             android:layout_marginBottom="@dimen/_30sdp"
             android:src="@drawable/watermark" />
 

@@ -17,13 +17,13 @@ public class Config {
     public static final String Publisher_id = "5";
     public static final String WebsiteURL = "https://kaafaltv.com";
 */
-    /*public static final String DOMAIN = "https://ott.digiana.com/";
+   /* public static final String DOMAIN = "https://ott.digiana.com/";
     public static final String Publisher_id = "63";
     public static final String WebsiteURL = "https://ott.digiana.com/";*/
 //mitwatvuat.vdoapi.com
-    public static final String DOMAIN = "https://www.mitwatv.in/";
+/*    public static final String DOMAIN = "https://mitwatvuat.vdoapi.com/";
     public static final String Publisher_id = "40";
-    public static final String WebsiteURL = "https://www.mitwatv.com/";
+    public static final String WebsiteURL = "https://www.mitwatv.com/";*/
     /* public static final String DOMAIN = "https://ott.candorsolution.com/";
     public static final String Publisher_id = "61";
     public static final String WebsiteURL = "https://ott.candorsolution.com/";
@@ -36,13 +36,13 @@ public class Config {
     public static final String DOMAIN = "https://www.toonstaan.tv/";
     public static final String Publisher_id = "53";
     public static final String WebsiteURL = "https://www.toonstaan.tv/";
-*//*
-    public static final String DOMAIN = "https://www.xploreindiastream.com/";
+*/
+  /*  public static final String DOMAIN = "https://www.xploreindiastream.com/";
     public static final String Publisher_id = "8";
     public static final String WebsiteURL = "https://www.xploreindiastream.com/";*/
-    /*public static final String DOMAIN = "https://www.solidtvbox.com/";
+    public static final String DOMAIN = "https://www.solidtvbox.com/";
     public static final String Publisher_id = "6";
-    public static final String WebsiteURL = "https://www.solidtvbox.com/";*/
+    public static final String WebsiteURL = "https://www.solidtvbox.com/";
 /*    public static final String DOMAIN = "https://watch.scifiworld.tv/";
     public static final String Publisher_id = "10";
     public static final String WebsiteURL = "https://watch.scifiworld.tv/";*/
@@ -66,10 +66,13 @@ public class Config {
    /* public static final String DOMAIN = "https://darshott.vdoapi.com/";
     public static final String Publisher_id = "82";
     public static final String WebsiteURL = "https://darshott.vdoapi.com/";*/
-/*
-    public static final String DOMAIN = "https://amuzi.in/";
+   /* public static final String DOMAIN = "https://amuzi.in/";
     public static final String Publisher_id = "80";
-    public static final String WebsiteURL = "https://amuzi.in/";
+    public static final String WebsiteURL = "https://amuzi.in/";*/
+/*
+    public static final String DOMAIN = "https://naaptolott.vdoapi.com/";
+    public static final String Publisher_id = "86";
+    public static final String WebsiteURL = "https://naaptolott.vdoapi.com/";
 */
 
     public static final String API_SERVER_URL = DOMAIN + "api/";
@@ -85,7 +88,7 @@ public class Config {
     public static final boolean LOGIN_REQUIRED = true;
     public static final String NPAW_APPNAME = "MitwaTV";
 
-    public static final boolean CouponCodeEnable = false;
+    public static final boolean CouponCodeEnable = true;
 
 
     /*String API_KEY = "se_team_9b3431b0";*/

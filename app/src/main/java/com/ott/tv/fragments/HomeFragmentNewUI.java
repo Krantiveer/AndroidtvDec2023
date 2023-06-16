@@ -141,6 +141,7 @@ public class HomeFragmentNewUI extends Fragment {
                 Glide.with(HomeFragmentNewUI.this)
                         .load(video.getImageLink())
                         .error(R.drawable.poster_placeholder_land)
+                        .placeholder(R.drawable.poster_placeholder_land)
                         .into(imageViewBGBanner);
 
                 if (video.getLanguage() != null) {

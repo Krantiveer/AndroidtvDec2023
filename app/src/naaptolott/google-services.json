@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "266979593760",
+    "project_id": "naaptol-a4fac",
+    "storage_bucket": "naaptol-a4fac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:266979593760:android:28541b7e5003cac7257645",
+        "android_client_info": {
+          "package_name": "com.naaptolott"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "266979593760-hl3ee2jutoh1kkkae2ae8ao2sscutiuu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBf3CkktzmWc6qukkFsHEl7448Eu25nu8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "266979593760-hl3ee2jutoh1kkkae2ae8ao2sscutiuu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
