@@ -4,16 +4,16 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.fast1.tv",
-  "variantName": "fastoneRelease",
+  "applicationId": "com.vtvott",
+  "variantName": "vtvRelease",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 3,
-      "versionName": "3.0",
-      "outputFile": "fastoneRelease_TV_v3.0_09_Jun_2023.apk"
+      "versionCode": 2,
+      "versionName": "2.0",
+      "outputFile": "vtvRelease_TV_v2.0_09_Jun_2023.apk"
     }
   ],
   "elementType": "File"

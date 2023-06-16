@@ -4,16 +4,16 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.fast1.tv",
-  "variantName": "fastoneRelease",
+  "applicationId": "com.naaptolott",
+  "variantName": "naaptolottRelease",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 3,
-      "versionName": "3.0",
-      "outputFile": "fastoneRelease_TV_v3.0_09_Jun_2023.apk"
+      "versionCode": 1,
+      "versionName": "1.0",
+      "outputFile": "naaptolottRelease_TV_v1.0_15_Jun_2023.apk"
     }
   ],
   "elementType": "File"

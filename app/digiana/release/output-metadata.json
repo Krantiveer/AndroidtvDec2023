@@ -4,16 +4,16 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.fast1.tv",
-  "variantName": "fastoneRelease",
+  "applicationId": "com.digiana.tv",
+  "variantName": "digianaRelease",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 3,
-      "versionName": "3.0",
-      "outputFile": "fastoneRelease_TV_v3.0_09_Jun_2023.apk"
+      "versionCode": 6,
+      "versionName": "1.6",
+      "outputFile": "digianaRelease_TV_v1.6_14_Jun_2023.apk"
     }
   ],
   "elementType": "File"

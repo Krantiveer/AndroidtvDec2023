@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Naaptol</string>
+    <string name="app_name">Naaptol OTT</string>
     <string name="api_extension">/v130/</string>
 </resources>
