@@ -70,6 +70,16 @@ class NewMainActivity : FragmentActivity() {
                 if (response.code() == 200) {
 
                     onGetAppInfoSuccess(response.body()!!)
+                    Log.i("appinfo", "onResponse: " + response.body()!!.player_logo_enable)
+                    PreferenceUtils.getInstance().setWatermarkLogoUrlPref(
+                        this@NewMainActivity,
+                        response.body()!!.playerLogo
+                    )
+                    PreferenceUtils.getInstance().setWatermarkEnablePref(
+                        this@NewMainActivity,
+                        response.body()!!.player_logo_enable
+                    )
+
 
                     //  homeContent.setHomeContentId(1);
                     //   homeContent.getSlider();
@@ -121,7 +131,7 @@ class NewMainActivity : FragmentActivity() {
         val storeVersion = appInfo.currentVersion
         val forceUpdate = appInfo.isForceUpdate
         PreferenceUtils.getInstance().setNpawEnablePref(this, appInfo.isnpawEnable)
-        PreferenceUtils.getInstance().setNpawAccountKeyPref(this,appInfo.npawAccountKey)
+        PreferenceUtils.getInstance().setNpawAccountKeyPref(this, appInfo.npawAccountKey)
 
         var currentVersion = 0
         try {
@@ -279,10 +289,10 @@ class NewMainActivity : FragmentActivity() {
                 startActivity(intent)
                 return
             }
-/*
+            /*
 
 
-*/
+            */
         } else if (type.equals("viewall")) {
             val newFragment = GenreMovieFragment()
             newFragment.setArguments(bundle)
@@ -290,6 +300,13 @@ class NewMainActivity : FragmentActivity() {
                 .replace(binding.browserSection.id, newFragment)
                 .commit()
 
+    /*    } else if (type.equals("genre")) {
+            val newFragment = GenreMovieFragment()
+            newFragment.setArguments(bundle)
+            supportFragmentManager.beginTransaction()
+                .replace(binding.browserSection.id, newFragment)
+                .commit()
+*/
         } else if (type.equals("watchlist") || type.equals("Watchlist")) {
             val newFragment = ShowWatchlistFragment()
             newFragment.setArguments(bundle)
@@ -335,6 +352,7 @@ class NewMainActivity : FragmentActivity() {
                 onBackPressed()
                 return true
             }
+
             KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_DPAD_UP_LEFT, KeyEvent.KEYCODE_DPAD_UP_RIGHT, KeyEvent.KEYCODE_DPAD_DOWN, KeyEvent.KEYCODE_DPAD_DOWN_LEFT, KeyEvent.KEYCODE_DPAD_DOWN_RIGHT -> return false
             KeyEvent.KEYCODE_DPAD_LEFT, KeyEvent.KEYCODE_DPAD_RIGHT, KeyEvent.KEYCODE_DPAD_UP -> {
                 Log.e("NewMainActivity", "movieIndex : ")

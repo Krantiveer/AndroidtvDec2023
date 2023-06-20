@@ -70,8 +70,8 @@ android {
 
         xploreindia {
             applicationId "com.xploreindia.tv"
-            versionCode 6
-            versionName "6"
+            versionCode 7
+            versionName "7"
         }
         mitwa_tv {
             applicationId "com.tv.mitwa"
@@ -127,11 +127,16 @@ android {
         }
         amuzi {
             applicationId "com.amuzi"
-            versionCode 4
-            versionName "4.0"
+            versionCode 6
+            versionName "6.0"
         }
         naaptolott {
             applicationId "com.naaptolott"
+            versionCode 1
+            versionName "1.0"
+        }
+        adnott {
+            applicationId "com.amuzi"
             versionCode 1
             versionName "1.0"
         }

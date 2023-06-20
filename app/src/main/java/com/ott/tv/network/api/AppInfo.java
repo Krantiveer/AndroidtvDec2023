@@ -20,8 +20,13 @@ public class AppInfo implements Parcelable {
     private String forceUpdate;
     @SerializedName("npawAccountKey")
     private String npawAccountKey;
+    @SerializedName("player_logo")
+    private String playerLogo;
     @SerializedName("isnpawEnable")
     private Boolean isnpawEnable;
+
+    @SerializedName("player_logo_enable")
+    private String player_logo_enable;
 
 
     protected AppInfo(Parcel in) {
@@ -115,5 +120,21 @@ public class AppInfo implements Parcelable {
 
     public void setIsnpawEnable(Boolean isnpawEnable) {
         this.isnpawEnable = isnpawEnable;
+    }
+
+    public String getPlayerLogo() {
+        return playerLogo;
+    }
+
+    public void setPlayerLogo(String playerLogo) {
+        this.playerLogo = playerLogo;
+    }
+
+    public String getPlayer_logo_enable() {
+        return player_logo_enable;
+    }
+
+    public void setPlayer_logo_enable(String player_logo_enable) {
+        this.player_logo_enable = player_logo_enable;
     }
 }

@@ -39,7 +39,9 @@ public class PreferenceUtils {
     public static final String state_name = "state_name";
     public static final Integer watch_list = 0;
     public static final String npawAccountKey = "";
-    public static final Boolean focusFromWatchNow=false;
+    public static final String watermarklogourl = "";
+    public static final String watermarkEnable = "";
+    public static final Boolean focusFromWatchNow = false;
     // public static final Boolean focusFromWatchNow = "";
 
     public static PreferenceUtils getInstance() {
@@ -266,6 +268,30 @@ public class PreferenceUtils {
     public Integer getWatchListPref(Context context) {
         return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
                 .getInt(String.valueOf(watch_list), 0);
+    }
+
+    public void setWatermarkEnablePref(Context context, String str) {
+        SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(watermarkEnable, str);
+        editor.apply();
+    }
+
+    public String getWatermarkEnablePref(Context context) {
+        return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
+                .getString(watermarkEnable, "1");
+    }
+
+    public void setWatermarkLogoUrlPref(Context context, String str) {
+        SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(watermarklogourl, str);
+        editor.apply();
+    }
+
+    public String getWatermarkLogoUrlPref(Context context) {
+        return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
+                .getString(watermarklogourl, "");
     }
 
     public void setNpawAccountKeyPref(Context context, String accessToken) {

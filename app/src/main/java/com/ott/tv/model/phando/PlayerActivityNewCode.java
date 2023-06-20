@@ -23,6 +23,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.PluginStub;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -130,7 +131,7 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
     protected @Nullable
     ExoPlayer player;
     protected PlayerView exoPlayerView;//playerView;
-//    private Options youboraOptions;
+    //    private Options youboraOptions;
     private LinearLayout rootLayout;
     private MediaSource mediaSource;
     private boolean isPlaying;
@@ -144,7 +145,8 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
     private Button bt_golive;
     private TextView movieTitleTV, movieDescriptionTV;
     private ImageView posterImageView, watermark, watermark_live;
-    private RelativeLayout seekBarLayout;
+    private RelativeLayout seekBarLayout, playerViewRv;
+    private WebView webView;
     private TextView liveTvTextInController;
     private ProgressBar progressBar;
     private PowerManager.WakeLock wakeLock;
@@ -171,6 +173,7 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
+
 
     /*    mChannelId = getIntent().getLongExtra(VideoPlaybackActivity.EXTRA_CHANNEL_ID, -1L);
         mStartingPosition = getIntent().getLongExtra(VideoPlaybackActivity.EXTRA_POSITION, -1L);
@@ -210,6 +213,8 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
                 finish();
             }
         }*/
+
+
         intiViews();
         initVideoPlayer(url, videoType);
 
@@ -280,6 +285,25 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
         watermark = findViewById(R.id.watermark);
         watermark_live = findViewById(R.id.watermark_live);
         exo_pause = findViewById(R.id.exo_pause);
+
+        String imageUrl = PreferenceUtils.getInstance().getWatermarkLogoUrlPref(this);
+
+        // Replace with your image URL
+        if (!imageUrl.isEmpty()) {
+            Glide.with(this)
+                    .load(imageUrl)
+                    .into(watermark_live);
+            Glide.with(this)
+                    .load(imageUrl)
+                    .into(watermark);
+        }
+        if (PreferenceUtils.getInstance().getWatermarkEnablePref(this).equalsIgnoreCase("0")) {
+            watermark_live.setVisibility(GONE);
+            watermark.setVisibility(GONE);
+
+        }
+
+
         exo_pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -293,6 +317,8 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
 
             }
         });
+        //  webView=findViewById(R.id.webview);
+
 
         if (category.equalsIgnoreCase("t")) {
             bt_golive.setVisibility(View.GONE);
@@ -371,6 +397,13 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
             watermark.setVisibility(VISIBLE);
             watermark_live.setVisibility(GONE);
         }
+        if (PreferenceUtils.getInstance().getWatermarkEnablePref(this).equalsIgnoreCase("0")) {
+            watermark_live.setVisibility(GONE);
+            watermark.setVisibility(GONE);
+
+        }
+        // PreferenceUtils.getInstance().getWatermarkLogoUrlPref(this);
+
     }
 
 /*
