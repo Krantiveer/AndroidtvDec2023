@@ -3,15 +3,14 @@ package com.ott.tv.ui.activity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.*
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.LinearLayoutCompat
-import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
 import androidx.leanback.widget.ArrayObjectAdapter
@@ -43,6 +42,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.security.AccessController.getContext
 
+
 class DetailsActivityPhando : FragmentActivity() {
     private var videoId: String? = null
     private var id: String? = null
@@ -66,6 +66,7 @@ class DetailsActivityPhando : FragmentActivity() {
 
     private var episode_rv: LinearLayout? = null
     private var details_fragment_root: LinearLayoutCompat? = null
+    private var webView: WebView? = null
     private var episode_url = ""
     private val listRelated: MutableList<CommonModels> = ArrayList()
     var userid: String? = null
@@ -225,6 +226,9 @@ class DetailsActivityPhando : FragmentActivity() {
         progress_indicator = findViewById(R.id.progress_indicator)
         episode_rv = findViewById(R.id.episode_rv_ll)
         details_fragment_root = findViewById(R.id.details_fragment_root)
+        webView = findViewById(R.id.webViewScreen)
+
+
         if (type == null) {
             type = "M"
         }
@@ -726,7 +730,16 @@ class DetailsActivityPhando : FragmentActivity() {
             } else {
                 video.islive = "0"
             }
+            if (singleDetails!!.list.is_youtube.toString().equals("3")) {
+                webView!!.visibility = View.VISIBLE
 
+                var url =singleDetails!!.list.external_url
+                Log.i(TAG, "payAndWatchTV: --->"+url)
+                webView!!.getSettings().setJavaScriptEnabled(true);
+                webView!!.webViewClient = WebViewClient()
+                webView!!.loadUrl(url);
+                return
+            }
             /*   if (singleDetails!!.list.is_youtube.toString().equals("0", ignoreCase = true)) {
                    findViewById<WebView>(R.id.Webview).visibility = View.VISIBLE
                    findViewById<FrameLayout>(R.id.contentView).visibility = View.GONE
@@ -1119,6 +1132,10 @@ class DetailsActivityPhando : FragmentActivity() {
     }
 
     override fun onBackPressed() {
+        if(webView!!.isVisible){
+            webView!!.visibility=View.GONE
+            return
+        }
         if (episode_rv!!.isVisible) {
             Log.i("Backbutton", "onBackPressed:2 " + episode_rv!!.isVisible)
             SeasonListClick(true)

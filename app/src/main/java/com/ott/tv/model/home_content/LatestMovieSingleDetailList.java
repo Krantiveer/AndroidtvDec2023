@@ -41,6 +41,21 @@ public class LatestMovieSingleDetailList implements Parcelable {
     @SerializedName("duration_str")
     @Expose
     private String duration_str;
+    @SerializedName("external_url")
+    @Expose
+    private String external_url;
+
+    @SerializedName("cc_files")
+    @Expose
+    private CCFile[] ccFiles;
+    public String getExternal_url() {
+        return external_url;
+    }
+
+    public void setExternal_url(String external_url) {
+        this.external_url = external_url;
+    }
+
 
     @SerializedName("related")
     @Expose
@@ -60,6 +75,14 @@ public class LatestMovieSingleDetailList implements Parcelable {
 
     public void setDuration_str(String duration_str) {
         this.duration_str = duration_str;
+    }
+
+    public CCFile[] getCcFiles() {
+        return ccFiles;
+    }
+
+    public void setCcFiles(CCFile[] ccFiles) {
+        this.ccFiles = ccFiles;
     }
 
     protected LatestMovieSingleDetailList(Parcel in) {
