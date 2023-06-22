@@ -43,7 +43,7 @@ class SplashScreenActivityTv : Activity() {
 
         }else {
             findViewById<LinearLayout>(R.id.splash_screen_ll).visibility=View.VISIBLE
-            if(BuildConfig.FLAVOR.equals("candor",ignoreCase = true)||BuildConfig.FLAVOR.equals("naaptolott")){
+            if(BuildConfig.FLAVOR.equals("candor",ignoreCase = true)||BuildConfig.FLAVOR.equals("naaptolott")||BuildConfig.FLAVOR.equals("omtvott")){
                 findViewById<ImageView>(R.id.splash_img_view).visibility=View.INVISIBLE
 
             }

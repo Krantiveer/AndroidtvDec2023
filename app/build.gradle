@@ -127,8 +127,8 @@ android {
         }
         amuzi {
             applicationId "com.amuzi"
-            versionCode 6
-            versionName "6.0"
+            versionCode 7
+            versionName "7.0"
         }
         naaptolott {
             applicationId "com.naaptolott"
@@ -137,6 +137,11 @@ android {
         }
         adnott {
             applicationId "com.amuzi"
+            versionCode 1
+            versionName "1.0"
+        }
+        omtvott {
+            applicationId "com.omtvott"
             versionCode 1
             versionName "1.0"
         }

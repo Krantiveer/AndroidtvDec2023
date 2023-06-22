@@ -1,0 +1,146 @@
+{
+  "project_info": {
+    "project_number": "845958030239",
+    "project_id": "omtvlive",
+    "storage_bucket": "omtvlive.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:845958030239:android:4418fcb6b00e8e04c4d3aa",
+        "android_client_info": {
+          "package_name": "com.blackboardfilms.omtv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "845958030239-1m147k912o66g4dkt0dingijll2g6ioj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.blackboardfilms.omtv",
+            "certificate_hash": "684109ca24a8f49308674ea55e33f74a0d63bda0"
+          }
+        },
+        {
+          "client_id": "845958030239-2in34ft0g85jal3f3vg5h6jekib0vb7b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.blackboardfilms.omtv",
+            "certificate_hash": "78c8a025aa48466eafebff2f761e64b4f8519ca5"
+          }
+        },
+        {
+          "client_id": "845958030239-3n1g8bnot61i65i466g4o5bibk1ahbld.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.blackboardfilms.omtv",
+            "certificate_hash": "91a4367116678c65992a882f0b1c182ca73ee8f6"
+          }
+        },
+        {
+          "client_id": "845958030239-5cf5rcfvii8cne9qikl6vo5r7c5nt3fu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.blackboardfilms.omtv",
+            "certificate_hash": "e4bd509326c21c06db1c8a8a8e44bcff67e2fa56"
+          }
+        },
+        {
+          "client_id": "845958030239-lbl0h5110su467i4ri2r6vtg5e74jfnr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.blackboardfilms.omtv",
+            "certificate_hash": "9f7b5c2c9427c450b522b29d8328f4db70e6924c"
+          }
+        },
+        {
+          "client_id": "845958030239-ljvn9d246925rkc5c1f97174v2dgd97v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.blackboardfilms.omtv",
+            "certificate_hash": "6ea6c22e30076b019f037646e5f15b6e4c6247ad"
+          }
+        },
+        {
+          "client_id": "845958030239-nrtcvp001meiqv3040rb3ac7qt10c1ob.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.blackboardfilms.omtv",
+            "certificate_hash": "822c17200d8bb865b92b98b00df3788c4148a618"
+          }
+        },
+        {
+          "client_id": "845958030239-qr0q4hadu1mvrua0pvkljehrushkogaf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.blackboardfilms.omtv",
+            "certificate_hash": "c8e789130c1e08a76334c8f6ec6e3326ac431cab"
+          }
+        },
+        {
+          "client_id": "845958030239-77ntiqm7062d9dbqqmcc10c1fhpb12th.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDI756XuCNtlD5t7fnXo01-G-rRiQ3THE0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "845958030239-77ntiqm7062d9dbqqmcc10c1fhpb12th.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "845958030239-ni5r75ioudcsvd73eaolf5vg30rh0bui.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.blackboardfilms.omtv"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:845958030239:android:083fb43addb8af2dc4d3aa",
+        "android_client_info": {
+          "package_name": "com.omtvott"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "845958030239-77ntiqm7062d9dbqqmcc10c1fhpb12th.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDI756XuCNtlD5t7fnXo01-G-rRiQ3THE0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "845958030239-77ntiqm7062d9dbqqmcc10c1fhpb12th.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "845958030239-ni5r75ioudcsvd73eaolf5vg30rh0bui.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.blackboardfilms.omtv"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
