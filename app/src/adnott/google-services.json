@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "881695639269",
-    "project_id": "amuzi-35dbe",
-    "storage_bucket": "amuzi-35dbe.appspot.com"
+    "project_number": "640793961284",
+    "project_id": "adnandroid-b74d5",
+    "storage_bucket": "adnandroid-b74d5.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:881695639269:android:d65d4ed7c75799eae0b60c",
+        "mobilesdk_app_id": "1:640793961284:android:6d6ad5c377be37e755ad11",
         "android_client_info": {
-          "package_name": "com.amuzi"
+          "package_name": "com.adnott"
         }
       },
       "oauth_client": [
         {
-          "client_id": "881695639269-jfdepcq4ruqfdu64h5miad6hcjjta2je.apps.googleusercontent.com",
+          "client_id": "640793961284-a1nuucogvljjmjdv026pfv0g1i9nbbc8.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA3N_OWog2kPgGj6hrxym6QaHxgN2SifgA"
+          "current_key": "AIzaSyCGH1D6J8Vf_nRAndGumhD5tpIS7iQ8XFs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "881695639269-jfdepcq4ruqfdu64h5miad6hcjjta2je.apps.googleusercontent.com",
+              "client_id": "640793961284-a1nuucogvljjmjdv026pfv0g1i9nbbc8.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -36,35 +36,35 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:881695639269:android:33419340c4b7fccfe0b60c",
+        "mobilesdk_app_id": "1:640793961284:android:f2446aee592a58c855ad11",
         "android_client_info": {
-          "package_name": "com.perseverance.amuzi"
+          "package_name": "com.perseverance.adnsaas"
         }
       },
       "oauth_client": [
         {
-          "client_id": "881695639269-eintvs5s6l3efbp5hv98f3kd9773qkfl.apps.googleusercontent.com",
+          "client_id": "640793961284-ve9l52u91ciha97eui5mfnb9v4bn03nc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.perseverance.amuzi",
-            "certificate_hash": "e4bd509326c21c06db1c8a8a8e44bcff67e2fa56"
+            "package_name": "com.perseverance.adnsaas",
+            "certificate_hash": "ea1eccdf02e30a49cb5e598466be244f5b1bed2d"
           }
         },
         {
-          "client_id": "881695639269-jfdepcq4ruqfdu64h5miad6hcjjta2je.apps.googleusercontent.com",
+          "client_id": "640793961284-a1nuucogvljjmjdv026pfv0g1i9nbbc8.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA3N_OWog2kPgGj6hrxym6QaHxgN2SifgA"
+          "current_key": "AIzaSyCGH1D6J8Vf_nRAndGumhD5tpIS7iQ8XFs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "881695639269-jfdepcq4ruqfdu64h5miad6hcjjta2je.apps.googleusercontent.com",
+              "client_id": "640793961284-a1nuucogvljjmjdv026pfv0g1i9nbbc8.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

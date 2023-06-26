@@ -154,7 +154,7 @@ public class DetailsActivity extends FragmentActivity {
         tvVideoQualityType = findViewById(R.id.tvVideoQualityType);
         tvWatchNow = findViewById(R.id.tvWatchNow);
         tvWatchTrailer = findViewById(R.id.tvWatchTrailer);
-        rvRelated = findViewById(R.id.rv_related);
+   //     rvRelated = findViewById(R.id.rv_related);
         playerView = findViewById(R.id.video_view);
         activity_rv = findViewById(R.id.activity_rv);
         imgWatchList = findViewById(R.id.imgWatchList);

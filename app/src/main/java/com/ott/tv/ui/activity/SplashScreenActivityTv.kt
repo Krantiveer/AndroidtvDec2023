@@ -31,7 +31,7 @@ class SplashScreenActivityTv : Activity() {
         setContentView(R.layout.activity_onboarding)
 
 
-        if (BuildConfig.FLAVOR.equals("mitwa_tv", ignoreCase = true)||BuildConfig.FLAVOR.equals("uvtv", ignoreCase = true)) {
+        if (BuildConfig.FLAVOR.equals("mitwa_tv", ignoreCase = true)||BuildConfig.FLAVOR.equals("uvtv", ignoreCase = true)||BuildConfig.FLAVOR.equals("adnott", ignoreCase = true)) {
             findViewById<LinearLayout>(R.id.splash_screen_ll).visibility==View.INVISIBLE
 
             val path = "android.resource://" + packageName + "/" + R.raw.splashvideio

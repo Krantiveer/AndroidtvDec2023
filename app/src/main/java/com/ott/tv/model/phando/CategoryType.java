@@ -16,6 +16,9 @@ public class CategoryType implements Parcelable {
     @SerializedName("type")
     @Expose
     private String type;
+    @SerializedName("type_id")
+    @Expose
+    private String type_id;
     @SerializedName("gener_id")
     @Expose
     private String gener_id;
@@ -121,5 +124,13 @@ public class CategoryType implements Parcelable {
 
     public void setGener_id(String gener_id) {
         this.gener_id = gener_id;
+    }
+
+    public String getType_id() {
+        return type_id;
+    }
+
+    public void setType_id(String type_id) {
+        this.type_id = type_id;
     }
 }

@@ -82,7 +82,11 @@ public class HomeFragment extends RowsSupportFragment {
             bgHelper = new BackgroundHelper(getActivity());
 
             assert getArguments() != null;
+
             typeCategory = getArguments().getString("type");
+           /* if(typeCategory.equalsIgnoreCase("catgeory")){
+                typeCategory=getArguments().getString("type_id");
+            }*/
             NewMainActivity activity = (NewMainActivity) getActivity();
           //  activity.showLogo();
             setOnItemViewClickedListener(getDefaultItemViewClickedListener());

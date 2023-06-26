@@ -243,6 +243,109 @@ class NewMainActivity : FragmentActivity() {
         return out
     }
 
+    fun onMenuSelection(type: String,type_id: String, title: String, gener_id: String) {
+        if (type.equals("search") || type.equals("Search")) {
+
+            if (BuildConfig.FLAVOR.equals("uvtv", ignoreCase = true)) {
+
+            } else {
+
+                val intent = Intent(this, SearchActivity_Phando::class.java)
+                startActivity(intent)
+                return
+            }
+            /*       val intent = Intent(this, SearchActivity_Phando::class.java)
+                   startActivity(intent)
+                   return*/
+        }
+        binding.tvTitle.text = title
+        if (title.isEmpty()) {
+            binding.tvTitle.isVisible = false
+        } else if (type.equals("home") || type.equals("profile")) {
+            // binding.tvTitle.isVisible = true
+            binding.tvTitle.isVisible = false
+        } else {
+            binding.tvTitle.isVisible = true
+        }
+        val bundle = bundleOf(
+
+            "menu" to 1,
+            "gener_id" to gener_id,
+            "type" to type,
+            "type_id" to type_id
+
+        )
+        if (type.equals("search") || type.equals("Search")) {
+
+            if (BuildConfig.FLAVOR.equals("uvtv", ignoreCase = true)) {
+
+                val newFragment = SearchPhandoUVTVFragment()
+                newFragment.setArguments(bundle)
+                supportFragmentManager.beginTransaction()
+                    .replace(binding.browserSection.id, newFragment)
+                    .commit()
+            } else {
+                PreferenceUtils.getInstance().setWatchListPref(this, 0)
+                val intent = Intent(this, SearchActivity_Phando::class.java)
+                startActivity(intent)
+                return
+            }
+            /*
+
+
+            */
+        }
+        else if (type.equals("viewall")) {
+            val newFragment = GenreMovieFragment()
+            newFragment.setArguments(bundle)
+            supportFragmentManager.beginTransaction()
+                .replace(binding.browserSection.id, newFragment)
+                .commit()
+
+    /*    } else if (type.equals("genre")) {
+            val newFragment = GenreMovieFragment()
+            newFragment.setArguments(bundle)
+            supportFragmentManager.beginTransaction()
+                .replace(binding.browserSection.id, newFragment)
+                .commit()
+*/
+        } else if (type.equals("watchlist") || type.equals("Watchlist")) {
+            val newFragment = ShowWatchlistFragment()
+            newFragment.setArguments(bundle)
+            supportFragmentManager.beginTransaction()
+                .replace(binding.browserSection.id, newFragment)
+                .commit()
+        } else if (type.equals("profile")) {
+            PreferenceUtils.getInstance().setWatchListPref(this, 0)
+
+            val newFragment = MyAccountFragment()
+            newFragment.setArguments(bundle)
+            supportFragmentManager.beginTransaction()
+                .replace(binding.browserSection.id, newFragment)
+                .commit()
+        } else if (type.equals("uvtv-bharat")) {
+            PreferenceUtils.getInstance().setWatchListPref(this, 0)
+            val newFragment = MapFragmentUVTV()
+            newFragment.setArguments(bundle)
+            supportFragmentManager.beginTransaction()
+                .replace(binding.browserSection.id, newFragment)
+                .commit()
+        } else if (type.equals("home")) {
+            PreferenceUtils.getInstance().setWatchListPref(this, 0)
+            val newFragment = HomeFragmentNewUI()
+            newFragment.setArguments(bundle)
+            supportFragmentManager.beginTransaction()
+                .replace(binding.browserSection.id, newFragment)
+                .commit()
+        } else {
+            PreferenceUtils.getInstance().setWatchListPref(this, 0)
+            val newFragment = HomeFragment()
+            newFragment.setArguments(bundle)
+            supportFragmentManager.beginTransaction()
+                .replace(binding.browserSection.id, newFragment)
+                .commit()
+        }
+    }
     fun onMenuSelection(type: String, title: String, gener_id: String) {
         if (type.equals("search") || type.equals("Search")) {
 
@@ -293,7 +396,8 @@ class NewMainActivity : FragmentActivity() {
 
 
             */
-        } else if (type.equals("viewall")) {
+        }
+        else if (type.equals("viewall")) {
             val newFragment = GenreMovieFragment()
             newFragment.setArguments(bundle)
             supportFragmentManager.beginTransaction()

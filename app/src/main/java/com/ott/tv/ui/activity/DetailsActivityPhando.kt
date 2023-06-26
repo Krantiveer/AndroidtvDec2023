@@ -36,6 +36,11 @@ import com.ott.tv.utils.PreferenceUtils
 import com.ott.tv.utils.ToastMsg
 import com.ott.tv.video_service.PlaybackModel
 import com.ott.tv.video_service.VideoPlaybackActivity
+/*
+import com.singular.sdk.Attributes
+import com.singular.sdk.Singular
+import com.singular.sdk.SingularConfig
+*/
 import com.squareup.picasso.BuildConfig
 import retrofit2.Call
 import retrofit2.Callback
@@ -117,6 +122,7 @@ class DetailsActivityPhando : FragmentActivity() {
     var epList: MutableList<EpiModel> = ArrayList()
     private var movie_title: TextView? = null
     private var movie_titleTwo: TextView? = null
+  //  private var deeplinkData: Bundle? = null
 
     private var detailsFragment: DetailsFragment? = null
 
@@ -265,11 +271,25 @@ class DetailsActivityPhando : FragmentActivity() {
         tvWatchTrailer!!.setOnClickListener(View.OnClickListener { view: View? -> trailerClick() })
         btn_seasonAndEpisode!!.setOnClickListener(View.OnClickListener { v: View? -> EpisodeAndSeason() })
         PreferenceUtils.getInstance().setFocusFromWatchNowPref(this, false)
-
+      //  initSingularSDK()
         //    PreferenceUtils.updateSubscriptionStatus(DetailsActivityPhando.this);
-    }
 
-    private fun EpisodeAndSeason() {
+    }
+    /*private  fun initSingularSDK() {
+        val config = SingularConfig("phando_corp_5231bd68", "2caece12456ddeba0c28241d9cae9130").withSingularLink(
+            intent
+        ) { singularLinkParams ->
+            deeplinkData = Bundle()
+            deeplinkData!!.putString("deeplink", singularLinkParams.deeplink)
+            deeplinkData!!.putString("passthrough", singularLinkParams.passthrough)
+            deeplinkData!!.putBoolean("isDeferred", singularLinkParams.isDeferred)
+
+
+        }
+        Singular.init(this, config)
+        Log.d("@@Singular: ", "Singular Initialized")
+    }
+    */private fun EpisodeAndSeason() {
         if (singleDetailsTVseries != null) {
             if (id == null) {
                 id = videoId
@@ -670,7 +690,14 @@ class DetailsActivityPhando : FragmentActivity() {
 
     private fun payAndWatchTV() {
         if (singleDetails != null) {
-            //    Constants.IS_FROM_WATCH_NOW=true
+/*
+            Singular.event("Click watch movie",
+                Attributes.sngAttrContent.toString(),title,
+                Attributes.sngAttrContentId.toString(),videoId,
+                Attributes.sngAttrContentType.toString(), "ugccontent",
+                Attributes.sngAttrSuccess.toString(), "SUCCESS"
+            )
+         */               //    Constants.IS_FROM_WATCH_NOW=true
             PreferenceUtils.getInstance().setFocusFromWatchNowPref(this, true);
             val videoList: List<Video> = ArrayList()
             /*         for (Video video : singleDetails.getVideos()) {
