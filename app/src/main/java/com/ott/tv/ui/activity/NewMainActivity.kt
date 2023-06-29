@@ -302,13 +302,12 @@ class NewMainActivity : FragmentActivity() {
                 .replace(binding.browserSection.id, newFragment)
                 .commit()
 
-    /*    } else if (type.equals("genre")) {
+        } else if (type.equals("genre")) {
             val newFragment = GenreMovieFragment()
             newFragment.setArguments(bundle)
             supportFragmentManager.beginTransaction()
                 .replace(binding.browserSection.id, newFragment)
                 .commit()
-*/
         } else if (type.equals("watchlist") || type.equals("Watchlist")) {
             val newFragment = ShowWatchlistFragment()
             newFragment.setArguments(bundle)
@@ -317,7 +316,6 @@ class NewMainActivity : FragmentActivity() {
                 .commit()
         } else if (type.equals("profile")) {
             PreferenceUtils.getInstance().setWatchListPref(this, 0)
-
             val newFragment = MyAccountFragment()
             newFragment.setArguments(bundle)
             supportFragmentManager.beginTransaction()

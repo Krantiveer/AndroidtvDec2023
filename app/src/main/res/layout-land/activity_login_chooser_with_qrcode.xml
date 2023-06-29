@@ -36,11 +36,11 @@
 
 
             <LinearLayout
+                android:id="@+id/qrscreenll"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_36sdp"
-
                 android:layout_weight="1"
                 android:gravity="top"
                 android:orientation="vertical"
@@ -78,14 +78,13 @@
                             android:textSize="15sp" />
 
                         <TextView
+                            android:id="@+id/qrcodebaseurl"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:id="@+id/qrcodebaseurl"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                             android:textColor="@color/blue_400"
                             android:textSize="15sp" />
-
 
 
                     </LinearLayout>
@@ -122,13 +121,13 @@
                         </androidx.cardview.widget.CardView>
 
                         <TextView
-                            android:fontFamily="@font/roboto_medium"
                             android:id="@+id/tv_qrCode"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="@dimen/_27sdp"
                             android:background="@drawable/textview_border_dot"
+                            android:fontFamily="@font/roboto_medium"
                             android:paddingStart="@dimen/_20sdp"
                             android:paddingTop="@dimen/_8sdp"
                             android:paddingEnd="@dimen/_20sdp"
@@ -177,6 +176,7 @@
 
             <ImageView
                 android:layout_width="wrap_content"
+                android:id="@+id/or_image"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_26sdp"
                 android:layout_marginVertical="28dp"
@@ -230,13 +230,13 @@
                     android:layout_margin="@dimen/_20sp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/button_focus"
+                    android:defaultFocusHighlightEnabled="true"
                     android:drawableStart="@drawable/envelope"
                     android:onClick="emailSignInBtn"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
                     android:text="Login with Email"
                     android:textAllCaps="false"
-                    android:defaultFocusHighlightEnabled="true"
                     android:textColor="@color/btn_txt_color"
                     android:textSize="@dimen/_16sdp" />
 
@@ -248,9 +248,9 @@
                     android:background="@drawable/button_focus"
                     android:drawableStart="@drawable/fui_ic_googleg_color_24dp"
                     android:paddingStart="20dp"
-                    android:visibility="gone"
                     android:text="@string/continue_with_google"
-                    android:textAllCaps="true" />
+                    android:textAllCaps="true"
+                    android:visibility="gone" />
             </LinearLayout>
 
         </LinearLayout>

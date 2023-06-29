@@ -83,7 +83,8 @@ public class HomeFragment extends RowsSupportFragment {
 
             assert getArguments() != null;
 
-            typeCategory = getArguments().getString("type");
+            typeCategory = getArguments().getString("type_id");
+
            /* if(typeCategory.equalsIgnoreCase("catgeory")){
                 typeCategory=getArguments().getString("type_id");
             }*/

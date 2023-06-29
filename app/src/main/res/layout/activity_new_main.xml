@@ -37,13 +37,15 @@
                 android:layout_marginBottom="@dimen/_15sdp"
                 android:background="@color/black_color"
                 android:fontFamily="@font/roboto_medium"
-                android:gravity="center"
+                android:gravity="start"
                 android:text=""
                 android:textColor="@color/white"
                 android:textSize="@dimen/_30sdp"
                 android:textStyle="normal"
                 android:visibility="gone"
-                tools:text="Home" />
+                tools:text="Home"
+                android:paddingEnd="70sp" />
+
 
 
             <FrameLayout

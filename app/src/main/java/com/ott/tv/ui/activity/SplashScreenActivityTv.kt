@@ -12,11 +12,19 @@ import android.view.KeyEvent
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
 import android.widget.VideoView
 import com.ott.tv.BuildConfig
 import com.ott.tv.Config
 import com.ott.tv.R
+import com.ott.tv.network.RetrofitClient
+import com.ott.tv.network.api.AppInfo
+import com.ott.tv.network.api.Dashboard
 import com.ott.tv.utils.PreferenceUtils
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.security.AccessController
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivityTv : Activity() {
@@ -29,9 +37,47 @@ class SplashScreenActivityTv : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_onboarding)
+        val retrofit = RetrofitClient.getRetrofitInstance()
+        val api = retrofit.create(Dashboard::class.java)
+        val accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(
+            applicationContext
+        )
+        val call: Call<AppInfo> = api.getAppInfo("androidtv", accessToken)
+        call.enqueue(object : Callback<AppInfo?> {
+            override fun onResponse(call: Call<AppInfo?>, response: Response<AppInfo?>) {
+                if (response.code() == 200) {
+                    Log.i(TAG, "onResponse: "+response.body()!!.websiteurl)
+                    PreferenceUtils.getInstance().setWebsiteUrlPref(
+                        this@SplashScreenActivityTv,
+                        response.body()!!.websiteurl
+                    )
+                    //  homeContent.setHomeContentId(1);
+                    //   homeContent.getSlider();
+                    //  loadSliderRows(homeContent.getSlider().getSlideArrayList());
+
+                    //   loadRows();
+                } else if (response.code() == 401) {
+
+                    // signOut();
+                } else if (response.errorBody() != null) {
+                    //  CMHelper.setSnackBar(requireView(), response.errorBody().toString(), 2);
+                } else {
+                    if (AccessController.getContext() != null) {
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<AppInfo?>, t: Throwable) {
+                //   CMHelper.setSnackBar(requireView(), t.getMessage(), 2);
+                if (AccessController.getContext() != null) {
+              //      Toast.makeText(applicationContext, t.message, Toast.LENGTH_SHORT).show()
+                } else {
+                }
+            }
+        })
 
 
-        if (BuildConfig.FLAVOR.equals("mitwa_tv", ignoreCase = true)||BuildConfig.FLAVOR.equals("uvtv", ignoreCase = true)||BuildConfig.FLAVOR.equals("adnott", ignoreCase = true)) {
+        if (BuildConfig.FLAVOR.equals("mitwa_tv", ignoreCase = true)||BuildConfig.FLAVOR.equals("uvtv", ignoreCase = true)||BuildConfig.FLAVOR.equals("adnott", ignoreCase = true) || BuildConfig.FLAVOR.equals("amuzi", ignoreCase = true)|| BuildConfig.FLAVOR.equals("darshott", ignoreCase = true)) {
             findViewById<LinearLayout>(R.id.splash_screen_ll).visibility==View.INVISIBLE
 
             val path = "android.resource://" + packageName + "/" + R.raw.splashvideio

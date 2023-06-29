@@ -41,7 +41,9 @@ public class PreferenceUtils {
     public static final String npawAccountKey = "";
     public static final String watermarklogourl = "";
     public static final String watermarkEnable = "";
+    public static final String websiteUrl = "";
     public static final Boolean focusFromWatchNow = false;
+
     // public static final Boolean focusFromWatchNow = "";
 
     public static PreferenceUtils getInstance() {
@@ -282,6 +284,18 @@ public class PreferenceUtils {
                 .getString(watermarkEnable, "1");
     }
 
+    public void setWebsiteUrlPref(Context context, String str) {
+        SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(websiteUrl, str);
+        editor.apply();
+    }
+
+    public String getwebsiteUrlPref(Context context) {
+        return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
+                .getString(websiteUrl, "");
+    }
+
     public void setWatermarkLogoUrlPref(Context context, String str) {
         SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -330,4 +344,5 @@ public class PreferenceUtils {
         return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
                 .getBoolean(String.valueOf(focusFromWatchNow), false);
     }
+
 }

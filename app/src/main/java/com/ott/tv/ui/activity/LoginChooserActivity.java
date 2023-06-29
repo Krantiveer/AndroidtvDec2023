@@ -3,12 +3,15 @@ package com.ott.tv.ui.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -67,10 +70,17 @@ public class LoginChooserActivity extends Activity {
         tv_qrCode = findViewById(R.id.tv_qrCode);
         qrcode_url=findViewById(R.id.qrcodebaseurl);
 
-        if(BuildConfig.FLAVOR.equalsIgnoreCase("phando")){
-            qrcode_url.setText("www.fusiontv.com/"+"mytv");
-        }else {
+        if (BuildConfig.FLAVOR.equalsIgnoreCase("phando")) {
+            qrcode_url.setText("www.fusiontv.com/" + "mytv");
+        } else {
+            /*if (PreferenceUtils.getInstance().getwebsiteUrlPref(this).isEmpty()) {
+                qrcode_url.setText(Config.WebsiteURL + "mytv");
+            } else {
+                qrcode_url.setText(PreferenceUtils.getInstance().getwebsiteUrlPref(this));
+
+            }*/
             qrcode_url.setText(Config.WebsiteURL + "mytv");
+
         }
         DatabaseHelper db = new DatabaseHelper(LoginChooserActivity.this);
 
@@ -531,11 +541,9 @@ public class LoginChooserActivity extends Activity {
         handler.removeCallbacksAndMessages(null);
    /*     if(BuildConfig.FLAVOR.equalsIgnoreCase("kaafaltv")||BuildConfig.FLAVOR.equalsIgnoreCase("solidtv")){
         }else{*/
-            CallHandler();
-            CallHandlerQrCode();
-        }
-
-
+        CallHandler();
+        CallHandlerQrCode();
+    }
 
 
     @Override

@@ -47,12 +47,10 @@ public interface Dashboard {
 
     );
 
-//menu_v1
+    //menu_v1
     @GET("menu_v1")
     Call<List<CategoryType>> menu(
-            @Header("Authorization") String token
-
-    );
+            @Header("Authorization") String token);
 
     @GET("mediaplayback")
     Call<MediaplaybackData> getSingleDetailAPI(

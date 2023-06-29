@@ -4,7 +4,7 @@
     <color name="textcolor">#fff</color>
     <color name="btn_txt_color">#fff</color>
 
-    <color name="main_color">#94DD26</color>
+    <color name="main_color">#ff7e00</color>
     <color name="focus">#ffffff</color>
     //this we using card selected and click card
     <color name="colorButtonFocusedTV">@color/main_color</color>
@@ -27,8 +27,8 @@
     <color name="side_nav_selected">@color/main_color</color>
 
 
-    <color name="side_nav_highlited">#6694DD26</color>
-    <color name="red_highlight_color">#6694DD26</color>
+    <color name="side_nav_highlited">#66ff7e00</color>
+    <color name="red_highlight_color">#66ff7e00</color>
     //primeicon nav
     //Side nav selected color
     <color name="profilelinesepratater">@color/main_color</color>

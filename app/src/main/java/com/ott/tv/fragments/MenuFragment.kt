@@ -173,11 +173,21 @@ class MenuFragment : Fragment(), MenuListAdapter.AdapterClick {
         Log.e("@@log", data.displayName + data.type + data.isFocused)
         val activity = requireActivity() as NewMainActivity
         if(data.gener_id!=null){
-            activity.onMenuSelection(data.type.toString(), data.displayName,data.gener_id)
+            if(data.type_id==null){
+                activity.onMenuSelection(data.type.toString(),"", data.displayName,data.gener_id)
+
+            }else{
+                activity.onMenuSelection(data.type.toString(),data.type_id.toString(), data.displayName,data.gener_id)
+
+            }
 
         }else{
-            activity.onMenuSelection(data.type.toString(), data.displayName,"")
+            if(data.type_id!=null){
+            activity.onMenuSelection(data.type.toString(),data.type_id.toString(), data.displayName,"")
+            }else{
+                activity.onMenuSelection(data.type.toString(),"", data.displayName,"")
 
+            }
         }
 
 

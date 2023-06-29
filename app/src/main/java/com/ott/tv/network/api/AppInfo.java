@@ -28,6 +28,9 @@ public class AppInfo implements Parcelable {
     @SerializedName("player_logo_enable")
     private String player_logo_enable;
 
+    @SerializedName("websiteurl")
+    private String websiteurl;
+
 
     protected AppInfo(Parcel in) {
         appType = in.readString();
@@ -136,5 +139,13 @@ public class AppInfo implements Parcelable {
 
     public void setPlayer_logo_enable(String player_logo_enable) {
         this.player_logo_enable = player_logo_enable;
+    }
+
+    public String getWebsiteurl() {
+        return websiteurl;
+    }
+
+    public void setWebsiteurl(String websiteurl) {
+        this.websiteurl = websiteurl;
     }
 }

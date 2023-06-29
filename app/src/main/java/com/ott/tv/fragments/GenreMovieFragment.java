@@ -79,6 +79,11 @@ public class GenreMovieFragment extends VerticalGridSupportFragment {
         //  setTitle("Genre");
         assert getArguments() != null;
         typeCategory = getArguments().getString("type");
+        if(typeCategory.isEmpty()){
+            typeCategory = getArguments().getString("type_id");
+
+        }
+
 /*
                      getArguments().getString("gener_id");
 */
