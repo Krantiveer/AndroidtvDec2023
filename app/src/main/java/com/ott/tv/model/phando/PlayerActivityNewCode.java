@@ -289,7 +289,8 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
         String imageUrl = PreferenceUtils.getInstance().getWatermarkLogoUrlPref(this);
 
         // Replace with your image URL
-        if (!imageUrl.isEmpty()) {
+        Log.i(TAG, "intiViews:playerAcitivity "+imageUrl.equalsIgnoreCase("1"));
+        if (!imageUrl.isEmpty() && !imageUrl.equalsIgnoreCase("1")) {
             Glide.with(this)
                     .load(imageUrl)
                     .into(watermark_live);

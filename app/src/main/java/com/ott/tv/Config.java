@@ -37,11 +37,10 @@ public class Config {
     public static final String Publisher_id = "53";
     public static final String WebsiteURL = "https://www.toonstaan.tv/";
 */
-/*
     public static final String DOMAIN = "https://www.xploreindiastream.com/";
     public static final String Publisher_id = "8";
     public static final String WebsiteURL = "https://www.xploreindiastream.com/";
-*//*
+/*
     public static final String DOMAIN = "https://www.solidtvbox.com/";
     public static final String Publisher_id = "6";
     public static final String WebsiteURL = "https://www.solidtvbox.com/";*/
@@ -51,9 +50,9 @@ public class Config {
   /*  public static final String DOMAIN = "https://saas-sandbox.phando.com/";
     public static final String Publisher_id = "28";
     public static final String WebsiteURL = "https://saas-sandbox.phando.com/";*/
-    public static final String DOMAIN = "https://saasuat.vdoapi.com/";
+   /* public static final String DOMAIN = "https://saasuat.vdoapi.com/";
     public static final String Publisher_id = "28";
-    public static final String WebsiteURL = "https://saasuat.vdoapi.com/";
+    public static final String WebsiteURL = "https://saasuat.vdoapi.com/";*/
 /*    public static final String DOMAIN = "https://tvcafeonline.com/";
     public static final String Publisher_id = "7";
     public static final String WebsiteURL = "https://tvcafeonline.com/";*/
@@ -81,7 +80,7 @@ public class Config {
 /*      public static final String DOMAIN = "https://omtv.vdoapi.com/";
     public static final String Publisher_id = "70";
     public static final String WebsiteURL = "https://omtv.vdoapi.com/";*/
-    /*public static final String DOMAIN = "https://smashtresstv.com/";
+/*    public static final String DOMAIN = "https://smashtresstv.com/";
     public static final String Publisher_id = "87";
     public static final String WebsiteURL = "https://smashtresstv.com/";*/
     public static final String API_SERVER_URL = DOMAIN + "api/";

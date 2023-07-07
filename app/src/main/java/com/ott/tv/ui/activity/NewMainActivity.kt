@@ -70,7 +70,7 @@ class NewMainActivity : FragmentActivity() {
                 if (response.code() == 200) {
 
                     onGetAppInfoSuccess(response.body()!!)
-                    Log.i("appinfo", "onResponse: " + response.body()!!.player_logo_enable)
+                    Log.i("appinfo", "onResponse: " + response.body()!!.player_logo_enable +"--"+ response.body()!!.playerLogo)
                     PreferenceUtils.getInstance().setWatermarkLogoUrlPref(
                         this@NewMainActivity,
                         response.body()!!.playerLogo
