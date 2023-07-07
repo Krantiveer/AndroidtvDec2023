@@ -48,13 +48,12 @@ public class Config {
 /*    public static final String DOMAIN = "https://watch.scifiworld.tv/";
     public static final String Publisher_id = "10";
     public static final String WebsiteURL = "https://watch.scifiworld.tv/";*/
-/*
-    public static final String DOMAIN = "https://saas-sandbox.phando.com/";
+  /*  public static final String DOMAIN = "https://saas-sandbox.phando.com/";
     public static final String Publisher_id = "28";
     public static final String WebsiteURL = "https://saas-sandbox.phando.com/";*/
-   /* public static final String DOMAIN = "https://saasuat.vdoapi.com/";
+    public static final String DOMAIN = "https://saasuat.vdoapi.com/";
     public static final String Publisher_id = "28";
-    public static final String WebsiteURL = "https://saasuat.vdoapi.com/";*/
+    public static final String WebsiteURL = "https://saasuat.vdoapi.com/";
 /*    public static final String DOMAIN = "https://tvcafeonline.com/";
     public static final String Publisher_id = "7";
     public static final String WebsiteURL = "https://tvcafeonline.com/";*/
@@ -64,16 +63,15 @@ public class Config {
     /*   public static final String DOMAIN = "https://www.vtv.co.tz/";
        public static final String Publisher_id = "64";
        public static final String WebsiteURL = "https://www.vtv.co.tz/";*/
-    public static final String DOMAIN = "https://darshott.vdoapi.com/";
+    /*public static final String DOMAIN = "https://darshott.vdoapi.com/";
     public static final String Publisher_id = "82";
-    public static final String WebsiteURL = "https://darshott.vdoapi.com/";
+    public static final String WebsiteURL = "https://darshott.vdoapi.com/";*/
 /*
     public static final String DOMAIN = "https://amuzi.in/";
     public static final String Publisher_id = "80";
     public static final String WebsiteURL = "https://amuzi.in/";
-*/
-
-/*      public static final String DOMAIN = "https://naaptolott.vdoapi.com/";
+*//*
+      public static final String DOMAIN = "https://naaptolott.vdoapi.com/";
       public static final String Publisher_id = "86";
       public static final String WebsiteURL = "https://naaptolott.vdoapi.com/";*/
 /*
@@ -83,10 +81,10 @@ public class Config {
 /*      public static final String DOMAIN = "https://omtv.vdoapi.com/";
     public static final String Publisher_id = "70";
     public static final String WebsiteURL = "https://omtv.vdoapi.com/";*/
-   /* public static final String DOMAIN = "https://smashtresstv.com/";
+    /*public static final String DOMAIN = "https://smashtresstv.com/";
     public static final String Publisher_id = "87";
-    public static final String WebsiteURL = "https://smashtresstv.com/";
-  */  public static final String API_SERVER_URL = DOMAIN + "api/";
+    public static final String WebsiteURL = "https://smashtresstv.com/";*/
+    public static final String API_SERVER_URL = DOMAIN + "api/";
     //copy your api key from php admin dashboard & paste below
     public static final String API_KEY = "75xi3uer76tb7krer3mjgqei";
 
