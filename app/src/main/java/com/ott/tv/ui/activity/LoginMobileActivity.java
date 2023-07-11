@@ -21,24 +21,18 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
-import com.ott.tv.BuildConfig;
 import com.ott.tv.Config;
 import com.ott.tv.Constants;
 import com.ott.tv.R;
 import com.ott.tv.countrycodepicker.CountryCodeActivity;
-import com.ott.tv.database.DatabaseHelper;
-import com.ott.tv.model.ActiveStatus;
 import com.ott.tv.model.CouponModel;
 import com.ott.tv.model.User;
 import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.SendOTPApi;
-import com.ott.tv.network.api.SubscriptionApi;
 
 import com.ott.tv.utils.CMHelper;
 import com.ott.tv.utils.PreferenceUtils;
 import com.ott.tv.utils.ToastMsg;
-
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,7 +42,7 @@ import retrofit2.Retrofit;
 public class LoginMobileActivity extends Activity {
     private EditText editMobileNumber, editVerifiedOTP, editCouponCode;
     private ProgressBar progressBar, progress_login_resend;
-    private Button send_otp, bt_verified_login, bt_resend, bt_skip, bt_coupon;
+    private Button send_otp, bt_verified_login, bt_resend, bt_skip, bt_coupon,login_email;
     private String mob_number, country_code;
 
     private String countryCode, countryName;
@@ -77,9 +71,14 @@ public class LoginMobileActivity extends Activity {
         tv_verify_otp_mobileNo = findViewById(R.id.tv_verify_otp_mobileNo);
         editVerifiedOTP = findViewById(R.id.editVerifiedOTP);
         editCouponCode = findViewById(R.id.editCouponCode);
+        login_email=findViewById(R.id.login_email);
+
         ll_coupon_code = findViewById(R.id.ll_coupon_code);
 
         editMobileNumber.requestFocus();
+        if(!Config.ENABLE_EMAIL_LOGIN){
+            login_email.setVisibility(View.GONE);
+        }
 
         mobile_code_in.setOnClickListener(view -> {
             Intent i = new Intent(this, CountryCodeActivity.class);

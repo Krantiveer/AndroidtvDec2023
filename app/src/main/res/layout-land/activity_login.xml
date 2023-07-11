@@ -47,6 +47,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="-82dp"
             android:gravity="center">
+
             <LinearLayout
                 android:id="@+id/ll_coupon_code"
                 android:layout_width="@dimen/_400sdp"
@@ -137,17 +138,15 @@
                     android:textStyle="bold" />
 
 
-
-
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_emailLogin"
                 android:layout_width="@dimen/_400sdp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginTop="-30dp"
                 android:gravity="center_vertical"
-                android:id="@+id/ll_emailLogin"
                 android:keepScreenOn="true"
                 android:orientation="vertical"
                 android:paddingLeft="20dp"
@@ -158,8 +157,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="@dimen/_20sdp"
-                    android:text="@string/login_with_email"
                     android:fontFamily="@font/roboto_light"
+                    android:text="@string/login_with_email"
                     android:textColor="@color/textcolor"
                     android:textSize="26sp" />
 
@@ -174,14 +173,13 @@
                           android:inputType="textEmailAddress" />-->
                 <EditText
 
-                    android:textSize="@dimen/_16sdp"
-                    android:fontFamily="@font/roboto_regular"
                     android:id="@+id/email_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_10sdp"
                     android:autofillHints=""
                     android:background="@drawable/edit_focus"
+                    android:fontFamily="@font/roboto_regular"
                     android:hint="@string/email"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
@@ -189,18 +187,18 @@
                     android:paddingTop="@dimen/_10sdp"
                     android:paddingBottom="@dimen/_10sdp"
                     android:singleLine="true"
-
                     android:textColor="@color/white"
+
                     android:textColorHint="@color/default_text"
+                    android:textSize="@dimen/_16sdp"
                     tools:ignore="RtlSymmetry" />
 
                 <EditText
-                    android:textSize="@dimen/_16sdp"
-                    android:fontFamily="@font/roboto_regular"
                     android:id="@+id/password_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_focus"
+                    android:fontFamily="@font/roboto_regular"
                     android:hint="@string/password"
                     android:importantForAutofill="no"
                     android:inputType="textPassword"
@@ -211,6 +209,7 @@
                     android:singleLine="true"
                     android:textColor="@color/white"
                     android:textColorHint="@color/default_text"
+                    android:textSize="@dimen/_16sdp"
                     tools:ignore="RtlSymmetry" />
 
                 <ProgressBar
@@ -233,12 +232,12 @@
                         android:text="@string/login" />-->
 
                 <Button
-                    android:fontFamily="@font/roboto_medium"
                     android:id="@+id/validate_button_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/button_focus"
+                    android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:onClick="loginBtn"
                     android:paddingTop="@dimen/_10sdp"
@@ -251,13 +250,13 @@
                     />
 
                 <Button
-                    android:fontFamily="@font/roboto_medium"
                     android:id="@+id/phone_signIn_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:background="@drawable/button_focus"
                     android:drawableStart="@drawable/ic_baseline_phone_android_24"
+                    android:fontFamily="@font/roboto_medium"
                     android:onClick="mobileSignInBtnMobile"
                     android:paddingStart="@dimen/_20sdp"
                     android:paddingTop="@dimen/_10sdp"

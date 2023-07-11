@@ -130,6 +130,7 @@
     <color name="premium_icon_color">#ffc43a</color>
 //Side nav selected color
     <color name="side_nav_selected">#EF3C23</color>
+    <color name="side_nav_bg">@color/black</color>
 
     //profile
     <color name="profilelinesepratater">#EF3C23</color>

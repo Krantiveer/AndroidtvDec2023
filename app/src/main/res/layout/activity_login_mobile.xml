@@ -25,6 +25,7 @@
             android:contentDescription="TODO"
             android:src="@drawable/logo" />
 
+
         <!--
                 <LinearLayout
                     android:layout_width="0dp"
@@ -324,7 +325,7 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:visibility="visible"
-                tools:visibility="gone">
+                tools:visibility="visible">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -442,6 +443,7 @@
                     android:onClick="emailSignInBtnPhone"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
+                    android:id="@+id/login_email"
                     android:text="@string/login_with_email"
                     android:textAllCaps="false"
                     android:textColor="@color/btn_txt_color"

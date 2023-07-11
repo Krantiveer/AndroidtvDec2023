@@ -41,7 +41,7 @@ public class LoginActivity extends Activity {
     private EditText etEmail = null, etPass = null, editCouponCode;
     private ProgressBar progressBar;
     private LinearLayout ll_emailLogin, ll_coupon_code;
-    private Button bt_skip, bt_coupon;
+    private Button bt_skip, bt_coupon,phone_signIn_button;
 
 
     @Override
@@ -56,6 +56,10 @@ public class LoginActivity extends Activity {
         ll_coupon_code = findViewById(R.id.ll_coupon_code);
         bt_skip = findViewById(R.id.bt_skip);
         bt_coupon = findViewById(R.id.bt_coupon);
+        phone_signIn_button = findViewById(R.id.phone_signIn_button);
+        if(!Config.ENABLE_MOBILE_LOGIN){
+            phone_signIn_button.setVisibility(View.GONE);
+        }
 
         bt_skip.setOnClickListener(new View.OnClickListener() {
             @Override

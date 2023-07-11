@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Smashtress TV</string>
+    <string name="api_extension">/v130/</string>
+</resources>

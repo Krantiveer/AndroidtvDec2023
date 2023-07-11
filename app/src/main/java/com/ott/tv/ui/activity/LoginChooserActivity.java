@@ -3,7 +3,6 @@ package com.ott.tv.ui.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -53,11 +52,13 @@ public class LoginChooserActivity extends Activity {
     private FirebaseAuth firebaseAuth;
     private static int RC_GOOGLE_SIGN_IN = 123;
     private ProgressBar progressBar;
-    private Button googleSignInButton, phoneSignInButton;
+    private Button googleSignInButton, phoneSignInButton, login_mobile, login_email;
     final Handler handler = new Handler();
     final Handler handlerqr = new Handler();
     String randomNumber;
-    private TextView tv_qrCode,qrcode_url;
+    private TextView tv_qrCode, qrcode_url, qrcodetext_sec;
+    private LinearLayout qrcodetext, ll_qr_logo, qrscreenll;
+    private ImageView iv_logotop, iv_naaptol, or_image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +69,32 @@ public class LoginChooserActivity extends Activity {
         phoneSignInButton = findViewById(R.id.phone_signIn_button);
         firebaseAuth = FirebaseAuth.getInstance();
         tv_qrCode = findViewById(R.id.tv_qrCode);
-        qrcode_url=findViewById(R.id.qrcodebaseurl);
+        qrcode_url = findViewById(R.id.qrcodebaseurl);
+        qrcodetext = findViewById(R.id.qrcodetext);
+        qrcodetext_sec = findViewById(R.id.qrcodetext_sec);
+        ll_qr_logo = findViewById(R.id.ll_qr_logo);
+        iv_logotop = findViewById(R.id.iv_logotop);
+        iv_naaptol = findViewById(R.id.iv_naaptol);
+        login_email = findViewById(R.id.login_email);
+        login_mobile = findViewById(R.id.login_mobile);
+        or_image = findViewById(R.id.or_image);
+        qrscreenll = findViewById(R.id.qrscreenll);
 
+        if (!Config.ENABLE_QR_LOGIN) {
+            iv_logotop.setVisibility(View.GONE);
+            qrscreenll.setVisibility(View.GONE);
+            iv_naaptol.setVisibility(View.VISIBLE);
+            or_image.setVisibility(View.GONE);
+        } else {
+            iv_naaptol.setVisibility(View.GONE);
+
+        }
+        if (!Config.ENABLE_EMAIL_LOGIN) {
+            login_email.setVisibility(View.GONE);
+        }
+        if (!Config.ENABLE_MOBILE_LOGIN) {
+            login_mobile.setVisibility(View.GONE);
+        }
         if (BuildConfig.FLAVOR.equalsIgnoreCase("phando")) {
             qrcode_url.setText("www.fusiontv.com/" + "mytv");
         } else {
@@ -541,8 +566,12 @@ public class LoginChooserActivity extends Activity {
         handler.removeCallbacksAndMessages(null);
    /*     if(BuildConfig.FLAVOR.equalsIgnoreCase("kaafaltv")||BuildConfig.FLAVOR.equalsIgnoreCase("solidtv")){
         }else{*/
-        CallHandler();
-        CallHandlerQrCode();
+        if(BuildConfig.FLAVOR.equalsIgnoreCase("naaptolott")){
+
+        }else {
+            CallHandler();
+            CallHandlerQrCode();
+        }
     }
 
 

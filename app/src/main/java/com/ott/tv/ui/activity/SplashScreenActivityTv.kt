@@ -46,16 +46,11 @@ class SplashScreenActivityTv : Activity() {
         call.enqueue(object : Callback<AppInfo?> {
             override fun onResponse(call: Call<AppInfo?>, response: Response<AppInfo?>) {
                 if (response.code() == 200) {
-                    Log.i(TAG, "onResponse: "+response.body()!!.websiteurl)
+                    Log.i(TAG, "onResponse: " + response.body()!!.websiteurl)
                     PreferenceUtils.getInstance().setWebsiteUrlPref(
                         this@SplashScreenActivityTv,
                         response.body()!!.websiteurl
                     )
-                    //  homeContent.setHomeContentId(1);
-                    //   homeContent.getSlider();
-                    //  loadSliderRows(homeContent.getSlider().getSlideArrayList());
-
-                    //   loadRows();
                 } else if (response.code() == 401) {
 
                     // signOut();
@@ -70,36 +65,51 @@ class SplashScreenActivityTv : Activity() {
             override fun onFailure(call: Call<AppInfo?>, t: Throwable) {
                 //   CMHelper.setSnackBar(requireView(), t.getMessage(), 2);
                 if (AccessController.getContext() != null) {
-              //      Toast.makeText(applicationContext, t.message, Toast.LENGTH_SHORT).show()
+                    //      Toast.makeText(applicationContext, t.message, Toast.LENGTH_SHORT).show()
                 } else {
                 }
             }
         })
 
 
-        if (BuildConfig.FLAVOR.equals("mitwa_tv", ignoreCase = true)||BuildConfig.FLAVOR.equals("uvtv", ignoreCase = true)||BuildConfig.FLAVOR.equals("adnott", ignoreCase = true) || BuildConfig.FLAVOR.equals("amuzi", ignoreCase = true)|| BuildConfig.FLAVOR.equals("darshott", ignoreCase = true)) {
-            findViewById<LinearLayout>(R.id.splash_screen_ll).visibility==View.INVISIBLE
+        if (BuildConfig.FLAVOR.equals(
+                "mitwa_tv",
+                ignoreCase = true
+            ) || BuildConfig.FLAVOR.equals(
+                "uvtv",
+                ignoreCase = true
+            ) || BuildConfig.FLAVOR.equals(
+                "adnott",
+                ignoreCase = true
+            ) || BuildConfig.FLAVOR.equals("amuzi", ignoreCase = true) || BuildConfig.FLAVOR.equals(
+                "darshott",
+                ignoreCase = true
+            ) || BuildConfig.FLAVOR.equals("omtvott", ignoreCase = true)
+        ) {
+            findViewById<LinearLayout>(R.id.splash_screen_ll).visibility == View.INVISIBLE
 
             val path = "android.resource://" + packageName + "/" + R.raw.splashvideio
             findViewById<VideoView>(R.id.imageView).setVideoURI(Uri.parse(path))
             findViewById<VideoView>(R.id.imageView).start()
-            findViewById<VideoView>(R.id.imageView).setOnCompletionListener { openHome()
+            findViewById<VideoView>(R.id.imageView).setOnCompletionListener {
+                openHome()
 
             }
 
-        }else {
-            findViewById<LinearLayout>(R.id.splash_screen_ll).visibility=View.VISIBLE
-            if(BuildConfig.FLAVOR.equals("candor",ignoreCase = true)||BuildConfig.FLAVOR.equals("naaptolott")||BuildConfig.FLAVOR.equals("omtvott")){
-                findViewById<ImageView>(R.id.splash_img_view).visibility=View.INVISIBLE
+        } else {
+            findViewById<LinearLayout>(R.id.splash_screen_ll).visibility = View.VISIBLE
+            if (BuildConfig.FLAVOR.equals("candor", ignoreCase = true) || BuildConfig.FLAVOR.equals(
+                    "naaptolott"
+                ) || BuildConfig.FLAVOR.equals("omtvott")
+            ) {
+                findViewById<ImageView>(R.id.splash_img_view).visibility = View.INVISIBLE
 
             }
-          //  findViewById<TextView>(R.id.builVersion).setText("App Version:" + BuildConfig.VERSION_CODE)
+            //  findViewById<TextView>(R.id.builVersion).setText("App Version:" + BuildConfig.VERSION_CODE)
 
             openHomeFun()
             Log.e(TAG, "Screen : ${SplashScreenActivityTv::class.java.simpleName}")
-}
-
-
+        }
 
 
     }
@@ -113,12 +123,13 @@ class SplashScreenActivityTv : Activity() {
             val intent = Intent(this, LoginChooserActivity::class.java)
             startActivity(intent)
         }
-            this.finishAffinity()
+        this.finishAffinity()
 
     }
-    private fun openHomeFun(){
+
+    private fun openHomeFun() {
         Handler().postDelayed({
-            if (this != null ) {
+            if (this != null) {
                 if (PreferenceUtils.isLoggedIn(this)) {
                     val intent = Intent(this, NewMainActivity::class.java)
                     startActivity(intent)
@@ -137,8 +148,6 @@ class SplashScreenActivityTv : Activity() {
     }
 
 
-
-
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
         Log.e("viewAllActivity", "***** keyCode =" + keyCode + "event :" + event)
         when (keyCode) {
@@ -150,6 +159,7 @@ class SplashScreenActivityTv : Activity() {
                 Log.e("SPLASH ACTIVITY", "movieIndex : ")
                 return false
             }
+
             KeyEvent.KEYCODE_DPAD_UP_LEFT -> return false
             KeyEvent.KEYCODE_DPAD_UP_RIGHT -> return false
             KeyEvent.KEYCODE_DPAD_DOWN -> return false

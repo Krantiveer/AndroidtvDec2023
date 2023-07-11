@@ -1,6 +1,7 @@
 package com.ott.tv.ui.activity
 
 import android.annotation.SuppressLint
+import android.app.ProgressDialog
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -115,6 +116,7 @@ class DetailsActivityPhando : FragmentActivity() {
     private var language_tv: TextView? = null
     private var maturity_rating_tv: TextView? = null
     private var genres_tv: TextView? = null
+    private var progDailog: ProgressDialog? = null
 
     //   private var tv_related: TextView? = null
     var type: String? = null
@@ -122,7 +124,7 @@ class DetailsActivityPhando : FragmentActivity() {
     var epList: MutableList<EpiModel> = ArrayList()
     private var movie_title: TextView? = null
     private var movie_titleTwo: TextView? = null
-  //  private var deeplinkData: Bundle? = null
+    //  private var deeplinkData: Bundle? = null
 
     private var detailsFragment: DetailsFragment? = null
 
@@ -271,10 +273,11 @@ class DetailsActivityPhando : FragmentActivity() {
         tvWatchTrailer!!.setOnClickListener(View.OnClickListener { view: View? -> trailerClick() })
         btn_seasonAndEpisode!!.setOnClickListener(View.OnClickListener { v: View? -> EpisodeAndSeason() })
         PreferenceUtils.getInstance().setFocusFromWatchNowPref(this, false)
-      //  initSingularSDK()
+        //  initSingularSDK()
         //    PreferenceUtils.updateSubscriptionStatus(DetailsActivityPhando.this);
 
     }
+
     /*private  fun initSingularSDK() {
         val config = SingularConfig("phando_corp_5231bd68", "2caece12456ddeba0c28241d9cae9130").withSingularLink(
             intent
@@ -690,14 +693,14 @@ class DetailsActivityPhando : FragmentActivity() {
 
     private fun payAndWatchTV() {
         if (singleDetails != null) {
-/*
-            Singular.event("Click watch movie",
-                Attributes.sngAttrContent.toString(),title,
-                Attributes.sngAttrContentId.toString(),videoId,
-                Attributes.sngAttrContentType.toString(), "ugccontent",
-                Attributes.sngAttrSuccess.toString(), "SUCCESS"
-            )
-         */               //    Constants.IS_FROM_WATCH_NOW=true
+            /*
+                        Singular.event("Click watch movie",
+                            Attributes.sngAttrContent.toString(),title,
+                            Attributes.sngAttrContentId.toString(),videoId,
+                            Attributes.sngAttrContentType.toString(), "ugccontent",
+                            Attributes.sngAttrSuccess.toString(), "SUCCESS"
+                        )
+                     */               //    Constants.IS_FROM_WATCH_NOW=true
             PreferenceUtils.getInstance().setFocusFromWatchNowPref(this, true);
             val videoList: List<Video> = ArrayList()
             /*         for (Video video : singleDetails.getVideos()) {
@@ -758,13 +761,32 @@ class DetailsActivityPhando : FragmentActivity() {
                 video.islive = "0"
             }
             if (singleDetails!!.list.is_youtube.toString().equals("3")) {
+
+                progDailog = ProgressDialog.show(this, "Loading", "Please wait...", true);
+                progDailog!!.setCancelable(false);
+
                 webView!!.visibility = View.VISIBLE
 
-                var url =singleDetails!!.list.external_url
-                Log.i(TAG, "payAndWatchTV: --->"+url)
+                var url = singleDetails!!.list.external_url
+                Log.i(TAG, "payAndWatchTV: --->" + url)
                 webView!!.getSettings().setJavaScriptEnabled(true);
-                webView!!.webViewClient = WebViewClient()
-                webView!!.loadUrl(url);
+                webView!!.getSettings().setLoadWithOverviewMode(true);
+                webView!!.getSettings().setUseWideViewPort(true);
+                webView!!.webViewClient = object : WebViewClient() {
+                    override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+                        progDailog!!.show()
+                        view.loadUrl(url)
+                        return true
+                    }
+
+                    override fun onPageFinished(view: WebView, url: String) {
+                        progDailog!!.dismiss()
+                    }
+                }
+                webView!!.loadUrl(url)
+
+                //      webView!!.webViewClient = WebViewClient()
+                //  webView!!.loadUrl("https://www.mxplayer.in/movie/watch-chennai-central-hindi-dubbed-movie-online-0dcdb2dad744506671b7ca7ef024c9ec?watch=true");
                 return
             }
             /*   if (singleDetails!!.list.is_youtube.toString().equals("0", ignoreCase = true)) {
@@ -1133,15 +1155,18 @@ class DetailsActivityPhando : FragmentActivity() {
 
     override fun onResume() {
         Log.i("onresume call", "onResume: " + Constants.IS_FROM_HOME)
+        if (webView!!.isVisible) {
+            webView!!.requestFocus()
+        } else {
+            if (episode_rv!!.isVisible) {
+                episode_rv!!.requestFocus()
+            }
+            if (PreferenceUtils.getInstance().getFocusFromWatchNowPref(this).equals(true)) {
+                tvWatchNow?.requestFocus()
+                PreferenceUtils.getInstance().setFocusFromWatchNowPref(this, false)
 
-        if (episode_rv!!.isVisible) {
-            episode_rv!!.requestFocus()
-        }
-        if (PreferenceUtils.getInstance().getFocusFromWatchNowPref(this).equals(true)) {
-            tvWatchNow?.requestFocus()
-            PreferenceUtils.getInstance().setFocusFromWatchNowPref(this, false)
 
-
+            }
         }
         /*
                 if (Constants.IS_FROM_WATCH_NOW) {
@@ -1159,8 +1184,8 @@ class DetailsActivityPhando : FragmentActivity() {
     }
 
     override fun onBackPressed() {
-        if(webView!!.isVisible){
-            webView!!.visibility=View.GONE
+        if (webView!!.isVisible) {
+            webView!!.visibility = View.GONE
             return
         }
         if (episode_rv!!.isVisible) {
@@ -1185,9 +1210,13 @@ class DetailsActivityPhando : FragmentActivity() {
         }*/
         if (KeyEvent.KEYCODE_DPAD_UP == keyCode) {
 
-            if (episode_rv!!.isVisible) {
+            if (webView!!.isVisible) {
+                webView!!.requestFocus()
             } else {
-                tvWatchNow?.requestFocus()
+                if (episode_rv!!.isVisible) {
+                } else {
+                    tvWatchNow?.requestFocus()
+                }
             }
             /*if(detailsFragment?.isVisible==visible){
 }
