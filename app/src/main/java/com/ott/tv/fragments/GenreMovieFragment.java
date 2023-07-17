@@ -63,6 +63,7 @@ public class GenreMovieFragment extends VerticalGridSupportFragment {
     private String id = "";
     private String datatype = "";
     private String gener_id = "";
+    private String type_id="";
     private String typeCategory;
     private List<ShowWatchlist> genres = new ArrayList<>();
 
@@ -73,6 +74,7 @@ public class GenreMovieFragment extends VerticalGridSupportFragment {
         mContext = getContext();
         datatype = getArguments().getString("type");
         gener_id = getArguments().getString("gener_id");
+        type_id = getArguments().getString("type_id");
 
         Log.i(TAG, "onCreate: " + datatype + id + title);
         showTitle(false);
@@ -115,7 +117,7 @@ public class GenreMovieFragment extends VerticalGridSupportFragment {
         GenreApi api = retrofit.create(GenreApi.class);
         datatype = "movie";
         String accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(getContext());
-        Call<List<ShowWatchlist>> call = api.getGenresViewall(accessToken, gener_id, "0,100", "");
+        Call<List<ShowWatchlist>> call = api.getGenresViewall(accessToken, type_id, "0,100", "");
 
         call.enqueue(new Callback<List<ShowWatchlist>>() {
             @Override

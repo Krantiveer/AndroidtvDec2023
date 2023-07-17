@@ -42,16 +42,16 @@ android {
     }
     productFlavors {
 
-       /* phando_automation {
-            applicationId "com.phandodemo.tv"
-            versionCode 2
-            versionName "1"
-        }
-        nano_media {
-            applicationId "com.phandodemo.tv"
-            versionCode 13
-            versionName "13"
-        }*/
+        /* phando_automation {
+             applicationId "com.phandodemo.tv"
+             versionCode 2
+             versionName "1"
+         }
+         nano_media {
+             applicationId "com.phandodemo.tv"
+             versionCode 13
+             versionName "13"
+         }*/
         uvtv {
             applicationId "com.uvtv.tv"
             versionCode 14
@@ -133,8 +133,8 @@ android {
         }
         naaptolott {
             applicationId "com.naaptolott"
-            versionCode 1
-            versionName "1.0"
+            versionCode 6
+            versionName "6.0"
         }
         adnott {
             applicationId "com.adnott"
@@ -148,7 +148,17 @@ android {
         }
         smashtress {
             applicationId "com.smashtress"
+            versionCode 2
+            versionName "2"
+        }
+        dxtvott {
+            applicationId "com.kranti.tv"
             versionCode 1
+            versionName "1"
+        }
+        phando_automation {
+            applicationId "com.phandodemo.tv"
+            versionCode 2
             versionName "1"
         }
 

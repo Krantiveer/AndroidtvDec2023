@@ -9,7 +9,7 @@
     android:orientation="vertical">
 
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="7"
@@ -34,8 +34,8 @@
 
 
         <ImageView
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_100sdp"
             android:layout_marginLeft="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:contentDescription="TODO"
@@ -272,7 +272,7 @@
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-    </LinearLayout>
+    </FrameLayout>
 
 
 </LinearLayout>

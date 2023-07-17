@@ -104,8 +104,15 @@
     <color name="gray_sony">#333333</color>
     //background color
     <color name="background_home_page">#000000</color> <!--homefragment-->
+    <color name="background_home_page_new">#000000</color> <!--homefragment-->
     <color name="player_background_color_black">#000</color>
     <color name="mmtv_selectecd_color">#9900BCD4</color>
+
+    //homenewfragment
+
+    <color name="home_start_color_black">#F2020610</color>
+    <color name="home_cener_color_black">@color/black_color</color>
+
     //browfragment top
     <color name="lb_browse_title_color">#fff</color>
 
@@ -134,6 +141,8 @@
 
     //profile
     <color name="profilelinesepratater">#EF3C23</color>
+
+
 
 
 </resources>

@@ -21,7 +21,6 @@ import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
-import com.google.gson.annotations.SerializedName
 import com.ott.tv.BuildConfig
 import com.ott.tv.MapFragmentUVTV
 import com.ott.tv.R
@@ -41,6 +40,8 @@ import java.security.AccessController
 class NewMainActivity : FragmentActivity() {
     private lateinit var binding: ActivityNewMainBinding
     private var itemBinding: LayoutMenuBinding? = null
+    private var defaultType:String ="home";
+    private val TAG = NewMainActivity::class.java.simpleName
 
 
     @RequiresApi(Build.VERSION_CODES.P)
@@ -243,13 +244,20 @@ class NewMainActivity : FragmentActivity() {
         return out
     }
 
+
     fun onMenuSelection(type: String,type_id: String, title: String, gener_id: String) {
+        Log.i(TAG, "onMenuSelection: -->"+type+"-typeid-"+type_id+"title"+title+"--"+defaultType)
+
+        if(type_id==defaultType){
+            return;
+        }else{
+            defaultType=type_id;
+        }
         if (type.equals("search") || type.equals("Search")) {
 
             if (BuildConfig.FLAVOR.equals("uvtv", ignoreCase = true)) {
 
             } else {
-
                 val intent = Intent(this, SearchActivity_Phando::class.java)
                 startActivity(intent)
                 return

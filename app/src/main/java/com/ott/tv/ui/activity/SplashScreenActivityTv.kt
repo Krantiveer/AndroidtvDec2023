@@ -85,6 +85,7 @@ class SplashScreenActivityTv : Activity() {
                 "darshott",
                 ignoreCase = true
             ) || BuildConfig.FLAVOR.equals("omtvott", ignoreCase = true)
+             || BuildConfig.FLAVOR.equals("fastone", ignoreCase = true)
         ) {
             findViewById<LinearLayout>(R.id.splash_screen_ll).visibility == View.INVISIBLE
 
@@ -98,10 +99,7 @@ class SplashScreenActivityTv : Activity() {
 
         } else {
             findViewById<LinearLayout>(R.id.splash_screen_ll).visibility = View.VISIBLE
-            if (BuildConfig.FLAVOR.equals("candor", ignoreCase = true) || BuildConfig.FLAVOR.equals(
-                    "naaptolott"
-                ) || BuildConfig.FLAVOR.equals("omtvott")
-            ) {
+            if (BuildConfig.FLAVOR.equals("candor", ignoreCase = true) || BuildConfig.FLAVOR.equals("naaptolott") || BuildConfig.FLAVOR.equals("omtvott")|| BuildConfig.FLAVOR.equals("fastone")) {
                 findViewById<ImageView>(R.id.splash_img_view).visibility = View.INVISIBLE
 
             }

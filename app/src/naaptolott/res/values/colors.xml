@@ -14,7 +14,7 @@
     <color name="bcn_selected_color">@color/main_color</color>
     <color name="progressbar">@color/main_color</color>
 
-    <color name="black_color">#020610</color>
+    <color name="black_color">#222</color>
     <color name="colorPrimary">#020610</color>
     <color name="login_background">#333333</color>
     <color name="background_home_page">@color/transparent</color> <!--homefragment-->
@@ -32,8 +32,14 @@
     //primeicon nav
     //Side nav selected color
     <color name="profilelinesepratater">@color/main_color</color>
-    <color name="side_nav_bg">#3333</color>
+    <color name="side_nav_bg">#222</color>
+    //background home page
 
+    <color name="background_home_page_new">#222</color> <!--homefragment-->
+    //background top
+
+    <color name="home_start_color_black">#222</color>
+    <color name="home_cener_color_black">#222</color>
 
 
 

@@ -134,15 +134,18 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
                                 final NoDataFragmant noDataFragmant = new NoDataFragmant();
                                 final FragmentManager fm = getFragmentManager();
                                 fm.beginTransaction().add(R.id.browserSection, noDataFragmant).commit();
+                                mAdapter.clear();
 
-                             //   Toast.makeText(getContext(), getResources().getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
+                                return;
+
+                                //   Toast.makeText(getContext(), getResources().getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
                             }
                         }
                         return;
                     } else {
                         PreferenceUtils.getInstance().setWatchListPref(mContext, movieList.size());
                     }
-                                      mAdapter.clear();
+                    mAdapter.clear();
                     for (ShowWatchlist movie : movieList) {
                         mAdapter.add(movie);
                     }

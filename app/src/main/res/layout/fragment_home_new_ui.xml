@@ -7,7 +7,7 @@
     android:layout_centerHorizontal="true"
     android:layout_centerVertical="true"
     android:layout_gravity="center"
-    android:background="@color/black_color"
+    android:background="@color/background_home_page_new"
     android:orientation="vertical">
 
 

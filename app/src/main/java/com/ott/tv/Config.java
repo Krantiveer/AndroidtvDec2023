@@ -50,22 +50,23 @@ public class Config {
 /*    public static final String DOMAIN = "https://saas-sandbox.phando.com/";
     public static final String Publisher_id = "28";
     public static final String WebsiteURL = "https://saas-sandbox.phando.com/";*/
-  /*  public static final String DOMAIN = "https://saasuat.vdoapi.com/";
+    public static final String DOMAIN = "https://saasuat.vdoapi.com/";
     public static final String Publisher_id = "28";
-    public static final String WebsiteURL = "https://saasuat.vdoapi.com/";*/
+    public static final String WebsiteURL = "https://saasuat.vdoapi.com/";
 /*    public static final String DOMAIN = "https://tvcafeonline.com/";
     public static final String Publisher_id = "7";
     public static final String WebsiteURL = "https://tvcafeonline.com/";*/
-/*      public static final String DOMAIN = "https://www.fast1.app/";
+/*
+      public static final String DOMAIN = "https://www.fast1.app/";
       public static final String Publisher_id = "66";
-      public static final String WebsiteURL = "https://www.fast1.app/"*/;
+      public static final String WebsiteURL = "https://www.fast1.app/";
+*/
 
     /*
      */
-    public static final String DOMAIN = "https://www.vtv.co.tz/";
+ /*   public static final String DOMAIN = "https://www.vtv.co.tz/";
     public static final String Publisher_id = "64";
-    public static final String WebsiteURL = "https://www.vtv.co.tz/";
-
+    public static final String WebsiteURL = "https://www.vtv.co.tz/";*/
     /*
 
     /*public static final String DOMAIN = "https://darshott.vdoapi.com/";
@@ -76,9 +77,13 @@ public class Config {
     public static final String Publisher_id = "80";
     public static final String WebsiteURL = "https://amuzi.in/";
 */
-   /*   public static final String DOMAIN = "https://naaptolott.vdoapi.com/";
+
+/*
+      public static final String DOMAIN = "https://naaptolott.vdoapi.com/";
       public static final String Publisher_id = "86";
-      public static final String WebsiteURL = "https://naaptolott.vdoapi.com/";*/
+      public static final String WebsiteURL = "https://naaptolott.vdoapi.com/";
+*/
+
 /*
         public static final String DOMAIN = "https://adn.vdoapi.com/";
         public static final String Publisher_id = "78";
@@ -100,9 +105,9 @@ public class Config {
 
     public static final String VideoURLTypeHls = "hls";
     public static final boolean LOGIN_REQUIRED = true;
-    public static final boolean ENABLE_EMAIL_LOGIN = true;
+    public static final boolean ENABLE_EMAIL_LOGIN = false;
     public static final boolean ENABLE_MOBILE_LOGIN = true;
-    public static final boolean ENABLE_QR_LOGIN = true;
+    public static final boolean ENABLE_QR_LOGIN = false;
 
     public static final String NPAW_APPNAME = "MitwaTV";
 
