@@ -35,6 +35,8 @@ public class AppInfo implements Parcelable {
     private String enable_email_login;
     private String enable_qr_login;
 
+    private String coupons;
+
 
 
     protected AppInfo(Parcel in) {
@@ -176,5 +178,13 @@ public class AppInfo implements Parcelable {
 
     public void setWebsiteurl(String websiteurl) {
         this.websiteurl = websiteurl;
+    }
+
+    public String getCoupons() {
+        return coupons;
+    }
+
+    public void setCoupons(String coupons) {
+        this.coupons = coupons;
     }
 }

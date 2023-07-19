@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.ott.tv.BuildConfig;
 import com.ott.tv.Config;
 import com.ott.tv.Constants;
 import com.ott.tv.R;
@@ -36,14 +35,12 @@ import com.ott.tv.utils.ToastMsg;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class LoginActivity extends Activity {
+public class CouponCodeScreenActivity extends Activity {
     private EditText etEmail = null, etPass = null, editCouponCode;
     private ProgressBar progressBar;
     private LinearLayout ll_emailLogin, ll_coupon_code;
@@ -54,16 +51,12 @@ public class LoginActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        etEmail = findViewById(R.id.email_edit_text);
-        etPass = findViewById(R.id.password_edit_text);
-        progressBar = findViewById(R.id.progress_login);
-        ll_emailLogin = findViewById(R.id.ll_emailLogin);
+        setContentView(R.layout.activity_coupon_code_screen);
+
         editCouponCode = findViewById(R.id.editCouponCodeEmail);
         ll_coupon_code = findViewById(R.id.ll_coupon_code);
         bt_skip = findViewById(R.id.bt_skip);
         bt_coupon = findViewById(R.id.bt_coupon);
-        phone_signIn_button = findViewById(R.id.phone_signIn_button);
         if (PreferenceUtils.getInstance().getENABLE_MOBILE_LOGINPref(getApplicationContext()).equalsIgnoreCase("0")) {
             phone_signIn_button.setVisibility(View.GONE);
         }
@@ -171,9 +164,9 @@ public class LoginActivity extends Activity {
     public void loginBtn(View view) {
         hideKeyboard(view);
         if (!isValidEmailAddress(etEmail.getText().toString())) {
-            new ToastMsg(LoginActivity.this).toastIconError("Please enter valid email");
+            new ToastMsg(CouponCodeScreenActivity.this).toastIconError("Please enter valid email");
         } else if (etPass.getText().toString().isEmpty()) {
-            new ToastMsg(LoginActivity.this).toastIconError("Please enter password");
+            new ToastMsg(CouponCodeScreenActivity.this).toastIconError("Please enter password");
         } else {
             String email = etEmail.getText().toString();
             String pass = etPass.getText().toString();
@@ -202,7 +195,7 @@ public class LoginActivity extends Activity {
                     assert response.body() != null;
                     if (response.body().getStatus().equalsIgnoreCase("success")) {
                         User user = response.body();
-                        DatabaseHelper db = new DatabaseHelper(LoginActivity.this);
+                        DatabaseHelper db = new DatabaseHelper(CouponCodeScreenActivity.this);
                         if (db.getUserDataCount() > 1) {
                             db.deleteUserData();
                         } else {
@@ -235,15 +228,15 @@ public class LoginActivity extends Activity {
                         overridePendingTransition(R.anim.enter, R.anim.exit);*/
 
                     } else {
-                        new ToastMsg(LoginActivity.this).toastIconError(response.body().getData());
+                        new ToastMsg(CouponCodeScreenActivity.this).toastIconError(response.body().getData());
                         progressBar.setVisibility(View.GONE);
                     }
                 } else {
                     if (response.code() == 401) {
                         //   CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter OTP"), 2, 10000);
-                        new ToastMsg(LoginActivity.this).toastIconError(response.message());
+                        new ToastMsg(CouponCodeScreenActivity.this).toastIconError(response.message());
                     } else {
-                        new ToastMsg(LoginActivity.this).toastIconError("Please Try Again Getting" + response.code());
+                        new ToastMsg(CouponCodeScreenActivity.this).toastIconError("Please Try Again Getting" + response.code());
                     }
                     progressBar.setVisibility(View.GONE);
 
@@ -253,7 +246,7 @@ public class LoginActivity extends Activity {
             @Override
             public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
                 progressBar.setVisibility(View.GONE);
-                new ToastMsg(LoginActivity.this).toastIconError(getString(R.string.error_toast));
+                new ToastMsg(CouponCodeScreenActivity.this).toastIconError(getString(R.string.error_toast));
             }
         });
     }
@@ -267,7 +260,7 @@ public class LoginActivity extends Activity {
             Call<UserProfile> call = api.getUserProfileAPI(accessToken);
             call.enqueue(new Callback<UserProfile>() {
                 @Override
-                public void onResponse(@NotNull Call<UserProfile> call, @NotNull retrofit2.Response<UserProfile> response) {
+                public void onResponse(@NotNull Call<UserProfile> call, @NotNull Response<UserProfile> response) {
                     if (response.isSuccessful()) {
                         if (response.code() == 200 && response.body() != null) {
                             userProfile = response.body();
@@ -363,7 +356,7 @@ public class LoginActivity extends Activity {
                 if (response.code() == 200) {
                     if (response.body() != null) {
                         ActiveStatus activeStatus = response.body();
-                        DatabaseHelper db = new DatabaseHelper(LoginActivity.this);
+                        DatabaseHelper db = new DatabaseHelper(CouponCodeScreenActivity.this);
 
                         if (db.getActiveStatusCount() > 1) {
                             db.deleteAllActiveStatusData();
@@ -375,7 +368,7 @@ public class LoginActivity extends Activity {
                                 db.updateActiveStatus(activeStatus, 1);
                             }
                         }
-                        Intent intent = new Intent(LoginActivity.this, NewMainActivity.class);
+                        Intent intent = new Intent(CouponCodeScreenActivity.this, NewMainActivity.class);
                         startActivity(intent);
                         finishAffinity();
                         overridePendingTransition(R.anim.enter, R.anim.exit);

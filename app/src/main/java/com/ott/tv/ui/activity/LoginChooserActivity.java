@@ -85,11 +85,10 @@ public class LoginChooserActivity extends Activity {
             qrscreenll.setVisibility(View.GONE);
             iv_naaptol.setVisibility(View.VISIBLE);
             or_image.setVisibility(View.GONE);
-        } else if (PreferenceUtils.getInstance().getENABLE_QR_LOGINPref(getApplicationContext()).equalsIgnoreCase("1")&&PreferenceUtils.getInstance().getENABLE_MOBILE_LOGINPref(getApplicationContext()).equalsIgnoreCase("0")&&PreferenceUtils.getInstance().getENABLE_EMAIL_LOGINPref(getApplicationContext()).equalsIgnoreCase("0")) {
+        } else if (PreferenceUtils.getInstance().getENABLE_QR_LOGINPref(getApplicationContext()).equalsIgnoreCase("1") && PreferenceUtils.getInstance().getENABLE_MOBILE_LOGINPref(getApplicationContext()).equalsIgnoreCase("0") && PreferenceUtils.getInstance().getENABLE_EMAIL_LOGINPref(getApplicationContext()).equalsIgnoreCase("0")) {
             iv_naaptol.setVisibility(View.VISIBLE);
             iv_logotop.setVisibility(View.INVISIBLE);
-
-             or_image.setVisibility(View.GONE);
+            or_image.setVisibility(View.GONE);
 
 
         } else {

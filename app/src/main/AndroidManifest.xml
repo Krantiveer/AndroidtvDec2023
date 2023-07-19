@@ -180,6 +180,10 @@
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme" />
         <activity
+            android:name=".ui.activity.CouponCodeScreenActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme" />
+        <activity
             android:name=".ui.activity.ItemGenreActivity"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme" />

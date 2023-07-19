@@ -12,10 +12,8 @@ import android.view.KeyEvent
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.Toast
 import android.widget.VideoView
 import com.ott.tv.BuildConfig
-import com.ott.tv.Config
 import com.ott.tv.R
 import com.ott.tv.network.RetrofitClient
 import com.ott.tv.network.api.AppInfo
@@ -65,6 +63,10 @@ class SplashScreenActivityTv : Activity() {
                     PreferenceUtils.getInstance().setENABLE_QR_LOGINPref(
                         this@SplashScreenActivityTv,
                         response.body()!!.enable_qr_login
+                    )
+                    PreferenceUtils.getInstance().setENABLE_CouponsPref(
+                        this@SplashScreenActivityTv,
+                        response.body()!!.coupons
                     )
 
 
@@ -130,6 +132,8 @@ class SplashScreenActivityTv : Activity() {
             //  findViewById<TextView>(R.id.builVersion).setText("App Version:" + BuildConfig.VERSION_CODE)
 
             openHomeFun()
+            //openHome()
+
             Log.e(TAG, "Screen : ${SplashScreenActivityTv::class.java.simpleName}")
         }
 
@@ -139,8 +143,19 @@ class SplashScreenActivityTv : Activity() {
     private fun openHome() {
 
         if (PreferenceUtils.isLoggedIn(this)) {
-            val intent = Intent(this, NewMainActivity::class.java)
-            startActivity(intent)
+            if (BuildConfig.FLAVOR.contentEquals("solidtv")) {
+                if (PreferenceUtils.getInstance().getLogin_With_CouponsPref(applicationContext).contentEquals("1")) {
+                    val intent = Intent(this, NewMainActivity::class.java)
+                    startActivity(intent)
+                }else{
+                    val intent = Intent(this, CouponCodeScreenActivity::class.java)
+                    startActivity(intent)
+                }
+            }else{
+                val intent = Intent(this, NewMainActivity::class.java)
+                startActivity(intent)
+            }
+
         } else {
             val intent = Intent(this, LoginChooserActivity::class.java)
             startActivity(intent)

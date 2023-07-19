@@ -45,6 +45,8 @@ public class PreferenceUtils {
     public static final String ENABLE_EMAIL_LOGIN = "ENABLE_EMAIL_LOGIN";
     public static final String ENABLE_MOBILE_LOGIN = "ENABLE_MOBILE_LOGIN";
     public static final String ENABLE_QR_LOGIN = "ENABLE_QR_LOGIN";
+    public static final String ENABLE_Coupons = "ENABLE_Coupons";
+    public static final String Login_With_Coupons = "Login_With_Coupons";
     public static final Boolean focusFromWatchNow = false;
 
     // public static final Boolean focusFromWatchNow = "";
@@ -347,6 +349,7 @@ public class PreferenceUtils {
         return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
                 .getBoolean(String.valueOf(focusFromWatchNow), false);
     }
+
     public void setENABLE_EMAIL_LOGINPref(Context context, String str) {
         SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -358,6 +361,7 @@ public class PreferenceUtils {
         return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
                 .getString(ENABLE_EMAIL_LOGIN, "0");
     }
+
     public void setENABLE_MOBILE_LOGINPref(Context context, String str) {
         SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -369,6 +373,7 @@ public class PreferenceUtils {
         return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
                 .getString(ENABLE_MOBILE_LOGIN, "0");
     }
+
     public void setENABLE_QR_LOGINPref(Context context, String str) {
         SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -379,6 +384,30 @@ public class PreferenceUtils {
     public String getENABLE_QR_LOGINPref(Context context) {
         return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
                 .getString(ENABLE_QR_LOGIN, "0");
+    }
+
+    public void setLogin_With_CouponsPref(Context context, String str) {
+        SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(Login_With_Coupons, str);
+        editor.apply();
+    }
+
+    public String getLogin_With_CouponsPref(Context context) {
+        return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
+                .getString(Login_With_Coupons, "0");
+    }
+
+    public void setENABLE_CouponsPref(Context context, String str) {
+        SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(ENABLE_Coupons, str);
+        editor.apply();
+    }
+
+    public String getENABLE_CouponsPref(Context context) {
+        return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
+                .getString(ENABLE_Coupons, "0");
     }
 
 }
