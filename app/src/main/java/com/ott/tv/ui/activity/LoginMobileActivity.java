@@ -1,6 +1,7 @@
 package com.ott.tv.ui.activity;
 
 
+import static com.ott.tv.ui.activity.SearchActivity_Phando.progressBar;
 import static com.ott.tv.utils.CMHelper.hideKeyboard;
 
 import androidx.annotation.NonNull;
@@ -19,20 +20,28 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.bumptech.glide.Glide;
+import com.ott.tv.BuildConfig;
 import com.ott.tv.Config;
 import com.ott.tv.Constants;
 import com.ott.tv.R;
 import com.ott.tv.countrycodepicker.CountryCodeActivity;
+import com.ott.tv.database.DatabaseHelper;
 import com.ott.tv.model.CouponModel;
 import com.ott.tv.model.User;
+import com.ott.tv.model.phando.UserProfile;
 import com.ott.tv.network.RetrofitClient;
+import com.ott.tv.network.api.Dashboard;
 import com.ott.tv.network.api.SendOTPApi;
 
 import com.ott.tv.utils.CMHelper;
 import com.ott.tv.utils.PreferenceUtils;
 import com.ott.tv.utils.ToastMsg;
+
+import org.jetbrains.annotations.NotNull;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -49,6 +58,7 @@ public class LoginMobileActivity extends Activity {
     private TextView mobile_code_in, tv_verify_otp_mobileNo, timer_txt, timer, tv_timer;
     private LinearLayout ll_send_otp, ll_verify_otp, ll_coupon_code;
     private CountDownTimer cTimer;
+    private UserProfile userProfile;
 
 
     @SuppressLint("MissingInflatedId")
@@ -76,17 +86,25 @@ public class LoginMobileActivity extends Activity {
         ll_coupon_code = findViewById(R.id.ll_coupon_code);
 
         editMobileNumber.requestFocus();
-        if(!Config.ENABLE_EMAIL_LOGIN){
+        if (PreferenceUtils.getInstance().getENABLE_EMAIL_LOGINPref(getApplicationContext()).equalsIgnoreCase("0")) {
             login_email.setVisibility(View.GONE);
         }
 
         mobile_code_in.setOnClickListener(view -> {
+            if(BuildConfig.FLAVOR.equalsIgnoreCase("vtv")){
+
+            }else{
             Intent i = new Intent(this, CountryCodeActivity.class);
-            startActivity(i);
+            startActivity(i);}
         });
 
         countryCode = PreferenceUtils.getInstance().getCountyCodePref(getApplicationContext());
         countryName = PreferenceUtils.getInstance().getCountyNamePref(getApplicationContext());
+     /*   if(BuildConfig.FLAVOR.equalsIgnoreCase("vtv")){
+            countryCode = "+255";
+            countryName = "Tanzania";
+
+        }*/
 
         mobile_code_in.setText(countryName + " (" + " " + countryCode + ")");
 
@@ -181,16 +199,33 @@ public class LoginMobileActivity extends Activity {
     }
 
     public void checkMobEdittxt() {
-        if (editMobileNumber.getText().toString().trim().equals("") || editMobileNumber.getText().toString().trim().equals("")) {
-            CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter Mobile Number"), 2, 10000);
-        } else if (editMobileNumber.getText().length() <= 9) {
-            CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter Valid Mobile Number"), 2, 10000);
-        } else {
-            countryCode = countryCode.replace("+", "");
-            // country_code
-            mob_number = editMobileNumber.getText().toString();
-            getSendOTP(editMobileNumber.getText().toString(), countryCode);
+        if(BuildConfig.FLAVOR.equalsIgnoreCase("vtv")){
+            if (editMobileNumber.getText().toString().trim().equals("") || editMobileNumber.getText().toString().trim().equals("")) {
+                CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter Mobile Number"), 2, 10000);
+            }
+
+            else {
+                countryCode = countryCode.replace("+", "");
+                // country_code
+                mob_number = editMobileNumber.getText().toString();
+                getSendOTP(editMobileNumber.getText().toString(), countryCode);
+            }
+
+        }else{
+            if (editMobileNumber.getText().toString().trim().equals("") || editMobileNumber.getText().toString().trim().equals("")) {
+                CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter Mobile Number"), 2, 10000);
+            }
+            else if (editMobileNumber.getText().length() <= 9) {
+                CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter Valid Mobile Number"), 2, 10000);
+            }
+            else {
+                countryCode = countryCode.replace("+", "");
+                // country_code
+                mob_number = editMobileNumber.getText().toString();
+                getSendOTP(editMobileNumber.getText().toString(), countryCode);
+            }
         }
+
     }
 
 
@@ -330,13 +365,13 @@ public class LoginMobileActivity extends Activity {
 
                         //save user login time, expire time
                         // updateSubscriptionStatus(user.getUserId());
-
-                        if (Config.CouponCodeEnable) {
-                            ll_coupon_code.setVisibility(View.VISIBLE);
-                            ll_verify_otp.setVisibility(View.GONE);
-                        } else {
+                        if(BuildConfig.FLAVOR.equalsIgnoreCase("solidtv")){
+                            getUserProfileDataFromServer();
+                        }else{
                             gotoMainScreen();
+
                         }
+
 
                         progress_login_resend.setVisibility(View.GONE);
 
@@ -362,6 +397,88 @@ public class LoginMobileActivity extends Activity {
                 new ToastMsg(getApplicationContext()).toastIconError(getString(R.string.error_toast) + t);
             }
         });
+    }
+    private void getUserProfileDataFromServer() {
+        if (getApplicationContext() != null) {
+            Constants.IS_FROM_HOME = false;
+            Retrofit retrofit = RetrofitClient.getRetrofitInstance();
+            Dashboard api = retrofit.create(Dashboard.class);
+            String accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(getApplicationContext());
+            Call<UserProfile> call = api.getUserProfileAPI(accessToken);
+            call.enqueue(new Callback<UserProfile>() {
+                @Override
+                public void onResponse(@NotNull Call<UserProfile> call, @NotNull retrofit2.Response<UserProfile> response) {
+                    if (response.isSuccessful()) {
+                        if (response.code() == 200 && response.body() != null) {
+                            userProfile = response.body();
+
+                            if (userProfile.getIs_subscribed() == 0) {
+
+                                    ll_coupon_code.setVisibility(View.VISIBLE);
+                                    ll_verify_otp.setVisibility(View.GONE);
+
+
+                             }else{
+                                gotoMainScreen();
+
+                            }
+                        } else if (response.errorBody() != null) {
+                            Toast.makeText(getApplicationContext(), response.errorBody().toString(), Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            progressBar.setVisibility(View.GONE);
+                            Toast.makeText(getApplicationContext(), "Sorry! Something went wrong. Please try again after some time", Toast.LENGTH_SHORT).show();
+
+
+                        }
+                        if (userProfile.getIs_review() == 1) {
+
+
+                        } else if (userProfile.getIs_review() == 0) {
+
+                        }
+
+                    } else {
+                        if (response.code() == 401) {
+                            //   CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter OTP"), 2, 10000);
+                            signOut();
+                            //     Toast.makeText(getContext(), "Please Login Again", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Sorry! Something went wrong. Please try again after some time", Toast.LENGTH_SHORT).show();
+                        }
+
+
+                        //  Toast.makeText(getContext(), "Sorry! Something went wrong. Please try again after some time", Toast.LENGTH_SHORT).show();
+
+                        //CMHelper.setSnackBar(requireView(), "Sorry! Something went wrong. Please try again after some time", 2);
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<UserProfile> call, @NonNull Throwable t) {
+                    t.printStackTrace();
+
+
+                }
+            });
+        }
+    }
+
+    private void signOut() {
+        if (getApplicationContext() != null ) {
+            DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+
+            if (PreferenceUtils.getInstance().getAccessTokenPref(getApplicationContext()) != "") {
+                SharedPreferences.Editor editor = getApplicationContext().getSharedPreferences(Constants.USER_LOGIN_STATUS, MODE_PRIVATE).edit();
+                editor.putBoolean(Constants.USER_LOGIN_STATUS, false);
+                editor.apply();
+                databaseHelper.deleteUserData();
+                PreferenceUtils.clearSubscriptionSavedData(getApplicationContext());
+                PreferenceUtils.getInstance().setAccessTokenNPref(getApplicationContext(), "");
+                startActivity(new Intent(getApplicationContext(), LoginChooserActivity.class));
+                this.finish();
+            }
+        }
     }
 
     private void getSendOTP(String mob_number, String country_code) {
@@ -529,6 +646,11 @@ public class LoginMobileActivity extends Activity {
         super.onResume();
         countryCode = PreferenceUtils.getInstance().getCountyCodePref(getApplicationContext());
         countryName = PreferenceUtils.getInstance().getCountyNamePref(getApplicationContext());
-        mobile_code_in.setText(countryName + " (" + " " + countryCode + ")");
-    }
+     /*   if(BuildConfig.FLAVOR.equalsIgnoreCase("vtv")){
+            countryCode = "+255";
+            countryName = "Tanzania";
+            mobile_code_in.setText(countryName + " (" + " " + countryCode + ")");
+
+        }
+ */   }
 }

@@ -170,6 +170,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/button_focus"
                     android:fontFamily="@font/roboto_medium"
+                    android:visibility="gone"
                     android:gravity="center"
                     android:onClick="bt_verified_login"
                     android:paddingTop="@dimen/_10sdp"
@@ -179,8 +180,6 @@
                     android:textColor="@color/btn_txt_color"
                     android:textSize="@dimen/_16sdp"
                     android:textStyle="bold" />
-
-
 
 
             </LinearLayout>
@@ -433,6 +432,7 @@
                     android:textStyle="bold" />
 
                 <Button
+                    android:id="@+id/login_email"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
                     android:layout_marginTop="30dp"
@@ -442,7 +442,6 @@
                     android:onClick="emailSignInBtnPhone"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
-                    android:id="@+id/login_email"
                     android:text="@string/login_with_email"
                     android:textAllCaps="false"
                     android:textColor="@color/btn_txt_color"

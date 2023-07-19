@@ -289,7 +289,7 @@ public class PlayerActivityNewCode extends AppCompatActivity implements StyledPl
         String imageUrl = PreferenceUtils.getInstance().getWatermarkLogoUrlPref(this);
 
         // Replace with your image URL
-        Log.i(TAG, "intiViews:playerAcitivity "+imageUrl.equalsIgnoreCase("1"));
+        Log.i(TAG, "intiViews:playerAcitivity "+imageUrl.equalsIgnoreCase("1")+imageUrl);
         if (!imageUrl.isEmpty() && !imageUrl.equalsIgnoreCase("1")) {
             Glide.with(this)
                     .load(imageUrl)

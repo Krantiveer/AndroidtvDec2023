@@ -39,9 +39,12 @@ public class PreferenceUtils {
     public static final String state_name = "state_name";
     public static final Integer watch_list = 0;
     public static final String npawAccountKey = "";
-    public static final String watermarklogourl = "";
+    public static final String watermarklogourl = "watermarklogourl";
     public static final String watermarkEnable = "";
     public static final String websiteUrl = "";
+    public static final String ENABLE_EMAIL_LOGIN = "ENABLE_EMAIL_LOGIN";
+    public static final String ENABLE_MOBILE_LOGIN = "ENABLE_MOBILE_LOGIN";
+    public static final String ENABLE_QR_LOGIN = "ENABLE_QR_LOGIN";
     public static final Boolean focusFromWatchNow = false;
 
     // public static final Boolean focusFromWatchNow = "";
@@ -305,7 +308,7 @@ public class PreferenceUtils {
 
     public String getWatermarkLogoUrlPref(Context context) {
         return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
-                .getString(watermarklogourl, "");
+                .getString(watermarklogourl, "data");
     }
 
     public void setNpawAccountKeyPref(Context context, String accessToken) {
@@ -343,6 +346,39 @@ public class PreferenceUtils {
     public Boolean getFocusFromWatchNowPref(Context context) {
         return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
                 .getBoolean(String.valueOf(focusFromWatchNow), false);
+    }
+    public void setENABLE_EMAIL_LOGINPref(Context context, String str) {
+        SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(ENABLE_EMAIL_LOGIN, str);
+        editor.apply();
+    }
+
+    public String getENABLE_EMAIL_LOGINPref(Context context) {
+        return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
+                .getString(ENABLE_EMAIL_LOGIN, "0");
+    }
+    public void setENABLE_MOBILE_LOGINPref(Context context, String str) {
+        SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(ENABLE_MOBILE_LOGIN, str);
+        editor.apply();
+    }
+
+    public String getENABLE_MOBILE_LOGINPref(Context context) {
+        return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
+                .getString(ENABLE_MOBILE_LOGIN, "0");
+    }
+    public void setENABLE_QR_LOGINPref(Context context, String str) {
+        SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(ENABLE_QR_LOGIN, str);
+        editor.apply();
+    }
+
+    public String getENABLE_QR_LOGINPref(Context context) {
+        return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
+                .getString(ENABLE_QR_LOGIN, "0");
     }
 
 }

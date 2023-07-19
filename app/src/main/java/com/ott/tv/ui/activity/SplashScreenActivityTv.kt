@@ -46,11 +46,28 @@ class SplashScreenActivityTv : Activity() {
         call.enqueue(object : Callback<AppInfo?> {
             override fun onResponse(call: Call<AppInfo?>, response: Response<AppInfo?>) {
                 if (response.code() == 200) {
-                    Log.i(TAG, "onResponse: " + response.body()!!.websiteurl)
+                    Log.i(
+                        TAG,
+                        "onResponse: " + response.body()!!.websiteurl + response.body()!!.enable_mobile_login + response.body()!!.enable_email_login + response.body()!!.enable_qr_login
+                    )
                     PreferenceUtils.getInstance().setWebsiteUrlPref(
                         this@SplashScreenActivityTv,
                         response.body()!!.websiteurl
                     )
+                    PreferenceUtils.getInstance().setENABLE_EMAIL_LOGINPref(
+                        this@SplashScreenActivityTv,
+                        response.body()!!.enable_email_login
+                    )
+                    PreferenceUtils.getInstance().setENABLE_MOBILE_LOGINPref(
+                        this@SplashScreenActivityTv,
+                        response.body()!!.enable_mobile_login
+                    )
+                    PreferenceUtils.getInstance().setENABLE_QR_LOGINPref(
+                        this@SplashScreenActivityTv,
+                        response.body()!!.enable_qr_login
+                    )
+
+
                 } else if (response.code() == 401) {
 
                     // signOut();
@@ -85,7 +102,9 @@ class SplashScreenActivityTv : Activity() {
                 "darshott",
                 ignoreCase = true
             ) || BuildConfig.FLAVOR.equals("omtvott", ignoreCase = true)
-             || BuildConfig.FLAVOR.equals("fastone", ignoreCase = true)
+            || BuildConfig.FLAVOR.equals("fastone", ignoreCase = true)
+            || BuildConfig.FLAVOR.equals("vtv", ignoreCase = true)
+            || BuildConfig.FLAVOR.equals("solidtv", ignoreCase = true)
         ) {
             findViewById<LinearLayout>(R.id.splash_screen_ll).visibility == View.INVISIBLE
 
@@ -99,7 +118,12 @@ class SplashScreenActivityTv : Activity() {
 
         } else {
             findViewById<LinearLayout>(R.id.splash_screen_ll).visibility = View.VISIBLE
-            if (BuildConfig.FLAVOR.equals("candor", ignoreCase = true) || BuildConfig.FLAVOR.equals("naaptolott") || BuildConfig.FLAVOR.equals("omtvott")|| BuildConfig.FLAVOR.equals("fastone")) {
+            if (BuildConfig.FLAVOR.equals("candor", ignoreCase = true) || BuildConfig.FLAVOR.equals(
+                    "naaptolott"
+                ) || BuildConfig.FLAVOR.equals("omtvott") || BuildConfig.FLAVOR.equals("fastone") || BuildConfig.FLAVOR.equals(
+                    "xploreindia"
+                )
+            ) {
                 findViewById<ImageView>(R.id.splash_img_view).visibility = View.INVISIBLE
 
             }

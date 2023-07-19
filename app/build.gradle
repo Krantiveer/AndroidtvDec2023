@@ -70,8 +70,8 @@ android {
 
         xploreindia {
             applicationId "com.xploreindia.tv"
-            versionCode 7
-            versionName "7"
+            versionCode 8
+            versionName "8"
         }
 
         mitwa_tv {
@@ -85,41 +85,41 @@ android {
             versionName "1.6"
         }
 
-        candor {
+      /*  candor {
             applicationId "com.tv.candor"
             versionCode 7
             versionName "1.7"
-        }
+        }*/
         solidtv {
             applicationId "com.solidtv"
             versionCode 1
             versionName "1"
         }
-        kaafaltv {
+      /*  kaafaltv {
             applicationId "com.kaafaltv.tv"
             versionCode 9
             versionName "1"
-        }
+        }*/
 
         toonstaan {
             applicationId "com.toonstaan.tv"
             versionCode 7
             versionName "7.0"
         }
-        pink_papaya {
+       /* pink_papaya {
             applicationId "com.pinkpapaya.tv"
             versionCode 1
             versionName "1.0"
-        }
+        }*/
         fastone {
             applicationId "com.fast1.tv"
-            versionCode 1
-            versionName "1.0"
+            versionCode 3
+            versionName "3.0"
         }
         vtv {
             applicationId "com.vtvott"
-            versionCode 2
-            versionName "2.0"
+            versionCode 1
+            versionName "1.0"
         }
         darshott {
             applicationId "com.darshott"
@@ -146,11 +146,11 @@ android {
             versionCode 1
             versionName "1.0"
         }
-        smashtress {
+     /*   smashtress {
             applicationId "com.smashtress"
             versionCode 2
             versionName "2"
-        }
+        }*/
         dxtvott {
             applicationId "com.kranti.tv"
             versionCode 1

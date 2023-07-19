@@ -273,7 +273,7 @@ public class CountryCodeActivity extends Activity {
 				i.putExtra("Country_Name", it.text);
 				i.putExtra("Country_code", name_code.get(it.text));
 				startActivity(i);*/
-				Log.e("clicked", "section");
+				Log.e("clicked", "section"+it.text+name_code.get(it.text));
 				PreferenceUtils.getInstance().setCountyNamePref(getApplicationContext(), it.text);
 				PreferenceUtils.getInstance().setCountyCodePref(getApplicationContext(), name_code.get(it.text));
 				finish();

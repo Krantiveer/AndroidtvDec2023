@@ -80,19 +80,29 @@ public class LoginChooserActivity extends Activity {
         or_image = findViewById(R.id.or_image);
         qrscreenll = findViewById(R.id.qrscreenll);
 
-        if (!Config.ENABLE_QR_LOGIN) {
+        if (PreferenceUtils.getInstance().getENABLE_QR_LOGINPref(getApplicationContext()).equalsIgnoreCase("0")) {
             iv_logotop.setVisibility(View.GONE);
             qrscreenll.setVisibility(View.GONE);
             iv_naaptol.setVisibility(View.VISIBLE);
             or_image.setVisibility(View.GONE);
+        } else if (PreferenceUtils.getInstance().getENABLE_QR_LOGINPref(getApplicationContext()).equalsIgnoreCase("1")&&PreferenceUtils.getInstance().getENABLE_MOBILE_LOGINPref(getApplicationContext()).equalsIgnoreCase("0")&&PreferenceUtils.getInstance().getENABLE_EMAIL_LOGINPref(getApplicationContext()).equalsIgnoreCase("0")) {
+            iv_naaptol.setVisibility(View.VISIBLE);
+            iv_logotop.setVisibility(View.INVISIBLE);
+
+             or_image.setVisibility(View.GONE);
+
+
         } else {
             iv_naaptol.setVisibility(View.GONE);
 
         }
-        if (!Config.ENABLE_EMAIL_LOGIN) {
+      /*  if (!Config.ENABLE_EMAIL_LOGIN) {
+            login_email.setVisibility(View.GONE);
+        }*/
+        if (PreferenceUtils.getInstance().getENABLE_EMAIL_LOGINPref(getApplicationContext()).equalsIgnoreCase("0")) {
             login_email.setVisibility(View.GONE);
         }
-        if (!Config.ENABLE_MOBILE_LOGIN) {
+        if (PreferenceUtils.getInstance().getENABLE_MOBILE_LOGINPref(getApplicationContext()).equalsIgnoreCase("0")) {
             login_mobile.setVisibility(View.GONE);
         }
         if (BuildConfig.FLAVOR.equalsIgnoreCase("phando")) {
@@ -566,9 +576,9 @@ public class LoginChooserActivity extends Activity {
         handler.removeCallbacksAndMessages(null);
    /*     if(BuildConfig.FLAVOR.equalsIgnoreCase("kaafaltv")||BuildConfig.FLAVOR.equalsIgnoreCase("solidtv")){
         }else{*/
-        if(BuildConfig.FLAVOR.equalsIgnoreCase("naaptolott")){
+        if (BuildConfig.FLAVOR.equalsIgnoreCase("naaptolott")) {
 
-        }else {
+        } else {
             CallHandler();
             CallHandlerQrCode();
         }

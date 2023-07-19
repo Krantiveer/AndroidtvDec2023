@@ -57,7 +57,7 @@ public class LoginActivity extends Activity {
         bt_skip = findViewById(R.id.bt_skip);
         bt_coupon = findViewById(R.id.bt_coupon);
         phone_signIn_button = findViewById(R.id.phone_signIn_button);
-        if(!Config.ENABLE_MOBILE_LOGIN){
+        if (PreferenceUtils.getInstance().getENABLE_MOBILE_LOGINPref(getApplicationContext()).equalsIgnoreCase("0")) {
             phone_signIn_button.setVisibility(View.GONE);
         }
 

@@ -31,6 +31,11 @@ public class AppInfo implements Parcelable {
     @SerializedName("websiteurl")
     private String websiteurl;
 
+    private String enable_mobile_login;
+    private String enable_email_login;
+    private String enable_qr_login;
+
+
 
     protected AppInfo(Parcel in) {
         appType = in.readString();
@@ -60,6 +65,30 @@ public class AppInfo implements Parcelable {
                 ", currentVersion='" + currentVersion + '\'' +
                 ", forceUpdate='" + forceUpdate + '\'' +
                 '}';
+    }
+
+    public String getEnable_mobile_login() {
+        return enable_mobile_login;
+    }
+
+    public void setEnable_mobile_login(String enable_mobile_login) {
+        this.enable_mobile_login = enable_mobile_login;
+    }
+
+    public String getEnable_email_login() {
+        return enable_email_login;
+    }
+
+    public void setEnable_email_login(String enable_email_login) {
+        this.enable_email_login = enable_email_login;
+    }
+
+    public String getEnable_qr_login() {
+        return enable_qr_login;
+    }
+
+    public void setEnable_qr_login(String enable_qr_login) {
+        this.enable_qr_login = enable_qr_login;
     }
 
     public String getAppType() {

@@ -104,8 +104,9 @@
     <color name="gray_sony">#333333</color>
     //background color
     <color name="background_home_page">#000000</color> <!--homefragment-->
-    <color name="background_home_page_new">#000000</color> <!--homefragment-->
+    <color name="background_home_page_new">#020610</color> <!--homefragment-->
     <color name="player_background_color_black">#000</color>
+
     <color name="mmtv_selectecd_color">#9900BCD4</color>
 
     //homenewfragment

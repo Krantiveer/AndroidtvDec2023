@@ -17,4 +17,6 @@
     <color name="login_background">#020610</color>
     <color name="background_home_page">@color/transparent</color> <!--homefragment-->
     <color name="colorGold">@color/main_color</color>  <!-- selected login-->
+    <color name="background_home_page_new">#020610</color> <!--homefragment-->
+
 </resources>

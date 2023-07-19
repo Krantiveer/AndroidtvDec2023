@@ -25,5 +25,7 @@
     //color sidenav
 
     <color name="side_nav_selected">#EF3C23</color>
+    <color name="background_home_page_new">#020610</color> <!--homefragment-->
+
 
 </resources>
