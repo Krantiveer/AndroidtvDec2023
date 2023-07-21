@@ -129,6 +129,35 @@ public class LatestMovieList implements Parcelable {
         this.android_link = android_link;
     }
     protected LatestMovieList(Parcel in) {
+
+        id = (Integer) in.readValue(Integer.class.getClassLoader());
+        title = in.readString();
+        description = in.readString();
+        thumbnail = in.readString();
+        thumbnail_vertical = in.readString();
+        circular_thumbnail = in.readString();
+        poster = in.readString();
+        poster_vertical = in.readString();
+        created_at = in.readString();
+        is_free = (Integer) in.readValue(Integer.class.getClassLoader());
+        is_live = (Integer) in.readValue(Integer.class.getClassLoader());
+        phando_media_id = in.readString();
+        type = in.readString();
+        price = (Integer) in.readValue(Integer.class.getClassLoader());
+        detail = in.readString();
+        keyword = in.readString();
+        rating = (Integer) in.readValue(Integer.class.getClassLoader());
+        maturity_rating = in.readString();
+        duration = (Integer) in.readValue(Integer.class.getClassLoader());
+        duration_str = in.readString();
+        release_date = in.readString();
+        language_str = in.readString();
+        publish_year = (Integer) in.readValue(Integer.class.getClassLoader());
+        last_watch_time = (Integer) in.readValue(Integer.class.getClassLoader());
+        is_active = (Integer) in.readValue(Integer.class.getClassLoader());
+        genres = in.createStringArrayList();
+        trailers = in.createTypedArrayList(LatestMovieSingleDetailList.CREATOR);
+
         if (in.readByte() == 0) {
             id = null;
         } else {

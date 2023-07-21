@@ -80,16 +80,13 @@ public class HomeFragment extends RowsSupportFragment {
         }
         if (getActivity() != null) {
             bgHelper = new BackgroundHelper(getActivity());
-
             assert getArguments() != null;
-
             typeCategory = getArguments().getString("type_id");
-
            /* if(typeCategory.equalsIgnoreCase("catgeory")){
                 typeCategory=getArguments().getString("type_id");
             }*/
             NewMainActivity activity = (NewMainActivity) getActivity();
-          //  activity.showLogo();
+            //  activity.showLogo();
             setOnItemViewClickedListener(getDefaultItemViewClickedListener());
             setOnItemViewSelectedListener(getDefaultItemSelectedListener());
             if (new NetworkInst(activity).isNetworkAvailable()) {
@@ -113,16 +110,13 @@ public class HomeFragment extends RowsSupportFragment {
             Dashboard api = retrofit.create(Dashboard.class);
             Constants.IS_FROM_HOME = false;
             String accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(requireContext());
-
             Call<List<BrowseData>> call = api.getBrowseDataList(accessToken, type, "", "", "", 10, offset);
             call.enqueue(new Callback<List<BrowseData>>() {
                 @Override
                 public void onResponse(@NonNull Call<List<BrowseData>> call, @NonNull Response<List<BrowseData>> response) {
                     if (response.code() == 200) {
                         movieListContent = response.body();
-
-                        if(movieListContent.size()<=0)
-                        {
+                        if (movieListContent.size() <= 0) {
                             if (getContext() != null) {
                                 final NoDataFragmant noDataFragmant = new NoDataFragmant();
                                 final FragmentManager fm = getFragmentManager();
@@ -168,12 +162,13 @@ public class HomeFragment extends RowsSupportFragment {
                 @Override
                 public void onFailure(@NonNull Call<List<BrowseData>> call, @NonNull Throwable t) {
                     //   CMHelper.setSnackBar(requireView(), t.getMessage(), 2);
+
                     if (getContext() != null) {
                         final NoDataFragmant noDataFragmant = new NoDataFragmant();
                         final FragmentManager fm = getFragmentManager();
                         fm.beginTransaction().add(R.id.browserSection, noDataFragmant).commit();
                         return;
-                      //  Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                        //  Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                     } else {
 
                     }
@@ -199,7 +194,7 @@ public class HomeFragment extends RowsSupportFragment {
                 PreferenceUtils.clearSubscriptionSavedData(getContext());
                 PreferenceUtils.getInstance().setAccessTokenNPref(getContext(), "");
                 startActivity(new Intent(getContext(), LoginChooserActivity.class));
-                Toast.makeText(getContext(),"You've been logged out because we have detected another login from your ID on a different device. You are not allowed to login on more than one device at a time.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "You've been logged out because we have detected another login from your ID on a different device. You are not allowed to login on more than one device at a time.", Toast.LENGTH_SHORT).show();
 
                 getActivity().finish();
             }
@@ -311,7 +306,8 @@ public class HomeFragment extends RowsSupportFragment {
                 header = new HeaderItem(i, "");
 
 
-            } else*/ {
+            } else*/
+            {
 
          /*   else if (i == 5) {
                 //load tv layout
@@ -321,7 +317,7 @@ public class HomeFragment extends RowsSupportFragment {
 
                 listRowAdapter = new ArrayObjectAdapter(cardPresenter);
                 header = new HeaderItem(i, movieListContent.get(i).getTitle());
-                Log.i(TAG, "onItemSelected: "+"clickevent haha"+movieListContent.get(i).getTitle());
+                Log.i(TAG, "onItemSelected: " + "clickevent haha" + movieListContent.get(i).getTitle());
 
             }
             //for (int j = 0; j < NUM_COLS; j++) {
@@ -355,7 +351,7 @@ public class HomeFragment extends RowsSupportFragment {
             rowsAdapter.add(new ListRow(header, listRowAdapter));
         }
         setAdapter(rowsAdapter);
-       // setCustomPadding();
+        // setCustomPadding();
     }
 
     private void setCustomPadding() {
@@ -363,6 +359,7 @@ public class HomeFragment extends RowsSupportFragment {
             getView().setPadding(20, 40, 10, -500);
         }
     }
+
     private OnItemViewClickedListener getDefaultItemViewClickedListener() {
         return (viewHolder, o, viewHolder2, row) -> {
             if (getActivity() != null && getContext() != null) {
@@ -534,6 +531,7 @@ public class HomeFragment extends RowsSupportFragment {
 
         };
     }
+
     protected OnItemViewSelectedListener getDefaultItemSelectedListener() {
         return (itemViewHolder, item, rowViewHolder, row) -> {
             if (getActivity() != null) {
