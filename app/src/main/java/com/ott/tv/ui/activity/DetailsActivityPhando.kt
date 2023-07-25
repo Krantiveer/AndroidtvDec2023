@@ -1,5 +1,10 @@
 package com.ott.tv.ui.activity
 
+/*
+import com.singular.sdk.Attributes
+import com.singular.sdk.Singular
+import com.singular.sdk.SingularConfig
+*/
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Intent
@@ -28,6 +33,7 @@ import com.ott.tv.adapter.HomePageAdapter
 import com.ott.tv.database.DatabaseHelper
 import com.ott.tv.fragments.DetailsFragment
 import com.ott.tv.model.*
+import com.ott.tv.model.home_content.SubtitleDataNew
 import com.ott.tv.model.phando.*
 import com.ott.tv.network.RetrofitClient
 import com.ott.tv.network.api.Dashboard
@@ -37,11 +43,6 @@ import com.ott.tv.utils.PreferenceUtils
 import com.ott.tv.utils.ToastMsg
 import com.ott.tv.video_service.PlaybackModel
 import com.ott.tv.video_service.VideoPlaybackActivity
-/*
-import com.singular.sdk.Attributes
-import com.singular.sdk.Singular
-import com.singular.sdk.SingularConfig
-*/
 import com.squareup.picasso.BuildConfig
 import retrofit2.Call
 import retrofit2.Callback
@@ -67,6 +68,8 @@ class DetailsActivityPhando : FragmentActivity() {
     private var btn_seasonAndEpisode: AppCompatButton? = null
     private var imgFavList: AppCompatButton? = null
     private var singleDetails: MediaplaybackData? = null
+
+
     private var singleDetailsTVseries: LatestMoviesTVSeriesList? = null
     private var rv_SeasonList: RecyclerView? = null
 
@@ -692,6 +695,8 @@ class DetailsActivityPhando : FragmentActivity() {
     }
 
     private fun payAndWatchTV() {
+        val subtitleList = ArrayList<SubtitleDataNew>()
+
         if (singleDetails != null) {
             /*
                         Singular.event("Click watch movie",
@@ -803,12 +808,51 @@ class DetailsActivityPhando : FragmentActivity() {
 
                } else {*/
             //  video.setVideo(singleDetails.getVideos().get(0));
+            var enable_subtitle = "false"
+            if (singleDetails!!.list.ccFiles != null) {
+                if (singleDetails!!.list.ccFiles.size > 0) {
+                    enable_subtitle = "true"
+                }
+            }
+            Log.i(TAG, "payAndWatchTV: "+singleDetails!!.list.ccFiles.size)
+            for (i in 0 until singleDetails!!.list.ccFiles.size) {
+                // Access each element of the array
+
+      /*      }
+
+            for (i in 1..2) {*/
+                val language = singleDetails!!.list.ccFiles.get(i).language
+                val url = singleDetails!!.list.ccFiles.get(i).url
+                subtitleList.add(SubtitleDataNew(language, url))
+                Log.i(TAG, "payAndWatchTV22: "+language)
+
+            }
+
+
+
+
             val intent = Intent(this, PlayerActivityNewCode::class.java)
             intent.putExtra(VideoPlaybackActivity.EXTRA_VIDEO, video)
+            intent.putExtra("Enable_Subtile", enable_subtitle)
+            if (enable_subtitle.contentEquals("true")) {
+              //  intent.putExtra("subtitle", singleDetails!!.list.ccFiles)
+                intent.putParcelableArrayListExtra("subtitle", subtitleList)
+
+                // intent.putParcelableArrayListExtra("subtitle", singleDetails!!.list.ccFiles)
+
+                //     intent.putExtra("CC_FILES_DATA", singleDetails!!.list.ccFiles);
+
+                //    intent.putParcelableArrayListExtra("cc_files_list", new ArrayList<>(singleDetails!!.list.ccFiles))
+
+
+
+            }
             startActivity(intent)
 
         }
     }
+
+
 
     fun trailerClick() {
         val videoList: List<Video> = ArrayList()
@@ -880,6 +924,7 @@ class DetailsActivityPhando : FragmentActivity() {
                         if (singleDetails!!.list.is_live != null) {
                             is_youtube = singleDetails!!.list.is_live.toString()
                         }
+
                         //  if(singleDetails.getMediaCode())
                         //  singleDetails.setType("M");
 
@@ -897,6 +942,7 @@ class DetailsActivityPhando : FragmentActivity() {
                             // rvRelated!!.visibility = View.GONE
                         }
                         setMovieData()
+
 
                     }
                 } else if (response.code() == 401) {
