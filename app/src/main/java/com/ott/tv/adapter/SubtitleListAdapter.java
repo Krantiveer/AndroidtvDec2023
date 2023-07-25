@@ -11,16 +11,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ott.tv.R;
 import com.ott.tv.model.Subtitle;
+import com.ott.tv.model.home_content.SubtitleDataNew;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SubtitleListAdapter extends RecyclerView.Adapter<SubtitleListAdapter.SubtitleViewHolder>{
     private Context context;
-    private List<Subtitle> subtitleList;
+    private ArrayList<SubtitleDataNew> subtitleList;
+
+
     private OnSubtitleItemClickListener listener;
     private SubtitleViewHolder viewHolder;
+//    private var subtitleList: ArrayList<SubtitleDataNew>? = null
 
-    public SubtitleListAdapter(Context context, List<Subtitle> subtitleList) {
+
+    public SubtitleListAdapter(Context context, ArrayList<SubtitleDataNew> subtitleList) {
         this.context = context;
         this.subtitleList = subtitleList;
     }
@@ -34,7 +40,7 @@ public class SubtitleListAdapter extends RecyclerView.Adapter<SubtitleListAdapte
 
     @Override
     public void onBindViewHolder(@NonNull SubtitleViewHolder holder, int position) {
-        Subtitle subtitle = subtitleList.get(position);
+        SubtitleDataNew subtitle = subtitleList.get(position);
         holder.subtitleNameTv.setText(subtitle.getLanguage());
         holder.subtitleNameTv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +67,7 @@ public class SubtitleListAdapter extends RecyclerView.Adapter<SubtitleListAdapte
     }
 
     public interface OnSubtitleItemClickListener {
-        void onSubtitleItemClick(View view, Subtitle subtitle, int position, SubtitleListAdapter.SubtitleViewHolder holder);
+        void onSubtitleItemClick(View view, SubtitleDataNew subtitle, int position, SubtitleListAdapter.SubtitleViewHolder holder);
     }
 
     public void setListener(OnSubtitleItemClickListener listener) {

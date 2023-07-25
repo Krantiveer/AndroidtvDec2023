@@ -47,9 +47,9 @@ public class Config {
 /*    public static final String DOMAIN = "https://watch.scifiworld.tv/";
     public static final String Publisher_id = "10";
     public static final String WebsiteURL = "https://watch.scifiworld.tv/";*/
-/*    public static final String DOMAIN = "https://saas-sandbox.phando.com/";
+    public static final String DOMAIN = "https://saas-sandbox.phando.com/";
     public static final String Publisher_id = "28";
-    public static final String WebsiteURL = "https://saas-sandbox.phando.com/";*/
+    public static final String WebsiteURL = "https://saas-sandbox.phando.com/";
   /*  public static final String DOMAIN = "https://saasuat.vdoapi.com/";
     public static final String Publisher_id = "28";
     public static final String WebsiteURL = "https://saasuat.vdoapi.com/";*/
@@ -61,9 +61,11 @@ public class Config {
       public static final String Publisher_id = "66";
       public static final String WebsiteURL = "https://www.fast1.app/";
 */
+/*
     public static final String DOMAIN = "https://www.vtv.co.tz/";
     public static final String Publisher_id = "64";
     public static final String WebsiteURL = "https://www.vtv.co.tz/";
+*/
 
     /*
 

@@ -46,6 +46,7 @@ import com.ott.tv.adapter.ServerAdapter
 import com.ott.tv.adapter.ServerAdapter.OriginalViewHolder
 import com.ott.tv.adapter.SubtitleListAdapter
 import com.ott.tv.model.Video
+import com.ott.tv.model.home_content.SubtitleDataNew
 import com.ott.tv.utils.PreferenceUtils
 import com.ott.tv.utils.ToastMsg
 import com.ott.tv.video_service.MediaSessionHelper
@@ -112,6 +113,9 @@ import com.npaw.youbora.lib6.plugin.Plugin;
     private val mediaDuration = 0L
     var resolutionHashMap: HashMap<String, String>? = null
     private var categoryType = ""
+    private var Enable_Subtile = ""
+    private var subtitleList: ArrayList<SubtitleDataNew>? = null
+
     private var id = ""
     private val youTubePlayer: YouTubePlayer? = null
     private val startAutoPlay = true
@@ -128,6 +132,20 @@ import com.npaw.youbora.lib6.plugin.Plugin;
         mStartingPosition = getIntent().getLongExtra(VideoPlaybackActivity.EXTRA_POSITION, -1L);
 */model = intent.getSerializableExtra(VideoPlaybackActivity.EXTRA_VIDEO) as PlaybackModel?
         assert(model != null)
+
+        Enable_Subtile = intent.getStringExtra("Enable_Subtile").toString()
+        // subtitle_Data = intent.getParcelableExtra<CCFile>("subtitle")
+        // subtitle_Data = intent.getStringArrayListExtra("subtitle")
+
+        subtitleList = intent.getParcelableArrayListExtra<SubtitleDataNew>("subtitle")
+
+
+
+
+        Log.i(TAG, "onCreate: string -->" + Enable_Subtile + subtitleList)
+
+        // The second parameter is the default value if EXTRA_INT is not found
+
         url = model!!.videoUrl
         videoType = if (model!!.videoType != null) {
             model!!.videoType
@@ -232,43 +250,43 @@ import com.npaw.youbora.lib6.plugin.Plugin;
         if (!imageUrl.isEmpty() && !imageUrl.equals("1", ignoreCase = true)) {
             Glide.with(this)
                 .load(imageUrl)
-                .into(watermark_live)
+                .into(watermark_live!!)
             Glide.with(this)
                 .load(imageUrl)
-                .into(watermark)
+                .into(watermark!!)
         }
         if (PreferenceUtils.getInstance().getWatermarkEnablePref(this)
                 .equals("0", ignoreCase = true)
         ) {
-            watermark_live.setVisibility(View.GONE)
-            watermark.setVisibility(View.GONE)
+            watermark_live!!.setVisibility(View.GONE)
+            watermark!!.setVisibility(View.GONE)
         }
-        exo_pause.setOnClickListener(View.OnClickListener {
+        exo_pause!!.setOnClickListener(View.OnClickListener {
             if (model!!.islive != null && model!!.islive.equals("1", ignoreCase = true)) {
                 if (player!!.isPlaying) {
-                    bt_golive.setVisibility(View.VISIBLE)
-                    liveTvTextInController.setVisibility(View.GONE)
+                    bt_golive!!.setVisibility(View.VISIBLE)
+                    liveTvTextInController!!.setVisibility(View.GONE)
                 }
             }
             player!!.pause()
         })
         //  webView=findViewById(R.id.webview);
         if (category.equals("t", ignoreCase = true)) {
-            bt_golive.setVisibility(View.GONE)
-            subtitleButton.setVisibility(View.GONE)
-            fastForwardButton.setVisibility(View.GONE)
-            liveTvTextInController.setVisibility(View.VISIBLE)
-            seekBarLayout.setVisibility(View.GONE)
+            bt_golive!!.setVisibility(View.GONE)
+            subtitleButton!!.setVisibility(View.GONE)
+            fastForwardButton!!.setVisibility(View.GONE)
+            liveTvTextInController!!.setVisibility(View.VISIBLE)
+            seekBarLayout!!.setVisibility(View.GONE)
         }
         if (category.equals("tvseries", ignoreCase = true)) {
-            bt_golive.setVisibility(View.GONE)
+            bt_golive!!.setVisibility(View.GONE)
             //hide subtitle button if there is no subtitle
             if (video != null) {
                 if (video!!.subtitle.isEmpty()) {
-                    subtitleButton.setVisibility(View.GONE)
+                    subtitleButton!!.setVisibility(View.GONE)
                 }
             } else {
-                subtitleButton.setVisibility(View.GONE)
+                subtitleButton!!.setVisibility(View.GONE)
             }
         }
         if (category.equals("movie", ignoreCase = true)) {
@@ -277,23 +295,23 @@ import com.npaw.youbora.lib6.plugin.Plugin;
             //hide subtitle button if there is no subtitle
             if (video != null) {
                 if (video!!.subtitle.isEmpty()) {
-                    subtitleButton.setVisibility(View.GONE)
+                    subtitleButton!!.setVisibility(View.GONE)
                 }
             } else {
-                subtitleButton.setVisibility(View.GONE)
+                subtitleButton!!.setVisibility(View.GONE)
             }
             if (videos != null) {
-                if (videos!!.size < 1) bt_golive.setVisibility(View.GONE)
+                if (videos!!.size < 1) bt_golive!!.setVisibility(View.GONE)
                 Log.i(TAG, "clickpausebutton: " + "--->" + "gone22")
             }
             Log.i(TAG, "intiViews: " + model!!.istrailer)
             if (model!!.istrailer) {
-                imgVideoQuality.setVisibility(View.GONE)
+                imgVideoQuality!!.setVisibility(View.GONE)
             } else {
                 //       setResolutionHashMaps(model.getVideo());
             }
         }
-        selectTracksButton.setOnClickListener(View.OnClickListener { view: View? ->
+        selectTracksButton!!.setOnClickListener(View.OnClickListener { view: View? ->
             isShowingTrackSelectionDialog = true
             val trackSelectionDialog = TrackSelectionDialog.createForPlayer(
                 player
@@ -301,33 +319,37 @@ import com.npaw.youbora.lib6.plugin.Plugin;
             { dismissedDialog: DialogInterface? -> isShowingTrackSelectionDialog = false }
             trackSelectionDialog.show(supportFragmentManager,  /* tag= */null)
         })
-        fastForwardButton.setOnClickListener(View.OnClickListener {
+        fastForwardButton!!.setOnClickListener(View.OnClickListener {
             player!!.seekTo(player!!.currentPosition + 30000) // 10000 = 10 Seconds
         })
-        exo_rew.setOnClickListener(View.OnClickListener { v: View? ->
+        exo_rew!!.setOnClickListener(View.OnClickListener { v: View? ->
             player!!.seekTo(
                 player!!.currentPosition - 30000
             ) // 10000 = 10 Seconds
         })
         if (model!!.islive != null && model!!.islive.equals("1", ignoreCase = true)) {
-            bt_golive.setVisibility(View.GONE)
-            subtitleButton.setVisibility(View.GONE)
-            fastForwardButton.setVisibility(View.GONE)
-            exo_prev.setVisibility(View.GONE)
-            exo_rew.setVisibility(View.GONE)
-            liveTvTextInController.setVisibility(View.VISIBLE)
-            seekBarLayout.setVisibility(View.INVISIBLE)
-            watermark.setVisibility(View.GONE)
-            watermark_live.setVisibility(View.VISIBLE)
+            bt_golive!!.setVisibility(View.GONE)
+            subtitleButton!!.setVisibility(View.GONE)
+            fastForwardButton!!.setVisibility(View.GONE)
+            exo_prev!!.setVisibility(View.GONE)
+            exo_rew!!.setVisibility(View.GONE)
+            liveTvTextInController!!.setVisibility(View.VISIBLE)
+            seekBarLayout!!.setVisibility(View.INVISIBLE)
+            watermark!!.setVisibility(View.GONE)
+            watermark_live!!.setVisibility(View.VISIBLE)
         } else {
-            watermark.setVisibility(View.VISIBLE)
-            watermark_live.setVisibility(View.GONE)
+            watermark!!.setVisibility(View.VISIBLE)
+            watermark_live!!.setVisibility(View.GONE)
         }
         if (PreferenceUtils.getInstance().getWatermarkEnablePref(this)
                 .equals("0", ignoreCase = true)
         ) {
-            watermark_live.setVisibility(View.GONE)
-            watermark.setVisibility(View.GONE)
+            watermark_live!!.setVisibility(View.GONE)
+            watermark!!.setVisibility(View.GONE)
+        }
+
+        if (Enable_Subtile.contentEquals("true")) {
+            subtitleButton!!.setVisibility(View.VISIBLE)
         }
         // PreferenceUtils.getInstance().getWatermarkLogoUrlPref(this);
     }
@@ -791,13 +813,14 @@ import com.npaw.youbora.lib6.plugin.Plugin;
     }
 
     private fun openSubtitleDialog() {
-        if (video != null) {
-            if (!video!!.subtitle.isEmpty()) {
+        if (subtitleList != null) {
+
+            if (subtitleList!!.size > 0) {
                 val builder = AlertDialog.Builder(this@PlayerActivityNewCode)
                 val view = LayoutInflater.from(this@PlayerActivityNewCode)
                     .inflate(R.layout.layout_subtitle_dialog, null)
                 val serverRv = view.findViewById<RecyclerView>(R.id.serverRv)
-                val adapter = SubtitleListAdapter(this@PlayerActivityNewCode, video!!.subtitle)
+                val adapter = SubtitleListAdapter(this@PlayerActivityNewCode, subtitleList)
                 serverRv.layoutManager = LinearLayoutManager(this@PlayerActivityNewCode)
                 serverRv.setHasFixedSize(true)
                 serverRv.adapter = adapter
@@ -1098,12 +1121,13 @@ import com.npaw.youbora.lib6.plugin.Plugin;
     private fun createChannel() {
         val movieSubscription = MockDatabase.getVideoSubscription(this)
         channelExists = movieSubscription.channelId > 0L
-        AddChannelTask(this).execute(movieSubscription)
+     //   AddChannelTask(this).execute(movieSubscription)
     }
 
     override fun onVisibilityChanged(visibility: Int) {}
 
     @SuppressLint("StaticFieldLeak")
+/*
     private inner class AddChannelTask(private val context: Context) :
         AsyncTask<Subscription?, Void?, Long>() {
         protected override fun doInBackground(vararg varArgs: Subscription): Long {
@@ -1116,7 +1140,7 @@ import com.npaw.youbora.lib6.plugin.Plugin;
             subscription.channelId = channelId
             MockDatabase.saveSubscription(context, subscription)
             TvUtil.scheduleSyncingProgramsForChannel(applicationContext, channelId)
-            this.channelId = channelId
+            .channelId = channelId
             Log.e("1234", "AsyncTask: " + this.channelId)
             return channelId
         }
@@ -1126,6 +1150,7 @@ import com.npaw.youbora.lib6.plugin.Plugin;
             if (!channelExists) promptUserToDisplayChannel(channelId)
         }
     }
+*/
 
     private fun promptUserToDisplayChannel(channelId: Long) {
         // TODO: step 17 prompt user.
