@@ -7,7 +7,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.media.AudioManager
 import android.media.session.MediaSession
-import android.os.AsyncTask
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -31,6 +31,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.tvprovider.media.tv.TvContractCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.exoplayer2.C
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.source.MediaSource
@@ -40,6 +41,7 @@ import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.ui.StyledPlayerView.ControllerVisibilityListener
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
+import com.google.android.exoplayer2.util.MimeTypes
 import com.ott.tv.Config
 import com.ott.tv.R
 import com.ott.tv.adapter.ServerAdapter
@@ -52,13 +54,10 @@ import com.ott.tv.utils.ToastMsg
 import com.ott.tv.video_service.MediaSessionHelper
 import com.ott.tv.video_service.MockDatabase
 import com.ott.tv.video_service.PlaybackModel
-import com.ott.tv.video_service.Subscription
-import com.ott.tv.video_service.TvUtil
 import com.ott.tv.video_service.VideoPlaybackActivity
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-import java.util.Arrays
 import java.util.regex.Pattern
 
 /*import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;*/ /*
@@ -130,7 +129,7 @@ import com.npaw.youbora.lib6.plugin.Plugin;
 
         /*    mChannelId = getIntent().getLongExtra(VideoPlaybackActivity.EXTRA_CHANNEL_ID, -1L);
         mStartingPosition = getIntent().getLongExtra(VideoPlaybackActivity.EXTRA_POSITION, -1L);
-*/model = intent.getSerializableExtra(VideoPlaybackActivity.EXTRA_VIDEO) as PlaybackModel?
+*/   model = intent.getSerializableExtra(VideoPlaybackActivity.EXTRA_VIDEO) as PlaybackModel?
         assert(model != null)
 
         Enable_Subtile = intent.getStringExtra("Enable_Subtile").toString()
@@ -871,15 +870,47 @@ import com.npaw.youbora.lib6.plugin.Plugin;
             Toast.makeText(PlayerActivityNewCode.this, "there is no subtitle", Toast.LENGTH_SHORT).show();
         }
     }
+*/     /*
+    private void setSelectedSubtitle(MediaSource mediaSource, String url) {
+        MergingMediaSource mergedSource;
+        if (url != null) {
+            Uri subtitleUri = Uri.parse(url);
+
+            Format subtitleFormat = Format.createTextSampleFormat(
+                    null, // An identifier for the track. May be null.
+                    MimeTypes.TEXT_VTT, // The mime type. Must be set correctly.
+                    Format.NO_VALUE, // Selection flags for the track.
+                    "en"); // The subtitle language. May be null.
+
+            DefaultDataSourceFactory dataSourceFactory = new DefaultDataSourceFactory(PlayerActivityNewCode.this,
+                    Util.getUserAgent(PlayerActivityNewCode.this, CLASS_NAME), new DefaultBandwidthMeter());
+
+
+            MediaSource subtitleSource = new SingleSampleMediaSource
+                    .Factory(dataSourceFactory)
+                    .createMediaSource(subtitleUri, subtitleFormat, C.TIME_UNSET);
+
+
+            mergedSource = new MergingMediaSource(mediaSource, subtitleSource);
+            player.prepare(mergedSource, false, false);
+            player.setPlayWhenReady(true);
+            //resumePlayer();
+
+        } else {
+            Toast.makeText(PlayerActivityNewCode.this, "there is no subtitle", Toast.LENGTH_SHORT).show();
+        }
+    }
 */
-    fun initVideoPlayer(url: String?, type: String) {
+/*
+    open fun initVideoPlayer(url: String?, type: String) {
         Log.i(TAG, "initVideoPlayer: $type")
         if (player != null) {
             player!!.stop()
             player!!.release()
         }
 
-        /*
+        */
+/*
         val streamUrl = "rtsp://192.168.1.11:554/user=admin&password=&channel=1&stream=0.sdp"
         val mediaSource = RtspMediaSource.Factory().createMediaSource(MediaItem.fromUri(streamUrl))
 
@@ -889,7 +920,8 @@ import com.npaw.youbora.lib6.plugin.Plugin;
         player.setMediaSource(mediaSource)
         player.prepare()
         player.play()
-                */if (type.equals("youtube", ignoreCase = true)) {
+                *//*
+if (type.equals("youtube", ignoreCase = true)) {
             Log.i(TAG, "initVideoPlayer: $type")
             initYoutubeVideo(url, this@PlayerActivityNewCode, 18)
         } else {
@@ -899,7 +931,8 @@ import com.npaw.youbora.lib6.plugin.Plugin;
                 .createMediaSource(MediaItem.fromUri(url!!))
             // Create a player instance.
             player = ExoPlayer.Builder(this).build()
-            /*
+            */
+/*
             if (PreferenceUtils.getInstance().getNpawEnablePref(this)) {
                 youboraOptions = new Options();
                 youboraOptions.setAccountCode(PreferenceUtils.getInstance().getNpawAccountKeyPref(this));
@@ -917,9 +950,8 @@ import com.npaw.youbora.lib6.plugin.Plugin;
                 youboraPlugin.setAdapter(adapter);
                 Log.i(TAG, "initVideoPlayer: "+youboraOptions);
             }
-*/
-            // player.setMediaSource(mergedSource);
-            player!!.setMediaSource(hlsMediaSource)
+*//*
+player!!.setMediaSource(hlsMediaSource)
             player!!.trackSelector
             player!!.prepare()
             player!!.playWhenReady = startAutoPlay
@@ -932,7 +964,8 @@ import com.npaw.youbora.lib6.plugin.Plugin;
         //   player.setPlayWhenReady(startAutoPlay);
 
 
-        /*   Uri uri = Uri.parse(url);
+        */
+/*   Uri uri = Uri.parse(url);
 
         switch (type) {
             case "hls":
@@ -953,19 +986,247 @@ import com.npaw.youbora.lib6.plugin.Plugin;
             default:
                 mediaSource = mediaSource(uri, PlayerActivityNewCode.this);
                 break;
-        }*/
-        /*if (!type.contains("youtube")) {
+        }*//*
+
+        */
+/*if (!type.contains("youtube")) {
             player.prepare(mediaSource, true, false);
             exoPlayerView.setPlayer(player);
             player.setPlayWhenReady(true);
-        }*/
+        }*//*
+
         // seekTocurrentPosition();
         //  seekToStartPosition();
 
 
-        /*    exoPlayerView.setControllerVisibilityListener(visibility -> visible = visibility);
+        */
+/*    exoPlayerView.setControllerVisibilityListener(visibility -> visible = visibility);
 
-        exoPlayerView.setControllerShowTimeoutMs(5 * 1000);*/
+        exoPlayerView.setControllerShowTimeoutMs(5 * 1000);*//*
+
+    }
+*/
+
+    fun initVideoPlayer(url: String?, type: String) {
+        Log.i(TAG, "initVideoPlayer: $type")
+        if (player != null) {
+            player!!.stop()
+            player!!.release()
+        }
+
+        /*
+        val streamUrl = "rtsp://192.168.1.11:554/user=admin&password=&channel=1&stream=0.sdp"
+        val mediaSource = RtspMediaSource.Factory().createMediaSource(MediaItem.fromUri(streamUrl))
+
+        val player = SimpleExoPlayer.Builder(context).build()
+        player.repeatMode = Player.REPEAT_MODE_OFF
+        player.setVideoTextureView(ipcamVideoView)
+        player.setMediaSource(mediaSource)
+        player.prepare()
+        player.play()
+             {
+
+            /*val dataSourceFactory: DataSource.Factory = DefaultHttpDataSource.Factory()
+            // Create a HLS media source pointing to a playlist uri.
+            val hlsMediaSource = HlsMediaSource.Factory(dataSourceFactory)
+                .createMediaSource(MediaItem.fromUri(url!!))
+            // Create a player instance.
+            player = ExoPlayer.Builder(this).build()
+
+            val trackSelector: TrackSelector = DefaultTrackSelector(this)
+            val loadControl = DefaultLoadControl()
+            val renderersFactory = DefaultRenderersFactory(this)
+            player = ExoPlayer.Builder(this, renderersFactory)
+                .setTrackSelector(trackSelector)
+                .setLoadControl(loadControl)
+                .build()
+            exoPlayerView!!.player = player
+            */playWithCaption()
+            /*
+            if (PreferenceUtils.getInstance().getNpawEnablePref(this)) {
+                youboraOptions = new Options();
+                youboraOptions.setAccountCode(PreferenceUtils.getInstance().getNpawAccountKeyPref(this));
+                youboraOptions.setContentTitle(model.getTitle());
+                youboraOptions.setContentId(model.getMovieId());
+                youboraOptions.setDeviceType(Config.Device_Type);
+                youboraOptions.setContentType(type);
+             //   youboraOptions.setAppName();
+                Log.i(TAG, "initVideoPlayer: "+youboraOptions);
+
+
+                Plugin youboraPlugin = new Plugin(youboraOptions, this);
+                youboraPlugin.setActivity(this);
+                Exoplayer2Adapter adapter = new Exoplayer2Adapter(player);
+                youboraPlugin.setAdapter(adapter);
+                Log.i(TAG, "initVideoPlayer: "+youboraOptions);
+            }
+*/{
+
+            /*val dataSourceFactory: DataSource.Factory = DefaultHttpDataSource.Factory()
+            // Create a HLS media source pointing to a playlist uri.
+            val hlsMediaSource = HlsMediaSource.Factory(dataSourceFactory)
+                .createMediaSource(MediaItem.fromUri(url!!))
+            // Create a player instance.
+            player = ExoPlayer.Builder(this).build()
+
+            val trackSelector: TrackSelector = DefaultTrackSelector(this)
+            val loadControl = DefaultLoadControl()
+            val renderersFactory = DefaultRenderersFactory(this)
+            player = ExoPlayer.Builder(this, renderersFactory)
+                .setTrackSelector(trackSelector)
+                .setLoadControl(loadControl)
+                .build()
+            exoPlayerView!!.player = player
+            */playWithCaption()
+            /*
+            if (PreferenceUtils.getInstance().getNpawEnablePref(this)) {
+                youboraOptions = new Options();
+                youboraOptions.setAccountCode(PreferenceUtils.getInstance().getNpawAccountKeyPref(this));
+                youboraOptions.setContentTitle(model.getTitle());
+                youboraOptions.setContentId(model.getMovieId());
+                youboraOptions.setDeviceType(Config.Device_Type);
+                youboraOptions.setContentType(type);
+             //   youboraOptions.setAppName();
+                Log.i(TAG, "initVideoPlayer: "+youboraOptions);
+
+
+                Plugin youboraPlugin = new Plugin(youboraOptions, this);
+                youboraPlugin.setActivity(this);
+                Exoplayer2Adapter adapter = new Exoplayer2Adapter(player);
+                youboraPlugin.setAdapter(adapter);
+                Log.i(TAG, "initVideoPlayer: "+youboraOptions);
+            }
+*/{
+
+            /*val dataSourceFactory: DataSource.Factory = DefaultHttpDataSource.Factory()
+            // Create a HLS media source pointing to a playlist uri.
+            val hlsMediaSource = HlsMediaSource.Factory(dataSourceFactory)
+                .createMediaSource(MediaItem.fromUri(url!!))
+            // Create a player instance.
+            player = ExoPlayer.Builder(this).build()
+
+            val trackSelector: TrackSelector = DefaultTrackSelector(this)
+            val loadControl = DefaultLoadControl()
+            val renderersFactory = DefaultRenderersFactory(this)
+            player = ExoPlayer.Builder(this, renderersFactory)
+                .setTrackSelector(trackSelector)
+                .setLoadControl(loadControl)
+                .build()
+            exoPlayerView!!.player = player
+            */playWithCaption()
+            /*
+            if (PreferenceUtils.getInstance().getNpawEnablePref(this)) {
+                youboraOptions = new Options();
+                youboraOptions.setAccountCode(PreferenceUtils.getInstance().getNpawAccountKeyPref(this));
+                youboraOptions.setContentTitle(model.getTitle());
+                youboraOptions.setContentId(model.getMovieId());
+                youboraOptions.setDeviceType(Config.Device_Type);
+                youboraOptions.setContentType(type);
+             //   youboraOptions.setAppName();
+                Log.i(TAG, "initVideoPlayer: "+youboraOptions);
+
+
+                Plugin youboraPlugin = new Plugin(youboraOptions, this);
+                youboraPlugin.setActivity(this);
+                Exoplayer2Adapter adapter = new Exoplayer2Adapter(player);
+                youboraPlugin.setAdapter(adapter);
+                Log.i(TAG, "initVideoPlayer: "+youboraOptions);
+            }
+*/
+            // player.setMediaSource(mergedSource);
+           // player!!.setMediaSource(hlsMediaSource)
+            player!!.trackSelector
+            player!!.prepare()
+            player!!.playWhenReady = startAutoPlay
+            exoPlayerView!!.player = player
+            player!!.prepare()
+            exoPlayerView!!.player = player
+        }
+            // player.setMediaSource(mergedSource);
+           // player!!.setMediaSource(hlsMediaSource)
+            player!!.trackSelector
+            player!!.prepare()
+            player!!.playWhenReady = startAutoPlay
+            exoPlayerView!!.player = player
+            player!!.prepare()
+            exoPlayerView!!.player = player
+        }
+            // player.setMediaSource(mergedSource);
+           // player!!.setMediaSource(hlsMediaSource)
+            player!!.trackSelector
+            player!!.prepare()
+            player!!.playWhenReady = startAutoPlay
+            exoPlayerView!!.player = player
+            player!!.prepare()
+            exoPlayerView!!.player = player
+        }   */if (type.equals("youtube", ignoreCase = true)) {
+            Log.i(TAG, "initVideoPlayer: $type")
+            initYoutubeVideo(url, this@PlayerActivityNewCode, 18)
+        } else {
+
+            val dataSourceFactory: DataSource.Factory = DefaultHttpDataSource.Factory()
+            // Create a HLS media source pointing to a playlist uri.
+           /* val hlsMediaSource = HlsMediaSource.Factory(dataSourceFactory)
+                .createMediaSource(MediaItem.fromUri(url!!))
+           */
+            val subtitleConfigurations = ArrayList<MediaItem.SubtitleConfiguration>()
+            for (subtitleData in subtitleList!!) {
+                val subtitle = MediaItem.SubtitleConfiguration.Builder(Uri.parse(subtitleData.url))
+                    .setMimeType(MimeTypes.TEXT_VTT) // The correct MIME type (required).
+                    .setLanguage(subtitleData.language) // The subtitle language (optional).
+                    .setSelectionFlags(C.SELECTION_FLAG_DEFAULT) // Selection flags for the track (optional).
+                    .build()
+                subtitleConfigurations.add(subtitle)
+            }
+
+
+
+           /* val subtitle = MediaItem.SubtitleConfiguration.Builder(Uri.parse(subtitleList!!.get(0).url))
+                .setMimeType(MimeTypes.TEXT_VTT) // The correct MIME type (required).
+                .setLanguage("en") // MUST, The subtitle language (optional).
+                .setSelectionFlags(C.SELECTION_FLAG_DEFAULT) // MUST, Selection flags for the track (optional).
+                .build()*/
+            val mediaItem = MediaItem.Builder()
+                .setUri(Uri.parse((url)))
+                .setSubtitleConfigurations(subtitleConfigurations)
+                .build()
+
+         /*   player!!.setMediaItem(mediaItem)
+
+            player!!.prepare()
+
+            player!!.playWhenReady = true*/
+
+            player = ExoPlayer.Builder(this).build()
+            player!!.setMediaItem(mediaItem)
+            player!!.trackSelector
+            player!!.prepare()
+            player!!.playWhenReady = startAutoPlay
+            exoPlayerView!!.player = player
+
+        }
+
+
+    }
+
+
+    private fun playWithCaption() {
+        val subtitle = MediaItem.SubtitleConfiguration.Builder(Uri.parse("https://ik.imagekit.io/phando/ims-saas-w/images/28/content/subtitles/subtitles_0_1689933293.vtt"))
+            .setMimeType(MimeTypes.TEXT_VTT) // The correct MIME type (required).
+            .setLanguage("en") // MUST, The subtitle language (optional).
+            .setSelectionFlags(C.SELECTION_FLAG_DEFAULT) // MUST, Selection flags for the track (optional).
+            .build()
+
+        val mediaItem = MediaItem.Builder()
+            .setUri(Uri.parse(("https://ottsaas-cdn.b-cdn.net/64957f3f86515/playlist.m3u8")))
+            .setSubtitleConfigurations(listOf(subtitle))
+            .build()
+
+        player!!.setMediaItem(mediaItem)
+
+        player!!.prepare()
+
+        player!!.playWhenReady = true
     }
 
     private fun initYoutubeVideo(url: String?, context: Context, tag: Int) {
