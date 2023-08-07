@@ -1128,6 +1128,11 @@ class DetailsActivityPhando : FragmentActivity() {
         if (singleDetails!!.list.is_free == 2) {
             tvWatchNow!!.setText("Pay and Watch ")
         }
+        if(singleDetails!!.mediaCode.contentEquals("buyed")||singleDetails!!.mediaCode.contentEquals("package_purchased")
+            ||singleDetails!!.mediaCode.contentEquals("package_purchased")||singleDetails!!.mediaCode.contentEquals("rented_and_can_buy")){
+            tvWatchNow!!.text = "Watch Now"
+
+        }
 
         /*
         if (singleDetails.video_view_type != null && singleDetails.video_view_type.equalsIgnoreCase("Subscription Based")) {

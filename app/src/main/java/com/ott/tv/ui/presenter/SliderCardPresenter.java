@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.ott.tv.R;
 import com.ott.tv.model.home_content.Video;
+import com.ott.tv.model.phando.LatestMovieList;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -62,13 +63,13 @@ public class SliderCardPresenter extends Presenter {
 
     @Override
     public void onBindViewHolder(Presenter.ViewHolder viewHolder, Object item) {
-        Video video;
-        video = (Video) item;
+        LatestMovieList video;
+        video = (LatestMovieList) item;
         ((ViewHolder) viewHolder).mCardView.setTitleText(video.getTitle());
         ((ViewHolder) viewHolder).mCardView.setContentText(video.getDescription());
         ((ViewHolder) viewHolder).mCardView.setMainImageDimensions(CARD_WIDTH, CARD_HEIGHT);
         ((ViewHolder) viewHolder).mCardView.setInfoVisibility(View.GONE);
-        ((ViewHolder) viewHolder).updateCardViewImage(video.getPosterUrl());
+        ((ViewHolder) viewHolder).updateCardViewImage(video.getPoster());
     }
 
     @Override

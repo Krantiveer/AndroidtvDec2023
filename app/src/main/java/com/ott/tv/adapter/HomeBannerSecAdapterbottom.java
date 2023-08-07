@@ -299,6 +299,7 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
 
 
                 if (videoContent.getGenres() != null) {
+                  if(videoContent.getGenres().size()!=0){
                     if (videoContent.getGenres().size() > 0) {
                         String genres;
                         genres = videoContent.getGenres().get(0);
@@ -306,7 +307,7 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
                             genres = genres.concat("," + videoContent.getGenres().get(i));
                         }
                         intent.putExtra("genres", genres);
-                    }
+                    }}
                 } else {
                     if (videoContent.getGenre() != null) {
                         intent.putExtra("genres", videoContent.getGenre());
@@ -371,13 +372,14 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
 
 
                 if (videoContent.getGenres() != null) {
+                    if(videoContent.getGenres().size()>0){
                     String genres;
                     genres = videoContent.getGenres().get(0);
                     for (int i = 1; i < videoContent.getGenres().size(); i++) {
                         genres = genres.concat("," + videoContent.getGenres().get(i));
                     }
                     intent.putExtra("genres", genres);
-                } else {
+                }} else {
                     if (videoContent.getGenre() != null) {
                         intent.putExtra("genres", videoContent.getGenre());
                     }
@@ -439,13 +441,14 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
                 }
 
                 if (videoContent.getGenres() != null) {
+                    if(videoContent.getGenres().size()>0){
                     String genres;
                     genres = videoContent.getGenres().get(0);
                     for (int i = 1; i < videoContent.getGenres().size(); i++) {
                         genres = genres.concat("," + videoContent.getGenres().get(i));
                     }
                     intent.putExtra("genres", genres);
-                } else {
+                }} else {
                     if (videoContent.getGenre() != null) {
                         intent.putExtra("genres", videoContent.getGenre());
                     }

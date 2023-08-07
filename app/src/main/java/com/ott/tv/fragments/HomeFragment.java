@@ -278,7 +278,7 @@ public class HomeFragment extends RowsSupportFragment {
         rowsAdapter = new ArrayObjectAdapter(new ListRowPresenter());
         cardPresenter = new CardPresenterNewLanscape();
         cardPresenterBanner = new CardPresenterBanner();
-        // SliderCardPresenter sliderCardPresenter = new SliderCardPresenter();
+         SliderCardPresenter sliderCardPresenter = new SliderCardPresenter();
         // TvPresenter tvPresenter = new TvPresenter();
    /*     for (int i = 0; i < 1; i++) {
             ArrayObjectAdapter listRowAdapter;
@@ -301,23 +301,16 @@ public class HomeFragment extends RowsSupportFragment {
         for (int i = 0; i < movieListContent.size(); i++) {
             ArrayObjectAdapter listRowAdapter;
             HeaderItem header;
-       /*     if (movieListContent.get(i).getDisplayType().equalsIgnoreCase("TOP_BANNER")) {
-                listRowAdapter = new ArrayObjectAdapter(cardPresenter);
-                header = new HeaderItem(i, "");
-
-
-            } else*/
-            {
-
-         /*   else if (i == 5) {
-                //load tv layout
+            if (movieListContent.get(i).getDisplayType().equalsIgnoreCase("TOP_BANNER")) {
                 listRowAdapter = new ArrayObjectAdapter(cardPresenterBanner);
-                header = new HeaderItem(i, homeContents.get(i).getName());
-            }*/
-
+                header = new HeaderItem(i, "");
+                rowsAdapter.add(new ListRow(listRowAdapter));
+            }
+            /*else {
                 listRowAdapter = new ArrayObjectAdapter(cardPresenter);
                 header = new HeaderItem(i, movieListContent.get(i).getTitle());
                 Log.i(TAG, "onItemSelected: " + "clickevent haha" + movieListContent.get(i).getTitle());
+                rowsAdapter.add(new ListRow(header, listRowAdapter));
 
             }
             //for (int j = 0; j < NUM_COLS; j++) {
@@ -348,7 +341,6 @@ public class HomeFragment extends RowsSupportFragment {
 
                 listRowAdapter.add(videoContent);
             }
-            rowsAdapter.add(new ListRow(header, listRowAdapter));
         }
         setAdapter(rowsAdapter);
         // setCustomPadding();
@@ -445,13 +437,14 @@ public class HomeFragment extends RowsSupportFragment {
 
 
                     if (videoContent.getGenres() != null) {
+                        if(videoContent.getGenres().size()>0){
                         String genres;
                         genres = videoContent.getGenres().get(0);
                         for (int i = 1; i < videoContent.getGenres().size(); i++) {
                             genres = genres.concat("," + videoContent.getGenres().get(i));
                         }
                         intent.putExtra("genres", genres);
-                    }
+                    }}
                     getContext().startActivity(intent);
                     getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
 

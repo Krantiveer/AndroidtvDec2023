@@ -348,7 +348,7 @@ import com.npaw.youbora.lib6.plugin.Plugin;
         }
 
         if (Enable_Subtile.contentEquals("true")) {
-            subtitleButton!!.setVisibility(View.VISIBLE)
+     //       subtitleButton!!.setVisibility(View.VISIBLE)
         }
         // PreferenceUtils.getInstance().getWatermarkLogoUrlPref(this);
     }
@@ -1170,15 +1170,17 @@ player!!.setMediaSource(hlsMediaSource)
                 .createMediaSource(MediaItem.fromUri(url!!))
            */
             val subtitleConfigurations = ArrayList<MediaItem.SubtitleConfiguration>()
-            for (subtitleData in subtitleList!!) {
-                val subtitle = MediaItem.SubtitleConfiguration.Builder(Uri.parse(subtitleData.url))
-                    .setMimeType(MimeTypes.TEXT_VTT) // The correct MIME type (required).
-                    .setLanguage(subtitleData.language) // The subtitle language (optional).
-                    .setSelectionFlags(C.SELECTION_FLAG_DEFAULT) // Selection flags for the track (optional).
-                    .build()
-                subtitleConfigurations.add(subtitle)
+            if(subtitleList!=null) {
+                for (subtitleData in subtitleList!!) {
+                    val subtitle =
+                        MediaItem.SubtitleConfiguration.Builder(Uri.parse(subtitleData.url))
+                            .setMimeType(MimeTypes.TEXT_VTT) // The correct MIME type (required).
+                            .setLanguage(subtitleData.language) // The subtitle language (optional).
+                            .setSelectionFlags(C.SELECTION_FLAG_DEFAULT) // Selection flags for the track (optional).
+                            .build()
+                    subtitleConfigurations.add(subtitle)
+                }
             }
-
 
 
            /* val subtitle = MediaItem.SubtitleConfiguration.Builder(Uri.parse(subtitleList!!.get(0).url))

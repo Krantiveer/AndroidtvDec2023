@@ -21,7 +21,6 @@ import com.ott.tv.network.RetrofitClient
 import com.ott.tv.network.api.Dashboard
 import com.ott.tv.network.api.ListRecommend
 import com.ott.tv.network.api.RecommendedModel
-import com.ott.tv.utils.CMHelper
 import com.ott.tv.utils.PreferenceUtils
 import retrofit2.Call
 import retrofit2.Callback
@@ -186,15 +185,12 @@ class SearchActivity_Phando : FragmentActivity(), SearchAdapter.OnItemClickListe
                         ),
                     )
                     if (searchContent!!.size == 0) {
-
-                        Toast.makeText(
-                            this@SearchActivity_Phando,
-                            "Try searching for another movies",
-                            Toast.LENGTH_LONG
-                        ).show()
+                        Toast.makeText(this@SearchActivity_Phando,"Try searching for another movies",Toast.LENGTH_LONG).show()
                         //    CMHelper.setSnackBar(requireView(), , 2);
                     }
                     binding.progressBarSearch.visibility = View.GONE
+                } else if (response.code() == 401) {
+                    signOut()
                 }
             }
 
@@ -202,6 +198,32 @@ class SearchActivity_Phando : FragmentActivity(), SearchAdapter.OnItemClickListe
 
             }
         })
+    }
+    private fun signOut() {
+        if ( applicationContext != null) {
+            val databaseHelper = DatabaseHelper(applicationContext)
+            /*    String userId = databaseHelper.getUserData().getUserId();
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if (user != null) {
+                FirebaseAuth.getInstance().signOut();
+            }*/if (PreferenceUtils.getInstance().getAccessTokenPref(applicationContext) !== "") {
+                val editor: SharedPreferences.Editor =
+                    applicationContext.getSharedPreferences(Constants.USER_LOGIN_STATUS, MODE_PRIVATE)
+                        .edit()
+                editor.putBoolean(Constants.USER_LOGIN_STATUS, false)
+                editor.apply()
+                databaseHelper.deleteUserData()
+                PreferenceUtils.clearSubscriptionSavedData(applicationContext)
+                PreferenceUtils.getInstance().setAccessTokenNPref(applicationContext, "")
+                startActivity(Intent(applicationContext, LoginChooserActivity::class.java))
+                Toast.makeText(
+                    applicationContext,
+                    "You've been logged out because we have detected another login from your ID on a different device. You are not allowed to login on more than one device at a time.",
+                    Toast.LENGTH_SHORT
+                ).show()
+                finish()
+            }
+        }
     }
 
     override fun onItemClick(item: ShowWatchlist?) {

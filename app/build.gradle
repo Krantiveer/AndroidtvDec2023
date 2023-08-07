@@ -70,8 +70,8 @@ android {
 
         xploreindia {
             applicationId "com.xploreindia.tv"
-            versionCode 8
-            versionName "8"
+            versionCode 10
+            versionName "10"
         }
 
         mitwa_tv {
@@ -118,8 +118,8 @@ android {
         }
         vtv {
             applicationId "com.vtvott"
-            versionCode 1
-            versionName "1.0"
+            versionCode 2
+            versionName "2.0"
         }
         darshott {
             applicationId "com.darshott"
@@ -133,29 +133,29 @@ android {
         }*/
         naaptolott {
             applicationId "com.naaptolott"
-            versionCode 6
-            versionName "6.0"
-        }
-        adnott {
-            applicationId "com.adnott"
-            versionCode 2
-            versionName "2.0"
-        }
-        omtvott {
-            applicationId "com.omtvott"
             versionCode 1
             versionName "1.0"
         }
+        /*       adnott {
+                   applicationId "com.adnott"
+                   versionCode 2
+                   versionName "2.0"
+               }
+               omtvott {
+                   applicationId "com.omtvott"
+                   versionCode 1
+                   versionName "1.0"
+               }*/
      /*   smashtress {
             applicationId "com.smashtress"
             versionCode 2
             versionName "2"
         }*/
-        dxtvott {
+      /*  dxtvott {
             applicationId "com.kranti.tv"
             versionCode 1
             versionName "1"
-        }
+        }*/
         phando_automation {
             applicationId "com.phandodemo.tv"
             versionCode 2

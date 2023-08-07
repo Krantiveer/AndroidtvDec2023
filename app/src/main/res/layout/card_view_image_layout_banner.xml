@@ -20,8 +20,8 @@
     android:layout_height="wrap_content">
 
     <RelativeLayout
-        android:layout_width="840sp"
-        android:layout_height="260sp"
+        android:layout_width="890dp"
+        android:layout_height="@dimen/_296sdp"
         android:gravity="left"
         android:orientation="horizontal"
         tools:ignore="RtlHardcoded">
