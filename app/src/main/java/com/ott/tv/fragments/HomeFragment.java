@@ -306,7 +306,7 @@ public class HomeFragment extends RowsSupportFragment {
                 header = new HeaderItem(i, "");
                 rowsAdapter.add(new ListRow(listRowAdapter));
             }
-            /*else {
+            else {
                 listRowAdapter = new ArrayObjectAdapter(cardPresenter);
                 header = new HeaderItem(i, movieListContent.get(i).getTitle());
                 Log.i(TAG, "onItemSelected: " + "clickevent haha" + movieListContent.get(i).getTitle());
@@ -330,7 +330,7 @@ public class HomeFragment extends RowsSupportFragment {
                     } else if (videoContent.getIsTvseries().equals("0")) {
                         videoContent.setType("movie");
                     }
-                } */
+                }
              /*
                 if (movieListContent.get(i).getImage_orientation() == 0) {
                     // kranti --> here u need to set type
