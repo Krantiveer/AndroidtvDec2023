@@ -93,12 +93,12 @@ public class LatestMovieList implements Parcelable {
     private String release_date;
     @SerializedName("language_str")
     @Expose
-    private String language_str;
+    private String language_str;/*
 
     @SerializedName("publish_year")
     @Expose
     private Integer publish_year;
-
+*/
     @SerializedName("last_watch_time")
     @Expose
     private Integer last_watch_time;
@@ -152,7 +152,7 @@ public class LatestMovieList implements Parcelable {
         duration_str = in.readString();
         release_date = in.readString();
         language_str = in.readString();
-        publish_year = (Integer) in.readValue(Integer.class.getClassLoader());
+     //   publish_year = (Integer) in.readValue(Integer.class.getClassLoader());
         last_watch_time = (Integer) in.readValue(Integer.class.getClassLoader());
         is_active = (Integer) in.readValue(Integer.class.getClassLoader());
         genres = in.createStringArrayList();
@@ -204,11 +204,11 @@ public class LatestMovieList implements Parcelable {
         duration_str = in.readString();
         release_date = in.readString();
         language_str = in.readString();
-        if (in.readByte() == 0) {
+        /*if (in.readByte() == 0) {
             publish_year = null;
         } else {
             publish_year = in.readInt();
-        }
+        }*/
         if (in.readByte() == 0) {
             last_watch_time = null;
         } else {
@@ -411,6 +411,7 @@ public class LatestMovieList implements Parcelable {
         this.language_str = language_str;
     }
 
+/*
     public Integer getPublish_year() {
         return publish_year;
     }
@@ -418,6 +419,7 @@ public class LatestMovieList implements Parcelable {
     public void setPublish_year(Integer publish_year) {
         this.publish_year = publish_year;
     }
+*/
 
     public Integer getLast_watch_time() {
         return last_watch_time;
@@ -518,12 +520,12 @@ public class LatestMovieList implements Parcelable {
         dest.writeString(duration_str);
         dest.writeString(release_date);
         dest.writeString(language_str);
-        if (publish_year == null) {
+    /*    if (publish_year == null) {
             dest.writeByte((byte) 0);
         } else {
             dest.writeByte((byte) 1);
             dest.writeInt(publish_year);
-        }
+        }*/
         if (last_watch_time == null) {
             dest.writeByte((byte) 0);
         } else {
