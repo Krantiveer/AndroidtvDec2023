@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.ott.tv.model.phando.LatestMovieList;
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class FeaturesGenreAndMovie implements Parcelable {
 
     @SerializedName("videos")
     @Expose
-    private List<Video> videos = null;
+    private List<LatestMovieList> videos = null;
     @SerializedName("viewallName")
     @Expose
     private String viewallName;
@@ -48,7 +49,7 @@ public class FeaturesGenreAndMovie implements Parcelable {
         slug = in.readString();
         url = in.readString();
         viewType = in.readString();
-        videos = in.createTypedArrayList(Video.CREATOR);
+        videos = in.createTypedArrayList(LatestMovieList.CREATOR);
         viewallName = in.readString();
     }
 
@@ -112,11 +113,11 @@ public class FeaturesGenreAndMovie implements Parcelable {
         this.url = url;
     }
 
-    public List<Video> getVideos() {
+    public List<LatestMovieList> getVideos() {
         return videos;
     }
 
-    public void setVideos(List<Video> videos) {
+    public void setVideos(List<LatestMovieList> videos) {
         this.videos = videos;
     }
 

@@ -25,6 +25,7 @@ import com.ott.tv.R;
 import com.ott.tv.model.CountryModel;
 import com.ott.tv.model.home_content.FeaturesGenreAndMovie;
 import com.ott.tv.model.home_content.Video;
+import com.ott.tv.model.phando.LatestMovieList;
 import com.ott.tv.ui.activity.DetailsActivity;
 import com.ott.tv.ui.activity.DetailsActivityPhando;
 import com.ott.tv.ui.activity.DetailsActivityTvSeries;
@@ -61,7 +62,7 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
     }
 
     public interface SendInterfaceDataBottom {
-        void sendDescriptionBottom(Video description);
+        void sendDescriptionBottom(LatestMovieList description);
     }
 
     public SendInterfaceDataBottom SendInterfaceDataBottom;
@@ -208,8 +209,8 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
         }
     }
 
-    private void detailActivity(Video video) {
-        Video videoContent = video;
+    private void detailActivity(LatestMovieList video) {
+        LatestMovieList videoContent = video;
 
         if (videoContent.getType() == null) {
             videoContent.setType("M");

@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ott.tv.R;
 import com.ott.tv.model.home_content.FeaturesGenreAndMovie;
 import com.ott.tv.model.home_content.Video;
+import com.ott.tv.model.phando.LatestMovieList;
 
 import java.util.List;
 
@@ -77,12 +78,20 @@ public class HomeBannerSecAdapter extends RecyclerView.Adapter<HomeBannerSecAdap
             Log.i(TAG, "onBindViewHolder: "+listdata.get(position).getName());
             adapter.setSendInterfacedata(new HomeBannerSecAdapterbottom.SendInterfaceDataBottom() {
                 @Override
-                public void sendDescriptionBottom(Video description) {
+                public void sendDescriptionBottom(LatestMovieList description) {
                     Log.i(TAG, "sendDescriptionBottom: " + description.getTitle() + description.getDescription());
                     if (sendInterfacedata != null) {
                         sendInterfacedata.sendDescription(description);
                     }
                 }
+
+               /* @Override
+                public void sendDescriptionBottom(Video description) {
+                    Log.i(TAG, "sendDescriptionBottom: " + description.getTitle() + description.getDescription());
+                    if (sendInterfacedata != null) {
+                        sendInterfacedata.sendDescription(description);
+                    }
+                }*/
             });
             adapter.setSendInterfaceClick(() -> {
                 if(sendInterfaceclick!=null){

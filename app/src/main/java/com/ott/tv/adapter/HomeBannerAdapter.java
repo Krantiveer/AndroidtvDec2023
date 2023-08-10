@@ -19,16 +19,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.ott.tv.R;
 import com.ott.tv.model.home_content.Video;
+import com.ott.tv.model.phando.LatestMovieList;
 import com.ott.tv.ui.activity.DetailsActivity;
 import com.ott.tv.ui.activity.DetailsActivityTvSeries;
 
 import java.util.ArrayList;
 
 public class HomeBannerAdapter extends RecyclerView.Adapter<HomeBannerAdapter.ViewHolder> {
-    private ArrayList<Video> listdata;
+    private ArrayList<LatestMovieList> listdata;
     private Context context;
 
-    public HomeBannerAdapter(ArrayList<Video> listdata, Context context) {
+    public HomeBannerAdapter(ArrayList<LatestMovieList> listdata, Context context) {
         this.listdata = listdata;
         this.context = context;
     }
@@ -51,7 +52,7 @@ public class HomeBannerAdapter extends RecyclerView.Adapter<HomeBannerAdapter.Vi
     }
 
     public interface SendInterfacedata {
-        void sendDescription(Video description);
+        void sendDescription(LatestMovieList description);
     }
     public SendInterfacedata sendInterfacedata;
 
@@ -109,8 +110,8 @@ public class HomeBannerAdapter extends RecyclerView.Adapter<HomeBannerAdapter.Vi
             });
         }
     }
-    private void detailActivity(Video video) {
-        Video videoContent = video;
+    private void detailActivity(LatestMovieList video) {
+        LatestMovieList videoContent = video;
         if (videoContent.getActionType() != null) {
             if (videoContent.getActionType().equalsIgnoreCase("tvseries")) {
                 Intent intent = new Intent(context, DetailsActivityTvSeries.class);

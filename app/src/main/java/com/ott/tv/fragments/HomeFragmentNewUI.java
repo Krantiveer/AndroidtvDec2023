@@ -57,6 +57,7 @@ import com.ott.tv.database.DatabaseHelper;
 import com.ott.tv.model.home_content.FeaturesGenreAndMovie;
 import com.ott.tv.model.home_content.HomeContent;
 import com.ott.tv.model.home_content.Video;
+import com.ott.tv.model.phando.LatestMovieList;
 import com.ott.tv.model.phando.PlayerActivityNewCode;
 import com.ott.tv.network.RetrofitClient;
 import com.ott.tv.network.api.HomeApi;
@@ -104,7 +105,7 @@ public class HomeFragmentNewUI extends Fragment {
         return view;
     }
 
-    private void setTextViewBanner(Video video) {
+    private void setTextViewBanner(LatestMovieList video) {
         if (video.getType() != null) {
             if (!video.getType().equalsIgnoreCase("VM")) {
                 //  releasePlayer();
@@ -354,7 +355,7 @@ public class HomeFragmentNewUI extends Fragment {
             }
         }
     }
-
+/*
     private void loadRows(List<FeaturesGenreAndMovie> homeContents, ArrayList<Video> slideArrayList) {
 
         HomeBannerAdapter adapter = new HomeBannerAdapter(slideArrayList, getContext());
@@ -368,22 +369,26 @@ public class HomeFragmentNewUI extends Fragment {
         homeBannerSecAdapter.setSendInterfaceClick(() -> releasePlayer());
 
         recyclerViewBannerBottom.setAdapter(homeBannerSecAdapter);
-    }
+    }*/
 
+/*
     private void loadRowsnew(List<FeaturesGenreAndMovie> homeContents, ArrayList<Video> slideArrayList) {
 
         HomeBannerAdapter adapter = new HomeBannerAdapter(slideArrayList, getContext());
         adapter.setSendInterfacedata(description -> setTextViewBanner(description));
         adapter.setSendInterfaceClick(() -> releasePlayer());
         recyclerViewBannerTop.setAdapter(adapter);
+*/
 /*
         HomeBannerSecAdapter homeBannerSecAdapter = new HomeBannerSecAdapter(homeContents, getContext());
 
         homeBannerSecAdapter.setSendInterfacedata(description -> setTextViewBanner(description));
         homeBannerSecAdapter.setSendInterfaceClick(() -> releasePlayer());
 
-        recyclerViewBannerBottom.setAdapter(homeBannerSecAdapter);*/
+        recyclerViewBannerBottom.setAdapter(homeBannerSecAdapter);*//*
+
     }
+*/
 
     private void loadRows(List<FeaturesGenreAndMovie> homeContents) {
 
