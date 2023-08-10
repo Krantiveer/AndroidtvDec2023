@@ -54,12 +54,14 @@ import com.ott.tv.adapter.HomeBannerAdapter;
 import com.ott.tv.adapter.HomeBannerSecAdapter;
 
 import com.ott.tv.database.DatabaseHelper;
+import com.ott.tv.model.BrowseData;
 import com.ott.tv.model.home_content.FeaturesGenreAndMovie;
 import com.ott.tv.model.home_content.HomeContent;
 import com.ott.tv.model.home_content.Video;
 import com.ott.tv.model.phando.LatestMovieList;
 import com.ott.tv.model.phando.PlayerActivityNewCode;
 import com.ott.tv.network.RetrofitClient;
+import com.ott.tv.network.api.Dashboard;
 import com.ott.tv.network.api.HomeApi;
 import com.ott.tv.ui.activity.LoginChooserActivity;
 import com.ott.tv.utils.CMHelper;
@@ -88,6 +90,7 @@ public class HomeFragmentNewUI extends Fragment {
     private TextView textViewDuration;
 
     private HomeContent homeContent = null;
+    private BrowseData dataContent = null;
     private PlayerView exoPlayerView;
     protected @Nullable
     ExoPlayer player;
@@ -286,21 +289,25 @@ public class HomeFragmentNewUI extends Fragment {
             }
             String accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(requireContext());
             Retrofit retrofit = RetrofitClient.getRetrofitInstanceWithV1();
-            HomeApi api = retrofit.create(HomeApi.class);
-            Call<HomeContent> call = api.getHomeContent(accessToken);
-            call.enqueue(new Callback<HomeContent>() {
+            Dashboard api = retrofit.create(Dashboard.class);
+         //   Call<HomeContent> call = api.getHomeContent(accessToken);
+            Call<List<BrowseData>> call = api.getBrowseDataList(accessToken, "", "", "", "", 10, 1);
+
+            call.enqueue(new Callback<List<BrowseData>>() {
                 @Override
-                public void onResponse(@NotNull Call<HomeContent> call, @NotNull retrofit2.Response<HomeContent> response) {
+                public void onResponse(@NotNull Call<List<BrowseData>> call, @NotNull retrofit2.Response<List<BrowseData>> response) {
                     if (response.isSuccessful()) {
                         if (response.code() == 200 && response.body() != null) {
-                            homeContent = response.body();
-                            homeContent.setHomeContentId(1);
+                            //homeContent = response.body();
+                           // dataContent=response.body();
+                          //  homeContent.setHomeContentId(1);
                             Constants.IS_FROM_HOME = true;
-                            if (homeContent.getFeaturesGenreAndMovie() != null && !homeContent.getFeaturesGenreAndMovie().isEmpty()) {
-                                setTextViewBanner(homeContent.getFeaturesGenreAndMovie().get(0).getVideos().get(0));
-                                loadRows(homeContent.getFeaturesGenreAndMovie());
+                            if (response.body() != null && !response.body().isEmpty()) {
+                                setTextViewBanner(response.body().get(0).getList().get(0));
+                          //      setTextViewBanner(response.body().get(0).getVideos().get(0));
+                                loadRows(response.body());
                             }
-                            ArrayList<Video> slideArrayList = homeContent.getSlider().getSlideArrayList();
+                         //   ArrayList<Video> slideArrayList = homeContent.getSlider().getSlideArrayList();
 
                         } else if (response.code() == 401) {
                             signOut();
@@ -323,7 +330,7 @@ public class HomeFragmentNewUI extends Fragment {
                 }
 
                 @Override
-                public void onFailure(@NonNull Call<HomeContent> call, @NonNull Throwable t) {
+                public void onFailure(@NonNull Call<List<BrowseData>> call, @NonNull Throwable t) {
                     t.printStackTrace();
                     Log.e("@@error", t.getMessage()+ t.getLocalizedMessage()+t.toString());
                     CMHelper.setSnackBar(requireView(), t.getMessage().toString(), 2);
@@ -390,7 +397,7 @@ public class HomeFragmentNewUI extends Fragment {
     }
 */
 
-    private void loadRows(List<FeaturesGenreAndMovie> homeContents) {
+    private void loadRows(List<BrowseData> homeContents) {
 
         HomeBannerSecAdapter homeBannerSecAdapter = new HomeBannerSecAdapter(homeContents, getContext());
 

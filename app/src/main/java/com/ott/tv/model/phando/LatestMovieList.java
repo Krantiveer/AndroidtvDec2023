@@ -127,9 +127,7 @@ public class LatestMovieList implements Parcelable {
     @SerializedName("release")
     @Expose
     private String release;
-    @SerializedName("videos_id")
-    @Expose
-    private String videosId;
+
 
     @SerializedName("thumbnail_url")
     @Expose
@@ -286,7 +284,7 @@ public class LatestMovieList implements Parcelable {
         android_link = in.readString();
         trailer_aws_source = in.readString();
         release = in.readString();
-        videosId = in.readString();
+
         thumbnailUrl = in.readString();
         videoQuality = in.readString();
         isPaid = in.readString();
@@ -619,7 +617,6 @@ public class LatestMovieList implements Parcelable {
         dest.writeString(android_link);
         dest.writeString(trailer_aws_source);
         dest.writeString(release);
-        dest.writeString(videosId);
         dest.writeString(thumbnailUrl);
         dest.writeString(videoQuality);
         dest.writeString(isPaid);
@@ -654,13 +651,6 @@ public class LatestMovieList implements Parcelable {
         this.release = release;
     }
 
-    public String getVideosId() {
-        return videosId;
-    }
-
-    public void setVideosId(String videosId) {
-        this.videosId = videosId;
-    }
 
     public String getThumbnailUrl() {
         return thumbnailUrl;

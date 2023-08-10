@@ -49,10 +49,23 @@ public class BrowseData implements Parcelable {
     @SerializedName("image_orientation")
     @Expose
     private Integer image_orientation;
+    @SerializedName("viewallName")
+    @Expose
+    private String viewallName;
+
 
     @SerializedName("list")
     @Expose
     private List<LatestMovieList> list;
+
+    public String getViewallName() {
+        return viewallName;
+    }
+
+    public void setViewallName(String viewallName) {
+        this.viewallName = viewallName;
+    }
+
 
     protected BrowseData(Parcel in) {
         if (in.readByte() == 0) {

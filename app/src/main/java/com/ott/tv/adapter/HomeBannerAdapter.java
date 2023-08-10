@@ -115,7 +115,7 @@ public class HomeBannerAdapter extends RecyclerView.Adapter<HomeBannerAdapter.Vi
         if (videoContent.getActionType() != null) {
             if (videoContent.getActionType().equalsIgnoreCase("tvseries")) {
                 Intent intent = new Intent(context, DetailsActivityTvSeries.class);
-                intent.putExtra("id", videoContent.getVideosId());
+                intent.putExtra("id", videoContent.getId());
                 intent.putExtra("video_id", videoContent.getId());
                 intent.putExtra("actions_type", videoContent.getActionType());
                 intent.putExtra("type", videoContent.getType());
@@ -148,7 +148,7 @@ public class HomeBannerAdapter extends RecyclerView.Adapter<HomeBannerAdapter.Vi
             if (videoContent.getIsTvseries() != null) {
                 if (videoContent.getIsTvseries().equalsIgnoreCase("1")) {
                     Intent intent = new Intent(context, DetailsActivityTvSeries.class);
-                    intent.putExtra("id", videoContent.getVideosId());
+                    intent.putExtra("id", videoContent.getId());
                     intent.putExtra("video_id", videoContent.getId());
                     intent.putExtra("actions_type", "tvseries");
                     intent.putExtra("type", videoContent.getType());
@@ -164,7 +164,7 @@ public class HomeBannerAdapter extends RecyclerView.Adapter<HomeBannerAdapter.Vi
 
                 } else {
                     Intent intent = new Intent(context, DetailsActivity.class);
-                    intent.putExtra("video_id", videoContent.getVideosId());
+                    intent.putExtra("video_id", videoContent.getId());
                     intent.putExtra("type", videoContent.getType());
                     intent.putExtra("thumbImage", videoContent.getThumbnailUrl());
                     intent.putExtra("poster_url", videoContent.getPosterUrl());
@@ -180,7 +180,7 @@ public class HomeBannerAdapter extends RecyclerView.Adapter<HomeBannerAdapter.Vi
 
             } else {
                 Intent intent = new Intent(context, DetailsActivity.class);
-                intent.putExtra("video_id", videoContent.getVideosId());
+                intent.putExtra("video_id", videoContent.getId());
                 intent.putExtra("type", videoContent.getType());
                 intent.putExtra("thumbImage", videoContent.getThumbnailUrl());
                 intent.putExtra("poster_url", videoContent.getPosterUrl());

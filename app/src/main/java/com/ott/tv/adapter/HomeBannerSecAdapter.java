@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ott.tv.R;
+import com.ott.tv.model.BrowseData;
 import com.ott.tv.model.home_content.FeaturesGenreAndMovie;
 import com.ott.tv.model.home_content.Video;
 import com.ott.tv.model.phando.LatestMovieList;
@@ -24,10 +25,10 @@ import com.ott.tv.model.phando.LatestMovieList;
 import java.util.List;
 
 public class HomeBannerSecAdapter extends RecyclerView.Adapter<HomeBannerSecAdapter.ViewHolder> {
-    private List<FeaturesGenreAndMovie> listdata;
+    private List<BrowseData> listdata;
     private Context context;
 
-    public HomeBannerSecAdapter(List<FeaturesGenreAndMovie> listdata, Context context) {
+    public HomeBannerSecAdapter(List<BrowseData> listdata, Context context) {
         this.listdata = listdata;
         this.context = context;
     }
@@ -60,9 +61,8 @@ public class HomeBannerSecAdapter extends RecyclerView.Adapter<HomeBannerSecAdap
     @Override
     public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         if (listdata != null) {
-
-            holder.title_name.setText(listdata.get(position).getName());
-            listdata.get(position).setViewallName(listdata.get(position).getName());
+            holder.title_name.setText(listdata.get(position).getTitle());
+            listdata.get(position).setViewallName(listdata.get(position).getTitle());
             HomeBannerSecAdapterbottom homeBannerSecAdapterbottom = new HomeBannerSecAdapterbottom(listdata.get(position), context.getApplicationContext());
             holder.rVBannerBottom.setAdapter(homeBannerSecAdapterbottom);
             // Here we have assigned the layout
@@ -75,7 +75,7 @@ public class HomeBannerSecAdapter extends RecyclerView.Adapter<HomeBannerSecAdap
                     false);
 
             HomeBannerSecAdapterbottom adapter = new HomeBannerSecAdapterbottom(listdata.get(position), context.getApplicationContext());
-            Log.i(TAG, "onBindViewHolder: "+listdata.get(position).getName());
+            Log.i(TAG, "onBindViewHolder: "+listdata.get(position).getTitle());
             adapter.setSendInterfacedata(new HomeBannerSecAdapterbottom.SendInterfaceDataBottom() {
                 @Override
                 public void sendDescriptionBottom(LatestMovieList description) {
