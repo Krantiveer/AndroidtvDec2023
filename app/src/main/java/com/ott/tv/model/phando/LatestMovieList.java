@@ -123,6 +123,7 @@ public class LatestMovieList implements Parcelable {
     @SerializedName("android_link")
     @Expose
     private String android_link;
+    private String android_tv_link;
     private String trailer_aws_source;
     @SerializedName("release")
     @Expose
@@ -163,6 +164,14 @@ public class LatestMovieList implements Parcelable {
     @SerializedName("is_tvseries")
     @Expose
     private String isTvseries;
+
+    public String getAndroid_tv_link() {
+        return android_tv_link;
+    }
+
+    public void setAndroid_tv_link(String android_tv_link) {
+        this.android_tv_link = android_tv_link;
+    }
 
     public String getIsTvseries() {
         return isTvseries;

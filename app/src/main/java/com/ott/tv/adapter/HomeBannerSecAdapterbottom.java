@@ -229,20 +229,32 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
 
             }
             if (videoContent.getType().equalsIgnoreCase("OTT")) {
-             //   Intent intent = new Intent(context, ItemCountryActivity.class);
+                //   Intent intent = new Intent(context, ItemCountryActivity.class);
+                if (video.getAndroid_tv_link() != null) {
+                    Intent intent = context.getPackageManager().getLaunchIntentForPackage(
+                            video.getAndroid_tv_link().substring(video.getAndroid_tv_link().lastIndexOf("=") + 1)
+                    );
 
-                Intent intent = context.getPackageManager().getLaunchIntentForPackage(
-                        video.getAndroid_link().substring(video.getAndroid_link().lastIndexOf("=") + 1)
-                );
+                    if (intent == null) {
+                        intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(video.getAndroid_tv_link()));
+                    }
 
-                if (intent == null) {
-                    intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(video.getAndroid_link()));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                }else{
+                    Intent intent = context.getPackageManager().getLaunchIntentForPackage(
+                            video.getAndroid_link().substring(video.getAndroid_link().lastIndexOf("=") + 1)
+                    );
+
+                    if (intent == null) {
+                        intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(video.getAndroid_link()));
+                    }
+
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
                 }
-
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-
 
             }
 
@@ -302,15 +314,16 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
 
 
                 if (videoContent.getGenres() != null) {
-                  if(videoContent.getGenres().size()!=0){
-                    if (videoContent.getGenres().size() > 0) {
-                        String genres;
-                        genres = videoContent.getGenres().get(0);
-                        for (int i = 1; i < videoContent.getGenres().size(); i++) {
-                            genres = genres.concat("," + videoContent.getGenres().get(i));
+                    if (videoContent.getGenres().size() != 0) {
+                        if (videoContent.getGenres().size() > 0) {
+                            String genres;
+                            genres = videoContent.getGenres().get(0);
+                            for (int i = 1; i < videoContent.getGenres().size(); i++) {
+                                genres = genres.concat("," + videoContent.getGenres().get(i));
+                            }
+                            intent.putExtra("genres", genres);
                         }
-                        intent.putExtra("genres", genres);
-                    }}
+                    }
                 } else {
                     if (videoContent.getGenre() != null) {
                         intent.putExtra("genres", videoContent.getGenre());
@@ -327,8 +340,8 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
                     intent.putExtra("type", videoContent.getType());
                 if (videoContent.getThumbnail() != null) {
                     intent.putExtra("thumbImage", videoContent.getThumbnail());
-                }else{
-                    if(videoContent.getThumbnailUrl()!=null){
+                } else {
+                    if (videoContent.getThumbnailUrl() != null) {
                         intent.putExtra("thumbImage", videoContent.getThumbnailUrl());
                     }
                 }
@@ -372,14 +385,15 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
 
 
                 if (videoContent.getGenres() != null) {
-                    if(videoContent.getGenres().size()>0){
-                    String genres;
-                    genres = videoContent.getGenres().get(0);
-                    for (int i = 1; i < videoContent.getGenres().size(); i++) {
-                        genres = genres.concat("," + videoContent.getGenres().get(i));
+                    if (videoContent.getGenres().size() > 0) {
+                        String genres;
+                        genres = videoContent.getGenres().get(0);
+                        for (int i = 1; i < videoContent.getGenres().size(); i++) {
+                            genres = genres.concat("," + videoContent.getGenres().get(i));
+                        }
+                        intent.putExtra("genres", genres);
                     }
-                    intent.putExtra("genres", genres);
-                }} else {
+                } else {
                     if (videoContent.getGenre() != null) {
                         intent.putExtra("genres", videoContent.getGenre());
                     }
@@ -394,9 +408,10 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
                 Intent intent = new Intent(context, DetailsActivityPhando.class);
                 if (videoContent.getType() != null)
                     intent.putExtra("type", videoContent.getType());
-                if (videoContent.getThumbnail() != null){
-                    intent.putExtra("thumbImage", videoContent.getThumbnail());}else{
-                    if(videoContent.getThumbnailUrl()!=null){
+                if (videoContent.getThumbnail() != null) {
+                    intent.putExtra("thumbImage", videoContent.getThumbnail());
+                } else {
+                    if (videoContent.getThumbnailUrl() != null) {
                         intent.putExtra("thumbImage", videoContent.getThumbnailUrl());
                     }
                 }
@@ -438,14 +453,15 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
                 }
 
                 if (videoContent.getGenres() != null) {
-                    if(videoContent.getGenres().size()>0){
-                    String genres;
-                    genres = videoContent.getGenres().get(0);
-                    for (int i = 1; i < videoContent.getGenres().size(); i++) {
-                        genres = genres.concat("," + videoContent.getGenres().get(i));
+                    if (videoContent.getGenres().size() > 0) {
+                        String genres;
+                        genres = videoContent.getGenres().get(0);
+                        for (int i = 1; i < videoContent.getGenres().size(); i++) {
+                            genres = genres.concat("," + videoContent.getGenres().get(i));
+                        }
+                        intent.putExtra("genres", genres);
                     }
-                    intent.putExtra("genres", genres);
-                }} else {
+                } else {
                     if (videoContent.getGenre() != null) {
                         intent.putExtra("genres", videoContent.getGenre());
                     }
