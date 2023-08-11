@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.ott.tv.R;
+import com.ott.tv.model.BrowseData;
 import com.ott.tv.model.CountryModel;
 import com.ott.tv.model.home_content.FeaturesGenreAndMovie;
 import com.ott.tv.model.home_content.Video;
@@ -35,10 +36,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerSecAdapterbottom.ViewHolder> {
-    private FeaturesGenreAndMovie listdata;
+    private BrowseData listdata;
     private Context context;
 
-    public HomeBannerSecAdapterbottom(FeaturesGenreAndMovie listdata, Context context) {
+    public HomeBannerSecAdapterbottom(BrowseData listdata, Context context) {
         this.listdata = listdata;
         this.context = context;
     }
@@ -74,19 +75,20 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
 
     @Override
     public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        if (listdata.getName().equalsIgnoreCase("Continue watching")) {
+
+        if (listdata.getTitle().equalsIgnoreCase("Continue watching")) {
             holder.progressBarMovie.setVisibility(View.VISIBLE);
             int total_runtime;
             int percentageProgressbar;
             int watch_runtime;
-            if (listdata.getVideos().get(position) != null) {
-                if (listdata.getVideos().get(position).getRuntime_in_minutes() != null) {
-                    total_runtime = Integer.parseInt(listdata.getVideos().get(position).getRuntime_in_minutes());
+            if (listdata.getList().get(position) != null) {
+                if (listdata.getList().get(position).getRuntime_in_minutes() != null) {
+                    total_runtime = Integer.parseInt(listdata.getList().get(position).getRuntime_in_minutes());
                 } else {
                     total_runtime = 0;
                 }
-                if (listdata.getVideos().get(position).continue_watch_minutes.getLast_watched_at() != null) {
-                    watch_runtime = Integer.parseInt(listdata.getVideos().get(position).continue_watch_minutes.getLast_watched_at()) / 60;
+                if (listdata.getList().get(position).continue_watch_minutes.getLast_watched_at() != null) {
+                    watch_runtime = Integer.parseInt(listdata.getList().get(position).continue_watch_minutes.getLast_watched_at()) / 60;
                 } else {
                     watch_runtime = 100;
 
@@ -121,18 +123,18 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
                             .error(R.drawable.poster_placeholder_land)
                             .into(holder.main_image);
             } else*/
-            if (listdata.getVideos().get(position) != null) {
-                holder.title_name.setText(listdata.getVideos().get(position).getTitle());
+            if (listdata.getList().get(position) != null) {
+                holder.title_name.setText(listdata.getList().get(position).getTitle());
             }
 
-         /*   if (listdata.getVideos().get(position).getIsPaid()!=null) {
-            if (listdata.getVideos().get(position).getIsPaid().equalsIgnoreCase("0")) {
+         /*   if (listdata.getList().get(position).getIsPaid()!=null) {
+            if (listdata.getList().get(position).getIsPaid().equalsIgnoreCase("0")) {
                 holder.premiumIconImage.setVisibility(View.GONE);
             } else {
                 holder.premiumIconImage.setVisibility(View.VISIBLE);
             }}*/
-            if (listdata.getVideos().get(position).getIs_free() != null) {
-                if (listdata.getVideos().get(position).getIs_free().toString().equalsIgnoreCase("1")) {
+            if (listdata.getList().get(position).getIs_free() != null) {
+                if (listdata.getList().get(position).getIs_free().toString().equalsIgnoreCase("1")) {
                     holder.premiumIconImage.setVisibility(View.GONE);
                 } else {
                     holder.premiumIconImage.setVisibility(View.VISIBLE);
@@ -140,16 +142,16 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
                 }
             }
 
-            holder.primary_text.setText(listdata.getVideos().get(position).getTitle());
-            if (!TextUtils.isEmpty(listdata.getVideos().get(position).getThumbnailUrl())) {
+            holder.primary_text.setText(listdata.getList().get(position).getTitle());
+            if (!TextUtils.isEmpty(listdata.getList().get(position).getThumbnail())) {
                 Glide.with(context)
-                        .load(listdata.getVideos().get(position).getThumbnailUrl()).
+                        .load(listdata.getList().get(position).getThumbnail()).
                         placeholder(R.drawable.poster_placeholder_land)
                         .error(R.drawable.poster_placeholder_land)
                         .into(holder.main_image);
             } else {
                 Glide.with(context)
-                        .load(listdata.getVideos().get(position).getPosterUrl()).
+                        .load(listdata.getList().get(position).getPosterUrl()).
                         placeholder(R.drawable.poster_placeholder_land)
                         .error(R.drawable.poster_placeholder_land)
                         .into(holder.main_image);
@@ -157,18 +159,18 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
 
             holder.relativeLayout_parent.setOnClickListener(view -> {
                 //   Toast.makeText(view.getContext(), "click on item: " + position, Toast.LENGTH_LONG).show();
-                listdata.getVideos().get(position).setViewallName(listdata.getName());
-                detailActivity(listdata.getVideos().get(position));
+                listdata.getList().get(position).setViewallName(listdata.getTitle());
+                detailActivity(listdata.getList().get(position));
                 if (sendInterfaceClickSec != null) {
                     sendInterfaceClickSec.sendclickSec();
                 }
             });
             holder.relativeLayout_parent.setOnFocusChangeListener((view, b) -> {
-                if (listdata.getVideos().get(position).getTitle() != null) {
+                if (listdata.getList().get(position).getTitle() != null) {
                     //setTextViewBanner(myListData.getDescription());
-                    Log.i(TAG, "onFocusChange: " + listdata.getVideos().get(position).getTitle());
+                    Log.i(TAG, "onFocusChange: " + listdata.getList().get(position).getTitle());
                     if (SendInterfaceDataBottom != null) {
-                        SendInterfaceDataBottom.sendDescriptionBottom(listdata.getVideos().get(position));
+                        SendInterfaceDataBottom.sendDescriptionBottom(listdata.getList().get(position));
                     }
                 }
             });
@@ -179,11 +181,11 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
     @Override
     public int getItemCount() {
         Log.d(TAG, "getItemCount2: " + listdata);
-       /* if (listdata.getVideos().size() > 6) {
+       /* if (listdata.getList().size() > 6) {
             return 6;
         } else*/
         {
-            return listdata.getVideos().size();
+            return listdata.getList().size();
         }
     }
 
@@ -218,7 +220,7 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
         {
             if (videoContent.getType().equalsIgnoreCase("VM")) {
                 Intent intent = new Intent(context, ItemCountryActivity.class);
-                intent.putExtra("id", video.getVideosId().toString());
+                intent.putExtra("id", video.getId().toString());
 
                 intent.putExtra("title", videoContent.getViewallName());
 
@@ -257,8 +259,8 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
                 if (videoContent.getId() != null) {
                     intent.putExtra("video_id", videoContent.getId().toString());
                 } else {
-                    if (videoContent.getVideosId() != null)
-                        intent.putExtra("video_id", videoContent.getVideosId().toString());
+                    if (videoContent.getId() != null)
+                        intent.putExtra("video_id", videoContent.getId().toString());
                 }
                 if (videoContent.getTitle() != null)
                     intent.putExtra("title", videoContent.getTitle());
@@ -333,9 +335,6 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
 
                 if (videoContent.getId() != null) {
                     intent.putExtra("video_id", videoContent.getId().toString());
-                } else {
-                    if (videoContent.getVideosId() != null)
-                        intent.putExtra("video_id", videoContent.getVideosId().toString());
                 }
                 if (videoContent.getTitle() != null)
                     intent.putExtra("title", videoContent.getTitle());
@@ -403,9 +402,6 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
                 }
                 if (videoContent.getId() != null) {
                     intent.putExtra("video_id", videoContent.getId().toString());
-                } else {
-                    if (videoContent.getVideosId() != null)
-                        intent.putExtra("video_id", videoContent.getVideosId().toString());
                 }
                 if (videoContent.getTitle() != null)
                     intent.putExtra("title", videoContent.getTitle());
