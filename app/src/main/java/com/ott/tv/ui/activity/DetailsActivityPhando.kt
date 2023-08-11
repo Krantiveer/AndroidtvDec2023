@@ -698,160 +698,158 @@ class DetailsActivityPhando : FragmentActivity() {
         val subtitleList = ArrayList<SubtitleDataNew>()
 
         if (singleDetails != null) {
-            /*
-                        Singular.event("Click watch movie",
-                            Attributes.sngAttrContent.toString(),title,
-                            Attributes.sngAttrContentId.toString(),videoId,
-                            Attributes.sngAttrContentType.toString(), "ugccontent",
-                            Attributes.sngAttrSuccess.toString(), "SUCCESS"
-                        )
-                     */               //    Constants.IS_FROM_WATCH_NOW=true
-            PreferenceUtils.getInstance().setFocusFromWatchNowPref(this, true);
-            val videoList: List<Video> = ArrayList()
-            /*         for (Video video : singleDetails.getVideos()) {
-                if (video.getFileType() != null && !video.getFileType().equalsIgnoreCase("embed")) {
-                    videoList.add(video);
+            if (singleDetails!!.list != null) {
+                /*
+                            Singular.event("Click watch movie",
+                                Attributes.sngAttrContent.toString(),title,
+                                Attributes.sngAttrContentId.toString(),videoId,
+                                Attributes.sngAttrContentType.toString(), "ugccontent",
+                                Attributes.sngAttrSuccess.toString(), "SUCCESS"
+                            )
+                         */               //    Constants.IS_FROM_WATCH_NOW=true
+                PreferenceUtils.getInstance().setFocusFromWatchNowPref(this, true);
+                val videoList: List<Video> = ArrayList()
+                /*         for (Video video : singleDetails.getVideos()) {
+                    if (video.getFileType() != null && !video.getFileType().equalsIgnoreCase("embed")) {
+                        videoList.add(video);
+                    }
+                }*/if (tvWatchNow!!.text == null || !tvWatchNow!!.text.toString()
+                        .equals("Watch Now", ignoreCase = true)
+                ) {
+                    CMHelper.setSnackBar(
+                        this.currentFocus,
+                        "Enjoy Premium Content Watch anything without ads Watch  Please Subscribe Or Rent  from MOBILE APP | WEBSITE -  " + Config.DOMAIN,
+                        1,
+                        10000
+                    )
+                    return
+                } else if (singleDetails!!.list.media_url.isEmpty() && singleDetails!!.list.youtube_url.isEmpty()) {
+                    CMHelper.setSnackBar(
+                        this.currentFocus,
+                        "We are sorry, Video not available for your selected content",
+                        2
+                    )
+                    return
                 }
-            }*/if (tvWatchNow!!.text == null || !tvWatchNow!!.text.toString()
-                    .equals("Watch Now", ignoreCase = true)
-            ) {
-                CMHelper.setSnackBar(
-                    this.currentFocus,
-                    "Enjoy Premium Content Watch anything without ads Watch  Please Subscribe Or Rent  from MOBILE APP | WEBSITE -  " + Config.DOMAIN,
-                    1,
-                    10000
-                )
-                return
-            } else if (singleDetails!!.list.media_url.isEmpty() && singleDetails!!.list.youtube_url.isEmpty()) {
-                CMHelper.setSnackBar(
-                    this.currentFocus,
-                    "We are sorry, Video not available for your selected content",
-                    2
-                )
-                return
-            }
-            val video = PlaybackModel()
-            val videoListForIntent = ArrayList(videoList)
-            video.id = videoId!!.toLong()
-            video.title = title
-            video.description = description
-            video.videoType = Config.VideoURLTypeHls
-            // video.subtitle = singleDetails?.subtitle
+                val video = PlaybackModel()
+                val videoListForIntent = ArrayList(videoList)
+                video.id = videoId!!.toLong()
+                video.title = title
+                video.description = description
+                video.videoType = Config.VideoURLTypeHls
+                // video.subtitle = singleDetails?.subtitle
 
-            if (type == "M") {
-                video.category = "movie"
-            } else {
-                video.category = "movie"
-            }
-
-
-            //  video.setCategory(type);
-            if (singleDetails!!.list.is_youtube != null) {
-                if (singleDetails!!.list.is_youtube.toString().equals("1", ignoreCase = true)) {
-                    video.videoType = "youtube"
-                    video.videoUrl = singleDetails!!.list.youtube_url
+                if (type == "M") {
+                    video.category = "movie"
                 } else {
-
-                    video.videoType = "hls"
-                    video.videoUrl = singleDetails!!.list.media_url
+                    video.category = "movie"
                 }
-            }
-            video.cardImageUrl = poster_url
-            video.istrailer = false
-            video.bgImageUrl = thumbUrl
-            video.isPaid = "free"
-            if (is_live.equals("1", ignoreCase = true)) {
-                video.islive = is_live;
-            } else {
-                video.islive = "0"
-            }
-            if (singleDetails!!.list.is_youtube.toString().equals("3")) {
 
-                progDailog = ProgressDialog.show(this, "Loading", "Please wait...", true);
-                progDailog!!.setCancelable(false);
 
-                webView!!.visibility = View.VISIBLE
+                //  video.setCategory(type);
+                if (singleDetails!!.list.is_youtube != null) {
+                    if (singleDetails!!.list.is_youtube.toString().equals("1", ignoreCase = true)) {
+                        video.videoType = "youtube"
+                        video.videoUrl = singleDetails!!.list.youtube_url
+                    } else {
 
-                var url = singleDetails!!.list.external_url
-                Log.i(TAG, "payAndWatchTV: --->" + url)
-                webView!!.getSettings().setJavaScriptEnabled(true);
-                webView!!.getSettings().setLoadWithOverviewMode(true);
-                webView!!.getSettings().setUseWideViewPort(true);
-                webView!!.webViewClient = object : WebViewClient() {
-                    override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-                        progDailog!!.show()
-                        view.loadUrl(url)
-                        return true
-                    }
-
-                    override fun onPageFinished(view: WebView, url: String) {
-                        progDailog!!.dismiss()
+                        video.videoType = "hls"
+                        video.videoUrl = singleDetails!!.list.media_url
                     }
                 }
-                webView!!.loadUrl(url)
-
-                //      webView!!.webViewClient = WebViewClient()
-                //  webView!!.loadUrl("https://www.mxplayer.in/movie/watch-chennai-central-hindi-dubbed-movie-online-0dcdb2dad744506671b7ca7ef024c9ec?watch=true");
-                return
-            }
-            /*   if (singleDetails!!.list.is_youtube.toString().equals("0", ignoreCase = true)) {
-                   findViewById<WebView>(R.id.Webview).visibility = View.VISIBLE
-                   findViewById<FrameLayout>(R.id.contentView).visibility = View.GONE
-                   val mywebview = findViewById<View>(R.id.Webview) as WebView
-
-                       val urlIntent = Intent(
-                           Intent.ACTION_VIEW,
-                           Uri.parse("https://www.uvtv.in/watch/tvshow/episode/962")
-                       )
-                       startActivity(urlIntent)
-                 //  mywebview.loadUrl("https://www.uvtv.in/watch/tvshow/episode/962")
-
-               } else {*/
-            //  video.setVideo(singleDetails.getVideos().get(0));
-            var enable_subtitle = "false"
-            if (singleDetails!!.list.ccFiles != null) {
-                if (singleDetails!!.list.ccFiles.size > 0) {
-                    enable_subtitle = "true"
+                video.cardImageUrl = poster_url
+                video.istrailer = false
+                video.bgImageUrl = thumbUrl
+                video.isPaid = "free"
+                if (is_live.equals("1", ignoreCase = true)) {
+                    video.islive = is_live;
+                } else {
+                    video.islive = "0"
                 }
+                if (singleDetails!!.list.is_youtube.toString().equals("3")) {
+
+                    progDailog = ProgressDialog.show(this, "Loading", "Please wait...", true);
+                    progDailog!!.setCancelable(false);
+
+                    webView!!.visibility = View.VISIBLE
+
+                    var url = singleDetails!!.list.external_url
+                    Log.i(TAG, "payAndWatchTV: --->" + url)
+                    webView!!.getSettings().setJavaScriptEnabled(true);
+                    webView!!.getSettings().setLoadWithOverviewMode(true);
+                    webView!!.getSettings().setUseWideViewPort(true);
+                    webView!!.webViewClient = object : WebViewClient() {
+                        override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+                            progDailog!!.show()
+                            view.loadUrl(url)
+                            return true
+                        }
+
+                        override fun onPageFinished(view: WebView, url: String) {
+                            progDailog!!.dismiss()
+                        }
+                    }
+                    webView!!.loadUrl(url)
+
+                    //      webView!!.webViewClient = WebViewClient()
+                    //  webView!!.loadUrl("https://www.mxplayer.in/movie/watch-chennai-central-hindi-dubbed-movie-online-0dcdb2dad744506671b7ca7ef024c9ec?watch=true");
+                    return
+                }
+                /*   if (singleDetails!!.list.is_youtube.toString().equals("0", ignoreCase = true)) {
+                       findViewById<WebView>(R.id.Webview).visibility = View.VISIBLE
+                       findViewById<FrameLayout>(R.id.contentView).visibility = View.GONE
+                       val mywebview = findViewById<View>(R.id.Webview) as WebView
+
+                           val urlIntent = Intent(
+                               Intent.ACTION_VIEW,
+                               Uri.parse("https://www.uvtv.in/watch/tvshow/episode/962")
+                           )
+                           startActivity(urlIntent)
+                     //  mywebview.loadUrl("https://www.uvtv.in/watch/tvshow/episode/962")
+
+                   } else {*/
+                //  video.setVideo(singleDetails.getVideos().get(0));
+                var enable_subtitle = "false"
+                if (singleDetails!!.list.ccFiles != null) {
+                    if (singleDetails!!.list.ccFiles.size > 0) {
+                        enable_subtitle = "true"
+                    }
+                }
+                Log.i(TAG, "payAndWatchTV: " + singleDetails!!.list.ccFiles.size)
+                for (i in 0 until singleDetails!!.list.ccFiles.size) {
+                    // Access each element of the array
+
+                    /*      }
+
+                          for (i in 1..2) {*/
+                    val language = singleDetails!!.list.ccFiles.get(i).language
+                    val url = singleDetails!!.list.ccFiles.get(i).url
+                    subtitleList.add(SubtitleDataNew(language, url))
+                    Log.i(TAG, "payAndWatchTV22: " + language)
+
+                }
+
+
+                val intent = Intent(this, PlayerActivityNewCode::class.java)
+                intent.putExtra(VideoPlaybackActivity.EXTRA_VIDEO, video)
+                intent.putExtra("Enable_Subtile", enable_subtitle)
+                if (enable_subtitle.contentEquals("true")) {
+                    //  intent.putExtra("subtitle", singleDetails!!.list.ccFiles)
+                    intent.putParcelableArrayListExtra("subtitle", subtitleList)
+
+                    // intent.putParcelableArrayListExtra("subtitle", singleDetails!!.list.ccFiles)
+
+                    //     intent.putExtra("CC_FILES_DATA", singleDetails!!.list.ccFiles);
+
+                    //    intent.putParcelableArrayListExtra("cc_files_list", new ArrayList<>(singleDetails!!.list.ccFiles))
+
+
+                }
+                startActivity(intent)
+
             }
-            Log.i(TAG, "payAndWatchTV: "+singleDetails!!.list.ccFiles.size)
-            for (i in 0 until singleDetails!!.list.ccFiles.size) {
-                // Access each element of the array
-
-      /*      }
-
-            for (i in 1..2) {*/
-                val language = singleDetails!!.list.ccFiles.get(i).language
-                val url = singleDetails!!.list.ccFiles.get(i).url
-                subtitleList.add(SubtitleDataNew(language, url))
-                Log.i(TAG, "payAndWatchTV22: "+language)
-
-            }
-
-
-
-
-            val intent = Intent(this, PlayerActivityNewCode::class.java)
-            intent.putExtra(VideoPlaybackActivity.EXTRA_VIDEO, video)
-            intent.putExtra("Enable_Subtile", enable_subtitle)
-            if (enable_subtitle.contentEquals("true")) {
-              //  intent.putExtra("subtitle", singleDetails!!.list.ccFiles)
-                intent.putParcelableArrayListExtra("subtitle", subtitleList)
-
-                // intent.putParcelableArrayListExtra("subtitle", singleDetails!!.list.ccFiles)
-
-                //     intent.putExtra("CC_FILES_DATA", singleDetails!!.list.ccFiles);
-
-                //    intent.putParcelableArrayListExtra("cc_files_list", new ArrayList<>(singleDetails!!.list.ccFiles))
-
-
-
-            }
-            startActivity(intent)
-
         }
     }
-
 
 
     fun trailerClick() {
@@ -1128,8 +1126,13 @@ class DetailsActivityPhando : FragmentActivity() {
         if (singleDetails!!.list.is_free == 2) {
             tvWatchNow!!.setText("Pay and Watch ")
         }
-        if(singleDetails!!.mediaCode.contentEquals("buyed")||singleDetails!!.mediaCode.contentEquals("package_purchased")
-            ||singleDetails!!.mediaCode.contentEquals("package_purchased")||singleDetails!!.mediaCode.contentEquals("rented_and_can_buy")){
+        if (singleDetails!!.mediaCode.contentEquals("buyed") || singleDetails!!.mediaCode.contentEquals(
+                "package_purchased"
+            )
+            || singleDetails!!.mediaCode.contentEquals("package_purchased") || singleDetails!!.mediaCode.contentEquals(
+                "rented_and_can_buy"
+            )
+        ) {
             tvWatchNow!!.text = "Watch Now"
 
         }
