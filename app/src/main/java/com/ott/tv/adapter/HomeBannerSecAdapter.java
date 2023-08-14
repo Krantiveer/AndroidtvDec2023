@@ -37,6 +37,7 @@ public class HomeBannerSecAdapter extends RecyclerView.Adapter<HomeBannerSecAdap
         void sendclick();
     }
     public HomeBannerSecAdapter.SendInterfaceClick sendInterfaceclick;
+    public HomeBannerSecAdapter.SendInterfaceClick sendInterfaceclickvertical;
 
     public void setSendInterfaceClick(HomeBannerSecAdapter.SendInterfaceClick sendInterfaceclick) {
         this.sendInterfaceclick = sendInterfaceclick;
@@ -61,10 +62,66 @@ public class HomeBannerSecAdapter extends RecyclerView.Adapter<HomeBannerSecAdap
     @Override
     public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         if (listdata != null) {
-            holder.title_name.setText(listdata.get(position).getTitle());
+            if(listdata.get(position).getDisplayType().equalsIgnoreCase("TOP_BANNER")){
+                holder.title_name.setVisibility(View.INVISIBLE);
+            }else{
+                holder.title_name.setText(listdata.get(position).getTitle());
+            }
+
+
             listdata.get(position).setViewallName(listdata.get(position).getTitle());
             HomeBannerSecAdapterbottom homeBannerSecAdapterbottom = new HomeBannerSecAdapterbottom(listdata.get(position), context.getApplicationContext());
-            holder.rVBannerBottom.setAdapter(homeBannerSecAdapterbottom);
+            HomeBannerSecAdapterbottomVertical homeBannerSecAdapterbottomVertical = new HomeBannerSecAdapterbottomVertical(listdata.get(position), context.getApplicationContext());
+            if(listdata.get(position).getImage_orientation()!=null){
+                if(listdata.get(position).getImage_orientation().toString().equalsIgnoreCase("1")){
+                    holder.rVBannerBottom.setAdapter(homeBannerSecAdapterbottomVertical);
+                    HomeBannerSecAdapterbottomVertical adaptervertical = new HomeBannerSecAdapterbottomVertical(listdata.get(position), context.getApplicationContext());
+
+                    adaptervertical.setSendInterfacedata(new HomeBannerSecAdapterbottomVertical.SendInterfaceDataBottom() {
+                        @Override
+                        public void sendDescriptionBottom(LatestMovieList description) {
+                            Log.i(TAG, "sendDescriptionBottom: " + description.getTitle() + description.getDescription());
+                            if (sendInterfacedata != null) {
+                                sendInterfacedata.sendDescription(description);
+                            }
+                        }
+                    });
+                    adaptervertical.setSendInterfaceClick(() -> {
+                        if(sendInterfaceclick!=null){
+                            sendInterfaceclick.sendclick();
+                        }
+                    });
+                    holder.rVBannerBottom.setAdapter(adaptervertical);
+                }else{
+                    holder.rVBannerBottom.setAdapter(homeBannerSecAdapterbottom);
+                    HomeBannerSecAdapterbottom adapter = new HomeBannerSecAdapterbottom(listdata.get(position), context.getApplicationContext());
+                    adapter.setSendInterfacedata(new HomeBannerSecAdapterbottom.SendInterfaceDataBottom() {
+                        @Override
+                        public void sendDescriptionBottom(LatestMovieList description) {
+                            Log.i(TAG, "sendDescriptionBottom: " + description.getTitle() + description.getDescription());
+                            if (sendInterfacedata != null) {
+                                sendInterfacedata.sendDescription(description);
+                            }
+                        }
+
+               /* @Override
+                public void sendDescriptionBottom(Video description) {
+                    Log.i(TAG, "sendDescriptionBottom: " + description.getTitle() + description.getDescription());
+                    if (sendInterfacedata != null) {
+                        sendInterfacedata.sendDescription(description);
+                    }
+                }*/
+                    });
+                    adapter.setSendInterfaceClick(() -> {
+                        if(sendInterfaceclick!=null){
+                            sendInterfaceclick.sendclick();
+                        }
+                    });
+                    holder.rVBannerBottom.setAdapter(adapter);
+                }
+
+            }
+
             // Here we have assigned the layout
             // as LinearLayout with vertical orientation
             LinearLayoutManager layoutManager
@@ -74,9 +131,9 @@ public class HomeBannerSecAdapter extends RecyclerView.Adapter<HomeBannerSecAdap
                     LinearLayoutManager.HORIZONTAL,
                     false);
 
-            HomeBannerSecAdapterbottom adapter = new HomeBannerSecAdapterbottom(listdata.get(position), context.getApplicationContext());
+
             Log.i(TAG, "onBindViewHolder: "+listdata.get(position).getTitle());
-            adapter.setSendInterfacedata(new HomeBannerSecAdapterbottom.SendInterfaceDataBottom() {
+          /*  adaptervertical.setSendInterfacedata(new HomeBannerSecAdapterbottomVertical().SendInterfaceDataBottomVertical() {
                 @Override
                 public void sendDescriptionBottom(LatestMovieList description) {
                     Log.i(TAG, "sendDescriptionBottom: " + description.getTitle() + description.getDescription());
@@ -85,20 +142,9 @@ public class HomeBannerSecAdapter extends RecyclerView.Adapter<HomeBannerSecAdap
                     }
                 }
 
-               /* @Override
-                public void sendDescriptionBottom(Video description) {
-                    Log.i(TAG, "sendDescriptionBottom: " + description.getTitle() + description.getDescription());
-                    if (sendInterfacedata != null) {
-                        sendInterfacedata.sendDescription(description);
-                    }
-                }*/
-            });
-            adapter.setSendInterfaceClick(() -> {
-                if(sendInterfaceclick!=null){
-                    sendInterfaceclick.sendclick();
-                }
-            });
-            holder.rVBannerBottom.setAdapter(adapter);
+            });*/
+
+
 
            /* holder.relativeLayout.setOnClickListener(view -> {
                 Toast.makeText(view.getContext(), "click on item: " + position, Toast.LENGTH_LONG).show();

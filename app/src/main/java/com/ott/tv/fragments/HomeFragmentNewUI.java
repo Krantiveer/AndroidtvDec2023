@@ -137,8 +137,14 @@ public class HomeFragmentNewUI extends Fragment {
 
                 /*Glide.with(getContext()).load(video.getImageLink()).into(imageViewBGBanner);*/
                 if (video.getImageLink() == null) {
-                    video.setImageLink(video.getThumbnailUrl());
+               if(video.getThumbnailUrl()!=null){
+                   video.setImageLink(video.getThumbnailUrl());
+               }else if(video.getThumbnail()!=null){
+                   video.setImageLink(video.getThumbnail());
+
+               }
                 }
+
                 if (getActivity() == null) {
                     return;
                 }

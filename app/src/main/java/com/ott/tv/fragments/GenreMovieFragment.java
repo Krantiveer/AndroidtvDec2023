@@ -299,7 +299,7 @@ public class GenreMovieFragment extends VerticalGridSupportFragment {
                     getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
 
                 }
-                if (videoContent.getType().equalsIgnoreCase("VM")) {
+                if (videoContent.getType().equalsIgnoreCase("VM") || videoContent.getType().equalsIgnoreCase("GENRE")) {
                     Intent intent = new Intent(getActivity(), ItemCountryActivity.class);
                     intent.putExtra("id", videoContent.getId().toString());
 

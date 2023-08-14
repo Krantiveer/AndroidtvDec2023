@@ -492,7 +492,7 @@ public class HomeFragment extends RowsSupportFragment {
                     getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
 
                 }
-                if (videoContent.getType().equalsIgnoreCase("VM")) {
+                if (videoContent.getType().equalsIgnoreCase("VM") || videoContent.getType().equalsIgnoreCase("GENRE")) {
                     Intent intent = new Intent(getActivity(), ItemCountryActivity.class);
                     intent.putExtra("id", videoContent.getId().toString());
                     intent.putExtra("title", videoContent.getViewallTitle());

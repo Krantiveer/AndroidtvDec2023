@@ -180,7 +180,7 @@ public class ItemCountryFragment extends VerticalGridSupportFragment {
             }
 
 
-            if (videoContent.getType().equalsIgnoreCase("VM")) {
+            if (videoContent.getType().equalsIgnoreCase("VM") || videoContent.getType().equalsIgnoreCase("GENRE")) {
                 Intent intent = new Intent(getContext(), ItemCountryActivity.class);
                 intent.putExtra("id", videoContent.getId().toString());
                 if (videoContent.getGenres() != null) {
