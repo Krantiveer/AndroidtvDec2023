@@ -36,6 +36,7 @@ public class PreferenceUtils {
     public static final String country_name = "country_name";
     public static final String uvtv_state_name = "uvtv_state_name";
     public static final String access_token = "access_token";
+    public static final String access_coupon = "access_coupon";
     public static final String state_name = "state_name";
     public static final Integer watch_list = 0;
     public static final String npawAccountKey = "";
@@ -251,6 +252,18 @@ public class PreferenceUtils {
     public String getAccessTokenPref(Context context) {
         return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
                 .getString(access_token, "");
+    }
+
+    public void setAccessCouponPref(Context context, String accessToken) {
+        SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(access_coupon, accessToken);
+        editor.apply();
+    }
+
+    public String getAccessCouponPref(Context context) {
+        return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
+                .getString(access_coupon, "");
     }
 
     public void setStateNamePref(Context context, String name) {

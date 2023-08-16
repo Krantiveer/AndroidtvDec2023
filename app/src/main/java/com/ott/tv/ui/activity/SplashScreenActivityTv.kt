@@ -141,10 +141,11 @@ class SplashScreenActivityTv : Activity() {
     }
 
     private fun openHome() {
+        Log.i(TAG, "openHome:--> "+PreferenceUtils.getInstance().getAccessCouponPref(applicationContext)+PreferenceUtils.getInstance().getLogin_With_CouponsPref(application))
 
         if (PreferenceUtils.isLoggedIn(this)) {
             if (BuildConfig.FLAVOR.contentEquals("solidtv")) {
-                if (PreferenceUtils.getInstance().getLogin_With_CouponsPref(applicationContext).contentEquals("1")) {
+                if (PreferenceUtils.getInstance().getLogin_With_CouponsPref(applicationContext).toString().contentEquals("1")) {
                     val intent = Intent(this, NewMainActivity::class.java)
                     startActivity(intent)
                 }else{

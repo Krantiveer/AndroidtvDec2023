@@ -67,7 +67,7 @@ public class HomeBannerSecAdapterbottomVertical extends RecyclerView.Adapter<Hom
     @Override
     public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        if (listdata.getTitle().equalsIgnoreCase("Continue watching")) {
+      /*  if (listdata.getTitle().equalsIgnoreCase("Continue watching")) {
             holder.progressBarMovie.setVisibility(View.VISIBLE);
             int total_runtime;
             int percentageProgressbar;
@@ -78,9 +78,15 @@ public class HomeBannerSecAdapterbottomVertical extends RecyclerView.Adapter<Hom
                 } else {
                     total_runtime = 0;
                 }
+                if(listdata.getList().get(position).continue_watch_minutes!=null){
                 if (listdata.getList().get(position).continue_watch_minutes.getLast_watched_at() != null) {
                     watch_runtime = Integer.parseInt(listdata.getList().get(position).continue_watch_minutes.getLast_watched_at()) / 60;
                 } else {
+                    watch_runtime = 100;
+
+                }
+                }
+                else{
                     watch_runtime = 100;
 
                 }
@@ -103,7 +109,7 @@ public class HomeBannerSecAdapterbottomVertical extends RecyclerView.Adapter<Hom
             }
         } else {
 
-        }
+        }*/
         if (true) {
             /*if (position == 5) {
                 holder.primary_text.setText(listdata.getVideos().get(position).getTitle());

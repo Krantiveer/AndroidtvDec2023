@@ -412,6 +412,10 @@ public class LoginMobileActivity extends Activity {
                         if (response.code() == 200 && response.body() != null) {
                             userProfile = response.body();
 
+                            if(userProfile.getIs_subscribed()!=0){
+                                PreferenceUtils.getInstance().setAccessCouponPref(getApplication(),"1");
+                                PreferenceUtils.getInstance().setLogin_With_CouponsPref(getApplicationContext(), "1");
+                            }
                             if (userProfile.getIs_subscribed() == 0) {
 
                                     ll_coupon_code.setVisibility(View.VISIBLE);

@@ -135,6 +135,8 @@ public class CouponCodeScreenActivity extends Activity {
                     assert response.body() != null;
                     if (response.body().getStatus().equalsIgnoreCase("success")) {
                         PreferenceUtils.getInstance().setLogin_With_CouponsPref(getApplicationContext(), "1");
+                     //   PreferenceUtils.getInstance().setAccessCouponPref(getApplicationContext(), "1");
+
                         gotoMainScreen();
                         progressBar.setVisibility(View.GONE);
                     } else {

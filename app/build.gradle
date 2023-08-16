@@ -92,8 +92,8 @@ android {
         }*/
         solidtv {
             applicationId "com.solidtv"
-            versionCode 1
-            versionName "1"
+            versionCode 3
+            versionName "3"
         }
       /*  kaafaltv {
             applicationId "com.kaafaltv.tv"

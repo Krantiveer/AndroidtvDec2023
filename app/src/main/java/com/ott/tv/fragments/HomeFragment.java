@@ -303,7 +303,6 @@ public class HomeFragment extends RowsSupportFragment {
             HeaderItem header;
             if (movieListContent.get(i).getDisplayType().equalsIgnoreCase("TOP_BANNER")) {
                 listRowAdapter = new ArrayObjectAdapter(cardPresenterBanner);
-                header = new HeaderItem(i, "");
                 rowsAdapter.add(new ListRow(listRowAdapter));
             }
             else {

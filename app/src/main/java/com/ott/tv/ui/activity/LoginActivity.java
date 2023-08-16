@@ -141,7 +141,8 @@ public class LoginActivity extends Activity {
                 if (response.code() == 200) {
                     assert response.body() != null;
                     if (response.body().getStatus().equalsIgnoreCase("success")) {
-                        PreferenceUtils.getInstance().setLogin_With_CouponsPref(getApplicationContext(), "1");
+                       // PreferenceUtils.getInstance().setLogin_With_CouponsPref(getApplicationContext(), "1");
+                        PreferenceUtils.getInstance().setAccessCouponPref(getApplicationContext(), "1");
                         gotoMainScreen();
                         progressBar.setVisibility(View.GONE);
                     } else {
@@ -280,6 +281,9 @@ public class LoginActivity extends Activity {
 
                             } else {
                                 gotoMainScreen();
+                                PreferenceUtils.getInstance().setLogin_With_CouponsPref(getApplicationContext(), "1");
+                             //   PreferenceUtils.getInstance().setAccessCouponPref(getApplicationContext(), "1");
+
 
                             }
                         } else if (response.errorBody() != null) {

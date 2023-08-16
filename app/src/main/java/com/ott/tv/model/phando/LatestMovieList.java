@@ -164,6 +164,18 @@ public class LatestMovieList implements Parcelable {
     @SerializedName("is_tvseries")
     @Expose
     private String isTvseries;
+    @SerializedName("is_Subscribe")
+    @Expose
+    private String is_Subscribe;
+
+
+    public String getIs_Subscribe() {
+        return is_Subscribe;
+    }
+
+    public void setIs_Subscribe(String is_Subscribe) {
+        this.is_Subscribe = is_Subscribe;
+    }
 
     public String getAndroid_tv_link() {
         return android_tv_link;
