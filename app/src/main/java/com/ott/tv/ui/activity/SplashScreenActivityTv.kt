@@ -12,9 +12,12 @@ import android.view.KeyEvent
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
 import android.widget.VideoView
 import com.ott.tv.BuildConfig
+import com.ott.tv.Constants
 import com.ott.tv.R
+import com.ott.tv.model.phando.UserProfile
 import com.ott.tv.network.RetrofitClient
 import com.ott.tv.network.api.AppInfo
 import com.ott.tv.network.api.Dashboard
@@ -29,6 +32,8 @@ class SplashScreenActivityTv : Activity() {
 
     lateinit var sharedPreferences: SharedPreferences
     var accestoken: String? = null
+    var subscribe: String? = null
+    private var userProfile: UserProfile? = null
 
     private val TAG = SplashScreenActivityTv::class.java.simpleName
 
@@ -89,6 +94,9 @@ class SplashScreenActivityTv : Activity() {
                 }
             }
         })
+        if (BuildConfig.FLAVOR.contentEquals("solidtv")) {
+            getUserProfileDataFromServer()
+        }
 
 
         if (BuildConfig.FLAVOR.equals(
@@ -139,6 +147,57 @@ class SplashScreenActivityTv : Activity() {
 
 
     }
+    private fun getUserProfileDataFromServer() {
+        if (applicationContext != null) {
+            Constants.IS_FROM_HOME = false
+            val retrofit = RetrofitClient.getRetrofitInstance()
+            val api = retrofit.create(Dashboard::class.java)
+            val accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(
+                applicationContext
+            )
+            val call = api.getUserProfileAPI(accessToken)
+            call.enqueue(object : Callback<UserProfile?> {
+                override fun onResponse(
+                    call: Call<UserProfile?>,
+                    response: Response<UserProfile?>
+                ) {
+                    if (response.isSuccessful) {
+                        if (response.code() == 200 && response.body() != null) {
+                            userProfile = response.body()
+                            if (userProfile?.getIs_subscribed() == 0) {
+                                subscribe="false"
+                            } else {
+                                subscribe="true"
+                             //   PreferenceUtils.getInstance().setAccessCouponPref(getApplicationContext(), "1");
+                            }
+                        } else if (response.errorBody() != null) {
+
+                        } else {
+                        }
+                        if (userProfile?.getIs_review() == 1) {
+                        } else if (userProfile?.getIs_review() == 0) {
+                        }
+                    } else {
+                        if (response.code() == 401) {
+                            //   CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter OTP"), 2, 10000);
+                            //     Toast.makeText(getContext(), "Please Login Again", Toast.LENGTH_SHORT).show();
+                        } else {
+                        }
+
+
+                        //  Toast.makeText(getContext(), "Sorry! Something went wrong. Please try again after some time", Toast.LENGTH_SHORT).show();
+
+                        //CMHelper.setSnackBar(requireView(), "Sorry! Something went wrong. Please try again after some time", 2);
+                    }
+                }
+
+                override fun onFailure(call: Call<UserProfile?>, t: Throwable) {
+                    t.printStackTrace()
+                }
+            })
+        }
+    }
+
 
     private fun openHome() {
         Log.i(TAG, "openHome:--> "+PreferenceUtils.getInstance().getAccessCouponPref(applicationContext)+PreferenceUtils.getInstance().getLogin_With_CouponsPref(application))
@@ -149,9 +208,14 @@ class SplashScreenActivityTv : Activity() {
                     val intent = Intent(this, NewMainActivity::class.java)
                     startActivity(intent)
                 }else{
+                    if(subscribe.contentEquals("true")){
+                        val intent = Intent(this, NewMainActivity::class.java)
+                        startActivity(intent)
+
+                    }else{
                     val intent = Intent(this, CouponCodeScreenActivity::class.java)
                     startActivity(intent)
-                }
+                }}
             }else{
                 val intent = Intent(this, NewMainActivity::class.java)
                 startActivity(intent)

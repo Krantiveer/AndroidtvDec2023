@@ -128,6 +128,7 @@
                     android:background="@drawable/button_focus"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
+                    android:visibility="gone"
                     android:onClick="bt_verified_login"
                     android:paddingTop="@dimen/_10sdp"
                     android:paddingBottom="@dimen/_10sdp"

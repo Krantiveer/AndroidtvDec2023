@@ -20,13 +20,16 @@ public interface SendOTPApi {
     @FormUrlEncoded
     @POST("send-otp")
     Call<User> postSendOTP(@Header("API-KEY") String apiKey,
-                               @Field("mobile") String mobile,
-                               @Field("country_code") String country_code);
+                           @Field("mobile") String mobile,
+                           @Field("country_code") String country_code);
+
     @FormUrlEncoded
     @POST("verify-otp")
     Call<User> postVerifyOTP(@Header("API-KEY") String apiKey,
-                               @Field("mobile") String mobile,
-                               @Field("otp") String otp);
+                             @Field("mobile") String mobile,
+                             @Field("otp") String otp,
+                             @Field("country_code") String country_code);
+
     @FormUrlEncoded
     @POST("assignCoupon")
     Call<CouponModel> assignCoupon(@Header("API-KEY") String apiKey,
@@ -34,20 +37,18 @@ public interface SendOTPApi {
                                    @Field("coupon_code") String coupon_code);
 
 
-
-  /*  //qr api call
-    GET {{url}}/check-access-code?access_code={{access_code}}
-    headers {
-        Accept:application/json
-        publisherid:{{publisherid}}
-        Params {
-            access_code:{{access_code}}
-        }
-    }*/
+    /*  //qr api call
+      GET {{url}}/check-access-code?access_code={{access_code}}
+      headers {
+          Accept:application/json
+          publisherid:{{publisherid}}
+          Params {
+              access_code:{{access_code}}
+          }
+      }*/
     @GET("check-access-code")
     Call<User> getCheckAccessCode(@Header("API-KEY") String apiKey,
-                                @Query("access_code") String accessCode);
-
+                                  @Query("access_code") String accessCode);
 
 
 }

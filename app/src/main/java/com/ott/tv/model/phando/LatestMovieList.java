@@ -166,9 +166,17 @@ public class LatestMovieList implements Parcelable {
     private String isTvseries;
     @SerializedName("is_Subscribe")
     @Expose
-    private String is_Subscribe;
+    private Integer is_Subscribe;
 
+    public Integer getIs_Subscribe() {
+        return is_Subscribe;
+    }
 
+    public void setIs_Subscribe(Integer is_Subscribe) {
+        this.is_Subscribe = is_Subscribe;
+    }
+
+/*
     public String getIs_Subscribe() {
         return is_Subscribe;
     }
@@ -176,6 +184,7 @@ public class LatestMovieList implements Parcelable {
     public void setIs_Subscribe(String is_Subscribe) {
         this.is_Subscribe = is_Subscribe;
     }
+*/
 
     public String getAndroid_tv_link() {
         return android_tv_link;
