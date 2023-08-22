@@ -216,7 +216,7 @@ class HomeBannerSecAdapterbottomVertical(
                         // CMHelper.setSnackBar(,  "Enjoy Premium Content Watch anything without ads Watch  Please Subscribe Or Rent  from MOBILE APP | WEBSITE -" + Config.WebsiteURL, 2);
                         Toast.makeText(
                             context,
-                            "Enjoy Premium Content Watch anything without ads Watch  Please Subscribe Or Rent  from MOBILE APP | WEBSITE -" + Config.WebsiteURL,
+                            "Unlock Exclusive Content By Subscribing Today from MOBILE APP | WEBSITE -" + Config.WebsiteURL,
                             Toast.LENGTH_LONG
                         ).show()
                         return

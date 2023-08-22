@@ -21,6 +21,7 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.ott.tv.Config;
 import com.ott.tv.R;
 import com.ott.tv.model.BrowseData;
 import com.ott.tv.model.CountryModel;
@@ -229,6 +230,19 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
 
             }
             if (videoContent.getType().equalsIgnoreCase("OTT")) {
+                if (video.getIs_Subscribe() != null) {
+                    if (video.getIs_Subscribe().toString().equalsIgnoreCase("0")) {
+                        //  CMHelper.setSnackBar(context, "Enjoy Premium Content Watch anything without ads Watch  Please Subscribe Or Rent  from MOBILE APP | WEBSITE -" + Config.WebsiteURL, 1, 10000);
+                        // CMHelper.setSnackBar(,  "Enjoy Premium Content Watch anything without ads Watch  Please Subscribe Or Rent  from MOBILE APP | WEBSITE -" + Config.WebsiteURL, 2);
+                        Toast.makeText(
+                                context,
+                                "Unlock Exclusive Content By Subscribing Today from MOBILE APP | WEBSITE -" + Config.WebsiteURL,
+                                Toast.LENGTH_LONG
+                        ).show();
+                        return;
+                    }
+                }
+
                 //   Intent intent = new Intent(context, ItemCountryActivity.class);
                 if (video.getAndroid_tv_link() != null) {
                     Intent intent = context.getPackageManager().getLaunchIntentForPackage(
