@@ -210,8 +210,8 @@ class HomeBannerSecAdapterbottomVertical(
                 context.startActivity(intent)
             }
             if (video.type.equals("OTT", ignoreCase = true)) {
-                if (video.is_Subscribe != null) {
-                    if (video.is_Subscribe.toString().equals("0", ignoreCase = true)) {
+                if (video.is_subscribed != null) {
+                    if (video.is_subscribed.toString().equals("0", ignoreCase = true)) {
                         //  CMHelper.setSnackBar(context, "Enjoy Premium Content Watch anything without ads Watch  Please Subscribe Or Rent  from MOBILE APP | WEBSITE -" + Config.WebsiteURL, 1, 10000);
                         // CMHelper.setSnackBar(,  "Enjoy Premium Content Watch anything without ads Watch  Please Subscribe Or Rent  from MOBILE APP | WEBSITE -" + Config.WebsiteURL, 2);
                         Toast.makeText(

@@ -836,14 +836,9 @@ class DetailsActivityPhando : FragmentActivity() {
                 if (enable_subtitle.contentEquals("true")) {
                     //  intent.putExtra("subtitle", singleDetails!!.list.ccFiles)
                     intent.putParcelableArrayListExtra("subtitle", subtitleList)
-
                     // intent.putParcelableArrayListExtra("subtitle", singleDetails!!.list.ccFiles)
-
                     //     intent.putExtra("CC_FILES_DATA", singleDetails!!.list.ccFiles);
-
                     //    intent.putParcelableArrayListExtra("cc_files_list", new ArrayList<>(singleDetails!!.list.ccFiles))
-
-
                 }
                 startActivity(intent)
 

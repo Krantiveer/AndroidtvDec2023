@@ -164,17 +164,25 @@ public class LatestMovieList implements Parcelable {
     @SerializedName("is_tvseries")
     @Expose
     private String isTvseries;
-    @SerializedName("is_Subscribe")
+    @SerializedName("is_subscribed")
     @Expose
-    private Integer is_Subscribe;
+    private Integer is_subscribed;
 
+    public Integer getIs_subscribed() {
+        return is_subscribed;
+    }
+
+    public void setIs_subscribed(Integer is_subscribed) {
+        this.is_subscribed = is_subscribed;
+    }
+    /*
     public Integer getIs_Subscribe() {
         return is_Subscribe;
     }
 
     public void setIs_Subscribe(Integer is_Subscribe) {
         this.is_Subscribe = is_Subscribe;
-    }
+    }*/
 
 /*
     public String getIs_Subscribe() {

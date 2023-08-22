@@ -219,7 +219,7 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
             videoContent.setType("M");
         }
         {
-            if (videoContent.getType().equalsIgnoreCase("GENRE")||videoContent.getType().equalsIgnoreCase("VM") ) {
+            if (videoContent.getType().equalsIgnoreCase("GENRE") || videoContent.getType().equalsIgnoreCase("VM")) {
                 Intent intent = new Intent(context, ItemCountryActivity.class);
                 intent.putExtra("id", video.getId().toString());
 
@@ -230,8 +230,8 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
 
             }
             if (videoContent.getType().equalsIgnoreCase("OTT")) {
-                if (video.getIs_Subscribe() != null) {
-                    if (video.getIs_Subscribe().toString().equalsIgnoreCase("0")) {
+                if (video.getIs_subscribed() != null) {
+                    if (video.getIs_subscribed().toString().equalsIgnoreCase("0")) {
                         //  CMHelper.setSnackBar(context, "Enjoy Premium Content Watch anything without ads Watch  Please Subscribe Or Rent  from MOBILE APP | WEBSITE -" + Config.WebsiteURL, 1, 10000);
                         // CMHelper.setSnackBar(,  "Enjoy Premium Content Watch anything without ads Watch  Please Subscribe Or Rent  from MOBILE APP | WEBSITE -" + Config.WebsiteURL, 2);
                         Toast.makeText(
@@ -256,7 +256,7 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
 
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
-                }else{
+                } else {
                     Intent intent = context.getPackageManager().getLaunchIntentForPackage(
                             video.getAndroid_link().substring(video.getAndroid_link().lastIndexOf("=") + 1)
                     );
