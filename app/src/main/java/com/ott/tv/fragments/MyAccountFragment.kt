@@ -127,7 +127,14 @@ class MyAccountFragment : Fragment() {
                                     }
                                 }
                                 if (userProfile!!.user.mobile != null) {
-                                    binding!!.tvMobileNumber.text = userProfile!!.user.mobile
+                                    if(!userProfile!!.user.mobile.isEmpty()){
+                                        binding!!.tvMobileNumber.text = userProfile!!.user.mobile
+
+                                    }else{
+                                        binding!!.tvMobileNumber.visibility=View.GONE
+                                        binding!!.viewlineSecond?.visibility=View.GONE
+
+                                    }
                                 }
                             } else if (response.errorBody() != null) {
                                 Toast.makeText(
