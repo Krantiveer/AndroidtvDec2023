@@ -173,8 +173,8 @@ public class HomeFragmentNewUI extends Fragment {
                 } else {
                     textViewDuration.setVisibility(View.GONE);
                 }
-                if (video.getDescription() != null) {
-                    textViewBannerDescription.setText(video.getDescription());
+                if (video.getDetail() != null) {
+                    textViewBannerDescription.setText(video.getDetail());
                 } else {
                     textViewBannerDescription.setVisibility(View.GONE);
                 }
