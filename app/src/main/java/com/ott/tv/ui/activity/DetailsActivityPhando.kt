@@ -12,6 +12,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.*
@@ -751,6 +752,13 @@ class DetailsActivityPhando : FragmentActivity() {
                     if (singleDetails!!.list.is_youtube.toString().equals("1", ignoreCase = true)) {
                         video.videoType = "youtube"
                         video.videoUrl = singleDetails!!.list.youtube_url
+
+                        /*val intentyoutube = Intent(this, PlaybackActivityYoutube::class.java)
+                        intent.putExtra("youtube", video.videoUrl)
+                        startActivity(intentyoutube)
+                        return*/
+
+
                     } else {
 
                         video.videoType = "hls"

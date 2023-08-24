@@ -110,7 +110,10 @@ public class HomeFragmentNewUI extends Fragment {
 
     private void setTextViewBanner(LatestMovieList video) {
         if (video.getType() != null) {
-            if (!video.getType().equalsIgnoreCase("VM")) {
+            if (!video.getType().equalsIgnoreCase("VM") ) {
+                if(video.getType().equalsIgnoreCase("OTT") && video.getTitle().equalsIgnoreCase("View All")){
+                    return;
+                }
                 //  releasePlayer();
                 //  String url = "https://action-ott-live.s3.ap-south-1.amazonaws.com/Sultan+Trailer/sultan+(1).mp4";
                 if (video.getTrailer_aws_source() != null) {

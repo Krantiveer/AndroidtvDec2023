@@ -85,15 +85,15 @@ android {
             versionName "1.6"
         }
 
-      /*  candor {
+        candor {
             applicationId "com.tv.candor"
-            versionCode 7
-            versionName "1.7"
-        }*/
+            versionCode 8
+            versionName "1.8"
+        }
         solidtv {
             applicationId "com.solidtv"
-            versionCode 3
-            versionName "3"
+            versionCode 2
+            versionName "2"
         }
       /*  kaafaltv {
             applicationId "com.kaafaltv.tv"
