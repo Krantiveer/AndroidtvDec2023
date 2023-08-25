@@ -17,14 +17,14 @@ public class Config {
     public static final String Publisher_id = "5";
     public static final String WebsiteURL = "https://kaafaltv.com";
 */
- /*   public static final String DOMAIN = "https://ott.digiana.com/";
+/*    public static final String DOMAIN = "https://ott.digiana.com/";
     public static final String Publisher_id = "63";
     public static final String WebsiteURL = "https://ott.digiana.com/";*/
 //mitwatvuat.vdoapi.com
    /* public static final String DOMAIN = "https://mitwatvuat.vdoapi.com/";
     public static final String Publisher_id = "40";
     public static final String WebsiteURL = "https://www.mitwatv.com/";*/
-    /* public static final String DOMAIN = "https://ott.candorsolution.com/";
+  /*   public static final String DOMAIN = "https://ott.candorsolution.com/";
     public static final String Publisher_id = "61";
     public static final String WebsiteURL = "https://ott.candorsolution.com/";*/
 /*
@@ -40,17 +40,17 @@ public class Config {
   /*  public static final String DOMAIN = "https://www.xploreindiastream.com/";
     public static final String Publisher_id = "8";
     public static final String WebsiteURL = "https://www.xploreindiastream.com/";*/
-    public static final String DOMAIN = "https://www.solidtvbox.com/";
+/*    public static final String DOMAIN = "https://www.solidtvbox.com/";
     public static final String Publisher_id = "6";
-    public static final String WebsiteURL = "https://www.solidtvbox.com/";
+    public static final String WebsiteURL = "https://www.solidtvbox.com/";*/
 
 /*    public static final String DOMAIN = "https://watch.scifiworld.tv/";
     public static final String Publisher_id = "10";
     public static final String WebsiteURL = "https://watch.scifiworld.tv/";*/
-   /* public static final String DOMAIN = "https://saas-sandbox.phando.com/";
+    /*public static final String DOMAIN = "https://saas-sandbox.phando.com/";
     public static final String Publisher_id = "28";
     public static final String WebsiteURL = "https://saas-sandbox.phando.com/";*/
-    /*public static final String DOMAIN = "https://saasuat.vdoapi.com/";
+ /*   public static final String DOMAIN = "https://saasuat.vdoapi.com/";
     public static final String Publisher_id = "28";
     public static final String WebsiteURL = "https://saasuat.vdoapi.com/";*/
 /*    public static final String DOMAIN = "https://tvcafeonline.com/";
@@ -61,22 +61,18 @@ public class Config {
       public static final String Publisher_id = "66";
       public static final String WebsiteURL = "https://www.fast1.app/";
 */
-/*
-    public static final String DOMAIN = "https://www.vtv.co.tz/";
+ /*   public static final String DOMAIN = "https://www.vtv.co.tz/";
     public static final String Publisher_id = "64";
-    public static final String WebsiteURL = "https://www.vtv.co.tz/";
-*/
+    public static final String WebsiteURL = "https://www.vtv.co.tz/";*/
 
     /*
 
     /*public static final String DOMAIN = "https://darshott.vdoapi.com/";
     public static final String Publisher_id = "82";
     public static final String WebsiteURL = "https://darshott.vdoapi.com/";*/
-/*
     public static final String DOMAIN = "https://amuzi.in/";
     public static final String Publisher_id = "80";
     public static final String WebsiteURL = "https://amuzi.in/";
-*/
     /*  public static final String DOMAIN = "https://naaptolott.vdoapi.com/";
       public static final String Publisher_id = "86";
       public static final String WebsiteURL = "https://naaptolott.vdoapi.com/";*/

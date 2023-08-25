@@ -126,11 +126,11 @@ android {
             versionCode 6
             versionName "6.0"
         }
-       /* amuzi {
+        amuzi {
             applicationId "com.amuzi"
-            versionCode 9
-            versionName "9.0"
-        }*/
+            versionCode 10
+            versionName "10"
+        }
         naaptolott {
             applicationId "com.naaptolott"
             versionCode 1
