@@ -24,6 +24,7 @@ public class CardPresenterBanner extends Presenter {
     private static int sSelectedBackgroundColor;
     private static int sDefaultBackgroundColor;
     private int itemViewType=1;
+    private ImageCardView mCardView;
 
     @SuppressLint("StaticFieldLeak")
     private static Context mContext;
@@ -36,7 +37,7 @@ public class CardPresenterBanner extends Presenter {
         sSelectedBackgroundColor = parent.getResources().getColor(R.color.bcn_selected_color);
 
         mContext = parent.getContext();
-         ImageCardView cardView = new ImageCardView(parent.getContext(), itemViewType) {
+        mCardView = new ImageCardView(parent.getContext(), itemViewType) {
             @Override
             public void setSelected(boolean selected) {
                 if(onSelectionListener != null ) {
@@ -55,8 +56,8 @@ public class CardPresenterBanner extends Presenter {
 
 /*        cardView.setFocusable(true);
         cardView.setFocusableInTouchMode(true);*/
-        updateCardBackgroundColor(cardView, false);
-        return new ViewHolder(cardView);
+        updateCardBackgroundColor(mCardView, false);
+        return new ViewHolder(mCardView);
         }
 
 
@@ -83,6 +84,16 @@ public class CardPresenterBanner extends Presenter {
             ((CardPresenterBanner.ViewHolder) viewHolder).updateCardViewImage(video.getPoster());
 
         }
+        if (video.getIs_free() != null) {
+            if (video.getIs_free().toString().equalsIgnoreCase("1")) {
+                ((CardPresenterBanner.ViewHolder) viewHolder).mCardView.getPrimeImageView().setVisibility(View.GONE);
+
+            }else{
+            ((CardPresenterBanner.ViewHolder) viewHolder).mCardView.getPrimeImageView().setVisibility(View.VISIBLE);
+
+        }
+        }
+
 
     /*    if (video.getIs_free() != null) {
             if (video.getIs_free().toString().equalsIgnoreCase("1")) {
