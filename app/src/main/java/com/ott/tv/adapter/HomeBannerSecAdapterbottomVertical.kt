@@ -129,19 +129,21 @@ class HomeBannerSecAdapterbottomVertical(
                 }
             }
             holder.primary_text.text = listdata.list[position].title
-            if (!TextUtils.isEmpty(listdata.list[position].thumbnail)) {
+
+      /*      if (!TextUtils.isEmpty(listdata.list[position].thumbnail)) {
                 Glide.with(context)
                     .load(listdata.list[position].thumbnail)
                     .placeholder(R.drawable.poster_placeholder_land)
                     .error(R.drawable.poster_placeholder_land)
                     .into(holder.main_image)
-            } else {
+            }*/
+
                 Glide.with(context)
-                    .load(listdata.list[position].posterUrl)
+                    .load(listdata.list[position].poster)
                     .placeholder(R.drawable.poster_placeholder_land)
                     .error(R.drawable.poster_placeholder_land)
                     .into(holder.main_image)
-            }
+
             holder.relativeLayout_parent.setOnClickListener { view: View? ->
                 //   Toast.makeText(view.getContext(), "click on item: " + position, Toast.LENGTH_LONG).show();
                 listdata.list[position].viewallName = listdata.title

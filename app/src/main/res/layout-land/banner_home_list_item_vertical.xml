@@ -41,16 +41,15 @@
                 android:textColor="@color/cardTextColor"
                 android:textSize="@dimen/_9sdp"
 
-                android:visibility="invisible"
-                 />
+                android:visibility="invisible" />
 
             <ImageView
                 android:id="@+id/premiumIconImage"
-                android:layout_width="@dimen/_50sdp"
+                android:layout_width="@dimen/_15sdp"
                 android:layout_height="@dimen/_15sdp"
                 android:layout_gravity="end"
-                android:layout_margin="5sp"
-                android:src="@drawable/prime_icon_image"
+                android:layout_margin="3sp"
+                android:src="@drawable/premium_vertical"
                 android:visibility="gone"
                 tools:visibility="visible" />
 
@@ -75,10 +74,9 @@
                 android:ellipsize="end"
                 android:paddingStart="4sp"
                 android:paddingEnd="4sp"
-                android:visibility="gone"
                 android:paddingBottom="5sp"
                 android:textColor="@color/white"
-                />
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/title_name"
@@ -87,16 +85,15 @@
                 android:layout_gravity="bottom"
                 android:layout_marginTop="2sp"
                 android:ellipsize="marquee"
+                android:fontFamily="@font/roboto"
                 android:maxLines="1"
                 android:paddingStart="4sp"
                 android:paddingEnd="4sp"
-                android:fontFamily="@font/roboto"
                 android:paddingBottom="5sp"
                 android:textColor="@color/white"
-                android:visibility="gone"
                 android:textSize="@dimen/card_Text_Size_Home"
-                tools:text="title movie"
-                />
+                android:visibility="gone"
+                tools:text="title movie" />
         </androidx.cardview.widget.CardView>
 
 
