@@ -59,7 +59,7 @@ public class LoginMobileActivity extends Activity {
     private LinearLayout ll_send_otp, ll_verify_otp, ll_coupon_code;
     private CountDownTimer cTimer;
     private UserProfile userProfile;
-
+    private  String contrycode="91";
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -350,7 +350,16 @@ public class LoginMobileActivity extends Activity {
         progress_login_resend.setVisibility(View.VISIBLE);
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
         SendOTPApi api = retrofit.create(SendOTPApi.class);
-        Call<User> call = api.postVerifyOTP(Config.API_KEY, mob_number, otp,"91");
+
+        if(BuildConfig.FLAVOR.equalsIgnoreCase("vtv")){
+            contrycode="255";
+        }else{
+            contrycode="91";
+
+        }
+
+
+        Call<User> call = api.postVerifyOTP(Config.API_KEY, mob_number, otp,contrycode);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {

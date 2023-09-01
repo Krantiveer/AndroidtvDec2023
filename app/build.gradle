@@ -118,13 +118,13 @@ android {
         }
         vtv {
             applicationId "com.vtvott"
-            versionCode 2
-            versionName "2.0"
+            versionCode 3
+            versionName "3.0"
         }
         darshott {
             applicationId "com.darshott"
-            versionCode 6
-            versionName "6.0"
+            versionCode 7
+            versionName "7.0"
         }
         amuzi {
             applicationId "com.amuzi"

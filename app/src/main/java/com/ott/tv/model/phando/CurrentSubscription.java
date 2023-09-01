@@ -30,6 +30,15 @@ public class CurrentSubscription implements Parcelable {
     @SerializedName("payment_id")
     @Expose
     private String payment_id;
+    private Plan plan;
+
+    public Plan getPlan() {
+        return plan;
+    }
+
+    public void setPlan(Plan plan) {
+        this.plan = plan;
+    }
 
     protected CurrentSubscription(Parcel in) {
         id = in.readString();

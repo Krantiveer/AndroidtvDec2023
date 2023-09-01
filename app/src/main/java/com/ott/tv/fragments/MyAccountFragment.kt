@@ -114,8 +114,11 @@ class MyAccountFragment : Fragment() {
                                     binding!!.userSubId.text =
                                         "Subscriber ID : " + userProfile!!.current_subscription.id
                                     binding!!.myPackageName.text = userProfile!!.package_name
-                                    binding!!.myPackagePrice.text =
-                                        "Rs. " + userProfile!!.current_subscription.price.toString()
+
+                                    binding!!.myPackagePrice.text =userProfile!!.current_subscription!!.plan!!.currency+"  "+
+                                        /*"Rs. "*/  userProfile!!.current_subscription.price.toString()
+
+
                                     binding!!.tvnoPlan.visibility = View.GONE
                                     binding!!.expireDateTv.visibility = View.VISIBLE
                                     binding!!.llMediaPlan.visibility = View.VISIBLE

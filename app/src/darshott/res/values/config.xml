@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">DarshOTT</string>
+    <string name="app_name">Darsh Digital</string>
     <string name="api_extension">/v130/</string>
 </resources>
