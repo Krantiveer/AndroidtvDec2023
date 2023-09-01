@@ -108,7 +108,7 @@ public class HomeFragmentNewUI extends Fragment {
         return view;
     }
 
-    private void setTextViewBanner(LatestMovieList video) {
+    private void setTextViewBanner(LatestMovieList video,String showvideo) {
         if (video.getType() != null) {
             if (!video.getType().equalsIgnoreCase("VM") ) {
                 if(video.getType().equalsIgnoreCase("OTT") && video.getTitle().equalsIgnoreCase("View All")){
@@ -116,10 +116,11 @@ public class HomeFragmentNewUI extends Fragment {
                 }
                 //  releasePlayer();
                 //  String url = "https://action-ott-live.s3.ap-south-1.amazonaws.com/Sultan+Trailer/sultan+(1).mp4";
+                if(!showvideo.equalsIgnoreCase("show")){
                 if (video.getTrailer_aws_source() != null) {
                     String url = video.getTrailer_aws_source();
                     initVideoPlayer(url, "movie");
-                } /*else {
+                }} /*else {
             if (video.getTrailler_youtube_source() != null) {
                 String url = video.getTrailler_youtube_source();
                 initVideoPlayer(url, "movie");
@@ -312,7 +313,7 @@ public class HomeFragmentNewUI extends Fragment {
                           //  homeContent.setHomeContentId(1);
                             Constants.IS_FROM_HOME = true;
                             if (response.body() != null && !response.body().isEmpty()) {
-                                setTextViewBanner(response.body().get(0).getList().get(0));
+                                setTextViewBanner(response.body().get(0).getList().get(0),"show");
                           //      setTextViewBanner(response.body().get(0).getVideos().get(0));
                                 loadRows(response.body());
                             }
@@ -410,7 +411,7 @@ public class HomeFragmentNewUI extends Fragment {
 
         HomeBannerSecAdapter homeBannerSecAdapter = new HomeBannerSecAdapter(homeContents, getContext());
 
-        homeBannerSecAdapter.setSendInterfacedata(description -> setTextViewBanner(description));
+        homeBannerSecAdapter.setSendInterfacedata(description -> setTextViewBanner(description,""));
         homeBannerSecAdapter.setSendInterfaceClick(() -> releasePlayer());
 
         recyclerViewBannerBottom.setAdapter(homeBannerSecAdapter);
