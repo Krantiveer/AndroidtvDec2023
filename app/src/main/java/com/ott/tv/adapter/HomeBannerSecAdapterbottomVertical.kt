@@ -315,6 +315,73 @@ class HomeBannerSecAdapterbottomVertical(
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 context.startActivity(intent)
             }
+            if (video.type == "E" && video.is_live.toString().equals("0", ignoreCase = true)) {
+                val intent = Intent(context, DetailsActivityPhando::class.java)
+                if (video.type != null) intent.putExtra("type", video.type)
+                if (video.thumbnail != null) {
+                    intent.putExtra("thumbImage", video.thumbnail)
+                } else {
+                    if (video.thumbnailUrl != null) intent.putExtra(
+                        "thumbImage",
+                        video.thumbnailUrl
+                    )
+                }
+                if (video.id != null) {
+                    intent.putExtra("video_id", video.id.toString())
+                } else {
+                    if (video.id != null) intent.putExtra("video_id", video.id.toString())
+                }
+                if (video.title != null) intent.putExtra("title", video.title)
+                if (video.detail != null) {
+                    intent.putExtra("description", video.detail)
+                } else {
+                    if (video.description != null) intent.putExtra("description", video.description)
+                }
+                if (video.release_date != null) {
+                    intent.putExtra("release", video.release_date)
+                } else {
+                    if (video.release != null) {
+                        intent.putExtra("release", video.release)
+                    }
+                }
+                /*   if (videoContent.getRuntime() != null)
+                    intent.putExtra("duration", videoContent.getRuntime());*/if (video.duration_str != null) intent.putExtra(
+                    "duration",
+                    video.duration_str
+                )
+                if (video.maturity_rating != null) intent.putExtra(
+                    "maturity_rating",
+                    video.maturity_rating
+                )
+                if (video.is_free != null) intent.putExtra("ispaid", video.is_free.toString())
+                if (video.language_str != null) intent.putExtra("language_str", video.language_str)
+                if (video.is_live != null) intent.putExtra("is_live", video.is_live.toString())
+                if (video.rating != null) intent.putExtra("rating", video.rating.toString())
+                if (video.trailers != null && video.trailers.size > 0 && video.trailers[0] != null && video.trailers[0].media_url != null) {
+                    intent.putExtra("trailer", video.thumbnailUrl)
+                }
+                if (video.trailer_aws_source != null) {
+                    intent.putExtra("trailer", video.trailer_aws_source)
+                }
+                if (video.genres != null) {
+                    if (video.genres.size != 0) {
+                        if (video.genres.size > 0) {
+                            var genres: String
+                            genres = video.genres[0]
+                            for (i in 1 until video.genres.size) {
+                                genres = genres + "," + video.genres[i]
+                            }
+                            intent.putExtra("genres", genres)
+                        }
+                    }
+                } else {
+                    if (video.genre != null) {
+                        intent.putExtra("genres", video.genre)
+                    }
+                }
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                context.startActivity(intent)
+            }
             if (video.type == "T") {
                 val intent = Intent(context, DetailsActivityPhando::class.java)
                 if (video.type != null) intent.putExtra("type", video.type)

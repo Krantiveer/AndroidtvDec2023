@@ -118,8 +118,8 @@ android {
         }
         vtv {
             applicationId "com.vtvott"
-            versionCode 3
-            versionName "3.0"
+            versionCode 5
+            versionName "5.0"
         }
         darshott {
             applicationId "com.darshott"
@@ -250,7 +250,7 @@ dependencies {
 
 
     // implementation 'com.google.android.exoplayer:extension-mediasession:2.18.2'
-    implementation 'com.github.HaarigerHarald:android-youtubeExtractor:master-SNAPSHOT'
+  //  implementation 'com.github.HaarigerHarald:android-youtubeExtractor:master-SNAPSHOT'
     implementation 'com.google.android.libraries.cast.companionlibrary:ccl:2.8.4'
 //youtube player
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'

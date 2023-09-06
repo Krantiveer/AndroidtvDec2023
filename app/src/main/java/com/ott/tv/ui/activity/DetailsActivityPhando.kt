@@ -250,6 +250,12 @@ class DetailsActivityPhando : FragmentActivity() {
             } else {
                 getData(type!!, id)
             }
+        } else if (type == "E") {
+            if (videoId != null) {
+                getData(type!!, videoId)
+            } else {
+                getData(type!!, id)
+            }
         } else if (type == "T") {
             getDataTvseries(type!!, videoId)
         }
@@ -742,6 +748,10 @@ class DetailsActivityPhando : FragmentActivity() {
 
                 if (type == "M") {
                     video.category = "movie"
+                }else if (type == "E") {
+                    video.category = "movie"
+                    video.videoType = "hls"
+                    video.videoUrl = singleDetails!!.list.media_url
                 } else {
                     video.category = "movie"
                 }

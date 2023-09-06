@@ -63,10 +63,12 @@ import com.ott.tv.model.VideoNew;
 import com.ott.tv.player.VideoPlayerGlue;
 
 import com.ott.tv.ui.presenter.CardPresenter;
+/*
 
 import at.huber.youtubeExtractor.VideoMeta;
 import at.huber.youtubeExtractor.YouTubeExtractor;
 import at.huber.youtubeExtractor.YtFile;
+*/
 
 /**
  * Plays selected video, loads playlist and related videos, and delegates playback to {@link
@@ -168,7 +170,7 @@ public class PlaybackFragmentNew extends VideoSupportFragment {
 
             }
             if (video.getCategory() != null && video.getCategory().contains("youtube") && video.videoUrl != null) {
-                extractYoutubeUrl(Uri.parse(video.videoUrl), 18);
+                //extractYoutubeUrl(Uri.parse(video.videoUrl), 18);
             } else {
                 //prepareMediaForPlaying(Uri.parse(video.videoUrl));
             }
@@ -176,7 +178,8 @@ public class PlaybackFragmentNew extends VideoSupportFragment {
         }
     }
 
-    @SuppressLint("StaticFieldLeak")
+/*    @SuppressLint("StaticFieldLeak")
+
     private void extractYoutubeUrl(Uri url, final int tag) {
         if (getContext() != null) {
             new YouTubeExtractor(getContext()) {
@@ -185,12 +188,18 @@ public class PlaybackFragmentNew extends VideoSupportFragment {
                     if (ytFiles != null) {
                         int itag = tag;
                         String dashUrl = ytFiles.get(itag).getUrl();
-                        try {/*
+                        try {*/
+/*
                             MediaSource source = mediaSource(Uri.parse(dashUrl), getContext());
                             mPlayer.prepare(source, true, false);
                             //player.setPlayWhenReady(false);
-                            *//*exoPlayerView.setPlayer(mPlayer);*//*
-                            mPlayer.setPlayWhenReady(true);*/
+                            *//*
+*/
+/*exoPlayerView.setPlayer(mPlayer);*//*
+*/
+/*
+                            mPlayer.setPlayWhenReady(true);*//*
+
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -200,6 +209,7 @@ public class PlaybackFragmentNew extends VideoSupportFragment {
 
         }
     }
+*/
 
   /*  private MediaSource mediaSource(Uri uri, Context context) {
         return new ExtractorMediaSource.Factory(
