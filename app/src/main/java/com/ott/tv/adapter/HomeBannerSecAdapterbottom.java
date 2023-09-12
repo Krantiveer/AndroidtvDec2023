@@ -418,6 +418,76 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
 
 
             }
+            if (video.getType().equals("E") && video.getIs_live().toString().equalsIgnoreCase("0")) {
+                Intent intent = new Intent(context, DetailsActivityPhando.class);
+
+                if (video.getType() != null) intent.putExtra("type", video.getType());
+                if (video.getThumbnail() != null) {
+                    intent.putExtra("thumbImage", video.getThumbnail());
+                } else {
+                    if (video.getThumbnailUrl() != null) intent.putExtra(
+                            "thumbImage",
+                            video.getThumbnailUrl()
+                    );
+                }
+                if (video.getId() != null) {
+                    intent.putExtra("video_id", video.getId().toString());
+                } else {
+                    if (video.getId() != null) intent.putExtra("video_id", video.getId().toString());
+                }
+                if (video.getTitle() != null) intent.putExtra("title", video.getTitle());
+                if (video.getDetail() != null) {
+                    intent.putExtra("description", video.getDetail());
+                } else {
+                    if (video.getDescription() != null) intent.putExtra("description", video.getDescription());
+                }
+                if (video.getRelease_date() != null) {
+                    intent.putExtra("release", video.getRelease_date());
+                } else {
+                    if (video.getRelease() != null) {
+                        intent.putExtra("release", video.getRelease());
+                    }
+                }
+                /*   if (videoContent.getRuntime() != null)
+                    intent.putExtra("duration", videoContent.getRuntime());*/if (video.getDuration_str() != null) intent.putExtra(
+                        "duration",
+                        video.getDuration_str()
+                );
+                if (video.getMaturity_rating() != null) intent.putExtra(
+                        "maturity_rating",
+                        video.getMaturity_rating()
+                );
+                if (video.getIs_free() != null) intent.putExtra("ispaid", video.getIs_free().toString());
+                if (video.getLanguage_str() != null) intent.putExtra("language_str", video.getLanguage_str());
+                if (video.getIs_live() != null) intent.putExtra("is_live", video.getIs_live().toString());
+                if (video.getRating() != null) intent.putExtra("rating", video.getRating().toString());
+                if (videoContent.getTrailers() != null && videoContent.getTrailers().size() > 0 && videoContent.getTrailers().get(0) != null && videoContent.getTrailers().get(0).getMedia_url() != null) {
+                    intent.putExtra("trailer", videoContent.getTrailers().get(0).getMedia_url());
+                }
+                if (video.getTrailer_aws_source() != null) {
+                    intent.putExtra("trailer", video.getTrailer_aws_source());
+                }
+
+                if (videoContent.getGenres() != null) {
+                    if (videoContent.getGenres().size() > 0) {
+                        String genres;
+                        genres = videoContent.getGenres().get(0);
+                        for (int i = 1; i < videoContent.getGenres().size(); i++) {
+                            genres = genres.concat("," + videoContent.getGenres().get(i));
+                        }
+                        intent.putExtra("genres", genres);
+                    }
+                } else {
+                    if (videoContent.getGenre() != null) {
+                        intent.putExtra("genres", videoContent.getGenre());
+                    }
+                }
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                context.startActivity(intent);
+            }
+
+
             if (videoContent.getType().equals("M") && videoContent.getIs_live().toString().equalsIgnoreCase("1")) {
                 Intent intent = new Intent(context, DetailsActivityPhando.class);
                 if (videoContent.getType() != null)
