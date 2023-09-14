@@ -173,7 +173,8 @@ import com.npaw.youbora.lib6.plugin.Plugin;
                 startActivity(intent, null);
                 finish();
             }
-        }*/intiViews()
+        }*/
+        intiViews()
         initVideoPlayer(url, videoType)
     }
 
@@ -1235,11 +1236,13 @@ player!!.setMediaSource(hlsMediaSource)
         exoPlayerView!!.visibility = View.GONE
         youTubePlayerView!!.visibility = View.VISIBLE
         val youTubePlayerView = findViewById<YouTubePlayerView>(R.id.youtube_player_view)
-        youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+ /*       youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 youTubePlayer.loadVideo(getYouTubeId(url), 0f)
             }
-        })
+        })*/
+
+
 
         /* youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override

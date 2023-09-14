@@ -9,6 +9,7 @@ import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -757,16 +758,43 @@ class DetailsActivityPhando : FragmentActivity() {
                 }
 
 
+
                 //  video.setCategory(type);
+              //  singleDetails!!.list.is_youtube=1
                 if (singleDetails!!.list.is_youtube != null) {
                     if (singleDetails!!.list.is_youtube.toString().equals("1", ignoreCase = true)) {
                         video.videoType = "youtube"
                         video.videoUrl = singleDetails!!.list.youtube_url
+                       /* val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=3vlKXvuhAGw"))
+                        startActivity(intent)
+                        return*/
+
+
+                       val youtubeVideoURL = video.videoUrl
+                       //val youtubeVideoURL = "https://youtu.be/3vlKXvuhAGw?si=y3mWse_2IgEq9t9c"
+                       // https://youtu.be/a7iIuRJtPU0?si=0_eYEsO3Ja2MUchd
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(youtubeVideoURL))
+
+                            // Verify if there's an app to handle this Intent
+                           if (intent.resolveActivity(packageManager) != null) {
+                                // Start the activity to open YouTube
+                                startActivity(intent)
+                            }
+return
 
                         /*val intentyoutube = Intent(this, PlaybackActivityYoutube::class.java)
                         intent.putExtra("youtube", video.videoUrl)
                         startActivity(intentyoutube)
                         return*/
+
+
+
+
+
+
+
+
+
 
 
                     } else {
@@ -813,6 +841,9 @@ class DetailsActivityPhando : FragmentActivity() {
                     //  webView!!.loadUrl("https://www.mxplayer.in/movie/watch-chennai-central-hindi-dubbed-movie-online-0dcdb2dad744506671b7ca7ef024c9ec?watch=true");
                     return
                 }
+
+
+
                 /*   if (singleDetails!!.list.is_youtube.toString().equals("0", ignoreCase = true)) {
                        findViewById<WebView>(R.id.Webview).visibility = View.VISIBLE
                        findViewById<FrameLayout>(R.id.contentView).visibility = View.GONE
