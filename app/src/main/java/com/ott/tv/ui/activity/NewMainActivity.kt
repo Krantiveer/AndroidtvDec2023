@@ -22,6 +22,7 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
 import com.ott.tv.BuildConfig
+import com.ott.tv.Config
 import com.ott.tv.MapFragmentUVTV
 import com.ott.tv.R
 import com.ott.tv.databinding.ActivityNewMainBinding
@@ -65,7 +66,7 @@ class NewMainActivity : FragmentActivity() {
         val accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(
             applicationContext
         )
-        val call: Call<AppInfo> = api.getAppInfo("androidtv", accessToken)
+        val call: Call<AppInfo> = api.getAppInfo(Config.Device_Type, accessToken)
         call.enqueue(object : Callback<AppInfo?> {
             override fun onResponse(call: Call<AppInfo?>, response: Response<AppInfo?>) {
                 if (response.code() == 200) {
