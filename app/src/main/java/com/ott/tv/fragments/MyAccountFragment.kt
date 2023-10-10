@@ -3,6 +3,7 @@ package com.ott.tv.fragments
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,7 @@ import com.ott.tv.network.RetrofitClient
 import com.ott.tv.network.api.Dashboard
 import com.ott.tv.ui.activity.LoginChooserActivity
 import com.ott.tv.ui.activity.SearchActivity_Phando
+import com.ott.tv.ui.activity.SplashScreenActivityTv
 import com.ott.tv.utils.CMHelper
 import com.ott.tv.utils.PreferenceUtils
 import retrofit2.Call
@@ -29,6 +31,8 @@ import retrofit2.Response
 class MyAccountFragment : Fragment() {
     private var userProfile: UserProfile? = null
     private var binding: FragmentMyAccountBinding? = null
+    private val TAG = SplashScreenActivityTv::class.java.simpleName
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -114,9 +118,16 @@ class MyAccountFragment : Fragment() {
                                     binding!!.userSubId.text =
                                         "Subscriber ID : " + userProfile!!.current_subscription.id
                                     binding!!.myPackageName.text = userProfile!!.package_name
+                                    if(userProfile!!.current_subscription!!.plan!=null){
 
-                                    binding!!.myPackagePrice.text =userProfile!!.current_subscription!!.plan!!.currency+"  "+
-                                        /*"Rs. "*/  userProfile!!.current_subscription.price.toString()
+                                        binding!!.myPackagePrice.text =userProfile!!.current_subscription!!.plan!!.currency+"  "+
+                                                /*"Rs. "*/  userProfile!!.current_subscription.price.toString()
+
+
+                                    }else{
+                                        binding!!.myPackagePrice.text ="Subscription Plan"+"  "+
+                                                /*"Rs. "*/  userProfile!!.current_subscription.price.toString()
+                                    }
 
 
                                     binding!!.tvnoPlan.visibility = View.GONE
@@ -130,12 +141,12 @@ class MyAccountFragment : Fragment() {
                                     }
                                 }
                                 if (userProfile!!.user.mobile != null) {
-                                    if(!userProfile!!.user.mobile.isEmpty()){
+                                    if (!userProfile!!.user.mobile.isEmpty()) {
                                         binding!!.tvMobileNumber.text = userProfile!!.user.mobile
 
-                                    }else{
-                                        binding!!.tvMobileNumber.visibility=View.GONE
-                                        binding!!.viewlineSecond?.visibility=View.GONE
+                                    } else {
+                                        binding!!.tvMobileNumber.visibility = View.GONE
+                                        binding!!.viewlineSecond?.visibility = View.GONE
 
                                     }
                                 }

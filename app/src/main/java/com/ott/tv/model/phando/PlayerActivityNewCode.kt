@@ -370,7 +370,7 @@ import com.npaw.youbora.lib6.plugin.Plugin;
         }
 
 
-        if (!model!!.cardImageUrl.isEmpty()) {
+        if (!model!!.cardImageUrl.isNullOrEmpty()) {
             Glide.with(this)
                 .load(model!!.cardImageUrl)
                 .into(image_contain!!)
