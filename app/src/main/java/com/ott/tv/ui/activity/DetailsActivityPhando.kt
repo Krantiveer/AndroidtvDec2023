@@ -408,6 +408,25 @@ class DetailsActivityPhando : FragmentActivity() {
                         episode_url = singleDetails!!.list.media_url
                         Log.i(TAG, "onResponse:--> "+singleDetails!!.list.media_type)
                         val videoList: List<Video> = ArrayList()
+                            if (singleDetails!!.mediaCode.contentEquals("buyed") || singleDetails!!.mediaCode.contentEquals(
+                                    "package_purchased"
+                                )
+                                || singleDetails!!.mediaCode.contentEquals("package_purchased") || singleDetails!!.mediaCode.contentEquals(
+                                    "rented_and_can_buy"
+                                )
+                            ) {
+                               // tvWatchNow!!.text = "Watch Now"
+
+                            }else{
+                                CMHelper.setSnackBar(
+                                    contentView,
+                                    "Enjoy Premium Content Watch anything without ads Watch  Please Subscribe Or Rent  from MOBILE APP | WEBSITE -  " + Config.DOMAIN,
+                                    1,
+                                    10000
+                                )
+                                return
+                            }
+
                         if (tvWatchNow!!.text == null || !tvWatchNow!!.text.toString()
                                 .equals("Watch Now", ignoreCase = true)
                         ) {
