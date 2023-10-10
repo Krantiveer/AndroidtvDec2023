@@ -84,6 +84,7 @@ import com.npaw.youbora.lib6.plugin.Plugin;
     private var category = ""
     private val visible = 0
     private var exo_pause: ImageButton? = null
+
     private var selectTracksButton: ImageButton? = null
     private var fastForwardButton: ImageButton? = null
     private var subtitleButton: ImageButton? = null
@@ -92,9 +93,12 @@ import com.npaw.youbora.lib6.plugin.Plugin;
     private var exo_rew: ImageButton? = null
     private var bt_golive: Button? = null
     private var movieTitleTV: TextView? = null
+    private var movieTitleTVTOP: TextView? = null
     private var movieDescriptionTV: TextView? = null
     private var posterImageView: ImageView? = null
     private var watermark: ImageView? = null
+    private var image_contain: ImageView? = null
+
     private var watermark_live: ImageView? = null
     private var seekBarLayout: RelativeLayout? = null
     private val playerViewRv: RelativeLayout? = null
@@ -113,12 +117,14 @@ import com.npaw.youbora.lib6.plugin.Plugin;
     var resolutionHashMap: HashMap<String, String>? = null
     private var categoryType = ""
     private var Enable_Subtile = ""
+    private var media_type = ""
     private var subtitleList: ArrayList<SubtitleDataNew>? = null
 
     private var id = ""
     private val youTubePlayer: YouTubePlayer? = null
     private val startAutoPlay = true
     private var isShowingTrackSelectionDialog = false
+
 
     //    private MediaSessionCompat mediaSession;
     /*private MediaSessionConnector mediaSessionConnector;*/
@@ -133,6 +139,8 @@ import com.npaw.youbora.lib6.plugin.Plugin;
         assert(model != null)
 
         Enable_Subtile = intent.getStringExtra("Enable_Subtile").toString()
+        media_type = intent.getStringExtra("media_type").toString()
+
         // subtitle_Data = intent.getParcelableExtra<CCFile>("subtitle")
         // subtitle_Data = intent.getStringArrayListExtra("subtitle")
 
@@ -141,7 +149,7 @@ import com.npaw.youbora.lib6.plugin.Plugin;
 
 
 
-        Log.i(TAG, "onCreate: string -->" + Enable_Subtile + subtitleList)
+        Log.i(TAG, "onCreate: string -->" + Enable_Subtile + subtitleList+media_type)
 
         // The second parameter is the default value if EXTRA_INT is not found
 
@@ -226,6 +234,7 @@ import com.npaw.youbora.lib6.plugin.Plugin;
         youTubePlayerView = findViewById(R.id.youtube_player_view)
         rootLayout = findViewById(R.id.root_layout)
         movieTitleTV = findViewById(R.id.movie_title)
+        movieTitleTVTOP = findViewById(R.id.movie_title_top)
         movieDescriptionTV = findViewById(R.id.movie_description)
         posterImageView = findViewById(R.id.poster_image_view)
         bt_golive = findViewById(R.id.bt_golive)
@@ -240,7 +249,15 @@ import com.npaw.youbora.lib6.plugin.Plugin;
         watermark = findViewById(R.id.watermark)
         watermark_live = findViewById(R.id.watermark_live)
         exo_pause = findViewById(R.id.exo_pause)
+        image_contain = findViewById(R.id.image_contain)
         val imageUrl = PreferenceUtils.getInstance().getWatermarkLogoUrlPref(this)
+        if(media_type=="audio"){
+            image_contain!!.setVisibility(View.VISIBLE)
+
+        }else{
+            image_contain!!.setVisibility(View.GONE)
+
+        }
 
         // Replace with your image URL
         Log.i(
@@ -351,6 +368,15 @@ import com.npaw.youbora.lib6.plugin.Plugin;
         if (Enable_Subtile.contentEquals("true")) {
      //       subtitleButton!!.setVisibility(View.VISIBLE)
         }
+
+
+        if (!model!!.cardImageUrl.isEmpty()) {
+            Glide.with(this)
+                .load(model!!.cardImageUrl)
+                .into(image_contain!!)
+
+        }
+
         // PreferenceUtils.getInstance().getWatermarkLogoUrlPref(this);
     }
 
@@ -410,6 +436,7 @@ import com.npaw.youbora.lib6.plugin.Plugin;
 
         //set title, description and poster in controller layout
         movieTitleTV!!.text = model!!.title
+        movieTitleTVTOP!!.text = model!!.title
         movieDescriptionTV!!.text = model!!.description
         /*movieDescriptionTV.setVisibility(View.GONE);*/
         /*        Picasso.get()

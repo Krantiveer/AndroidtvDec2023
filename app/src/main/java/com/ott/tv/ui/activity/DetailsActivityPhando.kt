@@ -13,7 +13,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.*
@@ -407,6 +406,7 @@ class DetailsActivityPhando : FragmentActivity() {
                     singleDetails = response.body()
                     if (singleDetails!!.list != null) {
                         episode_url = singleDetails!!.list.media_url
+                        Log.i(TAG, "onResponse:--> "+singleDetails!!.list.media_type)
                         val videoList: List<Video> = ArrayList()
                         if (tvWatchNow!!.text == null || !tvWatchNow!!.text.toString()
                                 .equals("Watch Now", ignoreCase = true)
@@ -434,7 +434,16 @@ class DetailsActivityPhando : FragmentActivity() {
                         video.videoType = Config.VideoURLTypeHls
                         video.category = "movie"
                         video.videoUrl = singleDetails!!.list.media_url
-                        video.cardImageUrl = dataEpisode.poster
+                        video.cardImageUrl = dataEpisode.thumbnail
+
+                        /*
+                       if (!com.ott.tv.BuildConfig.FLAVOR.equals("vyasott", ignoreCase = true)) {
+
+                                video.cardImageUrl = dataEpisode.thumbnail
+
+                        }else {
+                            video.cardImageUrl = dataEpisode.poster
+                        }*/
                         video.istrailer = false
 
                         //  video.setBgImageUrl(thumbUrl);
@@ -443,6 +452,13 @@ class DetailsActivityPhando : FragmentActivity() {
                         //  video.setVideo(singleDetails.getVideos().get(0));
                         val intent = Intent(applicationContext, PlayerActivityNewCode::class.java)
                         intent.putExtra(VideoPlaybackActivity.EXTRA_VIDEO, video)
+                        if(singleDetails!!.list.media_type=="audio"){
+                            intent.putExtra("media_type",singleDetails!!.list.media_type )
+                            Log.i(TAG, "onResponse: media_type2"+singleDetails!!.list.media_type)
+
+                        }
+                        Log.i(TAG, "onResponse: media_type"+singleDetails!!.list.media_type+dataEpisode.poster)
+
                         startActivity(intent)
                     } else {
                         episode_url = ""

@@ -2,8 +2,8 @@ package com.ott.tv;
 
 public class Config {
 
-    //public static final String Device_Type = "androidtv";
-      public static final String Device_Type = "firetv";
+    public static final String Device_Type = "androidtv";
+//      public static final String Device_Type = "firetv";
     //  public static final String DOMAIN = "https://actionott.com/";
     // public static final String DOMAIN = "https://dev.actionott.com/";
     //public static final String DOMAIN = "https://lifeott.com/";
@@ -70,10 +70,10 @@ public class Config {
     public static final String DOMAIN = "https://darshott.vdoapi.com/";
     public static final String Publisher_id = "82";
     public static final String WebsiteURL = "https://darshott.vdoapi.com/";
-*/
+*//*
     public static final String DOMAIN = "https://amuzi.in/";
     public static final String Publisher_id = "80";
-    public static final String WebsiteURL = "https://amuzi.in/";
+    public static final String WebsiteURL = "https://amuzi.in/";*/
     /*  public static final String DOMAIN = "https://naaptolott.vdoapi.com/";
       public static final String Publisher_id = "86";
       public static final String WebsiteURL = "https://naaptolott.vdoapi.com/";*/
@@ -87,6 +87,9 @@ public class Config {
     /*    public static final String DOMAIN = "https://smashtresstv.com/";
         public static final String Publisher_id = "87";
         public static final String WebsiteURL = "https://smashtresstv.com/";*/
+        public static final String DOMAIN = "https://vyas.vdoapi.com/";
+        public static final String Publisher_id = "94";
+        public static final String WebsiteURL = "https://vyas.vdoapi.com/";
     public static final String API_SERVER_URL = DOMAIN + "api/";
     //copy your api key from php admin dashboard & paste below
     public static final String API_KEY = "75xi3uer76tb7krer3mjgqei";

@@ -15,6 +15,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import android.widget.VideoView
 import com.ott.tv.BuildConfig
+import com.ott.tv.Config
 import com.ott.tv.Constants
 import com.ott.tv.R
 import com.ott.tv.model.phando.UserProfile
@@ -201,8 +202,9 @@ class SplashScreenActivityTv : Activity() {
 
     private fun openHome() {
         Log.i(TAG, "openHome:--> "+PreferenceUtils.getInstance().getAccessCouponPref(applicationContext)+PreferenceUtils.getInstance().getLogin_With_CouponsPref(application))
+      //  if (PreferenceUtils.isLoggedIn(this)) {
 
-        if (PreferenceUtils.isLoggedIn(this)) {
+        if (PreferenceUtils.isLoggedIn(this)|| Config.CouponCodeEnable) {
             if (BuildConfig.FLAVOR.contentEquals("solidtv")) {
                 if (PreferenceUtils.getInstance().getLogin_With_CouponsPref(applicationContext).toString().contentEquals("1")) {
                     val intent = Intent(this, NewMainActivity::class.java)

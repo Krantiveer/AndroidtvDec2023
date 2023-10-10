@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.tv.candor",
+  "variantName": "candorRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 8,
+      "versionName": "1.8",
+      "outputFile": "candorRelease_TV_v1.8_22_Aug_2023.apk"
+    }
+  ],
+  "elementType": "File"
+}

@@ -44,6 +44,9 @@ public class LatestMovieSingleDetailList implements Parcelable {
     @SerializedName("external_url")
     @Expose
     private String external_url;
+ @SerializedName("media_type")
+    @Expose
+    private String media_type;
 
     @SerializedName("cc_files")
     @Expose
@@ -204,6 +207,14 @@ public class LatestMovieSingleDetailList implements Parcelable {
 
     public void setRelated(ArrayList<ShowWatchlist> related) {
         this.related = related;
+    }
+
+    public String getMedia_type() {
+        return media_type;
+    }
+
+    public void setMedia_type(String media_type) {
+        this.media_type = media_type;
     }
 }
 

@@ -128,8 +128,8 @@ android {
         }
         amuzi {
             applicationId "com.amuzi"
-            versionCode 10
-            versionName "10"
+            versionCode 11
+            versionName "11"
         }
         naaptolott {
             applicationId "com.naaptolott"
@@ -160,6 +160,11 @@ android {
             applicationId "com.phandodemo.tv"
             versionCode 2
             versionName "1"
+        }
+        vyasott {
+            applicationId "com.vyaspublications.tv"
+            versionCode 8
+            versionName "8.0"
         }
 
     }
