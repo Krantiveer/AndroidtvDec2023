@@ -90,6 +90,7 @@ class DetailsActivityPhando : FragmentActivity() {
 
     //    private ShimmerTextVifew premiumIconImage;
     private var premiumIconImage: ImageView? = null
+
     private val customAddsModelArrayList = ArrayList<CustomAddsModel>()
     private val mAdapter: ArrayObjectAdapter? = null
 
@@ -407,10 +408,10 @@ class DetailsActivityPhando : FragmentActivity() {
                     if (singleDetails!!.list != null) {
                         episode_url = singleDetails!!.list.media_url
                         Log.i(TAG, "onResponse:--> "+singleDetails!!.list.media_type)
+
                         val videoList: List<Video> = ArrayList()
-                            if (singleDetails!!.mediaCode.contentEquals("buyed") || singleDetails!!.mediaCode.contentEquals(
-                                    "package_purchased"
-                                )
+
+                            if (singleDetails!!.mediaCode.contentEquals("buyed") || singleDetails!!.mediaCode.contentEquals("package_purchased")
                                 || singleDetails!!.mediaCode.contentEquals("package_purchased") || singleDetails!!.mediaCode.contentEquals(
                                     "rented_and_can_buy"
                                 )
@@ -420,7 +421,7 @@ class DetailsActivityPhando : FragmentActivity() {
                             }else{
                                 CMHelper.setSnackBar(
                                     contentView,
-                                    "Enjoy Premium Content Watch anything without ads Watch  Please Subscribe Or Rent  from MOBILE APP | WEBSITE -  " + Config.DOMAIN,
+                                    "Unlock Premium Content, Stream Unlimited Content – Subscribe, Rent, and Enjoy on our Mobile App | WEBSITE -" + Config.DOMAIN,
                                     1,
                                     10000
                                 )
@@ -432,7 +433,7 @@ class DetailsActivityPhando : FragmentActivity() {
                         ) {
                             Toast.makeText(
                                 applicationContext,
-                                "Enjoy Premium Content Watch anything without ads Watch  Please Subscribe Or Rent  from MOBILE APP | WEBSITE - " + Config.DOMAIN,
+                                "Unlock Premium Content, Stream Unlimited Content – Subscribe, Rent, and Enjoy on our Mobile App | WEBSITE -" + Config.DOMAIN,
                                 Toast.LENGTH_SHORT
                             ).show()
                             return
@@ -761,7 +762,7 @@ class DetailsActivityPhando : FragmentActivity() {
                 ) {
                     CMHelper.setSnackBar(
                         this.currentFocus,
-                        "Enjoy Premium Content Watch anything without ads Watch  Please Subscribe Or Rent  from MOBILE APP | WEBSITE -  " + Config.DOMAIN,
+                         "Unlock Premium Content, Stream Unlimited Content – Subscribe, Rent, and Enjoy on our Mobile App | WEBSITE -" + Config.DOMAIN,
                         1,
                         10000
                     )
