@@ -163,8 +163,8 @@ android {
         }
         vyasott {
             applicationId "com.vyaspublications.tv"
-            versionCode 8
-            versionName "8.0"
+            versionCode 9
+            versionName "9.0"
         }
 
     }

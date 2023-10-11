@@ -116,6 +116,7 @@ class SplashScreenActivityTv : Activity() {
             || BuildConfig.FLAVOR.equals("fastone", ignoreCase = true)
             || BuildConfig.FLAVOR.equals("vtv", ignoreCase = true)
             || BuildConfig.FLAVOR.equals("solidtv", ignoreCase = true)
+            || BuildConfig.FLAVOR.equals("vyasott", ignoreCase = true)
         ) {
             findViewById<LinearLayout>(R.id.splash_screen_ll).visibility == View.INVISIBLE
 
