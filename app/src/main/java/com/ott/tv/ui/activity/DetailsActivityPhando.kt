@@ -338,10 +338,19 @@ class DetailsActivityPhando : FragmentActivity() {
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             if (listdata != null) {
                 if (listdata[position] != null) {
+
                     holder.episode_title.text = listdata[position]!!.title
                     holder.episode_description.text = listdata[position]!!.detail
                     holder.episode_time.text = listdata[position]!!.duration_str
-                    Glide.with(applicationContext).load(listdata[position]!!.thumbnail)
+                    if(listdata[position]!!.is_free.toString().equals("1",true)){
+                        holder.premiumIconImage_TVSeries.visibility=View.GONE
+
+                    }else{
+                        holder.premiumIconImage_TVSeries.visibility=View.VISIBLE
+
+                    }
+
+                            Glide.with(applicationContext).load(listdata[position]!!.thumbnail)
                         .error(R.drawable.poster_placeholder_land).fitCenter()
                         .placeholder(R.drawable.poster_placeholder_land).into(holder.episode_image)
                     holder.episode_ll.setOnClickListener { view: View? ->
@@ -378,9 +387,11 @@ class DetailsActivityPhando : FragmentActivity() {
             var episodeTv: TextView? = null
             var episode_ll: LinearLayout
             var episode_image: ImageView
+            var premiumIconImage_TVSeries: ImageView
 
             init {
                 episode_image = itemView.findViewById(R.id.episode_image)
+                premiumIconImage_TVSeries = itemView.findViewById(R.id.premiumIconImage_TVSeries)
                 episode_title = itemView.findViewById<View>(R.id.episode_title) as TextView
                 episode_description =
                     itemView.findViewById<View>(R.id.episode_description) as TextView
@@ -419,23 +430,42 @@ class DetailsActivityPhando : FragmentActivity() {
                                // tvWatchNow!!.text = "Watch Now"
 
                             }else{
-                                CMHelper.setSnackBar(
-                                    contentView,
-                                    "Unlock Premium Content, Stream Unlimited Content – Subscribe, Rent, and Enjoy on our Mobile App | WEBSITE -" + Config.DOMAIN,
-                                    1,
-                                    10000
-                                )
+                                if(com.ott.tv.BuildConfig.FLAVOR.contentEquals("vyasott")){
+                                    CMHelper.setSnackBar(
+                                        contentView,
+                                        "Unlock Premium Content, Stream Unlimited Content – Subscribe, Rent, and Enjoy on our Mobile App ",
+                                        1,
+                                        10000
+                                    )
+                                }else{
+                                    CMHelper.setSnackBar(
+                                        contentView,
+                                        "Unlock Premium Content, Stream Unlimited Content – Subscribe, Rent, and Enjoy on our Mobile App | WEBSITE -" + Config.DOMAIN,
+                                        1,
+                                        10000
+                                    )
+                                }
+
                                 return
                             }
 
                         if (tvWatchNow!!.text == null || !tvWatchNow!!.text.toString()
                                 .equals("Watch Now", ignoreCase = true)
                         ) {
-                            Toast.makeText(
-                                applicationContext,
-                                "Unlock Premium Content, Stream Unlimited Content – Subscribe, Rent, and Enjoy on our Mobile App | WEBSITE -" + Config.DOMAIN,
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            if(com.ott.tv.BuildConfig.FLAVOR.contentEquals("vyasott")){
+                                Toast.makeText(
+                                    applicationContext,
+                                    "Unlock Premium Content, Stream Unlimited Content – Subscribe, Rent, and Enjoy on our Mobile App  -",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }else{
+                                Toast.makeText(
+                                    applicationContext,
+                                    "Unlock Premium Content, Stream Unlimited Content – Subscribe, Rent, and Enjoy on our Mobile App | WEBSITE -" + Config.DOMAIN,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+
                             return
                         } else if (singleDetails!!.list.media_url.isEmpty()) {
                             /*CMHelper.setSnackBar(this.getCurrentFocus(), "We are sorry, Video not available for your selected content", 2);*/
@@ -760,12 +790,23 @@ class DetailsActivityPhando : FragmentActivity() {
                 }*/if (tvWatchNow!!.text == null || !tvWatchNow!!.text.toString()
                         .equals("Watch Now", ignoreCase = true)
                 ) {
-                    CMHelper.setSnackBar(
-                        this.currentFocus,
-                         "Unlock Premium Content, Stream Unlimited Content – Subscribe, Rent, and Enjoy on our Mobile App | WEBSITE -" + Config.DOMAIN,
-                        1,
-                        10000
-                    )
+
+                    if(com.ott.tv.BuildConfig.FLAVOR.contentEquals("vyasott")){
+                        CMHelper.setSnackBar(
+                            contentView,
+                            "Unlock Premium Content, Stream Unlimited Content – Subscribe, Rent, and Enjoy on our Mobile App ",
+                            1,
+                            10000
+                        )
+                    }else{
+                        CMHelper.setSnackBar(
+                            contentView,
+                            "Unlock Premium Content, Stream Unlimited Content – Subscribe, Rent, and Enjoy on our Mobile App | WEBSITE -" + Config.DOMAIN,
+                            1,
+                            10000
+                        )
+                    }
+
                     return
                 } else if (singleDetails!!.list.media_url.isEmpty() && singleDetails!!.list.youtube_url.isEmpty()) {
                     CMHelper.setSnackBar(

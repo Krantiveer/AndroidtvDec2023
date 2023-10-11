@@ -58,7 +58,7 @@
 
 
             <ImageView
-                android:id="@+id/premiumIconImage"
+                android:id="@+id/premiumIconImage_TVSeries"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_15sdp"
                 android:layout_gravity="end"
