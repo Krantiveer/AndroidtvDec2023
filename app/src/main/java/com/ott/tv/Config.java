@@ -87,9 +87,9 @@ public class Config {
     /*    public static final String DOMAIN = "https://smashtresstv.com/";
         public static final String Publisher_id = "87";
         public static final String WebsiteURL = "https://smashtresstv.com/";*/
-        public static final String DOMAIN = "https://vyaspublication.mokshmargdharm.org/";
+        public static final String DOMAIN = "https://vyas.vdoapi.com/";
         public static final String Publisher_id = "94";
-        public static final String WebsiteURL = "https://vyaspublication.mokshmargdharm.org/";
+        public static final String WebsiteURL = "https://vyas.vdoapi.com/";
     public static final String API_SERVER_URL = DOMAIN + "api/";
     //copy your api key from php admin dashboard & paste below
     public static final String API_KEY = "75xi3uer76tb7krer3mjgqei";
@@ -107,7 +107,7 @@ public class Config {
 
     public static final String NPAW_APPNAME = "MitwaTV";
 
-    public static final boolean CouponCodeEnable = true;
+    public static final boolean CouponCodeEnable = false;
 
 
     /*String API_KEY = "se_team_9b3431b0";*/ String SECRET = "bcdee06e8490949422c071437da5c5ed";

@@ -205,7 +205,7 @@ class SplashScreenActivityTv : Activity() {
         Log.i(TAG, "openHome:--> "+PreferenceUtils.getInstance().getAccessCouponPref(applicationContext)+PreferenceUtils.getInstance().getLogin_With_CouponsPref(application))
       //  if (PreferenceUtils.isLoggedIn(this)) {
 
-        if (PreferenceUtils.isLoggedIn(this)|| Config.CouponCodeEnable) {
+        if (PreferenceUtils.isLoggedIn(this)) {
             if (BuildConfig.FLAVOR.contentEquals("solidtv")) {
                 if (PreferenceUtils.getInstance().getLogin_With_CouponsPref(applicationContext).toString().contentEquals("1")) {
                     val intent = Intent(this, NewMainActivity::class.java)
