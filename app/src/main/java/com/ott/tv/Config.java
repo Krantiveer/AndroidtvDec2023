@@ -90,6 +90,9 @@ public class Config {
         public static final String DOMAIN = "https://vyaspublication.mokshmargdharm.org/";
         public static final String Publisher_id = "94";
         public static final String WebsiteURL = "https://vyaspublication.mokshmargdharm.org/";
+       /* public static final String DOMAIN = "https://vyasuat.vdoapi.com/";
+        public static final String Publisher_id = "80";
+        public static final String WebsiteURL = "https://vyaspublication.mokshmargdharm.org/";*/
     public static final String API_SERVER_URL = DOMAIN + "api/";
     //copy your api key from php admin dashboard & paste below
     public static final String API_KEY = "75xi3uer76tb7krer3mjgqei";

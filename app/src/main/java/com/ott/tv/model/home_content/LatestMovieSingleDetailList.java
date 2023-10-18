@@ -6,6 +6,7 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.ott.tv.model.phando.NextMedia;
 import com.ott.tv.model.phando.ShowWatchlist;
 
 import java.util.ArrayList;
@@ -44,13 +45,14 @@ public class LatestMovieSingleDetailList implements Parcelable {
     @SerializedName("external_url")
     @Expose
     private String external_url;
- @SerializedName("media_type")
+    @SerializedName("media_type")
     @Expose
     private String media_type;
 
     @SerializedName("cc_files")
     @Expose
     private CCFile[] ccFiles;
+
     public String getExternal_url() {
         return external_url;
     }
@@ -58,11 +60,47 @@ public class LatestMovieSingleDetailList implements Parcelable {
     public void setExternal_url(String external_url) {
         this.external_url = external_url;
     }
+    @SerializedName("next_media")
+    @Expose
+    private NextMedia nextMedia;
 
 
     @SerializedName("related")
     @Expose
     private ArrayList<ShowWatchlist> related;
+    @SerializedName("title")
+    @Expose
+    private String title;
+    @SerializedName("description")
+    @Expose
+    private String description;
+    @SerializedName("thumbnail")
+    @Expose
+    private String thumbnail;
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public Integer getIs_free() {
         return is_free;
@@ -100,7 +138,8 @@ public class LatestMovieSingleDetailList implements Parcelable {
             is_live = null;
         } else {
             is_live = in.readInt();
-        }if (in.readByte() == 0) {
+        }
+        if (in.readByte() == 0) {
             is_free = null;
         } else {
             is_free = in.readInt();
@@ -125,7 +164,8 @@ public class LatestMovieSingleDetailList implements Parcelable {
         } else {
             dest.writeByte((byte) 1);
             dest.writeInt(is_live);
-        }   if (is_free == null) {
+        }
+        if (is_free == null) {
             dest.writeByte((byte) 0);
         } else {
             dest.writeByte((byte) 1);
@@ -216,105 +256,15 @@ public class LatestMovieSingleDetailList implements Parcelable {
     public void setMedia_type(String media_type) {
         this.media_type = media_type;
     }
+
+    public NextMedia getNextMedia() {
+        return nextMedia;
+    }
+
+    public void setNextMedia(NextMedia nextMedia) {
+        this.nextMedia = nextMedia;
+    }
 }
 
 
-    /* @SerializedName("id")
-    @Expose
-    private Integer id;
-
-    @SerializedName("title")
-    @Expose
-    private String title;
-
-    @SerializedName("description")
-    @Expose
-    private String description;
-
-    @SerializedName("thumbnail")
-    @Expose
-    private String thumbnail;
-
-    @SerializedName("thumbnail_vertical")
-    @Expose
-    private String thumbnail_vertical;
-
-    @SerializedName("circular_thumbnail")
-    @Expose
-    private String circular_thumbnail;
-
-    @SerializedName("poster")
-    @Expose
-    private String poster;
-
-    @SerializedName("poster_vertical")
-    @Expose
-    private String poster_vertical;
-
-    @SerializedName("created_at")
-    @Expose
-    private String created_at;
-    @SerializedName("is_free")
-    @Expose
-    private Integer is_free;
-    @SerializedName("is_live")
-    @Expose
-    private Integer is_live;
-    @SerializedName("phando_media_id")
-    @Expose
-    private String phando_media_id;
-    @SerializedName("type")
-    @Expose
-    private String type;
-    @SerializedName("price")
-    @Expose
-    private Integer price;
-    @SerializedName("detail")
-    @Expose
-    private String detail;
-    @SerializedName("keyword")
-    @Expose
-    private String keyword;
-    @SerializedName("rating")
-    @Expose
-    private Integer rating;
-    @SerializedName("maturity_rating")
-    @Expose
-    private String maturity_rating;
-
-    @SerializedName("duration")
-    @Expose
-    private Integer duration;
-
-    @SerializedName("duration_str")
-    @Expose
-    private String duration_str;
-
-    @SerializedName("release_date")
-    @Expose
-    private String release_date;
-    @SerializedName("language_str")
-    @Expose
-    private String language_str;
-
-    @SerializedName("publish_year")
-    @Expose
-    private Integer publish_year;
-
-    @SerializedName("last_watch_time")
-    @Expose
-    private Integer last_watch_time;
-    @SerializedName("is_active")
-    @Expose
-    private Integer is_active;
-
-
-    @SerializedName("genres_resource")
-    @Expose
-    private List<GenreResource> list = null;
-
-    @SerializedName("genres")
-    @Expose
-    private List<String> genres = null;
-*/
 

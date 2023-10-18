@@ -21,6 +21,7 @@ import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
 import androidx.leanback.widget.ArrayObjectAdapter
+import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -418,11 +419,11 @@ class DetailsActivityPhando : FragmentActivity() {
                     singleDetails = response.body()
                     if (singleDetails!!.list != null) {
                         episode_url = singleDetails!!.list.media_url
-                        Log.i(TAG, "onResponse:--> "+singleDetails!!.list.media_type)
+                        Log.i(TAG, "onResponse:l--> "+singleDetails!!.list.nextMedia.id)
 
                         val videoList: List<Video> = ArrayList()
 
-                            if (singleDetails!!.mediaCode.contentEquals("buyed") || singleDetails!!.mediaCode.contentEquals("package_purchased")
+                            if (singleDetails!!.mediaCode.contentEquals("buyed") ||singleDetails!!.mediaCode.contentEquals("free") || singleDetails!!.mediaCode.contentEquals("package_purchased")
                                 || singleDetails!!.mediaCode.contentEquals("package_purchased") || singleDetails!!.mediaCode.contentEquals(
                                     "rented_and_can_buy"
                                 )
@@ -507,7 +508,15 @@ class DetailsActivityPhando : FragmentActivity() {
                             Log.i(TAG, "onResponse: media_type2"+singleDetails!!.list.media_type)
 
                         }
-                        Log.i(TAG, "onResponse: media_type"+singleDetails!!.list.media_type+dataEpisode.poster)
+                        if(singleDetails!!.list.nextMedia!=null){
+
+                        intent.putExtra("next_media_id",singleDetails!!.list!!.nextMedia.id.toString())
+                        intent.putExtra("next_media_type",singleDetails!!.list!!.nextMedia.type.toString())
+
+                            Log.i(TAG, "onResponse: media_type"+singleDetails!!.list!!.nextMedia.id.toString() +singleDetails!!.list!!.nextMedia.type)
+
+                        }
+                        Log.i(TAG, "onResponse: media_type"+singleDetails!!.list!!.nextMedia.id +singleDetails!!.list!!.nextMedia.type)
 
                         startActivity(intent)
                     } else {
@@ -948,6 +957,11 @@ class DetailsActivityPhando : FragmentActivity() {
                 val intent = Intent(this, PlayerActivityNewCode::class.java)
                 intent.putExtra(VideoPlaybackActivity.EXTRA_VIDEO, video)
                 intent.putExtra("Enable_Subtile", enable_subtitle)
+                if(singleDetails!!.list.media_type=="audio"){
+                    intent.putExtra("media_type",singleDetails!!.list.media_type )
+                    Log.i(TAG, "onResponse: media_type3"+singleDetails!!.list.media_type)
+
+                }
                 if (enable_subtitle.contentEquals("true")) {
                     //  intent.putExtra("subtitle", singleDetails!!.list.ccFiles)
                     intent.putParcelableArrayListExtra("subtitle", subtitleList)
