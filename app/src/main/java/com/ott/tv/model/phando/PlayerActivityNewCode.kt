@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.media.AudioManager
 import android.media.session.MediaSession
 import android.net.Uri
@@ -43,12 +44,18 @@ import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
 import com.google.android.exoplayer2.util.MimeTypes
 import com.ott.tv.Config
+import com.ott.tv.Constants
 import com.ott.tv.R
 import com.ott.tv.adapter.ServerAdapter
 import com.ott.tv.adapter.ServerAdapter.OriginalViewHolder
 import com.ott.tv.adapter.SubtitleListAdapter
+import com.ott.tv.database.DatabaseHelper
 import com.ott.tv.model.Video
 import com.ott.tv.model.home_content.SubtitleDataNew
+import com.ott.tv.network.RetrofitClient
+import com.ott.tv.network.api.Dashboard
+import com.ott.tv.ui.activity.LoginChooserActivity
+import com.ott.tv.utils.CMHelper
 import com.ott.tv.utils.PreferenceUtils
 import com.ott.tv.utils.ToastMsg
 import com.ott.tv.video_service.MediaSessionHelper
@@ -58,6 +65,10 @@ import com.ott.tv.video_service.VideoPlaybackActivity
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.security.AccessController
 import java.util.regex.Pattern
 
 /*import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;*/ /*
@@ -85,9 +96,11 @@ import com.npaw.youbora.lib6.plugin.Plugin;
     private val visible = 0
     private var exo_pause: ImageButton? = null
 
+
     private var selectTracksButton: ImageButton? = null
     private var fastForwardButton: ImageButton? = null
     private var subtitleButton: ImageButton? = null
+    private var play_nextButton: ImageButton? = null
     private var imgVideoQuality: ImageButton? = null
     private var exo_prev: ImageButton? = null
     private var exo_rew: ImageButton? = null
@@ -118,12 +131,16 @@ import com.npaw.youbora.lib6.plugin.Plugin;
     private var categoryType = ""
     private var Enable_Subtile = ""
     private var media_type = ""
+    private var next_media_id = ""
+    private var next_media_type = ""
     private var subtitleList: ArrayList<SubtitleDataNew>? = null
 
     private var id = ""
     private val youTubePlayer: YouTubePlayer? = null
     private val startAutoPlay = true
     private var isShowingTrackSelectionDialog = false
+    private var singleDetails: MediaplaybackData? = null
+    private var episode_url = ""
 
 
     //    private MediaSessionCompat mediaSession;
@@ -140,6 +157,8 @@ import com.npaw.youbora.lib6.plugin.Plugin;
 
         Enable_Subtile = intent.getStringExtra("Enable_Subtile").toString()
         media_type = intent.getStringExtra("media_type").toString()
+        next_media_id = intent.getStringExtra("next_media_id").toString()
+        next_media_type = intent.getStringExtra("next_media_type").toString()
 
         // subtitle_Data = intent.getParcelableExtra<CCFile>("subtitle")
         // subtitle_Data = intent.getStringArrayListExtra("subtitle")
@@ -240,6 +259,7 @@ import com.npaw.youbora.lib6.plugin.Plugin;
         bt_golive = findViewById(R.id.bt_golive)
         selectTracksButton = findViewById(R.id.select_tracks_button)
         subtitleButton = findViewById(R.id.img_subtitle)
+        play_nextButton = findViewById(R.id.play_nextButton)
         imgVideoQuality = findViewById(R.id.img_video_quality)
         fastForwardButton = findViewById(R.id.fastForwardButton)
         exo_rew = findViewById(R.id.rewineButton)
@@ -287,6 +307,12 @@ import com.npaw.youbora.lib6.plugin.Plugin;
             }
             player!!.pause()
         })
+        if(next_media_id.isNotEmpty()&&next_media_id!="null"){
+            play_nextButton!!.visibility=View.VISIBLE
+        }else{
+            play_nextButton!!.visibility=View.GONE
+
+        }
         //  webView=findViewById(R.id.webview);
         if (category.equals("t", ignoreCase = true)) {
             bt_golive!!.setVisibility(View.GONE)
@@ -306,6 +332,7 @@ import com.npaw.youbora.lib6.plugin.Plugin;
                 subtitleButton!!.setVisibility(View.GONE)
             }
         }
+
         if (category.equals("movie", ignoreCase = true)) {
             if (model!!.videoList != null) videos!!.clear()
             videos = model!!.videoList
@@ -375,6 +402,9 @@ import com.npaw.youbora.lib6.plugin.Plugin;
                 .load(model!!.cardImageUrl)
                 .into(image_contain!!)
 
+        }
+        play_nextButton!!.setOnClickListener {
+            getDataEpisode(next_media_type,next_media_id)
         }
 
         // PreferenceUtils.getInstance().getWatermarkLogoUrlPref(this);
@@ -659,6 +689,164 @@ import com.npaw.youbora.lib6.plugin.Plugin;
             currentAutoResolutionPlayed = resolutionHashMap!![getString(R.string._2160p)]
             playVideoViaResolutionSelection()
             dialog.dismiss()
+        }
+    }
+    private fun getDataEpisode(videoType: String, videoId: String) {
+        val retrofit = RetrofitClient.getRetrofitInstance()
+        val accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(this)
+        //  PreferenceUtils.getInstance().getUsersIdActionOTT(this);
+        val api = retrofit.create(Dashboard::class.java)
+        val call = api.getSingleDetailAPI(accessToken, videoId, videoType, "1")
+        call.enqueue(object : Callback<MediaplaybackData?> {
+            override fun onResponse(
+                call: Call<MediaplaybackData?>, response: Response<MediaplaybackData?>
+            ) {
+                if (response.code() == 200 && response.body() != null) {
+                    singleDetails = response.body()
+                    if (singleDetails!!.list != null) {
+                        episode_url = singleDetails!!.list.media_url
+                        Log.i(TAG, "onResponse:l--> "+singleDetails!!.list.nextMedia.id)
+
+                        val videoList: List<Video> = ArrayList()
+
+                        if (singleDetails!!.mediaCode.contentEquals("buyed") ||singleDetails!!.mediaCode.contentEquals("free") || singleDetails!!.mediaCode.contentEquals("package_purchased")
+                            || singleDetails!!.mediaCode.contentEquals("package_purchased") || singleDetails!!.mediaCode.contentEquals(
+                                "rented_and_can_buy"
+                            )
+                        ) {
+                            // tvWatchNow!!.text = "Watch Now"
+
+                        }else{
+                            if(com.ott.tv.BuildConfig.FLAVOR.contentEquals("vyasott")){
+                                CMHelper.setSnackBar(playerViewRv,
+                                    "Unlock Premium Content, Stream Unlimited Content – Subscribe, Rent, and Enjoy on our Mobile App ",
+                                    1,
+                                    10000
+                                )
+                            }else{
+                                CMHelper.setSnackBar(
+                                    playerViewRv,
+                                    "Unlock Premium Content, Stream Unlimited Content – Subscribe, Rent, and Enjoy on our Mobile App | WEBSITE -" + Config.DOMAIN,
+                                    1,
+                                    10000
+                                )
+                            }
+
+                            return
+                        }
+
+                      /*  if (tvWatchNow!!.text == null || !tvWatchNow!!.text.toString()
+                                .equals("Watch Now", ignoreCase = true)
+                        ) {
+                            if(com.ott.tv.BuildConfig.FLAVOR.contentEquals("vyasott")){
+                                Toast.makeText(
+                                    applicationContext,
+                                    "Unlock Premium Content, Stream Unlimited Content – Subscribe, Rent, and Enjoy on our Mobile App  -",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }else{
+                                Toast.makeText(
+                                    applicationContext,
+                                    "Unlock Premium Content, Stream Unlimited Content – Subscribe, Rent, and Enjoy on our Mobile App | WEBSITE -" + Config.DOMAIN,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+
+                            return
+                        } else */if (singleDetails!!.list.media_url.isEmpty()) {
+                            /*CMHelper.setSnackBar(this.getCurrentFocus(), "We are sorry, Video not available for your selected content", 2);*/
+                            Toast.makeText(
+                                applicationContext,
+                                "We are sorry, Video not available for your selected content",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            return
+                        }
+                        val video = PlaybackModel()
+                        val videoListForIntent = ArrayList(videoList)
+                        video.id = videoId.toLong()
+                        video.title = singleDetails!!.list!!.title
+                        video.description = singleDetails!!.list!!.description
+                        video.videoType = Config.VideoURLTypeHls
+                        video.category = "movie"
+                        video.videoUrl = singleDetails!!.list.media_url
+                        video.cardImageUrl = singleDetails!!.list.thumbnail
+
+                        /*
+                       if (!com.ott.tv.BuildConfig.FLAVOR.equals("vyasott", ignoreCase = true)) {
+
+                                video.cardImageUrl = dataEpisode.thumbnail
+
+                        }else {
+                            video.cardImageUrl = dataEpisode.poster
+                        }*/
+                        video.istrailer = false
+
+                        //  video.setBgImageUrl(thumbUrl);
+                        video.isPaid = "free"
+
+                        //  video.setVideo(singleDetails.getVideos().get(0));
+                        val intent = Intent(applicationContext, PlayerActivityNewCode::class.java)
+                        intent.putExtra(VideoPlaybackActivity.EXTRA_VIDEO, video)
+                        if(singleDetails!!.list.media_type=="audio"){
+                            intent.putExtra("media_type",singleDetails!!.list.media_type )
+                            Log.i(TAG, "onResponse: media_type2"+singleDetails!!.list.media_type)
+
+                        }
+                        if(singleDetails!!.list.nextMedia!=null){
+
+                            intent.putExtra("next_media_id",singleDetails!!.list!!.nextMedia.id.toString())
+                            intent.putExtra("next_media_type",singleDetails!!.list!!.nextMedia.type.toString())
+                            Log.i(TAG, "onResponse: media_type"+singleDetails!!.list!!.nextMedia.id.toString() +singleDetails!!.list!!.nextMedia.type)
+
+                        }
+                        Log.i(TAG, "onResponse: media_type"+singleDetails!!.list!!.nextMedia.id +singleDetails!!.list!!.nextMedia.type)
+
+                        startActivity(intent)
+                    } else {
+                        episode_url = ""
+                    }
+                } else if (response.code() == 401) {
+                    signOut()
+                } else {
+                    CMHelper.setSnackBar(
+                        this@PlayerActivityNewCode.currentFocus,
+                        "We are sorry, This video content not available, Please try another",
+                        2
+                    )
+                }
+            }
+
+            override fun onFailure(call: Call<MediaplaybackData?>, t: Throwable) {
+                Log.i("DetailISSUE_kranti", "onResponse: $t")
+                CMHelper.setSnackBar(
+                    this@PlayerActivityNewCode.currentFocus,
+                    "We are sorry, This video content not available, Please try another$t",
+                    2
+                )
+            }
+        })
+    }
+    private fun signOut() {
+        if (AccessController.getContext() != null && this != null) {
+            val databaseHelper = DatabaseHelper(this)
+            if (PreferenceUtils.getInstance().getAccessTokenPref(this) !== "") {
+                val editor: SharedPreferences.Editor =
+                    getSharedPreferences(Constants.USER_LOGIN_STATUS, MODE_PRIVATE)
+                        .edit()
+                editor.putBoolean(Constants.USER_LOGIN_STATUS, false)
+                editor.apply()
+                databaseHelper.deleteUserData()
+                PreferenceUtils.clearSubscriptionSavedData(this)
+                PreferenceUtils.getInstance().setAccessTokenNPref(this, "")
+                Toast.makeText(
+                    this,
+                    "You've been logged out because we have detected another login from your ID on a different device. You are not allowed to login on more than one device at a time.",
+                    Toast.LENGTH_SHORT
+                ).show()
+                startActivity(Intent(this, LoginChooserActivity::class.java))
+                finish()
+            }
         }
     }
 
