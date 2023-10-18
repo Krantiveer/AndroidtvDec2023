@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.vyaspublications.tv",
+  "variantName": "vyasottRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 9,
+      "versionName": "9.0",
+      "outputFile": "vyasottRelease_TV_v9.0_18_Oct_2023.apk"
+    }
+  ],
+  "elementType": "File"
+}
