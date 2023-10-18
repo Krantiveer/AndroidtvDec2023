@@ -419,7 +419,6 @@ class DetailsActivityPhando : FragmentActivity() {
                     singleDetails = response.body()
                     if (singleDetails!!.list != null) {
                         episode_url = singleDetails!!.list.media_url
-                        Log.i(TAG, "onResponse:l--> "+singleDetails!!.list.nextMedia.id)
 
                         val videoList: List<Video> = ArrayList()
 
@@ -516,7 +515,6 @@ class DetailsActivityPhando : FragmentActivity() {
                             Log.i(TAG, "onResponse: media_type"+singleDetails!!.list!!.nextMedia.id.toString() +singleDetails!!.list!!.nextMedia.type)
 
                         }
-                        Log.i(TAG, "onResponse: media_type"+singleDetails!!.list!!.nextMedia.id +singleDetails!!.list!!.nextMedia.type)
 
                         startActivity(intent)
                     } else {

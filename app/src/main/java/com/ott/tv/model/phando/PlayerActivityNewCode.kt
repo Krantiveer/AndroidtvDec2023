@@ -33,8 +33,10 @@ import androidx.tvprovider.media.tv.TvContractCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.exoplayer2.C
+import com.google.android.exoplayer2.ExoPlaybackException
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.hls.HlsMediaSource
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
@@ -404,6 +406,9 @@ import com.npaw.youbora.lib6.plugin.Plugin;
 
         }
         play_nextButton!!.setOnClickListener {
+         //   releasePlayer()
+            //  mediaSessionHelper.stopMediaSession();
+          //  finish()
             getDataEpisode(next_media_type,next_media_id)
         }
 
@@ -1421,6 +1426,69 @@ player!!.setMediaSource(hlsMediaSource)
             player!!.prepare()
             player!!.playWhenReady = startAutoPlay
             exoPlayerView!!.player = player
+
+            player!!.addListener(object : Player.Listener {
+
+                override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
+                    Log.d(TAG, "onPlayerStateChanged + $playbackState")
+                    if (playbackState == ExoPlayer.STATE_ENDED) {
+                        Log.d(TAG, "onPlayerStateChanged + $playbackState")
+
+                        //  currentVideo++
+                        //  loadNextVideo()
+                        if(next_media_id.isNotEmpty()&&next_media_id!="null"){
+                            getDataEpisode(next_media_type,next_media_id)
+
+                        }
+
+                        //       player!!.seekTo(12);
+                        // player!!.setPlayWhenReady(true);
+
+                    }
+
+                }
+
+/*
+                override fun onEvents(player: Player, events: Player.Events) {
+                    Log.d(TAG, "onPlayerStateChanged2 + -->"+player!!.currentPosition +"--->"+player!!.duration)
+
+                    val totalDuration = maxOf(0, player?.duration ?: 0)
+                    val currentPosition = maxOf(0, player?.currentPosition ?: 0)
+
+                    val remainingTime = totalDuration - currentPosition
+
+                    val remainingTimeInSeconds = maxOf(0, remainingTime / 1000)
+
+                    if (remainingTimeInSeconds.toInt() <= 90 && remainingTimeInSeconds.toInt() !=0) {
+
+                        Log.d(TAG, "onPlayerStateChanged23 + "+remainingTimeInSeconds)
+
+                        if (!exoPlayerView!!.isControllerVisible) {
+                            exoPlayerView!!.showController()*/
+/*
+                            iv_play_next!!.visibility = View.VISIBLE
+                            cv_nextvideo!!.visibility = View.VISIBLE*//*
+
+                            if(is_trailer.contentEquals("true")){
+                                ll_playnext!!.visibility = View.GONE
+
+                            }else
+                                ll_playnext!!.visibility = View.VISIBLE
+
+
+                        }
+                        // Do something when there are 2 minutes or less left
+                        // For example, display a message or take some action
+                        // You can also use a handler to perform actions periodically
+                    }
+                    super.onEvents(player, events)
+                }
+*/
+
+                fun onPlayWhenReadyCommitted() {}
+                fun onPlayerError(error: ExoPlaybackException?) {}
+            })
+
 
         }
 
