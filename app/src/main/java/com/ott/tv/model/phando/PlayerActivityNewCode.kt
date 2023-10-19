@@ -143,6 +143,10 @@ import com.npaw.youbora.lib6.plugin.Plugin;
     private var isShowingTrackSelectionDialog = false
     private var singleDetails: MediaplaybackData? = null
     private var episode_url = ""
+    private var islive=""
+    private var document_media_id=""
+    private var last_watch_time=""
+
 
 
     //    private MediaSessionCompat mediaSession;
@@ -161,6 +165,9 @@ import com.npaw.youbora.lib6.plugin.Plugin;
         media_type = intent.getStringExtra("media_type").toString()
         next_media_id = intent.getStringExtra("next_media_id").toString()
         next_media_type = intent.getStringExtra("next_media_type").toString()
+        islive=intent.getStringExtra("islive").toString()
+        document_media_id=intent.getStringExtra("document_media_id").toString()
+        last_watch_time=intent.getStringExtra("last_watch_time").toString()
 
         // subtitle_Data = intent.getParcelableExtra<CCFile>("subtitle")
         // subtitle_Data = intent.getStringArrayListExtra("subtitle")
@@ -170,7 +177,7 @@ import com.npaw.youbora.lib6.plugin.Plugin;
 
 
 
-        Log.i(TAG, "onCreate: string -->" + Enable_Subtile + subtitleList+media_type)
+        Log.i(TAG, "onCreate: string -->" + Enable_Subtile + subtitleList+media_type+islive)
 
         // The second parameter is the default value if EXTRA_INT is not found
 
@@ -205,6 +212,28 @@ import com.npaw.youbora.lib6.plugin.Plugin;
         }*/
         intiViews()
         initVideoPlayer(url, videoType)
+    }
+    private fun sendContinueWatch(time: String, videoId:String) {
+        val retrofit = RetrofitClient.getRetrofitInstance()
+        val api = retrofit.create(Dashboard::class.java)
+        val accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(this)
+
+        val call = api.setContinueWatchingTime(accessToken, videoId, time)
+        call.enqueue(object : Callback<UpdateMyListResponse?> {
+            override fun onResponse(call: Call<UpdateMyListResponse?>, response: Response<UpdateMyListResponse?>) {
+                if (response.code() == 200 && response.body() != null) {
+                    if (response.body()!!.status.equals("success", ignoreCase = true)) {
+
+                    } else if (response.code() == 401) {
+//                    signOut()
+                    } else {
+                    }
+                }}
+
+            override fun onFailure(call: Call<UpdateMyListResponse?>, t: Throwable) {
+                Log.e("DetailsActivityPhando", "onFailure: $t")
+            }
+        })
     }
 
     /*
@@ -960,6 +989,17 @@ import com.npaw.youbora.lib6.plugin.Plugin;
                 } else {
                     Log.i(TAG, "onKeyDown: " + "here click")
                     //   updateContinueWatchingDataToServer();
+                    if(islive!=null){
+                        if(islive=="0") {
+                            Log.i(
+                                TAG,
+                                "onKeyDown: " + "here click" + player!!.currentPosition + "document_media_id" + document_media_id
+                            )
+                            val milliseconds = player!!.currentPosition
+                            val seconds = milliseconds / 1000 // Integer division, no decimal part
+
+                            sendContinueWatch(seconds.toString(), document_media_id)
+                        }}
                     releasePlayer()
                     //  mediaSessionHelper.stopMediaSession();
                     finish()
@@ -1425,6 +1465,9 @@ player!!.setMediaSource(hlsMediaSource)
             player!!.trackSelector
             player!!.prepare()
             player!!.playWhenReady = startAutoPlay
+            if(last_watch_time!=null&&last_watch_time.isNotEmpty()&&last_watch_time.isNullOrBlank()) {
+                player!!.seekTo(last_watch_time.toLong() * 1000)
+            }
             exoPlayerView!!.player = player
 
             player!!.addListener(object : Player.Listener {

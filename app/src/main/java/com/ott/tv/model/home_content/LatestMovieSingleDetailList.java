@@ -77,6 +77,28 @@ public class LatestMovieSingleDetailList implements Parcelable {
     @SerializedName("thumbnail")
     @Expose
     private String thumbnail;
+    @SerializedName("document_media_id")
+    @Expose
+    private Integer document_media_id;
+    @SerializedName("last_watch_time")
+    @Expose
+    private Integer last_watch_time;
+
+    public Integer getDocument_media_id() {
+        return document_media_id;
+    }
+
+    public void setDocument_media_id(Integer document_media_id) {
+        this.document_media_id = document_media_id;
+    }
+
+    public Integer getLast_watch_time() {
+        return last_watch_time;
+    }
+
+    public void setLast_watch_time(Integer last_watch_time) {
+        this.last_watch_time = last_watch_time;
+    }
 
     public String getThumbnail() {
         return thumbnail;

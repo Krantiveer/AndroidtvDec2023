@@ -504,9 +504,25 @@ class DetailsActivityPhando : FragmentActivity() {
                         intent.putExtra(VideoPlaybackActivity.EXTRA_VIDEO, video)
                         if(singleDetails!!.list.media_type=="audio"){
                             intent.putExtra("media_type",singleDetails!!.list.media_type )
+
                             Log.i(TAG, "onResponse: media_type2"+singleDetails!!.list.media_type)
 
                         }
+                        intent.putExtra("islive",singleDetails!!.list.is_live.toString())
+                        intent.putExtra("document_media_id",singleDetails!!.list.document_media_id.toString())
+                        if(singleDetails!!.list.last_watch_time!=0){
+
+                            intent.putExtra("last_watch_time", singleDetails!!.list.last_watch_time.toString())
+
+                        }
+
+
+                        if(singleDetails!!.list.last_watch_time!=0){
+
+                            intent.putExtra("last_watch_time", singleDetails!!.list.last_watch_time.toString())
+
+                        }
+
                         if(singleDetails!!.list.nextMedia!=null){
 
                         intent.putExtra("next_media_id",singleDetails!!.list!!.nextMedia.id.toString())
@@ -955,9 +971,19 @@ class DetailsActivityPhando : FragmentActivity() {
                 val intent = Intent(this, PlayerActivityNewCode::class.java)
                 intent.putExtra(VideoPlaybackActivity.EXTRA_VIDEO, video)
                 intent.putExtra("Enable_Subtile", enable_subtitle)
+
                 if(singleDetails!!.list.media_type=="audio"){
                     intent.putExtra("media_type",singleDetails!!.list.media_type )
                     Log.i(TAG, "onResponse: media_type3"+singleDetails!!.list.media_type)
+
+                }
+                intent.putExtra("islive",singleDetails!!.list.is_live.toString())
+                intent.putExtra("document_media_id",singleDetails!!.list.document_media_id.toString())
+
+
+                if(singleDetails!!.list.last_watch_time!=0){
+
+                    intent.putExtra("last_watch_time", singleDetails!!.list.last_watch_time.toString())
 
                 }
                 if (enable_subtitle.contentEquals("true")) {

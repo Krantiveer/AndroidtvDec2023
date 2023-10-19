@@ -83,31 +83,35 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
             int percentageProgressbar;
             int watch_runtime;
             if (listdata.getList().get(position) != null) {
-                if (listdata.getList().get(position).getRuntime_in_minutes() != null) {
-                    total_runtime = Integer.parseInt(listdata.getList().get(position).getRuntime_in_minutes());
+                if (listdata.getList().get(position).getDuration() != null) {
+                    total_runtime = listdata.getList().get(position).getDuration();
+                    total_runtime=total_runtime/60;
                 } else {
                     total_runtime = 0;
                 }
-                if (listdata.getList().get(position).continue_watch_minutes.getLast_watched_at() != null) {
-                    watch_runtime = Integer.parseInt(listdata.getList().get(position).continue_watch_minutes.getLast_watched_at()) / 60;
-                } else {
-                    watch_runtime = 100;
 
+                if (listdata.getList().get(position).getLast_watch_time() != null ) {
+                    if (listdata.getList().get(position).getLast_watch_time() !=null) {
+                       watch_runtime = Integer.parseInt(listdata.getList().get(position).getLast_watch_time().toString()) / 60;
+                    } else {
+                        watch_runtime = 100;
+
+                    }
+                    Log.i("continuewatching", watch_runtime + "--totaltime=" + total_runtime);
+
+
+                    if (total_runtime == 0) {
+                        percentageProgressbar = 100;
+                    } else {
+                    //    percentageProgressbar = (Integer) ((watch_runtime / total_runtime) * 100);
+                         percentageProgressbar = (int) ((watch_runtime * 100.0) / total_runtime);
+
+                    }
+                    Log.i("continuewatching2", "" + percentageProgressbar);
+                    holder.progressBarMovie.setProgress(percentageProgressbar);
+                    holder.progressBarMovie.getProgressDrawable().setColorFilter(
+                            Color.WHITE, android.graphics.PorterDuff.Mode.SRC_IN);
                 }
-
-                Log.i("continuewatching", watch_runtime + "--totaltime=" + total_runtime);
-
-                if (total_runtime == 0) {
-                    percentageProgressbar = 100;
-                } else {
-                    percentageProgressbar = (Integer) ((watch_runtime / total_runtime) * 100);
-                }
-                Log.i("continuewatching2", "" + percentageProgressbar);
-                holder.progressBarMovie.setProgress(percentageProgressbar);
-                holder.progressBarMovie.getProgressDrawable().setColorFilter(
-                        Color.RED, android.graphics.PorterDuff.Mode.SRC_IN);
-
-
             } else {
                 holder.progressBarMovie.setVisibility(View.GONE);
             }

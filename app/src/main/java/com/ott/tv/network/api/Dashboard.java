@@ -8,6 +8,7 @@ import com.ott.tv.model.phando.LatestMoviesTVSeriesList;
 import com.ott.tv.model.phando.MapList;
 import com.ott.tv.model.phando.MediaplaybackData;
 import com.ott.tv.model.phando.ShowWatchlist;
+import com.ott.tv.model.phando.UpdateMyListResponse;
 import com.ott.tv.model.phando.UserProfile;
 import com.ott.tv.model.phando.Wishlist;
 
@@ -111,5 +112,9 @@ public interface Dashboard {
             @Query("language_id") String filter,
             @Query("limit") String limit);
 
+    @GET("setContinueWatchingTime")
+    Call<UpdateMyListResponse> setContinueWatchingTime(@Header("Authorization") String token,
+                                                       @Query("document_id") String documentId,
+                                                       @Query("time") String time);
 
 }
