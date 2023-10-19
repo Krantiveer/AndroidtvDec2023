@@ -80,11 +80,28 @@
                 android:paddingEnd="4sp"
                 android:fontFamily="@font/roboto"
                 android:paddingBottom="5sp"
-
                 android:textColor="@color/white"
                 android:textSize="@dimen/card_Text_Size_Home"
                 tools:text="title movie"
                 />
+            <TextView
+                android:id="@+id/title_name_genre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="2sp"
+                android:ellipsize="marquee"
+                android:maxLines="1"
+                android:paddingStart="4sp"
+                android:paddingEnd="4sp"
+                android:fontFamily="@font/roboto"
+                android:paddingBottom="5sp"
+                android:textColor="@color/white"
+                android:layout_marginLeft="2sp"
+                android:textSize="@dimen/card_Text_Size_Home"
+                tools:text="title movie"
+                />
+
             <ProgressBar
                 android:id="@+id/progress_bar_movie"
                 style="@style/yellowProgressBar"

@@ -118,6 +118,13 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
         } else {
 
         }
+        if(listdata.getDisplayType().equalsIgnoreCase("GENRE")){
+          holder.title_name.setVisibility(View.GONE);
+          holder.title_name_genre.setVisibility(View.VISIBLE);
+        }else{
+            holder.title_name.setVisibility(View.VISIBLE);
+            holder.title_name_genre.setVisibility(View.GONE);
+        }
         if (true) {
             /*if (position == 5) {
                 holder.primary_text.setText(listdata.getVideos().get(position).getTitle());
@@ -130,6 +137,7 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
             } else*/
             if (listdata.getList().get(position) != null) {
                 holder.title_name.setText(listdata.getList().get(position).getTitle());
+                holder.title_name_genre.setText(listdata.getList().get(position).getTitle());
             }
 
          /*   if (listdata.getList().get(position).getIsPaid()!=null) {
@@ -202,6 +210,7 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
         public ImageView main_image, premiumIconImage;
         public TextView primary_text;
         public TextView title_name;
+        public TextView title_name_genre;
         public ProgressBar progressBarMovie;
         public RelativeLayout relativeLayout_parent;
 
@@ -211,6 +220,7 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
             this.premiumIconImage = (ImageView) itemView.findViewById(R.id.premiumIconImage);
             this.primary_text = (TextView) itemView.findViewById(R.id.primary_text);
             this.title_name = (TextView) itemView.findViewById(R.id.title_name);
+            this.title_name_genre = (TextView) itemView.findViewById(R.id.title_name_genre);
             this.progressBarMovie = (ProgressBar) itemView.findViewById(R.id.progress_bar_movie);
             relativeLayout_parent = (RelativeLayout) itemView.findViewById(R.id.relativeLayout);
         }
