@@ -1465,9 +1465,11 @@ player!!.setMediaSource(hlsMediaSource)
             player!!.trackSelector
             player!!.prepare()
             player!!.playWhenReady = startAutoPlay
-            if(last_watch_time!=null&&last_watch_time.isNotEmpty()) {
+
+            if(last_watch_time!=null&&last_watch_time.isNotBlank()&&last_watch_time != "null"){
+            if(last_watch_time.isNotEmpty()) {
                 player!!.seekTo(last_watch_time.toLong() * 1000)
-            }
+            }}
             exoPlayerView!!.player = player
 
             player!!.addListener(object : Player.Listener {
