@@ -510,12 +510,6 @@ class DetailsActivityPhando : FragmentActivity() {
                         }
                         intent.putExtra("islive",singleDetails!!.list.is_live.toString())
                         intent.putExtra("document_media_id",singleDetails!!.list.document_media_id.toString())
-                        if(singleDetails!!.list.last_watch_time!=0){
-
-                            intent.putExtra("last_watch_time", singleDetails!!.list.last_watch_time.toString())
-
-                        }
-
 
                         if(singleDetails!!.list.last_watch_time!=0){
 

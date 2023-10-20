@@ -3,7 +3,7 @@ package com.ott.tv;
 public class Config {
 
     public static final String Device_Type = "androidtv";
-//      public static final String Device_Type = "firetv";
+    //  public static final String Device_Type = "firetv";
     //  public static final String DOMAIN = "https://actionott.com/";
     // public static final String DOMAIN = "https://dev.actionott.com/";
     //public static final String DOMAIN = "https://lifeott.com/";

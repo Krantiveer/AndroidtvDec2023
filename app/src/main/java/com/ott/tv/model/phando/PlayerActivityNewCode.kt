@@ -1465,7 +1465,7 @@ player!!.setMediaSource(hlsMediaSource)
             player!!.trackSelector
             player!!.prepare()
             player!!.playWhenReady = startAutoPlay
-            if(last_watch_time!=null&&last_watch_time.isNotEmpty()&&last_watch_time.isNullOrBlank()) {
+            if(last_watch_time!=null&&last_watch_time.isNotEmpty()) {
                 player!!.seekTo(last_watch_time.toLong() * 1000)
             }
             exoPlayerView!!.player = player
