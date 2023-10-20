@@ -22,6 +22,7 @@ import com.ott.tv.model.home_content.Video;
 import com.ott.tv.model.phando.LatestMovieList;
 import com.ott.tv.ui.activity.DetailsActivity;
 import com.ott.tv.ui.activity.DetailsActivityTvSeries;
+import com.ott.tv.utils.UiUtil;
 
 import java.util.ArrayList;
 
@@ -69,11 +70,13 @@ public class HomeBannerAdapter extends RecyclerView.Adapter<HomeBannerAdapter.Vi
 
                 holder.primary_text.setText(listdata.get(position).getTitle());
                 if (!TextUtils.isEmpty(listdata.get(position).getImageLink())){
-                    Glide.with(context)
+                    UiUtil.displayImage(context,listdata.get(position).getImageLink(),0,0,holder.main_image);
+
+                   /* Glide.with(context)
                             .load(listdata.get(position).getImageLink()).
                             placeholder(R.drawable.poster_placeholder_land)
                             .error(R.drawable.poster_placeholder_land)
-                            .into(holder.main_image);}
+                            .into(holder.main_image);*/}
             /*    if(listdata.get(position).getIsPaid().equalsIgnoreCase("1")){
                     holder.premiumIconImage.setVisibility(View.GONE);
                 }else{

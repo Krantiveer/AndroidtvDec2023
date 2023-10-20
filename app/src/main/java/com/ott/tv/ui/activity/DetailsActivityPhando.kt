@@ -43,6 +43,7 @@ import com.ott.tv.network.api.FavouriteApi
 import com.ott.tv.utils.CMHelper
 import com.ott.tv.utils.PreferenceUtils
 import com.ott.tv.utils.ToastMsg
+import com.ott.tv.utils.UiUtil
 import com.ott.tv.video_service.PlaybackModel
 import com.ott.tv.video_service.VideoPlaybackActivity
 import com.squareup.picasso.BuildConfig
@@ -350,10 +351,11 @@ class DetailsActivityPhando : FragmentActivity() {
                         holder.premiumIconImage_TVSeries.visibility=View.VISIBLE
 
                     }
-
-                            Glide.with(applicationContext).load(listdata[position]!!.thumbnail)
+        UiUtil.displayImage(applicationContext,listdata[position]!!.thumbnail,0,0,holder.episode_image)
+          /*  Glide.with(applicationContext).load(listdata[position]!!.thumbnail)
                         .error(R.drawable.poster_placeholder_land).fitCenter()
                         .placeholder(R.drawable.poster_placeholder_land).into(holder.episode_image)
+*/
                     holder.episode_ll.setOnClickListener { view: View? ->
                         val categoryType: String
                         val pos = holder.absoluteAdapterPosition
@@ -422,7 +424,7 @@ class DetailsActivityPhando : FragmentActivity() {
 
                         val videoList: List<Video> = ArrayList()
 
-                            if (singleDetails!!.mediaCode.contentEquals("buyed") ||singleDetails!!.mediaCode.contentEquals("free") || singleDetails!!.mediaCode.contentEquals("package_purchased")
+                            if (singleDetails!!.mediaCode.contentEquals("buyed") || singleDetails!!.mediaCode.contentEquals("free") || singleDetails!!.mediaCode.contentEquals("package_purchased")
                                 || singleDetails!!.mediaCode.contentEquals("package_purchased") || singleDetails!!.mediaCode.contentEquals(
                                     "rented_and_can_buy"
                                 )
@@ -772,17 +774,21 @@ class DetailsActivityPhando : FragmentActivity() {
     }
 
     fun setBannerImage(url: String?) {
-        Glide.with(this).load(url).placeholder(R.drawable.poster_placeholder_land)
+        UiUtil.displayImage(this,url,0,0,bannerImageView!!)
+
+/*        Glide.with(this).load(url).placeholder(R.drawable.poster_placeholder_land)
             .error(R.drawable.poster_placeholder_land).into(
                 bannerImageView!!
-            )
+            )*/
     }
 
     fun updateBackgroundThumnail(url: String?) {
-        Glide.with(this).load(url).placeholder(R.color.black_color)
+        UiUtil.displayImage(this,url,0,0,thumbnail_image!!)
+
+      /*  Glide.with(this).load(url).placeholder(R.color.black_color)
             .error(R.drawable.poster_placeholder_land).into(
                 thumbnail_image!!
-            )
+            )*/
     }
 
     private fun payAndWatchTV() {

@@ -35,8 +35,10 @@ import com.bumptech.glide.request.target.ImageViewTarget;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
 import com.ott.tv.R;
+import com.ott.tv.network.ThumbnailResizer;
 
 
+import java.net.URLEncoder;
 import java.util.Locale;
 
 /**
@@ -309,6 +311,20 @@ public class UiUtil {
 
         return result;
     }
+    public static void displayImage(final Context activity, final String url, final int placeHolder, final int errorPlaceholder, final ImageView imageView) {
 
+        // double imageWidth = thumbnailResizer.getWidth() * 1.0;
+        double imageWidth = 640 * 1.0;
+        String imageUrl = "https://imstool.phando.com/?image_url=" + url + "&width=" + imageWidth + "&service=resize&aspect_ratio=true";
+        Log.i("displayImage:@@imageUrl\"", imageUrl);
+
+        if (activity != null) {
+            Glide.with(activity)
+                    .load(imageUrl)
+                    .error(R.drawable.poster_placeholder_land)
+                    .placeholder(R.drawable.poster_placeholder_land)
+                    .into(imageView);
+        }
+    }
 
 }

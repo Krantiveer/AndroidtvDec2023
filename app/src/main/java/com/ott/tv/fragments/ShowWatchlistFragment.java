@@ -250,7 +250,7 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
             ShowWatchlist videoContent = (ShowWatchlist) o;
 
             String status = new DatabaseHelper(getContext()).getActiveStatusData().getStatus();
-            if (videoContent.getType().equals("M")) {
+            if (videoContent.getType().equals("M")||videoContent.getType().equalsIgnoreCase("E")) {
                 Intent intent = new Intent(getActivity(), DetailsActivityPhando.class);
                 if (videoContent.getType() != null)
                     intent.putExtra("type", videoContent.getType());

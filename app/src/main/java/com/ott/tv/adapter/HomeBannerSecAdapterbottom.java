@@ -32,6 +32,7 @@ import com.ott.tv.ui.activity.DetailsActivity;
 import com.ott.tv.ui.activity.DetailsActivityPhando;
 import com.ott.tv.ui.activity.DetailsActivityTvSeries;
 import com.ott.tv.ui.activity.ItemCountryActivity;
+import com.ott.tv.utils.UiUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -157,18 +158,22 @@ public class HomeBannerSecAdapterbottom extends RecyclerView.Adapter<HomeBannerS
 
             holder.primary_text.setText(listdata.getList().get(position).getTitle());
             if (!TextUtils.isEmpty(listdata.getList().get(position).getThumbnail())) {
-                Glide.with(context)
+                UiUtil.displayImage(context,listdata.getList().get(position).getThumbnail(),0,0,holder.main_image);
+
+              /*  Glide.with(context)
                         .load(listdata.getList().get(position).getThumbnail()).
                         placeholder(R.drawable.poster_placeholder_land)
                         .error(R.drawable.poster_placeholder_land)
-                        .into(holder.main_image);
+                        .into(holder.main_image);*/
             } else {
-                Glide.with(context)
+                UiUtil.displayImage(context,listdata.getList().get(position).getPosterUrl(),0,0,holder.main_image);
+
+              /*  Glide.with(context)
                         .load(listdata.getList().get(position).getPosterUrl()).
                         placeholder(R.drawable.poster_placeholder_land)
                         .error(R.drawable.poster_placeholder_land)
                         .into(holder.main_image);
-            }
+      */      }
 
             holder.relativeLayout_parent.setOnClickListener(view -> {
                 //   Toast.makeText(view.getContext(), "click on item: " + position, Toast.LENGTH_LONG).show();
