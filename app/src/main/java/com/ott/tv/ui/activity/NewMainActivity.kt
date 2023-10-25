@@ -249,11 +249,11 @@ class NewMainActivity : FragmentActivity() {
     fun onMenuSelection(type: String,type_id: String, title: String, gener_id: String) {
         Log.i(TAG, "onMenuSelection: -->"+type+"-typeid-"+type_id+"title"+title+"--"+defaultType)
 
-        if(type_id==defaultType){
+        /*if(type_id==defaultType){
             return;
         }else{
             defaultType=type_id;
-        }
+        }*/
         if (type.equals("search") || type.equals("Search")) {
 
             if (BuildConfig.FLAVOR.equals("uvtv", ignoreCase = true)) {
