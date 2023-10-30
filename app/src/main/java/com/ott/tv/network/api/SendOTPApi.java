@@ -7,6 +7,7 @@ import com.ott.tv.model.User;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -49,6 +50,11 @@ public interface SendOTPApi {
     @GET("check-access-code")
     Call<User> getCheckAccessCode(@Header("API-KEY") String apiKey,
                                   @Query("access_code") String accessCode);
+    @FormUrlEncoded
+    @POST("setUserLngPreferances")
+    Call<ResponseBody> setUserLngPreferances(
+            @Header("Authorization") String token,
+            @Field("languages_ids") String languageIds);
 
 
 }

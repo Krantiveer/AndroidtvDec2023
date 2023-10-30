@@ -16,9 +16,11 @@ import com.ott.tv.Constants
 import com.ott.tv.R
 import com.ott.tv.database.DatabaseHelper
 import com.ott.tv.databinding.FragmentMyAccountBinding
+import com.ott.tv.model.LanguageItem
 import com.ott.tv.model.phando.UserProfile
 import com.ott.tv.network.RetrofitClient
 import com.ott.tv.network.api.Dashboard
+import com.ott.tv.ui.activity.LanguageActivity
 import com.ott.tv.ui.activity.LoginChooserActivity
 import com.ott.tv.ui.activity.SearchActivity_Phando
 import com.ott.tv.ui.activity.SplashScreenActivityTv
@@ -32,6 +34,7 @@ class MyAccountFragment : Fragment() {
     private var userProfile: UserProfile? = null
     private var binding: FragmentMyAccountBinding? = null
     private val TAG = SplashScreenActivityTv::class.java.simpleName
+    private var Language: List<LanguageItem?>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +47,16 @@ class MyAccountFragment : Fragment() {
         binding!!.lytTopCard.visibility = View.GONE
         binding!!.progressBar.visibility = View.VISIBLE
         binding!!.signOutButton.setOnClickListener { signOut() }
+        /*binding!!.signOutButton.setOnClickListener {
+
+            val intent = Intent(context, LanguageActivity::class.java)
+            context?.startActivity(intent)
+
+        }*/
+        binding!!.languageBtn?.setOnClickListener {
+            val intent = Intent(context, LanguageActivity::class.java)
+            context?.startActivity(intent)
+        }
         userProfileDataFromServer
         binding!!.builVersion.text = "App Version:" + BuildConfig.VERSION_CODE
         return view
@@ -68,6 +81,105 @@ class MyAccountFragment : Fragment() {
         }
     }
 
+    private fun fetchLanguageData(token: String) {
+        if (context != null) {
+            val retrofit = RetrofitClient.getRetrofitInstance()
+            val api = retrofit.create(Dashboard::class.java)
+            Constants.IS_FROM_HOME = false
+            val accessToken = "Bearer $token"
+            val call = api.getLanguage(accessToken)
+            call.enqueue(object : Callback<List<LanguageItem?>> {
+                override fun onResponse(
+                    call: Call<List<LanguageItem?>>,
+                    response: Response<List<LanguageItem?>>
+                ) {
+                    if (response.code() == 200) {
+                        Language = response.body()
+                        if (Language?.size!! > 0) {
+
+                            // here new          setLanguageUI()
+                            val selectedLanguages =
+                                Language!!.filter { it!!.isLanguageSelected }.map { it!!.language }
+// Join the selected languages into a comma-separated string
+                            val selectedLanguagesAPI = selectedLanguages.joinToString(", ")
+                            Log.i("Languages", "onResponse: --->" + selectedLanguagesAPI)
+                            if (selectedLanguages.isEmpty()) {
+                                binding!!.langus?.text = "No Preferences"
+
+                            } else {
+                                binding!!.langus?.text = selectedLanguagesAPI
+                            }
+
+                        } else {
+                        }
+                        //  homeContent.setHomeContentId(1);
+                        //   homeContent.getSlider();
+                        //  loadSliderRows(homeContent.getSlider().getSlideArrayList());
+
+                        /*if (movieList.size() <= 0) {
+
+                    }
+
+                    for (BrowseData movie : movieList) {
+
+                    }
+                    //   movies.addAll(movieList);*/
+                    } else if (response.code() == 401) {
+                        signOut()
+                    } else if (response.errorBody() != null) {
+                        if (this != null) {
+                            Toast.makeText(
+                                context,
+                                "sorry! Something went wrong. Please try again after some time" + response.errorBody(),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        //  CMHelper.setSnackBar(requireView(), response.errorBody().toString(), 2);
+                    } else {
+                        if (context != null) {
+                            Toast.makeText(
+                                context,
+                                "sorry! Something went wrong. Please try again after some time",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<List<LanguageItem?>>, t: Throwable) {
+                    //   CMHelper.setSnackBar(requireView(), t.getMessage(), 2);
+                }
+            })
+        }
+    }
+
+    /*
+    fun callLanguage() {
+        val call: Call<ArrayList<Language>> = apiService.getLanguage()
+        call.enqueue(object : Callback<ArrayList<Language>> {
+            override fun onResponse(
+                call: Call<ArrayList<Language>>?,
+                response: Response<ArrayList<Language>>?,
+            ) {
+                if (response == null || response.body() == null) {
+                    onFailure(call, NullResponseError())
+                } else {
+
+                    val data = response.body()
+                    if (data?.isNotEmpty() == true) {
+                        val languageDao = AppDatabase.getInstance(getApplication())?.languageDao()
+                        languageDao?.deleteAll()
+                        languageDao?.insertAll(data)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<ArrayList<Language>>?, t: Throwable?) {
+                Log.e("", "Language not found")
+            }
+        })
+    }
+*/
     private val userProfileDataFromServer: Unit
         private get() {
             binding!!.lytTopCard.visibility = View.GONE
@@ -198,4 +310,9 @@ class MyAccountFragment : Fragment() {
                 })
             }
         }
+
+    override fun onResume() {
+        super.onResume()
+    //    fetchLanguageData(PreferenceUtils.getInstance().getAccessTokenPref(context))
+    }
 }

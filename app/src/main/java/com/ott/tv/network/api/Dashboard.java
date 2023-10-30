@@ -2,6 +2,7 @@ package com.ott.tv.network.api;
 
 import com.google.gson.annotations.SerializedName;
 import com.ott.tv.model.BrowseData;
+import com.ott.tv.model.LanguageItem;
 import com.ott.tv.model.Video;
 import com.ott.tv.model.phando.CategoryType;
 import com.ott.tv.model.phando.LatestMoviesTVSeriesList;
@@ -116,5 +117,10 @@ public interface Dashboard {
     Call<UpdateMyListResponse> setContinueWatchingTime(@Header("Authorization") String token,
                                                        @Query("document_id") String documentId,
                                                        @Query("time") String time);
+
+    @GET("languages")
+    Call<List<LanguageItem>> getLanguage(
+            @Header("Authorization") String token
+    );
 
 }

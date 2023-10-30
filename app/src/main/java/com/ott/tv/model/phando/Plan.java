@@ -15,7 +15,7 @@ public class Plan implements Parcelable {
     private int intervalCount;
     private Integer trialPeriodDays;
     private Integer screen;
-    private Integer features;
+  //  private Integer features;
     private int status;
     private int publisherId;
     private int createdBy;
@@ -46,11 +46,11 @@ public class Plan implements Parcelable {
         } else {
             screen = in.readInt();
         }
-        if (in.readByte() == 0) {
+       /* if (in.readByte() == 0) {
             features = null;
         } else {
             features = in.readInt();
-        }
+        }*/
         status = in.readInt();
         publisherId = in.readInt();
         createdBy = in.readInt();
@@ -147,7 +147,7 @@ public class Plan implements Parcelable {
         this.screen = screen;
     }
 
-    public Integer getFeatures() {
+  /*  public Integer getFeatures() {
         return features;
     }
 
@@ -155,7 +155,8 @@ public class Plan implements Parcelable {
         this.features = features;
     }
 
-    public int getStatus() {
+  */
+  public int getStatus() {
         return status;
     }
 
@@ -261,12 +262,12 @@ public class Plan implements Parcelable {
             dest.writeByte((byte) 1);
             dest.writeInt(screen);
         }
-        if (features == null) {
+      /*  if (features == null) {
             dest.writeByte((byte) 0);
         } else {
             dest.writeByte((byte) 1);
             dest.writeInt(features);
-        }
+        }*/
         dest.writeInt(status);
         dest.writeInt(publisherId);
         dest.writeInt(createdBy);

@@ -81,8 +81,8 @@ android {
         }
         digiana {
             applicationId "com.digiana.tv"
-            versionCode 8
-            versionName "1.8"
+            versionCode 9
+            versionName "1.9"
         }
 
         candor {

@@ -219,6 +219,16 @@
                     android:scheme="solid_tv" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.activity.LanguageActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:resizeableActivity="true"
+            android:screenOrientation="landscape"
+            android:supportsPictureInPicture="true"
+            android:theme="@style/Theme.Design.NoActionBar"
+
+            />
+
 
         <service
             android:name=".video_service.SyncChannelJobService"
