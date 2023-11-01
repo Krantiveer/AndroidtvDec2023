@@ -49,6 +49,9 @@ public class PreferenceUtils {
     public static final String ENABLE_Coupons = "ENABLE_Coupons";
     public static final String Login_With_Coupons = "Login_With_Coupons";
     public static final Boolean focusFromWatchNow = false;
+    public static final String LOGIN_DISABLE = "LOGIN_DISABLE";
+    public static final String G0TO_LOGIN = "G0TO_LOGIN";
+
 
     // public static final Boolean focusFromWatchNow = "";
 
@@ -422,5 +425,31 @@ public class PreferenceUtils {
         return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
                 .getString(ENABLE_Coupons, "0");
     }
+
+    public void setLOGIN_DISABLEPref(Context context, String str) {
+        SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(LOGIN_DISABLE, str);
+        editor.apply();
+    }
+
+    public String getLOGIN_DISABLEPref(Context context) {
+        return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
+                .getString(LOGIN_DISABLE, "1");
+    }
+
+    public void setG0TO_LOGINPref(Context context, String str) {
+        SharedPreferences prefs = context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(G0TO_LOGIN, str);
+        editor.apply();
+    }
+
+    public String getG0TO_LOGINPref(Context context) {
+        return context.getSharedPreferences(shared_preferences, Context.MODE_PRIVATE)
+                .getString(G0TO_LOGIN, "false");
+    }
+
+
 
 }

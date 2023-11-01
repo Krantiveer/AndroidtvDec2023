@@ -318,19 +318,36 @@ class NewMainActivity : FragmentActivity() {
                 .replace(binding.browserSection.id, newFragment)
                 .commit()
         } else if (type.equals("watchlist") || type.equals("Watchlist")) {
+            if(PreferenceUtils.getInstance().getLOGIN_DISABLEPref(this).contentEquals("1")){
+                val newFragment = MyAccountWithoutLoginFragment()
+                newFragment.setArguments(bundle)
+                supportFragmentManager.beginTransaction()
+                    .replace(binding.browserSection.id, newFragment)
+                    .commit()
+                return
+            }else{
+
             val newFragment = ShowWatchlistFragment()
             newFragment.setArguments(bundle)
             supportFragmentManager.beginTransaction()
                 .replace(binding.browserSection.id, newFragment)
-                .commit()
+                .commit()}
         } else if (type.equals("profile")) {
             PreferenceUtils.getInstance().setWatchListPref(this, 0)
-            val newFragment = MyAccountFragment()
-            newFragment.setArguments(bundle)
-            supportFragmentManager.beginTransaction()
-                .replace(binding.browserSection.id, newFragment)
-                .commit()
-        } else if (type.equals("uvtv-bharat")) {
+            if(PreferenceUtils.getInstance().getLOGIN_DISABLEPref(this).contentEquals("1")){
+                val newFragment = MyAccountWithoutLoginFragment()
+                newFragment.setArguments(bundle)
+                supportFragmentManager.beginTransaction()
+                    .replace(binding.browserSection.id, newFragment)
+                    .commit()
+                return
+            }else {
+                val newFragment = MyAccountFragment()
+                newFragment.setArguments(bundle)
+                supportFragmentManager.beginTransaction()
+                    .replace(binding.browserSection.id, newFragment)
+                    .commit()
+            }} else if (type.equals("uvtv-bharat")) {
             PreferenceUtils.getInstance().setWatchListPref(this, 0)
             val newFragment = MapFragmentUVTV()
             newFragment.setArguments(bundle)

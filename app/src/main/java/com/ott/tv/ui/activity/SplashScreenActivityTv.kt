@@ -46,7 +46,7 @@ class SplashScreenActivityTv : Activity() {
         val accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(
             applicationContext
         )
-        val call: Call<AppInfo> = api.getAppInfo("androidtv", accessToken)
+        val call: Call<AppInfo> = api.getAppInfo(Config.Device_Type, accessToken)
         call.enqueue(object : Callback<AppInfo?> {
             override fun onResponse(call: Call<AppInfo?>, response: Response<AppInfo?>) {
                 if (response.code() == 200) {
@@ -139,9 +139,19 @@ class SplashScreenActivityTv : Activity() {
                 findViewById<ImageView>(R.id.splash_img_view).visibility = View.INVISIBLE
 
             }
+            if (PreferenceUtils.getInstance().getG0TO_LOGINPref(this).contentEquals("true")) {
+                openHomeFun()
+                return
+            }
             //  findViewById<TextView>(R.id.builVersion).setText("App Version:" + BuildConfig.VERSION_CODE)
+            if (PreferenceUtils.getInstance().getLOGIN_DISABLEPref(this).contentEquals("1")) {
+                val intent = Intent(this, NewMainActivity::class.java)
+                startActivity(intent)
 
-            openHomeFun()
+            } else {
+                openHomeFun()
+
+            }
             //openHome()
 
             Log.e(TAG, "Screen : ${SplashScreenActivityTv::class.java.simpleName}")
@@ -149,6 +159,7 @@ class SplashScreenActivityTv : Activity() {
 
 
     }
+
     private fun getUserProfileDataFromServer() {
         if (applicationContext != null) {
             Constants.IS_FROM_HOME = false
@@ -202,24 +213,45 @@ class SplashScreenActivityTv : Activity() {
 
 
     private fun openHome() {
-        Log.i(TAG, "openHome:--> "+PreferenceUtils.getInstance().getAccessCouponPref(applicationContext)+PreferenceUtils.getInstance().getLogin_With_CouponsPref(application))
-      //  if (PreferenceUtils.isLoggedIn(this)) {
+        Log.i(
+            TAG,
+            "openHome:--> " + PreferenceUtils.getInstance()
+                .getAccessCouponPref(applicationContext) + PreferenceUtils.getInstance()
+                .getLogin_With_CouponsPref(application)
+        )
+        //  if (PreferenceUtils.isLoggedIn(this)) {
+        if (PreferenceUtils.getInstance().getG0TO_LOGINPref(this).contentEquals("true")) {
+            codeforlogin()
+            return
+        }
+        if (PreferenceUtils.getInstance().getLOGIN_DISABLEPref(this).contentEquals("1")) {
+            val intent = Intent(this, NewMainActivity::class.java)
+            startActivity(intent)
+            return
+        }
+        codeforlogin()
 
+    }
+
+    fun codeforlogin() {
         if (PreferenceUtils.isLoggedIn(this)) {
             if (BuildConfig.FLAVOR.contentEquals("solidtv")) {
-                if (PreferenceUtils.getInstance().getLogin_With_CouponsPref(applicationContext).toString().contentEquals("1")) {
+                if (PreferenceUtils.getInstance().getLogin_With_CouponsPref(applicationContext)
+                        .toString().contentEquals("1")
+                ) {
                     val intent = Intent(this, NewMainActivity::class.java)
                     startActivity(intent)
-                }else{
-                    if(subscribe.contentEquals("true")){
+                } else {
+                    if (subscribe.contentEquals("true")) {
                         val intent = Intent(this, NewMainActivity::class.java)
                         startActivity(intent)
 
-                    }else{
-                    val intent = Intent(this, CouponCodeScreenActivity::class.java)
-                    startActivity(intent)
-                }}
-            }else{
+                    } else {
+                        val intent = Intent(this, CouponCodeScreenActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
+            } else {
                 val intent = Intent(this, NewMainActivity::class.java)
                 startActivity(intent)
             }

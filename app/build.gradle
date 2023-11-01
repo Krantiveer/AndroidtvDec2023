@@ -81,14 +81,14 @@ android {
         }
         digiana {
             applicationId "com.digiana.tv"
-            versionCode 9
-            versionName "1.9"
+            versionCode 8
+            versionName "1.8"
         }
 
         candor {
             applicationId "com.tv.candor"
-            versionCode 8
-            versionName "1.8"
+            versionCode 9
+            versionName "1.9"
         }
         solidtv {
             applicationId "com.solidtv"

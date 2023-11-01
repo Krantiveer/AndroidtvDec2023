@@ -104,6 +104,11 @@ public class LoginChooserActivity extends Activity {
         if (PreferenceUtils.getInstance().getENABLE_MOBILE_LOGINPref(getApplicationContext()).equalsIgnoreCase("0")) {
             login_mobile.setVisibility(View.GONE);
         }
+        PreferenceUtils.getInstance().setG0TO_LOGINPref(this,"false");
+        if(PreferenceUtils.getInstance().getLOGIN_DISABLEPref(this).contentEquals("1")){
+            login_mobile.setVisibility(View.GONE);
+
+        }
         if (BuildConfig.FLAVOR.equalsIgnoreCase("phando")) {
             qrcode_url.setText("www.fusiontv.com/" + "mytv");
         } else {
