@@ -12,7 +12,6 @@ import android.view.KeyEvent
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.Toast
 import android.widget.VideoView
 import com.ott.tv.BuildConfig
 import com.ott.tv.Config
@@ -52,8 +51,16 @@ class SplashScreenActivityTv : Activity() {
                 if (response.code() == 200) {
                     Log.i(
                         TAG,
-                        "onResponse: " + response.body()!!.websiteurl + response.body()!!.enable_mobile_login + response.body()!!.enable_email_login + response.body()!!.enable_qr_login
+                        "onResponse:review -- " + response.body()!!.is_review +"is_review"+response.body()!!.websiteurl + response.body()!!.enable_mobile_login + response.body()!!.enable_email_login + response.body()!!.enable_qr_login
                     )
+                    if(response.body()!!.is_review.equals(1)){
+
+
+                    }else{
+                        PreferenceUtils.getInstance().setLOGIN_DISABLEPref(
+                            applicationContext, "xyz"
+                        )
+                    }
                     PreferenceUtils.getInstance().setWebsiteUrlPref(
                         this@SplashScreenActivityTv,
                         response.body()!!.websiteurl

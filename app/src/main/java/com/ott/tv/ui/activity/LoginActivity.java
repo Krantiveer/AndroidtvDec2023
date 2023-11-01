@@ -67,6 +67,10 @@ public class LoginActivity extends Activity {
         if (PreferenceUtils.getInstance().getENABLE_MOBILE_LOGINPref(getApplicationContext()).equalsIgnoreCase("0")) {
             phone_signIn_button.setVisibility(View.GONE);
         }
+        if (PreferenceUtils.getInstance().getLOGIN_DISABLEPref(this).contentEquals("1")) {
+            phone_signIn_button.setVisibility(View.GONE);
+
+        }
 
         bt_skip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,7 +145,7 @@ public class LoginActivity extends Activity {
                 if (response.code() == 200) {
                     assert response.body() != null;
                     if (response.body().getStatus().equalsIgnoreCase("success")) {
-                       // PreferenceUtils.getInstance().setLogin_With_CouponsPref(getApplicationContext(), "1");
+                        // PreferenceUtils.getInstance().setLogin_With_CouponsPref(getApplicationContext(), "1");
                         PreferenceUtils.getInstance().setAccessCouponPref(getApplicationContext(), "1");
                         gotoMainScreen();
                         progressBar.setVisibility(View.GONE);
@@ -218,14 +222,13 @@ public class LoginActivity extends Activity {
                         preferences.apply();
 
                         PreferenceUtils.getInstance().setAccessTokenNPref(getApplicationContext(), response.body().getAccess_token());
-                        PreferenceUtils.getInstance().setG0TO_LOGINPref(getApplicationContext(),"xyz");
-                        PreferenceUtils.getInstance().setLOGIN_DISABLEPref(getApplicationContext(),"xyz");
+                        PreferenceUtils.getInstance().setG0TO_LOGINPref(getApplicationContext(), "xyz");
+                        //   PreferenceUtils.getInstance().setLOGIN_DISABLEPref(getApplicationContext(),"xyz");
 
                      /*   //save user login time, expire time
                         updateSubscriptionStatus(user.getUserId());*/
 
-                        if(PreferenceUtils.getInstance().getENABLE_CouponsPref(getApplicationContext()).equalsIgnoreCase("1"))
-                        {
+                        if (PreferenceUtils.getInstance().getENABLE_CouponsPref(getApplicationContext()).equalsIgnoreCase("1")) {
                             getUserProfileDataFromServer();
                         } else {
                             gotoMainScreen();
@@ -284,7 +287,7 @@ public class LoginActivity extends Activity {
                             } else {
                                 gotoMainScreen();
                                 PreferenceUtils.getInstance().setLogin_With_CouponsPref(getApplicationContext(), "1");
-                             //   PreferenceUtils.getInstance().setAccessCouponPref(getApplicationContext(), "1");
+                                //   PreferenceUtils.getInstance().setAccessCouponPref(getApplicationContext(), "1");
 
 
                             }

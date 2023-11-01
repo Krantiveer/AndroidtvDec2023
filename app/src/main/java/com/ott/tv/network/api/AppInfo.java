@@ -30,6 +30,8 @@ public class AppInfo implements Parcelable {
 
     @SerializedName("websiteurl")
     private String websiteurl;
+    @SerializedName("is_review")
+    private Integer is_review;
 
     private String enable_mobile_login;
     private String enable_email_login;
@@ -67,6 +69,14 @@ public class AppInfo implements Parcelable {
                 ", currentVersion='" + currentVersion + '\'' +
                 ", forceUpdate='" + forceUpdate + '\'' +
                 '}';
+    }
+
+    public Integer getIs_review() {
+        return is_review;
+    }
+
+    public void setIs_review(Integer is_review) {
+        this.is_review = is_review;
     }
 
     public String getEnable_mobile_login() {
