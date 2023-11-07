@@ -2,8 +2,8 @@ package com.ott.tv;
 
 public class Config {
 
-//   public static final String Device_Type = "androidtv";
-      public static final String Device_Type = "firetv";
+   public static final String Device_Type = "androidtv";
+    //  public static final String Device_Type = "firetv";
     //  public static final String DOMAIN = "https://actionott.com/";
     // public static final String DOMAIN = "https://dev.actionott.com/";
     //public static final String DOMAIN = "https://lifeott.com/";
@@ -17,9 +17,11 @@ public class Config {
     public static final String Publisher_id = "5";
     public static final String WebsiteURL = "https://kaafaltv.com";
 */
+/*
     public static final String DOMAIN = "https://ott.digiana.com/";
     public static final String Publisher_id = "63";
     public static final String WebsiteURL = "https://ott.digiana.com/";
+*/
 //mitwatvuat.vdoapi.com
    /* public static final String DOMAIN = "https://mitwatvuat.vdoapi.com/";
     public static final String Publisher_id = "40";
@@ -76,9 +78,9 @@ public class Config {
     public static final String DOMAIN = "https://amuzi.in/";
     public static final String Publisher_id = "80";
     public static final String WebsiteURL = "https://amuzi.in/";*/
-    /*  public static final String DOMAIN = "https://naaptolott.vdoapi.com/";
+      public static final String DOMAIN = "https://naaptolott.vdoapi.com/";
       public static final String Publisher_id = "86";
-      public static final String WebsiteURL = "https://naaptolott.vdoapi.com/";*/
+      public static final String WebsiteURL = "https://naaptolott.vdoapi.com/";
 
     /*     public static final String DOMAIN = "https://adn.vdoapi.com/";
             public static final String Publisher_id = "78";

@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.digiana.tv",
+  "variantName": "digianaRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 6,
+      "versionName": "1.6",
+      "outputFile": "digianaReleasev \tv1.6_02_Mar_2023.apk"
+    }
+  ],
+  "elementType": "File"
+}

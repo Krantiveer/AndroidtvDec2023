@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.toonstaan.tv",
+  "variantName": "toonstaanRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 1,
+      "versionName": "1.0",
+      "outputFile": "toonstaanReleasev \tv1.0_13_Mar_2023.apk"
+    }
+  ],
+  "elementType": "File"
+}

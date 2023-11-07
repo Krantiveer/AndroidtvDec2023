@@ -133,8 +133,8 @@ android {
         }
         naaptolott {
             applicationId "com.naaptolott"
-            versionCode 1
-            versionName "1.0"
+            versionCode 8
+            versionName "8.0"
         }
         /*       adnott {
                    applicationId "com.adnott"

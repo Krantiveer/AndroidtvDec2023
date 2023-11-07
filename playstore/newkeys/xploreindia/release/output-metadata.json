@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.xploreindia.tv",
+  "variantName": "xploreindiaRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 1,
+      "versionName": "1",
+      "outputFile": "xploreindiaRelease-- \tv1 01_Feb_2023.apk"
+    }
+  ],
+  "elementType": "File"
+}
