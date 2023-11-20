@@ -11,7 +11,7 @@ android {
     flavorDimensions "default"
     defaultConfig {
         applicationId "com.uvtv.tv"
-        minSdkVersion 23
+        minSdkVersion 21
         targetSdkVersion 33
         versionCode 1
         versionName "1"
@@ -81,8 +81,8 @@ android {
         }
         digiana {
             applicationId "com.digiana.tv"
-            versionCode 8
-            versionName "1.8"
+            versionCode 9
+            versionName "1.9"
         }
 
         candor {
@@ -118,8 +118,8 @@ android {
         }
         vtv {
             applicationId "com.vtvott"
-            versionCode 5
-            versionName "5.0"
+            versionCode 15
+            versionName "1.15"
         }
         darshott {
             applicationId "com.darshott"

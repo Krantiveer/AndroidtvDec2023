@@ -77,6 +77,20 @@ class MyAccountFragment : Fragment() {
                 PreferenceUtils.getInstance().setAccessTokenNPref(context, "")
                 startActivity(Intent(context, LoginChooserActivity::class.java))
                 activity!!.finish()
+            }else
+                {
+                    val editor = context!!.getSharedPreferences(
+                        Constants.USER_LOGIN_STATUS,
+                        Context.MODE_PRIVATE
+                    ).edit()
+                    editor.putBoolean(Constants.USER_LOGIN_STATUS, false)
+                    editor.apply()
+                    databaseHelper.deleteUserData()
+                    PreferenceUtils.clearSubscriptionSavedData(context)
+                    PreferenceUtils.getInstance().setAccessTokenNPref(context, "")
+                    startActivity(Intent(context, LoginChooserActivity::class.java))
+                    activity!!.finish()
+
             }
         }
     }

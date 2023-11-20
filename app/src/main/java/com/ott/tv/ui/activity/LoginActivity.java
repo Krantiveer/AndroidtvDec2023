@@ -223,7 +223,7 @@ public class LoginActivity extends Activity {
 
                         PreferenceUtils.getInstance().setAccessTokenNPref(getApplicationContext(), response.body().getAccess_token());
                         PreferenceUtils.getInstance().setG0TO_LOGINPref(getApplicationContext(), "xyz");
-                        //   PreferenceUtils.getInstance().setLOGIN_DISABLEPref(getApplicationContext(),"xyz");
+                            //   PreferenceUtils.getInstance().setLOGIN_DISABLEPref(getApplicationContext(),"xyz");
 
                      /*   //save user login time, expire time
                         updateSubscriptionStatus(user.getUserId());*/

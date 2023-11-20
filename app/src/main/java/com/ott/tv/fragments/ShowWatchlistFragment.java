@@ -185,6 +185,20 @@ public class ShowWatchlistFragment extends VerticalGridSupportFragment {
                 ).show();
                 startActivity(new Intent(getContext(), LoginChooserActivity.class));
                 getActivity().finish();
+            }else{
+                SharedPreferences.Editor editor = getContext().getSharedPreferences(Constants.USER_LOGIN_STATUS, MODE_PRIVATE).edit();
+                editor.putBoolean(Constants.USER_LOGIN_STATUS, false);
+                editor.apply();
+                databaseHelper.deleteUserData();
+                PreferenceUtils.clearSubscriptionSavedData(getContext());
+                PreferenceUtils.getInstance().setAccessTokenNPref(getContext(), "");
+                Toast.makeText(
+                        getContext(),
+                        "Please login",
+                        Toast.LENGTH_SHORT
+                ).show();
+                startActivity(new Intent(getContext(), LoginChooserActivity.class));
+                getActivity().finish();
             }
         }
     }

@@ -151,7 +151,7 @@ class SplashScreenActivityTv : Activity() {
                 return
             }
             //  findViewById<TextView>(R.id.builVersion).setText("App Version:" + BuildConfig.VERSION_CODE)
-            if (PreferenceUtils.getInstance().getLOGIN_DISABLEPref(this).contentEquals("1")) {
+            if (PreferenceUtils.getInstance().getLOGIN_DISABLEPref(this)!!.contentEquals("1")) {
                 val intent = Intent(this, NewMainActivity::class.java)
                 startActivity(intent)
 
