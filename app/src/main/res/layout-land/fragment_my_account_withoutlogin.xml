@@ -24,7 +24,7 @@
             android:layout_marginTop="@dimen/_50sdp"
             android:layout_marginBottom="@dimen/_10sdp"
             android:fontFamily="@font/roboto_medium"
-            android:text="Unlock a world of possibilities - Log in now!"
+            android:text="Unlock a world of possibilities - Refresh now!"
 
 
             android:textColor="@color/white"
@@ -163,7 +163,7 @@
                         android:background="@drawable/round_ll_profile"
                         android:fontFamily="@font/roboto_medium"
                         android:gravity="center"
-                        android:text="Log In"
+                        android:text="Refresh Now"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_22sdp"
                         android:textStyle="normal" />
