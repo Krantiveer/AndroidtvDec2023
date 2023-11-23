@@ -48,6 +48,7 @@ class MyAccountWithoutLoginFragment : Fragment() {
         binding!!.progressBar.visibility = View.GONE
         binding!!.signInButton.setOnClickListener {
         PreferenceUtils.getInstance().setG0TO_LOGINPref(context,"true")
+
             Log.i(TAG, "@@digiana "+PreferenceUtils.getInstance().getG0TO_LOGINPref(context))
             val intent = Intent(context, SplashScreenActivityTv::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK

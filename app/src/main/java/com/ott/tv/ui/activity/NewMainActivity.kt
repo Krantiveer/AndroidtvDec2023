@@ -146,41 +146,42 @@ class NewMainActivity : FragmentActivity() {
         Log.e("Store app version: $storeVersion", "")
         Log.e("Current app version: $currentVersion", "")
 
-        if (currentVersion < storeVersion) {
-            // Need to update application
-            val dialog =
-                androidx.appcompat.app.AlertDialog.Builder(this, R.style.MaterialDialogSheet)
-            dialog.setTitle("Update Available")
-            dialog.setMessage("A new version of " + getString(R.string.app_name) + " is available on App Store. Do you want to update?")
-            dialog.setCancelable(false)
+if(Config.Device_Type.contentEquals("firetv")) {
+    if (currentVersion < storeVersion) {
+        // Need to update application
+        val dialog =
+            androidx.appcompat.app.AlertDialog.Builder(this, R.style.MaterialDialogSheet)
+        dialog.setTitle("Update Available")
+        dialog.setMessage("A new version of " + getString(R.string.app_name) + " is available on App Store. Do you want to update?")
+        dialog.setCancelable(false)
 
-            dialog.setPositiveButton("Yes, update") { dialog, which ->
-                try {
-                    startActivity(
-                        Intent(
-                            Intent.ACTION_VIEW,
-                            Uri.parse("market://details?id=$packageName")
-                        )
+        dialog.setPositiveButton("Yes, update") { dialog, which ->
+            try {
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("market://details?id=$packageName")
                     )
-                } catch (ex: ActivityNotFoundException) {
-                    startActivity(
-                        Intent(
-                            Intent.ACTION_VIEW,
-                            Uri.parse("https://play.google.com/store/apps/details?id=$packageName")
-                        )
+                )
+            } catch (ex: ActivityNotFoundException) {
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://play.google.com/store/apps/details?id=$packageName")
                     )
-                }
-
-                this@NewMainActivity.finish()
+                )
             }
 
-            if (!forceUpdate) {
-                dialog.setNegativeButton("No, leave it!") { dialog, which -> }
-            }
-            dialog.setIcon(android.R.drawable.ic_dialog_alert)
-            dialog.show()
+            this@NewMainActivity.finish()
         }
+
+        if (!forceUpdate) {
+            dialog.setNegativeButton("No, leave it!") { dialog, which -> }
+        }
+        dialog.setIcon(android.R.drawable.ic_dialog_alert)
+        dialog.show()
     }
+} }
 
     fun onMenuFocus(onFocus: Boolean) {
         if (onFocus) {

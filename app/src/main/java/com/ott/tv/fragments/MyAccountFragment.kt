@@ -65,7 +65,7 @@ class MyAccountFragment : Fragment() {
     private fun signOut() {
         if (context != null && activity != null) {
             val databaseHelper = DatabaseHelper(context)
-            if (PreferenceUtils.getInstance().getAccessTokenPref(context) !== "") {
+
                 val editor = context!!.getSharedPreferences(
                     Constants.USER_LOGIN_STATUS,
                     Context.MODE_PRIVATE
@@ -77,8 +77,8 @@ class MyAccountFragment : Fragment() {
                 PreferenceUtils.getInstance().setAccessTokenNPref(context, "")
                 startActivity(Intent(context, LoginChooserActivity::class.java))
                 activity!!.finish()
-            }else
-                {
+
+             /*   {
                     val editor = context!!.getSharedPreferences(
                         Constants.USER_LOGIN_STATUS,
                         Context.MODE_PRIVATE
@@ -90,8 +90,8 @@ class MyAccountFragment : Fragment() {
                     PreferenceUtils.getInstance().setAccessTokenNPref(context, "")
                     startActivity(Intent(context, LoginChooserActivity::class.java))
                     activity!!.finish()
+*/
 
-            }
         }
     }
 

@@ -34,6 +34,7 @@ class SplashScreenActivityTv : Activity() {
     var accestoken: String? = null
     var subscribe: String? = null
     private var userProfile: UserProfile? = null
+    private var is_reviewdata:Integer?=null
 
     private val TAG = SplashScreenActivityTv::class.java.simpleName
 
@@ -53,14 +54,6 @@ class SplashScreenActivityTv : Activity() {
                         TAG,
                         "onResponse:review -- " + response.body()!!.is_review +"is_review"+response.body()!!.websiteurl + response.body()!!.enable_mobile_login + response.body()!!.enable_email_login + response.body()!!.enable_qr_login
                     )
-                    if(response.body()!!.is_review.equals(1)){
-
-
-                    }else{
-                        PreferenceUtils.getInstance().setLOGIN_DISABLEPref(
-                            applicationContext, "xyz"
-                        )
-                    }
                     PreferenceUtils.getInstance().setWebsiteUrlPref(
                         this@SplashScreenActivityTv,
                         response.body()!!.websiteurl
@@ -81,6 +74,20 @@ class SplashScreenActivityTv : Activity() {
                         this@SplashScreenActivityTv,
                         response.body()!!.coupons
                     )
+
+                    if(response.body()!!.is_review.equals(1)){
+                        PreferenceUtils.getInstance().setLOGIN_DISABLEPref(
+                            applicationContext, "1"
+                        )
+                        gotomainscreen()
+                    }else{
+
+                        PreferenceUtils.getInstance().setLOGIN_DISABLEPref(
+                            applicationContext, "xyz"
+                        )
+                        openHomeFun()
+
+                    }
 
 
                 } else if (response.code() == 401) {
@@ -146,20 +153,12 @@ class SplashScreenActivityTv : Activity() {
                 findViewById<ImageView>(R.id.splash_img_view).visibility = View.INVISIBLE
 
             }
-            if (PreferenceUtils.getInstance().getG0TO_LOGINPref(this).contentEquals("true")) {
+            /*if (PreferenceUtils.getInstance().getG0TO_LOGINPref(this).contentEquals("true")) {
                 openHomeFun()
                 return
-            }
+            }*/
             //  findViewById<TextView>(R.id.builVersion).setText("App Version:" + BuildConfig.VERSION_CODE)
-            if (PreferenceUtils.getInstance().getLOGIN_DISABLEPref(this)!!.contentEquals("1")) {
-                val intent = Intent(this, NewMainActivity::class.java)
-                startActivity(intent)
-
-            } else {
-                openHomeFun()
-
-            }
-            //openHome()
+                     //openHome()
 
             Log.e(TAG, "Screen : ${SplashScreenActivityTv::class.java.simpleName}")
         }
@@ -239,6 +238,12 @@ class SplashScreenActivityTv : Activity() {
         codeforlogin()
 
     }
+    fun gotomainscreen(){
+        val intent = Intent(this, NewMainActivity::class.java)
+        startActivity(intent)
+
+    }
+
 
     fun codeforlogin() {
         if (PreferenceUtils.isLoggedIn(this)) {
