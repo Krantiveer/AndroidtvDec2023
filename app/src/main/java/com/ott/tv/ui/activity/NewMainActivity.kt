@@ -41,7 +41,7 @@ import java.security.AccessController
 class NewMainActivity : FragmentActivity() {
     private lateinit var binding: ActivityNewMainBinding
     private var itemBinding: LayoutMenuBinding? = null
-    private var defaultType:String ="home";
+    private var defaultType: String = "home";
     private val TAG = NewMainActivity::class.java.simpleName
 
 
@@ -72,7 +72,10 @@ class NewMainActivity : FragmentActivity() {
                 if (response.code() == 200) {
 
                     onGetAppInfoSuccess(response.body()!!)
-                    Log.i("appinfo", "onResponse: " + response.body()!!.player_logo_enable +"--"+ response.body()!!.playerLogo)
+                    Log.i(
+                        "appinfo",
+                        "onResponse: " + response.body()!!.player_logo_enable + "--" + response.body()!!.playerLogo
+                    )
                     PreferenceUtils.getInstance().setWatermarkLogoUrlPref(
                         applicationContext,
                         response.body()!!.playerLogo
@@ -146,42 +149,43 @@ class NewMainActivity : FragmentActivity() {
         Log.e("Store app version: $storeVersion", "")
         Log.e("Current app version: $currentVersion", "")
 
-if(Config.Device_Type.contentEquals("firetv")) {
-    if (currentVersion < storeVersion) {
-        // Need to update application
-        val dialog =
-            androidx.appcompat.app.AlertDialog.Builder(this, R.style.MaterialDialogSheet)
-        dialog.setTitle("Update Available")
-        dialog.setMessage("A new version of " + getString(R.string.app_name) + " is available on App Store. Do you want to update?")
-        dialog.setCancelable(false)
+        if (Config.Device_Type.contentEquals("firetv")) {
+            if (currentVersion < storeVersion) {
+                // Need to update application
+                val dialog =
+                    androidx.appcompat.app.AlertDialog.Builder(this, R.style.MaterialDialogSheet)
+                dialog.setTitle("Update Available")
+                dialog.setMessage("A new version of " + getString(R.string.app_name) + " is available on App Store. Do you want to update?")
+                dialog.setCancelable(false)
 
-        dialog.setPositiveButton("Yes, update") { dialog, which ->
-            try {
-                startActivity(
-                    Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("market://details?id=$packageName")
-                    )
-                )
-            } catch (ex: ActivityNotFoundException) {
-                startActivity(
-                    Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("https://play.google.com/store/apps/details?id=$packageName")
-                    )
-                )
+                dialog.setPositiveButton("Yes, update") { dialog, which ->
+                    try {
+                        startActivity(
+                            Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse("market://details?id=$packageName")
+                            )
+                        )
+                    } catch (ex: ActivityNotFoundException) {
+                        startActivity(
+                            Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse("https://play.google.com/store/apps/details?id=$packageName")
+                            )
+                        )
+                    }
+
+                    this@NewMainActivity.finish()
+                }
+
+                if (!forceUpdate) {
+                    dialog.setNegativeButton("No, leave it!") { dialog, which -> }
+                }
+                dialog.setIcon(android.R.drawable.ic_dialog_alert)
+                dialog.show()
             }
-
-            this@NewMainActivity.finish()
         }
-
-        if (!forceUpdate) {
-            dialog.setNegativeButton("No, leave it!") { dialog, which -> }
-        }
-        dialog.setIcon(android.R.drawable.ic_dialog_alert)
-        dialog.show()
     }
-} }
 
     fun onMenuFocus(onFocus: Boolean) {
         if (onFocus) {
@@ -247,8 +251,11 @@ if(Config.Device_Type.contentEquals("firetv")) {
     }
 
 
-    fun onMenuSelection(type: String,type_id: String, title: String, gener_id: String) {
-        Log.i(TAG, "onMenuSelection: -->"+type+"-typeid-"+type_id+"title"+title+"--"+defaultType)
+    fun onMenuSelection(type: String, type_id: String, title: String, gener_id: String) {
+        Log.i(
+            TAG,
+            "onMenuSelection: -->" + type + "-typeid-" + type_id + "title" + title + "--" + defaultType
+        )
 
         /*if(type_id==defaultType){
             return;
@@ -304,8 +311,7 @@ if(Config.Device_Type.contentEquals("firetv")) {
 
 
             */
-        }
-        else if (type.equals("viewall")) {
+        } else if (type.equals("viewall")) {
             val newFragment = GenreMovieFragment()
             newFragment.setArguments(bundle)
             supportFragmentManager.beginTransaction()
@@ -319,36 +325,38 @@ if(Config.Device_Type.contentEquals("firetv")) {
                 .replace(binding.browserSection.id, newFragment)
                 .commit()
         } else if (type.equals("watchlist") || type.equals("Watchlist")) {
-            if(PreferenceUtils.getInstance().getLOGIN_DISABLEPref(this).contentEquals("1")){
+            if (PreferenceUtils.getInstance().getLOGIN_DISABLEPref(this).contentEquals("1")) {
                 val newFragment = MyAccountWithoutLoginFragment()
                 newFragment.setArguments(bundle)
                 supportFragmentManager.beginTransaction()
                     .replace(binding.browserSection.id, newFragment)
                     .commit()
                 return
-            }else{
+            } else {
 
-            val newFragment = ShowWatchlistFragment()
-            newFragment.setArguments(bundle)
-            supportFragmentManager.beginTransaction()
-                .replace(binding.browserSection.id, newFragment)
-                .commit()}
+                val newFragment = ShowWatchlistFragment()
+                newFragment.setArguments(bundle)
+                supportFragmentManager.beginTransaction()
+                    .replace(binding.browserSection.id, newFragment)
+                    .commit()
+            }
         } else if (type.equals("profile")) {
             PreferenceUtils.getInstance().setWatchListPref(this, 0)
-            if(PreferenceUtils.getInstance().getLOGIN_DISABLEPref(this).contentEquals("1")){
+            if (PreferenceUtils.getInstance().getLOGIN_DISABLEPref(this).contentEquals("1")) {
                 val newFragment = MyAccountWithoutLoginFragment()
                 newFragment.setArguments(bundle)
                 supportFragmentManager.beginTransaction()
                     .replace(binding.browserSection.id, newFragment)
                     .commit()
                 return
-            }else {
+            } else {
                 val newFragment = MyAccountFragment()
                 newFragment.setArguments(bundle)
                 supportFragmentManager.beginTransaction()
                     .replace(binding.browserSection.id, newFragment)
                     .commit()
-            }} else if (type.equals("uvtv-bharat")) {
+            }
+        } else if (type.equals("uvtv-bharat")) {
             PreferenceUtils.getInstance().setWatchListPref(this, 0)
             val newFragment = MapFragmentUVTV()
             newFragment.setArguments(bundle)
@@ -371,6 +379,7 @@ if(Config.Device_Type.contentEquals("firetv")) {
                 .commit()
         }
     }
+
     fun onMenuSelection(type: String, title: String, gener_id: String) {
         if (type.equals("search") || type.equals("Search")) {
 
@@ -421,21 +430,20 @@ if(Config.Device_Type.contentEquals("firetv")) {
 
 
             */
-        }
-        else if (type.equals("viewall")) {
+        } else if (type.equals("viewall")) {
             val newFragment = GenreMovieFragment()
             newFragment.setArguments(bundle)
             supportFragmentManager.beginTransaction()
                 .replace(binding.browserSection.id, newFragment)
                 .commit()
 
-    /*    } else if (type.equals("genre")) {
-            val newFragment = GenreMovieFragment()
-            newFragment.setArguments(bundle)
-            supportFragmentManager.beginTransaction()
-                .replace(binding.browserSection.id, newFragment)
-                .commit()
-*/
+            /*    } else if (type.equals("genre")) {
+                    val newFragment = GenreMovieFragment()
+                    newFragment.setArguments(bundle)
+                    supportFragmentManager.beginTransaction()
+                        .replace(binding.browserSection.id, newFragment)
+                        .commit()
+        */
         } else if (type.equals("watchlist") || type.equals("Watchlist")) {
             val newFragment = ShowWatchlistFragment()
             newFragment.setArguments(bundle)
