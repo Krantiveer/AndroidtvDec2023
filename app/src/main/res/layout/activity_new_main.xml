@@ -46,6 +46,149 @@
                 tools:text="Home"
                 android:paddingEnd="70sp" />
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/homepage"
+                android:background="@color/black_color"
+                android:visibility="visible">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent=".62" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_top"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent=".1" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent=".04" />
+
+                <ImageView
+                    android:id="@+id/img_banner"
+                    android:layout_width="0dp"
+
+                    android:layout_height="@dimen/_330sdp"
+                    android:adjustViewBounds="true"
+                    app:layout_constraintDimensionRatio="16:9"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_default="percent"
+
+                    app:layout_constraintWidth_percent=".6" />
+
+                <com.google.android.exoplayer2.ui.PlayerView
+                    android:id="@+id/player_view_home"
+                    android:layout_width="600dp"
+                    android:layout_height="@dimen/_330sdp"
+                    android:adjustViewBounds="true"
+                    app:layout_constraintDimensionRatio="16:9"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_default="percent"
+                    android:background="@color/transparent"
+                    android:visibility="visible"
+                    app:auto_show="true"
+                    app:hide_on_touch="false"
+                    app:resize_mode="fill"
+                    app:show_timeout="0"
+                    app:use_controller="false" />
+
+                <View
+                    android:id="@+id/gradient_horizontalblack"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_330sdp"
+                    app:layout_constraintWidth_default="percent"
+                    app:layout_constraintWidth_percent=".98"
+                    app:layout_constraintStart_toStartOf="@+id/guideline_start"
+
+
+                    android:background="@drawable/list_devider"
+
+
+                    />
+
+                <View
+                    android:id="@+id/gradient_horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintWidth_default="percent"
+                    app:layout_constraintWidth_percent=".5"
+                    app:layout_constraintStart_toStartOf="@+id/guideline_start"
+
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+
+
+                    />
+
+                <TextView
+                    android:id="@+id/title"
+                    android:text="Title"
+                    app:layout_constraintWidth_default="percent"
+                    app:layout_constraintWidth_percent=".4"
+                    app:layout_constraintTop_toTopOf="@+id/guideline_top"
+                    app:layout_constraintStart_toStartOf="@+id/guideline_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/poppins_regular"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_25sdp"
+                    android:textStyle="bold"
+                    />
+
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintWidth_default="percent"
+                    app:layout_constraintWidth_percent=".4"
+                    app:layout_constraintTop_toBottomOf="@+id/title"
+                    app:layout_constraintStart_toStartOf="@+id/guideline_start"
+
+
+                    android:layout_width="370dp"
+                    android:layout_height="wrap_content"
+
+                    android:alpha="1"
+                    android:ellipsize="end"
+                    android:focusable="false"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint=""
+                    android:lineSpacingExtra="@dimen/margin_gap_4"
+                    android:maxLines="3"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textsize_12"
+                    android:visibility="visible"
+                    />
+
+
+
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/list_fragment"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/guideline_center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             <FrameLayout

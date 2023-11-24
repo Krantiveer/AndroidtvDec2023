@@ -115,5 +115,7 @@ public class Config {
     String DEEPLINK_KEY = "deeplink";
     String PASSTHROUGH_KEY = "passthrough";
     String IS_DEFERRED_KEY = "isDeferred";
+    public static final boolean DirectVideoPlayEnable = false;
+
 
 }

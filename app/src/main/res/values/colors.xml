@@ -124,6 +124,7 @@
     <color name="colorSideNav">#fff</color>
     //cardTextcolor
     <color name="cardTextColor">#fff</color>
+    <color name="text_selector_white_grey">#fff</color>
 
     //loging background color
     <color name="login_background">#020610</color>

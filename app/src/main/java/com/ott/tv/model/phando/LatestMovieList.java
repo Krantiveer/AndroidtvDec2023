@@ -129,7 +129,9 @@ public class LatestMovieList implements Parcelable {
     @Expose
     private String release;
 
-
+ @SerializedName("videos_id")
+    @Expose
+    public String videosId;
     @SerializedName("thumbnail_url")
     @Expose
     private String thumbnailUrl;
@@ -193,6 +195,14 @@ public class LatestMovieList implements Parcelable {
         this.is_Subscribe = is_Subscribe;
     }
 */
+
+    public String getVideosId() {
+        return videosId;
+    }
+
+    public void setVideosId(String videosId) {
+        this.videosId = videosId;
+    }
 
     public String getAndroid_tv_link() {
         return android_tv_link;

@@ -1,0 +1,12 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Existing background image -->
+    <item android:drawable="@drawable/poster_placeholder_land" />
+    <!-- Border for focused state -->
+    <item>
+        <shape android:shape="rectangle">
+            <stroke
+                android:width="2dp"
+            android:color="#00FF00" /> <!-- Set the border color (green in this example) -->
+        </shape>
+    </item>
+</layer-list>
