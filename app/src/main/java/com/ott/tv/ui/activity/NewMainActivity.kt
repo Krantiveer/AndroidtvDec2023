@@ -149,7 +149,7 @@ class NewMainActivity : FragmentActivity() {
         Log.e("Store app version: $storeVersion", "")
         Log.e("Current app version: $currentVersion", "")
 
-        if (Config.Device_Type.contentEquals("firetv")) {
+        if (Config.Device_Type.contentEquals("androidtv")) {
             if (currentVersion < storeVersion) {
                 // Need to update application
                 val dialog =
