@@ -85,7 +85,8 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintWidth_default="percent"
 
-                    app:layout_constraintWidth_percent=".6" />
+                    app:layout_constraintWidth_percent=".6"
+                    android:scaleType="fitXY"/>
 
                 <com.google.android.exoplayer2.ui.PlayerView
                     android:id="@+id/player_view_home"
@@ -134,7 +135,7 @@
 
                 <TextView
                     android:id="@+id/title"
-                    android:text="Title"
+                    android:text=""
                     app:layout_constraintWidth_default="percent"
                     app:layout_constraintWidth_percent=".4"
                     app:layout_constraintTop_toTopOf="@+id/guideline_top"

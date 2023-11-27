@@ -22,7 +22,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.ListFragment
 import com.bumptech.glide.Glide
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
@@ -40,7 +39,6 @@ import com.ott.tv.databinding.ActivityNewMainBinding
 import com.ott.tv.databinding.LayoutMenuBinding
 import com.ott.tv.fragments.*
 import com.ott.tv.model.BrowseData
-import com.ott.tv.model.SliderHome.SliderData
 import com.ott.tv.model.phando.LatestMovieList
 import com.ott.tv.model.phando.PlayerActivityNewCodeDirectPlay
 import com.ott.tv.network.RetrofitClient
@@ -538,7 +536,7 @@ class NewMainActivity : FragmentActivity() {
             if (videoContent.type.equals("VM", ignoreCase = true)||videoContent.type.equals("GENRE")) {
                 val intent = Intent(applicationContext, ItemCountryActivity::class.java)
                 intent.putExtra("id", videoContent.id.toString())
-                intent.putExtra("title", videoContent.viewallTitle)
+                intent.putExtra("title", "   "+videoContent.viewallTitle)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 this.startActivity(intent)
             }
@@ -555,29 +553,117 @@ class NewMainActivity : FragmentActivity() {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 applicationContext.startActivity(intent)
             }
+            if (videoContent.getType() == "E" && videoContent.getIs_live().toString()
+                    .equals("0", ignoreCase = true)
+            ) {
+                val intent = Intent(applicationContext, DetailsActivityPhando::class.java)
+                if (videoContent.getType() != null) intent.putExtra("type", videoContent.getType())
+                if (videoContent.getThumbnail() != null) {
+                    intent.putExtra("thumbImage", videoContent.getThumbnail())
+                } else {
+                    if (videoContent.getThumbnailUrl() != null) intent.putExtra(
+                        "thumbImage",
+                        videoContent.getThumbnailUrl()
+                    )
+                }
+                if (videoContent.getId() != null) {
+                    intent.putExtra("video_id", videoContent.getId().toString())
+                } else {
+                    if (videoContent.getId() != null) intent.putExtra("video_id", videoContent.getId().toString())
+                }
+                if (videoContent.getTitle() != null) intent.putExtra("title", videoContent.getTitle())
+                if (videoContent.getDetail() != null) {
+                    intent.putExtra("description", videoContent.getDetail())
+                } else {
+                    if (videoContent.getDescription() != null) intent.putExtra(
+                        "description",
+                        videoContent.getDescription()
+                    )
+                }
+                if (videoContent.getRelease_date() != null) {
+                    intent.putExtra("release", videoContent.getRelease_date())
+                } else {
+                    if (videoContent.getRelease() != null) {
+                        intent.putExtra("release", videoContent.getRelease())
+                    }
+                }
+                /*   if (videoContent.getRuntime() != null)
+                    intent.putExtra("duration", videoContent.getRuntime());*/if (videoContent.getDuration_str() != null) intent.putExtra(
+                    "duration",
+                    videoContent.getDuration_str()
+                )
+                if (videoContent.getMaturity_rating() != null) intent.putExtra(
+                    "maturity_rating",
+                    videoContent.getMaturity_rating()
+                )
+                if (videoContent.getIs_free() != null) intent.putExtra(
+                    "ispaid",
+                    videoContent.getIs_free().toString()
+                )
+                if (videoContent.getLanguage_str() != null) intent.putExtra(
+                    "language_str",
+                    videoContent.getLanguage_str()
+                )
+                if (videoContent.getIs_live() != null) intent.putExtra(
+                    "is_live",
+                    videoContent.getIs_live().toString()
+                )
+                if (videoContent.getRating() != null) intent.putExtra(
+                    "rating",
+                    videoContent.getRating().toString()
+                )
+                if (videoContent.trailers != null && videoContent.trailers.size > 0 && videoContent.trailers[0] != null && videoContent.trailers[0].media_url != null) {
+                    intent.putExtra("trailer", videoContent.trailers[0].media_url)
+                }
+                if (videoContent.getTrailer_aws_source() != null) {
+                    intent.putExtra("trailer", videoContent.getTrailer_aws_source())
+                }
+                if (videoContent.genres != null) {
+                    if (videoContent.genres.size > 0) {
+                        var genres: String
+                        genres = videoContent.genres[0]
+                        for (i in 1 until videoContent.genres.size) {
+                            genres = genres + "," + videoContent.genres[i]
+                        }
+                        intent.putExtra("genres", genres)
+                    }
+                } else {
+                    if (videoContent.genre != null) {
+                        intent.putExtra("genres", videoContent.genre)
+                    }
+                }
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                applicationContext.startActivity(intent)
+            }
+
         }
 
     }
 
     fun updateBanner(dataList: LatestMovieList) {
-        Log.i(TAG, "updateBanner: "+dataList.viewallTitle)
+        Log.i(TAG, "updateBanner: "+dataList.viewallTitle+dataList)
         if (dataList.type != null) {
 
             if (!dataList.type.equals("VM", ignoreCase = true)) {
                 binding.title.text = dataList.title
                 binding.description.text = dataList.detail
 
-                Glide.with(this).load(dataList.thumbnail).into(binding.imgBanner)
+                Glide.with(this).
+                load(dataList.thumbnail)
+                    .error(R.drawable.poster_placeholder_land)
+                    .placeholder(R.drawable.poster_placeholder_land)
+                    .into(binding.imgBanner)
+
             }
 
         }
 
 
 
-        if(firstTime.equals("firstTime")){
+  /*      if(firstTime.equals("firstTime")){
             firstTime="secondTime"
             return
-        }
+        }*/
         releasePlayer()
 
 

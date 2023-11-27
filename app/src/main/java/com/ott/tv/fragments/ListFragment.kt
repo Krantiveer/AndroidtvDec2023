@@ -45,7 +45,7 @@ class ListFragment : RowsSupportFragment() {
             if(dashboardItem.title.equals("Home Slider")){
                 val headerItem = HeaderItem("Top Deals")
                 val listRow = ListRow(headerItem, arrayObjectAdapter)
-                rootAdapter.add(listRow)
+              //  rootAdapter.add(listRow)
 
             }else{
                 val headerItem = HeaderItem(dashboardItem.title)

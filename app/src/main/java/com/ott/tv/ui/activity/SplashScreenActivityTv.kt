@@ -85,8 +85,48 @@ class SplashScreenActivityTv : Activity() {
                         PreferenceUtils.getInstance().setLOGIN_DISABLEPref(
                             applicationContext, "xyz"
                         )
-                        openHomeFun()
+                        if (BuildConfig.FLAVOR.equals(
+                                "mitwa_tv",
+                                ignoreCase = true
+                            ) || BuildConfig.FLAVOR.equals(
+                                "uvtv",
+                                ignoreCase = true
+                            ) || BuildConfig.FLAVOR.equals(
+                                "adnott",
+                                ignoreCase = true
+                            ) || BuildConfig.FLAVOR.equals("amuzi", ignoreCase = true) || BuildConfig.FLAVOR.equals(
+                                "darshott",
+                                ignoreCase = true
+                            ) || BuildConfig.FLAVOR.equals("omtvott", ignoreCase = true)
+                            || BuildConfig.FLAVOR.equals("fastone", ignoreCase = true)
+                            || BuildConfig.FLAVOR.equals("vtv", ignoreCase = true)
+                            || BuildConfig.FLAVOR.equals("solidtv", ignoreCase = true)
+                            || BuildConfig.FLAVOR.equals("vyasott", ignoreCase = true)
+                        ) {
+                            findViewById<LinearLayout>(R.id.splash_screen_ll).visibility == View.INVISIBLE
 
+                            val path = "android.resource://" + packageName + "/" + R.raw.splashvideio
+                            findViewById<VideoView>(R.id.imageView).setVideoURI(Uri.parse(path))
+                            findViewById<VideoView>(R.id.imageView).start()
+                            findViewById<VideoView>(R.id.imageView).setOnCompletionListener {
+                                openHome()
+
+                            }
+
+                        }else {
+                            findViewById<LinearLayout>(R.id.splash_screen_ll).visibility = View.VISIBLE
+                            if (BuildConfig.FLAVOR.equals("candor", ignoreCase = true) || BuildConfig.FLAVOR.equals(
+                                    "naaptolott"
+                                ) || BuildConfig.FLAVOR.equals("omtvott") || BuildConfig.FLAVOR.equals("fastone") || BuildConfig.FLAVOR.equals(
+                                    "xploreindia"
+                                )
+                            ) {
+                                findViewById<ImageView>(R.id.splash_img_view).visibility = View.INVISIBLE
+
+                            }
+                            openHomeFun()
+
+                        }
                     }
 
 
@@ -112,57 +152,6 @@ class SplashScreenActivityTv : Activity() {
         if (BuildConfig.FLAVOR.contentEquals("solidtv")) {
             getUserProfileDataFromServer()
         }
-
-
-        if (BuildConfig.FLAVOR.equals(
-                "mitwa_tv",
-                ignoreCase = true
-            ) || BuildConfig.FLAVOR.equals(
-                "uvtv",
-                ignoreCase = true
-            ) || BuildConfig.FLAVOR.equals(
-                "adnott",
-                ignoreCase = true
-            ) || BuildConfig.FLAVOR.equals("amuzi", ignoreCase = true) || BuildConfig.FLAVOR.equals(
-                "darshott",
-                ignoreCase = true
-            ) || BuildConfig.FLAVOR.equals("omtvott", ignoreCase = true)
-            || BuildConfig.FLAVOR.equals("fastone", ignoreCase = true)
-            || BuildConfig.FLAVOR.equals("vtv", ignoreCase = true)
-            || BuildConfig.FLAVOR.equals("solidtv", ignoreCase = true)
-            || BuildConfig.FLAVOR.equals("vyasott", ignoreCase = true)
-        ) {
-            findViewById<LinearLayout>(R.id.splash_screen_ll).visibility == View.INVISIBLE
-
-            val path = "android.resource://" + packageName + "/" + R.raw.splashvideio
-            findViewById<VideoView>(R.id.imageView).setVideoURI(Uri.parse(path))
-            findViewById<VideoView>(R.id.imageView).start()
-            findViewById<VideoView>(R.id.imageView).setOnCompletionListener {
-                openHome()
-
-            }
-
-        } else {
-            findViewById<LinearLayout>(R.id.splash_screen_ll).visibility = View.VISIBLE
-            if (BuildConfig.FLAVOR.equals("candor", ignoreCase = true) || BuildConfig.FLAVOR.equals(
-                    "naaptolott"
-                ) || BuildConfig.FLAVOR.equals("omtvott") || BuildConfig.FLAVOR.equals("fastone") || BuildConfig.FLAVOR.equals(
-                    "xploreindia"
-                )
-            ) {
-                findViewById<ImageView>(R.id.splash_img_view).visibility = View.INVISIBLE
-
-            }
-            /*if (PreferenceUtils.getInstance().getG0TO_LOGINPref(this).contentEquals("true")) {
-                openHomeFun()
-                return
-            }*/
-            //  findViewById<TextView>(R.id.builVersion).setText("App Version:" + BuildConfig.VERSION_CODE)
-                     //openHome()
-
-            Log.e(TAG, "Screen : ${SplashScreenActivityTv::class.java.simpleName}")
-        }
-
 
     }
 
