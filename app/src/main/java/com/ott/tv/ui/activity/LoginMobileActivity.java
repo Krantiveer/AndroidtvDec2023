@@ -202,6 +202,8 @@ public class LoginMobileActivity extends Activity {
         if(BuildConfig.FLAVOR.equalsIgnoreCase("vtv")){
             if (editMobileNumber.getText().toString().trim().equals("") || editMobileNumber.getText().toString().trim().equals("")) {
                 CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter Mobile Number"), 2, 10000);
+            } else if (editMobileNumber.getText().length() <= 8) {
+                CMHelper.setSnackBar(this.getCurrentFocus(), String.valueOf("Please Enter Valid Mobile Number"), 2, 10000);
             }
 
             else {
