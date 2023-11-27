@@ -147,16 +147,17 @@ class NewMainActivity : FragmentActivity() {
         supportFragmentManager.beginTransaction().replace(binding.menuSection.id, MenuFragment())
             .commit()
 
-    /*    supportFragmentManager.beginTransaction()
-            .replace(binding.browserSection.id, HomeFragmentNewUI())
-            .commit()*/
+        /*    supportFragmentManager.beginTransaction()
+                .replace(binding.browserSection.id, HomeFragmentNewUI())
+                .commit()*/
         belowFragment()
         /*binding.homepage.visibility = View.GONE
         binding.browserSection.visibility = View.VISIBLE
 */
 
     }
-    fun belowFragment(){
+
+    fun belowFragment() {
         listFragment = com.ott.tv.fragments.ListFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.list_fragment, listFragment)
@@ -218,6 +219,7 @@ class NewMainActivity : FragmentActivity() {
         }
 
     }
+
     fun belowFragmentReplace() {
         listFragment = com.ott.tv.fragments.ListFragment()
         val transaction = supportFragmentManager.beginTransaction()
@@ -533,13 +535,17 @@ class NewMainActivity : FragmentActivity() {
                 }
             }
 
-            if (videoContent.type.equals("VM", ignoreCase = true)||videoContent.type.equals("GENRE")) {
+            if (videoContent.type.equals(
+                    "VM",
+                    ignoreCase = true
+                ) || videoContent.type.equals("GENRE")
+            ) {
                 val intent = Intent(applicationContext, ItemCountryActivity::class.java)
                 intent.putExtra("id", videoContent.id.toString())
-                if(videoContent.type.equals("GENRE")){
-                    intent.putExtra("title", "   "+videoContent.title)
-                }else{
-                    intent.putExtra("title", "   "+videoContent.viewallTitle)
+                if (videoContent.type.equals("GENRE")) {
+                    intent.putExtra("title", "   " + videoContent.title)
+                } else {
+                    intent.putExtra("title", "   " + videoContent.viewallTitle)
 
                 }
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
@@ -574,9 +580,15 @@ class NewMainActivity : FragmentActivity() {
                 if (videoContent.getId() != null) {
                     intent.putExtra("video_id", videoContent.getId().toString())
                 } else {
-                    if (videoContent.getId() != null) intent.putExtra("video_id", videoContent.getId().toString())
+                    if (videoContent.getId() != null) intent.putExtra(
+                        "video_id",
+                        videoContent.getId().toString()
+                    )
                 }
-                if (videoContent.getTitle() != null) intent.putExtra("title", videoContent.getTitle())
+                if (videoContent.getTitle() != null) intent.putExtra(
+                    "title",
+                    videoContent.getTitle()
+                )
                 if (videoContent.getDetail() != null) {
                     intent.putExtra("description", videoContent.getDetail())
                 } else {
@@ -646,41 +658,51 @@ class NewMainActivity : FragmentActivity() {
     }
 
     fun updateBanner(dataList: LatestMovieList) {
-        Log.i(TAG, "updateBanner: "+dataList.viewallTitle+dataList)
+        Log.i(TAG, "updateBanner: " + dataList.viewallTitle + dataList)
         if (dataList.type != null) {
 
             if (!dataList.type.equals("VM", ignoreCase = true)) {
                 binding.title.text = dataList.title
                 binding.description.text = dataList.detail
 
-                Glide.with(this).
-                load(dataList.thumbnail)
+                Glide.with(this).load(dataList.thumbnail)
                     .error(R.drawable.poster_placeholder_land)
                     .placeholder(R.drawable.poster_placeholder_land)
                     .into(binding.imgBanner)
 
+                if (dataList.is_free != null) {
+                    if (dataList.is_free.toString().contentEquals("0")) {
+                        binding.premiumIconImage.visibility = View.VISIBLE
+
+                    } else {
+                        binding.premiumIconImage.visibility = View.GONE
+
+                    }
+                } else {
+                    binding.premiumIconImage.visibility = View.GONE
+
+                }
             }
 
         }
 
 
-
-  /*      if(firstTime.equals("firstTime")){
-            firstTime="secondTime"
-            return
-        }*/
+        /*      if(firstTime.equals("firstTime")){
+                  firstTime="secondTime"
+                  return
+              }*/
         releasePlayer()
 
 
 
-        binding.imgBanner.visibility=View.VISIBLE
-        binding.guidelineCenter.visibility=View.VISIBLE
-        binding.description.visibility=View.VISIBLE
-        binding.guidelineTop.visibility=View.VISIBLE
-        binding.guidelineStart.visibility=View.VISIBLE
-        binding.imgBanner.visibility=View.VISIBLE
-        binding.gradientHorizontal.visibility=View.VISIBLE
-        binding.title.visibility=View.VISIBLE
+        binding.imgBanner.visibility = View.VISIBLE
+        binding.guidelineCenter.visibility = View.VISIBLE
+        binding.description.visibility = View.VISIBLE
+        binding.guidelineTop.visibility = View.VISIBLE
+        binding.guidelineStart.visibility = View.VISIBLE
+        binding.imgBanner.visibility = View.VISIBLE
+        binding.gradientHorizontal.visibility = View.VISIBLE
+        binding.title.visibility = View.VISIBLE
 
         val params = binding.listFragment.layoutParams as ConstraintLayout.LayoutParams
         params.width = 0
@@ -692,8 +714,8 @@ class NewMainActivity : FragmentActivity() {
             val url = dataList.trailer_aws_source
             //  String url = "https://action-ott-live.s3.ap-south-1.amazonaws.com/Sultan+Trailer/sultan+(1).mp4";
             initVideoPlayer(url, "movie")
-        }else{
-            binding.playerViewHome.visibility=View.INVISIBLE
+        } else {
+            binding.playerViewHome.visibility = View.INVISIBLE
         }
 
 
@@ -891,7 +913,7 @@ class NewMainActivity : FragmentActivity() {
                 .commit()
 
         } else if (type.equals("genre")) {
-           binding.homepage.visibility = View.GONE
+            binding.homepage.visibility = View.GONE
             binding.browserSection.visibility = View.VISIBLE
 
             val newFragment = GenreMovieFragment()
@@ -900,7 +922,7 @@ class NewMainActivity : FragmentActivity() {
                 .replace(binding.browserSection.id, newFragment)
                 .commit()
         } else if (type.equals("watchlist") || type.equals("Watchlist")) {
-           binding.homepage.visibility = View.GONE
+            binding.homepage.visibility = View.GONE
             binding.browserSection.visibility = View.VISIBLE
             if (PreferenceUtils.getInstance().getLOGIN_DISABLEPref(this).contentEquals("1")) {
                 val newFragment = MyAccountWithoutLoginFragment()
@@ -918,7 +940,7 @@ class NewMainActivity : FragmentActivity() {
                     .commit()
             }
         } else if (type.equals("profile")) {
-                    binding.homepage.visibility = View.GONE
+            binding.homepage.visibility = View.GONE
             binding.browserSection.visibility = View.VISIBLE
 
             PreferenceUtils.getInstance().setWatchListPref(this, 0)
@@ -1083,6 +1105,7 @@ class NewMainActivity : FragmentActivity() {
         }
         return super.onKeyDown(keyCode, event)
     }
+
     private fun releasePlayer() {
         if (player != null) {
             player!!.playWhenReady = false
@@ -1092,6 +1115,7 @@ class NewMainActivity : FragmentActivity() {
             exoPlayerView!!.player = null
         }
     }
+
     fun initVideoPlayer(url: String?, type: String?) {
         if (this != null) {
             if (url != null && !url.isEmpty()) {
@@ -1143,6 +1167,7 @@ class NewMainActivity : FragmentActivity() {
             }
         }
     }
+
     override fun onStop() {
         super.onStop()
         releasePlayer()
