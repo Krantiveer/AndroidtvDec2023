@@ -41,6 +41,7 @@ class ItemCountryFragment : VerticalGridSupportFragment() {
         super.onCreate(savedInstanceState)
         mContext = context
         title = requireActivity().intent.getStringExtra("title")
+
         id = requireActivity().intent.getStringExtra("id")
         activity = getActivity() as ItemCountryActivity?
         setTitle("\t\t                                     $title")

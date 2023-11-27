@@ -536,7 +536,12 @@ class NewMainActivity : FragmentActivity() {
             if (videoContent.type.equals("VM", ignoreCase = true)||videoContent.type.equals("GENRE")) {
                 val intent = Intent(applicationContext, ItemCountryActivity::class.java)
                 intent.putExtra("id", videoContent.id.toString())
-                intent.putExtra("title", "   "+videoContent.viewallTitle)
+                if(videoContent.type.equals("GENRE")){
+                    intent.putExtra("title", "   "+videoContent.title)
+                }else{
+                    intent.putExtra("title", "   "+videoContent.viewallTitle)
+
+                }
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 this.startActivity(intent)
             }
