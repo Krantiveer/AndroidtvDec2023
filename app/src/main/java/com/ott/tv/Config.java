@@ -2,8 +2,8 @@ package com.ott.tv;
 
 public class Config {
 
-   public static final String Device_Type = "androidtv";
-  //    public static final String Device_Type = "firetv";
+ //  public static final String Device_Type = "androidtv";
+      public static final String Device_Type = "firetv";
     //  public static final String DOMAIN = "https://actionott.com/";
     // public static final String DOMAIN = "https://dev.actionott.com/";
     //public static final String DOMAIN = "https://lifeott.com/";
@@ -61,9 +61,11 @@ public class Config {
       public static final String Publisher_id = "66";
       public static final String WebsiteURL = "https://www.fast1.app/";
 */
-/*    public static final String DOMAIN = "https://www.vtv.co.tz/";
+/*
+    public static final String DOMAIN = "https://www.vtv.co.tz/";
     public static final String Publisher_id = "64";
-    public static final String WebsiteURL = "https://www.vtv.co.tz/";*/
+    public static final String WebsiteURL = "https://www.vtv.co.tz/";
+*/
 
 
 /*

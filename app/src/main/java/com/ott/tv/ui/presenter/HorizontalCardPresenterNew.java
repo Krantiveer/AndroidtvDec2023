@@ -6,6 +6,7 @@ import static com.ott.tv.video_service.VideoPlaybackActivity.TAG;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
@@ -70,7 +71,6 @@ public class HorizontalCardPresenterNew extends Presenter {
         LatestMovieList movie = (LatestMovieList) item;
         //  ((ViewHolder) viewHolder).mCardView.setMainImageDimensions(CARD_WIDTH, CARD_HEIGHT);
         ((ViewHolder) viewHolder).updateCardViewImage(movie.getThumbnail());
-        Log.i(TAG, "onBindViewHolder:--> " + movie.getIs_free());
 
         ((ViewHolder) viewHolder).mCardView.getTextPrimeView();
         if(movie.getIs_free()!=null){
@@ -85,6 +85,59 @@ public class HorizontalCardPresenterNew extends Presenter {
         if(movie.getTitle()!=null){
             ((ViewHolder) viewHolder).mCardView.getTextTitle().setText(movie.getTitle());
         }
+
+        if (movie.getViewallTitle().equalsIgnoreCase("Continue Watching")) {
+            Log.i(TAG, "onBindViewHolder: lovemost"+movie.getViewallTitle());
+
+            ((ViewHolder) viewHolder).mCardView.getProgressBar().setVisibility(VISIBLE);
+
+
+            int total_runtime;
+            int percentageProgressbar;
+            int watch_runtime;
+            if (movie != null) {
+                if (movie.getDuration() != null) {
+                    total_runtime = movie.getDuration();
+                    total_runtime=total_runtime/60;
+                } else {
+                    total_runtime = 0;
+                }
+
+                if (movie.getLast_watch_time() != null ) {
+                    if (movie.getLast_watch_time() !=null) {
+                        watch_runtime = Integer.parseInt(movie.getLast_watch_time().toString()) / 60;
+                    } else {
+                        watch_runtime = 100;
+
+                    }
+                    Log.i("continuewatching", watch_runtime + "--totaltime=" + total_runtime);
+
+
+                    if (total_runtime == 0) {
+                        percentageProgressbar = 100;
+                    } else {
+                        //    percentageProgressbar = (Integer) ((watch_runtime / total_runtime) * 100);
+                        percentageProgressbar = (int) ((watch_runtime * 100.0) / total_runtime);
+
+                    }
+                    Log.i("continuewatching2", "" + percentageProgressbar);
+                    ((ViewHolder) viewHolder).mCardView.getProgressBar().setProgress(percentageProgressbar);
+                    ((ViewHolder) viewHolder).mCardView.getProgressBar().getProgressDrawable().setColorFilter(
+                                    Color.WHITE, android.graphics.PorterDuff.Mode.SRC_IN);
+                   // holder.progressBarMovie.setProgress(percentageProgressbar);
+        /*  holder.progressBarMovie.getProgressDrawable().setColorFilter(
+                            Color.WHITE, android.graphics.PorterDuff.Mode.SRC_IN);
+       */
+         }
+            }
+        }else{
+            ((ViewHolder) viewHolder).mCardView.getProgressBar().setVisibility(GONE);
+
+        }
+
+
+
+
  /*       if (movie.getIs_free().toString().equalsIgnoreCase("1")) {
             ((ViewHolder) viewHolder).mCardView.getTextPrimeView().setVisibility(GONE);
         } else {

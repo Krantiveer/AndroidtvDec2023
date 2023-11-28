@@ -34,5 +34,8 @@ logo_splash
 
 
 
+logo required :
+1.
+
 
 

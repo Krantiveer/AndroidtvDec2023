@@ -19,6 +19,7 @@ import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.leanback.widget.BaseCardView;
@@ -43,7 +44,9 @@ public class ImageCardView extends BaseCardView {
     public ImageView getImageView() {
         return (ImageView) findViewById(R.id.main_image);
     }
-
+    public ProgressBar getProgressBar(){
+        return (ProgressBar) findViewById(R.id.progress_bar_movie);
+    }
     public ImageView getPrimeImageView() {
         return (ImageView) findViewById(R.id.premiumIconImage);
     }
