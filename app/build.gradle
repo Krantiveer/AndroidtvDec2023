@@ -6,13 +6,13 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
 
 android {
-    compileSdkVersion 34
+    compileSdkVersion 33
     buildToolsVersion "30.0.3"
     flavorDimensions "default"
     defaultConfig {
         applicationId "com.uvtv.tv"
         minSdkVersion 21
-        targetSdkVersion 34
+        targetSdkVersion 33
         versionCode 1
         versionName "1"
         multiDexEnabled true
@@ -118,8 +118,8 @@ android {
         }
         vtv {
             applicationId "com.vtvott"
-            versionCode 15
-            versionName "1.15"
+            versionCode 16
+            versionName "16"
         }
         darshott {
             applicationId "com.darshott"
