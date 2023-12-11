@@ -121,7 +121,7 @@ public class CouponCodeScreenActivity extends Activity {
     }
 
     private void getVerifiedCoupon(String couponCode) {
-        progressBar.setVisibility(View.VISIBLE);
+       // progressBar.setVisibility(View.VISIBLE);
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
         String accessToken = "Bearer " + PreferenceUtils.getInstance().getAccessTokenPref(this);
 
@@ -138,10 +138,10 @@ public class CouponCodeScreenActivity extends Activity {
                      //   PreferenceUtils.getInstance().setAccessCouponPref(getApplicationContext(), "1");
 
                         gotoMainScreen();
-                        progressBar.setVisibility(View.GONE);
+                     //   progressBar.setVisibility(View.GONE);
                     } else {
                         new ToastMsg(getApplicationContext()).toastIconError(response.body().getMessage());
-                        progressBar.setVisibility(View.GONE);
+                       // progressBar.setVisibility(View.GONE);
                     }
                 } else {
                     if (response.code() == 401) {
@@ -150,14 +150,14 @@ public class CouponCodeScreenActivity extends Activity {
 
                         new ToastMsg(getApplicationContext()).toastIconError(response.message());
                     }
-                    progressBar.setVisibility(View.GONE);
+                //    progressBar.setVisibility(View.GONE);
 
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<CouponModel> call, @NonNull Throwable t) {
-                progressBar.setVisibility(View.GONE);
+             //   progressBar.setVisibility(View.GONE);
                 new ToastMsg(getApplicationContext()).toastIconError(getString(R.string.error_toast) + t);
             }
         });
@@ -184,7 +184,7 @@ public class CouponCodeScreenActivity extends Activity {
     }
 
     private void login(String email, final String password) {
-        progressBar.setVisibility(View.VISIBLE);
+      //  progressBar.setVisibility(View.VISIBLE);
         Retrofit retrofit = RetrofitClient.getRetrofitInstance();
         LoginApi api = retrofit.create(LoginApi.class);
         Call<User> call = api.postLoginStatus(email, password);
@@ -193,7 +193,7 @@ public class CouponCodeScreenActivity extends Activity {
             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
 
                 if (response.code() == 200) {
-                    progressBar.setVisibility(View.GONE);
+        //            progressBar.setVisibility(View.GONE);
                     assert response.body() != null;
                     if (response.body().getStatus().equalsIgnoreCase("success")) {
                         User user = response.body();
@@ -231,7 +231,7 @@ public class CouponCodeScreenActivity extends Activity {
 
                     } else {
                         new ToastMsg(CouponCodeScreenActivity.this).toastIconError(response.body().getData());
-                        progressBar.setVisibility(View.GONE);
+                       // progressBar.setVisibility(View.GONE);
                     }
                 } else {
                     if (response.code() == 401) {
@@ -240,14 +240,14 @@ public class CouponCodeScreenActivity extends Activity {
                     } else {
                         new ToastMsg(CouponCodeScreenActivity.this).toastIconError("Please Try Again Getting" + response.code());
                     }
-                    progressBar.setVisibility(View.GONE);
+                 //   progressBar.setVisibility(View.GONE);
 
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
-                progressBar.setVisibility(View.GONE);
+              //  progressBar.setVisibility(View.GONE);
                 new ToastMsg(CouponCodeScreenActivity.this).toastIconError(getString(R.string.error_toast));
             }
         });
@@ -281,7 +281,7 @@ public class CouponCodeScreenActivity extends Activity {
                             Toast.makeText(getApplicationContext(), response.errorBody().toString(), Toast.LENGTH_SHORT).show();
 
                         } else {
-                            progressBar.setVisibility(View.GONE);
+                          //  progressBar.setVisibility(View.GONE);
                             Toast.makeText(getApplicationContext(), "Sorry! Something went wrong. Please try again after some time", Toast.LENGTH_SHORT).show();
 
 
@@ -354,7 +354,7 @@ public class CouponCodeScreenActivity extends Activity {
         call.enqueue(new Callback<ActiveStatus>() {
             @Override
             public void onResponse(@NonNull Call<ActiveStatus> call, @NonNull Response<ActiveStatus> response) {
-                progressBar.setVisibility(View.GONE);
+             //   progressBar.setVisibility(View.GONE);
                 if (response.code() == 200) {
                     if (response.body() != null) {
                         ActiveStatus activeStatus = response.body();

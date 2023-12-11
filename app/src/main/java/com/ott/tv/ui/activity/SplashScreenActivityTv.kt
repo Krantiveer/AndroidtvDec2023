@@ -125,7 +125,9 @@ class SplashScreenActivityTv : Activity() {
                                 findViewById<ImageView>(R.id.splash_img_view).visibility = View.INVISIBLE
 
                             }
-                            openHomeFun()
+                            openHome()
+
+                            //  openHomeFun()
 
                         }
                     }
@@ -237,7 +239,7 @@ class SplashScreenActivityTv : Activity() {
 
     fun codeforlogin() {
         if (PreferenceUtils.isLoggedIn(this)) {
-            if (BuildConfig.FLAVOR.contentEquals("solidtv")) {
+            if (BuildConfig.FLAVOR.contentEquals("solidtv")||BuildConfig.FLAVOR.contentEquals("digiana")) {
                 if (PreferenceUtils.getInstance().getLogin_With_CouponsPref(applicationContext)
                         .toString().contentEquals("1")
                 ) {
