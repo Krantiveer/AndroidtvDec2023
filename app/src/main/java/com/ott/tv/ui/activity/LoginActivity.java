@@ -383,6 +383,7 @@ public class LoginActivity extends Activity {
                             } else {
                                 db.updateActiveStatus(activeStatus, 1);
                             }
+
                         }
                         Intent intent = new Intent(LoginActivity.this, NewMainActivity.class);
                         startActivity(intent);
