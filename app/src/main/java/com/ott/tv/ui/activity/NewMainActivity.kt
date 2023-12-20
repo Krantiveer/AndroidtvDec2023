@@ -789,6 +789,7 @@ class NewMainActivity : FragmentActivity() {
 
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (!binding.slidingPaneLayout.closePane()) {
             binding.slidingPaneLayout.openPane();
